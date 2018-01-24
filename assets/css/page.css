@@ -654,13 +654,13 @@
 		}
 
 	/*댓글갯수 영역*/
-		.write_cont div b{
+		.write_cont div b.middle_font{
 			font-weight: bold;
 			width: 83px;
 			float: right;
 		}
 
-		.write_cont div b span{
+		.write_cont div b.middle_font span{
 			float: right;
 			color: red;
 			font-weight: bold;
@@ -722,7 +722,7 @@
 			padding:5px;
 		}
 
-		.write_cont ol li span{
+		.write_cont ol li span.char_count{
 			float: right;
 		}
 
@@ -817,7 +817,7 @@
 	}
 
 /*이용약관 , 개인정보 취급방침 , 게재중단요청 , 제휴문의 영역*/
-	.terms p{
+	.terms p.document-etc{
 		width: 94%;
 		display: inline-block;
 		padding: 3%;

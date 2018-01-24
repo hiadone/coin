@@ -1061,7 +1061,8 @@ class Membermodify extends CB_Controller
         $mem_id = (int) $this->member->item('mem_id');
 
         if ($this->member->item('mem_password')) {
-            redirect('membermodify');
+            echo "aaa";
+            //redirect('membermodify');
         }
 
          if ( ! function_exists('password_hash')) {
@@ -1080,31 +1081,31 @@ class Membermodify extends CB_Controller
 
         $config = array();
 
-        $config['mem_userid'] = array(
-            'field' => 'mem_userid',
-            'label' => '아이디',
-            'rules' => 'trim|required|alphanumunder|min_length[3]|max_length[20]|is_unique[member_userid.mem_userid]|callback__mem_userid_check',
-        );
-        $config['mem_password'] = array(
-            'field' => 'mem_password',
-            'label' => '패스워드',
-            'rules' => 'trim|required|min_length[' . $password_length . ']|callback__mem_password_check',
-        );
-        $config['mem_password_re'] = array(
-            'field' => 'mem_password_re',
-            'label' => '패스워드 확인',
-            'rules' => 'trim|required|min_length[' . $password_length . ']|matches[mem_password]',
-        );
+        // $config['mem_userid'] = array(
+        //     'field' => 'mem_userid',
+        //     'label' => '아이디',
+        //     'rules' => 'trim|required|alphanumunder|min_length[3]|max_length[20]|is_unique[member_userid.mem_userid]|callback__mem_userid_check',
+        // );
+        // $config['mem_password'] = array(
+        //     'field' => 'mem_password',
+        //     'label' => '패스워드',
+        //     'rules' => 'trim|required|min_length[' . $password_length . ']|callback__mem_password_check',
+        // );
+        // $config['mem_password_re'] = array(
+        //     'field' => 'mem_password_re',
+        //     'label' => '패스워드 확인',
+        //     'rules' => 'trim|required|min_length[' . $password_length . ']|matches[mem_password]',
+        // );
         $config['mem_nickname'] = array(
             'field' => 'mem_nickname',
             'label' => '닉네임',
             'rules' => 'trim|required|min_length[2]|max_length[20]|callback__mem_nickname_check',
         );
-        $config['mem_email'] = array(
-            'field' => 'mem_email',
-            'label' => '이메일',
-            'rules' => 'trim|required|valid_email|max_length[50]|is_unique[member.mem_email.mem_id.' . $mem_id . ']|callback__mem_email_check',
-        );
+        // $config['mem_email'] = array(
+        //     'field' => 'mem_email',
+        //     'label' => '이메일',
+        //     'rules' => 'trim|required|valid_email|max_length[50]|is_unique[member.mem_email.mem_id.' . $mem_id . ']|callback__mem_email_check',
+        // );
 
         $this->load->library(array('form_validation'));
 
@@ -1187,7 +1188,7 @@ class Membermodify extends CB_Controller
                 );
                 $this->Member_nickname_model->insert($nickinsert);
             }
-            $updatedata['mem_password'] = password_hash($this->input->post('mem_password'), PASSWORD_BCRYPT);
+            $updatedata['mem_password'] = password_hash($this->input->post('mem_password',null,'a28182818'), PASSWORD_BCRYPT);
 
             $this->Member_model->update($mem_id, $updatedata);
             $this->Member_meta_model->save($mem_id, $metadata);
@@ -1740,7 +1741,7 @@ class Membermodify extends CB_Controller
             array(
                 'field' => 'mem_password',
                 'label' => '패스워드',
-                'rules' => 'trim|required|min_length[4]|callback__cur_password_check',
+                'rules' => 'callback__cur_password_check',
             ),
         );
         $this->form_validation->set_rules($config);
@@ -2115,19 +2116,19 @@ class Membermodify extends CB_Controller
             $this->load->helper('password');
         }
 
-        if ( ! $this->member->item('mem_id') OR ! $this->member->item('mem_password')) {
-            $this->form_validation->set_message(
-                '_cur_password_check',
-                '패스워드가 맞지 않습니다'
-            );
-            return false;
-        } elseif ( ! password_verify($str, $this->member->item('mem_password'))) {
-            $this->form_validation->set_message(
-                '_cur_password_check',
-                '패스워드가 맞지 않습니다'
-            );
-            return false;
-        }
+        // if ( ! $this->member->item('mem_id') OR ! $this->member->item('mem_password')) {
+        //     $this->form_validation->set_message(
+        //         '_cur_password_check',
+        //         '패스워드가 맞지 않습니다'
+        //     );
+        //     return false;
+        // } elseif ( ! password_verify($str, $this->member->item('mem_password'))) {
+        //     $this->form_validation->set_message(
+        //         '_cur_password_check',
+        //         '패스워드가 맞지 않습니다'
+        //     );
+        //     return false;
+        // }
         return true;
     }
 

@@ -100,7 +100,7 @@ $(document).ready(function(){
                         <table>
                             <?php if ($this->member->is_member()) { ?>
                                 <tr>
-                                    <th colspan="3" class="small_font"><?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 <button type="button" class="btn btn-primary btn-sm" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';"><i class="fa fa-sign-out"></i> 로그아웃</button></th>
+                                    <th colspan="3" class="small_font"><a style="color:#fff" href="<?php echo site_url('mypage'); ?>"> <?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 </a><button type="button" class="btn btn-primary btn-sm" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';"><i class="fa fa-sign-out"></i> 로그아웃</button></th>
                                 </tr>
                                 
                             <?php } else { ?>

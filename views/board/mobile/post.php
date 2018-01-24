@@ -22,7 +22,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 <article class="wrap01">
     <section class="main_title write_cont">
         <h2><?php echo html_escape(element('board_name', element('board', $view))); ?></h2>
-        <?php echo show_alert_message($this->session->flashdata('message'), '<div class="alert alert-auto-close alert-dismissible alert-info"><button type="button" class="close alertclose" >&times;</button>', '</div>'); ?>
+        <?php echo show_alert_message($this->session->flashdata('message'), '<div class="alert alert-auto-close alert-dismissible alert-info">', '</div>'); ?>
         <div class="board">
             <h3 class="big_font"><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>
             <b class="middle_font">댓글 <span>[ <?php echo number_format(element('post_comment_count', element('post', $view))); ?> 개 ]</span></b>
@@ -120,7 +120,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <?php    if (element('delete_url', $view)) { ?>
                 <a  class="btn btn-default btn-sm btn-one-delete" data-one-delete-url="<?php echo element('delete_url', $view); ?>">삭제</a>
             <?php } ?>
-                <a href="<?php echo element('list_url', $view); ?>" class="btn btn-default btn-sm">목록</a>
+                <!-- <a href="<?php echo element('list_url', $view); ?>" class="btn btn-default btn-sm">목록</a> -->
             
            
         </div>
@@ -149,12 +149,12 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
     <?php
     if ( ! element('post_hide_comment', element('post', $view))) {
     ?>
-        <div id="viewcomment"></div>
+        
     <?php
         $this->load->view(element('view_skin_path', $layout) . '/comment_write');
     }
     ?>
-    
+    <div id="viewcomment"></div>
     <ul class="small_font">
         <li><a href="<?php echo element('list_url', $view); ?>" class="">목 록</a></li>
         <?php if (element('prev_post', $view)) { ?>

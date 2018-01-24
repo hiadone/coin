@@ -32,6 +32,9 @@ class Board_post extends CB_Controller
         /**
          * 라이브러리를 로딩합니다
          */
+        if ( ! $this->member->item('mem_password') && $this->member->item('mem_id')) {
+            redirect('membermodify');
+        }
         $this->load->library(array('pagination', 'querystring', 'accesslevel', 'videoplayer', 'point'));
     }
 

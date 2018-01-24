@@ -10,9 +10,10 @@ if ( ! element('post_hide_comment', element('post', $view)) && element('is_admin
 }
 if (element('can_comment_write', element('comment', $view)) OR element('show_textarea', element('comment', $view))) {
 ?>
-    <div id="comment_write_box">
-        <div class="well comment_write_box_inner">
-            <div class="alert alert-auto-close alert-dismissible alert-comment-message" style="display:none;"><button type="button" class="close alertclose">×</button><span class="alert-comment-message-content"></span></div>
+    <ol id="comment_write_box">
+    <li style="border-bottom:0; padding: 3%; box-sizing: border-box;">
+        <h3>댓글쓰기</h3>
+            <div class="alert alert-auto-close alert-dismissible alert-comment-message" style="display:none;"><span class="alert-comment-message-content"></span></div>
             <?php
             $attributes = array('name' => 'fcomment', 'id' => 'fcomment');
             echo form_open('', $attributes);
@@ -21,58 +22,22 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 <input type="hidden" name="post_id" value="<?php echo element('post_id', element('post', $view)); ?>" />
                 <input type="hidden" name="cmt_id" value="" id="cmt_id" />
                 <input type="hidden" name="cmt_page" value="" id="cmt_page" />
-                <?php
-                if (element('is_comment_name', element('comment', $view))) {
-                ?>
-                    <ol>
-                        <li>
-                            <span>이름</span>
-                            <input type="text" class="input" id="cmt_nickname" name="cmt_nickname" value="<?php echo set_value('cmt_nickname'); ?>" />
-                        </li>
-                        <li>
-                            <span>비밀번호</span>
-                            <input type="password" class="input" id="cmt_password" name="cmt_password" />
-                        </li>
-                    </ol>
-                <?php
-                }
-                ?>
-                <textarea class="input commenttextarea" name="cmt_content" id="cmt_content" rows="5" accesskey="c" <?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'onClick="alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} ?>><?php echo set_value('cmt_content', element('cmt_content', element('comment', $view))); ?></textarea>
+                
+                <textarea <?php if($this->member->is_member() === false) {?> placeholder="댓글쓰기는 로그인후 이용이 가능합니다."  onfocus="this.placeholder=''" maxlength="100" onblur="this.placeholder='댓글쓰기는 로그인후 이용이 가능합니다.'" <?php } ?>class=" " name="cmt_content" id="cmt_content"  accesskey="c" <?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'onClick="alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} ?>><?php echo set_value('cmt_content', element('cmt_content', element('comment', $view))); ?></textarea>
                 <?php if (element('comment_min_length', element('board', $view)) OR element('comment_max_length', element('board', $view))) { ?>
-                    <div>
-                        현재 <strong><span id="char_count">0</span></strong> 글자이며,
+                    <span class="char_count">
+                        <span id="char_count">0</span>/
                         <?php if (element('comment_min_length', element('board', $view))) { ?>
                             최소 <strong><?php echo number_format(element('comment_min_length', element('board', $view))); ?></strong> 글자 이상
-                        <?php }
-                        if (element('comment_max_length', element('board', $view))) { ?>
-                            최대 <strong><?php echo number_format(element('comment_max_length', element('board', $view))); ?></strong> 글자 이하
+                        <?php } if (element('comment_max_length', element('board', $view))) { ?>
+                            <strong><?php echo number_format(element('comment_max_length', element('board', $view))); ?></strong>
                         <?php } ?>
-                        입력하실 수 있습니다.
-                    </div>
+                    </span>
                 <?php } ?>
-                <div class="comment_write_button_area">
-                    <div class="form-group pull-left">
-                        <button type="button" class="btn btn-danger btn-sm" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">댓글등록</button>
-                    </div>
-                    <div class="btn-group pull-right" role="group" aria-label="...">
-                        <?php if (element('can_comment_secret', element('comment', $view))) { ?>
-                            <div class="checkbox pull-left mr10">
-                                <label for="cmt_secret">
-                                    <input type="checkbox" name="cmt_secret" id="cmt_secret" value="1" <?php echo set_checkbox('cmt_secret', '1', (element('cmt_secret', element('comment', $view)) ? true : false)); ?> /> 비밀글
-                                </label>
-                            </div>
-                        <?php } ?>
-                        <?php if (element('use_emoticon', element('comment', $view))) { ?>
-                            <button type="button" class="btn btn-default btn-sm" title="이모티콘" onclick="window.open('<?php echo site_url('helptool/emoticon?id=cmt_content'); ?>', 'emoticon', 'width=600,height=400,scrollbars=yes')"><i class="fa fa-smile-o fa-lg"></i></button>
-                        <?php } ?>
-                        <?php if (element('use_specialchars', element('comment', $view))) { ?>
-                            <button type="button" class="btn btn-default btn-sm" title="특수문자" onclick="window.open('<?php echo site_url('helptool/specialchars?id=cmt_content'); ?>', 'specialchars', 'width=490,height=245,scrollbars=yes')"><i class="fa fa-star-o fa-lg"></i></button>
-                        <?php } ?>
-                        <button type="button" class="btn btn-default btn-sm" title="새글등록" onClick="comment_box('', 'c');"><i class="fa fa-pencil fa-lg"></i></button>
-                        <button type="button" class="btn btn-default btn-sm" title="창을크게" onClick="resize_textarea('cmt_content', 'down');"><i class="fa fa-plus fa-lg"></i></button>
-                        <button type="button" class="btn btn-default btn-sm" title="창을작게" onClick="resize_textarea('cmt_content', 'up');"><i class="fa fa-minus fa-lg"></i></button>
-                    </div>
-                </div>
+               
+                        <button type="button" class="per100 mt10" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">저 장</button>
+                   
+                    
                 <?php if ($this->member->is_member() === false) { ?>
                     <div class="form-inline passcord">
                         <?php if ($this->cbconfig->item('use_recaptcha')) { ?>
@@ -88,9 +53,9 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                         <?php } ?>
                     </div>
                 <?php } ?>
-            <?php echo form_close(); ?>
-        </div>
-    </div>
+            <?php echo form_close(); ?>        
+        </li>
+    </ol>
 <?php
 }
 ?>

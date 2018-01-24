@@ -8,7 +8,7 @@
             <div class="text_area">
             <?php
             echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
-            echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-info"><button type="button" class="close alertclose" >&times;</button>', '</div>');
+            echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-info">', '</div>');
             $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite', 'id' => 'fwrite', 'onsubmit' => 'return submitContents(this)');
             echo form_open_multipart(current_full_url(), $attributes);
             ?>
@@ -107,13 +107,13 @@
 
             <?php echo display_dhtml_editor('post_content', set_value('post_content', element('post_content', element('post', $view))), $classname = '', $is_dhtml_editor = element('use_dhtml', element('board', $view)), $editor_type = $this->cbconfig->item('post_editor_type')); ?>
             <?php if ( ! element('use_dhtml', element('board', $view)) AND (element('post_min_length', element('board', $view)) OR element('post_max_length', element('board', $view)))) { ?>
-            <span id="char_count">0/
+            <span class="char_count">
                 <?php if (element('post_min_length', element('board', $view))) { ?>
                     최소 <strong><?php echo number_format(element('post_min_length', element('board', $view))); ?></strong> 글자 이상
                 <?php } if (element('post_max_length', element('board', $view))) { ?>
-                    <strong><?php echo number_format(element('post_max_length', element('board', $view))); ?></strong>
+                    <span>/<strong><?php echo number_format(element('post_max_length', element('board', $view))); ?></strong></span>
                 <?php } ?>
-                
+                <span id="char_count">0</span>
             </span>
         <?php } ?>
         </div>
