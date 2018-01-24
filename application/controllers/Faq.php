@@ -90,6 +90,7 @@ class Faq extends CB_Controller
             ->get_list($per_page, $offset, $where, '', $findex, $forder, $sfield, $skeyword);
         if (element('list', $result)) {
             foreach (element('list', $result) as $key => $val) {
+                
                 $content = ($this->cbconfig->get_device_view_type() === 'mobile')
                     ? (element('faq_mobile_content', $val) ? element('faq_mobile_content', $val)
                     : element('faq_content', $val)) : element('faq_content', $val);
@@ -115,6 +116,8 @@ class Faq extends CB_Controller
                     $writer_is_admin = true
                 );
 
+                $result['list'][$key]['display_name'] = '관리자';
+                $result['list'][$key]['display_datetime'] = display_datetime(element('faq_datetime', $val));
                 $result['list'][$key]['content'] = display_html_content(
                     $content,
                     element('faq_content_html_type', $val),

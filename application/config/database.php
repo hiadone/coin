@@ -83,10 +83,10 @@ $query_builder = TRUE;
 */
 $db['default'] = array(
 	//'dsn'	=> 'mysql:host=localhost;dbname=yourdatabasenamehere',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => 'hiadone-m.cwvs02kjjoti.ap-northeast-2.rds.amazonaws.com',
+	'username' => 'HIADONE_M',
+	'password' => 'hi09281211',
+	'database' => 'coin',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'cb_',
 	'pconnect' => FALSE,

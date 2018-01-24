@@ -100,4 +100,63 @@ class Gotourl extends CB_Controller
 
         redirect(prep_url(element('ban_url', $banner)));
     }
+
+    /**
+     * twitter url 이동 관련 함수입니다
+     */
+    public function twitter($ban_id = 0)
+    {
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_gotourl_twitter';
+        $this->load->event($eventname);
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('before', $eventname);
+
+        $ban_id = (int) $ban_id;
+        if (empty($ban_id) OR $ban_id < 1) {
+            show_404();
+        }
+
+        $this->load->model(array('Twitter_model'));
+
+        $twitter = $this->Twitter_model->get_one($ban_id);
+        if ( ! element('ban_id', $twitter)) {
+            show_404();
+        }
+        if ( ! element('ban_activated', $twitter)) {
+            show_404();
+        }
+        if ( ! element('ban_url', $twitter)) {
+            show_404();
+        }
+
+        if ( ! $this->session->userdata('twitter_click_' . $ban_id )) {
+
+            $this->session->set_userdata(
+                'twitter_click_' . $ban_id,
+                '1'
+            );
+
+            $mem_id = (int) $this->member->item('mem_id');
+            $insertdata = array(
+                'ban_id' => element('ban_id', $twitter),
+                'mem_id' => $mem_id,
+                'bcl_datetime' => cdate('Y-m-d H:i:s'),
+                'bcl_ip' => $this->input->ip_address(),
+                'bcl_referer' => $this->agent->referrer(),
+                'bcl_url' => element('ban_url', $twitter),
+                'bcl_useragent' => $this->agent->agent_string(),
+            );
+            $this->load->model(array('Twitter_click_log_model'));
+            $this->Twitter_click_log_model->insert($insertdata);
+
+            $this->Twitter_model->update_plus($ban_id, 'ban_hit', 1);
+        }
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('after', $eventname);
+
+        redirect(prep_url(element('ban_url', $twitter)));
+    }
 }

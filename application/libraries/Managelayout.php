@@ -336,4 +336,35 @@ class Managelayout extends CI_Controller
         }
         return $return;
     }
+
+    /**
+     * footer 리턴합니다
+     */
+    function display_footer()
+    {
+        $return = '
+        <footer>
+            <table>
+                <tr>
+                    <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="로그인">로그인</a></td>
+                    <td>회원가입</td>
+                    <td><a href="<?php echo current_full_url(); ?>" class="viewpcversion">PC</a></td>
+                </tr>
+            </table>
+            <ul class="middle_font">
+                <li><a href="'.document_url('provision').'" title="이용약관">이용약관</a></li>
+                <li><a href="'.document_url('privacy').'" title="개인정보 방침">개인정보취급방침</a></li>
+                <li><a href="'.document_url('privacy').'" title="위치정보">게제중단요청</a></li>
+                <li><a href="'.document_url('privacy').'" title="위치정보">제휴문의</a></li>
+            </ul>
+
+            
+
+            <p>Copyright ⓒ Vietnam. All Rights Reserved </p>
+        </footer>
+
+        
+        ';
+        return $return;
+    }
 }

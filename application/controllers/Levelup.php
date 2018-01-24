@@ -158,6 +158,29 @@ class Levelup extends CB_Controller
             );
             $this->Member_level_history_model->insert($levelhistoryinsert);
 
+            $this->load->model('Member_group_model');
+
+            $groupwhere = array(
+                'mgr_order' => $next_level,
+            );
+
+            
+            $mgr_id = $this->Member_group_model->get_one('', 'mgr_id',$groupwhere);
+
+            $this->load->model('Member_group_member_model');
+            $deletewhere = array(
+                'mem_id' => $mem_id,
+            );
+            $this->Member_group_member_model->delete_where($deletewhere);
+            
+            $mginsert = array(
+                'mgr_id' => element('mgr_id',$mgr_id),
+                'mem_id' => $mem_id,
+                'mgm_datetime' => cdate('Y-m-d H:i:s'),
+            );
+            $this->Member_group_member_model->insert($mginsert);
+            
+
             $point_use = (-1) * abs(element($next_level, element('point_use', $levelupconfig)));
             if ($point_use < 0) {
                 $this->load->library('point');

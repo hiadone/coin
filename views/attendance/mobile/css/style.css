@@ -2,15 +2,203 @@
 	attendance skin css
 */
 
-.wrapmemo {}
+/*.wrapmemo {}
 .wrapmemo input {width:50%;}
 
-.attendance_box {background-color: #d9edf7;border: 1px solid #ddd;padding: 15px !important;border-radius: 3px;overflow: hidden;}
-.date-navigation {text-align: center;padding-bottom: 15px; }
-.date-navigation li{font-size: 12px;line-height: 20px;display: inline-block;background-image: -moz-linear-gradient(center top , #fff, #E0E0E0);border: 1px solid #ddd;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;padding: 0 4px;margin: 3px;cursor:pointer;}
-.date-navigation li.active {border: 1px solid #ddd;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;padding: 0 7px;margin: 0 2px;display: inline-block;line-height: 20px;background: #428bca;color: #fff;font-weight: bold;}
-.date-navigation li:hover{background: #428bca;color: #fff;}
+.attendance_box {background-color: #d9edf7;border: 1px solid #ddd;padding: 15px !important;border-radius: 3px;overflow: hidden;}*/
+/*.date-navigation {text-align: center;padding-bottom: 15px; }*/
+/*.date-navigation li{font-size: 12px;line-height: 20px;display: inline-block;background-image: -moz-linear-gradient(center top , #fff, #E0E0E0);border: 1px solid #ddd;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;padding: 0 4px;margin: 3px;cursor:pointer;}
+*/
 
-.selected-date {text-align:center;padding-bottom:10px;font-size:14px;}
-.alert-point-policy {display:none; }
-.view_policy {margin-top:7px;}
+/*.date-navigation li.active {border: 1px solid #ddd;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;padding: 0 7px;margin: 0 2px;display: inline-block;line-height: 20px;background: #428bca;color: #fff;font-weight: bold;}
+*/
+
+/*.date-navigation li:hover{background: #428bca;color: #fff;}*/
+
+/*.selected-date {text-align:center;padding-bottom:10px;font-size:14px;}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*한마디 글쓰기 영역*/
+	.wrapmemo{
+		display: inline-block;
+		width: 100%;
+		padding:3% 3% 2%;
+		margin-bottom: 5%;
+		box-sizing: border-box;
+		background-color: #fffaf2;
+		border-top: 1px solid #ededed;
+		border-bottom:1px solid #ededed;
+	}
+
+	.attendance_box{
+		display: inline-block;
+		width: 100%;
+	}
+
+	.attendance_box label{
+		float: left;
+		font-weight: bold;
+		width: 40px;
+		height: 25px;
+		line-height: 25px;
+		margin-right: 2%;
+	}
+
+	.attendance_box input{
+		float: left;
+		margin-right: 2%;
+		border-radius: 0;
+	}
+
+	.attendance_box button{
+		height: 25px;
+		padding: 0;
+		float: left;
+		line-height: 25px;
+		border-radius: 5px;
+	}
+
+	.attendance_box #change_memo{
+		width: 25px;
+		background-color: #ffa618;
+	}
+
+	.attendance_box #add_attendance{
+		width: 75px;
+		font-weight: bold;
+		float: right;
+		margin-top: 3%;
+	}
+
+	.wrapmemo .view_policy{
+		background: none;
+		text-align: right;
+		font-weight: bold;
+		color: #000;
+		margin-top: 3%;
+		line-height: 33px;
+	}
+	.wrapmemo .alert{
+		padding:3%;
+		box-sizing: border-box;
+		background-color: #fff;
+		border:1px solid #ededed;
+		border-radius: 0;
+		margin:3% 0 0;
+	}
+	.wrapmemo .alert button{
+		width: 24px;
+		height: 24px;
+		border-radius: 5px;
+		box-sizing: border-box;
+		font-size: 15px;
+		line-height: 24px;
+		float: right;
+		padding: 0;
+	}
+
+
+	.wrapmemo .alert strong{
+		font-weight: bold;
+	}
+
+	.alert-point-policy {display:none;}
+
+/*날짜 보기 영역*/
+	/*지난달,오늘보기,다음달 영역*/
+		.attend_check > table{
+			margin-bottom: 3%;
+		}
+
+	/*날짜표시 영역*/
+		.selected-date{
+			text-align: center;
+			font-weight: bold;
+			margin-bottom: 3%;
+		}
+
+		.date-navigation{
+			text-align: center;
+			padding: 0;
+			margin-bottom: 3%;
+		}
+
+		.date-navigation li{
+			width: 25px;
+			height: 25px;
+			display: inline-block;
+			line-height: 25px;
+			border:1px solid #ededed;
+			margin-bottom: 1.5%;
+			cursor:pointer;
+		}
+
+		.date-navigation li.active{
+			background-color: #3a373a;
+			color: #fff;
+			font-weight: bold;
+		}
+
+/*출석체크 정보 영역(table)*/
+	#viewattendance table{
+		width: 94%;
+		margin: 0 3%;
+		border:1px solid #ededed;
+	}
+
+	#viewattendance table thead{
+		border-top: 0;
+	}
+	#viewattendance table th{
+		background-color: #fffaf2;
+		font-weight: bold;
+	}
+
+	#viewattendance table th,
+	#viewattendance table td{
+		padding:2%;
+		vertical-align: middle;
+		border: 0
+	}
+
+	#viewattendance > table tbody:last-child{
+		border-bottom: 0;
+	}
+
+	#viewattendance table td,
+	#viewattendance table th{
+		border:1px solid #ededed;
+	}
+
+	#viewattendance table th:nth-child(1),
+	#viewattendance table td:nth-child(1){
+		width: 15%;
+	}
+
+	#viewattendance table th:nth-child(2),
+	#viewattendance table td:nth-child(2),
+	#viewattendance table th:nth-child(4),
+	#viewattendance table td:nth-child(4){
+		width: 20%;
+	}
+
+
+
+
+

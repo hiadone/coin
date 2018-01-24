@@ -543,6 +543,22 @@ if ( ! function_exists('banner_image_url')) {
     }
 }
 
+/**
+ * 트위터 이미지 가져오기
+ */
+if ( ! function_exists('twitter_image_url')) {
+    function twitter_image_url($img = '', $width = '', $height = '')
+    {
+        if (empty($img)) {
+            return false;
+        }
+        is_numeric($width) OR $width = '';
+        is_numeric($height) OR $height = '';
+
+        return thumb_url('twitter', $img, $width, $height);
+    }
+}
+
 
 /**
  * 배너 출력하기
@@ -623,6 +639,249 @@ if ( ! function_exists('banner')) {
                 }
             }
         }
+
+        return $html;
+    }
+}
+
+/**
+ * 트위터 출력하기
+ */
+if ( ! function_exists('twitter')) {
+    function twitter($position = '', $type = 'rand', $limit = 1, $start_tag = '', $end_tag = '')
+    {
+
+        /**
+         * 배너 함수 사용법
+         * twitter('위치명', '배너보여주는방식', '보여줄 배너 개수', '각 배너 시작전 html 태그', '각 배너 끝난후에 html 태그')
+         *
+         * type 의 종류
+         * rand : 같은 위치에 여러 배너를 올렸을 경우, limit 에서 정한 개수를 랜덤으로 보여줍니다
+         * order : 같은 위치에 여러 배너를 올렸을 경우, limit 에서 정한 개수를
+         * order 값(관리자페이지에서 정한값)이 큰 순으로 보여줍니다
+         *
+         * limit : 보여줄 배너 개수입니다
+         *
+         * start_tag, end_tag : 각 배너의 시작과 끝에 html 태그를 삽입합니다
+         * 즉 2개의 배너를 start_tag 와 end_tag 와 함께 사용하면 아래와 같은 태그를 리턴합니다
+         * {start_tag}<a href="첫번째배너링크"><img src="첫번재배너이미지"></a>{end_tag}
+         * {start_tag}<a href="두번째배너링크"><img src="두번재배너이미지"></a>{end_tag}
+         *
+         */
+
+        $CI = & get_instance();
+
+        if (empty($position)) {
+            return;
+        }
+        if ($type !== 'order') {
+            $type = 'rand';
+        }
+
+        $html = '';
+
+        $CI->load->model('Twitter_model');
+        $result = $CI->Twitter_model->get_twitter($position, $type, $limit);
+        $i = 0;
+        $open = false;
+        if ($result) {
+            foreach ($result as $key => $val) {
+
+                if ($i % 4 === 0) {
+                    $html .= '<tr>';
+                    $open = true;
+                }
+
+                if ($CI->cbconfig->get_device_view_type() === 'mobile'
+                    && element('ban_device', $val) === 'pc') {
+                    continue;
+                }
+                if ($CI->cbconfig->get_device_view_type() !== 'mobile'
+                    && element('ban_device', $val) === 'mobile') {
+                    continue;
+                }
+                if (element('ban_image', $val)) {
+
+                    $html .= $start_tag;
+
+                    if (element('ban_url', $val)) {
+                        $html .= '<a href="' . site_url('gotourl/twitter/' . element('ban_id', $val)) . '" ';
+                        if (element('ban_target', $val)) {
+                            $html .= ' target="_blank" ';
+                        }
+                        $html .= ' title="' . html_escape(element('ban_title', $val)) . '" ';
+                        $html .= ' >';
+                    }
+
+                    $html .= '<img src="'
+                        . thumb_url(
+                            'twitter',
+                            element('ban_image', $val),
+                            element('ban_width', $val),
+                            element('ban_height', $val)
+                        )
+                        . '" class="cb_twitter" id="cb_twitter_' . element('ban_id', $val) . '" '
+                        . ' alt="' . html_escape(element('ban_title', $val))
+                        . '" title="' . html_escape(element('ban_title', $val)) . '" />';
+                    if (element('ban_url', $val)) {
+                        $html .= '</a>';
+                    }
+                    $html .= $end_tag;
+                } else {
+                    $html .= $start_tag;
+
+                    if (element('ban_url', $val)) {
+                        $html .= '<a href="' . site_url('gotourl/twitter/' . element('ban_id', $val)) . '" ';
+                        if (element('ban_target', $val)) {
+                            $html .= ' target="_blank" ';
+                        }
+                        $html .= ' title="' . html_escape(element('ban_title', $val)) . '" ';
+                        $html .= ' >';
+                    }
+
+                    $html .= html_escape(element('ban_title', $val));
+                    if (element('ban_url', $val)) {
+                        $html .= '</a>';
+                    }
+                    $html .= $end_tag;
+                }
+                $i++;
+                if ( $i > 0 && $i % 4 === 0 && $open) {
+                    $i=0;
+                    $html .= '</tr>';
+                    $open = false;
+                }
+            }
+        } else {
+            $html .= '<tr>';
+            $open = true;
+        }
+        if ($open) {
+            for($i; $i<4; $i++){
+
+                if($i > 0 && $i % 3===0) $html .= '<td>+</td></tr>';
+                else $html .= '<td></td>';
+            }
+            $open = false;
+        } else {
+            for($i; $i<4; $i++){
+                if($i > 0 && $i % 3===0) $html .= '<td>+</td></tr>';
+                else $html .= '<td></td>';
+            }
+        }
+
+        return $html;
+    }
+}
+
+/**
+ * 트위터 출력하기
+ */
+if ( ! function_exists('twitter_list')) {
+    function twitter_list($position = '', $type = 'rand', $limit = 0)
+    {
+
+        /**
+         * 배너 함수 사용법
+         * twitter('위치명', '배너보여주는방식', '보여줄 배너 개수', '각 배너 시작전 html 태그', '각 배너 끝난후에 html 태그')
+         *
+         * type 의 종류
+         * rand : 같은 위치에 여러 배너를 올렸을 경우, limit 에서 정한 개수를 랜덤으로 보여줍니다
+         * order : 같은 위치에 여러 배너를 올렸을 경우, limit 에서 정한 개수를
+         * order 값(관리자페이지에서 정한값)이 큰 순으로 보여줍니다
+         *
+         * limit : 보여줄 배너 개수입니다
+         *
+         * start_tag, end_tag : 각 배너의 시작과 끝에 html 태그를 삽입합니다
+         * 즉 2개의 배너를 start_tag 와 end_tag 와 함께 사용하면 아래와 같은 태그를 리턴합니다
+         * {start_tag}<a href="첫번째배너링크"><img src="첫번재배너이미지"></a>{end_tag}
+         * {start_tag}<a href="두번째배너링크"><img src="두번재배너이미지"></a>{end_tag}
+         *
+         */
+
+        $CI = & get_instance();
+
+        if (empty($position)) {
+            return;
+        }
+        if ($type !== 'order') {
+            $type = 'rand';
+        }
+
+        $html = '<table>';
+
+        $CI->load->model('Twitter_model');
+        $result = $CI->Twitter_model->get_twitter($position, $type, $limit);
+        
+
+        if ($result) {
+            foreach ($result as $key => $val) {
+
+                
+
+                if ($CI->cbconfig->get_device_view_type() === 'mobile'
+                    && element('ban_device', $val) === 'pc') {
+                    continue;
+                }
+                if ($CI->cbconfig->get_device_view_type() !== 'mobile'
+                    && element('ban_device', $val) === 'mobile') {
+                    continue;
+                }
+                if (element('ban_image', $val)) {
+
+                    $html .= '<tr>';
+
+                    if (element('ban_url', $val)) {
+                        $html .= '<a href="' . site_url('gotourl/twitter/' . element('ban_id', $val)) . '" ';
+                        if (element('ban_target', $val)) {
+                            $html .= ' target="_blank" ';
+                        }
+                        $html .= ' title="' . html_escape(element('ban_title', $val)) . '" ';
+                        $html .= ' >';
+                    }
+
+                    $html .= '<img src="'
+                        . thumb_url(
+                            'twitter',
+                            element('ban_image', $val),
+                            element('ban_width', $val),
+                            element('ban_height', $val)
+                        )
+                        . '" class="cb_twitter" id="cb_twitter_' . element('ban_id', $val) . '" '
+                        . ' alt="' . html_escape(element('ban_title', $val))
+                        . '" title="' . html_escape(element('ban_title', $val)) . '" />';
+                    if (element('ban_url', $val)) {
+                        $html .= '</a>';
+                    }
+                    $html .= '</tr>';
+                } else {
+                    $html .= '<tr>';
+                    $html .= '<td>'.sprintf("%02d",($key+1)).'.</td><td>';
+                    if (element('ban_url', $val)) {
+                        $html .= '<a href="' . site_url('gotourl/twitter/' . element('ban_id', $val)) . '" ';
+                        if (element('ban_target', $val)) {
+                            $html .= ' target="_blank" ';
+                        }
+                        $html .= ' title="' . html_escape(element('ban_title', $val)) . '" ';
+                        $html .= ' >';
+                    }
+
+                    $html .= html_escape(element('ban_title', $val));
+                    if (element('ban_url', $val)) {
+                        $html .= '</a>';
+                    }
+                    if($CI->member->item('mem_id')===element('mem_id', $val) || $CI->member->is_admin() === 'super') $html .= '<span>삭 제</span></td></tr>';
+                    else $html .= '</td></tr>';
+                    
+                }
+                
+                
+            }
+        } else {
+            $html .= '<tr><td>등록된 게시물이 없습니다.</td></tr>';
+            
+        }
+        
 
         return $html;
     }

@@ -39,7 +39,7 @@ class Group extends CB_Controller
     /**
      * 게시판 그룹 페이지입니다
      */
-    public function index($bgr_key = '')
+    public function index($bgr_key = '',$brd_key = '')
     {
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_group_index';
@@ -71,6 +71,7 @@ class Group extends CB_Controller
         $board_list = array();
         if ($board_id && is_array($board_id)) {
             foreach ($board_id as $key => $val) {
+                if($key===1 && $bgr_key==='other') $board_list[]=array("brd_key"=>"attendance","board_name"=>"출석체크");
                 $board_list[] = $this->board->item_all(element('brd_id', $val));
             }
         }
@@ -142,5 +143,16 @@ class Group extends CB_Controller
         $this->data = $view;
         $this->layout = element('layout_skin_file', element('layout', $view));
         $this->view = element('view_skin_file', element('layout', $view));
+    }
+
+    function view_board($brd_key){
+        $this->cbconfig->get_device_view_type();
+        $config = array(
+            'skin' => 'mobile',            
+            'brd_key' => $brd_key,
+            'limit' => 5,
+            'length' => 40,
+        );
+        echo $this->board->latest_group($config);
     }
 }

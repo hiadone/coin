@@ -3570,4 +3570,75 @@ class Postact extends CB_Controller
 
         echo $xml;
     }
+
+    public function twitter_update($bng_name = '')
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_postact_post_multi_secret';
+        $this->load->event($eventname);
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('before', $eventname);
+
+        
+            
+        $result = array();
+        $this->output->set_content_type('application/json');
+
+        if($this->member->is_member() === false){
+            $result = array('error' => '로그인 후 이용이 가능합니다');
+            exit(json_encode($result));
+        }
+
+        if ( ! $this->input->post('ban_title_'.$bng_name)) {
+            $result = array('error' => '트위터 명을 입력해 주세요');
+            exit(json_encode($result));
+        }
+
+        if ( ! $this->input->post('ban_url_'.$bng_name)) {
+            $result = array('error' => '클릭시 이동할 주소를 입력해 주세요');
+            exit(json_encode($result));
+        }
+
+
+        $ban_start_date = null;
+        $ban_end_date = null;
+        $ban_width = 0;
+        $ban_height = 0;
+        $ban_order =  1000;
+        $ban_activated = 1;
+
+        $updatedata = array(
+            'ban_start_date' => $ban_start_date,
+            'ban_end_date' => $ban_end_date,
+            'ban_title' => $this->input->post('ban_title_'.$bng_name, null, ''),
+            'bng_name' => $bng_name,
+            'ban_url' => $this->input->post('ban_url_'.$bng_name, null, ''),
+            'ban_target' => '_blank',
+            'ban_device' => 'all',
+            'ban_width' => $ban_width,
+            'ban_height' => $ban_height,
+            'ban_order' => $ban_order,
+            'ban_activated' => $ban_activated,
+            'ban_type' => 'private',
+        );
+        
+        $updatedata['ban_image'] = '';
+
+        
+            /**
+             * 게시물을 새로 입력하는 경우입니다
+             */
+        $updatedata['ban_datetime'] = cdate('Y-m-d H:i:s');
+        $updatedata['ban_ip'] = $this->input->ip_address();
+        $updatedata['mem_id'] = $this->member->item('mem_id');
+        
+        $this->load->model('Twitter_model');
+        $this->Twitter_model->insert($updatedata);
+
+        $result = array('success' => '저장 되었습니다.');
+        exit(json_encode($result));
+
+    }
 }

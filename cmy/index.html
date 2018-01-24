@@ -1,0 +1,2409 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="css/import.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.transit.min.js"></script>
+<script type="text/javascript" src="js/js_com.js"></script>
+<script>
+	// rolling_news 영역 스크립트
+		function scrolling(objId,sec1,sec2,speed,height){ 
+		  this.objId=objId; 
+		  this.sec1=sec1; 
+		  this.sec2=sec2; 
+		  this.speed=speed; 
+		  this.height=height; 
+		  this.h=0; 
+		  this.div=document.getElementById(this.objId); 
+		  this.htmltxt=this.div.innerHTML; 
+		  this.div.innerHTML=this.htmltxt+this.htmltxt; 
+		  this.div.isover=false; 
+		  this.div.onmouseover=function(){this.isover=false;} 
+		  this.div.onmouseout=function(){this.isover=false;} 
+		  var self=this; 
+		  this.div.scrollTop=0; 
+		  window.setTimeout(function(){self.play()},this.sec1); 
+		} 
+		scrolling.prototype={ 
+		  play:function(){ 
+		    var self=this; 
+		    if(!this.div.isover){ 
+		      this.div.scrollTop+=this.speed; 
+		      if(this.div.scrollTop>this.div.scrollHeight/2){ 
+		        this.div.scrollTop=0; 
+		      }else{ 
+		        this.h+=this.speed; 
+		        if(this.h>=this.height){ 
+		          if(this.h>this.height|| this.div.scrollTop%this.height !=0){ 
+		            this.div.scrollTop-=this.h%this.height; 
+		          } 
+		          this.h=0; 
+		          window.setTimeout(function(){self.play()},this.sec1); 
+		          return; 
+		        } 
+		      } 
+		    } 
+		    window.setTimeout(function(){self.play()},this.sec2); 
+		  }, 
+		  prev:function(){ 
+		    if(this.div.scrollTop == 0) 
+		    this.div.scrollTop = this.div.scrollHeight/2; 
+		    this.div.scrollTop -= this.height; 
+		  }, 
+		  next:function(){ 
+		    if(this.div.scrollTop ==  this.div.scrollHeight/2) 
+		    this.div.scrollTop =0; 
+		    this.div.scrollTop += this.height; 
+		  } 
+		}; 
+	// 전체 스크립트 
+		$(document).ready(function(){
+			// tab01 영역 스크립트
+			    $(".tab01_cont").hide();
+			    $(".tab01_cont:first").show();
+
+			    $("ul.tab01_tabs li").click(function () {
+			        $("ul.tab01_tabs li").removeClass("active").css("color" , "#333");
+			        $(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+			        $(this).addClass("active").css("color", "darkred");
+			        $(".tab01_cont").hide()
+			        var activeTab = $(this).attr("rel");
+			        $("#" + activeTab).fadeIn()
+			    });
+
+			//tab02 영역 스크립트
+			    $(".tab02_cont").hide();
+			    $(".tab02_cont:first").show();
+
+			   $("ul.tab02_tabs li").click(function () {
+			        $("ul.tab02_tabs li").removeClass("active").css("color" , "#333");
+			        $(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+			        $(this).addClass("active").css("color", "darkred");
+			       $(".tab02_cont").hide()
+			        var activeTab = $(this).attr("rel");
+			        $("#" + activeTab).fadeIn()
+			    });
+
+			//tab03 영역 스크립트
+			    $(".tab03_cont").hide();
+			    $(".tab03_cont:first").show();
+
+			    $("ul.tab03_tabs li").click(function () {
+			        $("ul.tab03_tabs li").removeClass("active").css("color" , "#333");
+			        $(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+			        $(this).addClass("active").css("color", "darkred");
+			       $(".tab03_cont").hide()
+			        var activeTab = $(this).attr("rel");
+			        $("#" + activeTab).fadeIn()
+			    });
+
+			//tab04 영역 스크립트
+			    $(".tab04_cont").hide();
+			    $(".tab04_cont:first").show();
+
+			    $("ul.tab04_tabs li").click(function () {
+			        $("ul.tab04_tabs li").removeClass("active").css("color" , "#333");
+			        $(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+			        $(this).addClass("active").css("color", "darkred");
+			       $(".tab04_cont").hide()
+			        var activeTab = $(this).attr("rel");
+			        $("#" + activeTab).fadeIn()
+			    });
+
+			//tab05 영역 스크립트
+			    $(".tab05_cont").hide();
+			    $(".tab05_cont:first").show();
+
+			    $("ul.tab05_tabs li").click(function () {
+			        $("ul.tab05_tabs li").removeClass("active").css("color" , "#333");
+			        $(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+			        $(this).addClass("active").css("color", "darkred");
+			       $(".tab05_cont").hide()
+			        var activeTab = $(this).attr("rel");
+			        $("#" + activeTab).fadeIn()
+			    });
+
+			// 접기버튼 클릭시 conin_info 슬라이드 업 스크립트
+				$('.btn_up').click(function(){
+					$('.tab01').slideToggle();
+					if($(this).html()=='▼ 펼 치 기'){
+						$(this).html('▲ 접 기');
+					}else{
+						$(this).html('▼ 펼 치 기');
+					}
+				});
+
+			// 인물트위터 , 코인공식트위터 , 거래소 더보기 영역 스크립트
+				// 인물트위터 , 코인공식트위터 , 거래소 더보기 버튼 클릭시 cover
+					$('.table_li tr:last-child td:last-child').click(function(){
+						$('.cover_menu').css({'z-index':'200'});
+						$('.cover_menu .cover').animate({'opacity' : '0.5'} , 500);
+					});
+
+				// 인물트위터 , 코인공식트위터 , 거래소 더보기의 X 버튼 클릭시 (모든 popup메뉴 닫기)
+					$('.pop > div span:nth-child(1)').click(function(){
+						$('.cover_menu .cover').animate({'opacity' : '0'} , 500);
+						$('.pop').animate({'opacity' : '0'} , 700);
+						$('.pop').css('display' , 'none');
+
+						setTimeout(function(){
+			 				$('.cover_menu').css({'z-index':'-100'})
+			 			},700);	
+					});
+
+				// 인물트위터 더보기 클릭시 해당 팝업 보여주기
+					$('.people tr:last-child td:last-child').click(function(){
+						$('.people_more').css('display' , 'block');
+						$('.people_more').animate({'opacity' : '1'} , 700);
+					});
+
+				// 코인공식 트위터 더보기 클릭시 해당 팝업 보여주기
+					$('.coin tr:last-child td:last-child').click(function(){
+						$('.coin_more').css('display' , 'block');
+						$('.coin_more').animate({'opacity' : '1'} , 700);
+
+					});
+
+				// 거래소 더보기 클릭시 해당 팝업 보여주기
+					$('.store tr:last-child td:last-child').click(function(){
+						$('.store_more').css('display' , 'block');
+				 		$('.store_more').animate({'opacity' : '1'} , 700);
+				 	});
+
+				// 리스트의 순번 넣어주기
+					$('.pop table tr').each(function(){
+						var ind =($(this).index()+1) + '.';
+						$(this).children('td:first-child').html(ind);
+					}); 
+
+				// +버튼(추가) 클릭시 체크버튼,입력란 보여주기
+					$('.pop div span:nth-child(3)').click(function(){
+						$(this).css('display' , 'none');										// +버튼 숨기기
+						$('.pop table td span').css('display' , 'none');						
+						$(this).siblings('span:nth-child(4)').children('img').attr('src' , 'images/check.png');
+						$(this).siblings('span:nth-child(4)').css('float' , 'right');
+						$(this).parents('div').siblings('ul').slideDown();
+					});
+
+				// -버튼 or 체크버튼(추가) 클릭시
+
+					$('.pop div span:nth-child(4)').click(function(){
+						if($(this).siblings('span:nth-child(3)').css('display') == 'none'){				
+							$(this).siblings('span:nth-child(3)').css('display' , 'block');				
+							$(this).children('img').attr('src' , 'images/minus.png');					
+							$('.pop table td span').css('display' , 'none');
+							$('.pop ul').slideUp();
+						}else if($('.pop div span:nth-child(3)').css('display') == 'block'){																		// + - 버튼이 모두 있는 경우(-버튼을 클릭한경우)
+							$('.pop table td span').css('display' , 'block');
+							$(this).siblings('span:nth-child(3)').css('display' , 'none');
+							$(this).children('img').attr('src' , 'images/check.png');
+							$(this).css('float' , 'right');
+						}
+					});
+
+				// 삭제버튼 클릭시
+					$('.pop table td span').click(function(){
+						$(this).parents('td').parents('tr').remove();
+
+						$('.pop table tr').each(function(){
+							var ind ='0' + ($(this).index()+1) + '.';
+							$(this).children('td:first-child').html(ind);
+						});
+					});
+				});
+</script> 
+<style>
+</style>
+</head>
+
+<body>
+	<article class="cover_menu">
+		<section class="cover">
+		</section>
+
+		<!-- ham_menu 의 내용-->
+			<section class="ham_cont">
+				<!-- ham메뉴의 X버튼 -->
+					<img src="images/clear.png" alr="clear">
+
+				<!-- ham메뉴의 내용 -->
+					<div>
+						<table>
+							<tr>
+								<th colspan="3" class="small_font">SNS 아이디로 로그인 하세요.</th>
+							</tr>
+							<tr>
+								<td><img src="images/naver.png" alt="naver"></td>
+								<td><img src="images/kakao.png" alt="kakao"></td>
+								<td><img src="images/face.png" alt="facebook"></td>
+							</tr>
+						</table>
+
+						<ol>
+							<li class="big_font">
+								내 게 시 물<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">내 게시물</a></li>
+									<li><a href="" class="middle_font">내가 작성한 댓글</a></li>
+								</ul>
+							</li>
+
+							<li class="big_font">
+								코 인 강 좌<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">동영상 강좌</a></li>
+									<li><a href="" class="middle_font">코인 지식</a></li>
+									<li><a href="" class="middle_font">ICO</a></li>
+									<li><a href="" class="middle_font">거래소별 코인</a></li>
+								</ul>
+							</li>
+
+							<li class="big_font">
+								커 뮤 니 티
+								<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">자유게시판</a></li>
+									<li><a href="" class="middle_font">채굴정보</a></li>
+									<li><a href="" class="middle_font">코인뉴스</a></li>
+									<li><a href="" class="middle_font">수익인증</a></li>
+									<li><a href="" class="middle_font">유 머</a></li>
+									<li><a href="" class="middle_font">자유갤러리</a></li>
+								</ul>
+							</li>
+
+							<li class="big_font" style="border-bottom:0;">
+								서 비 스<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">공지사항</a></li>
+									<li><a href="" class="middle_font">FAQ</a></li>
+								</ul>
+							</li>
+						</ol>
+					</div>
+			</section>
+
+		<!-- 인물트위터 더보기 클릭시 팝업 내용-->
+			<section class="people_more pop">
+				<!-- 타이틀 영역 -->
+					<div>
+						<span>
+							<img src="images/clear02.png" alr="clear">
+						</span>
+
+						<h2>인 물 트 위 터</h2>
+
+						<span style="margin-right:2%">
+							<img src="images/plus.png" alr="plus">
+						</span>
+						<span>
+							<img src="images/minus.png" alr="minus">
+						</span>
+					</div>
+				<!-- +버튼 클릭시 , 추가 입력란 영역-->	
+					<ul>
+						<li><input type="text" placeholder="인물 트위터 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인물 트위터 명을 입력해주세요.'">
+						</li>
+						<li><input type="text" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+						</li>
+					</ul>
+				<!-- 리스트 영역-->
+					<table>
+						<tr>
+							<td></td>
+							<td colspan="4">
+								차명훈
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								우지한
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Bobby Lee
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Brain Armstrong
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Charlie Lee
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Jimmy song
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Jeff Garzik
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Joseph Lubin
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Star Xu
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Tim Draper
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Vitalik Buterin
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						
+					</table>
+			</section>
+
+		<!-- 코인 공식트위터 더보기 클릭시 팝업 내용-->
+			<section class="coin_more pop">
+				<!-- 타이틀 영역 -->
+					<div>
+						<span>
+							<img src="images/clear02.png" alr="clear">
+						</span>
+
+						<h2>코인 공식 트위터</h2>
+
+						<span style="margin-right:2%">
+							<img src="images/plus.png" alr="plus">
+						</span>
+						<span>
+							<img src="images/minus.png" alr="minus">
+						</span>
+					</div>
+				<!-- +버튼 클릭시 , 추가 입력란 영역-->	
+					<ul>
+						<li><input type="text" placeholder="코인 공식 트위터 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='코인 공식 트위터 명을 입력해주세요.'">
+						</li>
+						<li><input type="text" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+						</li>
+					</ul>
+				<!-- 리스트 영역-->
+					<table>
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								AdEx
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								우지한
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								BCH
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								BitcoinDark
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								BitShares
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Cardano
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Civic
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								DASH
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								EOS
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Ethereum
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Ethereum Classic
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Factom
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Golem
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								KMD
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Kyber Network
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								LTC
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Vitalik Buterin
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						
+					</table>
+			</section>
+
+		<!-- 거래소 바로가기 더보기 클릭시 팝업 내용-->
+			<section class="store_more pop">
+				<!-- 타이틀 영역 -->
+					<div>
+						<span>
+							<img src="images/clear02.png" alr="clear">
+						</span>
+
+						<h2>거래소 바로가기</h2>
+
+						<span style="margin-right:2%">
+							<img src="images/plus.png" alr="plus">
+						</span>
+						<span>
+							<img src="images/minus.png" alr="minus">
+						</span>
+					</div>
+				<!-- +버튼 클릭시 , 추가 입력란 영역-->	
+					<ul>
+						<li><input type="text" placeholder="거래소 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='거래소 명을 입력해주세요.'">
+						</li>
+						<li><input type="text" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+						</li>
+					</ul>
+				<!-- 리스트 영역-->
+					<table>
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								빗 썸
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								코인원
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								코 빗
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								업비트
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								코인네스트
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								비트렉스
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								플로닉스
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								비트파이넥스
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Binance
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								???
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								???
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								Vitalik Buterin
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="1"></td>
+							<td colspan="4">
+								.....
+								<span>삭 제</span>
+							</td>
+						</tr>
+
+						
+					</table>
+			</section>
+	</article>
+
+	<header>
+			<span style="float: left;">
+				<img src="./images/ham.png" alt="ham">
+			</span>
+			<h1>
+				<img src="./images/logo.png" alt="logo">
+			</h1>
+			<span style="float: right; width: 6.5%;">
+				<img src="./images/find.png" alt="find">
+			</span>
+	</header>
+
+	<article class="wrap01">
+		<!-- rolling_news 영역-->
+			<section class="rolling_news">
+				<!-- 화살표 방향 영역 -->
+					<div class="rollBtn" onmouseover="hotKeyword.div.isover=false;" onmouseout="hotKeyword.div.isover=false;"> 
+					  <a class="previous" onclick="hotKeyword.prev();" title="위로">▲</a> 
+					  <a class="next" onclick="hotKeyword.next();" title="아래로">▼</a> 
+					</div> 
+				<!-- 기사 리스트 영역 -->
+					<div id="jFavList"> 
+
+					<ul> 
+					 <li><a href="" class="big_font">01. 코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</a></li> 
+					</ul> 
+
+					<ul> 
+					 <li><a href="" class="big_font">02. 코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</a></li> 
+					</ul> 
+
+					<ul> 
+					 <li><a href="" class="big_font">03. 코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</a></li> 
+					</ul> 
+
+					<ul> 
+					 <li><a href="" class="big_font">04. 코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</a></li> 
+					</ul> 
+
+					<ul> 
+					 <li><a href="" class="big_font">05. 코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</a></li> 
+					</ul>
+
+					</div> 
+				<script type="text/javascript"> var hotKeyword = new scrolling("jFavList",4000,1,1,35); </script> 
+			</section>
+
+		<!-- tab01(거래소별 시세) 영역 -->
+			<section class="tab01 wrap middle_font">
+			    <ul class="tab01_tabs tabs ">
+			        <li class="active" rel="tab01_1">BTC</li>
+			        <li rel="tab01_2">ETH</li>
+			        <li rel="tab01_3">DASH</li>
+			        <li rel="tab01_4">XRP</li>
+			        <li rel="tab01_5">LTC</li>
+			        <li rel="tab01_6">ETC</li>
+			        <li rel="tab01_7">BCH</li>
+			        <li rel="tab01_8">XMR</li>
+			        <li rel="tab01_9">ZEC</li>
+			        <li rel="tab01_10">QTUM</li>
+			        <li rel="tab01_11">BTG</li>
+			    </ul>
+
+			    <div class="tab01_wrap cont_wrap">
+			        <div id="tab01_1" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트 파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_2" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_3" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_4" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_5" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_6" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_7" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_8" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_9" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_10" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab01_11" class="tab01_cont cont">
+			        	<table>
+			        		<tr>
+			        			<th>거래소별</th>
+			        			<th>
+			        				<select>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        					<option>원화 (KRW)</option>
+			        				</select>
+			        			</th>
+			        			<th>변동률</th>
+			        			<th>프리미엄</th>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+				        		<td>빗썸</td>
+				        		<td>20,081,000</td>
+				        		<td>▲1,159,00 (5.87%)</td>
+				        		<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인원</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코빗</td>
+			        			<td>20,081,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.47%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>업비트</td>
+			        			<td>20,170,000</td>
+			        			<td>▲1,159,000 (6.1%)</td>
+			        			<td>28.3%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>코인네스트</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트렉스</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>플로닉스</td>
+			        			<td>20,093,000</td>
+			        			<td>▼1,159,00 (5.87%)</td>
+			        			<td>27.88%</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>비트파이넥스</td>
+			        			<td>20,170,000</td>
+			        			<td>-</td>
+			        			<td>-</td>
+			        		</tr>
+			        	</table>
+			        </div>
+				</div>
+			</section>
+
+			<button class="btn_up">
+				▲ 접 기
+			</button>
+
+		<!-- tab02(자유게시판,채굴정보,코인뉴스 수익인증) 영역 -->
+			<section class="tab02 wrap middle_font">
+			    <ul class="tab02_tabs tabs">
+			        <li class="active" rel="tab02_1">자유게시판</li>
+			        <li rel="tab02_2">채굴정보</li>
+			        <li rel="tab02_3">코인뉴스</li>
+			        <li rel="tab02_4">수익인증</li>
+			    </ul>
+
+			    <div class="tab02_wrap cont_wrap">
+			        <div id="tab02_1" class="tab02_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>자유게시판 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>자유게시판 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>자유게시판 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>04.</td>
+			        			<td>자유게시판 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>05.</td>
+			        			<td>자유게시판 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab02_2" class="tab02_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>질문,답변 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>질문,답변 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>질문,답변 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>04.</td>
+			        			<td>질문,답변 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>05.</td>
+			        			<td>질문,답변 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab02_3" class="tab02_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>04.</td>
+			        			<td>코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>05.</td>
+			        			<td>코인뉴스 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab02_4" class="tab02_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>수익인증 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>수익인증 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>수익인증 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>04.</td>
+			        			<td>수익인증 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>05.</td>
+			        			<td>수익인증 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+				</div>
+			</section>
+
+		<!-- ad 영역 -->
+			<section class="ad">
+				<a href="n">
+					<img src="images/ad02.png" alt="ad">
+				</a>
+			</section>
+
+		<!-- tab03(동영상강좌 , 코인지식 , ICO, 거래소별 코인) 영역-->
+			<section class="tab03 wrap middle_font">
+			    <ul class="tab03_tabs tabs">
+			        <li class="active" rel="tab03_1">동영상 강좌</li>
+			        <li rel="tab03_2">코인 지식</li>
+			        <li rel="tab03_3">ICO</li>
+			        <li rel="tab03_4">거래소별 코인</li>
+			    </ul>
+
+			    <div class="tab03_wrap cont_wrap">
+			        <div id="tab03_1" class="tab03_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>동영상 강좌 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>동영상 강좌 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>동영상 강좌 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>04.</td>
+			        			<td>동영상 강좌 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>05.</td>
+			        			<td>동영상 강좌 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab03_2" class="tab03_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>코인 지식 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>코인 지식 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>코인 지식 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>04.</td>
+			        			<td>코인 지식 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>05.</td>
+			        			<td>코인 지식 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			         <div id="tab03_3" class="tab03_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>ICO 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>ICO 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>ICO 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>04.</td>
+			        			<td>ICO 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>05.</td>
+			        			<td>ICO 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab03_4" class="tab03_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>거래소별 코인 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>거래소별 코인 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>거래소별 코인 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>04.</td>
+			        			<td>거래소별 코인 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>05.</td>
+			        			<td>거래소별 코인 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+				</div>
+			</section>
+
+		<!-- tab04(이벤트 , 출석체크 , 가입인사) 영역-->
+			<section class="tab04 wrap middle_font">
+			    <ul class="tab04_tabs tabs">
+			        <li class="active" rel="tab04_1">이벤트</li>
+			        <li rel="tab04_2">출석체크</li>
+			        <li rel="tab04_3">가입인사</li>
+			    </ul>
+
+			    <div class="tab04_wrap cont_wrap">
+			        <div id="tab04_1" class="tab04_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>이벤트 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>이벤트 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>이벤트 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab04_2" class="tab04_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>출석체크 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>출석체크 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>출석체크 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			         <div id="tab04_3" class="tab04_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>가입인사 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>가입인사 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>가입인사 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+				</div>
+			</section>
+
+		<!-- tab05(유머,자유갤러리) 영역-->
+			<section class="tab05 wrap middle_font">
+			    <ul class="tab05_tabs tabs">
+			        <li class="active" rel="tab05_1">유 머</li>
+			        <li rel="tab05_2">자유갤러리</li>
+			    </ul>
+
+			    <div class="tab05_wrap cont_wrap">
+			        <div id="tab05_1" class="tab05_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>유머 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>유머 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>유머 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+
+			        <div id="tab05_2" class="tab05_cont cont">
+			        	<table>
+			        		<tr onClick="location.href=''">
+			        			<td>01.</td>
+			        			<td>자유갤러리 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>02.</td>
+			        			<td>자유갤러리 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+
+			        		<tr onClick="location.href=''">
+			        			<td>03.</td>
+			        			<td>자유갤러리 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
+			        			<td>2018-01-03</td>
+			        		</tr>
+			        	</table>
+			        </div>
+				</div>
+			</section>
+
+		<!-- 가상화폐 인물 트위터 리스트 영역-->
+			<section class="table_li people">
+				<h2 class="big_font">가상화폐 인물 트위터</h2>
+				<table>
+					<tr>
+						<td><a href="http://www.naver.com">차명훈</a></td>
+						<td><a href="">우지한</a></td>
+						<td><a href="">Bobby Lee</a></td>
+						<td><a href="">Brain Armstrong</a></td>
+					</tr>
+
+					<tr>
+						<td><a href="">Charlie Lee</a></td>
+						<td><a href="">Jimmy song</a></td>
+						<td><a href="">Jeff Garzik</a></td>
+						<td><a href="">Joseph Lubin</a></td>
+					</tr>
+
+					<tr>
+						<td><a href="">Star Xu</a></td>
+						<td><a href="">Tim Draper</a></td>
+						<td><a href="">Vitalik Buterin</a></td>
+						<td>+</td>
+					</tr>
+				</table>
+			</section>
+
+		<!-- 가상화폐 코인 공식 트위터 리스트 영역-->
+			<section class="table_li coin">
+				<h2 class="big_font">가상화폐 코인 공식 트위터</h2>
+				<table>
+					<tr>
+						<td><a href="">AdEx</a></td>
+						<td><a href="">BCH</a></td>
+						<td><a href="">BitcoinDark</a></td>
+						<td><a href="">BitShares</a></td>
+					</tr>
+
+					<tr>
+						<td><a href="">Cardano</a></td>
+						<td><a href="">Civic</a></td>
+						<td><a href="">DASH</a></td>
+						<td><a href="">EOS</a></td>
+					</tr>
+
+					<tr>
+						<td><a href="">ethereum</a></td>
+						<td><a href="">Ethereum Classic</a></td>
+						<td><a href="">Factom</a></td>
+						<td><a href="">golem</a></td>
+					</tr>
+
+					<tr>
+						<td><a href="">KMD</a></td>
+						<td><a href="">KyberNetwork</a></td>
+						<td><a href="">LTC</a></td>
+						<td>+</td>
+					</tr>
+				</table>
+			</section>
+
+		<!-- ad 영역 -->
+			<section class="ad">
+				<a href="n">
+					<img src="images/ad02.png" alt="ad">
+				</a>
+			</section>
+
+		<!-- 거래소 바로가기 리스트 영역 -->
+			<section class="table_li store">
+				<h2 class="big_font">거래소 바로가기</h2>
+				<table>
+					<tr>
+						<td><a href="">빗 썸</a></td>
+						<td><a href="">코인원</a></td>
+						<td><a href="">코 빗</a></td>
+						<td><a href="">업비트</a></td>
+					</tr>
+
+					<tr>
+						<td><a href="">코인네스트</a></td>
+						<td><a href="">비트렉스</a></td>
+						<td><a href="">플로닉스</a></td>
+						<td><a href="">비트파이넥스</a></td>
+					</tr>
+
+					<tr>
+						<td><a href="">Binance</a></td>
+						<td><a href="">???</a></td>
+						<td><a href="">???</a></td>
+						<td>+</td>
+					</tr>
+				</table>
+			</section>
+
+		<!-- ad 영역 -->
+			<section class="ad">
+				<a href="n">
+					<img src="images/ad.png" alt="ad">
+				</a>
+			</section>
+	</article>
+
+	<footer>
+		<table>
+			<tr>
+				<td>로그인</td>
+				<td>회원가입</td>
+				<td>P C</td>
+			</tr>
+		</table>
+
+		<ul class="middle_font">
+			<li><a href="">이용약관</a></li>
+			<li><a href="">개인정보취급방침</a></li>
+			<li><a href="">게제중단요청</a></li>
+			<li><a href="">제휴문의</a></li>
+		</ul>
+
+		<p>??? Corp | ????? @ naver.com</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="css/import.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.transit.min.js"></script>
+<script type="text/javascript" src="js/js_com.js"></script>
+<script>
+$(document).ready(function(){
+
+	//화살표 클릭시 공지사항 내용 보여주기 
+		$('.serv_title .arr').click(function(){
+			if($(this).parent('.serv_title').siblings('.serv_cont').css('display') == 'none'){
+				$('.serv_cont').slideUp();
+				$('.serv_title h3').removeClass('add');
+				$('.serv_title .arr').html('▼');
+				$(this).parent('.serv_title').siblings('.serv_cont').slideDown();
+				$(this).siblings('h3').addClass('add');
+
+			$(this).html('▲');
+			}else{
+				$(this).parent('.serv_title').siblings('.serv_cont').slideUp();
+				$('.serv_title .arr').html('▼');
+				$(this).siblings('h3').removeClass('add');
+			}
+		});
+});
+</script> 
+</head>
+
+<body>
+	<article class="cover_menu">
+		<section class="cover">
+		</section>
+		<!-- ham_menu 의 내용-->
+			<section class="ham_cont">
+				<!-- ham메뉴의 X버튼 -->
+					<img src="images/clear.png" alr="clear">
+
+				<!-- ham메뉴의 내용 -->
+					<div>
+						<table>
+							<tr>
+								<th colspan="3" class="small_font">SNS 아이디로 로그인 하세요.</th>
+							</tr>
+							<tr>
+								<td><img src="images/naver.png" alt="naver"></td>
+								<td><img src="images/kakao.png" alt="kakao"></td>
+								<td><img src="images/face.png" alt="facebook"></td>
+							</tr>
+						</table>
+
+						<ol>
+							<li class="big_font">
+								내 게 시 물<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">내 게시물</a></li>
+									<li><a href="" class="middle_font">내가 작성한 댓글</a></li>
+								</ul>
+							</li>
+
+							<li class="big_font">
+								코 인 강 좌<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">동영상 강좌</a></li>
+									<li><a href="" class="middle_font">코인 지식</a></li>
+									<li><a href="" class="middle_font">ICO</a></li>
+									<li><a href="" class="middle_font">거래소별 코인</a></li>
+								</ul>
+							</li>
+
+							<li class="big_font">
+								커 뮤 니 티
+								<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">자유게시판</a></li>
+									<li><a href="" class="middle_font">채굴정보</a></li>
+									<li><a href="" class="middle_font">코인뉴스</a></li>
+									<li><a href="" class="middle_font">수익인증</a></li>
+									<li><a href="" class="middle_font">유 머</a></li>
+									<li><a href="" class="middle_font">자유갤러리</a></li>
+								</ul>
+							</li>
+
+							<li class="big_font" style="border-bottom:0;">
+								서 비 스<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">공지사항</a></li>
+									<li><a href="" class="middle_font">FAQ</a></li>
+								</ul>
+							</li>
+						</ol>
+					</div>
+			</section>
+	</article>
+
+	<header>
+			<span style="float: left;">
+				<img src="./images/ham.png" alt="ham">
+			</span>
+			<h1>
+				<img src="./images/logo.png" alt="logo">
+			</h1>
+			<span style="float: right; width: 6.5%;">
+				<img src="./images/find.png" alt="find">
+			</span>
+	</header>
+
+	<article class="wrap01">
+		<section class="main_title serv">
+			<h2>FAQ</h2>
+			<ul>
+				<li>
+					<div class="serv_title" style="border-top: 0;">
+						<h3>[공지사항]서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</h3>
+						<table class="small_font">
+							<tr>
+								<td>2018.00.00</td>
+								<td>관리자</td>
+							</tr>
+						</table>
+						<span class="arr">▼</span>
+					</div>
+
+					<div class="serv_cont">
+						<p>
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</p>
+					</div>
+				</li>
+
+				<li>
+					<div class="serv_title" style="border-top: 0;">
+						<h3>[공지사항]서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</h3>
+						<table class="small_font">
+							<tr>
+								<td>2018.00.00</td>
+								<td>관리자</td>
+							</tr>
+						</table>
+						<span class="arr">▼</span>
+					</div>
+
+					<div class="serv_cont">
+						<p>
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</p>
+					</div>
+				</li>
+
+				<li>
+					<div class="serv_title" style="border-top: 0;">
+						<h3>[공지사항]서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</h3>
+						<table class="small_font">
+							<tr>
+								<td>2018.00.00</td>
+								<td>관리자</td>
+							</tr>
+						</table>
+						<span class="arr">▼</span>
+					</div>
+
+					<div class="serv_cont">
+						<p>
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</p>
+					</div>
+				</li>
+
+				<li>
+					<div class="serv_title" style="border-top: 0;">
+						<h3>[공지사항]서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</h3>
+						<table class="small_font">
+							<tr>
+								<td>2018.00.00</td>
+								<td>관리자</td>
+							</tr>
+						</table>
+						<span class="arr">▼</span>
+					</div>
+
+					<div class="serv_cont">
+						<p>
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</p>
+					</div>
+				</li>
+
+				<li>
+					<div class="serv_title" style="border-top: 0;">
+						<h3>[공지사항]서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</h3>
+						<table class="small_font">
+							<tr>
+								<td>2018.00.00</td>
+								<td>관리자</td>
+							</tr>
+						</table>
+						<span class="arr">▼</span>
+					</div>
+
+					<div class="serv_cont">
+						<p>
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+							서비스 개선 작업으로 인한 고객센터 휴무안내
+						</p>
+					</div>
+				</li>	
+			</ul>
+		</section>
+	</article>
+
+		<footer>
+			<table>
+				<tr>
+					<td>로그인</td>
+					<td>회원가입</td>
+					<td>P C</td>
+				</tr>
+			</table>
+
+			<ul class="middle_font">
+				<li><a href="">이용약관</a></li>
+				<li><a href="">개인정보취급방침</a></li>
+				<li><a href="">게제중단요청</a></li>
+				<li><a href="">제휴문의</a></li>
+			</ul>
+
+			<p>??? Corp | ????? @ naver.com</p>
+	</footer>
+</body>
+</html>

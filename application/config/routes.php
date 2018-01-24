@@ -75,7 +75,9 @@ $route[config_item('uri_segment_write') . '/([a-zA-Z0-9_-]+)'] = "board_write/wr
 $route[config_item('uri_segment_reply') . '/([0-9]+)'] = "board_write/reply/$1";
 $route[config_item('uri_segment_modify') . '/([0-9]+)'] = "board_write/modify/$1";
 $route[config_item('uri_segment_rss') . '/([a-zA-Z0-9_-]+)'] = "rss/index/$1";
-$route[config_item('uri_segment_group') . '/([a-zA-Z0-9_-]+)'] = "group/index/$1";
+$route[config_item('uri_segment_group') . '/view_board/([a-zA-Z0-9_-]+)'] = "group/view_board/$1";
+$route[config_item('uri_segment_group') . '/([a-zA-Z0-9_-]+)'. '/([a-zA-Z0-9_-]+)'] = "group/index/$1/$2";
+
 $route[config_item('uri_segment_document') . '/([a-zA-Z0-9_-]+)'] = "document/index/$1";
 $route[config_item('uri_segment_faq') . '/([a-zA-Z0-9_-]+)'] = "faq/index/$1";
 $route['profile/([a-zA-Z0-9_-]+)'] = "profile/index/$1";

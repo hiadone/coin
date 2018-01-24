@@ -67,6 +67,49 @@ class Main extends CB_Controller
         // 이벤트가 존재하면 실행합니다
         $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
 
+        $this->load->model('Attendance_model');
+        $findex = $this->Attendance_model->primary_key;
+        $forder = $this->cbconfig->item('attendance_order') === 'desc' ? 'desc' : 'asc';
+
+        /**
+         * 게시판 목록에 필요한 정보를 가져옵니다.
+         */
+        
+        $date = cdate('Y-m-d');
+        
+        if (strlen($date) !== 10) {
+            $date = cdate('Y-m-d');
+        }
+        $arr = explode('-', $date);
+        if (checkdate(element(1, $arr), element(2, $arr), element(0, $arr)) === false) {
+            $date = cdate('Y-m-d');
+        }
+
+        $where = array(
+            'att_date' => $date,
+        );
+        $result = $this->Attendance_model
+            ->get_attend_list(3,'', $where, $findex, $forder);
+
+        if (element('list', $result)) {
+            foreach (element('list', $result) as $key => $val) {
+                $result['list'][$key]['display_name'] = display_username(
+                    element('mem_userid', $val),
+                    element('mem_nickname', $val),
+                    element('mem_icon', $val)
+                );
+                $result['list'][$key]['display_datetime'] = display_datetime(
+                    element('att_datetime', $val)
+                );
+            }
+        }
+
+        $view['view']['attenddata'] = $result;
+
+        /**
+         * 페이지네이션을 생성합니다
+         */
+        $config['base_url'] = site_url('attendance/dailylist/' . $date);
         /**
          * 레이아웃을 정의합니다
          */
@@ -96,5 +139,9 @@ class Main extends CB_Controller
         $this->data = $view;
         $this->layout = element('layout_skin_file', element('layout', $view));
         $this->view = element('view_skin_file', element('layout', $view));
+    }
+
+    function twitter($twitter_key){
+       echo  twitter_list($twitter_key,'order');
     }
 }

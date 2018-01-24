@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="css/import.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.transit.min.js"></script>
+<script type="text/javascript" src="js/js_com.js"></script>
+<script>
+$(document).ready(function(){
+	// 제목입력 영역 글자수 초과시 팝업
+		$(function(){
+		// 글자수 초과시 경고창
+			$('.text_area > input').keydown(function(){
+				var content = $(this).val().length;
+				if(content == 40){
+					alert('최대 40자까지만 가능합니다.');
+				}
+			});
+		});
+
+	// 내용영역의 글자수 카운터
+		$(function(){
+			$('.text_area > textarea').keyup(function(e){
+				var content = $(this).val();
+				$('.text_area > span').html(content.length + '/5000');
+			});
+		$('.text_area > textarea').keyup();
+
+		// 글자수 초과시 경고창
+			$('.text_area > textarea').keydown(function(){
+				var content = $(this).val().length;
+				if(content == 5000){
+					alert('최대 5000자까지만 가능합니다.');
+				}
+			});
+		});
+
+	// 파일 업로드
+		var fileTarget = $('.upload_area li input:nth-child(2)');
+
+	    	fileTarget.on('change', function(){
+	        	if(window.FileReader){
+	            // 파일명 추출
+	            var filename = $(this)[0].files[0].name;
+	        	} 
+
+	        	else {
+	            // Old IE 파일명 추출
+	            var filename = $(this).val().split('/').pop().split('\\').pop();
+	        	};
+
+	        $(this).siblings('.upload_area li input:nth-child(1)').val(filename);
+	    	});
+
+	// 파일업로드 추가 버튼 클릭
+		$('.upload_area button:nth-child(2)').click(function(){
+			var c = $('.upload_area li.active').length+1;
+			$('.upload_area li').each(function(){
+				if($(this).index()+1 == c){
+					$(this).addClass('active');
+				}
+			});
+		});
+
+	// 파일업로드 삭제 버튼 클릭
+		$('.upload_area button:nth-child(3)').click(function(){
+			var d = $('.upload_area li.active').length;
+			if(d > 1){
+				$('.upload_area li').each(function(){
+					if($(this).index()+1 == d){
+						$(this).removeClass('active');
+					}
+				});
+			}	
+		});
+});
+</script> 
+
+</head>
+
+<body>
+	<article class="cover_menu">
+		<section class="cover">
+		</section>
+		<!-- ham_menu 의 내용-->
+			<section class="ham_cont">
+				<!-- ham메뉴의 X버튼 -->
+					<img src="images/clear.png" alr="clear">
+
+				<!-- ham메뉴의 내용 -->
+					<div>
+						<table>
+							<tr>
+								<th colspan="3" class="small_font">SNS 아이디로 로그인 하세요.</th>
+							</tr>
+							<tr>
+								<td><img src="images/naver.png" alt="naver"></td>
+								<td><img src="images/kakao.png" alt="kakao"></td>
+								<td><img src="images/face.png" alt="facebook"></td>
+							</tr>
+						</table>
+
+						<ol>
+							<li class="big_font">
+								내 게 시 물<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">내 게시물</a></li>
+									<li><a href="" class="middle_font">내가 작성한 댓글</a></li>
+								</ul>
+							</li>
+
+							<li class="big_font">
+								코 인 강 좌<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">동영상 강좌</a></li>
+									<li><a href="" class="middle_font">코인 지식</a></li>
+									<li><a href="" class="middle_font">ICO</a></li>
+									<li><a href="" class="middle_font">거래소별 코인</a></li>
+								</ul>
+							</li>
+
+							<li class="big_font">
+								커 뮤 니 티
+								<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">자유게시판</a></li>
+									<li><a href="" class="middle_font">채굴정보</a></li>
+									<li><a href="" class="middle_font">코인뉴스</a></li>
+									<li><a href="" class="middle_font">수익인증</a></li>
+									<li><a href="" class="middle_font">유 머</a></li>
+									<li><a href="" class="middle_font">자유갤러리</a></li>
+								</ul>
+							</li>
+
+							<li class="big_font" style="border-bottom:0;">
+								서 비 스<span>▲</span>
+								<ul>
+									<li><a href="" class="middle_font">공지사항</a></li>
+									<li><a href="" class="middle_font">FAQ</a></li>
+								</ul>
+							</li>
+						</ol>
+					</div>
+			</section>
+	</article>
+
+	<header>
+			<span style="float: left;">
+				<img src="./images/ham.png" alt="ham">
+			</span>
+			<h1>
+				<img src="./images/logo.png" alt="logo">
+			</h1>
+			<span style="float: right; width: 6.5%;">
+				<img src="./images/find.png" alt="find">
+			</span>
+	</header>
+
+	<article class="wrap01">
+		<section class="main_title write_area">
+			<h2>자유게시판</h2>
+			<!-- 제목 입력 영역 -->
+				<div class="text_area">
+					<label>제 목</label>
+					<input type="text" placeholder="제목을 입력 해주세요" onfocus="this.placeholder=''" maxlength="40" onblur="this.placeholder='제목을 입력 해주세요'">
+					<textarea placeholder="내용을 입력 해주세요"  onfocus="this.placeholder=''" maxlength="5000" onblur="this.placeholder='내용을 입력 해주세요'"></textarea>
+					<span></span>
+				</div>
+
+			<!-- 파일 업로드 영역 -->
+				<div class="upload_area">
+						<ul>
+							<li class="active">
+								<input value="선택된 파일이 없습니다." disabled="disabled" class="middle_font">
+								<input type="file">
+								<label for="input_file" class="middle_font">
+									업 로 드
+								</label>
+							</li>
+
+							<li>
+								<input value="선택된 파일이 없습니다." disabled="disabled" class="middle_font">
+								<input type="file">
+								<label for="input_file" class="middle_font">
+									업 로 드
+								</label>
+							</li>
+
+							<li>
+								<input value="선택된 파일이 없습니다." disabled="disabled" class="middle_font">
+								<input type="file">
+								<label for="input_file" class="middle_font">
+									업 로 드
+								</label>
+							</li>
+
+							<li>
+								<input value="선택된 파일이 없습니다." disabled="disabled" class="middle_font">
+								<input type="file">
+								<label for="input_file" class="middle_font">
+									업 로 드
+								</label>
+							</li>
+
+							<li>
+								<input value="선택된 파일이 없습니다." disabled="disabled" class="middle_font">
+								<input type="file">
+								<label for="input_file" class="middle_font">
+									업 로 드
+								</label>
+							</li>
+
+							<li>
+								<input value="선택된 파일이 없습니다." disabled="disabled" class="middle_font">
+								<input type="file">
+								<label for="input_file" class="middle_font">
+									업 로 드
+								</label>
+							</li>
+
+							
+						</ul>
+
+						<button  href="javascript:;" class="small_font">추 가</button>
+						<button  href="javascript:;" class="small_font">삭 제</button>
+			 	</div>
+				<span style="text-align:left; color: #5d5d5d;">
+					- 파일을 추가,삭제를 하시려면 좌측의 버튼을 클릭<br>
+					- 그림파일은 .jpg,.png만 가능<br>
+					- 파일 업로드는 1M 까지만 가능
+				</span>
+			<!-- 저장 버튼 영역 -->
+				<button>저 장</button>
+		</section>
+	</article>
+
+		<footer>
+			<table>
+				<tr>
+					<td>로그인</td>
+					<td>회원가입</td>
+					<td>P C</td>
+				</tr>
+			</table>
+
+			<ul class="middle_font">
+				<li><a href="">이용약관</a></li>
+				<li><a href="">개인정보취급방침</a></li>
+				<li><a href="">게제중단요청</a></li>
+				<li><a href="">제휴문의</a></li>
+			</ul>
+
+			<p>??? Corp | ????? @ naver.com</p>
+	</footer>
+</body>
+</html>

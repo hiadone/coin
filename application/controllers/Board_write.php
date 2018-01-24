@@ -782,6 +782,37 @@ class Board_write extends CB_Controller
                 $post_content = $this->imagelib->replace_external_image($post_content);
             }
 
+            $spam_word = explode(',', trim($this->cbconfig->item('spam_word')));
+            if ($spam_word) {
+                for ($i = 0; $i < count($spam_word); $i++) {
+                    $str = trim($spam_word[$i]);
+                    if ($post_title) {
+                        $pos = stripos($post_title, $str);
+                        if ($pos !== false) {
+                            $ment='';
+                            for($len=0;$len <mb_strlen($str, 'utf-8');$len++){
+                                $ment.='*';
+                            }
+
+                            $post_title = str_replace($str,$ment, $post_title);
+                            // break;
+                        }
+                    }
+                    if ($post_content) {
+                        $pos = stripos($post_content, $str);
+                        if ($pos !== false) {
+                            $ment='';
+                            for($len=0;$len <mb_strlen($str, 'utf-8');$len++){
+                                $ment.='*';
+                            }
+
+                            $post_content = str_replace($str,$ment, $post_content);
+                            //break;
+                        }
+                    }
+                }
+            }
+            
             $updatedata = array(
                 'post_num' => $post_num,
                 'post_reply' => $post_reply,
@@ -2082,6 +2113,37 @@ class Board_write extends CB_Controller
             $post_content = $this->input->post('post_content', null, '');
             if (element('save_external_image', $board)) {
                 $post_content = $this->imagelib->replace_external_image($post_content);
+            }
+
+            $spam_word = explode(',', trim($this->cbconfig->item('spam_word')));
+            if ($spam_word) {
+                for ($i = 0; $i < count($spam_word); $i++) {
+                    $str = trim($spam_word[$i]);
+                    if ($post_title) {
+                        $pos = stripos($post_title, $str);
+                        if ($pos !== false) {
+                            $ment='';
+                            for($len=0;$len <mb_strlen($str, 'utf-8');$len++){
+                                $ment.='*';
+                            }
+
+                            $post_title = str_replace($str,$ment, $post_title);
+                            // break;
+                        }
+                    }
+                    if ($post_content) {
+                        $pos = stripos($post_content, $str);
+                        if ($pos !== false) {
+                            $ment='';
+                            for($len=0;$len <mb_strlen($str, 'utf-8');$len++){
+                                $ment.='*';
+                            }
+
+                            $post_content = str_replace($str,$ment, $post_content);
+                            //break;
+                        }
+                    }
+                }
             }
 
             $metadata = array();

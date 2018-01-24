@@ -511,7 +511,9 @@ class Social extends CB_Controller
 
             $json = json_decode($result, true);
 
+            $email='';
             $kakao_id = element('id', $json);
+            if(element('kaccount_email',$json)) $email = element('kaccount_email',$json);
             $nickname = element('nickname', element('properties', $json));
             $profile_image = element('profile_image', element('properties', $json));
             $thumbnail_image = element('thumbnail_image', element('properties', $json));
@@ -524,6 +526,7 @@ class Social extends CB_Controller
 
             $socialdata = array(
                 'nickname' => $nickname,
+                'email' => $email,
                 'profile_image' => $profile_image,
                 'thumbnail_image' => $thumbnail_image,
                 'update_datetime' => cdate('Y-m-d H:i:s'),

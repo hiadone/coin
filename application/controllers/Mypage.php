@@ -159,6 +159,8 @@ class Mypage extends CB_Controller
         if (element('list', $result)) {
             foreach (element('list', $result) as $key => $val) {
                 $brd_key = $this->board->item_id('brd_key', element('brd_id', $val));
+                
+                $result['list'][$key]['brd_name'] = $this->board->item_id('brd_name', element('brd_id', $val));
                 $result['list'][$key]['post_url'] = post_url($brd_key, element('post_id', $val));
                 $result['list'][$key]['num'] = $list_num--;
                 if (element('post_image', $val)) {
@@ -272,6 +274,7 @@ class Mypage extends CB_Controller
                 $post = $this->Post_model
                     ->get_one(element('post_id', $val), 'brd_id');
                 $brd_key = $this->board->item_id('brd_key', element('brd_id', $post));
+                $result['list'][$key]['brd_name'] = $this->board->item_id('brd_name', element('brd_id', $val));
                 $result['list'][$key]['comment_url'] = post_url($brd_key, element('post_id', $val)) . '#comment_' . element('cmt_id', $val);
                 $result['list'][$key]['num'] = $list_num--;
             }
