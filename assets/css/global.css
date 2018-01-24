@@ -31,6 +31,8 @@ select{
 		box-sizing: border-box;
 		font-size: 12px;
 		padding-left: 5px;
+		border-radius: 0;
+		background-color: #fff;
 	}
 
 input{
@@ -43,12 +45,12 @@ input{
 }
 
 button{
-	background-color:#3a373a;
+	background-color:#1c446d;
 	box-sizing: border-box;
 	border:0;
 	outline: none;
 	color: #fff;
-	padding:2% 0 3%;
+	padding:2.5% 0 3%;
 	display:inline-block;
 	text-align: center;
 }
@@ -71,7 +73,7 @@ textarea{
 		max-width: 420px;
 		min-width: 320px;
 		display: inline-block;
-		padding-top:12.3%;
+		padding-top:39px;
 	}
 
 	.main_title > h2{
@@ -114,7 +116,7 @@ textarea{
 
 	section table td,
 	section table th{
-		padding: 2%;
+		padding: 3%;
 	}
 
 /*header 영역*/
@@ -122,28 +124,32 @@ textarea{
 			width: 100%;
 			max-width: 420px;
 			min-width: 320px;
-			padding:1.5% 3% 0;
+			padding:2px 15px 2px;
 			box-sizing: border-box;
 			position: fixed;
-			background-color:#ffa618;
+			background-color:#fff;
 			z-index: 100;
-			top: 0;
+			border-bottom: 1px solid #ededed;
 		}
 
 	header img {
-		width: 100%;
+		height:100%;
 	}
 
 	header span{
-		width: 6.5%;
-		margin-top: 3.5%;
+		position: absolute;
+		top: 35.5%;
+		height: 21px;
 		display: inline-block;
 	}
 
+	header span:last-child{
+		right: 3%;
+	}
+
 	header h1{
-		width: 44%;
-		float: left;
-		margin:0 20%;
+		height:35px;
+		text-align: center
 	}
 
 /*footer 영역*/
@@ -154,7 +160,7 @@ textarea{
 		padding-bottom:5%;
 		box-sizing: border-box;
 		bottom:0;
-		background-color:#fffaf2;
+		background-color:#f0f3f7;
 	}
 	/*로그인 , 회원가입 , pc 버전 영역*/
 		footer table{
@@ -213,4 +219,5 @@ textarea{
 
 		footer p{
 			text-align: center;
+			font-weight: bold;
 		}

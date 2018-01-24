@@ -54,8 +54,8 @@ $(document).ready(function(){
         $('.cover_menu').css({'z-index':'200'});
         $('.cover_menu .cover').animate({'opacity' : '0.5'} , 500);
         $('.cover_menu .ham_cont').animate({'left' : '0'} , 700);
-        $('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴
-        $("html, body").bind('scroll  mousewheel', function(e){e.preventDefault();e.stopPropagation();return false;});
+        // $('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴
+        // $("html, body").bind('scroll  mousewheel', function(e){e.preventDefault();e.stopPropagation();return false;});
         
     });
 
@@ -63,7 +63,7 @@ $(document).ready(function(){
     $('.ham_cont > img').click(function(){
         $('.cover_menu .cover').animate({'opacity' : '0'} , 500);
         $('.cover_menu .ham_cont').animate({'left' : '-85%'} , 700);
-        $('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제
+        // $('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제
         $("html, body").unbind('scroll  mousewheel');
         setTimeout(function(){
             $('.cover_menu').css({'z-index':'-100'});
@@ -160,13 +160,13 @@ $(document).ready(function(){
             </section>
     </article>
     <header>
-            <span style="float: left;">
+            <span>
                 <img src="<?php echo site_url('/assets//images/ham.png')?> " alt="ham">
             </span>
             <h1>
                 <a href="<?php echo site_url(); ?>" title="<?php echo html_escape($this->cbconfig->item('site_title'));?>"><img src="<?php echo site_url('/assets/images/logo.png')?>" alt="logo"></a>
             </h1>
-            <span style="float: right; width: 6.5%;">
+            <span>
                 <img src="<?php echo site_url('/assets/images/find.png')?>" alt="find">
             </span>
     </header>

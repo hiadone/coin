@@ -360,7 +360,7 @@ class Managelayout extends CI_Controller
 
             
 
-            <p>Copyright ⓒ Vietnam. All Rights Reserved </p>
+            <p class="small_font">Copyright ⓒ Vietnam. All Rights Reserved </p>
         </footer>
 
         

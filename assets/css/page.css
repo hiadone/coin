@@ -6,6 +6,7 @@
 	min-width: 320px;
 	margin: 0 auto;
 	font-size: 13px;
+	color: #272727;
 	}
 
 /*광고배너*/
@@ -14,58 +15,43 @@
 	}
 
 /*rolling_news css 영역*/
-	.rolling_news{
-		position:relative;
-		width:100%;
-		zoom:1;
-		margin-bottom: 0;
-	} 
-
-	.rollBtn a{
-		text-align: center;
-	} 
-	.rollBtn a span{
-		display:none;
-	} 
+.rolling_news{
+	margin-bottom: 0;
+	height: 30px;
+}
 
 
-	.rolling_news #jFavList{
-		overflow:hidden;
-		height:35px;
-	} 
+.rolling_news .bx-controls{
+	display: none;
+}
+.rolling_news .bx-wrapper,
+.rolling_news  .bx-viewport,
+.rolling_news .big_font li{
+	height: 30px;
+	box-sizing: border-box;
 
-	.rolling_news ul{
-		clear:both;
-	} 
+}
 
-	.rolling_news ul li{
-		width: 100%;
-		height:35px;
-		padding:0 6.5% 0 3%;
-		box-sizing: border-box;
-	} 
+.rolling_news .big_font li{
+	font-weight: bold;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow:hidden;
+	padding:5px 3%;
+	box-sizing: border-box;
+	color: #272727;
+}
 
-	.rolling_news ul li a{
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
-		line-height: 35px;
-		font-weight: bold;
-
-	} 
-	.rolling_news .rollBtn{
-		position:absolute;
-		top:-1px;
-		right:0;
-		z-index:3;
-	} 
+.rolling_news .big_font li a{
+	line-height: 23px;
+	color: #272727;
+}
 
 /*tab1~tan6 css 영역 */
 	/*tab메뉴 공통 css*/
 		.wrap{
 			width: 100%;
 			display:inline-block;
-			border-top:1px solid #ededed;
 			border-bottom:1px solid #ededed;
 		}
 
@@ -73,23 +59,26 @@
 			.tabs{
 			    float: left;
 			    width: 100%;
-			    background-color:#fffaf2;
+			    background-color:#f0f3f7;
+			    border-top: 1px solid #ededed;
 			}
 
 			.tabs li{
 				float: left;
 				text-align:center;
-				height: 30px;
-				line-height: 30px;
+				height: 25px;
+				line-height: 25px;
 				font-weight: bold;
 				overflow: hidden;
 				position: relative;
+				color: #282828;
 			}
 
 			.tabs li.active{
 				background: #FFFFFF;
 				border-bottom: 1px solid #FFFFFF;
-				color: darkred;
+				color: #1c446d;
+				font-weight: bold;
 			}
 
 		/*컨텐츠 css 영역*/
@@ -105,6 +94,15 @@
 			}
 			
 		/*컨텐츠 안의 table css 영역*/ 
+			.cont_wrap div table td{
+				padding:0 3% 3%;
+			}
+
+			.cont_wrap div table tr:first-child td{
+				padding-top: 3%;
+			}
+
+
 			.cont_wrap div table td:nth-child(1){
 				width: 15%;
 			}
@@ -153,6 +151,7 @@
 				width: 20%;
 				border-bottom :1px solid #ededed;
 				vertical-align: middle;
+				padding: 1% 2% 0.8%;
 			}
 
 			.tab01_wrap > div table tr:last-child td{
@@ -288,6 +287,8 @@
 		.btn_up{
 			width: 100%;
 			margin-bottom: 5%;
+			font-weight: bold;
+			padding:2%;
 		}
 
 		.btn_up span{
@@ -302,8 +303,8 @@
 
 	.table_li table td{
 		border:1px solid #ededed;
-		padding:3% 1.5%;
 		vertical-align: middle;
+		padding:2%;
 	}
 
 	.table_li table td:nth-child(1){
@@ -312,6 +313,11 @@
 
 	.table_li table td:nth-child(4){
 		border-right: 0;
+	}
+
+	.table_li table tr:last-child td:last-child{
+		font-weight: bold;
+		font-size: 15px;
 	}
 
 /*트위터 , 거래소 더보기 클릭시 팝업 , cover_menu , ham_menu 영역*/
@@ -440,8 +446,8 @@
 				display: inline-block;
 				padding: 4% 3% 2%;
 				box-sizing: border-box;
-				border-bottom:1px solid #131314;
-				background-color:#131314;
+				border-bottom:1px solid #3a6694;
+				background-color:#1c446d;
 				color:#fff;
 			}
 
@@ -1006,10 +1012,6 @@
 
 
 @media screen and (min-width:421px){
-		header{
-			padding:7px 15px 0px; 
-		}
-
 		body{
 		border:1px solid #ededed;
 		}
