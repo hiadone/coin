@@ -539,48 +539,7 @@
 
 
 
-<!-- tab05(유머,자유갤러리) 영역-->
-    <section class="tab05 wrap middle_font">
-        <ul class="tab05_tabs tabs">
-            <li class="active" rel="tab05_free_gallery">자유갤러리</li>
-            <li  rel="tab05_humor">유 머</li>
-            
-        </ul>
 
-        <div class="tab05_wrap cont_wrap">
-            <?php
-                $config = array(
-                    'brd_key' => 'humor',
-                    'limit' => 3,
-                    'length' => 40,
-                    );
-                $board=$this->board->data($config);
-
-                if (element('latest', element('view', $board))) {
-                    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
-                    <table>';
-                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-                            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                            <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
-                            <td><?php echo element('display_datetime', $value); ?></td>
-                        </tr>                        
-                        <?php 
-                    }
-                    echo '
-                    </table>
-                    </div>';
-                } else {
-                echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
-                <table>
-                    <tr>
-                        <td colspan="3">게시물이 없습니다.</td>
-                    </tr>
-                </table>
-                </div>';
-                }
-            ?>  
-<!-- tab05(유머,자유갤러리) 영역-->
 <section class="tab05 wrap middle_font">
     <ul class="tab05_tabs tabs">
         <li class="active" rel="tab05_free_gallery">자유갤러리</li>
@@ -624,38 +583,6 @@
 }
 ?>  
 
-<?php
-$config = array(
-    'brd_key' => 'free_gallery',
-    'limit' => 3,
-    'length' => 40,
-    );
-$board=$this->board->data($config);
-
-if (element('latest', element('view', $board))) {
-    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
-    <table>';
-        foreach (element('latest', element('view', $board)) as $key => $value) {?>
-        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-            <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
-            <td><?php echo element('display_datetime', $value); ?></td>
-        </tr>                        
-        <?php 
-    }
-    echo '
-</table>
-</div>';
-} else {
-    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
-    <table>
-        <tr>
-            <td colspan="3">게시물이 없습니다.</td>
-        </tr>
-    </table>
-</div>';
-}
-?>  
 </div>
 </section>
 

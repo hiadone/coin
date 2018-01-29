@@ -70,7 +70,7 @@
 
         <div class="text-center">
 
-                <a href="<?php echo element('write_url',$view); ?>">글 쓰 기</a>
+                <a href="<?php echo element('write_url',$view); ?>"><?php echo element('write_text',$view); ?></a>
                 <a href="javascript:;" style="margin-left:2%;">더 보 기</a>
         </div>
 
