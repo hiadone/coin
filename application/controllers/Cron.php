@@ -192,7 +192,7 @@ class Cron extends CB_Controller {
     public function korbit_price()
     {
 
-        {"timestamp":1515978594042,"last":"19848500","bid":"19848500","ask":"19849500","low":"18500000","high":"21100000","volume":"2292.102555429972883362","change":"-1151500","changePercent":"-5.48"}
+        
 
 
         /**
@@ -213,9 +213,9 @@ class Cron extends CB_Controller {
              *          int         $data['volume']             거래량.
              *          int         $data['change']             변동가.
              *          int         $data['changePercent']             변동률.
-             */.
+             */
 
-        $currency_pair=array('btc_krw','eth_krw','dash_krw','xrp_krw','bch_krw','ltc_krw','qtum_krw','etc_krw');
+        $currency_pair=array('btc_krw','eth_krw','dash_krw','xrp_krw','bch_krw','ltc_krw','qtum_krw','etc_krw','xmr_krw','zec_krw','btg_krw');
 
         foreach($currency_pair as $cvalue){
             $url = 'https://api.korbit.co.kr/v1/ticker/detailed?currency_pair='.$cvalue;
@@ -235,7 +235,7 @@ class Cron extends CB_Controller {
             curl_close($ch);
 
             $json = json_decode($result, true);
-
+            
             if(element('timestamp',$json)){
                 $tempwhere = array(
                         'vic_type' => 'korbit',
@@ -250,6 +250,7 @@ class Cron extends CB_Controller {
                     
                     
                 }
+                $virtualcoindata['yesterday_last'] = element('last',$json,'')-element('change',$json,'');
                 $this->Virtual_coin_model->save('korbit',$cvalue, $virtualcoindata);
             }
         }
@@ -261,8 +262,9 @@ class Cron extends CB_Controller {
         openingPrice:시작가
         tradePrice : 현제 거래가
         candleAccTradeVolume : 거래량 
-        $currency_pair=array('krw-btc','krw-eth','krw-dash','krw-xrp','krw-bch','krw-ltc','krw-qtum','krw-etc');
         */
+        $currency_pair=array('krw-btc','krw-eth','krw-dash','krw-xrp','krw-bch','krw-ltc','krw-qtum','krw-etc','krw-xmr','krw-zec','krw-btg');
+        
         foreach($currency_pair as $cvalue){
             $url = 'https://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/10?code=CRIX.UPBIT.'.strtoupper($cvalue);
             // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
@@ -308,7 +310,7 @@ class Cron extends CB_Controller {
 
         // {"high":최고가,"low":최저가,"last":거래가,"vol":거래량,"time":1515980159}
 
-        $currency_pair=array('btc','eth','dash','xrp','bch','ltc','qtum','etc');
+        $currency_pair=array('btc','eth','dash','xrp','bch','ltc','qtum','etc','xmr','zec','btg');
 
         foreach($currency_pair as $cvalue){
             $url = 'https://api.coinnest.co.kr/api/pub/ticker?coin='.$cvalue;
@@ -355,9 +357,9 @@ class Cron extends CB_Controller {
 
         // "id":121,"last":현재가,"percentChange":"변동률","quoteVolume":"거래량"
 
-        $currency_pair=array('usdt_btc','usdt_eth','usdt_dash','usdt_xrp','usdt_bch','usdt_ltc','usdt_qtum','usdt_etc');
+        $currency_pair=array('usdt_btc','usdt_eth','usdt_dash','usdt_xrp','usdt_bch','usdt_ltc','usdt_qtum','usdt_etc','usdt_xmr','usdt_zec','usdt_btg');
 
-        
+
         $url = 'https://poloniex.com/public?command=returnTicker';
         // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
         //     $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
@@ -377,6 +379,7 @@ class Cron extends CB_Controller {
         $json = json_decode($result, true);
 
         foreach($currency_pair as $cvalue){            
+
             if(element(strtoupper($cvalue),$json)){
                 $tempwhere = array(
                         'vic_type' => 'poloniex',
@@ -386,11 +389,14 @@ class Cron extends CB_Controller {
                 $virtualcoindata='';
                 foreach(element(strtoupper($cvalue),$json) as $key => $value){
                     $virtualcoindata[$key] = element($key,element(strtoupper($cvalue),$json),'');
-
-                    
+      
                 }
+                $virtualcoindata['yesterday_last'] = element('last',element(strtoupper($cvalue),$json),'') - (element('last',element(strtoupper($cvalue),$json),'') * element('percentChange',element(strtoupper($cvalue),$json),''));
+                
+                
                 $this->Virtual_coin_model->save('poloniex',$cvalue, $virtualcoindata);
             }
+            
         }
     }
 
@@ -399,7 +405,7 @@ class Cron extends CB_Controller {
 
         // {"success":true,"message":"","result":[{"MarketName":"BTC-ETH","Volume":거래량 ,"Last":거래가,"BaseVolume":거래량,"TimeStamp":"2018-01-15T01:59:22.003","Bid":0.09850041,"Ask":0.09868444,"OpenBuyOrders":6140,"OpenSellOrders":3942,"PrevDay":0.09670000,"Created":"2015-08-14T09:02:24.817"}]}
 
-        $currency_pair=array('btc-btcd','btc-eth','btc-dash','btc-xrp','btc-bch','btc-ltc','btc-qtum','btc-etc');
+        $currency_pair=array('btc-btcd','btc-eth','btc-dash','btc-xrp','btc-bch','btc-ltc','btc-qtum','btc-etc','btc-xmr','btc-zec','btc-btg');
 
         foreach($currency_pair as $cvalue){
             $url = 'https://bittrex.com/api/v1.1/public/getmarketsummary?market='.$cvalue;
@@ -444,7 +450,7 @@ class Cron extends CB_Controller {
     public function bitfinex_price()
     {   
         // {"mid":"13580.5","bid":"13580.0","ask":"13581.0","last_price":현재가,"low":"12874.34212454","high":"14373.0","volume":"거래량","timestamp":"1515981771.364414"}
-        $currency_pair=array('btcusd','ethusd','dashusd','xrpusd','bchusd','ltcusd','qtumusd','etcusd');
+        $currency_pair=array('btcusd','ethusd','dashusd','xrpusd','bchusd','ltcusd','qtumusd','etcusd','xmrusd','zecusd','btgusd');
 
         foreach($currency_pair as $cvalue){
             $url = 'https://api.bitfinex.com/v1/pubticker/'.$cvalue;
@@ -491,7 +497,7 @@ class Cron extends CB_Controller {
     {   
 
         // {"product_code":"BTC_JPY","timestamp":"2018-01-15T02:04:05.733","tick_id":3090049,"best_bid":1714507.0,"best_ask":1715277.0,"best_bid_size":2.7064,"best_ask_size":10.39996,"total_bid_depth":2515.0200327,"total_ask_depth":2762.33896938,"ltp":거래가"volume":93727.63585889,"volume_by_product":거래량}
-        $currency_pair=array('btcusd','ethusd','dashusd','xrpusd','bchusd','ltcusd','qtumusd','etcusd');
+        $currency_pair=array('btcusd','ethusd','dashusd','xrpusd','bchusd','ltcusd','qtumusd','etcusd','xmrusd','zecusd','btgusd');
 
         
         $url = 'https://api.bitflyer.jp/v1/ticker';
@@ -534,5 +540,59 @@ class Cron extends CB_Controller {
         
     }
 
-    
+    public function all_price(){
+        $this->bithumb_price();
+        $this->coinone_price();
+        $this->korbit_price();
+        $this->upbit_price();
+        $this->coinnest_price();
+        $this->poloniex_price();
+        $this->bittrex_price();
+        $this->bitfinex_price();
+        $this->bitflyer_price();
+
+    }
+
+
+    function get_deal_bas_r(){
+
+
+        $url = 'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey='.config_item('authkey').'&data=AP01&cur_unit=USD';
+            // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
+            //     $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
+
+            $ch = curl_init();
+            curl_setopt ($ch, CURLOPT_URL, $url);
+            curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt ($ch, CURLOPT_SSLVERSION,1);
+            curl_setopt ($ch, CURLOPT_HEADER, 0);
+            curl_setopt ($ch, CURLOPT_POST, 0);
+            curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt ($ch, CURLOPT_TIMEOUT, 30);
+            curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($ch);
+            curl_close($ch);
+
+            $json = json_decode($result, true);
+
+            
+
+            
+
+            $tempwhere = array(
+                    'vic_type' => 'deal_bas_r',
+                    'vic_title' => 'deal_bas_r',
+                );
+            $this->Virtual_coin_model->delete_where($tempwhere);
+            
+            $virtualcoindata=array();
+                
+                    
+                    
+            $virtualcoindata['deal_bas_r'] = str_replace(",","",element('deal_bas_r',element(0,$json)));;
+                    
+                    
+                
+            $this->Virtual_coin_model->save('deal_bas_r','deal_bas_r', $virtualcoindata);
+    }
 }

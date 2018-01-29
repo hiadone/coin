@@ -19,11 +19,11 @@
 
             <button type="button" name="submit" /*class="btn btn-success"*/ id="add_attendance">출 첵 하 기</button>
 
-            <button type="button" name="view_policy" class="view_policy" /*pull-right btn-xs  btn btn-default*/>포 인 트 정 책 보 기</button>
+            <button type="button" name="view_policy" class="view_policy view_point" /*pull-right btn-xs  btn btn-default*/>포 인 트 정 책 보 기</button>
             <?php echo form_close(); ?>
 
             <div class="alert-point-policy alert /*alert-dismissible alert-warning*/">
-                <button type="button" class="/*close*/ alertclose"><!-- &times; --> x</button>
+                <button type="button" class="view_point"><!-- &times; --> x</button>
                 <strong>포인트 정책</strong>
                 <br/>
                 <br/>
@@ -203,7 +203,7 @@
                 }
             });
     });
-    $(document).on('click', '.view_policy', function() {
+    $(document).on('click', '.view_point', function() {
         $('.alert-point-policy').slideToggle();
     });
     //]]>

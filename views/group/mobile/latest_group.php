@@ -7,7 +7,9 @@
      
     <?php 
     $hide_style='';
-    if(element('brd_key',element('board',$view))==="attenddata") $hide_style="style='display:none';";
+
+    
+    if(element('brd_key',element('board',$view))==="attendance") $hide_style="style='display:none';";
     
     echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab06_cont cont">
             <ul>';
@@ -67,9 +69,11 @@
         </div>
 
         <div class="text-center">
+
                 <a href="<?php echo element('write_url',$view); ?>">글 쓰 기</a>
                 <a href="javascript:;" style="margin-left:2%;">더 보 기</a>
         </div>
+
         
         
     </div>

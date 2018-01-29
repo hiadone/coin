@@ -36,7 +36,7 @@ class Group extends CB_Controller
             redirect('membermodify');
         }
         
-        $this->load->library(array('querystring', 'board_group'));
+        $this->load->library(array('querystring', 'board_group','coin'));
     }
 
 
@@ -73,8 +73,11 @@ class Group extends CB_Controller
         );
         $board_id = $this->Board_model->get_board_list($where);
         $board_list = array();
+
+
         if ($board_id && is_array($board_id)) {
             foreach ($board_id as $key => $val) {
+                
                 if($key===1 && $bgr_key==='other') $board_list[]=array("brd_key"=>"attendance","board_name"=>"출석체크");
                 $board_list[] = $this->board->item_all(element('brd_id', $val));
             }
@@ -96,6 +99,8 @@ class Group extends CB_Controller
 
         // 이벤트가 존재하면 실행합니다
         $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+
+        $view['view']['view_coin'] = $this->get_coin_data();
 
         /**
          * 레이아웃을 정의합니다
@@ -158,5 +163,16 @@ class Group extends CB_Controller
             'length' => 40,
         );
         echo $this->board->latest_group($config);
+    }
+
+    function get_coin_data($cur_unit=''){
+        
+        $this->cbconfig->get_device_view_type();
+        $config = array(
+            'skin' => 'mobile',
+            'cur_unit' => $cur_unit,
+            
+        );
+        return $this->coin->all_price($config);
     }
 }

@@ -717,11 +717,14 @@ class Board_post extends CB_Controller
         $view['view']['delete_url'] = ($can_delete && ! element('post_del', $post))
             ? site_url('postact/delete/' . element('post_id', $post) . '?' . $param->output()) : '';
 
+        $this->load->model('Board_group_model');
+        $group = $this->Board_group_model->get_one(element('bgr_id', $board));
+            
         if ($skeyword) {
-            $view['view']['list_url'] = board_url(element('brd_key', $board));
-            $view['view']['search_list_url'] = board_url(element('brd_key', $board) . '?' . $param->output());
+            $view['view']['list_url'] = group_url(element('bgr_key', $group)).'/'.element('brd_key', $board);
+            $view['view']['search_list_url'] = group_url(element('bgr_key', $group).'/'.element('brd_key', $board) . '?' . $param->output());
         } else {
-            $view['view']['list_url'] = board_url(element('brd_key', $board) . '?' . $param->output());
+            $view['view']['list_url'] = group_url(element('bgr_key', $group).'/'.element('brd_key', $board) . '?' . $param->output());
             $view['view']['search_list_url'] = '';
         }
         $view['view']['trash_url'] = site_url('boards/trash/' . element('post_id', $post) . '?' . $param->output());
@@ -1434,11 +1437,15 @@ class Board_post extends CB_Controller
             'post_content' => '내용'
         );
         $return['search_option'] = search_option($search_option, $sfield);
+
+        $this->load->model('Board_group_model');
+        $group = $this->Board_group_model->get_one(element('bgr_id', $board));
+
         if ($skeyword) {
-            $return['list_url'] = board_url(element('brd_key', $board));
-            $return['search_list_url'] = board_url(element('brd_key', $board) . '?' . $param->output());
+            $return['list_url'] = group_url(element('bgr_key', $group)).'/'.element('brd_key', $board);
+            $return['search_list_url'] = board_url(element('bgr_key', $group).'/'.element('brd_key', $board) . '?' . $param->output());
         } else {
-            $return['list_url'] = board_url(element('brd_key', $board) . '?' . $param->output());
+            $return['list_url'] = group_url(element('bgr_key', $board).'/'.element('brd_key', $board) . '?' . $param->output());
             $return['search_list_url'] = '';
         }
 

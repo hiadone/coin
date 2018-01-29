@@ -37,7 +37,7 @@ class Main extends CB_Controller
             redirect('membermodify');
         }
 
-        $this->load->library(array('querystring'));
+        $this->load->library(array('querystring','coin'));
 
 
     }
@@ -111,7 +111,26 @@ class Main extends CB_Controller
             }
         }
 
-        $view['view']['attenddata'] = $result;
+        $view['view']['attendance'] = $result;
+
+        
+
+
+        // if (element('list', $coin_result)) {
+        //     foreach (element('list', $coin_result) as $key => $val) {
+        //         $coin_result['list'][$key]['display_name'] = display_username(
+        //             element('mem_userid', $val),
+        //             element('mem_nickname', $val),
+        //             element('mem_icon', $val)
+        //         );
+        //         $coin_result['list'][$key]['display_datetime'] = display_datetime(
+        //             element('att_datetime', $val)
+        //         );
+        //     }
+        // }
+
+        $view['view']['view_coin'] = $this->get_coin_data();
+
 
         /**
          * 페이지네이션을 생성합니다
@@ -150,5 +169,27 @@ class Main extends CB_Controller
 
     function twitter($twitter_key){
        echo  twitter_list($twitter_key,'order');
+    }
+
+    function get_coin_data($cur_unit=''){
+        
+        $this->cbconfig->get_device_view_type();
+        $config = array(
+            'skin' => 'mobile',
+            'cur_unit' => $cur_unit,
+            
+        );
+        return $this->coin->all_price($config);
+    }
+
+    function show_coin_data($cur_unit=''){
+        
+        $this->cbconfig->get_device_view_type();
+        $config = array(
+            'skin' => 'mobile',
+            'cur_unit' => $cur_unit,
+            
+        );
+        echo $this->coin->all_price($config);
     }
 }

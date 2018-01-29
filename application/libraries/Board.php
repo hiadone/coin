@@ -879,6 +879,7 @@ class Board extends CI_Controller
         $view['view']['length'] = $length;
 
         if($brd_key==="attendance"){
+            $view['view']['board']['brd_key']="attendance";
             $view['view']['write_text'] = '출석체크하러가기';    
             $this->CI->load->model('Attendance_model');
             $findex = $this->CI->Attendance_model->primary_key;
