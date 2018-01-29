@@ -2,7 +2,7 @@
 
 <?php
 if (element('list', element('data', $view))) {
-    echo '<ol>';
+    echo '<ol class="post-view">';
     foreach (element('list', element('data', $view)) as $result) {
 ?>
     <li id="comment_<?php echo element('cmt_id', $result); ?>" >

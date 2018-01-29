@@ -797,7 +797,7 @@
 		}
 
 	/*제목영역*/
-		.write_cont div h3{
+		.write_cont div h3.post-view{
 			font-weight: bold;
 			margin-bottom: 3%;
 		}
@@ -818,14 +818,14 @@
 		}
 
 	/*작성자 , 조회수 날짜 표시 영역*/
-		.write_cont div table{
+		.write_cont div table.post-view{
 			width: 225px;
 			text-align:left;
 			color: #5d5d5d;
 			margin-bottom: 5%;
 		}
 
-		.write_cont div table td{
+		.write_cont div table.post-view td{
 			padding:0;
 		}
 
@@ -840,7 +840,7 @@
 		}
 
 	/*수정,삭제 버튼영역*/
-		.write_cont div button,
+		
 		.write_cont ol li button.small_font{
 			width: 12%;
 			height: 20px;
@@ -894,7 +894,7 @@
 		}
 
 	/*댓글 영역*/
-		.write_cont ol li{
+		.write_cont ol.post-view li{
 			display: inline-block;
 			width: 100%;
 			border-bottom:1px solid #ededed;
@@ -902,23 +902,23 @@
 			box-sizing: border-box;
 		}
 
-		.write_cont ol li > input{
+		.write_cont ol.post-view li > input{
 			float: right;
 		}
 
-		.write_cont ol li h3{
+		.write_cont ol.post-view li h3{
 			font-weight: bold;
 			margin-bottom: 3%;
 		}
 
-		.write_cont ol li textarea{
+		.write_cont ol.post-view li textarea{
 			height: 50px;
 			margin:0;
 			padding:5px;
 			margin-bottom: 3%;
 		}
 
-		.write_cont ol li p{
+		.write_cont ol.post-view li p{
 			padding:0 3% 0% 8%;
 			background: url("../images/reply.png") no-repeat 3% top;
 			background-size: 4%;
@@ -926,26 +926,26 @@
 			margin:3% 0;
 		}
 
-		.write_cont ol li table{
+		.write_cont ol.post-view li table{
 			width: 210px;
 			float: right;
 			text-align: right;
 			color: #5d5d5d;
 		}
 
-		.write_cont ol li table tr td:first-child{
+		.write_cont ol.post-view li table tr td:first-child{
 			width: 85px;
 		}
 
-		.write_cont ol li table tr td:last-child{
+		.write_cont ol.post-view li table tr td:last-child{
 			width: 70px;
 		}
 
-		.write_cont ol li div:nth-child(5){
+		.write_cont ol.post-view li div:nth-child(5){
 			display: none;
 		}
 
-		.write_cont ol li span.char_count{
+		.write_cont ol.post-view li span.char_count{
 			float: right;
 			margin-bottom: 3%;
 		}
@@ -956,24 +956,24 @@
 		}
 
 	/*이전글 다음글 목록 영역*/
-		.write_cont ul{
+		.write_cont ul.post-view{
 			width: 150px;
 			float: left;
 			margin-left: 3%;
 		}
 
-		.write_cont ul li{
+		.write_cont ul.post-view li{
 			width: 36%;
 			float: left;
 			margin-right:2%;
 		}
 
-		.write_cont ul li:last-child{
+		.write_cont ul.post-view li:last-child{
 
 			margin-right: 0;
 		}
 
-		.write_cont ul li:nth-child(1){
+		.write_cont ul.post-view li:nth-child(1){
 			width: 22%;
 		}
 

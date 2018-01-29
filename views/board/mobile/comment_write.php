@@ -10,7 +10,7 @@ if ( ! element('post_hide_comment', element('post', $view)) && element('is_admin
 }
 if (element('can_comment_write', element('comment', $view)) OR element('show_textarea', element('comment', $view))) {
 ?>
-    <ol id="comment_write_box">
+    <ol id="comment_write_box" class="post-view">
     <li style="border-bottom:0; padding:0 3%; box-sizing: border-box; margin-bottom: 0;">
         <h3>댓글쓰기</h3>
             <?php

@@ -32,37 +32,37 @@ class Coin extends CI_Controller
                     );
     public $vic_title = array(
                             "btc"=>array(
-                                'BTC','btc','btc_krw','krw-btc','usdt_btc','btc-btcd','btcusd','BTC_JPY'
+                                'BTC','btc','btc_krw','krw-btc','usdt_btc','usdt-btc','btcusd','BTC_JPY'
                             ),
                             "eth"=>array(
-                                'ETH','eth','eth_krw','krw-eth','usdt_eth','btc-eth','ethusd'
+                                'ETH','eth','eth_krw','krw-eth','usdt_eth','usdt-eth','ethusd'
                             ),
                             "dash"=>array(
-                                'DASH','dash','dash_krw','krw-dash','usdt_dash','btc-dash','dashusd'
+                                'DASH','dash','dash_krw','krw-dash','usdt_dash','usdt-dash','dashusd'
                             ),
                             "xrp"=>array(
-                                'XRP','xrp','xrp_krw','krw-xrp','usdt_xrp','btc-xrp','xrpusd'
+                                'XRP','xrp','xrp_krw','krw-xrp','usdt_xrp','usdt-xrp','xrpusd'
                             ),
                             "ltc"=>array(
-                                'LTC','ltc','ltc_krw','krw-ltc','usdt_ltc','btc-ltc','ltcusd'
+                                'LTC','ltc','ltc_krw','krw-ltc','usdt_ltc','usdt-ltc','ltcusd'
                             ),
                             "etc"=>array(
-                                'ETC','etc','etc_krw','krw-etc','usdt_etc','btc-etc','etcusd'
+                                'ETC','etc','etc_krw','krw-etc','usdt_etc','usdt-etc','etcusd'
                             ),
                             "bch"=>array(
-                                'BCH','bch','bch_krw','krw-bch','usdt_bch','btc-bch','bchusd'
+                                'BCH','bch','bch_krw','krw-bch','usdt_bch','usdt-bch','bchusd'
                             ),
                             "xmr"=>array(
-                                'XMR','xmr','xmr_krw','krw-xmr','usdt_xmr','btc-xmr','xmrusd'
+                                'XMR','xmr','xmr_krw','krw-xmr','usdt_xmr','usdt-xmr','xmrusd'
                             ),
                             "zec"=>array(
-                                'ZEC','zec','zec_krw','krw-zec','usdt_zec','btc-zec','zecusd'
+                                'ZEC','zec','zec_krw','krw-zec','usdt_zec','usdt-zec','zecusd'
                             ),
                             "qtum"=>array(
-                                'QTUM','qtum','qtum_krw','krw-qtum','usdt_qtum','btc-qtum','qtumusd'
+                                'QTUM','qtum','qtum_krw','krw-qtum','usdt_qtum','usdt-qtum','qtumusd'
                             ),
                             "btg"=>array(
-                                'BTG','btg','btg_krw','krw-btg','usdt_btg','btc-btg','btgusd'
+                                'BTG','btg','btg_krw','krw-btg','usdt_btg','usdt-btg','btgusd'
                             ),
                         );
 

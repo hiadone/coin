@@ -537,7 +537,8 @@
     }
 ?>  
 
-
+ </div>
+    </section>
 
 
 <section class="tab05 wrap middle_font">

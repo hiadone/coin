@@ -24,9 +24,9 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
         <h2><?php echo html_escape(element('board_name', element('board', $view))); ?></h2>
         <?php echo show_alert_message($this->session->flashdata('message'), '<div class="alert-auto-close">', '</div>'); ?>
         <div class="board">
-            <h3 class="big_font"><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>
+            <h3 class="big_font post-view"><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>
             <b class="middle_font">댓글 <span>[ <?php echo number_format(element('post_comment_count', element('post', $view))); ?> 개 ]</span></b>
-            <table class="small_font">
+            <table class="small_font post-view">
                 <tr>
                     <td>조회수 : <?php echo number_format(element('post_hit', element('post', $view))); ?></td>
                     <td>2017.00.00</td>
@@ -155,7 +155,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
     }
     ?>
     <div id="viewcomment"></div>
-    <ul class="middle_font">
+    <ul class="middle_font post-view">
         <li><a href="<?php echo element('list_url', $view); ?>" class="">목 록</a></li>
         <?php if (element('prev_post', $view)) { ?>
             <li><a href="<?php echo element('url', element('prev_post', $view)); ?>" >◀ 이전글</a></li>
