@@ -242,7 +242,7 @@ class Videoplayer extends CI_Controller
             }
 
             if ($show) {
-                $video_show .= '<div class="autowrap"><div class="autosize" style="padding-bottom: ' . $ratio . '%;">' . PHP_EOL;
+                $video_show .= '<div class="autowrap"><div class="autosize" >' . PHP_EOL;
                 $video_show .= $show . PHP_EOL;
                 $video_show .= '</div></div>' . PHP_EOL;
             }

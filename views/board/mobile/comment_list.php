@@ -1,4 +1,4 @@
-<div class="alert alert-auto-close alert-dismissible alert-comment-list-message" style="display:none;"><span class="alert-comment-list-message-content"></span></div>
+<div class="alert-comment-list-message" style="display:none;"><span class="alert-comment-list-message-content"></span></div>
 
 <?php
 if (element('list', element('data', $view))) {

@@ -1,3 +1,10 @@
+     <script>
+         $(document).ready(function(){
+            var wid = $('.tab06_cont div').width()- 160 ;
+               $('.tab06_cont div input').css('width' , wid);
+         });
+     </script>
+     
     <?php 
     $hide_style='';
     if(element('brd_key',element('board',$view))==="attenddata") $hide_style="style='display:none';";
@@ -52,16 +59,17 @@
                     <option value="post_nickname" <?php echo ($this->input->post('sfield') === 'post_nickname') ? ' selected="selected" ' : ''; ?>>닉네임</option>
                     
                 </select>
-                <input type="text" class="per40" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->post('skeyword')); ?>" />
-                <button class="middle_font" type="button" onClick='boardSearch(this.form);'>검 색</button>
+                <input type="text" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->post('skeyword')); ?>" />
+                <button class="middle_font" type="button" onClick='boardSearch(this.form);' style="width: 25px;"><i class="fa fa-search"></i></button>
                 <button class="middle_font" type="button" onClick='boardtotal(this.form);'>전 체</button>
             
         </form>
         </div>
+
         <div class="text-center">
-                <a href="<?php echo element('write_url',$view); ?>" class="btn btn-success btn-sm per45" >글쓰기</a>
-                <a href="javascript:;" class="btn btn-success btn-sm per45">더보기</a>
-            </div>
+                <a href="<?php echo element('write_url',$view); ?>">글 쓰 기</a>
+                <a href="javascript:;" style="margin-left:2%;">더 보 기</a>
+        </div>
         
         
     </div>

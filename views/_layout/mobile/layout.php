@@ -100,7 +100,7 @@ $(document).ready(function(){
                         <table>
                             <?php if ($this->member->is_member()) { ?>
                                 <tr>
-                                    <th colspan="3" class="small_font"><a style="color:#fff" href="<?php echo site_url('mypage'); ?>"> <?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 </a><button type="button" class="btn btn-primary btn-sm" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';"><i class="fa fa-sign-out"></i> 로그아웃</button></th>
+                                    <th colspan="3" class="normal_font"><?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 <button type="button" class="btn-sm" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';"><i class="fa fa-sign-out"></i> 로그아웃</button></th>
                                 </tr>
                                 
                             <?php } else { ?>
@@ -125,7 +125,7 @@ $(document).ready(function(){
                                     foreach (element(0, $menu) as $mkey => $mval) {
                                         if (element(element('men_id', $mval), $menu)) {
                                             $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-                                            $menuhtml .= '<li class="big_font">
+                                            $menuhtml .= '<li>
                                             <a style="color:#fff;" href="' . $mlink . '" ' . element('men_custom', $mval);
                                             if (element('men_target', $mval)) {
                                                 $menuhtml .= ' target="' . element('men_target', $mval) . '"';
@@ -134,7 +134,7 @@ $(document).ready(function(){
                                             <ul class="' . $mkey . '">';
 
                                             foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
-                                                $menuhtml .= '<li onClick="javascript:event.stopPropagation();"><a style="display:inline-block;" href="' . element('men_link', $sval) . '" ' . element('men_custom', $sval);
+                                                $menuhtml .= '<li class="middle_font" onClick="javascript:event.stopPropagation();"><a style="display:inline-block;" href="' . element('men_link', $sval) . '" ' . element('men_custom', $sval);
                                                 if (element('men_target', $sval)) {
                                                     $menuhtml .= ' target="' . element('men_target', $sval) . '"';
                                                 }
@@ -144,7 +144,7 @@ $(document).ready(function(){
 
                                         } else {
                                             $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-                                            $menuhtml .= '<li class="big_font"><a style="color:#fff;display:inline-block;" href="' . $mlink . '" ' . element('men_custom', $mval);
+                                            $menuhtml .= '<li><a style="color:#fff;display:inline-block;" href="' . $mlink . '" ' . element('men_custom', $mval);
                                             if (element('men_target', $mval)) {
                                                 $menuhtml .= ' target="' . element('men_target', $mval) . '"';
                                             }

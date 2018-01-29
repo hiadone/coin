@@ -15,7 +15,7 @@
             <input type="hidden" name="<?php echo element('primary_key', $view); ?>"    value="<?php echo element(element('primary_key', $view), element('post', $view)); ?>" />
            
                
-                    <label>제 목</label>
+                    <label class="middle_font">제 목</label>
                     <input type="text" name="post_title" id="post_title" value="<?php echo set_value('post_title', element('post_title', element('post', $view))); ?>" placeholder="제목을 입력 해주세요" onfocus="this.placeholder=''" maxlength="40" onblur="this.placeholder='제목을 입력 해주세요'">
                     <?php if (element('use_google_map', element('board', $view))) { ?>
                         <span class="map_btn">
@@ -259,10 +259,10 @@
                 <?php } ?>
             </div>
         <?php } ?>
-            <div class="text-center">
+            <div class="text-center middle_font">
                 
-                <button type="submit" class="per45">저장</button>
-                <button type="button" class="btn-history-back per45">취소</button>
+                <button type="submit" class="per45 middle_font">저 장</button>
+                <button type="button" class="btn-history-back per45 middle_font">취 소</button>
             </div>
         </div>
     <?php echo form_close(); ?>

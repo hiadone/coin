@@ -1,4 +1,46 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
+ <!-- 목록의 오름차수 내림차수 정렬 스크립트 -->
+<script> 
+        $.fn.alternateRowColors = function() {
+                    $('tbody tr:odd', this).removeClass('even').addClass('odd');
+                    $('tbody tr:even', this).removeClass('odd').addClass('even');
+                    return this;
+        };
+ 
+        $(document).ready(function() {
+            $('table.td').each(function() {
+                var $table = $(this);
+                // 플러그인 호출
+                $table.alternateRowColors();
+ 
+                // 테이블 헤더 정렬
+                $('th', $table).each(function(column) {
+                    // 헤더의 CSS 클래스가 sort-alpha로 설정되어있다면, ABC순으로 정렬
+                    if ($(this).is('.sort-alpha')) {
+                        // 클릭시 정렬 실행
+                        var direction = -1;
+                        $(this).click(function() {
+                            direction = -direction;
+                            var rows = $table.find('tbody > tr').get(); // 현재 선택된 헤더관련 행 가져오기
+                            // 자바스크립트의 sort 함수를 사용해서 오름차순 정렬
+                            rows.sort(function(a, b) {
+                                var keyA = $(a).children('td').eq(column).text().toUpperCase();
+                                var keyB = $(b).children('td').eq(column).text().toUpperCase();
+ 
+                                if (keyA < keyB) return -direction;
+                                if (keyA > keyB) return direction;
+                                return 0;
+                            });
+                            //정렬된 행을 테이블에 추가
+                            $.each(rows, function(index, row) { $table.children('tbody').append(row) });
+                            $table.alternateRowColors(); // 재정렬
+                        });
+                    }
+                }); // end table sort
+            }); // end each()
+        });   // end ready()
+</script> 
+
 <article class="wrap01">
         <section class="main_title my_write">
             <h2>내 게 시 물</h2>
@@ -10,14 +52,10 @@
                         <tr>
                             <th class="sort-alpha">날 짜 ▼</th>
                             <th class="sort-alpha">제 목</th>
-                            <th class="sort-alpha">종 류</th>
+                            <th class="sort-alpha">종 류 ▼</th>
                         </tr>
                     </thead>
-
-
-
-    
-        <tbody>
+        <tbody class="middle_font">
         <?php
         if (element('list', element('data', $view))) {
             foreach (element('list', element('data', $view)) as $result) {

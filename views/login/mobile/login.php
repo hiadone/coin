@@ -1,11 +1,4 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
-<script>
-    $(document).ready(function(){
-        var hei =  $('.login li figure img').height();
-        $('.login li figure figcaption').css({'height': hei , 'line-height': hei + 'px'});
-    });
-</script> 
-
             <?php
             /*
             echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
@@ -45,9 +38,30 @@
             <article class="wrap01">
                 <section class="main_title login">
                     <h2>통합 로그인</h2>
+                    <div>
+                        <h2>SNS 간편로그인</h2>
+                        <p>
+                            - 비트이슈에서는 SNS로 로그인하여 <br>
+                              간편하게 서비스를 이용하실 수 있습니다.<br><br>
+                            -원하시는 SNS를 선택하시고<br> 로그인 해주세요.
+                        </p>
+                    </div>
                     <ul>
+                        <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
+                            <li style="background-color:#fbe300;">
+                                <a href="javascript:;" onClick="social_connect_on('kakao');" title="카카오 로그인">
+                                <figure>
+                                    <img src="<?php echo base_url('/assets/images/kakao.png');?>" alt="kakao">
+                                    <figcaption class="big_font" style="color:#3a1e1f">
+                                        카카오톡 로그인
+                                    </figcaption>
+                                </figure>
+                                </a>
+                            </li>
+                        <?php } ?>
+
                         <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
-                            <li>
+                            <li style="background-color:#1ec802;">
                                 <a href="javascript:;" onClick="social_connect_on('naver');" title="네이버 로그인">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/naver.png');?>" alt="naver">
@@ -57,26 +71,10 @@
                                 </figure>
                                 </a>
                             </li>
-                            
-                        <?php } ?>
-                        
-                        <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
-                            <li>
-                                <a href="javascript:;" onClick="social_connect_on('kakao');" title="카카오 로그인">
-                                <figure>
-                                    <img src="<?php echo base_url('/assets/images/kakao.png');?>" alt="kakao">
-                                    <figcaption class="big_font">
-                                        카카오톡 로그인
-                                    </figcaption>
-                                </figure>
-                                </a>
-                            </li>
                         <?php } ?>
 
-                        
-                        
                         <?php if ($this->cbconfig->item('use_sociallogin_facebook')) {?>
-                            <li>
+                            <li style="background-color:#3c589e;">
                                 <a href="javascript:;" onClick="social_connect_on('facebook');" title="페이스북 로그인">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/face.png');?>" alt="face">
@@ -87,12 +85,14 @@
                                 </a>
                             </li>
                         <?php } ?>
+
                         <?php if ($this->cbconfig->item('use_sociallogin_twitter')) {?>
-                                <a href="javascript:;" onClick="social_connect_on('twitter');" title="트위터 로그인"><img src="<?php echo base_url('assets/images/social_twitter.png'); ?>" width="22" height="22" alt="트위터 로그인" title="트위터 로그인" /></a>
-                            <?php } ?>
-                            <?php if ($this->cbconfig->item('use_sociallogin_google')) {?>
-                                <a href="javascript:;" onClick="social_connect_on('google');" title="구글 로그인"><img src="<?php echo base_url('assets/images/social_google.png'); ?>" width="22" height="22" alt="구글 로그인" title="구글 로그인" /></a>
-                            <?php } ?>
+                            <a href="javascript:;" onClick="social_connect_on('twitter');" title="트위터 로그인"><img src="<?php echo base_url('assets/images/social_twitter.png'); ?>" width="22" height="22" alt="트위터 로그인" title="트위터 로그인" /></a>
+                        <?php } ?>
+
+                        <?php if ($this->cbconfig->item('use_sociallogin_google')) {?>
+                            <a href="javascript:;" onClick="social_connect_on('google');" title="구글 로그인"><img src="<?php echo base_url('assets/images/social_google.png'); ?>" width="22" height="22" alt="구글 로그인" title="구글 로그인" /></a>
+                        <?php } ?>
                     </ul>
                 </section>
             </article>            

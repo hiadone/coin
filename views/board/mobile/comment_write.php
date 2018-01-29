@@ -1,9 +1,9 @@
 <?php
 if ( ! element('post_hide_comment', element('post', $view)) && element('is_admin', $view)) {
 ?>
-    <div class="chk_comment_all_wrapper"><label for="chk_comment_all"><input id="chk_comment_all" onclick="all_commentlist_checked(this.checked);" type="checkbox" /> 코멘트 전체선택</label></div>
+    <div class="chk_comment_all_wrapper middle_font"><label for="chk_comment_all"><input id="chk_comment_all" onclick="all_commentlist_checked(this.checked);" type="checkbox" /> 코멘트 전체선택</label></div>
     
-    <div class="item" onClick="comment_multi_action('viewcomment', '<?php echo element('post_id', element('post', $view)); ?>', 'comment_multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');"><i class="fa fa-trash-o"></i> 선택삭제</div>
+    <div class="item middle_font" onClick="comment_multi_action('viewcomment', '<?php echo element('post_id', element('post', $view)); ?>', 'comment_multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');"><i class="fa fa-trash-o"></i> 선택삭제</div>
         
     
 <?php
@@ -11,9 +11,8 @@ if ( ! element('post_hide_comment', element('post', $view)) && element('is_admin
 if (element('can_comment_write', element('comment', $view)) OR element('show_textarea', element('comment', $view))) {
 ?>
     <ol id="comment_write_box">
-    <li style="border-bottom:0; padding: 3%; box-sizing: border-box;">
+    <li style="border-bottom:0; padding:0 3%; box-sizing: border-box; margin-bottom: 0;">
         <h3>댓글쓰기</h3>
-            <div class="alert alert-auto-close alert-dismissible alert-comment-message" style="display:none;"><span class="alert-comment-message-content"></span></div>
             <?php
             $attributes = array('name' => 'fcomment', 'id' => 'fcomment');
             echo form_open('', $attributes);
@@ -35,8 +34,8 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                     </span>
                 <?php } ?>
                
-                        <button type="button" class="per100 mt10" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">저 장</button>
-                   
+                        <button type="button" class="per100 small_font" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">저 장</button>
+                   <div class="alert-comment-message" style="display:none;"><span class="alert-comment-message-content"></span></div>
                     
                 <?php if ($this->member->is_member() === false) { ?>
                     <div class="form-inline passcord">

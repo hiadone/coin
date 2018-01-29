@@ -1,11 +1,19 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
+<script>
+         $(document).ready(function(){
+            var wid = $('.serv form').width()- 70 ;
+               $('.serv form input').css('width' , wid);
+         });
+</script>
+
+
 <article class="wrap01">
         <section class="main_title serv">
             <h2><?php echo element('fgr_title', element('faqgroup', $view)); ?></h2>
-            <form class="search_box text-center mb20" action="<?php echo current_url(); ?>" onSubmit="return faqSearch(this)">
-                <input type="text" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" class="input" placeholder="Search" />
-                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
-                <button class="btn btn-info" type="button" onClick="location.href='<?php echo current_full_url() ?>';">전체보기</button>
+            <form action="<?php echo current_url(); ?>" onSubmit="return faqSearch(this)">
+                <input type="text" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" placeholder="Search" />
+                <button type="submit" class="middle_font" style="width: 25px;"><i class="fa fa-search"></i></button>
+                <button type="button" class="middle_font" onClick="location.href='<?php echo current_full_url() ?>';">전체</button>
                 
             </form>
 
@@ -61,8 +69,8 @@ if ( ! element('list', element('data', $view))) {
 <?php
 if ($this->member->is_admin() === 'super') {
 ?>
-    <div class="text-center mb20">
-        <a href="<?php echo admin_url('page/faq'); ?>?fgr_id=<?php echo element('fgr_id', element('faqgroup', $view)); ?>" class="btn btn-black btn-sm" target="_blank" title="FAQ 수정">FAQ 수정</a>
+    <div class="middle_font">
+        <a href="<?php echo admin_url('page/faq'); ?>?fgr_id=<?php echo element('fgr_id', element('faqgroup', $view)); ?>" target="_blank" title="FAQ 수정">FAQ 수정</a>
     </div>
 <?php
 }

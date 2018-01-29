@@ -1,59 +1,59 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
-<script src="assets/js/bxslider/plugins/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/plugins/jquery.easing.1.3.js'); ?>"></script>
+
 <script>
-    
-    // rolling_news 영역 스크립트
-    var postact_flag=false;
-    function scrolling(objId,sec1,sec2,speed,height){ 
-        this.objId=objId; 
-        this.sec1=sec1; 
-        this.sec2=sec2; 
-        this.speed=speed; 
-        this.height=height; 
-        this.h=0; 
-        this.div=document.getElementById(this.objId); 
-        this.htmltxt=this.div.innerHTML; 
-        this.div.innerHTML=this.htmltxt+this.htmltxt; 
-        this.div.isover=false; 
-        this.div.onmouseover=function(){this.isover=false;} 
-        this.div.onmouseout=function(){this.isover=false;} 
-        var self=this; 
-        this.div.scrollTop=0; 
-        window.setTimeout(function(){self.play()},this.sec1); 
-    } 
-    scrolling.prototype={ 
-        play:function(){ 
-            var self=this; 
-            if(!this.div.isover){ 
-              this.div.scrollTop+=this.speed; 
-              if(this.div.scrollTop>this.div.scrollHeight/2){ 
-                this.div.scrollTop=0; 
-            }else{ 
-                this.h+=this.speed; 
-                if(this.h>=this.height){ 
-                  if(this.h>this.height|| this.div.scrollTop%this.height !=0){ 
-                    this.div.scrollTop-=this.h%this.height; 
-                } 
-                this.h=0; 
-                window.setTimeout(function(){self.play()},this.sec1); 
-                return; 
-            } 
-        } 
-    } 
-    window.setTimeout(function(){self.play()},this.sec2); 
-}, 
-prev:function(){ 
-    if(this.div.scrollTop == 0) 
-        this.div.scrollTop = this.div.scrollHeight/2; 
-    this.div.scrollTop -= this.height; 
-}, 
-next:function(){ 
-    if(this.div.scrollTop ==  this.div.scrollHeight/2) 
-        this.div.scrollTop =0; 
-    this.div.scrollTop += this.height; 
-} 
-}; 
+    // rolling_news 영역 스크립트   
+        // var postact_flag=false;
+        // function scrolling(objId,sec1,sec2,speed,height){ 
+        //     this.objId=objId; 
+        //     this.sec1=sec1; 
+        //     this.sec2=sec2; 
+        //     this.speed=speed; 
+        //     this.height=height; 
+        //     this.h=0; 
+        //     this.div=document.getElementById(this.objId); 
+        //     this.htmltxt=this.div.innerHTML; 
+        //     this.div.innerHTML=this.htmltxt+this.htmltxt; 
+        //     this.div.isover=false; 
+        //     this.div.onmouseover=function(){this.isover=false;} 
+        //     this.div.onmouseout=function(){this.isover=false;} 
+        //     var self=this; 
+        //     this.div.scrollTop=0; 
+        //     window.setTimeout(function(){self.play()},this.sec1); 
+        // } 
+        // scrolling.prototype={ 
+        //     play:function(){ 
+        //         var self=this; 
+        //         if(!this.div.isover){ 
+        //           this.div.scrollTop+=this.speed; 
+        //           if(this.div.scrollTop>this.div.scrollHeight/2){ 
+        //             this.div.scrollTop=0; 
+        //         }else{ 
+        //             this.h+=this.speed; 
+        //             if(this.h>=this.height){ 
+        //               if(this.h>this.height|| this.div.scrollTop%this.height !=0){ 
+        //                 this.div.scrollTop-=this.h%this.height; 
+        //             } 
+        //             this.h=0; 
+        //             window.setTimeout(function(){self.play()},this.sec1); 
+        //             return; 
+        //         } 
+        //     } 
+        // } 
+        // window.setTimeout(function(){self.play()},this.sec2); 
+        // }, 
+        // prev:function(){ 
+        //     if(this.div.scrollTop == 0) 
+        //         this.div.scrollTop = this.div.scrollHeight/2; 
+        //     this.div.scrollTop -= this.height; 
+        // }, 
+        // next:function(){ 
+        //     if(this.div.scrollTop ==  this.div.scrollHeight/2) 
+        //         this.div.scrollTop =0; 
+        //     this.div.scrollTop += this.height; 
+        // } 
+        // }; 
 
     // 전체 스크립트 
     $(document).ready(function(){
@@ -75,7 +75,7 @@ next:function(){
 
             $("ul.tab02_tabs li").click(function () {
                 $("ul.tab02_tabs li").removeClass("active").css("color" , "#333");
-                $(this).addClass("active").css({"color": "#1c446d","font-weight": "bolder"});
+                $(this).addClass("active").css({"color": "#1c446d"});
                 $(this).addClass("active").css("color", "#1c446d");
                 $(".tab02_cont").hide()
                 var activeTab = $(this).attr("rel");
@@ -88,7 +88,7 @@ next:function(){
 
             $("ul.tab03_tabs li").click(function () {
                 $("ul.tab03_tabs li").removeClass("active").css("color" , "#333");
-                $(this).addClass("active").css({"color": "#1c446d","font-weight": "bolder"});
+                $(this).addClass("active").css({"color": "#1c446d"});
                 $(this).addClass("active").css("color", "#1c446d");
                 $(".tab03_cont").hide()
                 var activeTab = $(this).attr("rel");
@@ -101,7 +101,7 @@ next:function(){
 
             $("ul.tab04_tabs li").click(function () {
                 $("ul.tab04_tabs li").removeClass("active").css("color" , "#333");
-                $(this).addClass("active").css({"color": "#1c446d","font-weight": "bolder"});
+                $(this).addClass("active").css({"color": "#1c446d"});
                 $(this).addClass("active").css("color", "#1c446d");
                 $(".tab04_cont").hide()
                 var activeTab = $(this).attr("rel");
@@ -114,7 +114,7 @@ next:function(){
 
             $("ul.tab05_tabs li").click(function () {
                 $("ul.tab05_tabs li").removeClass("active").css("color" , "#333");
-                $(this).addClass("active").css({"color": "#1c446d","font-weight": "bolder"});
+                $(this).addClass("active").css({"color": "#1c446d"});
                 $(this).addClass("active").css("color", "#1c446d");
                 $(".tab05_cont").hide()
                 var activeTab = $(this).attr("rel");
@@ -254,9 +254,9 @@ next:function(){
                     slider.startAuto();
                 });     
             });
-        </script> 
+</script> 
 
-        <article class="cover_menu_sub">
+<article class="cover_menu_sub">
             <section class="cover_sub">
             </section>
             <!-- 인물트위터 더보기 클릭시 팝업 내용-->
@@ -350,1189 +350,1190 @@ next:function(){
                 <!-- 리스트 영역-->
                 <?php echo form_close(); ?>        
             </section>
-            
-        </article>
-        <article class="wrap01">
-            <!-- rolling_news 영역-->
-            <!--         <!-- 화살표 방향 영역 -->
-            <!-- <div class="rollBtn" onmouseover="hotKeyword.div.isover=false;" onmouseout="hotKeyword.div.isover=false;"> 
+</article>
+
+<article class="wrap01">
+<!-- rolling_news 영역-->
+    <section class="rolling_news">
+        <!-- 
+         화살표 방향 영역
+            <div class="rollBtn" onmouseover="hotKeyword.div.isover=false;" onmouseout="hotKeyword.div.isover=false;"> 
               <a style="display:inline-block;" class="previous" onclick="hotKeyword.prev();" title="위로">▲</a> 
               <a style="display:inline-block;" class="next" onclick="hotKeyword.next();" title="아래로">▼</a> 
-          </div>  -->
-          <!-- 기사 리스트 영역
-          <div id="jFavList"> 
+            </div> 
+            기사 리스트 영역
+                <div id="jFavList"> 
 
-            <?php
-            $board='';
-            $config = array(
-                'brd_key' => 'coin_news',
-                'limit' => 5,
-                'length' => 40,
-                'headline' => 1,
+                <?php
+
+                $board='';
+                $config = array(
+                    'brd_key' => 'coin_news',
+                    'limit' => 5,
+                    'length' => 40,
+                    'headline' => 1,
                 );
-            $board=$this->board->data($config);
+                $board=$this->board->data($config);
 
-            if (element('latest', element('view', $board))) {
-                foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                <ul> 
-                    <li><a style="display:inline-block;" href="<?php echo element('url', $value); ?>" title="<?php echo html_escape(element('title', $value)); ?>" class="big_font"><?php echo sprintf("%02d",($key+1)) ?>. <?php echo html_escape(element('title', $value)); ?></a></li> 
-                </ul>
+                if (element('latest', element('view', $board))) {
+                    foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        <ul> 
+                            <li><a style="display:inline-block;" href="<?php echo element('url', $value); ?>" title="<?php echo html_escape(element('title', $value)); ?>" class="big_font"><?php echo sprintf("%02d",($key+1)) ?>. <?php echo html_escape(element('title', $value)); ?></a></li> 
+                        </ul>
                 <?php 
-            }
-        }
-        ?>
-        </div> 
-        <script type="text/javascript"> var hotKeyword = new scrolling("jFavList",4000,1,1,35); </script>  -->
-        <section class="rolling_news">
-            <ul class="big_font">
-             <?php
-             $board='';
-             $config = array(
+                    }
+                }
+                ?>
+                </div> 
+            <script type="text/javascript"> var hotKeyword = new scrolling("jFavList",4000,1,1,35); </script> 
+         -->
+         
+        <ul class="big_font">
+               <?php
+               $board='';
+               $config = array(
                 'brd_key' => 'coin_news',
                 'limit' => 5,
                 'length' => 40,
                 'headline' => 1,
                 );
-             $board=$this->board->data($config);
+               $board=$this->board->data($config);
 
-             if (element('latest', element('view', $board))) {
+               if (element('latest', element('view', $board))) {
                 foreach (element('latest', element('view', $board)) as $key => $value)  {?>
                 <li><a style="display:inline-block;" href="<?php echo element('url', $value); ?>" title="<?php echo html_escape(element('title', $value)); ?>" class="middle_font"><?php echo sprintf("%02d",($key+1)) ?>. <?php echo html_escape(element('title', $value)); ?></a></li> 
                 <?php 
-            }
-        }
-        ?>
-    </ul>
-</section>
+                }
+                }
+                ?>
+        </ul>
+    </section>
 
 <!-- tab01(거래소별 시세) 영역 -->
-<section class="tab01 middle_font">
-    <ul class="tab01_tabs tabs ">
-        <li class="active" rel="tab01_1">BTC</li>
-        <li rel="tab01_2">ETH</li>
-        <li rel="tab01_3">DASH</li>
-        <li rel="tab01_4">XRP</li>
-        <li rel="tab01_5">LTC</li>
-        <li rel="tab01_6">ETC</li>
-        <li rel="tab01_7">BCH</li>
-        <li rel="tab01_8">XMR</li>
-        <li rel="tab01_9">ZEC</li>
-        <li rel="tab01_10">QTUM</li>
-        <li rel="tab01_11">BTG</li>
-    </ul>
+    <section class="tab01 middle_font">
+        <ul class="tab01_tabs tabs ">
+            <li class="active" rel="tab01_1">BTC</li>
+            <li rel="tab01_2">ETH</li>
+            <li rel="tab01_3">DASH</li>
+            <li rel="tab01_4">XRP</li>
+            <li rel="tab01_5">LTC</li>
+            <li rel="tab01_6">ETC</li>
+            <li rel="tab01_7">BCH</li>
+            <li rel="tab01_8">XMR</li>
+            <li rel="tab01_9">ZEC</li>
+            <li rel="tab01_10">QTUM</li>
+            <li rel="tab01_11">BTG</li>
+        </ul>
 
-    <div class="tab01_wrap cont_wrap">
+        <div class="tab01_wrap cont_wrap">
 
-        <div id="tab01_1" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
+            <div id="tab01_1" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
 
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
 
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
 
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
 
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
 
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
 
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
 
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
 
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_2" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_3" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_4" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_5" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_6" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_7" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_8" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_9" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_10" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="tab01_11" class="tab01_cont cont">
+                <table>
+                    <tr>
+                        <th>거래소별</th>
+                        <th>
+                            <select>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                                <option>원화 (KRW)</option>
+                            </select>
+                        </th>
+                        <th>변동률</th>
+                        <th>프리미엄</th>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>빗 썸</td>
+                        <td>20,081,000</td>
+                        <td>▲1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 인 원</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코 빗</td>
+                        <td>20,081,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.47%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>업 비 트</td>
+                        <td>20,170,000</td>
+                        <td>▲1,159,000</td>
+                        <td>28.3%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>코인네스트</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트렉스</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>플로닉스</td>
+                        <td>20,093,000</td>
+                        <td>▼1,159,00</td>
+                        <td>27.88%</td>
+                    </tr>
+
+                    <tr onClick="location.href=''">
+                        <td>비트 파이넥스</td>
+                        <td>20,170,000</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>  
         </div>
-
-        <div id="tab01_2" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="tab01_3" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="tab01_4" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="tab01_5" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="tab01_6" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="tab01_7" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="tab01_8" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="tab01_9" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="tab01_10" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="tab01_11" class="tab01_cont cont">
-            <table>
-                <tr>
-                    <th>거래소별</th>
-                    <th>
-                        <select>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                            <option>원화 (KRW)</option>
-                        </select>
-                    </th>
-                    <th>변동률</th>
-                    <th>프리미엄</th>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>빗 썸</td>
-                    <td>20,081,000</td>
-                    <td>▲1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 인 원</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코 빗</td>
-                    <td>20,081,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.47%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>업 비 트</td>
-                    <td>20,170,000</td>
-                    <td>▲1,159,000</td>
-                    <td>28.3%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>코인네스트</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트렉스</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>플로닉스</td>
-                    <td>20,093,000</td>
-                    <td>▼1,159,00</td>
-                    <td>27.88%</td>
-                </tr>
-
-                <tr onClick="location.href=''">
-                    <td>비트 파이넥스</td>
-                    <td>20,170,000</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-
-        
-    </div>
-</section>
+    </section>
 
 <button class="btn_up">
     ▲ 접 기
 </button>
+
 <!-- tab02(자유게시판,채굴정보,코인뉴스 수익인증) 영역 -->
-<section class="tab02 wrap middle_font">
-    <ul class="tab02_tabs tabs">
-        <li class="active" rel="tab02_free">자유게시판</li>
-        <li rel="tab02_mine_info">채굴정보</li>
-        <li rel="tab02_coin_news">코인뉴스</li>
-        <li rel="tab02_profit">수익인증</li>
-    </ul>
-    <div class="tab02_wrap cont_wrap">
-        <?php
-        $tab02=array('free','mine_info','coin_news','profit');
+    <section class="tab02 wrap middle_font">
+        <ul class="tab02_tabs tabs">
+            <li class="active" rel="tab02_free">자유게시판</li>
+            <li rel="tab02_mine_info">채굴정보</li>
+            <!-- <li rel="tab02_coin_news">코인뉴스</li> -->
+            <li rel="tab02_profit">수익인증</li>
+        </ul>
 
-        foreach($tab02 as $tvalue){
-            $config = array(
-                'brd_key' => $tvalue,
-                'limit' => 5,
-                'length' => 40,
-                );
-            $board=$this->board->data($config);
+        <div class="tab02_wrap cont_wrap">
+            <?php
+                $tab02=array('free','mine_info','coin_news','profit');
 
-            if (element('latest', element('view', $board))) {
+                foreach($tab02 as $tvalue){
+                    $config = array(
+                        'brd_key' => $tvalue,
+                        'limit' => 5,
+                        'length' => 40,
+                        );
+                    $board=$this->board->data($config);
 
-                echo '<div id="tab02_'.element('brd_key',$config).'" class="tab02_cont cont">
-                <table>';
-                    foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                    <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-                        <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                        <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
-                        <td><?php echo element('display_datetime', $value); ?></td>
-                    </tr>                        
-                    <?php 
+                    if (element('latest', element('view', $board))) {
+
+                        echo '<div id="tab02_'.element('brd_key',$config).'" class="tab02_cont cont">
+                        <table>';
+                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                            <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                                <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                <td><?php echo element('display_datetime', $value); ?></td>
+                            </tr>                        
+                            <?php 
+                        }
+                        echo '
+                        </table>
+                        </div>';
+                        } else {
+                            echo '<div id="tab02_'.element('brd_key',$config).'" class="tab02_cont cont">
+                            <table>
+                                <tr>
+                                    <td colspan="3">게시물이 없습니다.</td>
+                                </tr>
+                            </table>
+                        </div>';
+                    }
                 }
-                echo '
-            </table>
-        </div>';
-    } else {
-        echo '<div id="tab02_'.element('brd_key',$config).'" class="tab02_cont cont">
-        <table>
-            <tr>
-                <td colspan="3">게시물이 없습니다.</td>
-            </tr>
-        </table>
-    </div>';
-}
-
-}
-?>  
-</div>
-</section>
+            ?>  
+        </div>
+    </section>
 
 <!-- ad 영역 -->
-<section class="ad">
-    <?php echo banner("index_banner2") ?>
-</section>
+    <section class="ad">
+        <?php echo banner("index_banner2") ?>
+    </section>
 
-<section class="tab03 wrap middle_font">
-    <ul class="tab03_tabs tabs">
-        <li class="active" rel="tab03_video">동영상 강좌</li>
-        <li rel="tab03_coin_int">코인 지식</li>
-        <li rel="tab03_ico">ICO</li>
-        <li rel="tab03_exchange">거래소별 코인</li>
-    </ul>
-    <div class="tab03_wrap cont_wrap">
-        <?php
-        $tab02=array('video','coin_int','ico','exchange');
+<!-- tab03(동영상강좌,코인지식,ICO,거래소별 코인) 영역 -->
+    <section class="tab03 wrap middle_font">
+        <ul class="tab03_tabs tabs">
+            <li class="active" rel="tab03_video">동영상 강좌</li>
+            <li rel="tab03_coin_int">코인 지식</li>
+            <li rel="tab03_ico">ICO</li>
+            <li rel="tab03_exchange">거래소별 코인</li>
+        </ul>
 
-        foreach($tab02 as $tvalue){
-            $config = array(
-                'brd_key' => $tvalue,
-                'limit' => 5,
-                'length' => 40,
-                );
-            $board=$this->board->data($config);
+        <div class="tab03_wrap cont_wrap">
+            <?php
+                $tab02=array('video','coin_int','ico','exchange');
 
-            if (element('latest', element('view', $board))) {
+                foreach($tab02 as $tvalue){
+                    $config = array(
+                        'brd_key' => $tvalue,
+                        'limit' => 5,
+                        'length' => 40,
+                    );
+                $board=$this->board->data($config);
 
-                echo '<div id="tab03_'.element('brd_key',$config).'" class="tab03_cont cont">
-                <table>';
+                if (element('latest', element('view', $board))) {
+
+                    echo '<div id="tab03_'.element('brd_key',$config).'" class="tab03_cont cont">
+                    <table>';
                     foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                    <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-                        <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                        <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
-                        <td><?php echo element('display_datetime', $value); ?></td>
-                    </tr>                        
-                    <?php 
+                        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                            <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                            <td><?php echo element('display_datetime', $value); ?></td>
+                        </tr>                        
+                        <?php 
+                            }
+                            echo '
+                        </table>
+                    </div>';
+                }else {
+                    echo '<div id="tab03_'.element('brd_key',$config).'" class="tab03_cont cont">
+                    <table>
+                        <tr>
+                            <td colspan="3">게시물이 없습니다.</td>
+                        </tr>
+                    </table>
+                </div>';
                 }
-                echo '
-            </table>
-        </div>';
-    } else {
-        echo '<div id="tab03_'.element('brd_key',$config).'" class="tab03_cont cont">
-        <table>
-            <tr>
-                <td colspan="3">게시물이 없습니다.</td>
-            </tr>
-        </table>
-    </div>';
-}
-
-}
-?>  
-</div>
-</section>
-
-
+                }
+                ?>  
+        </div>
+    </section>
 
 <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역-->
-<section class="tab04 wrap middle_font">
-    <ul class="tab04_tabs tabs">
-        <li class="active" rel="tab04_event">이벤트</li>
-        <li rel="tab04_attenddata">출석체크</li>
-        <li rel="tab04_express">가입인사</li>
-    </ul>
+    <section class="tab04 wrap middle_font">
+        <ul class="tab04_tabs tabs">
+            <li class="active" rel="tab04_event">이벤트</li>
+            <li rel="tab04_attenddata">출석체크</li>
+            <li rel="tab04_express">가입인사</li>
+        </ul>
 
-    <div class="tab04_wrap cont_wrap">
-        <?php
-        $tab04=array('event','attenddata','express');
-        foreach($tab04 as $tvalue){
+        <div class="tab04_wrap cont_wrap">
+            <?php
+                $tab04=array('event','attenddata','express');
+                foreach($tab04 as $tvalue){
 
-            $config = array(
-                'brd_key' => $tvalue,
-                'limit' => 3,
-                'length' => 40,
-                );
-            $board=$this->board->data($config);
+                    $config = array(
+                        'brd_key' => $tvalue,
+                        'limit' => 3,
+                        'length' => 40,
+                        );
+                    $board=$this->board->data($config);
 
-            if (element('latest', element('view', $board))) {
+                    if (element('latest', element('view', $board))) {
+                        echo '<div id="tab04_'.element('brd_key',$config).'" class="tab04_cont cont">
+                        <table>';
+                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                            <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                                <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                <td><?php echo element('display_datetime', $value); ?></td>
+                            </tr>                        
+                            <?php 
+                        }
+                        echo '
+                    </table>
+                </div>';
+            } else {
                 echo '<div id="tab04_'.element('brd_key',$config).'" class="tab04_cont cont">
-                <table>';
-                    foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                    <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-                        <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                        <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
-                        <td><?php echo element('display_datetime', $value); ?></td>
-                    </tr>                        
-                    <?php 
-                }
-                echo '
-            </table>
-        </div>';
-    } else {
-        echo '<div id="tab04_'.element('brd_key',$config).'" class="tab04_cont cont">
-        <table>
-            <tr>
-                <td colspan="3">게시물이 없습니다.</td>
-            </tr>
-        </table>
-    </div>';
-}
-}
-?>  
-
-
-
-</div>
-</section>
+                <table>
+                    <tr>
+                        <td colspan="3">게시물이 없습니다.</td>
+                    </tr>
+                </table>
+             </div>';
+            }
+            }
+            ?>  
+        </div>
+    </section>
 
 <!-- tab05(유머,자유갤러리) 영역-->
-<section class="tab05 wrap middle_font">
-    <ul class="tab05_tabs tabs">
-        <li class="active" rel="tab05_humor">유 머</li>
-        <li rel="tab05_free_gallery">자유갤러리</li>
-    </ul>
-    <div class="tab05_wrap cont_wrap">
-        <?php
-        $config = array(
-            'brd_key' => 'humor',
-            'limit' => 3,
-            'length' => 40,
-            );
-        $board=$this->board->data($config);
+    <section class="tab05 wrap middle_font">
+        <ul class="tab05_tabs tabs">
+            <li class="active" rel="tab05_free_gallery">자유갤러리</li>
+            <li  rel="tab05_humor">유 머</li>
+            
+        </ul>
 
-        if (element('latest', element('view', $board))) {
-            echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
-            <table>';
-                foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-                    <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                    <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
-                    <td><?php echo element('display_datetime', $value); ?></td>
-                </tr>                        
-                <?php 
-            }
-            echo '
-        </table>
-    </div>';
-} else {
-    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
-    <table>
-        <tr>
-            <td colspan="3">게시물이 없습니다.</td>
-        </tr>
-    </table>
-</div>';
-}
-?>  
+        <div class="tab05_wrap cont_wrap">
+            <?php
+                $config = array(
+                    'brd_key' => 'humor',
+                    'limit' => 3,
+                    'length' => 40,
+                    );
+                $board=$this->board->data($config);
 
-<?php
-$config = array(
-    'brd_key' => 'free_gallery',
-    'limit' => 3,
-    'length' => 40,
-    );
-$board=$this->board->data($config);
+                if (element('latest', element('view', $board))) {
+                    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
+                    <table>';
+                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                            <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                            <td><?php echo element('display_datetime', $value); ?></td>
+                        </tr>                        
+                        <?php 
+                    }
+                    echo '
+                    </table>
+                    </div>';
+                } else {
+                echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
+                <table>
+                    <tr>
+                        <td colspan="3">게시물이 없습니다.</td>
+                    </tr>
+                </table>
+                </div>';
+                }
+            ?>  
 
-if (element('latest', element('view', $board))) {
-    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
-    <table>';
-        foreach (element('latest', element('view', $board)) as $key => $value) {?>
-        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-            <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
-            <td><?php echo element('display_datetime', $value); ?></td>
-        </tr>                        
-        <?php 
-    }
-    echo '
-</table>
-</div>';
-} else {
-    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
-    <table>
-        <tr>
-            <td colspan="3">게시물이 없습니다.</td>
-        </tr>
-    </table>
-</div>';
-}
-?>  
-</div>
-</section>
+            <?php
+                $config = array(
+                    'brd_key' => 'free_gallery',
+                    'limit' => 3,
+                    'length' => 40,
+                    );
+                $board=$this->board->data($config);
+
+                if (element('latest', element('view', $board))) {
+                    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
+                    <table>';
+                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                            <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                            <td><?php echo element('display_datetime', $value); ?></td>
+                        </tr>                        
+                        <?php 
+                    }
+                    echo '
+                </table>
+                </div>';
+                } else {
+                    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
+                    <table>
+                        <tr>
+                            <td colspan="3">게시물이 없습니다.</td>
+                        </tr>
+                    </table>
+                </div>';
+                }
+            ?>  
+        </div>
+    </section>
 
 <!-- 가상화폐 인물 트위터 리스트 영역-->
-<section class="table_li person_twitter">
-    <h2 class="big_font">가상화폐 인물 트위터</h2>
-    <table>
-        <?php echo twitter("person_twitter",'order',11,"<td>","</td>") ?>
-    </table>
-</section>
+    <section class="table_li person_twitter">
+        <h2 class="big_font">가상화폐 인물 트위터</h2>
+        <table>
+            <?php echo twitter("person_twitter",'order',11,"<td>","</td>") ?>
+        </table>
+    </section>
 
 <!-- 가상화폐 코인 공식 트위터 리스트 영역-->
-<section class="table_li coin_twitter">
-    <h2 class="big_font">가상화폐 코인 공식 트위터</h2>
-    <table>
-        <?php echo twitter("coin_twitter",'order',15,"<td>","</td>") ?>
-    </table>
-</section>
-
-
+    <section class="table_li coin_twitter">
+        <h2 class="big_font">가상화폐 코인 공식 트위터</h2>
+        <table>
+            <?php echo twitter("coin_twitter",'order',15,"<td>","</td>") ?>
+        </table>
+    </section>
 
 <!-- 거래소 바로가기 리스트 영역 -->
-<section class="table_li coin_trade">
-    <h2 class="big_font">거래소 바로가기</h2>
-    <table>
-        <?php echo twitter("coin_trade",'order',11,"<td>","</td>") ?>
-    </table>
-</section>
+    <section class="table_li coin_trade">
+        <h2 class="big_font">거래소 바로가기</h2>
+        <table>
+            <?php echo twitter("coin_trade",'order',11,"<td>","</td>") ?>
+        </table>
+    </section>
 
 <!-- ad 영역 -->
-<section class="ad">
-    <?php echo banner("index_banner") ?>
-</section>
+    <section class="ad">
+        <?php echo banner("index_banner") ?>
+    </section>
+    
 </article>
+
+
 <script type="text/javascript">
-//<![CDATA[
-function view_twitter(id,twitter_key) {
-    var list_url = cb_url + '/main/twitter/' + twitter_key;
-    $('#' + id).load(list_url);
-}
-
-
-
-function twitter_action(action_type, bng_name, msg) {
-    var flag=false;
-    var href;
-    if ( action_type == '') {
-        return false;
+    //<![CDATA[
+    function view_twitter(id,twitter_key) {
+        var list_url = cb_url + '/main/twitter/' + twitter_key;
+        $('#' + id).load(list_url);
     }
-    if ( msg) {
-        if ( ! confirm(msg)) { return false; }
-    }
-    href = cb_url + '/postact/' + action_type + '/' + bng_name;
-    var $that = $(this);
-    $.ajax({
-        async: false,
-        url : href,
-        type : 'post',
-        data :  $('#ftwitterlist').serialize() + '&csrf_test_name=' + cb_csrf_hash,
-        dataType : 'json',
-        success : function(data) {
-            if (data.error) {
-                alert(data.error);
-                flag = false;
-            } else if (data.success) {
-                flag = true;
-            }
+
+
+
+    function twitter_action(action_type, bng_name, msg) {
+        var flag=false;
+        var href;
+        if ( action_type == '') {
+            return false;
         }
-    });
-    return flag;
-}
-//]]>
+        if ( msg) {
+            if ( ! confirm(msg)) { return false; }
+        }
+        href = cb_url + '/postact/' + action_type + '/' + bng_name;
+        var $that = $(this);
+        $.ajax({
+            async: false,
+            url : href,
+            type : 'post',
+            data :  $('#ftwitterlist').serialize() + '&csrf_test_name=' + cb_csrf_hash,
+            dataType : 'json',
+            success : function(data) {
+                if (data.error) {
+                    alert(data.error);
+                    flag = false;
+                } else if (data.success) {
+                    flag = true;
+                }
+            }
+        });
+        return flag;
+    }
+    //]]>
 </script>

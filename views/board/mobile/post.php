@@ -22,7 +22,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 <article class="wrap01">
     <section class="main_title write_cont">
         <h2><?php echo html_escape(element('board_name', element('board', $view))); ?></h2>
-        <?php echo show_alert_message($this->session->flashdata('message'), '<div class="alert alert-auto-close alert-dismissible alert-info">', '</div>'); ?>
+        <?php echo show_alert_message($this->session->flashdata('message'), '<div class="alert-auto-close">', '</div>'); ?>
         <div class="board">
             <h3 class="big_font"><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>
             <b class="middle_font">댓글 <span>[ <?php echo number_format(element('post_comment_count', element('post', $view))); ?> 개 ]</span></b>
@@ -112,21 +112,21 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <div id="post-content"><?php echo element('content', element('post', $view)); ?></div>
             <!-- 본문 내용 끝 -->
         </div>
-        <div class="border_button mt20 mb20">
+        <div class="border_button middle_font ">
         <div class="btn-group pull-left" role="group" aria-label="...">
             <?php if (element('modify_url', $view)) { ?>
-                <a href="<?php echo element('modify_url', $view); ?>" class="btn btn-default btn-sm">수정</a>
+                <a href="<?php echo element('modify_url', $view); ?>" class="btn-sm">수정</a>
             <?php } ?>
             <?php    if (element('delete_url', $view)) { ?>
-                <a  class="btn btn-default btn-sm btn-one-delete" data-one-delete-url="<?php echo element('delete_url', $view); ?>">삭제</a>
+                <a  class=" btn-sm btn-one-delete" data-one-delete-url="<?php echo element('delete_url', $view); ?>">삭제</a>
             <?php } ?>
                 <!-- <a href="<?php echo element('list_url', $view); ?>" class="btn btn-default btn-sm">목록</a> -->
             
            
         </div>
         <?php if (element('write_url', $view)) { ?>
-            <div class="pull-right">
-                <a href="<?php echo element('write_url', $view); ?>" class="btn btn-success btn-sm">글쓰기</a>
+            <div class="pull-right middle_font">
+                <a href="<?php echo element('write_url', $view); ?>" class="btn-sm">글쓰기</a>
             </div>
         <?php } ?>
         </div>
@@ -155,7 +155,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
     }
     ?>
     <div id="viewcomment"></div>
-    <ul class="small_font">
+    <ul class="middle_font">
         <li><a href="<?php echo element('list_url', $view); ?>" class="">목 록</a></li>
         <?php if (element('prev_post', $view)) { ?>
             <li><a href="<?php echo element('url', element('prev_post', $view)); ?>" >◀ 이전글</a></li>
