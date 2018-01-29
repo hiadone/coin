@@ -17,7 +17,7 @@
 
             <button type="button" name="change_memo" /*class="btn btn-default"*/ id="change_memo"><span class="fa fa-refresh"></span></button>
 
-            <button type="button" name="submit" /*class="btn btn-success"*/ id="add_attendance">출 첵 하 기</button>
+            <button type="button" name="submit" class="/*btn btn-success*/ middle_font" id="add_attendance">출 첵 하 기</button>
 
             <button type="button" name="view_policy" class="view_policy view_point" /*pull-right btn-xs  btn btn-default*/>포 인 트 정 책 보 기</button>
             <?php echo form_close(); ?>

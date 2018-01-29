@@ -69,9 +69,7 @@
 	.attendance_box button{
 		height: 25px;
 		padding: 0;
-		float: left;
-		line-height: 25px;
-		border-radius: 5px;
+		line-height: 28px;
 	}
 
 	.attendance_box #change_memo{
@@ -81,7 +79,6 @@
 
 	.attendance_box #add_attendance{
 		width: 75px;
-		font-weight: bold;
 		float: right;
 		margin-top: 3%;
 	}

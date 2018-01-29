@@ -120,6 +120,87 @@
 				border-bottom:0;
 			}
 
+			/*타이틀 영역*/
+				.tab01 > table{
+					height: 25px;
+					border-bottom:1px solid #ededed;
+				}
+
+				.tab01 > table th{
+					width: 20%;
+					padding:3px 0;
+					vertical-align: middle;
+					font-weight: bold;
+				}
+
+				.tab01 > table tr th:nth-child(2){
+					width: 40%;
+				}
+
+				.tab01 > table tr th select{
+					margin:0 16%;
+					width: 72%;
+				}
+
+			/*컨텐츠 영역*/
+				.tab01_wrap .tab01_cont > table tr:first-child td{
+					padding-top: 1%;
+				}
+
+				.tab01_wrap .tab01_cont table td{
+					width: 20% !important;
+					text-align: center;
+				}
+
+				.tab01_cont table td:nth-child(2){
+					width: 40% !important;
+				}
+
+
+
+
+				.tab01_wrap > div table tr:nth-child(2n){
+					background-color:#fafafa;
+				}
+
+				.tab01_wrap > div table th select{
+					width: 90%;
+					margin:0 5%;
+				}
+
+				.tab01_wrap > div table th,
+				.tab01_wrap > div table td{
+					width: 20%;
+					border-bottom :1px solid #ededed;
+					vertical-align: middle;
+					padding: 1% 2% 0.8%;
+				}
+
+				.tab01_wrap > div table tr:last-child td{
+					border-bottom: 0;
+				}
+
+				.tab01_wrap > div table th:nth-child(2),
+				.tab01_wrap > div table td:nth-child(2){
+					width: 35%;
+				}
+
+				.tab01_wrap > div table td:nth-child(3){
+					color: green;
+					font-weight: bold;
+				}
+
+				.tab01_wrap > div table td:nth-child(4){
+					color: darkred;
+					font-weight: bold;
+				}
+
+
+
+
+
+
+		/*거래소 리스트 영역*/
 			.tab01_tabs{
 				font-size: 10px;
 			}
@@ -132,45 +213,7 @@
 				width:10%;
 			}
 
-			.tab01_wrap > div table tr:nth-child(1){
-				font-weight: bold;
-			}
 
-			.tab01_wrap > div table tr:nth-child(2n){
-				background-color:#fafafa;
-			}
-
-			.tab01_wrap > div table th select{
-				width: 90%;
-				margin:0 5%;
-			}
-
-			.tab01_wrap > div table th,
-			.tab01_wrap > div table td{
-				width: 20%;
-				border-bottom :1px solid #ededed;
-				vertical-align: middle;
-				padding: 1% 2% 0.8%;
-			}
-
-			.tab01_wrap > div table tr:last-child td{
-				border-bottom: 0;
-			}
-
-			.tab01_wrap > div table th:nth-child(2),
-			.tab01_wrap > div table td:nth-child(2){
-				width: 35%;
-			}
-
-			.tab01_wrap > div table td:nth-child(3){
-				color: green;
-				font-weight: bold;
-			}
-
-			.tab01_wrap > div table td:nth-child(4){
-				color: darkred;
-				font-weight: bold;
-			}
 		
 		/* tab02(자유게시판,채굴정보,코인뉴스 수익인증 / main화면) 영역*/
 			.tab02_tabs li{
@@ -258,7 +301,6 @@
 					padding:3%;
 					box-sizing: border-box;
 					background-color: #f0f3f7;
-					margin-bottom: 3%;
 					border-bottom: 1px solid #ededed;
 				}
 
@@ -292,6 +334,9 @@
 				.tab06_cont div.text-center{
 					padding: 0 3%;
 					box-sizing: border-box;
+					display: inline-block;
+					width: 100%;
+					margin-top: 3%;
 				}
 
 				.tab06_cont div.text-center a{

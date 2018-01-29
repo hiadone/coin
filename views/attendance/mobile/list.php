@@ -11,7 +11,7 @@
         <!-- <th class="text-center">연속</th> -->
         </tr>
     </thead>
-    <tbody>
+    <tbody class="middle_font">
     <?php
     if (element('list', element('data', $view))) {
         foreach (element('list', element('data', $view)) as $result) {
