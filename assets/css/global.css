@@ -55,6 +55,7 @@ button{
 	display:inline-block;
 	text-align: center;
 	border-radius: 3px;
+	font-size: 12px;
 }
 
 textarea{
@@ -66,6 +67,10 @@ textarea{
 	overflow-y: scroll;
 	margin: 5% 0 3%;
 	outline: none;
+}
+
+h3{
+	font-size: 14px;
 }
 
 
@@ -157,8 +162,9 @@ textarea{
 		width: 100%;
 		max-width: 420px;
 		min-width: 320px;
-		padding-bottom:5%;
+		padding-bottom:20px;
 		box-sizing: border-box;
+		position: absolute;
 		bottom:0;
 		background-color: #3d3d3d;
 	}
@@ -166,7 +172,7 @@ textarea{
 		footer table{
 			width: 100%;
 			text-align: center;
-			margin-bottom: 5%;
+			margin-bottom: 20px;
 			background-color: #fff;
 			font-weight: bold;
 		}
@@ -174,7 +180,7 @@ textarea{
 		footer table td{
 			width: 33%;
 			border:1px solid #ededed;
-			padding:2% 0;
+			padding:6px 0;
 		}
 		footer table td:nth-child(1){
 			border-left: 0;
@@ -194,7 +200,7 @@ textarea{
 			display: inline-block;
 			padding:0 3%;
 			box-sizing: border-box;
-			margin-bottom: 5%;
+			margin-bottom: 20px;
 		}
 
 		footer ul li{

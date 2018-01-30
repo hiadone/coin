@@ -1,5 +1,8 @@
 @charset "utf-8";
 /* page */
+	html{
+		height: 100%;
+	}
 	html, body{
 	width: 100%;
 	max-width: 420px;
@@ -7,6 +10,9 @@
 	margin: 0 auto;
 	font-size: 13px;
 	color: #272727;
+	min-height: 100%;
+	position: relative;
+	padding-bottom:125px;
 	}
 
 /*광고배너*/
@@ -15,39 +21,39 @@
 	}
 
 /*rolling_news css 영역*/
-.rolling_news{
-	margin-bottom: 0;
-	height: 30px;
-}
+	.rolling_news{
+		margin-bottom: 0;
+		height: 30px;
+	}
 
 
-.rolling_news .bx-controls{
-	display: none;
-}
-.rolling_news .bx-wrapper,
-.rolling_news  .bx-viewport,
-.rolling_news .big_font li{
-	height: 30px;
-	box-sizing: border-box;
+	.rolling_news .bx-controls{
+		display: none;
+	}
+	.rolling_news .bx-wrapper,
+	.rolling_news  .bx-viewport,
+	.rolling_news .big_font li{
+		height: 30px;
+		box-sizing: border-box;
 
-}
+	}
 
-.rolling_news .big_font li{
-	font-weight: bold;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow:hidden;
-	padding:5px 3%;
-	box-sizing: border-box;
-	color: #272727;
-}
+	.rolling_news .big_font li{
+		font-weight: bold;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow:hidden;
+		padding:5px 3%;
+		box-sizing: border-box;
+		color: #272727;
+	}
 
-.rolling_news .big_font li a{
-	line-height: 23px;
-	color: #272727;
-}
+	.rolling_news .big_font li a{
+		line-height: 23px;
+		color: #272727;
+	}
 
-/*tab1~tan6 css 영역 */
+/*tab1~tab7 css 영역 */
 	/*tab메뉴 공통 css*/
 		.wrap{
 			width: 100%;
@@ -134,12 +140,16 @@
 				}
 
 				.tab01 > table tr th:nth-child(2){
-					width: 40%;
+					width: 35%;
+				}
+
+				.tab01 > table th:nth-child(3){
+					width: 25%;
 				}
 
 				.tab01 > table tr th select{
-					margin:0 16%;
-					width: 72%;
+					width: 90%;
+					margin: 0 5%;
 				}
 
 			/*컨텐츠 영역*/
@@ -153,11 +163,12 @@
 				}
 
 				.tab01_cont table td:nth-child(2){
-					width: 40% !important;
+					width: 35% !important;
 				}
 
-
-
+				.tab01_cont table td:nth-child(3){
+					width: 25% !important;
+				}
 
 				.tab01_wrap > div table tr:nth-child(2n){
 					background-color:#fafafa;
@@ -195,12 +206,7 @@
 					font-weight: bold;
 				}
 
-
-
-
-
-
-		/*거래소 리스트 영역*/
+			/*거래소 리스트 영역*/
 			.tab01_tabs{
 				font-size: 10px;
 			}
@@ -213,8 +219,6 @@
 				width:10%;
 			}
 
-
-		
 		/* tab02(자유게시판,채굴정보,코인뉴스 수익인증 / main화면) 영역*/
 			.tab02_tabs li{
 			    width:33%;
@@ -242,6 +246,36 @@
 			.tab05_tabs li {
 			    width:50%;
 			}
+
+			/*자유갤러리 영역*/
+				#tab05_1 ul{
+					width: 100%;
+					padding: 3%;
+					box-sizing: border-box;
+					display: inline-block;
+				}
+				#tab05_1 li{
+					width: 32%;
+					margin-right: 2%;
+					margin:0 2% 2% 0;
+					float: left;
+				}
+
+				#tab05_1 li img{
+					width: 100%;
+				}
+
+				#tab05_1 li:nth-child(3n){
+					margin-right: 0;
+				}
+
+				#tab05_1 li:nth-child(7),
+				#tab05_1 li:nth-child(8),
+				#tab05_1 li:nth-child(9){
+					margin-bottom: 0;
+				}
+
+			/*이미지 영역*/
 
 		/* tab06(커뮤니티(자유게시판,채굴정보,코인뉴스)) , (자유게시판,채굴정보,코인뉴스,수인인증의 본 페이이지)(서비스(이벤트,출석체크,가입인사)) , (이벤트,출석체크,가입인사의 본 페이이지) 영역*/				
 			/*tab06의 리스트 영역 css*/
@@ -349,7 +383,61 @@
 					color: #fff;
 				}
 
+		/* tab07(최신뉴스,인기뉴스) 영역*/
+			.tab07_tabs li{
+				   width:50%;
+			}
 
+			/*뉴스 영역*/
+				.tab07_cont li{
+					padding:3% 3% 0;
+					box-sizing: border-box;
+				}
+
+				.tab07_cont li:last-child{
+					padding-bottom: 3%;
+				}
+
+				.tab07_cont figure{
+					position: relative;
+					display: inline-block;
+					width: 100%;
+				}
+
+				.tab07_cont figure img{
+					width: 30%;
+					margin-right: 3%;
+					float: left;
+				}
+
+				.tab07_cont figcaption{
+					display: inline-block;
+					width: 67%;
+					height: 55px;
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					margin:auto 0;
+				}
+
+				.tab07_cont figcaption h3{
+					font-weight: bold;
+					overflow:hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					margin-bottom:10px;
+				}
+
+				.tab07_cont figcaption p{
+					overflow:hidden;
+					width:100%;
+					height:30px;
+					-webkit-line-clamp:2;
+					-webkit-box-orient:vertical;
+					line-height:15px;
+					text-overflow:ellipsis;
+					display:-webkit-box;
+				}
 
 /*비트코인 tabs 정보 버튼클릭시 접기 펴기 css*/
 		.btn_up{
@@ -365,9 +453,10 @@
 		}
 
 /*인물트위터,공식트위터,거래소 리스트영역*/
-	.table_li h2{
+	.table_li h3{
 		width: 94%;
 		margin: 0 3% 2%;
+		font-weight: bold;
 	}
 
 	.table_li table{
@@ -444,6 +533,7 @@
 					float: right;
 					padding: 0;
 					background-color: transparent;
+					margin-top: 2%;
 				}
 
 				.ham_cont table{
@@ -629,7 +719,6 @@
 		white-space: nowrap;
 		overflow: hidden;
 	}
-
 
 /*글쓰기(자유게시판,채굴정보,코인뉴스,수익인증,출석체크,가입인사) 영역 css*/
 	.write_area label{
@@ -999,7 +1088,6 @@
 			text-align: center
 		}
 
-
 /* 통합로그인 영역 css*/
 	/*간편로그인 문구 영역*/
 		.login div{
@@ -1075,24 +1163,6 @@
 		color: #fff;
 		font-weight: bold;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*이용약관 , 개인정보 취급방침 , 게재중단요청 , 제휴문의 영역*/
 	.terms p{
@@ -1248,6 +1318,7 @@
 			margin-bottom: 2.5%;
 			float: left;
 			line-height:16px;
+			font-weight: bold;
 		}
 
 		.serv li .serv_title h3.add{
@@ -1320,11 +1391,6 @@
 		line-height: 25px;
 		border-radius: 3px;
 	}
-
-
-
-
-
 
 /*css 수정 & 추가*/
 

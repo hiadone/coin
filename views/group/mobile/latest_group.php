@@ -16,7 +16,7 @@
     if (element('latest', $view)) {
         foreach (element('latest', $view) as $key => $value) {?>
             <li onClick="location.href='<?php echo element('url', $value); ?>'">
-                <h3><?php echo html_escape(element('title', $value)); ?></h3>
+                <?php echo html_escape(element('title', $value)); ?>
                  <span><?php if (element('post_comment_count', $value)) { ?> [<?php echo element('post_comment_count', $value); ?>]<?php } ?></span>
                 
                 <table>
@@ -33,7 +33,7 @@
     ?>
             
             <li>
-                <h3>게시물이 없습니다.</h3>
+                게시물이 없습니다.
                 <table>
                     <tr>
                         <td colspan="2"></td>

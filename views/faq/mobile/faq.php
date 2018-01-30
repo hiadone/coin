@@ -40,7 +40,7 @@ if (element('list', element('data', $view))) {
 ?>
     <li class="serv-box">
         <div class="serv_title" id="heading_<?php echo $i; ?>" onclick="return faq_open(this);">
-           <h3><?php echo element('title', $result); ?></h3>
+           <h3 class="normal_font"><?php echo element('title', $result); ?></h3>
            <div class="text-center" >▼</div>
             <table class="small_font">
                 <tr>

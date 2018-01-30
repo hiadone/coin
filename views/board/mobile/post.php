@@ -24,7 +24,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
         <h2><?php echo html_escape(element('board_name', element('board', $view))); ?></h2>
         <?php echo show_alert_message($this->session->flashdata('message'), '<div class="alert-auto-close">', '</div>'); ?>
         <div class="board">
-            <h3 class="big_font post-view"><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>
+            <h3 class="post-view"><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>
             <b class="middle_font">댓글 <span>[ <?php echo number_format(element('post_comment_count', element('post', $view))); ?> 개 ]</span></b>
             <table class="small_font post-view">
                 <tr>
