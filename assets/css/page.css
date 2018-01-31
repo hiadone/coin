@@ -529,7 +529,7 @@
 			}
 
 			/*로그인(네이버,카톡 로그인)*/
-				.ham_cont button{
+				/*.ham_cont button{
 					float: right;
 					padding: 0;
 					background-color: transparent;
@@ -549,16 +549,56 @@
 					width:45%;
 					display: block;
 					margin-left: 10%;
+				}*/
+
+				.ham_cont div > p{
+					margin-bottom: 3%;
+				}
+
+				.ham_cont div > ul{
+					display: inline-block;
+					width: 100%;
+					box-sizing: border-box;
+					margin-bottom: 3%;
+				}
+
+				.ham_cont div > ul li{
+					width: 32%;
+					margin-right: 2%;
+					float: left;
+					box-sizing: border-box;
+					border-radius:5px;
+				}
+
+				.ham_cont div > ul li:last-child{
+					margin-right: 0;
+				}
+
+				.ham_cont div > ul li img{
+					width: 30%;
+					float: left;
+				}
+
+				.ham_cont div > ul li figcaption{
+					width: 60%;
+					float: left;
+					padding:7% 0 6.5% 30%;
+					text-align: center;
+					color: #fff;
+					font-weight: bold;
 				}
 
 			/*대메뉴*/
 				.ham_cont ol{
 					width: 100%;
+					display: inline-block;
 					border:1px solid #ededed;
 					box-sizing: border-box;
 				}
 
 				.ham_cont ol li{
+					width: 100%;
+					display: inline-block;
 					padding: 4%;
 					box-sizing: border-box;
 					font-weight: bold;
@@ -574,20 +614,20 @@
 				}
 
 			/*소메뉴*/
-				.ham_cont ul{
+				.ham_cont ol ul{
 					margin-top:3%;
 				}
 
-				.ham_cont ul li{
+				.ham_cont ol ul li{
 					border-bottom:0;
 					padding: 2%;
 				}
 
-				.ham_cont ul li:last-child{
+				.ham_cont ol ul li:last-child{
 					padding-bottom:0;
 				}
 
-				.ham_cont ul li a{
+				.ham_cont ol ul li a{
 					font-weight: normal;
 					color: #fff;
 				}
@@ -1091,7 +1131,7 @@
 /* 통합로그인 영역 css*/
 	/*간편로그인 문구 영역*/
 		.login div{
-			width:70%;
+			width:86%;
 			margin:0 auto 5%;
 			background-color: #f9f9f9;
 			border:1px solid #ededed;
@@ -1124,8 +1164,8 @@
 	}
 
 	.login ul{
-		width: 70%;
-		margin: 0 15%;
+		width: 80%;
+		margin: 0 10%;
 		box-sizing: border-box;
 		display: inline-block;
 	}
