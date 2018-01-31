@@ -617,7 +617,7 @@
                     
                     $config = array(
                         'brd_key' => 'free_gallery',
-                        'limit' => 3,
+                        'limit' => 9,
                         'length' => 40,
                         'is_gallery'=> 1,
                         'image_width'=> 120,

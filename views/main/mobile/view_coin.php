@@ -19,7 +19,9 @@ foreach(element('coin_list',$view) as $key => $value){ ?>
 
     <div id="tab01_<?php echo $key ?>" class="tab01_cont cont" style="display:none">
         <table>
-    <?php foreach($value as $key_ => $value_){ ?>
+    <?php foreach($value as $key_ => $value_){ 
+        if($key_==="bitfinex") continue;
+        ?>
         <tr>
             <td><?php echo element($key_,element('vic_type',$view)); ?></td>
             <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? $unit.number_format(element('current_price',$value_)) : '-'; ?></td>

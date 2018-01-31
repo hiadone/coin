@@ -551,6 +551,7 @@ class Cron extends CB_Controller {
         $this->bittrex_price();
         $this->bitfinex_price();
         $this->bitflyer_price();
+        $this->get_deal_bas_r();
 
     }
 
