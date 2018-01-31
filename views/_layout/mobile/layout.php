@@ -115,11 +115,12 @@ $(document).ready(function(){
                             <?php } ?>
                         </table> -->
 
+                        
+                        <?php if (!$this->member->is_member()) { ?>
                         <p class="small_font">SNS 아이디로 로그인 하세요.</p>
-
                         <ul>
                             <li style="background: url(assets/images/naver_bg.png) no-repeat center; background-size: 100%;">
-                                <a href="">
+                                <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font">
                                            네 이 버
@@ -129,7 +130,7 @@ $(document).ready(function(){
                             </li>
 
                             <li style="background: url(assets/images/kakao_bg.png) no-repeat center; background-size: 100%;">
-                                <a href="">
+                                <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font" style="color: #3c2324;">
                                            카카오톡
@@ -139,7 +140,7 @@ $(document).ready(function(){
                             </li>
 
                             <li style="background: url(assets/images/face_bg.png) no-repeat center; background-size: 100%;">
-                                <a href="">
+                                <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font">
                                            페이스북
@@ -148,7 +149,13 @@ $(document).ready(function(){
                                 </a>
                             </li>
                         </ul>
-
+                        <?php } else { ?>
+                            <table>
+                                <tr>
+                                    <th colspan="3" class="big_font"><a  href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 </a><button type="button" class="btn-sm small_font" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';"><i class="fa fa-sign-out"></i> 로그아웃</button></th>
+                                </tr>
+                            </table>
+                        <?php } ?>
                         <ol >
                             <?php
                             $menuhtml = '';
