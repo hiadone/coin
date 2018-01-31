@@ -1061,7 +1061,7 @@ class Membermodify extends CB_Controller
         $mem_id = (int) $this->member->item('mem_id');
 
         if ($this->member->item('mem_password')) {
-            echo "aaa";
+            
             //redirect('membermodify');
         }
 

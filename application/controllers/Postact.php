@@ -3332,14 +3332,14 @@ class Postact extends CB_Controller
                 if ($title) {
                     $pos = stripos($title, $str);
                     if ($pos !== false) {
-                        $return_title = $str;
+                        // $return_title = $str;
                         break;
                     }
                 }
                 if ($content) {
                     $pos = stripos($content, $str);
                     if ($pos !== false) {
-                        $return_content = $str;
+                        // $return_content = $str;
                         break;
                     }
                 }

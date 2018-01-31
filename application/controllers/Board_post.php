@@ -540,6 +540,7 @@ class Board_post extends CB_Controller
                 . ' 에 삭제 되었습니다</div>';
 
         } else {
+            
             $is_blind = (element('blame_blind_count', $board) > 0 && element('post_blame', $post) >= element('blame_blind_count', $board)) ? true : false;
             if ($is_blind === true) {
                 $view['view']['post']['content'] .= '<div class="alert alert-danger">신고가 접수된 게시글입니다. 본인과 관리자만 확인이 가능합니다</div>';

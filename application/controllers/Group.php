@@ -154,15 +154,30 @@ class Group extends CB_Controller
         $this->view = element('view_skin_file', element('layout', $view));
     }
 
-    function view_board($brd_key){
+    function view_board($brd_key,$more=0){
         $this->cbconfig->get_device_view_type();
-        $config = array(
-            'skin' => 'mobile',            
-            'brd_key' => $brd_key,
-            'limit' => 5,
-            'length' => 40,
-        );
-        echo $this->board->latest_group($config);
+
+        if($brd_key==='live_news'||$brd_key==='hot_news'){
+            $config = array(
+                'skin' => 'mobile',            
+                'brd_key' => $brd_key,
+                'limit' => 6,
+                'length' => 40,
+                'is_gallery'=> 1,
+                'image_width'=> 120,
+                'image_height'=> 90,
+            );
+        } else {
+            
+            $config = array(
+                'skin' => 'mobile',            
+                'brd_key' => $brd_key,
+                'limit' => 5,
+                'length' => 40,
+            );
+        }
+        echo $this->board->latest_group($config,$more);
+        
     }
 
     function get_coin_data($cur_unit=''){

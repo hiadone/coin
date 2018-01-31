@@ -248,32 +248,32 @@
 			}
 
 			/*자유갤러리 영역*/
-				#tab05_1 ul{
-					width: 100%;
-					padding: 3%;
-					box-sizing: border-box;
-					display: inline-block;
-				}
-				#tab05_1 li{
-					width: 32%;
-					margin-right: 2%;
-					margin:0 2% 2% 0;
-					float: left;
-				}
+			.tab05_cont ul{
+				width: 100%;
+				padding: 3%;
+				box-sizing: border-box;
+				display: inline-block;
+			}
+			.tab05_cont li{
+				width: 32%;
+				margin-right: 2%;
+				margin:0 2% 2% 0;
+				float: left;
+			}
 
-				#tab05_1 li img{
-					width: 100%;
-				}
+			.tab05_cont li img{
+				width: 100%;
+			}
 
-				#tab05_1 li:nth-child(3n){
-					margin-right: 0;
-				}
+			.tab05_cont li:nth-child(3n){
+				margin-right: 0;
+			}
 
-				#tab05_1 li:nth-child(7),
-				#tab05_1 li:nth-child(8),
-				#tab05_1 li:nth-child(9){
-					margin-bottom: 0;
-				}
+			.tab05_cont li:nth-child(7),
+			.tab05_cont li:nth-child(8),
+			.tab05_cont li:nth-child(9){
+				margin-bottom: 0;
+			}
 
 			/*이미지 영역*/
 
@@ -329,7 +329,7 @@
 					width: 34%;
 				}
 			/*tab06 검색영역 css*/
-				.tab06_cont div:nth-child(2){
+				.tab06_cont div.search{
 					width: 100%;
 					display: inline-block;
 					padding:3%;
@@ -338,16 +338,16 @@
 					border-bottom: 1px solid #ededed;
 				}
 
-				.tab06_cont div select{
+				.tab06_cont div.search select{
 					margin-right: 5px;
 				}
 
-				.tab06_cont div input{
+				.tab06_cont div.search input{
 					float: left;
 					margin-right: 5px;
 				}
 
-				.tab06_cont div button{
+				.tab06_cont div.search button{
 					width: 35px;
 					height: 25px;
 					line-height: 26px;
@@ -389,28 +389,28 @@
 			}
 
 			/*뉴스 영역*/
-				.tab07_cont li{
+				li.gallery_news{
 					padding:3% 3% 0;
 					box-sizing: border-box;
 				}
 
-				.tab07_cont li:last-child{
+				li.gallery_news:last-child{
 					padding-bottom: 3%;
 				}
 
-				.tab07_cont figure{
+				.gallery_news figure{
 					position: relative;
 					display: inline-block;
 					width: 100%;
 				}
 
-				.tab07_cont figure img{
+				.gallery_news figure img{
 					width: 30%;
 					margin-right: 3%;
 					float: left;
 				}
 
-				.tab07_cont figcaption{
+				.gallery_news figcaption{
 					display: inline-block;
 					width: 67%;
 					height: 55px;
@@ -420,7 +420,7 @@
 					margin:auto 0;
 				}
 
-				.tab07_cont figcaption h3{
+				.gallery_news figcaption h3{
 					font-weight: bold;
 					overflow:hidden;
 					text-overflow: ellipsis;
@@ -428,7 +428,7 @@
 					margin-bottom:10px;
 				}
 
-				.tab07_cont figcaption p{
+				.gallery_news figcaption p.display_content{
 					overflow:hidden;
 					width:100%;
 					height:30px;

@@ -398,13 +398,12 @@
         <ul class="tab02_tabs tabs">
             <li class="active" rel="tab02_free">자유게시판</li>
             <li rel="tab02_mine_info">채굴정보</li>
-            <!-- <li rel="tab02_coin_news">코인뉴스</li> -->
             <li rel="tab02_profit">수익인증</li>
         </ul>
 
         <div class="tab02_wrap cont_wrap">
             <?php
-                $tab02=array('free','mine_info','coin_news','profit');
+                $tab02=array('free','mine_info','profit');
 
                 foreach($tab02 as $tvalue){
                     $config = array(
@@ -449,166 +448,63 @@
     </section>
 
     <!-- tab07(최신뉴스,인기뉴스) 영역 -->
-            <section class="tab007 wrap middle_font">
-                <ul class="tab07_tabs tabs">
-                    <li class="active" rel="tab07_1">최신뉴스</li>
-                    <li rel="tab07_2">인기뉴스</li>
-                </ul>
+    <section class="tab007 wrap middle_font">
+        <ul class="tab07_tabs tabs">
+            <li class="active" rel="tab07_live_news">최신뉴스</li>
+            <li rel="tab07_hot_news">인기뉴스</li>
+        </ul>
 
-                <div class="tab07_wrap cont_wrap">
-                    <div id="tab07_1" class="tab07_cont cont">
-                       <ul>
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
+        <div class="tab07_wrap cont_wrap">
+        <?php
+            $tab02=array('live_news','hot_news');
 
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
+            foreach($tab02 as $tvalue){
+                $config = array(
+                    'brd_key' => $tvalue,
+                    'limit' => 6,
+                    'length' => 40,
+                    'is_gallery'=> 1,
+                    'image_width'=> 120,
+                    'image_height'=> 90,
 
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
+                    );
+                $board=$this->board->data($config);
+                
+                if (element('latest', element('view', $board))) {
 
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
-
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
-
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
-                       </ul>
-                    </div>
-
-                    <div id="tab07_2" class="tab07_cont cont">
-                       <ul>
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
-
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
-
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
-
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
-
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
-
-                           <li>
-                               <a href="">
-                                    <figure>
-                                        <img src="assets/images/news.png" alr="newsimg">
-                                        <figcaption>
-                                            <h3 class="normal_font">제목영역입니다 너무 긴 경우 말줄입표가 보입니다.</h3>
-                                            <p>텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.텍스트영역입니다 너무 긴 경우 말줄입표가 보입니다.</p>
-                                        </figcaption>
-                                    </figure>
-                               </a>
-                           </li>
-                       </ul>
-                    </div>  
-                </div>
-            </section>
+                    echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
+                    <ul>';
+                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        <li class='gallery_news'>
+                            <a href="<?php echo element('url', $value); ?>">
+                            <figure>
+                                <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                                <figcaption>
+                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
+                                <p class="display_content"><?php echo element('display_content', $value); ?></p>
+                                </figcaption>
+                            </figure>
+                        </a>
+                        </li>                        
+                        <?php 
+                    }
+                    echo '
+                    </ul>
+                    </div>';
+                    } else {
+                        echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
+                         <table>
+                            <tr>
+                                <td colspan="3">게시물이 없습니다.</td>
+                            </tr>
+                        </table>
+                    </div>';
+                }
+            }
+        ?>  
+        </div>
+    </section>
+                    
 
     <!-- tab03(동영상강좌,코인지식,ICO,거래소별 코인) 영역 -->
         <section class="tab03 wrap middle_font">
@@ -708,18 +604,60 @@
             </div>
         </section>
 
-    <!-- tab05유머 자유갤러리 영역
+    <!-- tab05(유머,자유갤러리) 영역-->
         <section class="tab05 wrap middle_font">
             <ul class="tab05_tabs tabs">
                 <li class="active" rel="tab05_free_gallery">자유갤러리</li>
                 <li rel="tab05_humor">유 머</li>
             </ul>
+
+            <div class="tab05_wrap cont_wrap">
+                
+                    <?php
+                    
+                    $config = array(
+                        'brd_key' => 'free_gallery',
+                        'limit' => 3,
+                        'length' => 40,
+                        'is_gallery'=> 1,
+                        'image_width'=> 120,
+                        'image_height'=> 90,
+                        );
+                    $board=$this->board->data($config);
+
+                    if (element('latest', element('view', $board))) {
+                        echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
+                        <ul>';
+                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                            <li>
+                                <a href="<?php echo element('url', $value); ?>">
+                                    <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                                </a>
+                            </li>                        
+                            <?php 
+                        }
+                        echo '
+                    </ul>
+                </div>';
+                } else {
+                    echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
+                    <table>
+                        <tr>
+                            <td colspan="3">게시물이 없습니다.</td>
+                        </tr>
+                    </table>
+                </div>';
+                }
+           
+            ?>  
+            </div>
+           
+
             <div class="tab05_wrap cont_wrap">
                     <?php
-                    $tab05=array('free_gallery','humor');
-                    foreach($tab05 as $tvalue){
+                    
                     $config = array(
-                        'brd_key' => $tvalue,
+                        'brd_key' => 'humor',
                         'limit' => 3,
                         'length' => 40,
                         );
@@ -748,101 +686,14 @@
                     </table>
                 </div>';
                 }
-            }
+           
             ?>  
             </div>
         </section>
-    -->
+    
 
-    <!-- tab05(유머,자유갤러리) 영역-->
-        <section class="tab05 wrap middle_font">
-            <ul class="tab05_tabs tabs">
-                <li class="active" rel="tab05_1">자유갤러리</li>
-                <li rel="tab05_2">유 머</li>
-            </ul>
-
-            <div class="tab05_wrap cont_wrap">
-                    <div id="tab05_1" class="tab05_cont cont">
-                        <ul>
-                            <li>
-                                <a href="">
-                                    <img src="assets/images/news.png" alt="gallery">
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <img src="assets/images/news.png" alt="gallery">
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <img src="assets/images/news.png" alt="gallery">
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <img src="assets/images/news.png" alt="gallery">
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <img src="assets/images/news.png" alt="gallery">
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <img src="assets/images/news.png" alt="gallery">
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <img src="assets/images/news.png" alt="gallery">
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <img src="assets/images/news.png" alt="gallery">
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="">
-                                    <img src="assets/images/news.png" alt="gallery">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div id="tab05_2" class="tab05_cont cont">
-                        <table>
-                            <tr onClick="location.href=''">
-                                <td>01.</td>
-                                <td>자유갤러리 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
-                                <td>2018-01-03</td>
-                            </tr>
-
-                            <tr onClick="location.href=''">
-                                <td>02.</td>
-                                <td>자유갤러리 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
-                                <td>2018-01-03</td>
-                            </tr>
-
-                            <tr onClick="location.href=''">
-                                <td>03.</td>
-                                <td>자유갤러리 입니다. 내용이 너무 긴 경우 말줄임표가 생성됨니다.</td>
-                                <td>2018-01-03</td>
-                            </tr>
-                        </table>
-                    </div>
-            </div>
-        </section>
+    
+       
 
     <!-- 가상화폐 인물 트위터 리스트 영역-->
         <section class="table_li person_twitter">

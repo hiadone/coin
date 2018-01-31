@@ -328,7 +328,8 @@ class CI_Pagination {
 	 * @return	void
 	 */
 	public function __construct($params = array())
-	{
+	{	
+		
 		$this->CI =& get_instance();
 		$this->CI->load->language('pagination');
 		foreach (array('first_link', 'next_link', 'prev_link', 'last_link') as $key)
@@ -353,6 +354,7 @@ class CI_Pagination {
 	 */
 	public function initialize(array $params = array())
 	{
+
 		isset($params['attributes']) OR $params['attributes'] = array();
 		if (is_array($params['attributes']))
 		{
@@ -398,6 +400,7 @@ class CI_Pagination {
 	 */
 	public function create_links()
 	{
+
 		// If our item count or per-page total is zero there is no need to continue.
 		// Note: DO NOT change the operator to === here!
 		if ($this->total_rows == 0 OR $this->per_page == 0)

@@ -799,7 +799,7 @@ class Board extends CI_Controller
                     $view['view']['latest'][$key]['display_name'] = display_username(
                                                                         element('post_userid', $value),
                                                                         element('post_nickname', $value));
-
+                    $view['view']['latest'][$key]['display_content'] = cut_str(strip_tags(element('post_content', $value)), 200);
 
                     $view['view']['latest'][$key]['category'] = '';
                     if (element('post_category', $value)) {
@@ -813,9 +813,11 @@ class Board extends CI_Controller
                             );
                             $file = $this->CI->Post_file_model->get_one('', '', $imagewhere, '', '', 'pfi_id', 'ASC');
                             if (element('pfi_filename', $file)) {
+
                                 $view['view']['latest'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $image_width, $image_height);
                             }
                         } else {
+
                             $thumb_url = get_post_image_url(element('post_content', $value), $image_width, $image_height);
                             $view['view']['latest'][$key]['thumb_url'] = $thumb_url ? $thumb_url : thumb_url('', '', $image_width, $image_height);
                         }
@@ -831,7 +833,7 @@ class Board extends CI_Controller
      /**
      * 최근게시물을 가져옵니다
      */
-    public function latest_group($config)
+    public function latest_group($config,$more=0)
     {
         $view = array();
         $view['view'] = array();
@@ -960,6 +962,15 @@ class Board extends CI_Controller
                 $sfield = array('post_title', 'post_content');
             }
 
+
+            $page = ((int) $more > 1) ? ((int) $more) : 1;
+            
+
+            
+            $per_page=$limit;
+            $offset = ($page - 1) * $per_page;
+
+
             $search_where = array();
             $search_like = array();
             $search_or_like = array();
@@ -1055,12 +1066,15 @@ class Board extends CI_Controller
                 $forder = (strtoupper($forder) === 'ASC') ? 'ASC' : 'DESC';
                 $this->CI->db->order_by($findex, $forder);
             }
+
+            
+
             if (is_numeric($limit)) {
-                $this->CI->db->limit($limit);
+                $this->CI->db->limit($limit,$offset);
             }
             $result = $this->CI->db->get();
             $view['view']['latest'] = $latest = $result->result_array();
-
+            
             $view['view']['latest_limit'] = $limit;
             if ($latest && is_array($latest)) {
                 foreach ($latest as $key => $value) {
@@ -1072,9 +1086,13 @@ class Board extends CI_Controller
                                                                             element('post_userid', $value),
                                                                             element('post_nickname', $value));
                     $view['view']['latest'][$key]['category'] = '';
+
+                    $view['view']['latest'][$key]['display_content'] = cut_str(strip_tags(element('post_content', $value)), 200);
+
                     if (element('post_category', $value)) {
                             $view['view']['latest'][$key]['category'] = $this->CI->Board_category_model->get_category_info(element('brd_id', $value), element('post_category', $value));
                     }
+
                     if ($is_gallery) {
                         if (element('post_image', $value)) {
                             $imagewhere = array(
@@ -1123,11 +1141,112 @@ class Board extends CI_Controller
             }
         }
 
+        $this->CI->db->select('count(*) as rownum');
+        
+
+        if ($sfield && is_array($sfield)) {
+
+            foreach ($sfield as $skey => $sval) {
+                $ssf = $sval;
+                
+                if ($skeyword && $ssf && in_array($ssf, $this->CI->allow_search_field)) {
+                    if (in_array($ssf, $this->CI->search_field_equal)) {
+                        
+                        $search_where[$ssf] = $skeyword;
+                    } else {
+                        
+                        $swordarray = explode(' ', $skeyword);
+                        foreach ($swordarray as $str) {
+                            if (empty($ssf)) {
+                                continue;
+                            }
+                                $search_or_like[] = array($ssf => $str);
+                            
+                        }
+                    }
+                }
+            }
+        } else {
+            $ssf = $sfield;
+            if ($skeyword && $ssf && in_array($ssf, $this->CI->allow_search_field)) {
+                if (in_array($ssf, $this->CI->search_field_equal)) {
+                    $search_where[$ssf] = $skeyword;
+                } else {
+                    $swordarray = explode(' ', $skeyword);
+                    foreach ($swordarray as $str) {
+                        if (empty($ssf)) {
+                            continue;
+                        }
+                        
+                            $search_or_like[] = array($ssf => $str);
+                        
+                    }
+                }
+            }
+        }
+
+        if ($search_like) {
+            foreach ($search_like as $item) {
+                foreach ($item as $skey => $sval) {
+                    $this->CI->db->like($skey, $sval);
+                }
+            }
+        }
+        if ($search_or_like) {
+            $this->CI->db->group_start();
+            foreach ($search_or_like as $item) {
+                foreach ($item as $skey => $sval) {
+                    $this->CI->db->or_like($skey, $sval);
+                }
+            }
+            $this->CI->db->group_end();
+        }
+        $this->CI->db->from('post');
+        $this->CI->db->where($where);
+
+        
+        if ($brd_id) {
+            if (is_array($brd_id)) {
+                $this->CI->db->group_start();
+                foreach ($brd_id as $v) {
+                    $this->CI->db->or_where('brd_id', $v);
+                }
+                $this->CI->db->group_end();
+            } else {
+                $this->CI->db->where('brd_id', $brd_id);
+            }
+        }
+
+        if ($exclude_brd_id) {
+            if (is_array($exclude_brd_id)) {
+                foreach ($exclude_brd_id as $v) {
+                    $this->CI->db->where('brd_id <>', $v);
+                }
+            } else {
+                $this->CI->db->where('brd_id <>', $exclude_brd_id);
+            }
+        }
+
+        if ($period_second) {
+            $post_start_datetime = cdate('Y-m-d H:i:s', ctimestamp() - $period_second);
+            $this->CI->db->where('post_datetime >=', $post_start_datetime);
+        }
+
+        $result = $this->CI->db->get();
+        $total_rows = $result->row_array();
+
+        
+        
+        
+        
+        $view['view']['page'] = ceil($total_rows['rownum'] / $per_page);
+        
         
         
 
         $view['view']['skinurl'] = base_url( VIEW_DIR . 'group/' . $skin);
-        $html = $this->CI->load->view('group/' . $skin . '/latest_group', $view, true);
+        if($more) $html = $this->CI->load->view('group/' . $skin . '/latest_group_more', $view, true);
+        else $html = $this->CI->load->view('group/' . $skin . '/latest_group', $view, true);
 
         if ($cache_minute> 0) {
             check_cache_dir('latest');

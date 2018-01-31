@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
+
 
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
