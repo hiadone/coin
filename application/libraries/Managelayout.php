@@ -347,7 +347,7 @@ class Managelayout extends CI_Controller
             <table>
                 <tr>
                     <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="로그인">로그인</a></td>
-                    <td>회원가입</td>
+                    <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="회원가입">회원가입</a></td>
                     <td><a href="<?php echo current_full_url(); ?>" class="viewpcversion">PC</a></td>
                 </tr>
             </table>

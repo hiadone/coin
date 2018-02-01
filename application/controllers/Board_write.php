@@ -342,7 +342,7 @@ class Board_write extends CB_Controller
             $config[] = array(
                 'field' => 'post_email',
                 'label' => '이메일',
-                'rules' => 'trim|required|valid_email|max_length[50]|callback__mem_email_check',
+                'rules' => 'trim',
             );
             $config[] = array(
                 'field' => 'post_homepage',
@@ -443,6 +443,7 @@ class Board_write extends CB_Controller
         } else {
             $use_dhtml = false;
         }
+
         $view['view']['board']['use_dhtml'] = $use_dhtml;
         if ($use_subj_style) {
             $check = array(
@@ -1720,7 +1721,7 @@ class Board_write extends CB_Controller
             $config[] = array(
                 'field' => 'post_email',
                 'label' => '이메일',
-                'rules' => 'trim|valid_email|max_length[50]|callback__mem_email_check',
+                'rules' => 'trim',
             );
             $config[] = array(
                 'field' => 'post_homepage',

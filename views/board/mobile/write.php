@@ -12,6 +12,16 @@
             $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite', 'id' => 'fwrite', 'onsubmit' => 'return submitContents(this)');
             echo form_open_multipart(current_full_url(), $attributes);
             ?>
+            <?php if (element('is_post_name', element('post', $view))) { ?>
+               
+                        <input type="hidden"  name="post_nickname" id="post_nickname" value="<?php echo set_value('post_nickname', element('post_nickname', element('post', $view))); ?>" />
+
+                
+               
+                        <input type="hidden" name="post_email" id="post_email" value="<?php echo set_value('post_email', element('post_email', element('post', $view))); ?>" />
+                    
+                
+            <?php } ?>
             <input type="hidden" name="<?php echo element('primary_key', $view); ?>"    value="<?php echo element(element('primary_key', $view), element('post', $view)); ?>" />
            
                
@@ -49,9 +59,12 @@
                     </li>
 
                     <?php if(element('brd_id', element('post', $view))==="5" || element('brd_id', element('post', $view))==="16"){ ?>
-                    <label class="checkbox-inline" for="post_notice_3">
+                    <li style="width: 66px;">
+                        <label class="checkbox-inline middle_font" for="post_notice_1">
+                   
                         <input type="checkbox" name="post_notice" id="post_notice_3" value="3" <?php echo set_checkbox('post_notice', '3', (element('post_notice', element('post', $view)) === '3' ? true : false)); ?> /> 해드라인
-                    </label>
+                        </label>
+                    </li>
                     <?php } ?>
 
 
@@ -358,6 +371,7 @@ function submitContents(f) {
         f.post_content.focus();
         return false;
     }
+    
 }
 </script>
 
