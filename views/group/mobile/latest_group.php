@@ -1,6 +1,6 @@
      <script>
          $(document).ready(function(){
-            var wid = $('.tab06_cont div').width()- 160 ;
+            var wid = $('.tab06_cont div').width()- 186 ;
                $('.tab06_cont div input').css('width' , wid);
          });
      </script>

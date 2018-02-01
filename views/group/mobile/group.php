@@ -93,7 +93,6 @@ $(document).ready(function(){
             slider.stopAuto();
             slider.startAuto();
         });   
-
 });
 
 </script>
@@ -200,27 +199,25 @@ $(document).ready(function(){
 
 </article>
 <script type="text/javascript">
-//<![CDATA[
-function view_board(id,brd_key) {
-    var list_url = cb_url + '/group/view_board/' + brd_key;
-    $('#' + id).load(list_url,'',function(){
-        $("ul.tab06_tabs li").removeClass("active").css("color" , "#333");
-        $('#'+brd_key).addClass("active").css({"color": "#1c446d"});
-        $('#'+brd_key).addClass("active").css("color", "#1c446d");
+    //<![CDATA[
+    function view_board(id,brd_key) {
+        var list_url = cb_url + '/group/view_board/' + brd_key;
+        $('#' + id).load(list_url,'',function(){
+            $("ul.tab06_tabs li").removeClass("active").css("color" , "#333");
+            $('#'+brd_key).addClass("active").css({"color": "#1c446d"});
+            $('#'+brd_key).addClass("active").css("color", "#1c446d");
 
-    });
+        });
+    }
 
-}
-
-function view_coin(cur_unit) {
-    global_cur_unit = cur_unit;
-    var list_url = cb_url + '/main/show_coin_data/' + global_cur_unit;
-    $('#coin_data').load(list_url,function(){
-        $("#" + coinActiveTab).hide();
-        $("#" + coinActiveTab).fadeIn();
-    });
-    
-}
-//]]>
+    function view_coin(cur_unit) {
+        global_cur_unit = cur_unit;
+        var list_url = cb_url + '/main/show_coin_data/' + global_cur_unit;
+        $('#coin_data').load(list_url,function(){
+            $("#" + coinActiveTab).hide();
+            $("#" + coinActiveTab).fadeIn();
+        });   
+    }
+    //]]>
 </script>
 

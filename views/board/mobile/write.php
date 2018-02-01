@@ -22,40 +22,55 @@
                             <button type="button" class="btn btn-sm btn-default" id="btn_google_map" onClick="open_google_map();" >지도</button>
                         </span>
                     <?php } ?>
-               
-   
-        
-        
-        
-      
 
-        <?php if (element('can_post_notice', element('post', $view)) OR element('can_post_secret', element('post', $view)) OR element('can_post_receive_email', element('post', $view))) { ?>
-            <li>
-                <span>옵션</span>
+        <?php if (element('can_post_notice', element('post', $view)) OR element('can_post_secret', element('post', $view)) OR element(' can_post_receive_email', element('post', $view))) { ?>
+
+        <div class="option_area">
+            <!-- <label class="middle_font">옵 션</label> -->
+            <ul>
+                
                 <?php if (element('can_post_notice', element('post', $view))) { ?>
-                    <label class="checkbox-inline" for="post_notice_1">
-                        <input type="checkbox" name="post_notice" id="post_notice_1" value="1" <?php echo set_checkbox('post_notice', '1', (element('post_notice', element('post', $view)) === '1' ? true : false)); ?> onChange="if (this.checked) {$('#post_notice_2').prop('disabled', true);} else {$('#post_notice_2').prop('disabled', false);}" <?php if (element('post_notice', element('post', $view)) === '2')echo "disabled='disabled'"; ?> /> 공지
-                    </label>
-                    <label class="checkbox-inline" for="post_notice_2">
-                        <input type="checkbox" name="post_notice" id="post_notice_2" value="2" <?php echo set_checkbox('post_notice', '2', (element('post_notice', element('post', $view)) === '2' ? true : false)); ?> onChange="if (this.checked) {$('#post_notice_1').prop('disabled', true);} else {$('#post_notice_1').prop('disabled', false);}" <?php if (element('post_notice', element('post', $view)) === '1')echo "disabled='disabled'"; ?> /> 전체공지
-                    </label>
+
+                    <li style="width: 45px;">
+                        <label class="checkbox-inline middle_font" for="post_notice_1">
+                             공지
+                        </label>
+                        <input type="checkbox" name="post_notice" id="post_notice_1" value="1" <?php echo set_checkbox('post_notice', '1', (element('post_notice', element('post', $view)) === '1' ? true : false)); ?> onChange="if (this.checked) {$('#post_notice_2').prop('disabled', true);} else {$('#post_notice_2').prop('disabled', false);}" <?php if (element('post_notice', element('post', $view)) === '2')echo "disabled='disabled'"; ?> />
+                    </li>
+
+
+
+                    <li style="width: 66px;">
+                        <label class="checkbox-inline middle_font" for="post_notice_2">
+                            전체공지
+                        </label>
+
+                         <input type="checkbox" name="post_notice" id="post_notice_2" value="2" <?php echo set_checkbox('post_notice', '2', (element('post_notice', element('post', $view)) === '2' ? true : false)); ?> onChange="if (this.checked) {$('#post_notice_1').prop('disabled', true);} else {$('#post_notice_1').prop('disabled', false);}" <?php if (element('post_notice', element('post', $view)) === '1')echo "disabled='disabled'"; ?> />
+                    </li>
+
                     <?php if(element('brd_id', element('post', $view))==="5" || element('brd_id', element('post', $view))==="16"){ ?>
                     <label class="checkbox-inline" for="post_notice_3">
                         <input type="checkbox" name="post_notice" id="post_notice_3" value="3" <?php echo set_checkbox('post_notice', '3', (element('post_notice', element('post', $view)) === '3' ? true : false)); ?> /> 해드라인
                     </label>
                     <?php } ?>
+
+
                 <?php } ?>
                 <?php if (element('can_post_secret', element('post', $view))) { ?>
                     <label class="checkbox-inline" for="post_secret">
                         <input type="checkbox" name="post_secret" id="post_secret" value="1" <?php echo set_checkbox('post_secret', '1', (element('post_secret', element('post', $view)) ? true : false)); ?> /> 비밀글
                     </label>
                 <?php } ?>
+
+
                 <?php if (element('can_post_receive_email', element('post', $view))) { ?>
                     <label class="checkbox-inline" for="post_receive_email">
                         <input type="checkbox" name="post_receive_email" id="post_receive_email" value="1" <?php echo set_checkbox('post_receive_email', '1', (element('post_receive_email', element('post', $view)) ? true : false)); ?> /> 답변메일받기
                     </label>
                 <?php } ?>
-            </li>
+            </ul>
+        </div>
+
         <?php } ?>
         <?php if (element('use_category', element('board', $view))) { ?>
             <li>
@@ -117,19 +132,31 @@
             </span>
         <?php } ?>
         </div>
-        <?php
-        if (element('link_count', element('board', $view)) > 0) {
-            $link_count = element('link_count', element('board', $view));
-            for ($i = 0; $i < $link_count; $i++) {
-                $link = html_escape(element('pln_url', element($i, element('link', $view))));
-                $link_column = $link ? 'post_link_update[' . element('pln_id', element($i, element('link', $view))) . ']' : 'post_link[' . $i . ']';
-        ?>
-            <li>
-                <span>링크 #<?php echo $i+1; ?></span>
-                <input type="text" class="input per95" name="<?php echo $link_column; ?>" value="<?php echo set_value($link_column, $link); ?>" />
-            </li>
+        
+        
+
+
+
+
+            <?php
+            if (element('link_count', element('board', $view)) > 0) {
+                echo '<div class="link_area">
+                        <ul>';
+                $link_count = element('link_count', element('board', $view));
+                for ($i = 0; $i < $link_count; $i++) {
+                    $link = html_escape(element('pln_url', element($i, element('link', $view))));
+                    $link_column = $link ? 'post_link_update[' . element('pln_id', element($i, element('link', $view))) . ']' : 'post_link[' . $i . ']';
+            ?>
+                    <li>
+                        <label class="middle_font">링 크 0<?php echo $i+1; ?></label>
+                        <input type="text" name="<?php echo $link_column; ?>" value="<?php echo set_value($link_column, $link); ?>" />
+
+                    </li>
+
+
         <?php
             }
+            echo '</ul></div>';
         }
         if (element('use_upload', element('board', $view))) {
             echo '<div class="upload_area">
@@ -155,14 +182,17 @@
             </li>
         <?php
             }
-            echo '</ul></div>';
-        }
-        ?>
-        <span style="text-align:left; color: #5d5d5d;">
+            echo '</ul>
+            <span style="text-align:left; color: #5d5d5d;" class="small_font">
                     <!-- - 파일을 추가,삭제를 하시려면 좌측의 버튼을 클릭<br> -->
                     - 그림파일은 .gif,.jpg,.png만 가능<br>
                     - 파일 업로드는 1M 까지만 가능
-                </span>
+            </span>
+
+            </div>';
+        }
+        ?>
+        
         <?php if (element('use_post_tag', element('board', $view)) && element('can_tag_write', element('board', $view))) { ?>
             <li>
                 <span>태그</span>
@@ -259,7 +289,7 @@
                 <?php } ?>
             </div>
         <?php } ?>
-            <div class="text-center middle_font">
+            <div class="text-center middle_font" style="margin-bottom: 0;">
                 
                 <button type="submit" class="per45 middle_font">저 장</button>
                 <button type="button" class="btn-history-back per45 middle_font">취 소</button>
