@@ -281,7 +281,7 @@ class Board_write extends CB_Controller
         $view['view']['post']['post_secret'] = element('use_post_secret_selected', $board) ? '1' : '';
         $view['view']['post']['can_post_receive_email'] = $can_post_receive_email
             = element('use_post_receive_email', $board) ? true : false;
-
+        $view['view']['post']['brd_id'] = element('brd_id', $board);
         $extravars = element('extravars', $board);
         $form = json_decode($extravars, true);
         $use_subj_style = ($this->cbconfig->get_device_view_type() === 'mobile')

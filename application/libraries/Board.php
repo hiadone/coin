@@ -667,7 +667,7 @@ class Board extends CI_Controller
         $image_height = element('image_height', $config);
         $period_second = element('period_second', $config);
         $cache_minute = element('cache_minute', $config);
-        $headline = element('headline', $config,0);
+        $post_notice = element('post_notice', $config,0);
 
         if ($limit <= 0) {
             return false;
@@ -771,8 +771,8 @@ class Board extends CI_Controller
                 $this->CI->db->where('post_datetime >=', $post_start_datetime);
             }
 
-            if($headline){            
-                $this->CI->db->where('post_notice', 3);
+            if($post_notice){            
+                $this->CI->db->where('post_notice', $post_notice);
             }
             if ($findex && $forder) {
                 $forder = (strtoupper($forder) === 'ASC') ? 'ASC' : 'DESC';
@@ -854,6 +854,7 @@ class Board extends CI_Controller
         $image_height = element('image_height', $config);
         $period_second = element('period_second', $config);
         $cache_minute = element('cache_minute', $config);
+        $post_notice = element('post_notice', $config);
 
         if ($limit <= 0) {
             return false;
@@ -904,6 +905,9 @@ class Board extends CI_Controller
             $where = array(
                 'att_date' => $date,
             );
+
+            
+
             $result = $this->CI->Attendance_model
                 ->get_attend_list(3,'', $where, $findex, $forder);
 
@@ -951,7 +955,9 @@ class Board extends CI_Controller
             $where = array();
             $where['post_del'] = 0;
             $where['post_secret'] = 0;
-
+            if($post_notice){
+                $where['post_notice']=$post_notice;
+            }
             $sfield =  $this->CI->input->post('sfield', null, '');
             if ($sfield === 'post_both') {
                 $sfield = array('post_title', 'post_content');
@@ -1032,6 +1038,7 @@ class Board extends CI_Controller
                 $this->CI->db->group_end();
             }
             $this->CI->db->from('post');
+            
             $this->CI->db->where($where);
 
             

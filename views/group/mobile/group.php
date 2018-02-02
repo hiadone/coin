@@ -184,7 +184,9 @@ $(document).ready(function(){
             if (element('board_list', $view)) {
                 $bcount=count(element('board_list', $view));
                 $tab06=array();
+
                 foreach (element('board_list', $view) as $key => $board) {
+                    
                     array_push($tab06,element('brd_key',$board));
                     echo '<li id="'.element('brd_key',$board).'" style="width: '.(100/$bcount).'%;">'.element('board_name',$board).'</li>';
                 }

@@ -57,12 +57,18 @@
 
                          <input type="checkbox" name="post_notice" id="post_notice_2" value="2" <?php echo set_checkbox('post_notice', '2', (element('post_notice', element('post', $view)) === '2' ? true : false)); ?> onChange="if (this.checked) {$('#post_notice_1').prop('disabled', true);} else {$('#post_notice_1').prop('disabled', false);}" <?php if (element('post_notice', element('post', $view)) === '1')echo "disabled='disabled'"; ?> />
                     </li>
-
+                    
                     <?php if(element('brd_id', element('post', $view))==="5" || element('brd_id', element('post', $view))==="16"){ ?>
                     <li style="width: 66px;">
-                        <label class="checkbox-inline middle_font" for="post_notice_1">
+                        <label class="checkbox-inline middle_font" for="post_notice_3">
                    
                         <input type="checkbox" name="post_notice" id="post_notice_3" value="3" <?php echo set_checkbox('post_notice', '3', (element('post_notice', element('post', $view)) === '3' ? true : false)); ?> /> 해드라인
+                        </label>
+                    </li>
+                    <li style="width: 66px;">
+                        <label class="checkbox-inline middle_font" for="post_notice_4">
+                   
+                        <input type="checkbox" name="post_notice" id="post_notice_4" value="4" <?php echo set_checkbox('post_notice', '4', (element('post_notice', element('post', $view)) === '4' ? true : false)); ?> /> 인기뉴스
                         </label>
                     </li>
                     <?php } ?>

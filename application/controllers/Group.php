@@ -79,7 +79,9 @@ class Group extends CB_Controller
             foreach ($board_id as $key => $val) {
                 
                 if($key===1 && $bgr_key==='other') $board_list[]=array("brd_key"=>"attendance","board_name"=>"출석체크");
+                
                 $board_list[] = $this->board->item_all(element('brd_id', $val));
+                if($key===0 && $bgr_key==='g-c') $board_list[]=array("brd_key"=>"live_news_sub","board_name"=>"인기뉴스");
             }
         }
 
@@ -157,7 +159,7 @@ class Group extends CB_Controller
     function view_board($brd_key,$more=0){
         $this->cbconfig->get_device_view_type();
 
-        if($brd_key==='live_news'||$brd_key==='hot_news'){
+        if($brd_key==='live_news'){
             $config = array(
                 'skin' => 'mobile',            
                 'brd_key' => $brd_key,
@@ -166,6 +168,17 @@ class Group extends CB_Controller
                 'is_gallery'=> 1,
                 'image_width'=> 120,
                 'image_height'=> 90,
+            );
+        } else if($brd_key==='live_news_sub'){
+            $config = array(
+                'skin' => 'mobile',            
+                'brd_key' => 'live_news',
+                'limit' => 6,
+                'length' => 40,
+                'is_gallery'=> 1,
+                'image_width'=> 120,
+                'image_height'=> 90,
+                'post_notice'=> 4,
             );
         } else {
             

@@ -24,7 +24,10 @@ foreach(element('coin_list',$view) as $key => $value){ ?>
         ?>
         <tr>
             <td><?php echo element($key_,element('vic_type',$view)); ?></td>
+
             <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? $unit.number_format(element('current_price',$value_)) : '-'; ?></td>
+
+
             <?php 
             if(!empty(element('open_price',$value_))) {
                 if((element('current_price',$value_) - element('open_price',$value_)) > 0)

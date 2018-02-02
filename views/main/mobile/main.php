@@ -7,7 +7,7 @@
         var postact_flag=false;
         var global_cur_unit='krw';
         var coinActiveTab='tab01_btc';
-        setInterval('view_coin(global_cur_unit)',10000);
+        setInterval('view_coin(global_cur_unit)',5000);
 
     // 전체 스크립트 
     $(document).ready(function(){
@@ -323,10 +323,26 @@
 
 <article class="wrap01">
     <section class="loing_join">
+<<<<<<< Updated upstream
         <ul>
             <li>로 그 인</li>
             <li>|</li>
             <li>회 원 가 입</li>
+=======
+        <ul class="small_font">
+            <?php 
+            if($this->member->is_member()){
+                echo '<li onClick=\'location.href="'.site_url('login/logout?url=' . urlencode(current_full_url())).'";\'  title="로그아웃">로 그 아 웃</li>';
+                echo '<li onClick=\'location.href="'.site_url('mypage').'";\'  title="마이페이지">마이페이지</li>';
+            } else {
+
+                echo '<li onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="로그인">로 그 인</li>';
+                echo '<li onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="회원가입">회 원 가 입</li>';
+            }
+            ?>
+            
+            
+>>>>>>> Stashed changes
         </ul>
     </section>
     <!-- 롤링 뉴스 영역 -->
@@ -339,7 +355,7 @@
                     'brd_key' => 'coin_news',
                     'limit' => 5,
                     'length' => 40,
-                    'headline' => 1,
+                    'post_notice' => 3,
                     );
                    $board=$this->board->data($config);
 
@@ -465,51 +481,93 @@
 
             <div class="tab07_wrap cont_wrap">
             <?php
-                $tab02=array('live_news','hot_news');
+                $config = array(
+                    'brd_key' => 'live_news',
+                    'limit' => 6,
+                    'length' => 40,
+                    'is_gallery'=> 1,
+                    'image_width'=> 120,
+                    'image_height'=> 90,
 
-                foreach($tab02 as $tvalue){
-                    $config = array(
-                        'brd_key' => $tvalue,
-                        'limit' => 6,
-                        'length' => 40,
-                        'is_gallery'=> 1,
-                        'image_width'=> 120,
-                        'image_height'=> 90,
+                    );
+                $board=$this->board->data($config);
+                
+                if (element('latest', element('view', $board))) {
 
-                        );
-                    $board=$this->board->data($config);
-                    
-                    if (element('latest', element('view', $board))) {
-
-                        echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
-                        <ul>';
-                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                            <li class='gallery_news'>
-                                <a href="<?php echo element('url', $value); ?>">
-                                <figure>
-                                    <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
-                                    <figcaption>
-                                    <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
-                                    <p class="display_content"><?php echo element('display_content', $value); ?></p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                            </li>                        
-                            <?php 
-                        }
-                        echo '
-                        </ul>
-                        </div>';
-                        } else {
-                            echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
-                             <table>
-                                <tr>
-                                    <td colspan="3">게시물이 없습니다.</td>
-                                </tr>
-                            </table>
-                        </div>';
+                    echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
+                    <ul>';
+                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        <li class='gallery_news'>
+                            <a href="<?php echo element('url', $value); ?>">
+                            <figure>
+                                <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                                <figcaption>
+                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
+                                <p class="display_content"><?php echo element('display_content', $value); ?></p>
+                                </figcaption>
+                            </figure>
+                        </a>
+                        </li>                        
+                        <?php 
                     }
+                    echo '
+                    </ul>
+                    </div>';
+                    } else {
+                        echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
+                         <table>
+                            <tr>
+                                <td colspan="3">게시물이 없습니다.</td>
+                            </tr>
+                        </table>
+                    </div>';
                 }
+                
+            ?>  
+
+            <?php
+                $config = array(
+                    'brd_key' => 'live_news',
+                    'limit' => 6,
+                    'length' => 40,
+                    'is_gallery'=> 1,
+                    'image_width'=> 120,
+                    'image_height'=> 90,
+                    'post_notice'=> 4,
+                    );
+                $board=$this->board->data($config);
+                
+                if (element('latest', element('view', $board))) {
+
+                    echo '<div id="tab07_hot_news" class="tab07_cont cont">
+                    <ul>';
+                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        <li class='gallery_news'>
+                            <a href="<?php echo element('url', $value); ?>">
+                            <figure>
+                                <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                                <figcaption>
+                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
+                                <p class="display_content"><?php echo element('display_content', $value); ?></p>
+                                </figcaption>
+                            </figure>
+                        </a>
+                        </li>                        
+                        <?php 
+                    }
+                    echo '
+                    </ul>
+                    </div>';
+                    } else {
+                        echo '<div id="tab07_hot_news" class="tab07_cont cont">
+                         <table>
+                            <tr>
+                                <td colspan="3">게시물이 없습니다.</td>
+                            </tr>
+                        </table>
+                    </div>';
+                }
+                
             ?>  
             </div>
         </section>
@@ -520,7 +578,7 @@
                 <li class="active" rel="tab03_video">동영상 강좌</li>
                 <li rel="tab03_coin_int">코인 지식</li>
                 <li rel="tab03_ico">ICO</li>
-                <li rel="tab03_exchange">거래소별 코인</li>
+                <li rel="tab03_exchange">질문/답변</li>
             </ul>
 
             <div class="tab03_wrap cont_wrap">

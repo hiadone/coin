@@ -204,10 +204,12 @@
 					width: 30%;
 				}
 
+
 				/*원화 선택 영역*/
 					.tab01 th:nth-child(2){
 						width: 50%;
 					}
+
 
 					.tab01 th:nth-child(2) select{
 						width: 90%;
@@ -224,6 +226,7 @@
 						width: 32%;
 
 					}
+
 
 			/*컨텐츠 영역*/
 				#coin_data table tr{
@@ -1544,3 +1547,9 @@
 		border:1px solid #ededed;
 		}
 }
+
+
+#post-content iframe{
+	width:100% !important; ;
+
+)
