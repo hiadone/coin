@@ -24,19 +24,19 @@ foreach(element('coin_list',$view) as $key => $value){ ?>
         ?>
         <tr>
             <td><?php echo element($key_,element('vic_type',$view)); ?></td>
-            <td class='text-right' style='padding-right: 5%;'><?php echo !empty(element('current_price',$value_)) ? $unit.number_format(element('current_price',$value_)) : '-'; ?></td>
+            <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? $unit.number_format(element('current_price',$value_)) : '-'; ?></td>
             <?php 
             if(!empty(element('open_price',$value_))) {
                 if((element('current_price',$value_) - element('open_price',$value_)) > 0)
-                    echo "<td class='text-right' style='padding-right: 5%;color:red;'>▲ ";
-                else echo "<td class='text-right' style='padding-right: 5%;color:blue;'>▼ ";
+                    echo "<td class='text-right' style='color:red;'>▲ ";
+                else echo "<td class='text-right' style='color:blue;'>▼ ";
                 echo number_format(abs(element('current_price',$value_) - element('open_price',$value_)));
             }else {
                 echo "<td>-";
             }
             ?>  
             </td>
-            <td class='text-right' style='padding-right: 5%;'><?php echo !empty(element('kprime',$value_)) ? (number_format(element('kprime',$value_)*100,2)).' %' : '-';?> </td>
+            <td class='text-right'><?php echo !empty(element('kprime',$value_)) ? (number_format(element('kprime',$value_)*100,2)).' %' : '-';?> </td>
         </tr>
     <?php } ?>
         </table>

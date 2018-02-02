@@ -181,8 +181,8 @@
                 $del_column = $download_link ? 'post_file_del[' . element('pfi_id', element($i, element('file', $view))) . ']' : '';
         ?>
             <li class="active">
-                <input type="text" value="선택된 파일이 없습니다." disabled="disabled" class="middle_font"  />
-                <input type="file" name="<?php echo $file_column; ?>" />
+                <input type="text" value="선택된 파일이 없습니다." disabled="disabled" class="middle_font"/>
+                <input type="file" class="file_load" name="<?php echo $file_column; ?>" />
                 <label for="input_file" class="middle_font">
                     업 로 드
                 </label>
@@ -428,7 +428,7 @@ $(function(){
 });
 
 // 파일 업로드
-var fileTarget = $('.upload_area li input:nth-child(2)');
+var fileTarget = $('.upload_area li input.file_load');
 
     fileTarget.on('change', function(){
         if(window.FileReader){

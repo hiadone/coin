@@ -24,29 +24,34 @@
 	.loing_join{
 		background-color:#1c446d;
 		color: #fff;
-
-		padding: 1.5% 0 1%; 
 		margin-bottom: 0;
+		text-align: center;
+		vertical-align: middle;
+		height: 20px;
 	}
 
 	.loing_join ul{
 		display: inline-block;
-		width: 100%;
+		width: 100px;
+		line-height: 20px;
 	}
 
 	.loing_join li{
-		width: 50%;
 		float: left;
-		border-right: 1px solid #fff;
 		box-sizing: border-box;
 		text-align:center;
-		font-weight: bold;
+		font-size: 10px;
 	}
 
-	.loing_join li:last-child{
-		border-right: 0;
+	.loing_join li a{
+		margin:0;
+		padding: 0;
 	}
 
+	.loing_join li:nth-child(2){
+		width: 10%;
+		color: #89a3bf;
+	}
 
 
 /*rolling_news css 영역*/
@@ -56,8 +61,36 @@
 	}
 
 	.rolling_news .bx-controls{
+		display: block;
+	}
+
+	.rolling_news .bx-wrapper{
+		position: relative;
+	}
+
+	.bx-controls .bx-pager{
 		display: none;
 	}
+
+	.bx-controls .bx-controls-direction{
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+	}
+
+	.bx-controls .bx-controls-direction .bx-next{
+		display: none;
+	}
+
+	.bx-controls .bx-controls-direction .bx-prev{
+		font-size:15px;
+	}
+
+
 
 	.rolling_news .bx-wrapper,
 	.rolling_news  .bx-viewport,
@@ -115,9 +148,6 @@
 				border-right: 0;
 			}
 
-
-
-
 			.tabs li.active{
 				background: #FFFFFF;
 				border-bottom: 1px solid #FFFFFF;
@@ -164,98 +194,83 @@
 				border-bottom:0;
 			}
 
-			/*타이틀 영역*/
-				.tab01 > table{
-					height: 25px;
-					border-bottom:1px solid #ededed;
-				}
-
-				.tab01 > table th{
-					width: 20%;
-					padding:3px 0;
+			/*타이틀 영역(거래소,원화,변동률,프리미엄 영역)*/
+				.tab01 th{
+					padding: 0.5% 0;
 					vertical-align: middle;
 					font-weight: bold;
 				}
-
-				.tab01 > table tr th:nth-child(2){
-					width: 35%;
+				.tab01 th:first-child{
+					width: 30%;
 				}
 
-				.tab01 > table th:nth-child(3){
-					width: 25%;
-				}
+				/*원화 선택 영역*/
+					.tab01 th:nth-child(2){
+						width: 50%;
+					}
 
-				.tab01 > table tr th select{
-					width: 90%;
-					margin: 0 5%;
-				}
+					.tab01 th:nth-child(2) select{
+						width: 90%;
+						margin:0 5%; 
+					}
+
+				/*변동률 영역*/
+					.tab01 th:nth-child(3){
+						width: 43%;
+					}
+
+				/*프리미엄 영역*/
+					.tab01 th:nth-child(4){
+						width: 32%;
+
+					}
 
 			/*컨텐츠 영역*/
-				.tab01_wrap .tab01_cont > table tr:first-child td{
-					padding-top: 1%;
+				#coin_data table tr{
+					border-top: 1px solid #ededed;
 				}
 
-				.tab01_wrap .tab01_cont table td{
-					width: 20% !important;
-					
+				#coin_data table tr:nth-child(2n){
+					background-color: #f6f6f6;
 				}
 
-				.tab01_cont table td:nth-child(2){
-					width: 35% !important;
+
+				#coin_data table td{
+					padding:0.8% 0;
 				}
 
-				.tab01_cont table td:nth-child(3){
-					width: 25% !important;
+				#coin_data table td:first-child{
+					width: 32%;
 				}
 
-				.tab01_wrap > div table tr:nth-child(2n){
-					background-color:#fafafa;
+				#coin_data table td:nth-child(2){
+					padding-right: 4%;
+					box-sizing: border-box;
 				}
 
-				.tab01_wrap > div table th select{
-					width: 90%;
-					margin:0 5%;
+				#coin_data table td:nth-child(3){
+					width: 45%;
+					padding-right: 4%;
 				}
 
-				.tab01_wrap > div table th,
-				.tab01_wrap > div table td{
-					width: 20%;
-					border-bottom :1px solid #ededed;
-					vertical-align: middle;
-					padding: 1% 2% 0.8%;
-				}
-
-				.tab01_wrap > div table tr:last-child td{
-					border-bottom: 0;
-				}
-
-				.tab01_wrap > div table th:nth-child(2),
-				.tab01_wrap > div table td:nth-child(2){
+				#coin_data table td:nth-child(4){
 					width: 35%;
-				}
-
-				.tab01_wrap > div table td:nth-child(3){
-					color: green;
-					font-weight: bold;
-				}
-
-				.tab01_wrap > div table td:nth-child(4){
-					color: darkred;
-					font-weight: bold;
+					padding-right: 4%;
+					box-sizing: border-box;
 				}
 
 			/*거래소 리스트 영역*/
-			.tab01_tabs{
-				font-size: 10px;
-			}
+				.tab01_tabs{
+					font-size: 10px;
+				}
 
-			.tab01_tabs li{
-			    width:9%;
-			}
+				.tab01_tabs li{
+				    width:9%;
+				}
 
-			.tab01_tabs li:nth-child(10){
-				width:10%;
-			}
+				.tab01_tabs li:nth-child(10){
+					width:10%;
+				}
 
 		/* tab02(자유게시판,채굴정보,코인뉴스 수익인증 / main화면) 영역*/
 			.tab02_tabs li{

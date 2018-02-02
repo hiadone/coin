@@ -214,6 +214,7 @@
                         autoDelay: 0, // 자동 재생 전 대기 시간 설정.
                         infiniteLoop: true, //마지막에 도달 했을시, 첫페이지로 갈 것인가 멈출것인가
                         //pagerCustom: '#bx-pager' // pager
+                        prevText: '▲',
                     });
 
                     // 클릭시 멈춤 현상 해결 //
@@ -322,8 +323,9 @@
 
 <article class="wrap01">
     <section class="loing_join">
-        <ul class="small_font">
+        <ul>
             <li>로 그 인</li>
+            <li>|</li>
             <li>회 원 가 입</li>
         </ul>
     </section>
