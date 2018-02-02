@@ -185,20 +185,24 @@
                 $download_link = html_escape(element('download_link', element($i, element('file', $view))));
                 $file_column = $download_link ? 'post_file_update[' . element('pfi_id', element($i, element('file', $view))) . ']' : 'post_file[' . $i . ']';
                 $del_column = $download_link ? 'post_file_del[' . element('pfi_id', element($i, element('file', $view))) . ']' : '';
-        ?>
+        ?>     
+        <?php if ($download_link) { ?>
+            <li class="active">
+                    <a href="<?php echo $download_link; ?>"><?php echo html_escape(element('pfi_originname', element($i, element('file', $view)))); ?></a>
+                    <label for="<?php echo $del_column; ?>">
+                        <input type="checkbox" name="<?php echo $del_column; ?>" id="<?php echo $del_column; ?>" value="1" <?php echo set_checkbox($del_column, '1'); ?> /> 삭제
+                    </label>
+            </li>
+            <?php } ?>
             <li class="active">
                 <input type="text" value="선택된 파일이 없습니다." disabled="disabled" class="middle_font"/>
                 <input type="file" class="file_load" name="<?php echo $file_column; ?>" />
                 <label for="input_file" class="middle_font">
                     업 로 드
                 </label>
-                <?php if ($download_link) { ?>
-                    <a href="<?php echo $download_link; ?>"><?php echo html_escape(element('pfi_originname', element($i, element('file', $view)))); ?></a>
-                    <label for="<?php echo $del_column; ?>">
-                        <input type="checkbox" name="<?php echo $del_column; ?>" id="<?php echo $del_column; ?>" value="1" <?php echo set_checkbox($del_column, '1'); ?> /> 삭제
-                    </label>
-                <?php } ?>
+                
             </li>
+            
         <?php
             }
             echo '</ul>
