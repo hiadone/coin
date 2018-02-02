@@ -969,7 +969,28 @@
 			font-weight: bold;
 		}
 
-	/*파일 업로드 영역*/
+
+	/*파일 업로드 파일삭제 영역*/
+
+
+
+	/*파일삭제*/
+		.upload_area li.del_file input[type="text"]{
+			width: 70%;
+			float: left;
+			margin-left: 22%;
+		}
+
+		.upload_area li.del_file a{
+			display: none;
+		}
+
+		.upload_area li.del_file input[type="checkbox"]{
+			float: left;
+			margin:0 0 0 3%; 
+		}
+
+	/*파일업로드*/
 		.upload_area li{
 			position: relative;
 			height: 25px;

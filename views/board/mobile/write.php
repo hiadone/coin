@@ -60,16 +60,16 @@
                     
                     <?php if(element('brd_id', element('post', $view))==="5" || element('brd_id', element('post', $view))==="16"){ ?>
                     <li style="width: 66px;">
-                        <label class="checkbox-inline middle_font" for="post_notice_3">
+                        <label class="checkbox-inline middle_font" for="post_notice_3"> 해드라인</label>
                    
-                        <input type="checkbox" name="post_notice" id="post_notice_3" value="3" <?php echo set_checkbox('post_notice', '3', (element('post_notice', element('post', $view)) === '3' ? true : false)); ?> /> 해드라인
-                        </label>
+                        <input type="checkbox" name="post_notice" id="post_notice_3" value="3" <?php echo set_checkbox('post_notice', '3', (element('post_notice', element('post', $view)) === '3' ? true : false)); ?> />
+                        
                     </li>
                     <li style="width: 66px;">
-                        <label class="checkbox-inline middle_font" for="post_notice_4">
+                        <label class="checkbox-inline middle_font" for="post_notice_4">인기뉴스</label>
                    
-                        <input type="checkbox" name="post_notice" id="post_notice_4" value="4" <?php echo set_checkbox('post_notice', '4', (element('post_notice', element('post', $view)) === '4' ? true : false)); ?> /> 인기뉴스
-                        </label>
+                        <input type="checkbox" name="post_notice" id="post_notice_4" value="4" <?php echo set_checkbox('post_notice', '4', (element('post_notice', element('post', $view)) === '4' ? true : false)); ?> /> 
+                        
                     </li>
                     <?php } ?>
 
@@ -187,11 +187,15 @@
                 $del_column = $download_link ? 'post_file_del[' . element('pfi_id', element($i, element('file', $view))) . ']' : '';
         ?>     
         <?php if ($download_link) { ?>
-            <li class="active">
-                    <a href="<?php echo $download_link; ?>"><?php echo html_escape(element('pfi_originname', element($i, element('file', $view)))); ?></a>
+            <li class="active del_file">
                     <label for="<?php echo $del_column; ?>">
-                        <input type="checkbox" name="<?php echo $del_column; ?>" id="<?php echo $del_column; ?>" value="1" <?php echo set_checkbox($del_column, '1'); ?> /> 삭제
+                         삭제
                     </label>
+                    
+                    <input type="text" value="" disabled="disabled" class="middle_font"/ >
+                    <a href="<?php echo $download_link; ?>"><?php echo html_escape(element('pfi_originname', element($i, element('file', $view)))); ?></a>
+                    <input type="checkbox" name="<?php echo $del_column; ?>" id="<?php echo $del_column; ?>" value="1" <?php echo set_checkbox($del_column, '1'); ?> />
+                    
             </li>
             <?php } ?>
             <li class="active">
@@ -454,4 +458,8 @@ var fileTarget = $('.upload_area li input.file_load');
     $(this).siblings('.upload_area li input:nth-child(1)').val(filename);
     });
 //]]>
+
+var del_tx = $('.upload_area li.del_file a').text();
+$('.upload_area li.del_file input').val(del_tx);
+
 </script>
