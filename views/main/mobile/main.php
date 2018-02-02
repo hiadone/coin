@@ -214,7 +214,6 @@
                         autoDelay: 0, // 자동 재생 전 대기 시간 설정.
                         infiniteLoop: true, //마지막에 도달 했을시, 첫페이지로 갈 것인가 멈출것인가
                         //pagerCustom: '#bx-pager' // pager
-                        prevText: '▲',
                     });
 
                     // 클릭시 멈춤 현상 해결 //
@@ -326,12 +325,13 @@
         <ul class="small_font">
             <?php 
             if($this->member->is_member()){
-                echo '<li onClick=\'location.href="'.site_url('login/logout?url=' . urlencode(current_full_url())).'";\'  title="로그아웃">로 그 아 웃</li>'
-		echo '<li>|</li>';;
+                echo '<li onClick=\'location.href="'.site_url('login/logout?url=' . urlencode(current_full_url())).'";\'  title="로그아웃">로 그 아 웃</li>';
+                echo '<li>|</li>';
                 echo '<li onClick=\'location.href="'.site_url('mypage').'";\'  title="마이페이지">마이페이지</li>';
             } else {
+
                 echo '<li onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="로그인">로 그 인</li>';
-		echo '<li>|</li>';;
+                echo '<li>|</li>';
                 echo '<li onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="회원가입">회 원 가 입</li>';
             }
             ?>
