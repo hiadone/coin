@@ -168,9 +168,9 @@ class Coin extends CI_Controller
             }
             if(element('vic_type',$value)==='bithumb'){
                 if(element('vic_key',$value)==='opening_price'){
-                    $vic_type='current_price';
-                } elseif(element('vic_key',$value)==='closing_price'){
                     $vic_type='open_price';
+                } elseif(element('vic_key',$value)==='closing_price'){                    
+                    $vic_type='current_price';
                 }else continue;
                 
                 if($cur_unit ==='usd') 

@@ -198,14 +198,14 @@
                     
             </li>
             <?php } ?>
-            <li class="active">
-                <input type="text" value="선택된 파일이 없습니다." disabled="disabled" class="middle_font"/>
-                <input type="file" class="file_load" name="<?php echo $file_column; ?>" />
-                <label for="input_file" class="middle_font">
-                    업 로 드
-                </label>
-                
-            </li>
+                <li class="active">
+                    <input type="text" value="선택된 파일이 없습니다." disabled="disabled" class="middle_font"/>
+                    <input type="file" class="file_load" name="<?php echo $file_column; ?>" />
+                    <label for="input_file" class="middle_font">
+                        업 로 드
+                    </label>
+                    
+                </li>
             
         <?php
             }
