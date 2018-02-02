@@ -203,7 +203,7 @@
                                 preventDefaultSwipeY: false, //onoToOneTouch 에서 true일 경우, 손가락을따라 y축으로 움직일지에 대한 여부
 
                     //control method
-                        controls: false, //좌, 우 컨트롤 버튼 출력  여부
+                        controls: true, //좌, 우 컨트롤 버튼 출력  여부
                         auto: true, // 자동 재생 활성화.
                         autoControls: false, //자동재생 제어버튼 활성화 단, auto모드 활성화필요
                         autoControlsCombine: false, // 재생시 중지버튼 활성화(toggle)
@@ -321,6 +321,12 @@
 </article>
 
 <article class="wrap01">
+    <section class="loing_join">
+        <ul class="small_font">
+            <li>로 그 인</li>
+            <li>회 원 가 입</li>
+        </ul>
+    </section>
     <!-- 롤링 뉴스 영역 -->
         <section class="rolling_news">
             <ul class="big_font">
@@ -389,48 +395,112 @@
             </div>
         </section>
 
-    <button class="btn_up">
-        ▲ 접 기
-    </button>
+    <!-- 접기 버튼 -->
+        <button class="btn_up">
+            ▲ 접 기
+        </button>
 
-    <!-- tab02(자유게시판,채굴정보,코인뉴스 수익인증) 영역 -->
-    <section class="tab02 wrap middle_font">
-        <ul class="tab02_tabs tabs">
-            <li class="active" rel="tab02_free">자유게시판</li>
-            <li rel="tab02_mine_info">채굴정보</li>
-            <li rel="tab02_profit">수익인증</li>
-        </ul>
+    <!-- tab02(자유게시판,채굴정보,코인뉴스,실시간 정보) 영역 -->
+        <section class="tab02 wrap middle_font">
+            <ul class="tab02_tabs tabs">
+                <li class="active" rel="tab02_free">자유게시판</li>
+                <li rel="tab02_mine_info">채굴정보</li>
+                <li rel="tab02_profit">실시간 정보</li>
+            </ul>
 
-        <div class="tab02_wrap cont_wrap">
+            <div class="tab02_wrap cont_wrap">
+                <?php
+                    $tab02=array('free','mine_info','profit');
+
+                    foreach($tab02 as $tvalue){
+                        $config = array(
+                            'brd_key' => $tvalue,
+                            'limit' => 5,
+                            'length' => 40,
+                            );
+                        $board=$this->board->data($config);
+
+                        if (element('latest', element('view', $board))) {
+
+                            echo '<div id="tab02_'.element('brd_key',$config).'" class="tab02_cont cont">
+                            <table>';
+                                foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                                <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                                    <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                                    <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                    <td><?php echo element('display_datetime', $value); ?></td>
+                                </tr>                        
+                                <?php 
+                            }
+                            echo '
+                            </table>
+                            </div>';
+                            } else {
+                                echo '<div id="tab02_'.element('brd_key',$config).'" class="tab02_cont cont">
+                                <table>
+                                    <tr>
+                                        <td colspan="3">게시물이 없습니다.</td>
+                                    </tr>
+                                </table>
+                            </div>';
+                        }
+                    }
+                ?>  
+            </div>
+        </section>
+
+    <!-- ad 영역 -->
+        <section class="ad">
+            <?php echo banner("index_banner2") ?>
+        </section>
+
+    <!-- tab07(최신뉴스,인기뉴스) 영역 -->
+        <section class="tab007 wrap middle_font">
+            <ul class="tab07_tabs tabs">
+                <li class="active" rel="tab07_live_news">최신뉴스</li>
+                <li rel="tab07_hot_news">인기뉴스</li>
+            </ul>
+
+            <div class="tab07_wrap cont_wrap">
             <?php
-                $tab02=array('free','mine_info','profit');
+                $tab02=array('live_news','hot_news');
 
                 foreach($tab02 as $tvalue){
                     $config = array(
                         'brd_key' => $tvalue,
-                        'limit' => 5,
+                        'limit' => 6,
                         'length' => 40,
+                        'is_gallery'=> 1,
+                        'image_width'=> 120,
+                        'image_height'=> 90,
+
                         );
                     $board=$this->board->data($config);
-
+                    
                     if (element('latest', element('view', $board))) {
 
-                        echo '<div id="tab02_'.element('brd_key',$config).'" class="tab02_cont cont">
-                        <table>';
+                        echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
+                        <ul>';
                             foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                            <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-                                <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
-                                <td><?php echo element('display_datetime', $value); ?></td>
-                            </tr>                        
+                            <li class='gallery_news'>
+                                <a href="<?php echo element('url', $value); ?>">
+                                <figure>
+                                    <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                                    <figcaption>
+                                    <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
+                                    <p class="display_content"><?php echo element('display_content', $value); ?></p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                            </li>                        
                             <?php 
                         }
                         echo '
-                        </table>
+                        </ul>
                         </div>';
                         } else {
-                            echo '<div id="tab02_'.element('brd_key',$config).'" class="tab02_cont cont">
-                            <table>
+                            echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
+                             <table>
                                 <tr>
                                     <td colspan="3">게시물이 없습니다.</td>
                                 </tr>
@@ -439,73 +509,9 @@
                     }
                 }
             ?>  
-        </div>
-    </section>
-
-    <!-- ad 영역 -->
-    <section class="ad">
-        <?php echo banner("index_banner2") ?>
-    </section>
-
-    <!-- tab07(최신뉴스,인기뉴스) 영역 -->
-    <section class="tab007 wrap middle_font">
-        <ul class="tab07_tabs tabs">
-            <li class="active" rel="tab07_live_news">최신뉴스</li>
-            <li rel="tab07_hot_news">인기뉴스</li>
-        </ul>
-
-        <div class="tab07_wrap cont_wrap">
-        <?php
-            $tab02=array('live_news','hot_news');
-
-            foreach($tab02 as $tvalue){
-                $config = array(
-                    'brd_key' => $tvalue,
-                    'limit' => 6,
-                    'length' => 40,
-                    'is_gallery'=> 1,
-                    'image_width'=> 120,
-                    'image_height'=> 90,
-
-                    );
-                $board=$this->board->data($config);
-                
-                if (element('latest', element('view', $board))) {
-
-                    echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
-                    <ul>';
-                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                        <li class='gallery_news'>
-                            <a href="<?php echo element('url', $value); ?>">
-                            <figure>
-                                <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
-                                <figcaption>
-                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
-                                <p class="display_content"><?php echo element('display_content', $value); ?></p>
-                                </figcaption>
-                            </figure>
-                        </a>
-                        </li>                        
-                        <?php 
-                    }
-                    echo '
-                    </ul>
-                    </div>';
-                    } else {
-                        echo '<div id="tab07_'.element('brd_key',$config).'" class="tab07_cont cont">
-                         <table>
-                            <tr>
-                                <td colspan="3">게시물이 없습니다.</td>
-                            </tr>
-                        </table>
-                    </div>';
-                }
-            }
-        ?>  
-        </div>
-    </section>
+            </div>
+        </section>
                     
-
     <!-- tab03(동영상강좌,코인지식,ICO,거래소별 코인) 영역 -->
         <section class="tab03 wrap middle_font">
             <ul class="tab03_tabs tabs">
@@ -691,10 +697,6 @@
             </div>
         </section>
     
-
-    
-       
-
     <!-- 가상화폐 인물 트위터 리스트 영역-->
         <section class="table_li person_twitter">
             <h3>가상화폐 인물 트위터</h3>
@@ -720,9 +722,9 @@
         </section>
 
     <!-- ad 영역 -->
-    <section class="ad">
-        <?php echo banner("index_banner") ?>
-    </section>
+        <section class="ad">
+            <?php echo banner("index_banner") ?>
+        </section>
     
 </article>
 
