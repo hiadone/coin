@@ -326,18 +326,16 @@
         <ul class="small_font">
             <?php 
             if($this->member->is_member()){
-                echo '<li onClick=\'location.href="'.site_url('login/logout?url=' . urlencode(current_full_url())).'";\'  title="로그아웃">로 그 아 웃</li>';
+                echo '<li style="text-align:right" onClick=\'location.href="'.site_url('mypage').'";\'  title="마이페이지">'.$this->member->item('mem_nickname').'</li>';
                 echo '<li>|</li>';
-                echo '<li onClick=\'location.href="'.site_url('mypage').'";\'  title="마이페이지">'.$this->member->item('mem_nickname').'</li>';
+                 echo '<li style="text-align:left" onClick=\'location.href="'.site_url('login/logout?url=' . urlencode(current_full_url())).'";\'  title="로그아웃">로 그 아 웃</li>';
             } else {
 
-                echo '<li onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="로그인">로 그 인</li>';
+                echo '<li style="text-align:right" onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="로그인">로 그 인</li>';
                 echo '<li>|</li>';
-                echo '<li onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="회원가입">회 원 가 입</li>';
+                echo '<li style="text-align:left" onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="회원가입">회 원 가 입</li>';
             }
             ?>
-            
-            
         </ul>
     </section>
     <!-- 롤링 뉴스 영역 -->
