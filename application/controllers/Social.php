@@ -366,8 +366,10 @@ class Social extends CB_Controller
         }
 
         if ($this->session->userdata('naver_access_token')) {
-            $url = 'https://apis.naver.com/nidlogin/nid/getUserProfile.xml';
 
+            $url = 'https://apis.naver.com/nidlogin/nid/getUserProfile.xml';
+            $url = 'https://openapi.naver.com/v1/nid/me';
+            
             $ch = curl_init();
             curl_setopt ($ch, CURLOPT_URL, $url);
             curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -381,17 +383,19 @@ class Social extends CB_Controller
             $result = curl_exec($ch);
             curl_close($ch);
 
-            $xml = simplexml_load_string($result);
+            $json = json_decode($result, true);
+            // $xml = simplexml_load_string($result);
 
-            $naver_id = (string) $xml->response->enc_id;
-            $email = (string) $xml->response->email;
-            $nickname = (string) $xml->response->nickname;
-            $profile_image = (string) $xml->response->profile_image;
-            $age = (string) $xml->response->age;
-            $gender = (string) $xml->response->gender;
-            $id = (string) $xml->response->id;
-            $name = (string) $xml->response->name;
-            $birthday = (string) $xml->response->birthday;
+            $naver_id = element('id', element('response',$json));
+            
+            $email = element('email', element('response',$json));
+            $nickname = element('nickname', element('response',$json));
+            $profile_image = element('profile_image', element('response',$json));
+            $age = element('age', element('response',$json));
+            $gender = element('gender', element('response',$json));
+            $id = element('id', element('response',$json));
+            $name = element('name', element('response',$json));
+            $birthday = element('birthday', element('response',$json));
 
             if (empty($nickname)) {
                 $this->session->unset_userdata('naver_access_token');
@@ -422,7 +426,7 @@ class Social extends CB_Controller
             $url = 'https://nid.naver.com/oauth2.0/token';
             $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
                 $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
-
+            
             $ch = curl_init();
             curl_setopt ($ch, CURLOPT_URL, $url);
             curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
