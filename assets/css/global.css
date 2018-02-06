@@ -212,7 +212,7 @@ h3{
 			border-right: 1px solid #ededed;
 			box-sizing: border-box;
 			text-align: center;
-			width: 19%;
+			width: 52%;
 		}
 
 		footer ul li a{
@@ -220,11 +220,11 @@ h3{
 		}
 
 		footer ul li:nth-child(2){
-			width: 34%;
+			width: 28%;
 		}
 
 		footer ul li:nth-child(3){
-			width: 28%;
+			width: 20%;
 		}
 
 		footer ul li:last-child{

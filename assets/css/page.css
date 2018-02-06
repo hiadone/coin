@@ -1335,14 +1335,14 @@
 	}
 
 /*이용약관 , 개인정보 취급방침 , 게재중단요청 , 제휴문의 영역*/
-	.terms p{
+	.terms div.document-etc{
 		width: 94%;
 		display: inline-block;
 		padding: 3%;
 		margin:0 3% 3%;
 		box-sizing: border-box;
 		border:1px solid #5d5d5d;
-		line-height: 40px;
+		/*line-height: 40px;*/
 	}
 
 /*네트워크 오류 영역 css*/

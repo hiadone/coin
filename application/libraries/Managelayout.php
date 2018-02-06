@@ -348,19 +348,18 @@ class Managelayout extends CI_Controller
                 <tr>
                     <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="로그인">로그인</a></td>
                     <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="회원가입">회원가입</a></td>
-                    <td><a href="<?php echo current_full_url(); ?>" class="viewpcversion">PC</a></td>
+                    <td><a href="'.current_full_url().'" class="viewpcversion">PC</a></td>
                 </tr>
             </table>
             <ul class="small_font">
-                <li><a href="'.document_url('provision').'" title="이용약관">이용약관</a></li>
-                <li><a href="'.document_url('privacy').'" title="개인정보 방침">개인정보취급방침</a></li>
+                <li><a href="'.document_url('provision').'" title="이용약관">이용약관 및 개인정보취급방침</a></li>
                 <li><a href="'.document_url('privacy').'" title="위치정보">게제중단요청</a></li>
                 <li><a href="'.document_url('privacy').'" title="위치정보">제휴문의</a></li>
             </ul>
 
             
 
-            <p class="small_font">Copyright ⓒ SSJ . All Rights Reserved </p>
+            <p class="small_font">Copyright ⓒ 시즌제이 . All Rights Reserved </p>
         </footer>
 
         
