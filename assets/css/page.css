@@ -43,6 +43,21 @@
 		font-size: 10px;
 	}
 
+	.loing_join li figure{
+		display: inline-block;
+	}
+
+	.loing_join li figure img{
+		height: 14px;
+		float: left;
+		margin-top:3px;
+		margin-right: 5px;
+	}
+
+	.loing_join li figcaption{
+		float: left;
+	}
+
 	.loing_join li a{
 		margin:0;
 		padding: 0;
@@ -53,7 +68,6 @@
 		color: #89a3bf;
 		text-align: center;
 	}
-
 
 /*rolling_news css 영역*/
 	.rolling_news{
@@ -342,6 +356,11 @@
 				    box-sizing: border-box;
 				    border-bottom: 1px solid #ededed;
 				}
+
+				.tab06_cont ul li a{
+					display: inline-block;
+					width: 100%;
+				}
 				.tab06_cont ul li.active {
 				    display: block;
 				}
@@ -370,6 +389,7 @@
 					text-align: center;
 					display: inline-block;
 					font-weight: bold;
+					float: right;
 				}
 
 				.cont_wrap .tab06_cont > ul li table{
@@ -543,10 +563,20 @@
 		font-size: 15px;
 	}
 
-/*트위터 , 거래소 더보기 클릭시 팝업 , cover_menu , ham_menu 영역*/
+/*트위터 , 거래소 더보기 클릭시 팝업 , cover_menu , ham_menu , find 영역*/
 	.cover_menu , .cover_menu_sub{
 		width: 100%;
 		height: 100%;
+		max-width: 420px;
+		min-width: 320px;
+		margin: 0 auto;
+		position: fixed;
+		z-index: -100;
+		overflow: hidden;
+	}
+
+	.cover_menu02{
+		width: 100%;
 		max-width: 420px;
 		min-width: 320px;
 		margin: 0 auto;
@@ -577,6 +607,7 @@
 				width: 8.5%;
 				float: right;
 				display: inline-block;
+				background-color:#3d3d3d; 
 			}
 
 		/*ham 메뉴  영역*/
@@ -587,12 +618,20 @@
 				color: #fff;
 			}
 
+			/*로그인후 아이디 , 등급 , 로그아웃 영역*/
+				.ham_cont div table figure{
+					width: 70%;
+					float: left;
+				}
 
+				.ham_cont div table figure img{
+					width: 15%;
+					margin-right: 3%;
+					float: left;
+				}
 
-			/*로그인(네이버,카톡 로그인)*/
 				.ham_cont div table a{
 					float: left;
-					margin-top: 1%;
 					font-weight: bold;
 				}
 
@@ -600,6 +639,9 @@
 					float: right;
 					background-color: transparent;
 				}
+
+			/*로그인(네이버,카톡 로그인)*/
+
 				.ham_cont div > p{
 					margin-bottom: 3%;
 				}
@@ -681,7 +723,54 @@
 					color: #fff;
 				}
 
+	/*find 영역*/
+		.find_area{
+			width: 100%;
+			position:absolute;
+			top:0;
+			right:-100%;
+			background-color: #fff;
+			position: relative;
+		}
 
+		.find_area div{
+			width: 90%;
+			height: 100%;
+			float: left;
+			padding:2% 0 2% 2%;
+			box-sizing: border-box;
+		}
+
+		.find_area div input{
+			width: 85%;
+			height: 100%;
+			float: left;
+		}
+
+		.find_area div label{
+			width: 13%;
+			height: 98%;
+			text-align: center;
+			font-weight: bold;
+			display: inline-block;
+			border-radius: 5px;
+			padding:1.5% 0;
+			box-sizing: border-box;
+			color: #fff;
+			background-color: #1c446d;
+			margin:0.2% 0 0 2%;
+			float: left;
+
+		}
+
+		.find_area img{
+			width: 10%;
+			margin-top: 1.5%;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			margin:auto;
+		}
 
 	/*인물트위터 , 공식트위터 , 거래소 더보기 클릭시*/
 		.pop{
@@ -1158,7 +1247,7 @@
 			display: inline-block;
 			width: 100%;
 			border-bottom:1px solid #ededed;
-			padding:0 3%;
+			padding:3%;
 			box-sizing: border-box;
 		}
 
@@ -1179,26 +1268,34 @@
 		}
 
 		.write_cont ol.post-view li p{
-			padding:0 3% 0% 8%;
+			padding:0 10% 0% 8%;
 			background: url("../images/reply.png") no-repeat 3% top;
 			background-size: 4%;
 			line-height: 20px;
 			margin:3% 0;
+			word-break: break-all;
 		}
 
 		.write_cont ol.post-view li table{
-			width: 210px;
 			float: right;
-			text-align: right;
+			text-align: left;
 			color: #5d5d5d;
+			width: auto;
+		}
+
+		.write_cont ol.post-view li div{
+			width: 100%;
+			float: left;
+		}
+
+
+
+		.write_cont ol.post-view li table tr td{
+			padding: 2% 0;
 		}
 
 		.write_cont ol.post-view li table tr td:first-child{
-			width: 85px;
-		}
-
-		.write_cont ol.post-view li table tr td:last-child{
-			width: 70px;
+			width: 80px;
 		}
 
 		.write_cont ol.post-view li div:nth-child(5){
@@ -1562,7 +1659,114 @@
 		border-radius: 3px;
 	}
 
-/*css 수정 & 추가*/
+
+/*검색결과 영역*/
+	/*카테고리 선택 영역*/
+		.cate_sel{
+			width: 100%;
+			display: inline-block;
+			margin-bottom: 5%;
+			padding: 3%;
+			box-sizing: border-box;
+			float: left;
+			background-color: #f0f3f7;
+		}
+
+		.cate_sel select{
+			width: 49%;
+			margin-right: 2%;
+			margin-bottom: 3%;
+		}
+		.cate_sel select:nth-child(2){
+			margin-right: 0;
+		}
+
+		.cate_sel input{
+			width:84%;
+			margin-right: 2%;
+			float: left;
+		}
+
+		.cate_sel label{
+			width: 14%;
+			height: 25px;
+			float: left;
+			line-height: 25px;
+			text-align: center;
+			background-color: #1c446d;
+			color: #fff;
+			border-radius: 3px;
+		}
+
+	/*검색결과 리스트 영역*/
+		.search > h2{
+			margin-bottom: 0;
+		}
+		.search_list{
+			width: 100%;
+			display: inline-block;
+		}
+
+		.search_list > h3{
+			width: 100%;
+			padding:0 3%;
+			box-sizing: border-box;
+			font-weight: bold;
+			padding-bottom: 2%;
+			border-bottom: 2px solid #000;
+		}
+
+		.search_list ul{
+			margin-bottom: 3%;
+		}
+
+		.search_list li{
+			width: 100%;
+			display: inline-block;
+			padding:3%;
+			box-sizing: border-box;
+			border-bottom:1px solid #ededed;
+		}
+		.search_list li h3{
+			width: 100%;
+			padding: 3%;
+			box-sizing: border-box;
+			float: left;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+		.search_list li span{
+			width: 10%;
+			text-align: center;
+			display: inline-block;
+			font-weight: bold;
+			float: right;
+		}
+
+		.search_list li table{
+			color: #5d5d5d;
+		}
+
+		.search_list li td{
+			width: 33%;
+			text-align: left;
+			padding:0;
+		}
+
+		.search_list li tr:first-child td{
+			padding-top: 3%;
+		}
+
+		.search_list li td:nth-child(2){
+			width: 34%;
+		}
+		
+		/*더보기 버튼*/
+		.search_list button{
+			width: 100%;
+			border-radius: 0;
+		}
 
 @media screen and (min-width:421px){
 		body{

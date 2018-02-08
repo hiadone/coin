@@ -15,14 +15,19 @@ if (element('list', element('data', $view))) {
                 <td>작성일 : <?php echo element('display_datetime', $result); ?></td>
                 <td>작성자 : <?php echo element('display_name', $result); ?></td>
             </tr>
-        </table>
-        <?php if (element('can_update', $result)) { ?>
-        <button class="small_font" onClick="comment_box('<?php echo element('cmt_id', $result); ?>', 'cu'); return false;">수 정</button>
-        <?php } ?>
-        <?php if (element('can_delete', $result)) { ?>
-        <button class="small_font" onClick="delete_comment('<?php echo element('cmt_id', $result); ?>', '<?php echo element('post_id', $result); ?>', '<?php echo element('page', $view); ?>');">삭 제</button>
-        <?php } ?>
-            
+        </table class="reply_btn">
+        
+        <div> 
+            <?php if (element('can_update', $result)) { ?>
+            <button class="small_font" onClick="comment_box('<?php echo element('cmt_id', $result); ?>', 'cu'); return false;">수 정</button>
+            <?php } ?>
+            <?php if (element('can_delete', $result)) { ?>
+            <button class="small_font" onClick="delete_comment('<?php echo element('cmt_id', $result); ?>', '<?php echo element('post_id', $result); ?>', '<?php echo element('page', $view); ?>');">삭 제</button>
+            <?php } ?>
+             
+            <button class="small_font">채 택</button>
+        </div>
+
             <span id="edit_<?php echo element('cmt_id', $result); ?>"></span><!-- 수정 -->
             <span id="reply_<?php echo element('cmt_id', $result); ?>"></span><!-- 답변 -->
             <input type="hidden" value="<?php echo element('cmt_secret', $result); ?>" id="secret_comment_<?php echo element('cmt_id', $result); ?>" />

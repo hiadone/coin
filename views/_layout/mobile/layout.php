@@ -47,45 +47,69 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 <script type="text/javascript" src="<?php echo base_url('assets/js/mobile.sidemenu.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/js.cookie.js'); ?>"></script>
 <?php echo $this->managelayout->display_js(); ?>
+
 <script>
-$(document).ready(function(){
-// ham 클릭시 ham_menu 이동 스크립트(메뉴 보여주기)
-    $('header span:first-child img').click(function(){
-        $('.cover_menu').css({'z-index':'200'});
-        $('.cover_menu .cover').animate({'opacity' : '0.5'} , 500);
-        $('.cover_menu .ham_cont').animate({'left' : '0'} , 700);
-        // $('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴
-        // $("html, body").bind('scroll  mousewheel', function(e){e.preventDefault();e.stopPropagation();return false;});
-        
+    $(document).ready(function(){
+        // ham 클릭시 ham_menu 이동 스크립트(메뉴 보여주기)
+            $('header span:first-child img').click(function(){
+                 $('.cover_menu').css({'z-index':'200'});
+                $('.cover_menu .cover').animate({'opacity' : '0.5'} , 500);
+                $('.cover_menu .ham_cont').animate({'left' : '0'} , 700);
+                // $('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴
+                // $("html, body").bind('scroll  mousewheel', function(e){e.preventDefault();e.stopPropagation();return false;});                
+            });
+
+        // ham 메뉴의 X버튼 클릭시 ham_menu이동 스크립트(메뉴 숨기기)
+            $('.ham_cont > img').click(function(){
+                $('.cover_menu .cover').animate({'opacity' : '0'} , 500);
+                $('.cover_menu .ham_cont').animate({'left' : '-85%'} , 700);
+                // $('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제
+                $("html, body").unbind('scroll  mousewheel');
+                setTimeout(function(){
+                    $('.cover_menu').css({'z-index':'-100'});
+                    // $('.ham_cont ul').css({'display' : 'block'});
+                },700);     
+            });
+
+        // ham 메뉴의 대메뉴 접기 펴기 스크립트
+            $('.ham_cont ol > li').click(function(){
+
+                $(this).children('ul').slideToggle();
+                if($(this).children('span').html()=='▼'){
+                    $(this).children('span').html('▲');
+                }else{
+                    $(this).children('span').html('▼');
+                }                   
+            });
+
+        // ham 메뉴의 로그인 시 회원 닉네임 영역 높이값 스크립트
+            var hei = $('.ham_cont div table figure img').height();
+            $('.ham_cont div table figcaption').css('height' , hei);
+            $('.ham_cont div table a').css('line-height' , hei -2 + "px");
+
+        // find 클릭시 검색영역 이동 스크립트
+            var hei = $('header').height();
+            $('.cover_menu02').css('height' , hei);
+
+            $('header span:nth-child(3) img').click(function(){
+                $('.cover_menu02').css({'z-index':'200'});
+                $('.find_area').animate({'right' : '0'} , 700);
+                $('.find_area').css('height' ,hei+5);
+                $('.find_area').css('z-index' ,500);
+            }); 
+
+        // find 의 X버튼 클릭시
+            $('.find_area > img').click(function(){
+                $('.find_area').animate({'right' : '-100%'} , 700);
+                // $('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제
+                $("html, body").unbind('scroll  mousewheel');
+                setTimeout(function(){
+                    $('.cover_menu02').css({'z-index':'-100'});
+                },700);     
+            }); 
     });
-
-// ham 메뉴의 X버튼 클릭시 ham_menu이동 스크립트(메뉴 숨기기)
-    $('.ham_cont > img').click(function(){
-        $('.cover_menu .cover').animate({'opacity' : '0'} , 500);
-        $('.cover_menu .ham_cont').animate({'left' : '-85%'} , 700);
-        // $('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제
-        $("html, body").unbind('scroll  mousewheel');
-        setTimeout(function(){
-            $('.cover_menu').css({'z-index':'-100'});
-            $('.ham_cont ul').css({'display' : 'block'});
-        },700);     
-    });
-
-// ham 메뉴의 대메뉴 접기 펴기 스크립트
-    $('.ham_cont ol > li').click(function(){
-
-        $(this).children('ul').slideToggle();
-        if($(this).children('span').html()=='▼'){
-            $(this).children('span').html('▲');
-        }else{
-            $(this).children('span').html('▼');
-        }                   
-    });
-
-    
-});
-    
 </script> 
+
 </head>
 <body <?php echo isset($view) ? element('body_script', $view) : ''; ?>>
     <article class="cover_menu">
@@ -152,7 +176,32 @@ $(document).ready(function(){
                         <?php } else { ?>
                             <table>
                                 <tr>
-                                    <th colspan="3" class="big_font" ><a style="color:#fff; " href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 </a><button type="button" class="btn-sm small_font" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';"><i class="fa fa-sign-out"></i> 로그아웃</button></th>
+                                    <th colspan="3" class="big_font" >
+
+
+
+                                    <figure>
+                                        <img src="assets/images/gold_spoon.png" alt="gold_spoon">
+                                        <figcaption>
+                                            <a style="color:#fff; " href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 </a>
+                                        </figcaption>
+                                    </figure>
+                                    
+
+
+
+
+
+
+                                    <button type="button" class="btn-sm small_font" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';">
+                                    <i class="fa fa-sign-out"></i>
+                                    로그아웃
+                                    </button>
+
+
+
+
+                                    </th>
                                 </tr>
                             </table>
                         <?php } ?>
@@ -197,6 +246,17 @@ $(document).ready(function(){
                             ?>
                         </ol>
                     </div>
+            </section>
+    </article>
+
+    <article class="cover_menu02">
+        <!-- find 영역 -->
+            <section class="find_area">
+                <div>
+                   <input placeholder="사이트 통합검색" onfocus="this.placeholder=''" onblur="this.placeholder='사이트 통합검색'" >
+                   <label class="middle_font">검 색</label> 
+                </div>
+                <img src="http://dev.bitcoissue.com/assets/images/clear03.png" alt="clear">
             </section>
     </article>
     <header>

@@ -326,7 +326,9 @@
         <ul class="small_font">
             <?php 
             if($this->member->is_member()){
-                echo '<li style="text-align:right" onClick=\'location.href="'.site_url('mypage').'";\'  title="마이페이지">'.$this->member->item('mem_nickname').'</li>';
+                echo '<li style="text-align:right" onClick=\'location.href="'.site_url('mypage').'";\'  title="마이페이지">
+                <figure><img style="height:14px;" src="assets/images/gold_spoon.png" alt="spoon"><figcaption>'.$this->member->item('mem_nickname').
+                '</figcaption></figure></li>';
                 echo '<li>|</li>';
                  echo '<li style="text-align:left" onClick=\'location.href="'.site_url('login/logout?url=' . urlencode(current_full_url())).'";\'  title="로그아웃">로 그 아 웃</li>';
             } else {
