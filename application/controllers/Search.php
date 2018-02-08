@@ -32,7 +32,7 @@ class Search extends CB_Controller
         /**
          * 라이브러리를 로딩합니다
          */
-        $this->load->library(array('pagination', 'querystring'));
+        $this->load->library(array('pagination', 'querystring', 'board'));
     }
 
 
@@ -56,7 +56,7 @@ class Search extends CB_Controller
          */
         $param =& $this->querystring;
         $page = (((int) $this->input->get('page')) > 0) ? ((int) $this->input->get('page')) : 1;
-        $findex = 'post_num, post_reply';
+        $findex = 'brd_id, post_num, post_reply';
         $sfield = $sfield2 = $this->input->get('sfield', null, '');
         $sop = $this->input->get('sop', null, '');
         if ($sfield === 'post_both') {
@@ -142,35 +142,37 @@ class Search extends CB_Controller
         $where['post.post_secret'] = 0;
         $where['post.post_del'] = 0;
         $like = '';
+        
         $result = $this->Post_model
             ->get_search_list($per_page, $offset, $where, $like, $board_id, $findex, $sfield, $skeyword, $sop);
         $list_num = $result['total_rows'] - ($page - 1) * $per_page;
         if (element('list', $result)) {
             foreach (element('list', $result) as $key => $val) {
-                $images = '';
-                if (element('post_image', $val)) {
-                    $imagewhere = array(
-                        'post_id' => element('post_id', $val),
-                        'pfi_is_image' => 1,
+                // $images = '';
+                // if (element('post_image', $val)) {
+                //     $imagewhere = array(
+                //         'post_id' => element('post_id', $val),
+                //         'pfi_is_image' => 1,
+                //     );
+                //     $images = $this->Post_file_model
+                //         ->get_one('', '', $imagewhere, '', '', 'pfi_id', 'ASC');
+                // }
+                // $result['list'][$key]['images'] = $images;
+                
+                $search['list'][element('brd_id', $val)][$key]['post_comment_count'] = element('post_comment_count', $val);
+                $search['list'][element('brd_id', $val)][$key]['post_url'] = post_url(element('brd_key', $val), element('post_id', $val));
+                $search['list'][element('brd_id', $val)][$key]['post_hit'] = element('post_hit', $val);
+                $search['list'][element('brd_id', $val)][$key]['display_name'] =display_username(
+                        element('mem_userid', $val),
+                        element('mem_nickname', $val)
                     );
-                    $images = $this->Post_file_model
-                        ->get_one('', '', $imagewhere, '', '', 'pfi_id', 'ASC');
-                }
-                $result['list'][$key]['images'] = $images;
-                $result['list'][$key]['post_url'] = post_url(element('brd_key', $val), element('post_id', $val));
-                $result['list'][$key]['display_name'] = display_username(
-                    element('post_userid', $val),
-                    element('post_nickname', $val),
-                    element('mem_icon', $val),
-                    'Y'
-                );
-                $result['list'][$key]['display_datetime'] = display_datetime(element('post_datetime', $val), 'user', 'Y-m-d H:i');
-                $result['list'][$key]['content'] = cut_str(strip_tags(element('post_content', $val)),200);
-                $result['list'][$key]['is_mobile'] = (element('post_device', $val) === 'mobile') ? true : false;
+                $search['list'][element('brd_id', $val)][$key]['display_datetime'] = display_datetime(element('post_datetime', $val));
+                $search['list'][element('brd_id', $val)][$key]['post_title'] = cut_str(strip_tags(element('post_title', $val)),200);
+                $search['list'][element('brd_id', $val)][$key]['is_mobile'] = (element('post_device', $val) === 'mobile') ? true : false;
             }
         }
 
-        $view['view']['data'] = $result;
+        $view['view']['data'] = $search;
 
         $view['view']['boardlist'] = $boardlist;
         $view['view']['grouplist'] = $grouplist;

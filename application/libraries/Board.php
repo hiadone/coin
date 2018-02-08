@@ -707,7 +707,7 @@ class Board extends CI_Controller
                     $view['view']['latest'][$key]['title'] = $length ? cut_str(element('att_memo', $val), $length) : element('att_memo', $value);
                     $view['view']['latest'][$key]['display_name'] = display_username(
                         element('mem_userid', $val),
-                        element('mem_nickname', $val)
+                        element('mem_nickname', $val),'','N'
                     );
                     $view['view']['latest'][$key]['display_datetime'] = display_datetime(
                         element('att_datetime', $val)

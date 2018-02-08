@@ -143,7 +143,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                         <?php if (!$this->member->is_member()) { ?>
                         <p class="small_font">SNS 아이디로 로그인 하세요.</p>
                         <ul>
-                            <li style="background: url(assets/images/naver_bg.png) no-repeat center; background-size: 100%;">
+                            <li style="background: url('assets/images/naver_bg.png') no-repeat center; background-size: 100%;">
                                 <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font">
@@ -153,7 +153,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                 </a>
                             </li>
 
-                            <li style="background: url(assets/images/kakao_bg.png) no-repeat center; background-size: 100%;">
+                            <li style="background: url('assets/images/kakao_bg.png') no-repeat center; background-size: 100%;">
                                 <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font" style="color: #3c2324;">
@@ -163,7 +163,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                 </a>
                             </li>
 
-                            <li style="background: url(assets/images/face_bg.png) no-repeat center; background-size: 100%;">
+                            <li style="background: url('assets/images/face_bg.png') no-repeat center; background-size: 100%;">
                                 <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font">
@@ -181,7 +181,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
 
                                     <figure>
-                                        <img src="assets/images/gold_spoon.png" alt="gold_spoon">
+                                        <img src="<?php echo base_url('assets/images/gold_spoon.png') ?>" alt="gold_spoon">
                                         <figcaption>
                                             <a style="color:#fff; " href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 </a>
                                         </figcaption>
@@ -252,12 +252,30 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
     <article class="cover_menu02">
         <!-- find 영역 -->
             <section class="find_area">
+                <form action="<?php echo base_url('/search'); ?>" onSubmit="return headerSearch(this);">
+                <input type="hidden" name="sfield" value="post_both">
                 <div>
-                   <input placeholder="사이트 통합검색" onfocus="this.placeholder=''" onblur="this.placeholder='사이트 통합검색'" >
-                   <label class="middle_font">검 색</label> 
+                   <input name="skeyword" placeholder="사이트 통합검색" onfocus="this.placeholder=''" onblur="this.placeholder='사이트 통합검색'" >
+                   <button type="submit" class="middle_font">검색</button>
                 </div>
-                <img src="http://dev.bitcoissue.com/assets/images/clear03.png" alt="clear">
+                </form>
+                <img src="<?php echo base_url('/assets/images/clear03.png') ?>" alt="clear">
+
             </section>
+            <script type="text/javascript">
+            //<![CDATA[
+           
+            function headerSearch(f) {
+                var skeyword = f.skeyword.value.replace(/(^\s*)|(\s*$)/g,'');
+                if (skeyword.length < 2) {
+                    alert('2글자 이상으로 검색해 주세요');
+                    f.skeyword.focus();
+                    return false;
+                }
+                return true;
+            }
+            //]]>
+            </script>
     </article>
     <header>
             <span>

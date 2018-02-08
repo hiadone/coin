@@ -50,7 +50,7 @@ class Coin extends CI_Controller
                                 'ETC','etc','etc_krw','krw-etc','usdt_etc','usdt-etc','etcusd'
                             ),
                             "bch"=>array(
-                                'BCH','bch','bch_krw','krw-bch','usdt_bch','usdt-bch','bchusd'
+                                'BCH','bch','bch_krw','krw-bch','usdt_bch','usdt-bcc','bchusd'
                             ),
                             "xmr"=>array(
                                 'XMR','xmr','xmr_krw','krw-xmr','usdt_xmr','usdt-xmr','xmrusd'
