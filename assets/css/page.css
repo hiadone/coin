@@ -117,17 +117,19 @@
 
 	.rolling_news .big_font li{
 		font-weight: bold;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow:hidden;
+		
 		padding:5px 3%;
 		box-sizing: border-box;
 		color: #272727;
 	}
 
 	.rolling_news .big_font li a{
+		width: 95%;
 		line-height: 23px;
 		color: #272727;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow:hidden;
 	}
 
 /*tab1~tab7 css 영역 */
