@@ -98,13 +98,13 @@ class Comment_list extends CB_Controller
             element('access_comment_group', $board),
             $check
         );
-
+        $can_comment_choose=element('post_choose', $post) >0 ? false:true;
         /**
          * 페이지에 숫자가 아닌 문자가 입력되거나 1보다 작은 숫자가 입력되면 에러 페이지를 보여줍니다.
          */
         $param =& $this->querystring;
         $findex = strtolower(element('comment_order', $board)) === 'desc'
-            ? 'cmt_num, cmt_reply' : 'cmt_num desc, cmt_reply';
+            ? 'cmt_choose, cmt_num, cmt_reply' : 'cmt_choose desc, cmt_num desc, cmt_reply';
         if ($this->cbconfig->get_device_view_type() === 'mobile') {
             $per_page = element('mobile_comment_count', $board)
                 ? (int) element('mobile_comment_count', $board) : 0;
@@ -356,7 +356,9 @@ class Comment_list extends CB_Controller
         $view['view']['board'] = $board;
         $view['view']['post'] = $post;
         $view['view']['is_admin'] = $is_admin;
+        $view['view']['can_comment_choose'] = $can_comment_choose;
 
+        
         /**
          * primary key 정보를 저장합니다
          */

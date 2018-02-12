@@ -108,7 +108,7 @@ $(document).ready(function(){
 
         $board='';
         $config = array(
-            'brd_key' => 'coin_news',
+            'brd_key' => 'live_news',
             'limit' => 5,
             'length' => 40,
             'headline' => 1,

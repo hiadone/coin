@@ -580,21 +580,22 @@ class Cron extends CB_Controller {
             
 
             
-
-            $tempwhere = array(
-                    'vic_type' => 'deal_bas_r',
-                    'vic_title' => 'deal_bas_r',
-                );
-            $this->Virtual_coin_model->delete_where($tempwhere);
-            
-            $virtualcoindata=array();
+            if(element('deal_bas_r',element(0,$json))){
+                $tempwhere = array(
+                        'vic_type' => 'deal_bas_r',
+                        'vic_title' => 'deal_bas_r',
+                    );
+                $this->Virtual_coin_model->delete_where($tempwhere);
                 
+                $virtualcoindata=array();
                     
+                        
+                        
+                $virtualcoindata['deal_bas_r'] = str_replace(",","",element('deal_bas_r',element(0,$json)));
+                        
+                        
                     
-            $virtualcoindata['deal_bas_r'] = str_replace(",","",element('deal_bas_r',element(0,$json)));;
-                    
-                    
-                
-            $this->Virtual_coin_model->save('deal_bas_r','deal_bas_r', $virtualcoindata);
+                $this->Virtual_coin_model->save('deal_bas_r','deal_bas_r', $virtualcoindata);
+            }
     }
 }

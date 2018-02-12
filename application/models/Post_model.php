@@ -580,4 +580,17 @@ class Post_model extends CB_Model
         $post_num = $row['post_num'] - 1;
         return $post_num;
     }
+
+    public function today_post()
+    {
+        $today = cdate('Y-m-d');
+        $mem_id = (int) $this->member->item('mem_id');
+
+        $where = array(
+            'left(post_datetime,10)' => $today,
+            'mem_id' => $mem_id,
+        );
+        $this->db->where($where);
+        return $this->db->count_all_results($this->_table);
+    }
 }

@@ -22,7 +22,7 @@
 
                 <tr>
                     <th>회 원 그 룹</th>
-                    <td>0000</td>
+                    <td><?php echo element('member_group_name',$view);?></td>
                 </tr>
 
                 <tr>
@@ -42,4 +42,3 @@
             
         </section>
     </article>
-    

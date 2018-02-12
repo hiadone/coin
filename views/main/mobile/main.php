@@ -218,7 +218,7 @@
                     });
 
                     // 클릭시 멈춤 현상 해결 //
-                    $(document).bind('touchend' , function(){
+                    $(document).bind('click','a.bx-prev' , function(){   
                         slider.stopAuto();
                         slider.startAuto();
                     });     
@@ -350,7 +350,7 @@
                  $board='';
                  $config = array(
 
-                    'brd_key' => 'coin_news',
+                    'brd_key' => 'live_news',
                     'limit' => 5,
                     'length' => 40,
                     'post_notice' => 3,
@@ -363,6 +363,7 @@
                     <?php 
                     }
                     }
+                    
                     ?>
             </ul>
         </section>
@@ -443,7 +444,10 @@
                                 foreach (element('latest', element('view', $board)) as $key => $value) {?>
                                 <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                     <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                    <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                    <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                        
+                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    </td>
                                     <td><?php echo element('display_datetime', $value); ?></td>
                                 </tr>                        
                                 <?php 
@@ -500,7 +504,9 @@
                             <figure>
                                 <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                 <figcaption>
-                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
+                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </h3>
                                 <p class="display_content"><?php echo element('display_content', $value); ?></p>
                                 </figcaption>
                             </figure>
@@ -545,7 +551,9 @@
                             <figure>
                                 <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                 <figcaption>
-                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
+                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </h3>
                                 <p class="display_content"><?php echo element('display_content', $value); ?></p>
                                 </figcaption>
                             </figure>
@@ -598,7 +606,9 @@
                         foreach (element('latest', element('view', $board)) as $key => $value) {?>
                             <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        
                             <?php 
@@ -646,7 +656,10 @@
                                 foreach (element('latest', element('view', $board)) as $key => $value) {?>
                                 <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                     <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                    <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                    <td class="text-left">
+                                        <?php echo html_escape(element('title', $value)); ?>
+                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    </td>
                                     <td><?php echo element('display_datetime', $value); ?></td>
                                 </tr>                        
                                 <?php 
@@ -733,7 +746,9 @@
                             foreach (element('latest', element('view', $board)) as $key => $value) {?>
                             <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        
                             <?php 

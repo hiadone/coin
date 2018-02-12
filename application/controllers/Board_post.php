@@ -320,6 +320,14 @@ class Board_post extends CB_Controller
 
         $this->_stat_count_board(element('brd_id', $board)); // stat_count_board ++
 
+        $cookie_name = 'post_id_cookie';
+        $cookie_value = get_cookie('post_id_cookie').$post_id.'||';
+        $cookie_expire = 86400;
+
+        if(!in_array($post_id,explode('||',get_cookie('post_id_cookie'))))
+            set_cookie($cookie_name, $cookie_value, $cookie_expire);
+        
+        
         // 세션 생성
         if ( ! $this->session->userdata('post_id_' . $post_id)) {
             $this->Post_model->update_plus($post_id, 'post_hit', 1);

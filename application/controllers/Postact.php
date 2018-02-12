@@ -190,7 +190,10 @@ class Postact extends CB_Controller
         // 이벤트가 존재하면 실행합니다
         Events::trigger('after', $eventname);
 
-        redirect(board_url(element('brd_key', $board)));
+        $this->load->model('Board_group_model');
+        $group = $this->Board_group_model->get_one(element('bgr_id', $board));
+        
+        redirect(group_url(element('bgr_key', $group)).'/'.element('brd_key', $board));
 
     }
 
@@ -868,6 +871,158 @@ class Postact extends CB_Controller
         $this->Comment_model->update($cmt_id, $updata);
 
         $status = $like_type === 1 ? '추천' : '비추천';
+        $success = '이 글을 ' . $status . ' 하셨습니다';
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('after', $eventname);
+
+        $result = array('success' => $success, 'count' => $count);
+        exit(json_encode($result));
+
+    }
+
+    /**
+     * 댓글 추천/비추천 하기
+     */
+    public function comment_choose($cmt_id = 0, $like_type = 0)
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_postact_comment_like';
+        $this->load->event($eventname);
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('before', $eventname);
+
+        $target_type = 2; //댓글
+
+        $result = array();
+        $this->output->set_content_type('application/json');
+
+        if ($this->member->is_member() === false) {
+            $result = array('error' => '로그인 후 이용해주세요');
+            exit(json_encode($result));
+        }
+
+        $cmt_id = (int) $cmt_id;
+        if (empty($cmt_id) OR $cmt_id < 1) {
+            $result = array('error' => '잘못된 접근입니다');
+            exit(json_encode($result));
+        }
+
+        $like_type = (int) $like_type;
+        if ($like_type !== 1 AND $like_type !== 2) {
+            $result = array('error' => '잘못된 접근입니다');
+            exit(json_encode($result));
+        }
+
+        $mem_id = (int) $this->member->item('mem_id');
+
+        $this->load->model(array('Comment_model', 'Choose_model','Post_model'));
+
+        $select = 'cmt_id, post_id, mem_id, cmt_del';
+        $comment = $this->Comment_model->get_one($cmt_id, $select);
+
+        
+
+        if ( ! element('cmt_id', $comment)) {
+            $result = array('error' => '존재하지 않는 댓글입니다');
+            exit(json_encode($result));
+        }
+        if (element('cmt_del', $comment)) {
+            $result = array('error' => '삭제된 댓글입니다');
+            exit(json_encode($result));
+        }
+
+        $select = 'post_id, brd_id, mem_id, post_del';
+        $post = $this->Post_model->get_one(element('post_id', $comment), $select);
+
+        if ( ! $this->session->userdata('post_id_' . element('post_id', $comment))) {
+            $result = array('error' => '해당 게시물에서만 접근 가능합니다');
+            exit(json_encode($result));
+        }
+
+        $board = $this->board->item_all(element('brd_id', $post));
+
+        if ( ! element('use_comment_like', $board) && $like_type === 1) {
+            $result = array('error' => '이 게시판은 채택 기능을 사용하지 않습니다');
+            exit(json_encode($result));
+        }
+
+        if (abs(element('mem_id', $comment)) === $mem_id) {
+            $result = array('error' => '본인의 글에는 채택 기능을 사용할 수 없습니다');
+            exit(json_encode($result));
+        }
+
+        $select = 'lik_id, lik_type';
+        $where = array(
+            'target_id' => $cmt_id,
+            'target_type' => $target_type,
+            'mem_id' => $mem_id,
+        );
+        $exist = $this->Choose_model->get_one('', $select, $where);
+
+        if (element('lik_id', $exist)) {
+            $status = element('lik_type', $exist) === '1' ? '채택' : '비추천';
+            $result = array('error' => '이미 이 글을 ' . $status . '하셨습니다');
+            exit(json_encode($result));
+        }
+
+        $insertdata = array(
+            'target_id' => $cmt_id,
+            'target_type' => $target_type,
+            'brd_id' => element('brd_id', $post),
+            'mem_id' => $mem_id,
+            'target_mem_id' => abs(element('mem_id', $comment)),
+            'lik_type' => $like_type,
+            'lik_datetime' => cdate('Y-m-d H:i:s'),
+            'lik_ip' => $this->input->ip_address(),
+        );
+        $this->Choose_model->insert($insertdata);
+        if ($like_type === 1) {
+            $field = 'cmt_choose';
+        }
+        
+        if (element('use_point', $board)) {
+            if ($like_type === 1) {
+                $this->point->insert_point(
+                    $mem_id,
+                    element('point_comment_like', $board),
+                    element('board_name', $board) . ' ' . $cmt_id . ' 채택',
+                    'comment_like',
+                    $cmt_id,
+                    '채택'
+                );
+                $this->point->insert_point(
+                    abs(element('mem_id', $comment)),
+                    element('point_comment_liked', $board),
+                    element('board_name', $board) . ' ' . $cmt_id . ' 채택받음',
+                    'comment_liked',
+                    $cmt_id,
+                    '채택받음'
+                );
+            }
+        }
+
+        $where = array(
+            'target_id' => $cmt_id,
+            'target_type' => $target_type,
+            'lik_type' => $like_type,
+        );
+        $count = $this->Choose_model->count_by($where);
+
+        $updata = array(
+            $field => $count
+        );
+        $this->Comment_model->update($cmt_id, $updata);
+
+        $updata = array(
+            'post_choose' => $count
+        );
+
+        $this->Post_model->update(element('post_id',$comment), $updata);
+
+        $status = $like_type === 1 ? '채택' : '비추천';
         $success = '이 글을 ' . $status . ' 하셨습니다';
 
         // 이벤트가 존재하면 실행합니다

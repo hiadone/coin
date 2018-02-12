@@ -174,6 +174,43 @@ if (typeof(COMMON_JS) === 'undefined') {
         });
     }
 
+    function comment_choose(cmt_id, like_type, classname) {
+
+        var href;
+
+        if ( cmt_id == '') {
+            return false;
+        }
+
+        href = cb_url + '/postact/comment_choose/' + cmt_id + '/' + like_type;
+
+        $.confirm({
+            title: 'Confirm!',
+            content: '답변을 채택 하시겠습니까?<br>채택 취소는 불가능 합니다.<br>500P 를 돌려 받습니다.',
+            buttons: {
+                확인: function () {
+                    $.ajax({
+                        url : href,
+                        type : 'get',
+                        dataType : 'json',
+                        success : function(data) {
+                            if (data.error) {
+                                $.alert(data.error);
+                                return false;
+                            } else if (data.success) {
+                                $.alert(data.success);
+                                location.reload();
+                            }
+                        }
+                    });
+                },
+                취소: function () {
+                    
+                }
+            }
+        });
+    }
+
     function comment_like(cmt_id, like_type, classname) {
 
         var href;

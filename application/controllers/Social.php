@@ -759,7 +759,12 @@ class Social extends CB_Controller
                 if ($url_after_login) {
                     $url_after_login = site_url($url_after_login);
                 }
+
+                $leverup_message='';
+                $leverup_message=$this->leverup();
+                
                 echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
+                if($leverup_message)echo '<script type="text/javascript"> alert("'.$leverup_message.'");</script>';
                 echo '<script type="text/javascript"> window.close();';
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
@@ -1119,5 +1124,171 @@ class Social extends CB_Controller
         echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
         echo '<script type="text/javascript"> window.close();window.opener.social_connect_on_done("' . $stype . '");</script>';
         exit;
+    }
+
+
+    public function leverup()
+    {
+        $eventname = 'event_social_common_leverup';
+        // 이벤트 라이브러리를 로딩합니다
+        $mem_id = (int) $this->member->item('mem_id');
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        $next_level = 0;
+        $postnum = 0;
+        $commentnum = 0;
+        $register = 0;
+        $point_use = 0;
+
+        if ($mem_id) {
+            $this->load->model(array('Post_model', 'Comment_model'));
+            $where = array(
+                'mem_id' => $mem_id,
+                'post_del' => 0,
+            );
+            $postnum = $this->Post_model->count_by($where);
+            $where = array(
+                'mem_id' => $mem_id,
+                'cmt_del' => 0,
+            );
+            $commentnum = $this->Comment_model->count_by($where);
+            $regtime = strtotime(substr($this->member->item('mem_register_datetime'),0,10));
+            $totime = strtotime(cdate('Y-m-d'));
+            $register = (($totime - $regtime) / 86400) + 1;
+
+            $view['view']['postnum'] = $postnum;
+            $view['view']['commentnum'] = $commentnum;
+            $view['view']['register'] = $register;
+
+            $next_level = $this->member->item('mem_level') + 1;
+            $levelup_available = true;
+
+            $levelupconfig = json_decode($this->cbconfig->item('levelupconfig'), true);
+            if ( ! in_array($next_level, element('use', $levelupconfig))) {
+                $levelup_available = false;
+            }
+            if (element($next_level, element('point_required', $levelupconfig))
+                && element($next_level, element('point_required', $levelupconfig)) > $this->member->item('mem_point')) {
+                $levelup_available = false;
+            }
+            if (element($next_level, element('post_num', $levelupconfig))
+                && element($next_level, element('post_num', $levelupconfig)) > $postnum) {
+                $levelup_available = false;
+            }
+            if (element($next_level, element('comment_num', $levelupconfig))
+                && element($next_level, element('comment_num', $levelupconfig)) > $commentnum) {
+                $levelup_available = false;
+            }
+
+
+            if($this->_chk_levelup($postnum,$commentnum,$register)){
+                $view['view']['event']['formruntrue'] = Events::trigger('formruntrue', $eventname);
+
+                $updatedata = array(
+                    'mem_level' => $next_level,
+                );
+                $this->Member_model->update($mem_id, $updatedata);
+
+                $this->load->model('Member_level_history_model');
+                $levelhistoryinsert = array(
+                    'mem_id' => $mem_id,
+                    'mlh_from' => $this->member->item('mem_level'),
+                    'mlh_to' => $next_level,
+                    'mlh_datetime' => cdate('Y-m-d H:i:s'),
+                    'mlh_reason' => '레벨업',
+                    'mlh_ip' => $this->input->ip_address(),
+                );
+                $this->Member_level_history_model->insert($levelhistoryinsert);
+
+                $this->load->model('Member_group_model');
+
+                $groupwhere = array(
+                    'mgr_order' => $next_level,
+                );
+
+                
+                $mgr_id = $this->Member_group_model->get_one('', 'mgr_id,mgr_title',$groupwhere);
+
+                $this->load->model('Member_group_member_model');
+                $deletewhere = array(
+                    'mem_id' => $mem_id,
+                );
+                $this->Member_group_member_model->delete_where($deletewhere);
+                
+                $mginsert = array(
+                    'mgr_id' => element('mgr_id',$mgr_id),
+                    'mem_id' => $mem_id,
+                    'mgm_datetime' => cdate('Y-m-d H:i:s'),
+                );
+                $this->Member_group_member_model->insert($mginsert);
+                
+
+                $point_use = (-1) * abs(element($next_level, element('point_use', $levelupconfig)));
+                if ($point_use < 0) {
+                    $this->load->library('point');
+                    $point_title = '레벨업 Lv ' . $this->member->item('mem_level') . '-> ' . $next_level;
+                    $point = $this->point->insert_point(
+                        $mem_id,
+                        $point_use,
+                        $point_title,
+                        'levelup',
+                        $next_level,
+                        '레벨업'
+                    );
+                }
+
+                // 이벤트가 존재하면 실행합니다
+                $view['view']['event']['after'] = Events::trigger('after', $eventname);
+
+                
+                return element('mgr_title',$mgr_id).' 으로 승급되었습니다. 감사합니다';
+                
+            }
+        }
+    }
+
+    public function _chk_levelup($postnum,$commentnum,$register)
+    {
+
+        if ( ! $this->cbconfig->item('use_levelup')) {
+            return false;
+        }
+        if ($this->member->is_member() === false) {
+            return false;
+        }
+
+        $next_level = $this->member->item('mem_level') + 1;
+        $levelupconfig = json_decode($this->cbconfig->item('levelupconfig'), true);
+
+        if ( ! in_array($next_level, element('use', $levelupconfig))) {
+            return false;
+        }
+
+        if (element($next_level, element('register', $levelupconfig))
+            && element($next_level, element('register', $levelupconfig)) > $register) {
+            return false;
+        }
+
+        if (element($next_level, element('point_required', $levelupconfig))
+            && element($next_level, element('point_required', $levelupconfig)) > $this->member->item('mem_point')) {
+            
+            return false;
+        }
+
+        if (element($next_level, element('post_num', $levelupconfig))
+            && element($next_level, element('post_num', $levelupconfig)) > $postnum) {
+            
+            return false;
+        }
+
+        if (element($next_level, element('comment_num', $levelupconfig))
+            && element($next_level, element('comment_num', $levelupconfig)) > $commentnum) {
+            
+            return false;
+        }
+
+        return true;
     }
 }

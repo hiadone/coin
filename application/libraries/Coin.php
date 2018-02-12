@@ -28,7 +28,7 @@ class Coin extends CI_Controller
                     "coinnest"=>"코인네스트",
                     "bittrex"=>"비트렉스",
                     "poloniex"=>"플로닉스",
-                    "bitfinex"=>"비트파이넥스"
+                    "bitfinex"=>"파이넥스"
                     );
     public $vic_title = array(
                             "btc"=>array(

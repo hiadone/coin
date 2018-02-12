@@ -890,15 +890,28 @@ class Board_write extends CB_Controller
                 );
             }
 
-            if ($mem_id > 0 && element('use_point', $board)) {
-                $point = $this->point->insert_point(
-                    $mem_id,
-                    element('point_write', $board),
-                    element('board_name', $board) . ' ' . $post_id . ' 게시글 작성',
-                    'post',
-                    $post_id,
-                    '게시글 작성'
-                );
+            $today_post = $this->Post_model->today_post();
+            
+            if ($mem_id > 0 && element('use_point', $board) ) {
+                if(element('point_write', $board)> 0 && $today_post===0){
+                    $point = $this->point->insert_point(
+                        $mem_id,
+                        element('point_write', $board),
+                        element('board_name', $board) . ' ' . $post_id . ' 게시글 작성',
+                        'post',
+                        $post_id,
+                        '게시글 작성'
+                    );
+                } elseif(element('point_write', $board) < 0){
+                    $point = $this->point->insert_point(
+                        $mem_id,
+                        element('point_write', $board),
+                        element('board_name', $board) . ' ' . $post_id . ' 게시글 작성',
+                        'post',
+                        $post_id,
+                        '게시글 작성'
+                    );
+                }
             }
 
             $extradata = array();

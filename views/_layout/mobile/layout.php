@@ -143,7 +143,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                         <?php if (!$this->member->is_member()) { ?>
                         <p class="small_font">SNS 아이디로 로그인 하세요.</p>
                         <ul>
-                            <li style="background: url('assets/images/naver_bg.png') no-repeat center; background-size: 100%;">
+                            <li style="background: url('/assets/images/naver_bg.png') no-repeat center; background-size: 100%;">
                                 <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font">
@@ -153,7 +153,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                 </a>
                             </li>
 
-                            <li style="background: url('assets/images/kakao_bg.png') no-repeat center; background-size: 100%;">
+                            <li style="background: url('/assets/images/kakao_bg.png') no-repeat center; background-size: 100%;">
                                 <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font" style="color: #3c2324;">
@@ -163,7 +163,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                 </a>
                             </li>
 
-                            <li style="background: url('assets/images/face_bg.png') no-repeat center; background-size: 100%;">
+                            <li style="background: url('/assets/images/face_bg.png') no-repeat center; background-size: 100%;">
                                 <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font">
