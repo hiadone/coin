@@ -728,14 +728,13 @@
 	/*find 영역*/
 		.find_area{
 			width: 100%;
-			position:absolute;
-			top:0;
-			right:-100%;
 			background-color: #fff;
 			position: relative;
+			top:0;
+			right:-100%;
 		}
 
-		.find_area div{
+		.find_area form{
 			width: 90%;
 			height: 100%;
 			float: left;
@@ -743,26 +742,25 @@
 			box-sizing: border-box;
 		}
 
-		.find_area div input{
+		.find_area form input{
 			width: 85%;
 			height: 100%;
 			float: left;
 		}
 
-		.find_area div label{
+		.find_area form button{
 			width: 13%;
 			height: 98%;
 			text-align: center;
 			font-weight: bold;
 			display: inline-block;
 			border-radius: 5px;
-			padding:1.5% 0;
 			box-sizing: border-box;
 			color: #fff;
 			background-color: #1c446d;
 			margin:0.2% 0 0 2%;
 			float: left;
-
+			line-height: 80%;
 		}
 
 		.find_area img{
