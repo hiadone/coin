@@ -142,7 +142,7 @@ class Search extends CB_Controller
         $where['post.post_secret'] = 0;
         $where['post.post_del'] = 0;
         $like = '';
-        
+        $search='';
         $result = $this->Post_model
             ->get_search_list($per_page, $offset, $where, $like, $board_id, $findex, $sfield, $skeyword, $sop);
         $list_num = $result['total_rows'] - ($page - 1) * $per_page;
