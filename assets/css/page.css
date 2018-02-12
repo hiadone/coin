@@ -1687,11 +1687,12 @@
 			float: left;
 		}
 
-		.cate_sel label{
+		.cate_sel button{
 			width: 14%;
 			height: 25px;
 			float: left;
-			line-height: 25px;
+			line-height: 28px;
+			padding: 0;
 			text-align: center;
 			background-color: #1c446d;
 			color: #fff;
