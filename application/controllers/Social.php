@@ -706,6 +706,13 @@ class Social extends CB_Controller
                 if ((int) $mem_id === (int) $this->member->item('mem_id')) {
                     // 나의 계정과 같으므로, 고의로 접근한 경우임
                     // 별다른 액션을 취할 것 없음
+		$url_after_login = $this->cbconfig->item('url_after_login');
+                if ($url_after_login) {
+                    $url_after_login = site_url($url_after_login);
+                }
+		redirect($url_after_login);
+
+                exit;
                 } else {
                     // 다른 회원 아이디에 연결된 계정으로 로그인 시도함
 
@@ -762,7 +769,7 @@ class Social extends CB_Controller
 
                 $leverup_message='';
                 $leverup_message=$this->leverup();
-                
+            
                 echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
                 if($leverup_message)echo '<script type="text/javascript"> alert("'.$leverup_message.'");</script>';
                 echo '<script type="text/javascript"> window.close();';
