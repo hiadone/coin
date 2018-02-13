@@ -266,7 +266,7 @@ class Cron extends CB_Controller {
         $currency_pair=array('krw-btc','krw-eth','krw-dash','krw-xrp','krw-bch','krw-ltc','krw-qtum','krw-etc','krw-xmr','krw-zec','krw-btg');
         
         foreach($currency_pair as $cvalue){
-            $url = 'https://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/10?code=CRIX.UPBIT.'.strtoupper($cvalue);
+            $url = 'https://crix-api-endpoint.upbit.com/v1/crix/candles/days?code=CRIX.UPBIT.'.strtoupper($cvalue);
             // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
             //     $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
 
