@@ -442,10 +442,10 @@ class Cron extends CB_Controller {
                     foreach(element('CSPA:QTUM/USD',element('data',$json)) as $key => $value){
                         
                         if($key==='cspa')
-                        $virtualcoindata['last'] = element('cspa',element('CSPA:QTUM/USD',element('data',$json)),'');
+                        $virtualcoindata['Last'] = element('cspa',element('CSPA:QTUM/USD',element('data',$json)),'');
                         
-                        if($key==='cspa_change_24h')
-                        $virtualcoindata['yesterday_last'] = element('cspa_change_24h',element('CSPA:QTUM/USD',element('data',$json)),'');
+                        // if($key==='cspa_change_24h')
+                        // $virtualcoindata['yesterday_last'] = element('cspa_change_24h',element('CSPA:QTUM/USD',element('data',$json)),'');
                         
                     }
                     $this->Virtual_coin_model->save('bittrex',$cvalue, $virtualcoindata);

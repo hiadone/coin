@@ -232,8 +232,6 @@ class Coin extends CI_Controller
             elseif(element('vic_type',$value)==='bittrex'){
                 if(element('vic_key',$value)==='Last'){
                     $vic_type='current_price';
-                } elseif(element('vic_key',$value)==='yesterday_last'){
-                    $vic_type='open_price';
                 }else continue;
                 if($cur_unit ==='krw') {
                     
