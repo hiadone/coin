@@ -406,44 +406,89 @@ class Cron extends CB_Controller {
         // {"success":true,"message":"","result":[{"MarketName":"BTC-ETH","Volume":거래량 ,"Last":거래가,"BaseVolume":거래량,"TimeStamp":"2018-01-15T01:59:22.003","Bid":0.09850041,"Ask":0.09868444,"OpenBuyOrders":6140,"OpenSellOrders":3942,"PrevDay":0.09670000,"Created":"2015-08-14T09:02:24.817"}]}
 
         $currency_pair=array('usdt-btc','usdt-eth','usdt-dash','usdt-xrp','usdt-bcc','usdt-ltc','usdt-qtum','usdt-etc','usdt-xmr','usdt-zec','usdt-btg');
-
+        $currency_pair=array('usdt-qtum');
         foreach($currency_pair as $cvalue){
-            $url = 'https://bittrex.com/api/v1.1/public/getmarketsummary?market='.$cvalue;
-            // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
-            //     $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
+
+            if($cvalue==='usdt-qtum'){
+                $url = 'https://api.coinhills.com/v1/cspa/qtum/usd/';
+                // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
+                //     $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
 
 
-            $ch = curl_init();
-            curl_setopt ($ch, CURLOPT_URL, $url);
-            curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt ($ch, CURLOPT_SSLVERSION,1);
-            curl_setopt ($ch, CURLOPT_HEADER, 0);
-            curl_setopt ($ch, CURLOPT_POST, 0);
-            curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
-            curl_setopt ($ch, CURLOPT_TIMEOUT, 30);
-            curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-            $result = curl_exec($ch);
-            curl_close($ch);
+                $ch = curl_init();
+                curl_setopt ($ch, CURLOPT_URL, $url);
+                curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+                curl_setopt ($ch, CURLOPT_SSLVERSION,1);
+                curl_setopt ($ch, CURLOPT_HEADER, 0);
+                curl_setopt ($ch, CURLOPT_POST, 0);
+                curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
+                curl_setopt ($ch, CURLOPT_TIMEOUT, 30);
+                curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+                $result = curl_exec($ch);
+                curl_close($ch);
 
-            $json = json_decode($result, true); 
+                $json = json_decode($result, true); 
 
-            if(element('success',$json)){
-                
-                $tempwhere = array(
-                        'vic_type' => 'bittrex',
-                        'vic_title' => $cvalue,
-                    );
-                $this->Virtual_coin_model->delete_where($tempwhere);
-                $virtualcoindata='';
-                foreach(element(0,element('result',$json)) as $key => $value){
+                if(element('success',$json)){
                     
-                    
-                    $virtualcoindata[$key] = element($key,element(0,element('result',$json)),'');
-                    
-                    
+                    $tempwhere = array(
+                            'vic_type' => 'bittrex',
+                            'vic_title' => $cvalue,
+                        );
+                    $this->Virtual_coin_model->delete_where($tempwhere);
+                    $virtualcoindata='';
+
+
+                    foreach(element('CSPA:QTUM/USD',element('data',$json)) as $key => $value){
+                        
+                        if($key==='cspa')
+                        $virtualcoindata['last'] = element('last',element('CSPA:QTUM/USD',element('result',$json)),'');
+                        
+                        if($key==='cspa_change_24h')
+                        $virtualcoindata['yesterday_last'] = element('yesterday_last',element('CSPA:QTUM/USD',element('result',$json)),'');
+                        
+                    }
+                    $this->Virtual_coin_model->save('bittrex',$cvalue, $virtualcoindata);
                 }
-                $this->Virtual_coin_model->save('bittrex',$cvalue, $virtualcoindata);
+            } else {
+                $url = 'https://bittrex.com/api/v1.1/public/getmarketsummary?market='.$cvalue;
+                // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
+                //     $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
+
+
+                $ch = curl_init();
+                curl_setopt ($ch, CURLOPT_URL, $url);
+                curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+                curl_setopt ($ch, CURLOPT_SSLVERSION,1);
+                curl_setopt ($ch, CURLOPT_HEADER, 0);
+                curl_setopt ($ch, CURLOPT_POST, 0);
+                curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
+                curl_setopt ($ch, CURLOPT_TIMEOUT, 30);
+                curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+                $result = curl_exec($ch);
+                curl_close($ch);
+
+                $json = json_decode($result, true); 
+
+                if(element('success',$json)){
+                    
+                    $tempwhere = array(
+                            'vic_type' => 'bittrex',
+                            'vic_title' => $cvalue,
+                        );
+                    $this->Virtual_coin_model->delete_where($tempwhere);
+                    $virtualcoindata='';
+                    foreach(element(0,element('result',$json)) as $key => $value){
+                        
+                        
+                        $virtualcoindata[$key] = element($key,element(0,element('result',$json)),'');
+                        
+                        
+                    }
+                    $this->Virtual_coin_model->save('bittrex',$cvalue, $virtualcoindata);
+                }
             }
+            
         }
         
     }
