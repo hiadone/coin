@@ -421,8 +421,8 @@
         <section class="tab02 wrap middle_font">
             <ul class="tab02_tabs tabs">
                 <li class="active" rel="tab02_free">자유게시판</li>
-                <li rel="tab02_mine_info">채굴정보</li>
-                <li rel="tab02_profit">실시간 정보</li>
+                <li rel="tab02_mine_info">호재정보</li>
+                <li rel="tab02_profit">코인분석</li>
             </ul>
 
             <div class="tab02_wrap cont_wrap">
@@ -505,7 +505,7 @@
                                 <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                 <figcaption>
                                 <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?>
-                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
                                 </h3>
                                 <p class="display_content"><?php echo element('display_content', $value); ?></p>
                                 </figcaption>
