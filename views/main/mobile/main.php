@@ -10,219 +10,219 @@
         setInterval('view_coin(global_cur_unit)',10000);
 
     // 전체 스크립트 
-        $(document).ready(function(){
-            // tab01 영역 스크립트
+    $(document).ready(function(){
+        // tab01 영역 스크립트
+            $(".tab01_cont").hide();
+            $(".tab01_cont:first").show();
+
+            $("ul.tab01_tabs li").click(function () {
+
+                $("ul.tab01_tabs li").removeClass("active").css("color" , "#333");
+                $(this).addClass("active").css("color", "#1c446d");
                 $(".tab01_cont").hide();
-                $(".tab01_cont:first").show();
+                coinActiveTab = $(this).attr("rel");
+                $("#" + coinActiveTab).fadeIn();
+            });
 
-                $("ul.tab01_tabs li").click(function () {
+        //tab02 영역 스크립트
+            $(".tab02_cont").hide();
+            $(".tab02_cont:first").show();
 
-                    $("ul.tab01_tabs li").removeClass("active").css("color" , "#333");
-                    $(this).addClass("active").css("color", "#1c446d");
-                    $(".tab01_cont").hide();
-                    coinActiveTab = $(this).attr("rel");
-                    $("#" + coinActiveTab).fadeIn();
-                });
+            $("ul.tab02_tabs li").click(function () {
+                $("ul.tab02_tabs li").removeClass("active").css("color" , "#333");
+                $(this).addClass("active").css({"color": "#1c446d"});
+                $(this).addClass("active").css("color", "#1c446d");
+                $(".tab02_cont").hide()
+                var activeTab = $(this).attr("rel");
+                $("#" + activeTab).fadeIn()
+            });
 
-            //tab02 영역 스크립트
-                $(".tab02_cont").hide();
-                $(".tab02_cont:first").show();
+        //tab03 영역 스크립트
+            $(".tab03_cont").hide();
+            $(".tab03_cont:first").show();
 
-                $("ul.tab02_tabs li").click(function () {
-                    $("ul.tab02_tabs li").removeClass("active").css("color" , "#333");
-                    $(this).addClass("active").css({"color": "#1c446d"});
-                    $(this).addClass("active").css("color", "#1c446d");
-                    $(".tab02_cont").hide()
-                    var activeTab = $(this).attr("rel");
-                    $("#" + activeTab).fadeIn()
-                });
+            $("ul.tab03_tabs li").click(function () {
+                $("ul.tab03_tabs li").removeClass("active").css("color" , "#333");
+                $(this).addClass("active").css({"color": "#1c446d"});
+                $(this).addClass("active").css("color", "#1c446d");
+                $(".tab03_cont").hide()
+                var activeTab = $(this).attr("rel");
+                $("#" + activeTab).fadeIn()
+            });
 
-            //tab03 영역 스크립트
-                $(".tab03_cont").hide();
-                $(".tab03_cont:first").show();
+        //tab04 영역 스크립트
+            $(".tab04_cont").hide();
+            $(".tab04_cont:first").show();
 
-                $("ul.tab03_tabs li").click(function () {
-                    $("ul.tab03_tabs li").removeClass("active").css("color" , "#333");
-                    $(this).addClass("active").css({"color": "#1c446d"});
-                    $(this).addClass("active").css("color", "#1c446d");
-                    $(".tab03_cont").hide()
-                    var activeTab = $(this).attr("rel");
-                    $("#" + activeTab).fadeIn()
-                });
+            $("ul.tab04_tabs li").click(function () {
+                $("ul.tab04_tabs li").removeClass("active").css("color" , "#333");
+                $(this).addClass("active").css({"color": "#1c446d"});
+                $(this).addClass("active").css("color", "#1c446d");
+                $(".tab04_cont").hide()
+                var activeTab = $(this).attr("rel");
+                $("#" + activeTab).fadeIn()
+            });
 
-            //tab04 영역 스크립트
-                $(".tab04_cont").hide();
-                $(".tab04_cont:first").show();
+        //tab05 영역 스크립트
+            $(".tab05_cont").hide();
+            $(".tab05_cont:first").show();
 
-                $("ul.tab04_tabs li").click(function () {
-                    $("ul.tab04_tabs li").removeClass("active").css("color" , "#333");
-                    $(this).addClass("active").css({"color": "#1c446d"});
-                    $(this).addClass("active").css("color", "#1c446d");
-                    $(".tab04_cont").hide()
-                    var activeTab = $(this).attr("rel");
-                    $("#" + activeTab).fadeIn()
-                });
+            $("ul.tab05_tabs li").click(function () {
+                $("ul.tab05_tabs li").removeClass("active").css("color" , "#333");
+                $(this).addClass("active").css({"color": "#1c446d"});
+                $(this).addClass("active").css("color", "#1c446d");
+                $(".tab05_cont").hide()
+                var activeTab = $(this).attr("rel");
+                $("#" + activeTab).fadeIn()
+            });
 
-            //tab05 영역 스크립트
-                $(".tab05_cont").hide();
-                $(".tab05_cont:first").show();
+        //tab07 영역 스크립트
+            $(".tab07_cont").hide();
+            $(".tab07_cont:first").show();
 
-                $("ul.tab05_tabs li").click(function () {
-                    $("ul.tab05_tabs li").removeClass("active").css("color" , "#333");
-                    $(this).addClass("active").css({"color": "#1c446d"});
-                    $(this).addClass("active").css("color", "#1c446d");
-                    $(".tab05_cont").hide()
-                    var activeTab = $(this).attr("rel");
-                    $("#" + activeTab).fadeIn()
-                });
+            $("ul.tab07_tabs li").click(function () {
+                $("ul.tab07_tabs li").removeClass("active").css("color" , "#333");
+                $(this).addClass("active").css({"color": "#1c446d"});
+                $(this).addClass("active").css("color", "#1c446d");
+                $(".tab07_cont").hide()
+                var activeTab = $(this).attr("rel");
+                $("#" + activeTab).fadeIn()
+            });
 
-            //tab07 영역 스크립트
-                $(".tab07_cont").hide();
-                $(".tab07_cont:first").show();
+        // 접기버튼 클릭시 conin_info 슬라이드 업 스크립트
+            $('.btn_up').click(function(){
+                $('.tab01').slideToggle();
+                if($(this).html()=='▼ 펼 치 기'){
+                    $(this).html('▲ 접 기');
+                }else{
+                    $(this).html('▼ 펼 치 기');
+                }
+            });
 
-                $("ul.tab07_tabs li").click(function () {
-                    $("ul.tab07_tabs li").removeClass("active").css("color" , "#333");
-                    $(this).addClass("active").css({"color": "#1c446d"});
-                    $(this).addClass("active").css("color", "#1c446d");
-                    $(".tab07_cont").hide()
-                    var activeTab = $(this).attr("rel");
-                    $("#" + activeTab).fadeIn()
-                });
+        // 인물트위터 , 코인공식트위터 , 거래소 더보기 영역 스크립트
+            // 인물트위터 , 코인공식트위터 , 거래소 더보기 버튼 클릭시 cover
+                $('.table_li tr:last-child td:last-child').click(function(){
+                    $('.cover_menu_sub').css({'z-index':'200'});
+                    $('.cover_menu_sub .cover_sub').animate({'opacity' : '0.5'} , 500);
+                        // $('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴
+                        // $("html, body").bind('scroll  mousewheel', function(e){e.preventDefault();e.stopPropagation();return false;});
+                    });
 
-            // 접기버튼 클릭시 conin_info 슬라이드 업 스크립트
-                $('.btn_up').click(function(){
-                    $('.tab01').slideToggle();
-                    if($(this).html()=='▼ 펼 치 기'){
-                        $(this).html('▲ 접 기');
-                    }else{
-                        $(this).html('▼ 펼 치 기');
-                    }
-                });
-
-            // 인물트위터 , 코인공식트위터 , 거래소 더보기 영역 스크립트
-                // 인물트위터 , 코인공식트위터 , 거래소 더보기 버튼 클릭시 cover
-                    $('.table_li tr:last-child td:last-child').click(function(){
-                        $('.cover_menu_sub').css({'z-index':'200'});
-                        $('.cover_menu_sub .cover_sub').animate({'opacity' : '0.5'} , 500);
-                            // $('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴
-                            // $("html, body").bind('scroll  mousewheel', function(e){e.preventDefault();e.stopPropagation();return false;});
+            // 인물트위터 , 코인공식트위터 , 거래소 더보기의 X 버튼 클릭시 (모든 popup메뉴 닫기)
+                $('span.clear').click(function(){
+                    $('.cover_menu_sub .cover_sub').animate({'opacity' : '0'} , 500);
+                    $('.pop').animate({'opacity' : '0'} , 700);
+                    $('.pop').css('display' , 'none');
+                            // $('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제
+                            $("html, body").unbind('scroll  mousewheel');
+                            setTimeout(function(){
+                                $('.cover_menu_sub').css({'z-index':'-100'});if(postact_flag)location.reload();
+                            },700); 
                         });
 
-                // 인물트위터 , 코인공식트위터 , 거래소 더보기의 X 버튼 클릭시 (모든 popup메뉴 닫기)
-                    $('span.clear').click(function(){
-                        $('.cover_menu_sub .cover_sub').animate({'opacity' : '0'} , 500);
-                        $('.pop').animate({'opacity' : '0'} , 700);
-                        $('.pop').css('display' , 'none');
-                                // $('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제
-                                $("html, body").unbind('scroll  mousewheel');
-                                setTimeout(function(){
-                                    $('.cover_menu_sub').css({'z-index':'-100'});if(postact_flag)location.reload();
-                                },700); 
-                            });
+            // 인물트위터 더보기 클릭시 해당 팝업 보여주기
+                $('.person_twitter tr:last-child td:last-child').click(function(){
+                    $('.person_twitter_more').css('display' , 'block');
+                    $('.person_twitter_more').animate({'opacity' : '1'} , 700);
+                    view_twitter('person_twitter', 'person_twitter');
+                });
 
-                // 인물트위터 더보기 클릭시 해당 팝업 보여주기
-                    $('.person_twitter tr:last-child td:last-child').click(function(){
-                        $('.person_twitter_more').css('display' , 'block');
-                        $('.person_twitter_more').animate({'opacity' : '1'} , 700);
-                        view_twitter('person_twitter', 'person_twitter');
-                    });
+            // 코인공식 트위터 더보기 클릭시 해당 팝업 보여주기
+                $('.coin_twitter tr:last-child td:last-child').click(function(){
+                    $('.coin_twitter_more').css('display' , 'block');
+                    $('.coin_twitter_more').animate({'opacity' : '1'} , 700);
+                    view_twitter('coin_twitter', 'coin_twitter');
+                });
 
-                // 코인공식 트위터 더보기 클릭시 해당 팝업 보여주기
-                    $('.coin_twitter tr:last-child td:last-child').click(function(){
-                        $('.coin_twitter_more').css('display' , 'block');
-                        $('.coin_twitter_more').animate({'opacity' : '1'} , 700);
-                        view_twitter('coin_twitter', 'coin_twitter');
-                    });
+            // 거래소 더보기 클릭시 해당 팝업 보여주기
+                $('.coin_trade tr:last-child td:last-child').click(function(){
+                    $('.coin_trade_more').css('display' , 'block');
+                    $('.coin_trade_more').animate({'opacity' : '1'} , 700);
+                    view_twitter('coin_trade', 'coin_trade');
+                });
 
-                // 거래소 더보기 클릭시 해당 팝업 보여주기
-                    $('.coin_trade tr:last-child td:last-child').click(function(){
-                        $('.coin_trade_more').css('display' , 'block');
-                        $('.coin_trade_more').animate({'opacity' : '1'} , 700);
-                        view_twitter('coin_trade', 'coin_trade');
-                    });
+            // +버튼(추가) 클릭시 체크버튼,입력란 보여주기
+                $('.pop div span:nth-child(3)').click(function(){
+                    $(this).css('display' , 'none');                                        // +버튼 숨기기
+                    $('.pop table td span').css('display' , 'none');                        
+                    $(this).siblings('span:nth-child(4)').children('img').attr('src' , '<?php echo base_url('/assets/images/check.png') ?>');
+                    $('#postact_'+$(this).data('bng_name')).addClass('postact');
+                    $(this).siblings('span:nth-child(4)').css('float' , 'right');
+                    $(this).parents('div').siblings('ul').slideDown();
+                });
 
-                // +버튼(추가) 클릭시 체크버튼,입력란 보여주기
-                    $('.pop div span:nth-child(3)').click(function(){
-                        $(this).css('display' , 'none');                                        // +버튼 숨기기
-                        $('.pop table td span').css('display' , 'none');                        
-                        $(this).siblings('span:nth-child(4)').children('img').attr('src' , '<?php echo base_url('/assets/images/check.png') ?>');
-                        $('#postact_'+$(this).data('bng_name')).addClass('postact');
-                        $(this).siblings('span:nth-child(4)').css('float' , 'right');
-                        $(this).parents('div').siblings('ul').slideDown();
-                    });
+            // -버튼 or 체크버튼(추가) 클릭시
+                $('.pop div span:nth-child(4)').click(function(){
+                    if($(this).siblings('span:nth-child(3)').css('display') == 'none'){             
+                        if($(this).hasClass('postact'))
+                            if(twitter_action('twitter_update',$(this).data('bng_name'))){
+                                $(this).siblings('span:nth-child(3)').css('display' , 'block');             
+                                $(this).children('img').attr('src' , '<?php echo base_url('/assets/images/minus.png') ?>');                   
 
-                // -버튼 or 체크버튼(추가) 클릭시
-                    $('.pop div span:nth-child(4)').click(function(){
-                        if($(this).siblings('span:nth-child(3)').css('display') == 'none'){             
-                            if($(this).hasClass('postact'))
-                                if(twitter_action('twitter_update',$(this).data('bng_name'))){
-                                    $(this).siblings('span:nth-child(3)').css('display' , 'block');             
-                                    $(this).children('img').attr('src' , '<?php echo base_url('/assets/images/minus.png') ?>');                   
-
-                                    $('.pop table td span').css('display' , 'none');
-                                    $('.pop ul').slideUp();
-                                    view_twitter($(this).data('bng_name'),$(this).data('bng_name'));
-                                    postact_flag=true;
-                                }
-                            }else if($('.pop div span:nth-child(3)').css('display') == 'block'){    // +-버튼이 모두 있는 경우(-버튼을 클릭한경우)                                                                       
-                                $('.pop table td span').css('display' , 'block');
-                                $(this).siblings('span:nth-child(3)').css('display' , 'none');
-                                $(this).children('img').attr('src' , '<?php echo base_url('/assets/images/check.png') ?>');
-                                $(this).css('float' , 'right');
+                                $('.pop table td span').css('display' , 'none');
+                                $('.pop ul').slideUp();
+                                view_twitter($(this).data('bng_name'),$(this).data('bng_name'));
+                                postact_flag=true;
                             }
-                        });
-
-                // 삭제버튼 클릭시
-                    $('.pop table td span').click(function(){
-                        $(this).parents('td').parents('tr').remove();
+                        }else if($('.pop div span:nth-child(3)').css('display') == 'block'){    // +-버튼이 모두 있는 경우(-버튼을 클릭한경우)                                                                       
+                            $('.pop table td span').css('display' , 'block');
+                            $(this).siblings('span:nth-child(3)').css('display' , 'none');
+                            $(this).children('img').attr('src' , '<?php echo base_url('/assets/images/check.png') ?>');
+                            $(this).css('float' , 'right');
+                        }
                     });
 
-            // 롤링텍스트
-                    var slider = $('.rolling_news ul').bxSlider({
-                        mode: 'vertical',
-                        speed: 300, // m/s ex > 1000 = 1s
-                        easing: 'ease-in-out', // 동작 가속도 css와 동일
-                        sliderMargin: 10, // img 와 img 사이 간격
-                        startSlide: 0, // 시작시 로드될 이미지 (0부터 시작)
-                        preloadImages: 'visible', // 'visible'은 보여질때 이미지를 로드,'all'로 설정 하게 되면 모든 이미지가 로드되어야만 slide가 작동
-                        sliderMargin: 10, // img 와 img 사이 간격
-                        startSlide: 0, // 시작시 로드될 이미지 (0부터 시작)
-                        preloadImages: 'visible', // 'visible'은 보여질때 이미지를 로드,'all'로 설정 하게 되면 모든 이미지가 로드되어야만 slide가 작동
-                        randomStart: false, // 시작시 랜덤으로 이미지 로드 여부 (boolean)
-                        adaptiveHeight: false, //각 이미지의 높이에 따라 슬라이더 높이의 유동적 조절 여부
-                        adaptiveHeightSpeed: 300, //adaptiveHeight 동작속도,
-                        video: false,// slider에 video 사용여부, 사용할 시에 plugins/jquery.fitvids.js 파일 include 필요
-                        captions: false, // img 태그에 title속성값을 출력여부, 단 css .bx-wrapper .bx-caption 수정필요
+            // 삭제버튼 클릭시
+                $('.pop table td span').click(function(){
+                    $(this).parents('td').parents('tr').remove();
+                });
 
-                        //responsive method
-                                    responsive: true, // 반응형 지원 여부
-                                    touchEnabled: true,// 터치스와이프 기능 사용여부
-                                    swipeThreshold: 50, // 터치하여 스와이프 할때 변환 효과에 소모되는 시간 설정
-                                    onoToOneTouch: true, // fade효과가 아닌 슬라이드는 손가락의 접지상태에 따라 슬라이드를 움직일수있다.
-                                    preventDefaultSwipeX: false, //onoToOneTouch 에서 true일 경우, 손가락을따라 x축으로 움직일지에 대한 여부
-                                    preventDefaultSwipeY: false, //onoToOneTouch 에서 true일 경우, 손가락을따라 y축으로 움직일지에 대한 여부
+        // 롤링텍스트
+                var slider = $('.rolling_news ul').bxSlider({
+                    mode: 'vertical',
+                    speed: 300, // m/s ex > 1000 = 1s
+                    easing: 'ease-in-out', // 동작 가속도 css와 동일
+                    sliderMargin: 10, // img 와 img 사이 간격
+                    startSlide: 0, // 시작시 로드될 이미지 (0부터 시작)
+                    preloadImages: 'visible', // 'visible'은 보여질때 이미지를 로드,'all'로 설정 하게 되면 모든 이미지가 로드되어야만 slide가 작동
+                    sliderMargin: 10, // img 와 img 사이 간격
+                    startSlide: 0, // 시작시 로드될 이미지 (0부터 시작)
+                    preloadImages: 'visible', // 'visible'은 보여질때 이미지를 로드,'all'로 설정 하게 되면 모든 이미지가 로드되어야만 slide가 작동
+                    randomStart: false, // 시작시 랜덤으로 이미지 로드 여부 (boolean)
+                    adaptiveHeight: false, //각 이미지의 높이에 따라 슬라이더 높이의 유동적 조절 여부
+                    adaptiveHeightSpeed: 300, //adaptiveHeight 동작속도,
+                    video: false,// slider에 video 사용여부, 사용할 시에 plugins/jquery.fitvids.js 파일 include 필요
+                    captions: false, // img 태그에 title속성값을 출력여부, 단 css .bx-wrapper .bx-caption 수정필요
 
-                        //control method
-                            controls: true, //좌, 우 컨트롤 버튼 출력  여부
-                            auto: true, // 자동 재생 활성화.
-                            autoControls: false, //자동재생 제어버튼 활성화 단, auto모드 활성화필요
-                            autoControlsCombine: false, // 재생시 중지버튼 활성화(toggle)
-                            pause: 3000, // 자동 재생 시 각 슬라이드 별 노출 시간
-                            autoStart: true, // 페이지 로드가 되면, 슬라이드의 자동시작 여부
-                            autoDirection: 'next', // 자동 재생시에 정순, 역순(prev) 방식 설정
-                            autoHover: true, // 슬라이드 오버시 재생 중단 여부 (false : 오버무시)
-                            autoDelay: 0, // 자동 재생 전 대기 시간 설정.
-                            infiniteLoop: true, //마지막에 도달 했을시, 첫페이지로 갈 것인가 멈출것인가
-                            //pagerCustom: '#bx-pager' // pager
-                            prevText: '▲',
-                        });
+                    //responsive method
+                                responsive: true, // 반응형 지원 여부
+                                touchEnabled: true,// 터치스와이프 기능 사용여부
+                                swipeThreshold: 50, // 터치하여 스와이프 할때 변환 효과에 소모되는 시간 설정
+                                onoToOneTouch: true, // fade효과가 아닌 슬라이드는 손가락의 접지상태에 따라 슬라이드를 움직일수있다.
+                                preventDefaultSwipeX: false, //onoToOneTouch 에서 true일 경우, 손가락을따라 x축으로 움직일지에 대한 여부
+                                preventDefaultSwipeY: false, //onoToOneTouch 에서 true일 경우, 손가락을따라 y축으로 움직일지에 대한 여부
 
-                        // 클릭시 멈춤 현상 해결 //
-                        $(document).bind('touchend' , function(){
-                            slider.stopAuto();
-                            slider.startAuto();
-                        });     
-        });
+                    //control method
+                        controls: true, //좌, 우 컨트롤 버튼 출력  여부
+                        auto: true, // 자동 재생 활성화.
+                        autoControls: false, //자동재생 제어버튼 활성화 단, auto모드 활성화필요
+                        autoControlsCombine: false, // 재생시 중지버튼 활성화(toggle)
+                        pause: 3000, // 자동 재생 시 각 슬라이드 별 노출 시간
+                        autoStart: true, // 페이지 로드가 되면, 슬라이드의 자동시작 여부
+                        autoDirection: 'next', // 자동 재생시에 정순, 역순(prev) 방식 설정
+                        autoHover: true, // 슬라이드 오버시 재생 중단 여부 (false : 오버무시)
+                        autoDelay: 0, // 자동 재생 전 대기 시간 설정.
+                        infiniteLoop: true, //마지막에 도달 했을시, 첫페이지로 갈 것인가 멈출것인가
+                        //pagerCustom: '#bx-pager' // pager
+                        prevText: '▲',
+                    });
+
+                    // 클릭시 멈춤 현상 해결 //
+                    $(document).bind('click','a.bx-prev' , function(){   
+                        slider.stopAuto();
+                        slider.startAuto();
+                    });     
+    });
 </script> 
 
 <article class="cover_menu_sub">
@@ -332,25 +332,29 @@
                 echo '<li>|</li>';
                 echo '<li>포인트 1000P</li>';
                 echo '<li>|</li>';
-                 echo '<li>회원정보</li>';
+                 echo '<li onClick=\'location.href="'.site_url('mypage').'";\'>회원정보</li>';
                  echo '<li>|</li>';
                  echo '<li onClick=\'location.href="'.site_url('login/logout?url=' . urlencode(current_full_url())).'";\'  title="로그아웃">로그아웃</li>';
             } else {
+
+
                 echo '<li style="width:49%; text-align:right; padding-right:3%;" onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="로그인" style="text-align:right;">로 그 인</li>';
                 echo '<li>|</li>';
                 echo '<li style="width:49%; text-align:left; padding-left:3%;" onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="회원가입" style="text-align:left;"">회 원 가 입</li>';
             }
-            ?>  
+            ?>
+            
+            
         </ul>
     </section>
-    <!-- 롤링 뉴스 영역   
+    <!-- 롤링 뉴스 영역 -->
         <section class="rolling_news">
             <ul class="big_font">
                  <?php
                  $board='';
                  $config = array(
 
-                    'brd_key' => 'coin_news',
+                    'brd_key' => 'live_news',
                     'limit' => 5,
                     'length' => 40,
                     'post_notice' => 3,
@@ -363,10 +367,11 @@
                     <?php 
                     }
                     }
+                    
                     ?>
             </ul>
         </section>
-   -->  
+
     <!-- tab01(거래소별 시세) 영역 -->
         <section class="tab01 middle_font">
             <ul class="tab01_tabs tabs ">
@@ -418,14 +423,15 @@
 
     <!-- tab02(자유게시판,채굴정보,코인뉴스,실시간 정보) 영역 -->
         <section class="tab02 wrap middle_font">
-            <h3>
+            <h3><a href="<?php echo site_url('/group/g-b/free') ?>">
                 커뮤니티
                 <span><img src="assets/images/more.png" alr="more_img"></span>
+                </a>
             </h3>
             <ul class="tab02_tabs tabs">
                 <li class="active" rel="tab02_free">자유게시판</li>
-                <li rel="tab02_mine_info">채굴정보</li>
-                <li rel="tab02_profit">실시간 정보</li>
+                <li rel="tab02_mine_info">호재정보</li>
+                <li rel="tab02_profit">코인분석</li>
             </ul>
 
             <div class="tab02_wrap cont_wrap">
@@ -447,7 +453,10 @@
                                 foreach (element('latest', element('view', $board)) as $key => $value) {?>
                                 <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                     <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                    <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                    <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                        
+                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    </td>
                                     <td><?php echo element('display_datetime', $value); ?></td>
                                 </tr>                        
                                 <?php 
@@ -476,9 +485,10 @@
 
     <!-- tab07(최신뉴스,인기뉴스) 영역 -->
         <section class="tab007 wrap middle_font">
-            <h3>
+            <h3><a href="<?php echo site_url('/group/g-c/live_news') ?>">
                 뉴스정보
                 <span><img src="assets/images/more.png" alr="more_img"></span>
+                </a>
             </h3>
             <ul class="tab07_tabs tabs">
                 <li class="active" rel="tab07_live_news">최신뉴스</li>
@@ -508,7 +518,9 @@
                             <figure>
                                 <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                 <figcaption>
-                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
+                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
+                                </h3>
                                 <p class="display_content"><?php echo element('display_content', $value); ?></p>
                                 </figcaption>
                             </figure>
@@ -553,7 +565,9 @@
                             <figure>
                                 <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                 <figcaption>
-                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
+                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </h3>
                                 <p class="display_content"><?php echo element('display_content', $value); ?></p>
                                 </figcaption>
                             </figure>
@@ -580,9 +594,10 @@
                     
     <!-- tab03(동영상강좌,코인지식,ICO,거래소별 코인) 영역 -->
         <section class="tab03 wrap middle_font">
-            <h3>
-                코인지식
+            <h3><a href="<?php echo site_url('/group/g-a/video') ?>">
+                코인강좌
                 <span><img src="assets/images/more.png" alr="more_img"></span>
+                </a>
             </h3>
             <ul class="tab03_tabs tabs">
                 <li class="active" rel="tab03_video">동영상 강좌</li>
@@ -610,7 +625,9 @@
                         foreach (element('latest', element('view', $board)) as $key => $value) {?>
                             <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        
                             <?php 
@@ -634,9 +651,10 @@
 
     <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역-->
         <section class="tab04 wrap middle_font">
-            <h3>
-                이벤트
+            <h3><a href="<?php echo site_url('/group/other/event') ?>">
+                서비스
                 <span><img src="assets/images/more.png" alr="more_img"></span>
+                </a>
             </h3>
             <ul class="tab04_tabs tabs">
                 <li class="active" rel="tab04_event">이벤트</li>
@@ -662,7 +680,10 @@
                                 foreach (element('latest', element('view', $board)) as $key => $value) {?>
                                 <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                     <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                    <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                    <td class="text-left">
+                                        <?php echo html_escape(element('title', $value)); ?>
+                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    </td>
                                     <td><?php echo element('display_datetime', $value); ?></td>
                                 </tr>                        
                                 <?php 
@@ -686,9 +707,10 @@
 
     <!-- tab05(유머,자유갤러리) 영역-->
         <section class="tab05 wrap middle_font">
-            <h3>
-                서비스
+            <h3><a href="<?php echo site_url('/group/g-b/free_gallery') ?>">
+                갤러리/유머
                 <span><img src="assets/images/more.png" alr="more_img"></span>
+                </a>
             </h3>
             <ul class="tab05_tabs tabs">
                 <li class="active" rel="tab05_free_gallery">자유갤러리</li>
@@ -753,7 +775,9 @@
                             foreach (element('latest', element('view', $board)) as $key => $value) {?>
                             <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?></td>
+                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        
                             <?php 
