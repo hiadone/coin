@@ -177,30 +177,22 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                             <table>
                                 <tr>
                                     <th colspan="3" class="big_font" >
-
-
-
                                     <figure>
                                         <img src="<?php echo base_url('assets/images/gold_spoon.png') ?>" alt="gold_spoon">
                                         <figcaption>
-                                            <a style="color:#fff; " href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 </a>
+                                            <a style="color:#fff; " href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?></a>
                                         </figcaption>
                                     </figure>
-                                    
 
-
-
-
-
-
-                                    <button type="button" class="btn-sm small_font" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';">
-                                    <i class="fa fa-sign-out"></i>
-                                    로그아웃
+                                    <button class="btn-sm small_font" style="margin-right: 5%;">
+                                        <i class="fa fa-sign-out"></i>
+                                        회원정보
                                     </button>
 
-
-
-
+                                    <button type="button" class="btn-sm small_font" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';">
+                                        <i class="fa fa-sign-out"></i>
+                                        로그아웃
+                                    </button>
                                     </th>
                                 </tr>
                             </table>
