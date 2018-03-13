@@ -142,35 +142,62 @@
                 });
 
             // +버튼(추가) 클릭시 체크버튼,입력란 보여주기
-                $('.pop div span:nth-child(3)').click(function(){
+                $('.pop div span.plus').click(function(){
                     $(this).css('display' , 'none');                                        // +버튼 숨기기
                     $('.pop table td span').css('display' , 'none');                        
-                    $(this).siblings('span:nth-child(4)').children('img').attr('src' , '<?php echo base_url('/assets/images/check.png') ?>');
-                    $('#postact_'+$(this).data('bng_name')).addClass('postact');
-                    $(this).siblings('span:nth-child(4)').css('float' , 'right');
+                    $('.pop div span.plus').hide();
+                    $('.pop div span.minus').hide();
+                    $('.pop div span.minus_check').hide();
+                    $('.pop div span.plus_check').show();
+                    
+                    
                     $(this).parents('div').siblings('ul').slideDown();
                 });
 
             // -버튼 or 체크버튼(추가) 클릭시
-                $('.pop div span:nth-child(4)').click(function(){
-                    if($(this).siblings('span:nth-child(3)').css('display') == 'none'){             
-                        if($(this).hasClass('postact'))
-                            if(twitter_action('twitter_update',$(this).data('bng_name'))){
-                                $(this).siblings('span:nth-child(3)').css('display' , 'block');             
-                                $(this).children('img').attr('src' , '<?php echo base_url('/assets/images/minus.png') ?>');                   
+                $('.pop div span.plus_check').click(function(){
+                    
+                    if(twitter_action('twitter_update',$(this).data('bng_name'))){
+                        
+                        $(this).siblings('span:nth-child(3)').css('display' , 'block');             
+                        
+                        $('.pop div span.plus').show();
+                        $('.pop div span.minus').show();
+                        $('.pop div span.minus_check').hide();
+                        $('.pop div span.plus_check').hide();
 
-                                $('.pop table td span').css('display' , 'none');
-                                $('.pop ul').slideUp();
-                                view_twitter($(this).data('bng_name'),$(this).data('bng_name'));
-                                postact_flag=true;
-                            }
-                        }else if($('.pop div span:nth-child(3)').css('display') == 'block'){    // +-버튼이 모두 있는 경우(-버튼을 클릭한경우)                                                                       
-                            $('.pop table td span').css('display' , 'block');
-                            $(this).siblings('span:nth-child(3)').css('display' , 'none');
-                            $(this).children('img').attr('src' , '<?php echo base_url('/assets/images/check.png') ?>');
-                            $(this).css('float' , 'right');
-                        }
-                    });
+                        $('.pop table td span').css('display' , 'none');
+                        $('.pop ul').slideUp();
+                        view_twitter($(this).data('bng_name'),$(this).data('bng_name'));
+                        postact_flag=true;
+                    }
+                   
+                });
+
+
+                        
+
+
+                $('.pop div span.minus').click(function(){
+                    $('.pop table td span').css('display' , 'block');
+                    $(this).siblings('span:nth-child(3)').css('display' , 'none');
+                    $('.pop div span.plus').hide();
+                    $('.pop div span.minus').hide();
+                    $('.pop div span.plus_check').hide();
+                    $('.pop div span.minus_check').show();
+                    
+                    
+                });
+
+                $('.pop div span.minus_check').click(function(){
+                    
+                    $('.pop div span.plus_check').hide();
+                    $('.pop div span.minus_check').hide();
+                    $('.pop div span.plus').show();
+                    $('.pop div span.minus').show();
+                    $('.pop table td span').css('display' , 'none');
+                   
+                });
 
             // 삭제버튼 클릭시
                 $('.pop table td span').click(function(){
@@ -242,11 +269,17 @@
 
                         <h2>인 물 트 위 터</h2>
 
-                        <span data-bng_name="person_twitter" style="margin-right:2%">
+                        <span data-bng_name="person_twitter"  class="plus" style="margin-right:2%">
                             <img src="<?php echo base_url('/assets/images/plus.png') ?>" alr="plus">
                         </span>
-                        <span data-bng_name="person_twitter" id="postact_person_twitter" class="">
+                        <span data-bng_name="person_twitter"  class="minus">
                             <img src="<?php echo base_url('/assets/images/minus.png') ?>" alr="minus">
+                        </span>
+                        <span data-bng_name="person_twitter"  style="display:none;float: right;" class="plus_check">
+                            <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
+                        </span>
+                        <span data-bng_name="person_twitter"  style="display:none;float: right;" class="minus_check">
+                            <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
                         </span>
                     </div>
                     <!-- +버튼 클릭시 , 추가 입력란 영역--> 
@@ -270,13 +303,22 @@
                         </span>
 
                         <h2>코인 공식 트위터</h2>
-
-                        <span data-bng_name="coin_twitter" style="margin-right:2%">
+                        <span data-bng_name="coin_twitter"  class="plus" style="margin-right:2%">
                             <img src="<?php echo base_url('/assets/images/plus.png') ?>" alr="plus">
                         </span>
-                        <span data-bng_name="coin_twitter" id="postact_coin_twitter">
+                        <span data-bng_name="coin_twitter"  class="minus">
                             <img src="<?php echo base_url('/assets/images/minus.png') ?>" alr="minus">
                         </span>
+                        <span data-bng_name="coin_twitter"  style="display:none;float: right;" class="plus_check">
+                            <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
+                        </span>
+                        <span data-bng_name="coin_twitter"  style="display:none;float: right;" class="minus_check">
+                            <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
+                        </span>
+
+                        
+
+                        
                     </div>
                     <!-- +버튼 클릭시 , 추가 입력란 영역--> 
                     <ul>
@@ -297,15 +339,24 @@
                         <span class="clear">
                             <img src="<?php echo base_url('/assets/images/clear02.png') ?>" alr="clear">
                         </span>
-
+    
                         <h2>거래소 바로가기</h2>
 
-                        <span  data-bng_name="coin_trade" style="margin-right:2%">
+                        <span data-bng_name="coin_trade"  class="plus" style="margin-right:2%">
                             <img src="<?php echo base_url('/assets/images/plus.png') ?>" alr="plus">
                         </span>
-                        <span data-bng_name="coin_trade" id="postact_coin_trade">
+                        <span data-bng_name="coin_trade"  class="minus">
                             <img src="<?php echo base_url('/assets/images/minus.png') ?>" alr="minus">
                         </span>
+                        <span data-bng_name="coin_trade"  style="display:none;float: right;" class="plus_check">
+                            <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
+                        </span>
+                        <span data-bng_name="coin_trade"  style="display:none;float: right;" class="minus_check">
+                            <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
+                        </span>
+
+                        
+                        
                     </div>
                     <!-- +버튼 클릭시 , 추가 입력란 영역--> 
                     <ul>
@@ -836,6 +887,12 @@
     function view_twitter(id,twitter_key) {
         var list_url = cb_url + '/main/twitter/' + twitter_key;
         $('#' + id).load(list_url);
+        $('.pop div span.plus').show();
+        $('.pop div span.minus').show();
+        $('.pop div span.plus_check').hide();
+        $('.pop div span.minus_check').hide();
+        $('.pop ul').slideUp();
+        postact_flag = false;
     }
 
     function view_coin(cur_unit) {
@@ -874,6 +931,35 @@
             }
         });
         return flag;
+    }
+
+    function twitter_delete(ban_id,bng_name) {
+        var flag=false;
+        var href;
+        if ( ban_id < 1) {
+            return false;
+        }
+        
+        href = cb_url + '/postact/twitter_delete/' + ban_id;
+        var $that = $(this);
+        $.ajax({
+            async: false,
+            url : href,
+            type : 'get',
+            dataType : 'json',
+            success : function(data) {
+                if (data.error) {
+                    alert(data.error);
+                    postact_flag = false;
+                    return ;
+                } else if (data.success) {
+                    view_twitter(bng_name,bng_name);
+                    postact_flag  = true;
+                    return ;
+                }
+            }
+        });
+        return ;
     }
     //]]>
 </script>

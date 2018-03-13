@@ -3796,4 +3796,36 @@ class Postact extends CB_Controller
         exit(json_encode($result));
 
     }
+
+    public function twitter_delete($ban_id)
+    {
+
+        
+
+        
+            
+        $result = array();
+        $this->output->set_content_type('application/json');
+        
+
+        
+        if (empty($ban_id) OR $ban_id < 1) {
+            $result = array('error' => '잘못된 접근입니다');
+            exit(json_encode($result));
+        }
+
+        
+
+        $this->load->model('Twitter_model');
+        
+
+        $this->Twitter_model->delete($ban_id);
+        
+
+        
+
+        $result = array('success' => '선택된 항목이 삭제되었습니다');
+        exit(json_encode($result));
+
+    }
 }

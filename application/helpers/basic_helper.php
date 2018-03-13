@@ -870,7 +870,7 @@ if ( ! function_exists('twitter_list')) {
                     if (element('ban_url', $val)) {
                         $html .= '</a>';
                     }
-                    if($CI->member->item('mem_id')===element('mem_id', $val) || $CI->member->is_admin() === 'super') $html .= '<span>삭 제</span></td></tr>';
+                    if($CI->member->item('mem_id')===element('mem_id', $val) || $CI->member->is_admin() === 'super') $html .= '<span onClick="twitter_delete('.element('ban_id', $val).',\''.$position.'\');">삭 제</span></td></tr>';
                     else $html .= '</td></tr>';
                     
                 }
