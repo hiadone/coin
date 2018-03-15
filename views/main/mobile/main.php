@@ -381,7 +381,7 @@
                 <figure><img src="'.base_url('assets/images/gold_spoon.png').'" alt="spoon"><figcaption>'.$this->member->item('mem_nickname').
                 '</figcaption></figure></li>';
                 echo '<li>|</li>';
-                echo '<li>포인트 1000P</li>';
+                echo '<li>포인트 '.number_format($this->member->item('mem_point')).'P</li>';
                 echo '<li>|</li>';
                  echo '<li onClick=\'location.href="'.site_url('mypage').'";\'>회원정보</li>';
                  echo '<li>|</li>';
@@ -531,7 +531,7 @@
 
     <!-- ad 영역 -->
         <section class="ad">
-            <?php echo banner("index_banner2") ?>
+            <?php echo banner("main_banner2") ?>
         </section>
 
     <!-- tab07(최신뉴스,인기뉴스) 영역 -->
@@ -876,7 +876,7 @@
 
     <!-- ad 영역 -->
         <section class="ad">
-            <?php echo banner("index_banner") ?>
+            <?php echo banner("main_banner") ?>
         </section>
     
 </article>
