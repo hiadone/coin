@@ -1,0 +1,517 @@
+@charset "utf-8";
+html{
+	position: relative;
+	padding-bottom:100px;
+	box-sizing: border-box;
+	height: auto;
+	overflow-x: hidden;
+	font-size: 12px;
+	font-family: 'Nanum Gothic', sans-serif;
+	min-height: 100%;
+}
+
+/*메뉴 이름*/
+h2{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+/*게시물의 제목*/
+h3{
+	font-size: 13px;
+	display: inline-block;
+	font-weight: bold;
+}
+
+/*팝업창의 타이틀*/
+h4{
+	font-size: 19px;
+	font-weight: bold;
+}
+
+/*롤링텍스트의 알림글자*/
+h5{
+	font-size: 11px;
+	display: inline-block;
+	font-weight: bold;
+}
+
+p{
+	line-height: 17px;
+}
+
+.big_font{
+	font-size: 15px;
+}
+
+.nomal_font02{
+	font-size: 13px;
+}
+
+.normal_font{
+	font-size: 12px;
+}
+
+.small_font{
+	font-size: 11px;
+}
+
+button{
+	border-radius: 5px;
+	outline: none;
+	border:0;
+	background-color:#1c446d;
+	color: #fff;
+	font-size: 12px;
+	height: 25px;
+}
+
+
+textarea{
+	overflow-y: auto;
+	resize: none;
+	padding:10px;
+	box-sizing: border-box;
+	outline: none;
+	border:1px solid #ededed;
+}
+
+/*ad css*/
+	.ad img{
+		width: 100%;
+	}
+
+/*ham css*/
+	.ham{
+		width: 350px;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right:-320px;
+		z-index: 500;
+	}
+
+	.ham > img{
+		width: 30px;
+		margin-top: 175px;
+	}
+
+	.ham_cont{
+		width: 100%;
+		height: 100%;
+		/*float: right;*/
+		border-left:1px solid #ededed;
+		box-sizing: border-box;
+		background-color: #fff;
+	}
+
+	.ham_cont h2{
+		background-color: #1c446d;
+		color: #fff;
+		padding:5%;
+		box-sizing: border-box;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	.ham_cont div{
+		width: 90%;
+		margin:0 auto 10%; 
+		padding:5%;
+		box-sizing: border-box;
+		border:1px solid #ededed;
+		text-align: center;
+	}
+
+	.ham_cont div h3{
+		margin-bottom:20px;
+	}
+
+	/*ham_login*/
+		.ham_login ul{
+			width: 90%;
+			margin:0 auto;
+		}
+
+		.ham_login ul li{
+			width: 100%;
+			height: 40px;
+			padding:0 3%;
+			box-sizing: border-box;
+			line-height: 40px;
+			margin-bottom: 3%;
+			border-radius: 10px;
+			color:#fff;
+			font-weight: bold;
+		}
+
+		.ham_login figure{
+			width: 80%;
+			float: left;
+		}
+
+		.ham_login figure img{
+			width:40px;
+			float: left;
+			margin-right: 1.5%;
+		}
+
+		.ham_login span{
+			width: 30px;
+			height: 30px;
+			display: inline-block;
+			float: right;
+			margin-top:5px;
+		}
+
+		.ham_login span img{
+			width: 100%;
+		}
+
+	/*ham_info*/
+		.ham_info span{
+			width:90%;
+			display: inline-block;
+			text-align: right;
+			margin:0 5%;
+		}
+		.ham_info table{
+			width: 90%;
+			margin:15px auto 20px;
+		}
+
+		.ham_info th,
+		.ham_info td{
+			padding:10px;
+			text-align: center;
+			border:1px solid #ededed;
+			vertical-align: middle;
+		}
+
+		.ham_info th{
+			width: 35%;
+			font-weight: bold;
+			background-color: #f0f3f7;
+		}
+
+		.ham_info figure{
+			height: 25px;
+			display: inline-block;
+		}
+
+		.ham_info img{
+			width: 25px;
+			margin-right: 5px;
+			float: left;
+		}
+
+		.ham_info figcaption{
+			display: inline-block;
+			height: 25px;
+			line-height: 25px;
+		}
+
+		.ham_info ul{
+			width: 90%;
+			margin: 0 auto;
+		}
+
+		.ham_info button{
+			width: 49%;
+			margin-right: 2%;
+			float: left;
+			font-weight: bold;
+		}
+
+		.ham_info li:last-child button{
+			margin-right: 0;
+		}
+
+	/*ham_out*/
+		.ham_out img{
+			margin-bottom: 20px;
+		}
+
+		.ham_out button{
+			width: 90%;
+			margin: 0 5%;
+		}
+
+/*header css*/
+	header{
+		width: 1280px;
+		height: 100px;
+		padding:15px 0;
+		box-sizing: border-box;
+		margin:0 auto;
+		text-align: center;
+	}
+
+	header .ad{
+		width: 250px;
+		height: 100%;
+		float: left;
+	}
+
+	header h1{
+		width: 300px;
+		height: 100%;
+		display: inline-block; 
+		position: relative;
+	}
+
+	header h1 img{
+		width: 100%;
+	}
+
+	header h1 span{
+		position: absolute;
+		top: 6px;
+		width: 100%;
+		display: inline-block;
+		text-align: center;
+		font-family: 'Jeju Gothic', sans-serif;
+		color:#4e4e50;
+	}
+
+	.head_search{
+		width: 250px;
+		height: 35px;
+		margin-top: 35px;
+		box-sizing: border-box;
+		border:2px solid #1c446d;
+		float: right;
+		padding: 5px;
+	}
+
+	.head_search input{
+		width: 218px;
+		height: 21px;
+		float: left;
+		border:0;
+		outline: none;
+	}
+
+	.head_search input.search_img{
+		width: 17px;
+		margin-top: 2px;
+		float: left;
+	}
+
+	.head_search input::-webkit-search-cancel-button{
+		-webkit-appearance: none;
+		appearance:none;
+		width: 15px;
+		height: 15px;
+		background:url(../images/head_clear.png) no-repeat;
+		background-size: 15px;
+	}
+
+	.head_search input::-ms-clear{
+		-webkit-appearance: none;
+		appearance:none;
+		width: 15px;
+		height: 15px;
+		background:url(../images/head_clear.png) no-repeat;
+		background-size: 15px;
+	}
+	
+/*login(aside) css*/
+	.login{
+		width: 100%;
+		height: 30px;
+		background-color: #1c446d;
+	}
+
+	.login_cont{
+		width: 1280px;
+		height: 30px;
+		margin:0 auto;
+	}
+
+	/*알림 css*/
+		.login_noice{
+			width: 500px;
+			height: 30px;
+			float: left;
+		}
+
+		.login_noice h5{
+			width: 40px;
+			height: 20px;
+			background-color: #002643;
+			text-align: center;
+			line-height: 19px;
+			color: #fff;
+			border-radius: 5px;
+			margin:5px 10px 5px 0;
+			float: left;
+		}
+
+		.login_noice .bx-wrapper{
+			width: 450px;
+			height: 30px;
+			float: left;
+		}
+
+		.login_noice .bx-viewport{
+			width: 420px !important;
+			float: left;
+		}
+
+		.login_noice .bx-viewport li{
+			height: 30px;
+			line-height: 30px;
+			color: #fff;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow:hidden;
+		}
+
+		.login_noice .bx-controls{
+			width: 30px;
+			height: 30px;
+			float: right;
+			text-align: center;
+			line-height: 25px;
+		}
+
+		.login_noice .bx-default-pager{
+			display: none;
+		}
+
+		.login_noice .bx-prev{
+			color: #fff;
+			line-height: 30px;
+		}
+
+		.login_noice .bx-next{
+			display: none;
+		}
+
+	/*로그인,회원가입 css*/
+		.login_list{
+			height: 30px;
+			float: right;
+			color: #fff;
+			font-weight: bold;
+		}
+
+		.login_list li{
+			height: 30px;
+			line-height: 30px;
+			float: left;
+			text-align: center;
+		}
+
+
+
+		.login_list li:nth-child(2n){
+			line-height: 28px;
+			margin:0 15px;
+		}
+
+		.login_list li img{
+			width: 20px;
+			height: 20px;
+			margin-right: 5px;
+			margin:5px 5px 5px 0;
+			float: left;
+		}
+
+		.login_list li figcaption{
+			display: inline-block;
+		}
+
+/*nav css*/
+	nav{
+		width: 100%;
+		height: 25px;
+		border-bottom:1px solid #ededed;
+	}
+
+	nav ul{
+		width: 1280px;
+		margin:0 auto;
+	}
+
+	nav li{
+		width: 13.85%;
+		line-height: 25px;
+		float: left;
+		text-align: center;
+		box-sizing: border-box;
+		font-weight: normal;
+		color: #000;
+		letter-spacing: 3px;
+	}
+
+	nav li:nth-child(2n){
+		width: 0.5%;
+		color: #ededed;
+	}
+
+	nav li:last-child{
+		display: none;
+	}
+
+	/*메인메뉴 선택 css*/
+	nav .menu_check{
+ 		/*border-bottom:5px solid #1c446d;*/
+ 		font-weight: bold;
+ 		color: #1c446d;
+ 	}
+
+/*footer css*/
+	footer{
+		width: 100%;
+		height: 100px;
+		position: absolute;
+		bottom: 0;
+		background-color: #f7f7f7;
+	}
+
+	.footer{
+		width: 1280px;
+		height: 46px;
+		margin: 27px auto;
+	}
+
+	.footer h1{
+		width: 170px;
+		margin-right: 15px;
+		float: left;
+	}
+
+	.footer h1 img{
+		width: 100%;
+	}
+
+	.footer ul{
+		width: 1095px;
+		height: 23px;
+		line-height: 23px;
+		float: left;
+	}
+
+	.footer ul li{
+		float: left;
+	}
+
+	.footer ul li:nth-child(2n){
+		width: 80px;
+		text-align: center;
+	}
+
+	.footer p{
+		width: 1095px;
+		height: 23px;
+		line-height: 23px;
+		font-weight: bold;
+	}
+
+	.footer p span{
+		float: right;
+		font-weight: bold;
+		font-family: 'Jeju Gothic', sans-serif;
+	}

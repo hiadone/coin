@@ -564,7 +564,7 @@ if ( ! function_exists('twitter_image_url')) {
  * 배너 출력하기
  */
 if ( ! function_exists('banner')) {
-    function banner($position = '', $type = 'rand', $limit = 1, $start_tag = '', $end_tag = '')
+    function banner($position = '', $type = 'rand', $limit = 1, $offset = 0,$start_tag = '', $end_tag = '')
     {
 
         /**
@@ -597,10 +597,13 @@ if ( ! function_exists('banner')) {
         $html = '';
 
         $CI->load->model('Banner_model');
-        $result = $CI->Banner_model->get_banner($position, $type, $limit);
+        $result = $CI->Banner_model->get_banner($position, $type, $limit,$offset);
 
         if ($result) {
             foreach ($result as $key => $val) {
+                if(element('ban_activated', $val)!=='1'){
+                    continue;
+                }
                 if ($CI->cbconfig->get_device_view_type() === 'mobile'
                     && element('ban_device', $val) === 'pc') {
                     continue;
@@ -615,6 +618,7 @@ if ( ! function_exists('banner')) {
 
                     if (element('ban_url', $val)) {
                         $html .= '<a href="' . site_url('gotourl/banner/' . element('ban_id', $val)) . '" ';
+                        // $html .= '<a href="#" ';
                         if (element('ban_target', $val)) {
                             $html .= ' target="_blank" ';
                         }

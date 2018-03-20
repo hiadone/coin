@@ -1,10 +1,6 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
-
-<div class="access">
-    <div class="table-box">
-        <div class="table-heading">로그인</div>
-        <div class="table-body">
             <?php
+            /*
             echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
             echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-info"><button type="button" class="close alertclose" >&times;</button>', '</div>');
             echo show_alert_message($this->session->flashdata('message'), '<div class="alert alert-auto-close alert-dismissible alert-info"><button type="button" class="close alertclose" >&times;</button>', '</div>');
@@ -32,43 +28,69 @@
                 <div class="alert alert-dismissible alert-info autologinalert" style="display:none;">
                     자동로그인 기능을 사용하시면, 브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다. 자동로그이 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다. 단, 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.
                 </div>
-            <?php echo form_close(); ?>
+            <?php echo form_close(); 
+            */
+            ?>
             <?php
             if ($this->cbconfig->item('use_sociallogin')) {
                 $this->managelayout->add_js(base_url('assets/js/social_login.js'));
             ?>
-                <ol class="loginform">
-                    <li>
-                        <span>소셜로그인</span>
-                        <div>
-                        <?php if ($this->cbconfig->item('use_sociallogin_facebook')) {?>
-                            <a href="javascript:;" onClick="social_connect_on('facebook');" title="페이스북 로그인"><img src="<?php echo base_url('assets/images/social_facebook.png'); ?>" width="22" height="22" alt="페이스북 로그인" title="페이스북 로그인" /></a>
-                        <?php } ?>
-                        <?php if ($this->cbconfig->item('use_sociallogin_twitter')) {?>
-                            <a href="javascript:;" onClick="social_connect_on('twitter');" title="트위터 로그인"><img src="<?php echo base_url('assets/images/social_twitter.png'); ?>" width="22" height="22" alt="트위터 로그인" title="트위터 로그인" /></a>
-                        <?php } ?>
-                        <?php if ($this->cbconfig->item('use_sociallogin_google')) {?>
-                            <a href="javascript:;" onClick="social_connect_on('google');" title="구글 로그인"><img src="<?php echo base_url('assets/images/social_google.png'); ?>" width="22" height="22" alt="구글 로그인" title="구글 로그인" /></a>
-                        <?php } ?>
-                        <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
-                            <a href="javascript:;" onClick="social_connect_on('naver');" title="네이버 로그인"><img src="<?php echo base_url('assets/images/social_naver.png'); ?>" width="22" height="22" alt="네이버 로그인" title="네이버 로그인" /></a>
-                        <?php } ?>
-                        <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
-                            <a href="javascript:;" onClick="social_connect_on('kakao');" title="카카오 로그인"><img src="<?php echo base_url('assets/images/social_kakao.png'); ?>" width="22" height="22" alt="카카오 로그인" title="카카오 로그인" /></a>
-                        <?php } ?>
-                        </div>
+            <section class="ham_login">
+                <h2>통 합 로 그 인</h2>
+                <div>
+                    <h3>SNS 간편로그인</h3>
+                    <p>
+                        비트이슈에서는 SNS로 로그인하여<br>
+                        간편하게 서비스를 이용하실 수 있습니다.<br><br>
+                        원하시는 SNS를 선택하시고<br>
+                        로그인 해주세요.
+                    </p>
+                </div>
+                
+                <ul>
+                    <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
+                    <li style="background-color:#fbe300; color:#3a1e1f">
+                        <a href="javascript:;" onClick="social_connect_on('kakao');" title="카카오 로그인">
+                        <figure>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_talk.png" alt="ham_talk_img">
+                            <figcaption class="big_font">카 카 오 톡</figcaption>
+                        </figure>
+                        <span>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
+                        </span>
+                        </a>
                     </li>
-                </ol>
-
-            <?php } ?>
-
-        </div>
-        <div class="table-footer">
-            <a href="<?php echo site_url('register'); ?>" class="btn btn-success btn-sm" title="회원가입">회원가입</a>
-            <a href="<?php echo site_url('findaccount'); ?>" class="btn btn-default btn-sm" title="아이디 패스워드 찾기">아이디 패스워드 찾기</a>
-        </div>
-    </div>
-</div>
+                    <?php } ?>
+                    <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
+                    <li style="background-color:#1ec802;">
+                        <a href="javascript:;" onClick="social_connect_on('naver');" title="네이버 로그인" style="color:#fff;">
+                        <figure>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_naver.png" alt="ham_naver_img">
+                            <figcaption class="big_font">네 이 버</figcaption>
+                        </figure>
+                        <span>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
+                        </span>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <?php if ($this->cbconfig->item('use_sociallogin_facebook')) {?>
+                    <li style="background-color:#3c589e;color:#fff;">
+                        <a href="javascript:;" onClick="social_connect_on('facebook');" title="페이스북 로그인" style="color:#fff;">
+                        <figure>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_face.png" alt="ham_face_img">
+                            <figcaption class="big_font">페 이 스 북</figcaption>
+                        </figure>
+                        <span>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
+                        </span>
+                        </a>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </section>
+        <?php } ?>
+       
 
 <script type="text/javascript">
 //<![CDATA[

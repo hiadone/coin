@@ -108,7 +108,7 @@ class Pagemenu extends CB_Controller
             array(
                 'field' => 'men_link',
                 'label' => '링크주소',
-                'rules' => 'trim|required|prep_url|valid_url',
+                'rules' => 'trim|required',
             ),
         );
         $this->form_validation->set_rules($config);
