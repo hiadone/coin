@@ -50,7 +50,7 @@ $record_num = $this->uri->segment($last);
             ?>
 
             
-            <li class="submenu_arrow"></li>
+            
         </ul>
         
     </section>

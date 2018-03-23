@@ -475,9 +475,18 @@
 			height: 30px;
 			margin: 0 auto;
 			overflow-y: hidden;
+			width:100%;
+			text-align: center;
+		}
+
+		.submenu ul{
+
+			display:inline-block;
+
 		}
 
 		.submenu li{
+			height: 30px;
 			width: 144px;
 			float: left;
 			text-align: center;
@@ -485,13 +494,18 @@
 
 		.submenu li.menu_active{
 			font-weight: bold;
+			background-image:url('/assets/images/new.png');
+			background-repeat:no-repeat;
+			background-position: center bottom;
 		}
+
+		
 
 		.submenu li:nth-child(2n){
 			width: 12px;
 		}
 
-		.submenu li:nth-last-of-type(2){
+		.submenu li:last-child{
 			display: none;
 		}
 
