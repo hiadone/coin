@@ -315,6 +315,10 @@
 			width: 305px;
 		}
 
+		.tab_text td:nth-child(2) img{
+			float: right;
+		}
+
 		.tab_text td:nth-child(3){
 			width: 50px;
 			text-align: right;

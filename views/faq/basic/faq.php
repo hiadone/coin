@@ -82,8 +82,8 @@ $record_num = $this->uri->segment($last);
         }
         ?>
         </div>
-        <div class="post_sear">
-        <form class="navbar-form navbar-right pull-right" action="<?php echo current_url(); ?>" onSubmit="return faqSearch(this)">
+        <div class="post_sear" style='width: 100%;'>
+        <form class="navbar-form navbar-right pull-right" action="<?php echo current_url(); ?>" onSubmit="return faqSearch(this)" style='width: 100%;'>
             <select class="normal_font" name="sfield">
                 <option value="faq_both" <?php echo ($this->input->get('sfield') === 'faq_both') ? ' selected="selected" ' : ''; ?>>제목+내용</option>
                 <option value="faq_title" <?php echo ($this->input->get('sfield') === 'faq_title') ? ' selected="selected" ' : ''; ?>>제목</option>
@@ -92,7 +92,7 @@ $record_num = $this->uri->segment($last);
             </select>
             <input type="text" class="" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
             <button class="find_img" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
-            <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm pull-right">전체</a>
+            <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm pull-right">전 체</a>
         </form>
         <script type="text/javascript">
         //<![CDATA[

@@ -94,7 +94,7 @@ $record_num = $this->uri->segment($last);
             </select>
             <input type="text" class="" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
             <button class="find_img" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
-            <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm pull-right">전체</a>
+            
              <?php if (element('is_admin', $view)) { ?>
             <div class="btn btn-default btn-sm pull-right" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선택삭제</div>
             <?php } ?>
@@ -124,6 +124,7 @@ $record_num = $this->uri->segment($last);
             
             <?php if (element('write_url', element('list', $view))) { ?>
                 <div class="post_button">
+                    <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">전 체</a>
                     <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>
                 </div>
             <?php } ?>

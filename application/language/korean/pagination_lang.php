@@ -37,7 +37,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['pagination_first_link'] = '&lsaquo; 처음';
+$lang['pagination_first_link'] = '&lt&lt;';
 $lang['pagination_next_link'] = '&gt;';
 $lang['pagination_prev_link'] = '&lt;';
-$lang['pagination_last_link'] = '맨끝 &rsaquo;';
+$lang['pagination_last_link'] = '&gt&gt;';
