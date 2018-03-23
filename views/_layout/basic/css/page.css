@@ -30,7 +30,7 @@
 			background-color: #fff;
 			overflow-y: auto;
 			position: absolute;
-			top: 150px;
+			top: 100px;
 			bottom:0;
 			left: 0;
 			right: 0;
@@ -57,7 +57,7 @@
 	/*twit_pop (트위터 더보기 팝업) css*/
 		.twit_pop{
 			width: 400px;
-			height: 600px;
+			max-height: 600px;
 		}
 		.twit_pop img{
 			width: 25px;
@@ -89,18 +89,16 @@
 			line-height: 17px;
 		}
 
-		.twit_pop form{
-			display: none;
-		}
+		
 
-		.twit_pop form input{
+		.twit_pop input{
 			width: 100%;
 			height: 30px;
 			padding: 0 10px;
 			box-sizing: border-box;
 			border:0;
 			border-bottom:1px solid #ededed;
-			outline: none;
+			outline: none;			
 		}
 
 		.twit_pop ul{
@@ -362,7 +360,7 @@
 			margin-bottom:0;
 		}
 
-		#news figure img{
+		#news figure > img{
 			width: 148px;
 			height: 100px;
 			float: left;
@@ -489,6 +487,10 @@
 			width: 12px;
 		}
 
+		.submenu li:nth-last-of-type(2){
+			display: none;
+		}
+
 		.submenu li.submenu_arrow{
 			width: 12px;
 			height: 12px;
@@ -547,7 +549,7 @@
 			border-top: 2px solid #4f4f51;
 			border-bottom:1px solid #ededed;
 			margin-bottom:20px;
-			display: none;
+			/*display: none;*/
 		}
 
 		.post_table_li{
@@ -571,39 +573,39 @@
 			/*번호*/
 				.post_table_li td:nth-child(1),
 				.post_table th:nth-child(1){
-					width: 40px;
+					/*width: 40px;*/
 				}
 
 			/*제목*/
 				.post_table_li td:nth-child(2),
 				.post_table_li th:nth-child(2){
-					width: 945px;
+					/*width: 945px;*/
 				}
 
-				.post_table_li td:nth-child(2) span{
+				.post_table_li span.comment-count{
 					font-weight: bold;
 					color: red;
 				}
 
 			/*닉네임*/
-				.post_table_li td:nth-child(3),
-				.post_table_li th:nth-child(3){
+				.post_table_li td.spoon-img,
+				.post_table_li th.spoon-img{
 					width:135px;
 					padding:0 10px;
 					box-sizing: border-box;
 				}
 
-				.post_table_li td figure{
+				.post_table_li td.spoon-img figure{
 					width: 115px;
 					}
 
-				.post_table_li td figure img{
+				.post_table_li td.spoon-img figure img{
 					width: 25px;
 					margin-right: 10px;
 					float: left;
 				}
 
-				.post_table_li td figcaption{
+				.post_table_li td.spoon-img figcaption{
 					width: 80px;
 					height: 25px;
 					line-height: 25px;
@@ -617,13 +619,13 @@
 			/*날짜*/
 				.post_table_li td:nth-child(4),
 				.post_table_li th:nth-child(4){
-					width: 80px;
+					/*width: 80px;*/
 				}
 
 			/*조회*/
 				.post_table td:nth-child(5),
 				.post_table th:nth-child(5){
-					width: 40px;
+					/*width: 40px;*/
 				}	
 
 	/*출석체크 css*/

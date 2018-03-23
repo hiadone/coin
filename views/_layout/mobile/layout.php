@@ -178,7 +178,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                 <tr>
                                     <th colspan="3" class="big_font" >
                                     <figure>
-                                        <img src="<?php echo base_url('assets/images/gold_spoon.png') ?>" alt="gold_spoon">
+                                        <img src="<?php echo base_url('assets/images/spoon_'.$this->member->item('mem_level').'.png') ?>" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
                                         <figcaption>
                                             <a style="color:#fff; " href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?></a>
                                         </figcaption>

@@ -157,40 +157,71 @@ class Group extends CB_Controller
     }
 
     function view_board($brd_key,$more=0){
-        $this->cbconfig->get_device_view_type();
-
-        if($brd_key==='live_news'){
-            $config = array(
-                'skin' => 'mobile',            
-                'brd_key' => $brd_key,
-                'limit' => 6,
-                'length' => 40,
-                'is_gallery'=> 1,
-                'image_width'=> 120,
-                'image_height'=> 90,
-            );
-        } else if($brd_key==='live_news_sub'){
-            $config = array(
-                'skin' => 'mobile',            
-                'brd_key' => 'live_news',
-                'limit' => 6,
-                'length' => 40,
-                'is_gallery'=> 1,
-                'image_width'=> 120,
-                'image_height'=> 90,
-                'post_notice'=> 4,
-            );
+        if($this->cbconfig->get_device_view_type()==='desktop'){
+            if($brd_key==='live_news'){
+                $config = array(
+                    'skin' => 'basic',            
+                    'brd_key' => $brd_key,
+                    'limit' => 6,
+                    'length' => 40,
+                    'is_gallery'=> 1,
+                    'image_width'=> 120,
+                    'image_height'=> 90,
+                );
+            } else if($brd_key==='live_news_sub'){
+                $config = array(
+                    'skin' => 'basic',            
+                    'brd_key' => 'live_news',
+                    'limit' => 6,
+                    'length' => 40,
+                    'is_gallery'=> 1,
+                    'image_width'=> 120,
+                    'image_height'=> 90,
+                    'post_notice'=> 4,
+                );
+            } else {
+                
+                $config = array(
+                    'skin' => 'basic',            
+                    'brd_key' => $brd_key,
+                    'limit' => 5,
+                    'length' => 40,
+                );
+            }
+            echo $this->board->latest_group_desktop($config,$more);
         } else {
-            
-            $config = array(
-                'skin' => 'mobile',            
-                'brd_key' => $brd_key,
-                'limit' => 5,
-                'length' => 40,
-            );
+            if($brd_key==='live_news'){
+                $config = array(
+                    'skin' => 'mobile',            
+                    'brd_key' => $brd_key,
+                    'limit' => 6,
+                    'length' => 40,
+                    'is_gallery'=> 1,
+                    'image_width'=> 120,
+                    'image_height'=> 90,
+                );
+            } else if($brd_key==='live_news_sub'){
+                $config = array(
+                    'skin' => 'mobile',            
+                    'brd_key' => 'live_news',
+                    'limit' => 6,
+                    'length' => 40,
+                    'is_gallery'=> 1,
+                    'image_width'=> 120,
+                    'image_height'=> 90,
+                    'post_notice'=> 4,
+                );
+            } else {
+                
+                $config = array(
+                    'skin' => 'mobile',            
+                    'brd_key' => $brd_key,
+                    'limit' => 5,
+                    'length' => 40,
+                );
+            }
+            echo $this->board->latest_group($config,$more);
         }
-        echo $this->board->latest_group($config,$more);
-        
     }
 
     function get_coin_data($cur_unit=''){

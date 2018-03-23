@@ -39,7 +39,7 @@ class Faq extends CB_Controller
     /**
      * FAQ 페이지입니다
      */
-    public function index($fgr_key = '')
+    public function index($fgr_key = '',$faq_id = '')
     {
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_faq_index';

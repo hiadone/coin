@@ -763,13 +763,13 @@ if ( ! function_exists('twitter')) {
         if ($open) {
             for($i; $i<4; $i++){
 
-                if($i > 0 && $i % 3===0) $html .= '<td>+</td></tr>';
+                if($i > 0 && $i % 3===0) $html .= '<td class="pointer">+</td></tr>';
                 else $html .= '<td></td>';
             }
             $open = false;
         } else {
             for($i; $i<4; $i++){
-                if($i > 0 && $i % 3===0) $html .= '<td>+</td></tr>';
+                if($i > 0 && $i % 3===0) $html .= '<td class="pointer">+</td></tr>';
                 else $html .= '<td></td>';
             }
         }
@@ -874,7 +874,7 @@ if ( ! function_exists('twitter_list')) {
                     if (element('ban_url', $val)) {
                         $html .= '</a>';
                     }
-                    if($CI->member->item('mem_id')===element('mem_id', $val) || $CI->member->is_admin() === 'super') $html .= '<span onClick="twitter_delete('.element('ban_id', $val).',\''.$position.'\');">삭 제</span></td></tr>';
+                    if($CI->member->item('mem_id')===element('mem_id', $val) || $CI->member->is_admin() === 'super') $html .= '<span class="pointer" onClick="twitter_delete('.element('ban_id', $val).',\''.$position.'\');">삭 제</span></td></tr>';
                     else $html .= '</td></tr>';
                     
                 }

@@ -159,7 +159,7 @@
                     
                     if(twitter_action('twitter_update',$(this).data('bng_name'))){
                         
-                        $(this).siblings('span:nth-child(3)').css('display' , 'block');             
+                        // $(this).siblings('span:nth-child(3)').css('display' , 'block');             
                         
                         $('.pop div span.plus').show();
                         $('.pop div span.minus').show();
@@ -180,7 +180,7 @@
 
                 $('.pop div span.minus').click(function(){
                     $('.pop table td span').css('display' , 'block');
-                    $(this).siblings('span:nth-child(3)').css('display' , 'none');
+                    // $(this).siblings('span:nth-child(3)').css('display' , 'none');
                     $('.pop div span.plus').hide();
                     $('.pop div span.minus').hide();
                     $('.pop div span.plus_check').hide();
@@ -200,9 +200,9 @@
                 });
 
             // 삭제버튼 클릭시
-                $('.pop table td span').click(function(){
-                    $(this).parents('td').parents('tr').remove();
-                });
+                // $('.pop table td span').click(function(){
+                //     $(this).parents('td').parents('tr').remove();
+                // });
 
         // 롤링텍스트
                 var slider = $('.rolling_news ul').bxSlider({
@@ -378,7 +378,7 @@
             <?php
             if($this->member->is_member()){
                 echo '<li onClick=\'location.href="'.site_url('mypage').'";\'  title="마이페이지">
-                <figure><img src="'.base_url('assets/images/gold_spoon.png').'" alt="spoon"><figcaption>'.$this->member->item('mem_nickname').
+                <figure><img src="'.base_url('assets/images/spoon_'.$this->member->item('mem_level').'.png').'" alt="spoon"><figcaption>'.$this->member->item('mem_nickname').
                 '</figcaption></figure></li>';
                 echo '<li>|</li>';
                 echo '<li>포인트 '.number_format($this->member->item('mem_point')).'P</li>';
@@ -758,7 +758,7 @@
 
     <!-- tab05(유머,자유갤러리) 영역-->
         <section class="tab05 wrap middle_font">
-            <h3><a href="<?php echo site_url('/group/g-b/free_gallery') ?>">
+            <h3><a href="<?php echo site_url('/group/g-b-a/free_gallery') ?>">
                 갤러리/유머
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>

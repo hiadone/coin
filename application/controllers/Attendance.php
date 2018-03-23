@@ -309,9 +309,26 @@ class Attendance extends CB_Controller
             ->get_attend_list($per_page, $offset, $where, $findex, $forder);
 
         $list_num = $result['total_rows'] - ($page - 1) * $per_page;
-
+        $this->load->model('Member_group_model');
         if (element('list', $result)) {
             foreach (element('list', $result) as $key => $val) {
+
+                $dbmember = $this->Member_model
+                        ->get_by_memid(element('mem_id', $val), 'mem_level');
+                $result['list'][$key]['display_level']= element('mem_level', $dbmember);
+
+                
+                
+
+                    // $this->load->model('Member_group_model');
+
+                    
+                $item = $this->Member_group_model->get_one('','',array('mgr_order'=>element('mem_level', $dbmember)));
+                
+                $result['list'][$key]['member_group_name'] = element('mgr_title', $item);
+                    
+                
+
                 $result['list'][$key]['display_name'] = display_username(
                     element('mem_userid', $val),
                     element('mem_nickname', $val),

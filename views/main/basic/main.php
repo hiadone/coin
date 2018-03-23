@@ -1,6 +1,13 @@
 <script>
     // 전체 스크립트 
     $(document).ready(function(){
+        
+        $('.twit_pop').height(Math.floor(($(window).height()/1.5)));
+
+        $( window ).resize(function() {
+          $('.twit_pop').height(Math.floor(($(window).height()/1.5)));
+        });
+
         var slider = $('.img_slide ul').bxSlider({
             mode:'horizontal',            // 슬라이드의 이동방향 설정 vertical,fade
             speed: 700, // m/s ex > 1000 = 1s
@@ -67,128 +74,261 @@
 
             $("#" + click_class + " .tab_cont div:eq(" + index + ")").fadeIn();
         });
+
+
+        // 인물트위터 , 코인공식트위터 , 거래소 더보기 버튼 클릭시 cover
+        $('table.twitter_table tr:last-child td:last-child').click(function(){
+
+            $('.pop').fadeIn();
+            $('section.' + $(this).parent().parent().parent().data('bng_name')+'_more').fadeIn();
+            view_twitter($(this).parent().parent().parent().data('bng_name'),$(this).parent().parent().parent().data('bng_name'));
+            // $('.twit_pop').fadeIn();
+                // $('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴
+                // $("html, body").bind('scroll  mousewheel', function(e){e.preventDefault();e.stopPropagation();return false;});
+        });
+
+        var popup_hei = $('html').height() + 100;
+        $('.pop').css('height' , popup_hei);
+        
+        // 스크롤바 따라 다니는 스크립트
+        var currentPosition = parseInt($(".pop section").css("top"));  
+
+        var position = $(window).scrollTop();
+        
+
+        $(window).scroll(function(){  
+            
+            var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
+            
+            if((position+$(".pop section").height()) < $(document).height()){
+                $(".pop section").stop().animate({"top":position+currentPosition+"px"},1000);  
+                
+            }
+        });
+
+
+        // +버튼(추가) 클릭시 체크버튼,입력란 보여주기
+        $('.popup ul li.plus').click(function(){
+            $(this).css('display' , 'none');                                        // +버튼 숨기기
+            $('.popup table td span').css('display' ,'none');
+            $('.popup ul li.plus').hide();
+            $('.popup ul li.minus').hide();
+            $('.popup ul li.minus_check').hide();
+            $('.popup ul li.plus_check').show();
+            
+            $('.popup div.ftwitterlist').slideDown();
+            
+        });
+
+        // -버튼 or 체크버튼(추가) 클릭시
+        $('.popup ul li.plus_check').click(function(){
+            
+            if(twitter_action('twitter_update',$(this).data('bng_name'))){
+                
+                // $(this).siblings('span:nth-child(3)').css('display' , 'block');             
+                
+                $('.popup ul li.plus').show();
+                $('.popup ul li.minus').show();
+                $('.popup ul li.minus_check').hide();
+                $('.popup ul li.plus_check').hide();
+
+                $('.popup table td span').css('display' ,'none');
+                $('.popup div.ftwitterlist').slideUp();
+                view_twitter($(this).data('bng_name'),$(this).data('bng_name'));
+                postact_flag=true;
+            }
+           
+        });
+
+
+                
+
+
+        $('.popup ul li.minus').click(function(){
+            $('.popup table td span').css('display' ,'block');
+            // $(this).siblings('span:nth-child(3)').css('display' , 'none');
+            $('.popup ul li.plus').hide();
+            $('.popup ul li.minus').hide();
+            $('.popup ul li.minus_check').show();
+            $('.popup ul li.plus_check').hide();
+            
+            
+        });
+
+        $('.popup ul li.minus_check').click(function(){
+            
+            $('.popup ul li.plus').show();
+            $('.popup ul li.minus').show();
+            $('.popup ul li.minus_check').hide();
+            $('.popup ul li.plus_check').hide();
+            $('.popup table td span').css('display' ,'none');
+           
+        });
+
+
+        // X 버튼 클릭시
+        $('.popup > span').click(function(){
+            $('.pop').fadeOut();
+            $('.popup').fadeOut();
+                
+            setTimeout(function(){
+                $('.popup div.ftwitterlist').slideUp();
+                $('.popup table td span').css('display' ,'none');
+                $('.popup ul li.plus').show();
+                $('.popup ul li.minus').show();
+                $('.popup ul li.minus_check').hide();
+                $('.popup ul li.plus_check').hide();
+                if(postact_flag)location.reload();
+                
+            },500);
+        });
+
+        // // 팝업창의 순번 넣기
+        //     $('.twit_pop table tr').each(function(){
+        //         var index_num ='0' + ($(this).index()+1) + '.';
+        //         $(this).children("td:first-child").html(index_num);
+        //     });
+
+        // // 삭제버튼 클릭시
+        //     $('.twit_pop td span').click(function(){
+        //         $(this).parents('td').parents('tr').remove();
+
+        //         $('.twit_pop table tr').each(function(){
+        //             var index_num = '0' + ($(this).index()+1) + '.';
+        //             $(this).children("td:first-child").html(index_num);
+        //         });
+        //     });
     });
 </script>
 
-<article class="cover_menu_sub">
-    <section class="cover_sub">
-    </section>
-    <!-- 인물트위터 더보기 클릭시 팝업 내용-->
-    <section class="person_twitter_more pop">
-        <?php
+<article class="pop">
+    <?php
         $attributes = array('name' => 'ftwitterlist', 'id' => 'ftwitterlist');
         echo form_open('', $attributes);
         ?>
+    <section class='person_twitter_more twit_pop popup'>
+        
+        <h4>인 물 트 위 터</h4>
         <!-- 타이틀 영역 -->
-        <div class="header">
-            <span class="clear">
-                <img src="<?php echo base_url('/assets/images/clear02.png') ?>" alr="clear">
-            </span>
+        
+        <span>
+            <img src="<?php echo base_url('/assets/images/clear02.png') ?>" alr="clear">
+        </span>
 
-            <h2>인 물 트 위 터</h2>
-
-            <span data-bng_name="person_twitter"  class="plus" style="margin-right:2%">
-                <img src="<?php echo base_url('/assets/images/plus.png') ?>" alr="plus">
-            </span>
-            <span data-bng_name="person_twitter"  class="minus">
-                <img src="<?php echo base_url('/assets/images/minus.png') ?>" alr="minus">
-            </span>
-            <span data-bng_name="person_twitter"  style="display:none;float: right;" class="plus_check">
-                <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
-            </span>
-            <span data-bng_name="person_twitter"  style="display:none;float: right;" class="minus_check">
-                <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
-            </span>
-        </div>
-        <!-- +버튼 클릭시 , 추가 입력란 영역--> 
+        
         <ul>
-            <li><input type="text" name="ban_title_person_twitter" placeholder="인물 트위터 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인물 트위터 명을 입력해주세요.'">
+            <li data-bng_name="person_twitter"  class="plus">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/plus.png" alt="plus_img">
             </li>
-            <li><input type="text" name="ban_url_person_twitter" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+
+            <li data-bng_name="person_twitter"  class="minus">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/minus.png" alt="minus_img">
+            </li>
+
+            <li data-bng_name="person_twitter"  style="display:none;float: right;" class="plus_check">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/check.png" alt="check_img">
+            </li>
+
+            <li data-bng_name="person_twitter"  style="display:none;float: right;" class="minus_check">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/check.png" alt="check_img">
             </li>
         </ul>
+        
+        <!-- +버튼 클릭시 , 추가 입력란 영역--> 
+        <div class="ftwitterlist" style="display:none">
+            
+                <input type="text" name="ban_title_person_twitter" placeholder="인물 트위터 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인물 트위터 명을 입력해주세요.'">
+            
+            
+                <input type="text" name="ban_url_person_twitter" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+            
+        </div>
+            
         <!-- 리스트 영역-->
         <div id="person_twitter">
         </div>
     </section>
 
 <!-- 코인 공식트위터 더보기 클릭시 팝업 내용-->
-    <section class="coin_twitter_more pop">
+    <section class="coin_twitter_more twit_pop popup">
         <!-- 타이틀 영역 -->
-        <div class="header">
-            <span class="clear">
-                <img src="<?php echo base_url('/assets/images/clear02.png') ?>" alr="clear">
-            </span>
+        <h4>코인 공식 트위터</h4>
+        <span>
+            <img src="<?php echo base_url('/assets/images/clear02.png') ?>" alr="clear">
+        </span>
 
-            <h2>코인 공식 트위터</h2>
-            <span data-bng_name="coin_twitter"  class="plus" style="margin-right:2%">
-                <img src="<?php echo base_url('/assets/images/plus.png') ?>" alr="plus">
-            </span>
-            <span data-bng_name="coin_twitter"  class="minus">
-                <img src="<?php echo base_url('/assets/images/minus.png') ?>" alr="minus">
-            </span>
-            <span data-bng_name="coin_twitter"  style="display:none;float: right;" class="plus_check">
-                <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
-            </span>
-            <span data-bng_name="coin_twitter"  style="display:none;float: right;" class="minus_check">
-                <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
-            </span>
-
-            
-
-            
-        </div>
-        <!-- +버튼 클릭시 , 추가 입력란 영역--> 
         <ul>
-            <li><input type="text" name="ban_title_coin_twitter" placeholder="코인 공식 트위터 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='코인 공식 트위터 명을 입력해주세요.'">
+            <li data-bng_name="coin_twitter"  class="plus">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/plus.png" alt="plus_img">
             </li>
-            <li><input type="text" name="ban_url_coin_twitter" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+
+            <li data-bng_name="coin_twitter"  class="minus">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/minus.png" alt="minus_img">
+            </li>
+
+            <li data-bng_name="coin_twitter"  style="display:none;float: right;" class="plus_check">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/check.png" alt="check_img">
+            </li>
+
+            <li data-bng_name="coin_twitter"  style="display:none;float: right;" class="minus_check">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/check.png" alt="check_img">
             </li>
         </ul>
+
+           
+
+        <!-- +버튼 클릭시 , 추가 입력란 영역--> 
+        <div class="ftwitterlist" style="display:none">
+            <input type="text" name="ban_title_coin_twitter" placeholder="코인 공식 트위터 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='코인 공식 트위터 명을 입력해주세요.'">
+            <input type="text" name="ban_url_coin_twitter" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+        </div>
         <!-- 리스트 영역-->
         <div id="coin_twitter">
         </div>
     </section>
 
 <!-- 거래소 바로가기 더보기 클릭시 팝업 내용-->
-    <section class="coin_trade_more pop">
+    <section class="coin_trade_more twit_pop popup">
         <!-- 타이틀 영역 -->
-        <div class="header">
-            <span class="clear">
-                <img src="<?php echo base_url('/assets/images/clear02.png') ?>" alr="clear">
-            </span>
+        <h4>거래소 바로가기</h4>
+        <span>
+            <img src="<?php echo base_url('/assets/images/clear02.png') ?>" alr="clear">
+        </span>
 
-            <h2>거래소 바로가기</h2>
-
-            <span data-bng_name="coin_trade"  class="plus" style="margin-right:2%">
-                <img src="<?php echo base_url('/assets/images/plus.png') ?>" alr="plus">
-            </span>
-            <span data-bng_name="coin_trade"  class="minus">
-                <img src="<?php echo base_url('/assets/images/minus.png') ?>" alr="minus">
-            </span>
-            <span data-bng_name="coin_trade"  style="display:none;float: right;" class="plus_check">
-                <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
-            </span>
-            <span data-bng_name="coin_trade"  style="display:none;float: right;" class="minus_check">
-                <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
-            </span>
-
-            
-            
-        </div>
-        <!-- +버튼 클릭시 , 추가 입력란 영역--> 
         <ul>
-            <li><input type="text" name="ban_title_coin_trade" placeholder="거래소 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='거래소 명을 입력해주세요.'">
+            <li data-bng_name="coin_trade"  class="plus">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/plus.png" alt="plus_img">
             </li>
-            <li><input type="text" name="ban_url_coin_trade" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+
+            <li data-bng_name="coin_trade"  class="minus">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/minus.png" alt="minus_img">
+            </li>
+
+            <li data-bng_name="coin_trade"  style="display:none;float: right;" class="plus_check">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/check.png" alt="check_img">
+            </li>
+
+            <li data-bng_name="coin_trade"  style="display:none;float: right;" class="minus_check">
+                <img src="<?php echo element('layout_skin_url', $layout); ?>/images/check.png" alt="check_img">
             </li>
         </ul>
+        <!-- +버튼 클릭시 , 추가 입력란 영역--> 
+
+
+        <!-- +버튼 클릭시 , 추가 입력란 영역--> 
+        <div class="ftwitterlist" style="display:none">
+            <input type="text" name="ban_title_coin_trade" placeholder="거래소 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='거래소 명을 입력해주세요.'">
+            <input type="text" name="ban_url_coin_trade" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+        </div>
         <div id="coin_trade">
         </div>
         <!-- 리스트 영역-->
-        <?php echo form_close(); ?>        
+        
     </section>
+    <?php echo form_close(); ?>        
 </article>
+
+
 
 <article class="img_slide"> 
     <ul>
@@ -401,7 +541,7 @@
     </section>
 
     <section class="tab" id="news">
-        <h2>뉴 스 정 보<span><a href="<?php echo site_url('/group/g-c/live_news') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>뉴 스 정 보<span><a href="<?php echo site_url('/board/live_news/') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
             <li class="active">최신뉴스</li>
@@ -508,7 +648,7 @@
     </section>
 
     <section class="tab" id="community">
-        <h2>커 뮤 니 티<span><a href="<?php echo site_url('/group/g-b/free') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>커 뮤 니 티<span><a href="<?php echo site_url('/board/free') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
             <li class="active">자유게시판</li>
@@ -547,8 +687,8 @@
                     </table>
                     </div>';
                     } else {
-                        echo '<div id="tab02_'.element('brd_key',$config).'" class="tab02_cont cont">
-                        <table>
+                        echo '<div>
+                        <table >
                             <tr>
                                 <td colspan="3">게시물이 없습니다.</td>
                             </tr>
@@ -559,35 +699,359 @@
             ?>  
         </div>
     </section>
+
+
+    <section class="tab" id="coin_info">
+        <h2>코 인 지 식<span><a href="<?php echo site_url('/board/video') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <ul class="menu_list">
+            <li class="active">동영상강좌</li>
+            <li>코 인 지 식</li>
+            <li>I C O</li>
+            <li>질 문 / 답변 </li>
+        </ul>
+
+        <div class="tab_cont">
+            <?php
+            $tab02=array('video','coin_int','ico','exchange');
+
+            foreach($tab02 as $tvalue){
+                $config = array(
+                    'brd_key' => $tvalue,
+                    'limit' => 20,
+                    'length' => 70,
+                    );
+                $board=$this->board->data($config);
+
+                if (element('latest', element('view', $board))) {
+
+                    echo '<div>
+                    <table class="tab_text">';
+                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                            <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                
+                                <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                            </td>
+                            <td><?php echo element('display_datetime', $value); ?></td>
+                        </tr>                        
+                        <?php 
+                    }
+                    echo '
+                    </table>
+                    </div>';
+                    } else {
+                        echo '<div>
+                        <table >
+                            <tr>
+                                <td colspan="3">게시물이 없습니다.</td>
+                            </tr>
+                        </table>
+                    </div>';
+                }
+            }
+            ?>  
+        </div>
+    </section>
+
+    <section class="tab" id="service">
+        <h2>서 비 스<span><a href="<?php echo site_url('/board/free_gallery') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+
+        <ul class="menu_list">
+            <li class="active">자 유 갤 러 리</li>
+            <li>유 머</li>
+        </ul>
+
+        <div class="tab_cont tab_cont02">
+            <?php
+            
+            $config = array(
+                'brd_key' => 'free_gallery',
+                        'limit' => 9,
+                        'length' => 40,
+                        'is_gallery'=> 1,
+                        'image_width'=> 120,
+                        'image_height'=> 90,
+                        );
+            $board=$this->board->data($config);
+
+            if (element('latest', element('view', $board))) {
+
+                echo '<div>
+                <table class="tab_img">';
+                    foreach (element('latest', element('view', $board)) as $key => $value) {
+                    if($key % 3===0 || $key ===0) echo '<tr>';
+                        ?>
+
+                    
+                        
+                        <td>
+                            <a href="<?php echo element('url', $value); ?>">
+                                <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                            </a>
+                        </td>                        
+                    
+                    <?php 
+                    if($key % 3===2) echo '</tr>';
+                }
+                echo '
+                </table>
+                </div>';
+                } else {
+                    echo '<div>
+                    <table >
+                        <tr>
+                            <td colspan="3">게시물이 없습니다.</td>
+                        </tr>
+                    </table>
+                </div>';
+            }
+            
+            ?>  
+
+            <?php
+                    
+                $config = array(
+                    'brd_key' => 'humor',
+                    'limit' => 10,
+                    'length' => 70,
+                    );
+                $board=$this->board->data($config);
+
+                if (element('latest', element('view', $board))) {
+                    echo '<div >
+                    <table class="tab_text">';
+                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                            <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
+                            </td>
+                            <td><?php echo element('display_datetime', $value); ?></td>
+                        </tr>                        
+                        <?php 
+                    }
+                    echo '
+                </table>
+            </div>';
+            } else {
+                echo '<div>
+                <table >
+                    <tr>
+                        <td colspan="3">게시물이 없습니다.</td>
+                    </tr>
+                </table>
+            </div>';
+            }
+           
+            ?>  
+        </div>
+    </section>
+
+    <section class="tab" id="event">
+        <h2>이 벤 트<span><a href="<?php echo site_url('/group/other/event') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <ul class="menu_list">
+            <li class="active">이 벤 트</li>
+            <li>출 석 체 크</li>
+            <li>가 입 인 사</li>
+        </ul>
+
+        <div class="tab_cont tab_cont02">
+
+            <?php
+                $tab04=array('event','attendance','express');
+                foreach($tab04 as $tvalue){
+
+                    $config = array(
+                        'brd_key' => $tvalue,
+                        'limit' => 10,
+                        'length' => 70,
+                        );
+                    $board=$this->board->data($config);
+
+                    if (element('latest', element('view', $board))) {
+                        echo '<div>
+                        <table class="tab_text">';
+                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                            <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                                <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                                <td class="text-left">
+                                    <?php echo html_escape(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </td>
+                                <td><?php echo element('display_datetime', $value); ?></td>
+                            </tr>                        
+                            <?php 
+                        }
+                        echo '
+                    </table>
+                </div>';
+            } else {
+                echo '<div>
+                <table >
+                    <tr>
+                        <td colspan="3">게시물이 없습니다.</td>
+                    </tr>
+                </table>
+                     </div>';
+                }
+                }
+                ?>  
+        </div>
+    </section>
+
+    <section class="tab" id="notice">
+        <h2>공 지 사 항<span><a href="<?php echo site_url('/faq/notice') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+
+        <ul class="menu_list">
+            <li class="active">공 지 사 항</li>
+            <li>F A Q</li>
+        </ul>
+
+        <div class="tab_cont tab_cont02">
+            <?php
+                $tab04=array('notice','faq');
+                foreach($tab04 as $tvalue){
+
+                    $config = array(
+                        'brd_key' => $tvalue,
+                        'limit' => 10,
+                        'length' => 70,
+                        );
+                    $board=$this->board->data($config);
+
+                    if (element('latest', element('view', $board))) {
+                        echo '<div>
+                        <table class="tab_text">';
+                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                            <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                                <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                                <td class="text-left">
+                                    <?php echo strip_tags(element('title', $value)); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </td>
+                                <td><?php echo element('display_datetime', $value); ?></td>
+                            </tr>                        
+                            <?php 
+                        }
+                        echo '
+                    </table>
+                </div>';
+            } else {
+                echo '<div>
+                <table >
+                    <tr>
+                        <td colspan="3">게시물이 없습니다.</td>
+                    </tr>
+                </table>
+                     </div>';
+                }
+                }
+                ?>  
+        </div>
+    </section>
+
+    <section class="twit">
+        <div id="people_twit">
+            <h2>가상화폐 인물트위터</h2>
+            <table class="twitter_table" data-bng_name="person_twitter">
+                <?php echo twitter("person_twitter",'order',11,"<td>","</td>") ?>
+            </table>
+        </div>
+
+        <div id='coin_twit'>
+            <h2>가상화폐 코인 공식 트위터</h2>
+            <table class="twitter_table" data-bng_name="coin_twitter">
+                <?php echo twitter("coin_twitter",'order',11,"<td>","</td>") ?>
+            </table>
+        </div>
+
+        <div id='coin_store'>
+            <h2>거래소 바로가기</h2>
+            <table class="twitter_table" data-bng_name="coin_trade">
+                <?php echo twitter("coin_trade",'order',11,"<td>","</td>") ?>
+            </table>
+        </div>
+    </section>
 </article>
-<?php
-$k = 0;
-$is_open = false;
-if (element('board_list', $view)) {
-    foreach (element('board_list', $view) as $key => $board) {
-        $config = array(
-            'skin' => 'basic',
-            'brd_key' => element('brd_key', $board),
-            'limit' => 5,
-            'length' => 40,
-            'is_gallery' => '',
-            'image_width' => '',
-            'image_height' => '',
-            'cache_minute' => 1,
-        );
-        if ($k % 2 === 0) {
-            echo '<div>';
-            $is_open = true;
-        }
-        echo $this->board->latest($config);
-        if ($k % 2 === 1) {
-            echo '</div>';
-            $is_open = false;
-        }
-        $k++;
+<script type="text/javascript">
+    //<![CDATA[
+    function view_twitter(id,twitter_key) {
+        var list_url = cb_url + '/main/twitter/' + twitter_key;
+        $('#' + id).load(list_url);
+        $('.popup ul li.plus').show();
+        $('.popup ul li.minus').show();
+        $('.popup ul li.plus_check').hide();
+        $('.popup ul li.minus_check').hide();
+        $('.popup div.ftwitterlist').slideUp();
+        postact_flag = false;
     }
-}
-if ($is_open) {
-    echo '</div>';
-    $is_open = false;
-}
+
+    function view_coin(cur_unit) {
+        global_cur_unit = cur_unit;
+        var list_url = cb_url + '/main/show_coin_data/' + global_cur_unit;
+        $('#coin_data').load(list_url,function(){
+            $("#" + coinActiveTab).hide();
+            $("#" + coinActiveTab).fadeIn();
+        }); 
+    }
+
+    function twitter_action(action_type, bng_name, msg) {
+        var flag=false;
+        var href;
+        if ( action_type == '') {
+            return false;
+        }
+        if ( msg) {
+            if ( ! confirm(msg)) { return false; }
+        }
+        href = cb_url + '/postact/' + action_type + '/' + bng_name;
+        var $that = $(this);
+        $.ajax({
+            async: false,
+            url : href,
+            type : 'post',
+            data :  $('#ftwitterlist').serialize() + '&csrf_test_name=' + cb_csrf_hash,
+            dataType : 'json',
+            success : function(data) {
+                if (data.error) {
+                    alert(data.error);
+                    flag = false;
+                } else if (data.success) {
+                    flag = true;
+                }
+            }
+        });
+        return flag;
+    }
+
+    function twitter_delete(ban_id,bng_name) {
+        var flag=false;
+        var href;
+        if ( ban_id < 1) {
+            return false;
+        }
+        
+        href = cb_url + '/postact/twitter_delete/' + ban_id;
+        var $that = $(this);
+        $.ajax({
+            async: false,
+            url : href,
+            type : 'get',
+            dataType : 'json',
+            success : function(data) {
+                if (data.error) {
+                    alert(data.error);
+                    postact_flag = false;
+                    return ;
+                } else if (data.success) {
+                    view_twitter(bng_name,bng_name);
+                    postact_flag  = true;
+                    return ;
+                }
+            }
+        });
+        return ;
+    }
+    //]]>
+</script>

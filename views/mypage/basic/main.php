@@ -23,7 +23,7 @@
             <th>회 원 그 룹</th>
             <td>
                 <figure>
-                    <img src='<?php echo element('layout_skin_url', $layout); ?>/images/gold_spoon.png' alt='gold_spoon_img'>
+                    <img src='<?php echo base_url('/views/_layout/basic/images/spoon_'.$this->member->item('mem_level').'.png') ?>' alt='spoon_img'>
                     <figcaption><?php echo element('member_group_name',$view);?></figcaption>
                 </figure>
                 

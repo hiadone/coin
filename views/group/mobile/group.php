@@ -105,7 +105,7 @@ $(document).ready(function(){
             <?php
             if($this->member->is_member()){
                 echo '<li onClick=\'location.href="'.site_url('mypage').'";\'  title="마이페이지">
-                <figure><img src="'.base_url('assets/images/gold_spoon.png').'" alt="spoon"><figcaption>'.$this->member->item('mem_nickname').
+                <figure><img src="'.base_url('assets/images/spoon_'.$this->member->item('mem_level').'.png').'" alt="spoon"><figcaption>'.$this->member->item('mem_nickname').
                 '</figcaption></figure></li>';
                 echo '<li>|</li>';
                 echo '<li>포인트 1000P</li>';

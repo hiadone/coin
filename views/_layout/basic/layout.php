@@ -469,9 +469,9 @@ $(document).ready(function(){
                 <li>|</li>
                 <li class="pointer login-li"   title="회원가입">회원가입</li>
                 <?php } else { ?>
-                <li class='pointer' onClick='location.href="<?php echo site_url('mypage') ?>";'>
+                <li class='user_info pointer' >
                     <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/gold_spoon.png" alt="gold_spoon_img">
+                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo $this->member->item('mem_level') ?>.png" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
                         <figcaption><?php echo $this->member->item('mem_nickname') ?></figcaption>
                     </figure>
                 </li>
@@ -534,8 +534,6 @@ $(document).ready(function(){
        
     </ul>
 </nav>
-
-    
 
 <!-- main start -->
 <div class="">

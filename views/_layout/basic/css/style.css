@@ -420,6 +420,7 @@ select.input {height: 30px;}
 .no_padding{padding: 0 !important;}
 .text-center {text-align: center;}
 .text-right {text-align: right;}
+.text-left {text-align: left;}
 small {font-size: 11px;padding-left: 10px;}
 
 /* header */
@@ -560,14 +561,14 @@ header .badge{margin-left:5px;display: inline-block;min-width: 10px;padding: 3px
 .latest_comment_count {font-size:11px; color:#FF7700; margin-left:5px;font-weight:bold;}
 .highlight {font-weight:bold; color:#7519FF}
 
-/* footer */
+/* footer 
 footer {border-top: 1px solid #e5e5e5;background-color: #f5f5f5;padding: 15px 0;clear:both;overflow: hidden;}
 footer .company {margin-bottom:7px;clear:both;float:left;}
 footer .company li{float:left; padding-right:10px;}
 footer .see_mobile {clear: both;margin: 0 auto;text-align: center;}
 footer .copyright{font-size:12px;clear:both;}
 footer .copyright span{padding-right:7px;}
-
+*/
 /* Sideview */
 #nameContextMenu { background:#000; color:#fff; padding:4px 8px 6px;z-index:10000; }
 #nameContextMenu a { color:#fff; font-size:12px; line-height:20px; display:block; }
