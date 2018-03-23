@@ -22,7 +22,7 @@
 
                 <tr>
                     <th>회 원 그 룹</th>
-                    <td><?php echo element('member_group_name',$view);?></td>
+                    <td><img src='<?php echo base_url('/views/_layout/basic/images/spoon_'.$this->member->item('mem_level').'.png') ?>' alt='spoon_img'><?php echo element('member_group_name',$view);?></td>
                 </tr>
 
                 <tr>

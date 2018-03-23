@@ -716,6 +716,152 @@ class Board extends CI_Controller
                 }
             }
             
+        }elseif($brd_key==="notice"){
+            $this->CI->load->model('Faq_model');
+            $this->CI->load->model('Faq_group_model');
+
+            $where = array(
+                'fgr_key' => $brd_key,
+            );
+            $faqgroup = $this->CI->Faq_group_model->get_one('', '', $where);
+
+            if ( ! element('fgr_id', $faqgroup)) {
+                show_404();
+            }
+
+
+            $findex = 'faq_order';
+            $forder = 'asc';
+
+            $this->CI->Faq_model->allow_order_field = array('faq_order'); // 정렬이 가능한 필드
+
+            $where = array(
+                'fgr_id' => element('fgr_id', $faqgroup),
+            );
+            $result = $this->CI->Faq_model
+                ->get_list('', '', $where, '', $findex, $forder);
+
+            /**
+             * 게시판 목록에 필요한 정보를 가져옵니다.
+             */
+            
+            
+
+            if (element('list', $result)) {
+                foreach (element('list', $result) as $key => $val) {
+
+                    $content = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+                        ? (element('faq_mobile_content', $val) ? element('faq_mobile_content', $val)
+                        : element('faq_content', $val)) : element('faq_content', $val);
+
+                    $thumb_width = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+                        ? $this->CI->cbconfig->item('faq_mobile_thumb_width')
+                        : $this->CI->cbconfig->item('faq_thumb_width');
+
+                    $autolink = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+                        ? $this->CI->cbconfig->item('use_faq_mobile_auto_url')
+                        : $this->CI->cbconfig->item('use_faq_auto_url');
+
+                    $popup = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+                        ? $this->CI->cbconfig->item('faq_mobile_content_target_blank')
+                        : $this->CI->cbconfig->item('faq_content_target_blank');
+
+                    $view['view']['latest'][$key]['title'] = display_html_content(
+                        element('faq_title', $val),
+                        element('faq_content_html_type', $val),
+                        $thumb_width,
+                        $autolink,
+                        $popup,
+                        $writer_is_admin = true
+                    );
+
+                    $view['view']['latest'][$key]['url'] = base_url('/faq/notice/'.element('faq_id', $val));
+                    $view['view']['latest'][$key]['display_name'] = '관리자';
+                    $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('faq_datetime', $val));
+                    $view['view']['latest'][$key]['content'] = display_html_content(
+                        $content,
+                        element('faq_content_html_type', $val),
+                        $thumb_width,
+                        $autolink,
+                        $popup,
+                        $writer_is_admin = true
+                    );
+                }
+            }
+            
+        }elseif($brd_key==="faq"){
+            $this->CI->load->model('Faq_model');
+            $this->CI->load->model('Faq_group_model');
+
+            $where = array(
+                'fgr_key' => $brd_key,
+            );
+            $faqgroup = $this->CI->Faq_group_model->get_one('', '', $where);
+
+            if ( ! element('fgr_id', $faqgroup)) {
+                show_404();
+            }
+
+
+            $findex = 'faq_order';
+            $forder = 'asc';
+
+            $this->CI->Faq_model->allow_order_field = array('faq_order'); // 정렬이 가능한 필드
+
+            $where = array(
+                'fgr_id' => element('fgr_id', $faqgroup),
+            );
+            $result = $this->CI->Faq_model
+                ->get_list('', '', $where, '', $findex, $forder);
+
+            /**
+             * 게시판 목록에 필요한 정보를 가져옵니다.
+             */
+            
+            
+
+            if (element('list', $result)) {
+                foreach (element('list', $result) as $key => $val) {
+
+                    $content = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+                        ? (element('faq_mobile_content', $val) ? element('faq_mobile_content', $val)
+                        : element('faq_content', $val)) : element('faq_content', $val);
+
+                    $thumb_width = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+                        ? $this->CI->cbconfig->item('faq_mobile_thumb_width')
+                        : $this->CI->cbconfig->item('faq_thumb_width');
+
+                    $autolink = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+                        ? $this->CI->cbconfig->item('use_faq_mobile_auto_url')
+                        : $this->CI->cbconfig->item('use_faq_auto_url');
+
+                    $popup = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+                        ? $this->CI->cbconfig->item('faq_mobile_content_target_blank')
+                        : $this->CI->cbconfig->item('faq_content_target_blank');
+
+                    $view['view']['latest'][$key]['title'] = display_html_content(
+                        element('faq_title', $val),
+                        element('faq_content_html_type', $val),
+                        $thumb_width,
+                        $autolink,
+                        $popup,
+                        $writer_is_admin = true
+                    );
+
+                    $view['view']['latest'][$key]['url'] = base_url('/faq/faq/'.element('faq_id', $val));
+                    $view['view']['latest'][$key]['display_name'] = '관리자';
+                    $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('faq_datetime', $val));
+                    $view['view']['latest'][$key]['content'] = display_html_content(
+                        $content,
+                        element('faq_content_html_type', $val),
+                        $thumb_width,
+                        $autolink,
+                        $popup,
+                        $writer_is_admin = true
+                    );
+                }
+            }
+            
         } else {
 
             if ($brd_key) {
@@ -1323,6 +1469,495 @@ class Board extends CI_Controller
         
 
         $view['view']['skinurl'] = base_url( VIEW_DIR . 'group/' . $skin);
+        
+        $html = $this->CI->load->view('group/' . $skin . '/latest_group', $view, true);
+
+        if ($cache_minute> 0) {
+            check_cache_dir('latest');
+            $this->CI->cache->save($cachename, $html, $cache_minute);
+        }
+
+        return $html;
+    }
+
+
+    public function latest_group_desktop($config,$more=0)
+    {
+        
+        $view = array();
+        $view['view'] = array();
+
+        $this->CI->load->model( array('Board_category_model', 'Post_file_model'));
+
+        $skin = element('skin', $config);
+        $brd_id = element('brd_id', $config);
+        $brd_key = element('brd_key', $config);
+        $exclude_brd_id = element('exclude_brd_id', $config);
+        $exclude_brd_key = element('exclude_brd_key', $config);
+        $findex = element('findex', $config) ? element('findex', $config) : 'post_id';
+        $forder = element('forder', $config) ? element('forder', $config) : 'DESC';
+        $limit = element('limit', $config);
+        $length = element('length', $config);
+        $is_gallery = element('is_gallery', $config);
+        $image_width = element('image_width', $config);
+        $image_height = element('image_height', $config);
+        $period_second = element('period_second', $config);
+        $cache_minute = element('cache_minute', $config);
+        $post_notice = element('post_notice', $config);
+
+        if ($limit <= 0) {
+            return false;
+        }
+
+        if ($cache_minute> 0) {
+            $cache_brd_id = is_array($brd_id) ? implode('-', $brd_id) : $brd_id;
+            $cache_brd_key = is_array($brd_key) ? implode('-', $brd_key) : $brd_key;
+            $cache_exclude_brd_id = is_array($exclude_brd_id) ? implode('-', $exclude_brd_id) : $exclude_brd_id;
+            $cache_exclude_brd_key = is_array($exclude_brd_key) ? implode('-', $exclude_brd_key) : $exclude_brd_key;
+            $cachename = 'latest/latest-s-' . $skin . '-i-' . $cache_brd_id . '-k-' . $cache_brd_key . '-l-' . $cache_exclude_brd_id . '-k-' . $cache_exclude_brd_key . '-l-' . $limit . '-t-' . $length . '-g-' . $is_gallery . '-w-' . $image_width . '-h-' . $image_height . '-p-' . $period_second;
+            $html = $this->CI->cache->get($cachename);
+            if ($html) {
+                return $html;
+            }
+        }
+
+        if (empty($skin)) {
+            $skin = 'basic';
+        }
+        $view['view']['write_text'] = '글 쓰 기';    
+        
+        
+        $view['view']['config'] = $config;
+        $view['view']['length'] = $length;
+
+        if($brd_key==="attendance"){
+            $view['view']['board']['brd_key']="attendance";
+            $view['view']['write_text'] = '출석체크하러가기';    
+            $this->CI->load->model('Attendance_model');
+            $findex = $this->CI->Attendance_model->primary_key;
+            $forder = $this->CI->cbconfig->item('attendance_order') === 'desc' ? 'desc' : 'asc';
+
+            /**
+             * 게시판 목록에 필요한 정보를 가져옵니다.
+             */
+            
+            $date = cdate('Y-m-d');
+            
+            if (strlen($date) !== 10) {
+                $date = cdate('Y-m-d');
+            }
+            $arr = explode('-', $date);
+            if (checkdate(element(1, $arr), element(2, $arr), element(0, $arr)) === false) {
+                $date = cdate('Y-m-d');
+            }
+
+            $where = array(
+                'att_date' => $date,
+            );
+
+            
+
+            $result = $this->CI->Attendance_model
+                ->get_attend_list(3,'', $where, $findex, $forder);
+
+            if (element('list', $result)) {
+                foreach (element('list', $result) as $key => $val) {
+                    $view['view']['latest'][$key]['url'] = base_url('/attendance');
+                    $view['view']['latest'][$key]['title'] = $length ? cut_str(element('att_memo', $val), $length) : element('att_memo', $value);
+                    $view['view']['latest'][$key]['display_name'] = display_username(
+                        element('mem_userid', $val),
+                        element('mem_nickname', $val)
+                    );
+                    $view['view']['latest'][$key]['display_datetime'] = display_datetime(
+                        element('att_datetime', $val)
+                    );
+                }
+            }
+            $view['view']['write_url'] = base_url('/attendance');
+
+            $per_page=$limit;
+        } else {
+
+            if ($brd_key) {
+                if (is_array($brd_key)) {
+                    foreach ($brd_key as $v) {
+                        $brd_id[] = $this->CI->board->item_key('brd_id', $v);
+                    }
+                } else {
+                    $brd_id = $this->CI->board->item_key('brd_id', $brd_key);
+                }
+            }
+            if ($exclude_brd_key) {
+                if (is_array($exclude_brd_key)) {
+                    foreach ($exclude_brd_key as $v) {
+                        $exclude_brd_id[] = $this->CI->board->item_key('brd_id', $v);
+                    }
+                } else {
+                    $exclude_brd_id = $this->CI->board->item_key('brd_id', $exclude_brd_key);
+                }
+            }
+            if ($brd_id && ! is_array($brd_id)) {
+                $view['view']['board'] = $board = $this->CI->board->item_all($brd_id);
+            }
+
+            $this->CI->allow_search_field = array('post_id','post_title', 'post_content', 'post_both', 'post_nickname'); // 검색이 가능한 필드
+            $this->CI->search_field_equal = array('post_id'); // 검색중 like 가 아닌 = 검색을 하는 필드
+
+            $where = array();
+            $where['post_del'] = 0;
+            $where['post_secret'] = 0;
+            if($post_notice){
+                $where['post_notice']=$post_notice;
+            }
+            $sfield =  $this->CI->input->post('sfield', null, '');
+            if ($sfield === 'post_both') {
+                $sfield = array('post_title', 'post_content');
+            }
+            $skeyword = $this->CI->input->post('skeyword', null, '');
+            
+            if (empty($sfield)) {
+                $sfield = array('post_title', 'post_content');
+            }
+
+
+            $page = ((int) $more > 1) ? ((int) $more) : 1;
+            
+
+            
+            $per_page=$limit;
+            $offset = ($page - 1) * $per_page;
+
+
+            $search_where = array();
+            $search_like = array();
+            $search_or_like = array();
+            if ($sfield && is_array($sfield)) {
+
+                foreach ($sfield as $skey => $sval) {
+                    $ssf = $sval;
+                    
+                    if ($skeyword && $ssf && in_array($ssf, $this->CI->allow_search_field)) {
+                        if (in_array($ssf, $this->CI->search_field_equal)) {
+                            
+                            $search_where[$ssf] = $skeyword;
+                        } else {
+                            
+                            $swordarray = explode(' ', $skeyword);
+                            foreach ($swordarray as $str) {
+                                if (empty($ssf)) {
+                                    continue;
+                                }
+                                    $search_or_like[] = array($ssf => $str);
+                                
+                            }
+                        }
+                    }
+                }
+            } else {
+                $ssf = $sfield;
+                if ($skeyword && $ssf && in_array($ssf, $this->CI->allow_search_field)) {
+                    if (in_array($ssf, $this->CI->search_field_equal)) {
+                        $search_where[$ssf] = $skeyword;
+                    } else {
+                        $swordarray = explode(' ', $skeyword);
+                        foreach ($swordarray as $str) {
+                            if (empty($ssf)) {
+                                continue;
+                            }
+                            
+                                $search_or_like[] = array($ssf => $str);
+                            
+                        }
+                    }
+                }
+            }
+
+            if ($search_like) {
+                foreach ($search_like as $item) {
+                    foreach ($item as $skey => $sval) {
+                        $this->CI->db->like($skey, $sval);
+                    }
+                }
+            }
+            if ($search_or_like) {
+                $this->CI->db->group_start();
+                foreach ($search_or_like as $item) {
+                    foreach ($item as $skey => $sval) {
+                        $this->CI->db->or_like($skey, $sval);
+                    }
+                }
+                $this->CI->db->group_end();
+            }
+            $this->CI->db->from('post');
+            
+            $this->CI->db->where($where);
+
+            
+            if ($brd_id) {
+                if (is_array($brd_id)) {
+                    $this->CI->db->group_start();
+                    foreach ($brd_id as $v) {
+                        $this->CI->db->or_where('brd_id', $v);
+                    }
+                    $this->CI->db->group_end();
+                } else {
+                    $this->CI->db->where('brd_id', $brd_id);
+                }
+            }
+
+            if ($exclude_brd_id) {
+                if (is_array($exclude_brd_id)) {
+                    foreach ($exclude_brd_id as $v) {
+                        $this->CI->db->where('brd_id <>', $v);
+                    }
+                } else {
+                    $this->CI->db->where('brd_id <>', $exclude_brd_id);
+                }
+            }
+
+            if ($period_second) {
+                $post_start_datetime = cdate('Y-m-d H:i:s', ctimestamp() - $period_second);
+                $this->CI->db->where('post_datetime >=', $post_start_datetime);
+            }
+
+            if ($findex && $forder) {
+                $forder = (strtoupper($forder) === 'ASC') ? 'ASC' : 'DESC';
+                $this->CI->db->order_by($findex, $forder);
+            }
+
+            
+
+            if (is_numeric($limit)) {
+                $this->CI->db->limit($limit,$offset);
+            }
+            $result = $this->CI->db->get();
+            $view['view']['latest'] = $latest = $result->result_array();
+            
+            $view['view']['latest_limit'] = $limit;
+            if ($latest && is_array($latest)) {
+                foreach ($latest as $key => $value) {
+                    $brd_key = $this->CI->board->item_id('brd_key', element('brd_id', $value));
+                    $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value));
+                    $view['view']['latest'][$key]['title'] = $length ? cut_str(element('post_title', $value), $length) : element('post_title', $value);
+                    $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('post_datetime', $value), '');
+                    $view['view']['latest'][$key]['display_name'] = display_username(
+                                                                            element('post_userid', $value),
+                                                                            element('post_nickname', $value));
+                    $view['view']['latest'][$key]['category'] = '';
+
+                    $view['view']['latest'][$key]['display_content'] = cut_str(strip_tags(element('post_content', $value)), 200);
+
+                    if (element('post_category', $value)) {
+                            $view['view']['latest'][$key]['category'] = $this->CI->Board_category_model->get_category_info(element('brd_id', $value), element('post_category', $value));
+                    }
+
+                    $view['view']['latest'][$key]['is_new'] = false;
+                    $new_icon_hour = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+                        ? element('mobile_new_icon_hour', $board)
+                        : element('new_icon_hour', $board);
+
+                    if ($new_icon_hour && ( ctimestamp() - strtotime(element('post_datetime', $value)) <= $new_icon_hour * 3600) && !in_array(element('post_id', $value),explode('||',get_cookie('post_id_cookie')))) {
+                        $view['view']['latest'][$key]['is_new'] = true;
+                    }
+
+                    if ($is_gallery) {
+                        if (element('post_image', $value)) {
+                            $imagewhere = array(
+                                'post_id' => element('post_id', $value),
+                                'pfi_is_image' => 1,
+                            );
+                            $file = $this->CI->Post_file_model->get_one('', '', $imagewhere, '', '', 'pfi_id', 'ASC');
+                            if (element('pfi_filename', $file)) {
+                                $view['view']['latest'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $image_width, $image_height);
+                            }
+                        } else {
+                            $thumb_url = get_post_image_url(element('post_content', $value), $image_width, $image_height);
+                            $view['view']['latest'][$key]['thumb_url'] = $thumb_url ? $thumb_url : thumb_url('', '', $image_width, $image_height);
+                        }
+                    }
+                }
+            }
+
+            $alertmessage = $this->CI->member->is_member()
+                ? '회원님은 내용을 볼 수 있는 권한이 없습니다'
+                : '비회원은 내용을 볼 수 있는 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오';
+
+            $check = array(
+                'group_id' => element('bgr_id', $board),
+                'board_id' => element('brd_id', $board),
+            );
+
+            $this->CI->load->library('accesslevel');
+            $can_write = $this->CI->accesslevel->is_accessable(
+                element('access_write', $board),
+                element('access_write_level', $board),
+                element('access_write_group', $board),
+                $check
+            );
+
+
+            $this->CI->load->model('Member_group_model');
+
+            $groupwhere = array(
+                'mgr_order' => element('access_write_level', $board),
+            );
+
+            
+            $mgr_title = $this->CI->Member_group_model->get_one('', 'mgr_title',$groupwhere);
+
+
+            $view['view']['write_url'] = '';
+            if ($can_write === true) {
+
+                $view['view']['write_url'] = write_url($brd_key);
+            } elseif ($this->CI->cbconfig->get_device_view_type() !== 'mobile' && element('always_show_write_button', $board)) {
+                if($this->CI->member->is_member()) $view['view']['write_url'] = 'javascript:alert(\'글쓰기 권한이 없습니다.\\n\\n'.$mgr_title['mgr_title'].' 이상 권한이 필요합니다.\');';
+                else $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+            } elseif ($this->CI->cbconfig->get_device_view_type() === 'mobile' && element('mobile_always_show_write_button', $board)) {
+                if($this->CI->member->is_member()) $view['view']['write_url'] = 'javascript:alert(\'글쓰기 권한이 없습니다.\\n\\n'.$mgr_title['mgr_title'].' 이상 권한이 필요합니다.\');';
+                else $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+                
+            }
+        }
+
+        
+        
+        if($brd_key==="attendance"){
+            
+
+            /**
+             * 게시판 목록에 필요한 정보를 가져옵니다.
+             */
+            
+            $date = cdate('Y-m-d');
+            
+            if (strlen($date) !== 10) {
+                $date = cdate('Y-m-d');
+            }
+            $arr = explode('-', $date);
+            if (checkdate(element(1, $arr), element(2, $arr), element(0, $arr)) === false) {
+                $date = cdate('Y-m-d');
+            }
+
+            $where = array(
+                'att_date' => $date,
+            );
+
+            
+
+            $result = $this->CI->Attendance_model
+                ->get_attend_list('','', $where);
+
+
+            
+
+            $total_rows['rownum'] = element('total_rows',$result);
+
+        } else {
+            $this->CI->db->select('count(*) as rownum');
+            if ($sfield && is_array($sfield)) {
+
+                foreach ($sfield as $skey => $sval) {
+                    $ssf = $sval;
+                    
+                    if ($skeyword && $ssf && in_array($ssf, $this->CI->allow_search_field)) {
+                        if (in_array($ssf, $this->CI->search_field_equal)) {
+                            
+                            $search_where[$ssf] = $skeyword;
+                        } else {
+                            
+                            $swordarray = explode(' ', $skeyword);
+                            foreach ($swordarray as $str) {
+                                if (empty($ssf)) {
+                                    continue;
+                                }
+                                    $search_or_like[] = array($ssf => $str);
+                                
+                            }
+                        }
+                    }
+                }
+            } else {
+                $ssf = $sfield;
+                if ($skeyword && $ssf && in_array($ssf, $this->CI->allow_search_field)) {
+                    if (in_array($ssf, $this->CI->search_field_equal)) {
+                        $search_where[$ssf] = $skeyword;
+                    } else {
+                        $swordarray = explode(' ', $skeyword);
+                        foreach ($swordarray as $str) {
+                            if (empty($ssf)) {
+                                continue;
+                            }
+                            
+                                $search_or_like[] = array($ssf => $str);
+                            
+                        }
+                    }
+                }
+            }
+
+            if ($search_like) {
+                foreach ($search_like as $item) {
+                    foreach ($item as $skey => $sval) {
+                        $this->CI->db->like($skey, $sval);
+                    }
+                }
+            }
+            if ($search_or_like) {
+                $this->CI->db->group_start();
+                foreach ($search_or_like as $item) {
+                    foreach ($item as $skey => $sval) {
+                        $this->CI->db->or_like($skey, $sval);
+                    }
+                }
+                $this->CI->db->group_end();
+            }
+        
+            $this->CI->db->from('post');
+            $this->CI->db->where($where);
+
+            
+            if ($brd_id) {
+                if (is_array($brd_id)) {
+                    $this->CI->db->group_start();
+                    foreach ($brd_id as $v) {
+                        $this->CI->db->or_where('brd_id', $v);
+                    }
+                    $this->CI->db->group_end();
+                } else {
+                    $this->CI->db->where('brd_id', $brd_id);
+                }
+            }
+
+            if ($exclude_brd_id) {
+                if (is_array($exclude_brd_id)) {
+                    foreach ($exclude_brd_id as $v) {
+                        $this->CI->db->where('brd_id <>', $v);
+                    }
+                } else {
+                    $this->CI->db->where('brd_id <>', $exclude_brd_id);
+                }
+            }
+
+            if ($period_second) {
+                $post_start_datetime = cdate('Y-m-d H:i:s', ctimestamp() - $period_second);
+                $this->CI->db->where('post_datetime >=', $post_start_datetime);
+            }
+
+            $result = $this->CI->db->get();
+
+            $total_rows = $result->row_array();
+        }
+        
+        
+        
+        
+        $view['view']['page'] = ceil($total_rows['rownum'] / $per_page);
+        
+        
+        
+
+        $view['view']['skinurl'] = base_url( VIEW_DIR . 'group/' . $skin);
         if($more) $html = $this->CI->load->view('group/' . $skin . '/latest_group_more', $view, true);
         else $html = $this->CI->load->view('group/' . $skin . '/latest_group', $view, true);
 
@@ -1333,7 +1968,6 @@ class Board extends CI_Controller
 
         return $html;
     }
-
 
     /**
      * 최근 댓글을 가져옵니다

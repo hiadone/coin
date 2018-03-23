@@ -498,7 +498,7 @@
 					width: 100%;
 				}
 
-				.gallery_news figure img{
+				.gallery_news figure > img{
 					width: 30%;
 					margin-right: 3%;
 					float: left;

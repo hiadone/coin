@@ -10,7 +10,7 @@
 <?php if (element('meta_author', $layout)) { ?><meta name="author" content="<?php echo html_escape(element('meta_author', $layout)); ?>"><?php } ?>
 <?php if (element('favicon', $layout)) { ?><link rel="shortcut icon" type="image/x-icon" href="<?php echo element('favicon', $layout); ?>" /><?php } ?>
 <?php if (element('canonical', $view)) { ?><link rel="canonical" href="<?php echo element('canonical', $view); ?>" /><?php } ?>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/import.css?'.$this->cbconfig->item('browser_cache_version')) ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/import.css?<?php echo $this->cbconfig->item('browser_cache_version') ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/style.css" />
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" />
 <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -178,13 +178,13 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                 <tr>
                                     <th colspan="3" class="big_font" >
                                     <figure>
-                                        <img src="<?php echo base_url('assets/images/gold_spoon.png') ?>" alt="gold_spoon">
+                                        <img src="<?php echo base_url('assets/images/spoon_'.$this->member->item('mem_level').'.png') ?>" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
                                         <figcaption>
                                             <a style="color:#fff; " href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?></a>
                                         </figcaption>
                                     </figure>
 
-                                    <button class="btn-sm small_font" style="margin-right: 5%;">
+                                    <button class="btn-sm small_font" title="회원정보" style="margin-right: 5%;" onclick="location.href='<?php echo site_url('mypage'); ?>';">
                                         <i class="fa fa-sign-out"></i>
                                         회원정보
                                     </button>
@@ -292,7 +292,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
     <!-- main end -->
     
     <!-- footer start -->
-    <?php echo $this->managelayout->display_footer(); ?>
+    <?php echo $this->managelayout->display_footer('mobile'); ?>
     <!-- footer end -->
 
 <script type="text/javascript">

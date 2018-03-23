@@ -1,49 +1,42 @@
-<table class="table">
-    <thead>
-        <tr>
-            <th class="text-center">순위</th>
-            <th class="text-center">이름</th>
-            <th class="text-center">인사말</th>
-            <?php
-            if (element('attendance_show_attend_time', $view)) {
-            ?>
-                <th class="text-center">출석시간</th>
-            <?php
-            }
-            ?>
-            <th class="text-center">출석포인트</th>
-            <th class="text-center">연속</th>
-        </tr>
-    </thead>
-    <tbody>
+<ol class='atten_list'>
     <?php
     if (element('list', element('data', $view))) {
-        foreach (element('list', element('data', $view)) as $result) {
+        foreach (element('list', element('data', $view)) as $key => $result) {
     ?>
-        <tr>
-            <td class="text-center"><?php echo number_format(element('att_ranking', $result)); ?></td>
-            <td class="text-center"><?php echo element('display_name', $result); ?></td>
-            <td><?php echo html_escape(element('att_memo', $result)); ?></td>
-            <?php
-            if (element('attendance_show_attend_time', $view)) {
-            ?>
-                <td class="text-center"><?php echo element('display_datetime', $result); ?></td>
-            <?php
-            }
-            ?>
-            <td class="text-center"><?php echo number_format(element('att_point', $result)); ?></td>
-            <td class="text-center"><?php echo number_format(element('att_continuity', $result)); ?>일</td>
-        </tr>
+    <li>
+        <figure>
+            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo element('display_level', $result); ?>.png" alt="spoon_img">
+            <figcaption>
+                <p class='big_font'><?php echo html_escape(element('att_memo', $result)); ?></p>
+                <?php if(element('att_ranking', $result) < 4) {?>
+                <span><img src='<?php echo element('layout_skin_url', $layout); ?>/images/rank_0<?php echo element('att_ranking', $result); ?>.png' alt='rank_0<?php echo element('att_ranking', $result); ?>_img'></span>
+                <?php } ?>
+                <ul>
+                    <li><?php echo element('display_name', $result); ?></li>
+                    <li>|</li>
+                    <li><?php echo element('display_datetime', $result); ?></li>
+                    <li>|</li>
+                    <?php if(element('att_point', $result) > 0) {?>
+                    <li>포인트 : <?php echo number_format(element('att_point', $result)); ?></li>
+                    <li>|</li>
+                    <?php } ?>
+                    <li>등 급 : <?php echo element('member_group_name', $result); ?></li>
+                </ul>
+        </figure>
+    </li>
     <?php
         }
     } else {
     ?>
-        <tr>
-            <td class="text-center" colspan="6">출석한 사람이 없습니다</td>
-        </tr>
+        <li>
+            <div class="text-center">출석한 사람이 없습니다</div>
+        </li>
     <?php
     }
     ?>
-    </tbody>
-</table>
-<nav><?php echo element('paging', $view); ?></nav>
+        
+    
+</ol>
+</div>
+<div><?php echo element('paging', $view); ?></div>
+

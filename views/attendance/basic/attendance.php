@@ -1,78 +1,143 @@
-<?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
+<?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); 
+$last = $this->uri->total_segments();
+$record_num = $this->uri->segment($last);
+?>
 
-<h4>출석체크</h4>
 
-<div class="wrapmemo">
-    <?php
-    $attributes = array('class' => 'attendance_box text-center mb20', 'name' => 'attendanceform', 'id' => 'attendanceform');
-    echo form_open('', $attributes);
-    ?>
-        한마디
-        <input type="text" name="memo" value="<?php echo html_escape(element(0, element('default_memo', $view))); ?>" id="att_memo" class="input" onClick="this.value='';" />
-        <button type="button" name="change_memo" class="btn btn-default" id="change_memo"><span class="fa fa-refresh"></span></button>
-        <button type="button" name="submit" class="btn btn-success" id="add_attendance">출첵하기</button>
-    <?php echo form_close(); ?>
-    <button type="button" name="view_policy" class="btn btn-default btn-xs pull-right view_policy" >포인트정책보기</button>
-</div>
-<div class="alert alert-dismissible alert-warning alert-point-policy">
-    <button type="button" class="close alertclose" >&times;</button>
-    <strong>포인트 정책</strong><br />
-    출석가능시간 : <?php echo $this->cbconfig->item('attendance_start_time'); ?> ~ <?php echo $this->cbconfig->item('attendance_end_time'); ?><br />
-    <?php
-    if ($this->cbconfig->item('attendance_point')) {
-        echo '출석포인트 : ' . $this->cbconfig->item('attendance_point') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_1')) {
-        echo '1등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_1') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_2')) {
-        echo '2등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_2') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_3')) {
-        echo '3등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_3') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_4')) {
-        echo '4등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_4') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_5')) {
-        echo '5등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_5') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_6')) {
-        echo '6등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_6') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_7')) {
-        echo '7등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_7') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_8')) {
-        echo '8등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_8') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_9')) {
-        echo '9등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_9') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_10')) {
-        echo '10등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_10') . '점<br />';
-    }
-    if ($this->cbconfig->item('attendance_point_regular') && $this->cbconfig->item('attendance_point_regular_days')) {
-        echo '개근포인트 : ' . $this->cbconfig->item('attendance_point_regular') . '점, ' . $this->cbconfig->item('attendance_point_regular_days') . '일 마다 지급<br />';
-    }
-    ?>
-</div>
+<article class="content02">
+    <section class="submenu ">
+        <ul>
+            <?php
+            $menuhtml = '';
+            if (element('menu', $layout)) {
+                $menu = element('menu', $layout);
+                if (element(0, $menu)) {
+                    foreach (element(0, $menu) as $mkey => $mval) {
+                        if (element(element('men_id', $mval), $menu)) {
+                            
 
-<div class="selected-date"><?php echo element('date_format', $view); ?></div>
-<ul class="date-navigation">
-    <li><a href="<?php echo site_url('attendance'); ?>">오늘보기</a></li>
-    <li><a href="<?php echo site_url('attendance?date=' . element('lastmonth', $view)); ?>">지난달</a></li>
-    <?php
-    for ($day = 1; $day <= element('lastday', $view); $day++) {
-    ?>
-        <li class="datepick <?php echo (sprintf("%02d", $day) === element('d', $view)) ? ' active' : ''; ?>" data-attendance-date="<?php echo element('ym', $view) . "-" . sprintf("%02d", $day);?>"><?php echo $day; ?></li>
-    <?php
-    }
-    ?>
-    <li><a href="<?php echo element('nextmonth', $view) ? site_url('attendance?date=' . element('nextmonth', $view)) : 'javascript:;'; ?>">다음달</a></li>
-</ul>
+                            foreach (element(element('men_id', $mval), $menu) as $lkey => $lval) {
+                                
+                                if(str_replace("/","",element('men_link', $lval)) === implode("",$this->uri->segment_array())){
 
-<div id="viewattendance"></div>
+                                    foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
+                                        $menu_active='';
+                                        
+                                        if($lkey === $skey) $menu_active='class="menu_active"';
+                                        $slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
+                                        $menuhtml .= '<li '.$menu_active.'><a href="' . $slink . '" ' . element('men_custom', $sval);
+                                        if (element('men_target', $sval)) {
+                                            $menuhtml .= ' target="' . element('men_target', $sval) . '"';
+                                        }
+                                        $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
+                                        $menuhtml .= '<li>|</li>';
+                                    }
+
+                                }
+                                
+                            }
+                            
+
+                        } 
+                    }
+                }
+            }
+            
+            echo $menuhtml;
+            ?>
+
+            
+            <li class="submenu_arrow"></li>
+        </ul>
+        
+    </section>
+    <section class='post_list'>
+        <div class='post_table' id='event02' style='border-bottom:0;'>
+
+
+            <?php
+            $attributes = array('class' => 'atten_write', 'name' => 'attendanceform', 'id' => 'attendanceform');
+            echo form_open('', $attributes);
+            ?>
+                <label class='nomal_font02'>한마디</label>
+                <input type="text" name="memo" value="<?php echo html_escape(element(0, element('default_memo', $view))); ?>" id="att_memo" class="input" onClick="this.value='';" />
+                <button type="button" name="change_memo" class="refresh" id="change_memo"><img src='<?php echo element('layout_skin_url', $layout); ?>/images/refresh.png' alt='refresh_img'></button>
+                <button type="button" name="submit" class="btn btn-success" id="add_attendance">출첵하기</button>
+            
+                <button type="button" name="view_policy" class="point nomal_font02 view_policy" >포인트정책보기</button>
+                
+            <?php echo form_close(); ?>
+        </div>
+        <div class="alert alert-dismissible alert-warning alert-point-policy">
+            <button type="button" class="close alertclose" >&times;</button>
+            <strong>포인트 정책</strong><br />
+            출석가능시간 : <?php echo $this->cbconfig->item('attendance_start_time'); ?> ~ <?php echo $this->cbconfig->item('attendance_end_time'); ?><br />
+            <?php
+            if ($this->cbconfig->item('attendance_point')) {
+                echo '출석포인트 : ' . $this->cbconfig->item('attendance_point') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_1')) {
+                echo '1등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_1') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_2')) {
+                echo '2등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_2') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_3')) {
+                echo '3등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_3') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_4')) {
+                echo '4등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_4') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_5')) {
+                echo '5등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_5') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_6')) {
+                echo '6등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_6') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_7')) {
+                echo '7등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_7') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_8')) {
+                echo '8등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_8') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_9')) {
+                echo '9등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_9') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_10')) {
+                echo '10등포인트 : 출석포인트 + ' . $this->cbconfig->item('attendance_point_10') . '점<br />';
+            }
+            if ($this->cbconfig->item('attendance_point_regular') && $this->cbconfig->item('attendance_point_regular_days')) {
+                echo '개근포인트 : ' . $this->cbconfig->item('attendance_point_regular') . '점, ' . $this->cbconfig->item('attendance_point_regular_days') . '일 마다 지급<br />';
+            }
+            ?>
+        </div>
+
+        <div class="atten_date"><h3 class='big_font'><?php echo element('date_format', $view); ?></h3>
+        <table>
+            <tr>
+                <td>◀ <a href="<?php echo site_url('attendance?date=' . element('lastmonth', $view)); ?>">지난 달</a></td>
+                <td><a href="<?php echo site_url('attendance'); ?>">오늘보기</a></td>
+                <td><a href="<?php echo element('nextmonth', $view) ? site_url('attendance?date=' . element('nextmonth', $view)) : 'javascript:;'; ?>">다음 달</a> ▶</td>
+            </tr>
+        </table>
+        
+        <ul>
+            
+            <?php
+            for ($day = 1; $day <= element('lastday', $view); $day++) {
+            ?>
+                <li class="datepick <?php echo (sprintf("%02d", $day) === element('d', $view)) ? ' active' : ''; ?>" data-attendance-date="<?php echo element('ym', $view) . "-" . sprintf("%02d", $day);?>"><?php echo $day; ?></li>
+            <?php
+            }
+            ?>
+            
+        </ul>
+        </div>
+        <div id="viewattendance"></div>
+        </section>
+    
+    <span class='bar' style="height: 60px;"></span>
+</article>
 <script type="text/javascript">
 //<![CDATA[
 function view_attendance(id, date, page) {

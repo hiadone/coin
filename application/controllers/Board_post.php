@@ -42,7 +42,7 @@ class Board_post extends CB_Controller
     /**
      * 게시판 목록입니다.
      */
-    public function lists($brd_key = '')
+    public function lists($brd_key = '',$post_notice=0)
     {
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_board_post_lists';
@@ -58,9 +58,29 @@ class Board_post extends CB_Controller
         // 이벤트가 존재하면 실행합니다
         $view['view']['event']['before'] = Events::trigger('before', $eventname);
 
-        $view['view']['list'] = $list = $this->_get_list($brd_key);
+        $view['view']['list'] = $list = $this->_get_list($brd_key,'',$post_notice);
         $view['view']['board_key'] = element('brd_key', element('board', $list));
 
+        $where = array(
+            'bgr_id' => element('bgr_id', element('board', $list)),
+            'brd_search' => 1,
+        );
+        $board_id = $this->Board_model->get_board_list($where);
+
+        $board_list = array();
+
+
+        if ($board_id && is_array($board_id)) {
+            foreach ($board_id as $key => $val) {
+                
+                if($key===1 && element('bgr_id', element('board', $list))==='4') $board_list[]=array("brd_key"=>"attendance","board_name"=>"출석체크");
+                
+                $board_list[] = $this->board->item_all(element('brd_id', $val));
+                if($key===0 && element('bgr_id', element('board', $list))==='6') $board_list[]=array("brd_key"=>"live_news_sub","board_name"=>"인기뉴스");
+            }
+        }
+
+        $view['view']['board_list'] = $board_list;
         // stat_count_board ++
         $this->_stat_count_board(element('brd_id', element('board', $list)));
 
@@ -352,13 +372,15 @@ class Board_post extends CB_Controller
 
         if (element('mem_id', $post) >= 0) {
             $dbmember = $this->Member_model
-                ->get_by_memid(element('mem_id', $post), 'mem_icon');
+                ->get_by_memid(element('mem_id', $post), 'mem_icon,mem_level');
+            $view['view']['post']['display_level']= element('mem_level', $dbmember);
             $view['view']['post']['display_name'] = display_username(
                 element('post_userid', $post),
                 element('post_nickname', $post),
                 ($use_sideview_icon ? element('mem_icon', $dbmember) : ''),
                 ($use_sideview ? 'Y' : 'N')
             );
+            
         } else {
             $view['view']['post']['display_name'] = '익명사용자';
         }
@@ -730,10 +752,12 @@ class Board_post extends CB_Controller
         $group = $this->Board_group_model->get_one(element('bgr_id', $board));
             
         if ($skeyword) {
-            $view['view']['list_url'] = group_url(element('bgr_key', $group)).'/'.element('brd_key', $board);
+            $view['view']['list_url'] = board_url(element('brd_key', $board));
+            $view['view']['group_list_url'] = group_url(element('bgr_key', $group)).'/'.element('brd_key', $board);
             $view['view']['search_list_url'] = group_url(element('bgr_key', $group).'/'.element('brd_key', $board) . '?' . $param->output());
         } else {
-            $view['view']['list_url'] = group_url(element('bgr_key', $group).'/'.element('brd_key', $board) . '?' . $param->output());
+            $view['view']['list_url'] = board_url(element('brd_key', $board));
+            $view['view']['group_list_url'] = group_url(element('bgr_key', $group).'/'.element('brd_key', $board) . '?' . $param->output());
             $view['view']['search_list_url'] = '';
         }
         $view['view']['trash_url'] = site_url('boards/trash/' . element('post_id', $post) . '?' . $param->output());
@@ -944,7 +968,7 @@ class Board_post extends CB_Controller
             $this->data = $view;
             $this->layout = element('layout_skin_file', element('layout', $view));
             if ($show_list_from_view) {
-                $list_skin_file = element('use_gallery_list', $board) ? 'gallerylist' : 'list';
+                $list_skin_file = element('use_gallery_list', $board) ? 'gallerylist_sub' : 'list_sub';
                 $listskindir = ($this->cbconfig->get_device_view_type() === 'mobile')
                     ? $mobile_skin_dir : $skin_dir;
                 if (empty($listskindir)) {
@@ -987,7 +1011,7 @@ class Board_post extends CB_Controller
     /**
      * 게시판 목록페이지입니다.
      */
-    public function _get_list($brd_key, $from_view = '')
+    public function _get_list($brd_key, $from_view = '',$post_notice=0)
     {
 
         // 이벤트 라이브러리를 로딩합니다
@@ -1193,6 +1217,14 @@ class Board_post extends CB_Controller
             && $this->cbconfig->get_device_view_type() === 'mobile') {
             $where['post_notice'] = 0;
         }
+
+
+        if (!empty($post_notice)) {
+            $where['post_notice'] = $post_notice;
+        }
+        
+
+
         if (element('use_personal', $board) && $is_admin === false) {
             $where['post.mem_id'] = $mem_id;
         }
@@ -1230,12 +1262,17 @@ class Board_post extends CB_Controller
                 }
 
                 if (element('mem_id', $val) >= 0) {
+                    $dbmember = $this->Member_model
+                        ->get_by_memid(element('mem_id', $val), 'mem_level');
+                    $result['list'][$key]['display_level']= element('mem_level', $dbmember);
                     $result['list'][$key]['display_name'] = display_username(
                         element('post_userid', $val),
                         element('post_nickname', $val),
                         ($use_sideview_icon ? element('mem_icon', $val) : ''),
                         ($use_sideview ? 'Y' : 'N')
                     );
+                    
+                    
                 } else {
                     $result['list'][$key]['display_name'] = '익명사용자';
                 }
@@ -1451,10 +1488,12 @@ class Board_post extends CB_Controller
         $group = $this->Board_group_model->get_one(element('bgr_id', $board));
 
         if ($skeyword) {
-            $return['list_url'] = group_url(element('bgr_key', $group)).'/'.element('brd_key', $board);
+            $return['list_url'] = board_url(element('brd_key', $board));
+            $return['group_list_url'] = group_url(element('bgr_key', $group)).'/'.element('brd_key', $board);
             $return['search_list_url'] = board_url(element('bgr_key', $group).'/'.element('brd_key', $board) . '?' . $param->output());
         } else {
-            $return['list_url'] = group_url(element('bgr_key', $board).'/'.element('brd_key', $board) . '?' . $param->output());
+            $return['list_url'] = board_url(element('brd_key', $board));
+            $return['group_list_url'] = group_url(element('bgr_key', $board).'/'.element('brd_key', $board) . '?' . $param->output());
             $return['search_list_url'] = '';
         }
 

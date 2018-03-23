@@ -340,30 +340,80 @@ class Managelayout extends CI_Controller
     /**
      * footer 리턴합니다
      */
-    function display_footer()
-    {
-        $return = '
-        <footer>
-            <table>
-                <tr>
-                    <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="로그인">로그인</a></td>
-                    <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="회원가입">회원가입</a></td>
-                    <td><a href="'.current_full_url().'" class="viewpcversion">PC</a></td>
-                </tr>
-            </table>
-            <ul class="small_font">
-                <li><a href="'.document_url('provision').'" title="이용약관">이용약관 및 개인정보취급방침</a></li>
-                <li><a href="'.document_url('privacy').'" title="위치정보">게제중단요청</a></li>
-                <li><a href="'.document_url('privacy').'" title="위치정보">제휴문의</a></li>
-            </ul>
+    function display_footer($footer_type='')
+    {   
+        if($footer_type==='mobile'){
+            $return = '
+            <footer>
+                <table>
+                    <tr>
+                        <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="로그인">로그인</a></td>
+                        <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="회원가입">회원가입</a></td>
+                        <td><a href="'.current_full_url().'" class="viewpcversion">PC</a></td>
+                    </tr>
+                </table>
+                <ul class="small_font">
+                    <li><a href="'.document_url('provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a></li>
+                    <li><a href="'.document_url('privacy').'" title="게제중단요청">게제중단요청</a></li>
+                    <li><a href="'.document_url('privacy').'" title="제휴문의">제휴문의</a></li>
+                </ul>
+
+                
+
+                <p class="small_font">Copyright ⓒ 시즌제이 . All Rights Reserved </p>
+            </footer>
 
             
+            ';
+        } else {
+            $return = '
+            <footer>
+                <div class="footer">
+                    <h1>
+                        <img src="/views/_layout/basic/images/logo.png" alt="logo_img">
+                    </h1>
 
-            <p class="small_font">Copyright ⓒ 시즌제이 . All Rights Reserved </p>
-        </footer>
+                    <ul>
+                        <li>
+                            <a href="'.document_url('provision').'" title="이용약관및개인정보취급방침">개인정보취급방침</a>
+                        </li>
 
+                        <li>
+                            |
+                        </li>
+
+                        <li>
+                            <a href="'.document_url('privacy').'" title="게제중단요청">개제중단요청</a>
+                        </li>
+
+                        <li>
+                            |
+                        </li>
+
+                        <li>
+                            <a href=""'.document_url('privacy').'" title="제휴문의"">제휴문의</a>
+                        </li>
+
+                        <li>
+                            |
+                        </li>
+
+                        <li>
+                            '.mailto('bitissue.help@gmail.com','bitissue.help@gmail.com').'
+                        </li>
+                    </ul>
+
+                    <p>
+                        Copyright ⓒ 시즌제이 . All Rights Reserved http://www.bitcoissue.com
+                        <span class="big_font pointer">TOP</span>
+                    </p>
+
+
+                </div>
+            </footer>
+            ';
+        }
         
-        ';
         return $return;
     }
 }

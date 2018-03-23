@@ -564,7 +564,7 @@ if ( ! function_exists('twitter_image_url')) {
  * 배너 출력하기
  */
 if ( ! function_exists('banner')) {
-    function banner($position = '', $type = 'rand', $limit = 1, $start_tag = '', $end_tag = '')
+    function banner($position = '', $type = 'rand', $limit = 1, $offset = 0,$start_tag = '', $end_tag = '')
     {
 
         /**
@@ -597,10 +597,13 @@ if ( ! function_exists('banner')) {
         $html = '';
 
         $CI->load->model('Banner_model');
-        $result = $CI->Banner_model->get_banner($position, $type, $limit);
+        $result = $CI->Banner_model->get_banner($position, $type, $limit,$offset);
 
         if ($result) {
             foreach ($result as $key => $val) {
+                if(element('ban_activated', $val)!=='1'){
+                    continue;
+                }
                 if ($CI->cbconfig->get_device_view_type() === 'mobile'
                     && element('ban_device', $val) === 'pc') {
                     continue;
@@ -615,6 +618,7 @@ if ( ! function_exists('banner')) {
 
                     if (element('ban_url', $val)) {
                         $html .= '<a href="' . site_url('gotourl/banner/' . element('ban_id', $val)) . '" ';
+                        // $html .= '<a href="#" ';
                         if (element('ban_target', $val)) {
                             $html .= ' target="_blank" ';
                         }
@@ -759,13 +763,13 @@ if ( ! function_exists('twitter')) {
         if ($open) {
             for($i; $i<4; $i++){
 
-                if($i > 0 && $i % 3===0) $html .= '<td>+</td></tr>';
+                if($i > 0 && $i % 3===0) $html .= '<td class="pointer">+</td></tr>';
                 else $html .= '<td></td>';
             }
             $open = false;
         } else {
             for($i; $i<4; $i++){
-                if($i > 0 && $i % 3===0) $html .= '<td>+</td></tr>';
+                if($i > 0 && $i % 3===0) $html .= '<td class="pointer">+</td></tr>';
                 else $html .= '<td></td>';
             }
         }
@@ -870,7 +874,7 @@ if ( ! function_exists('twitter_list')) {
                     if (element('ban_url', $val)) {
                         $html .= '</a>';
                     }
-                    if($CI->member->item('mem_id')===element('mem_id', $val) || $CI->member->is_admin() === 'super') $html .= '<span>삭 제</span></td></tr>';
+                    if($CI->member->item('mem_id')===element('mem_id', $val) || $CI->member->is_admin() === 'super') $html .= '<span class="pointer" onClick="twitter_delete('.element('ban_id', $val).',\''.$position.'\');">삭 제</span></td></tr>';
                     else $html .= '</td></tr>';
                     
                 }

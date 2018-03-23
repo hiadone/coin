@@ -1,58 +1,42 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
-<div class="mypage">
-    <ul class="nav nav-tabs">
-        <li><a href="<?php echo site_url('mypage'); ?>" title="마이페이지">마이페이지</a></li>
-        <li><a href="<?php echo site_url('mypage/post'); ?>" title="나의 작성글">나의 작성글</a></li>
-        <?php if ($this->cbconfig->item('use_point')) { ?>
-            <li><a href="<?php echo site_url('mypage/point'); ?>" title="포인트">포인트</a></li>
-        <?php } ?>
-        <li><a href="<?php echo site_url('mypage/followinglist'); ?>" title="팔로우">팔로우</a></li>
-        <li><a href="<?php echo site_url('mypage/like_post'); ?>" title="내가 추천한 글">추천</a></li>
-        <li><a href="<?php echo site_url('mypage/scrap'); ?>" title="나의 스크랩">스크랩</a></li>
-        <li><a href="<?php echo site_url('mypage/loginlog'); ?>" title="나의 로그인기록">로그인기록</a></li>
-        <li <?php if (uri_string() === 'membermodify') { ?>class="active" <?php } ?> ><a href="<?php echo site_url('membermodify'); ?>" title="정보수정">정보수정</a></li>
-        <li <?php if (uri_string() === 'membermodify/memberleave') { ?>class="active" <?php } ?>><a href="<?php echo site_url('membermodify/memberleave'); ?>" title="탈퇴하기">탈퇴하기</a></li>
-    </ul>
+    <section class="ham_out" >
+        <h2>회 원 탈 퇴</h2>
+        <div style="border:0;">
+            <img src="<?php echo base_url('/assets/images/stop.png') ?>" alt="stop">
+            <?php
+            echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
+            echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-warning"><button type="button" class="close alertclose" >&times;</button>', '</div>');
+            ?>
+            <?php
+            $attributes = array('class' => 'form-horizontal', 'name' => 'fconfirmpassword', 'id' => 'fconfirmpassword', 'onsubmit' => 'return confirmleave()');
+            echo form_open(current_url(), $attributes);
+            ?>
 
-    <h3>회원 비밀번호 확인</h3>
+            <h3>정말로 탈퇴 하시겠습니까 ?</h3>
+            
+            <p>
+                회원 탈퇴시 모든 정보가 삭제되며<br>
+                어떠한 경우에도 복구되지 않습니다.<br><br>
+                탈퇴 시 동일한 SNS로 재가입은<br>
+                1개월 이내로는 재가입이 불가능 하며<br><br>
 
-    <?php
-    echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
-    echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-warning"><button type="button" class="close alertclose" >&times;</button>', '</div>');
-    ?>
-
-    <div class="form-horizontal mt20">
-        <?php
-        $attributes = array('class' => 'form-horizontal', 'name' => 'fconfirmpassword', 'id' => 'fconfirmpassword', 'onsubmit' => 'return confirmleave()');
-        echo form_open(current_url(), $attributes);
-        ?>
-            <div class="alert alert-dismissible alert-danger infoalert">
-                회원 탈퇴를 위한 패스워드 입력페이지입니다.<br />
-                패스워드를 입력하시면 회원탈퇴가 정상적으로 진행됩니다.<br />
-                탈퇴한 회원정보는 복구할 수 없으므로, 신중히 선택해주시기 바랍니다.
+                <b>
+                    적립하신 모든 포인트가 소멸됩니다.<br>
+                    탈퇴하시겠습니까?
+                </b>
+            </p>
+            <span>비밀번호</span>
+            <input type="password" class="input px150" id="mem_password" name="mem_password" />
             </div>
-            <ol class="askpassword">
-                <li>
-                    <span>아이디</span>
-                    <div class="form-text"><strong><?php echo $this->member->item('mem_userid'); ?></strong></div>
-                </li>
-                <li>
-                    <span>비밀번호</span>
-                    <input type="password" class="input px150" id="mem_password" name="mem_password" />
-                    <button class="btn btn-primary" type="submit">확인</button>
-                </li>
-                <li>
-                    <span></span>
-                    <div>
-                        <span class="fa fa-exclamation-circle"></span>
-                        외부로부터 회원님의 정보를 안전하게 보호하기 위해 비밀번호를 확인하셔야 합니다.
-                    </div>
-                </li>
-            </ol>
-        <?php echo form_close(); ?>
-    </div>
-</div>
+            <button type="submit">탈 퇴 하 기</button>
+            <?php echo form_close(); ?>
+        
+
+        
+    </section>
+
+
 
 <script type="text/javascript">
 //<![CDATA[
