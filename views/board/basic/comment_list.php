@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-<div class="alert-comment-list-message" style="display:none;"><span class="alert-comment-list-message-content"></span></div>
+
 
 
 <section class='post_reply'>
         <h2>Comment</h2>
         <div class='reply_list'>
-            
+        <div class="alert alert-auto-close alert-dismissible alert-comment-list-message" style="display:none;"><span class="alert-comment-list-message-content"></span></div>
 <?php
 if (element('list', element('data', $view))) {
     echo '<ol class="post-view">';
@@ -31,16 +31,17 @@ if (element('list', element('data', $view))) {
                 <li>작성자 : <?php echo element('display_name', $result); ?></li>
                 <li class='small_font'>|</li>
                 <?php if (element('can_update', $result)) { ?>
-                <li class='modify'><a href="javascript:comment_box('<?php echo element('cmt_id', $result); ?>', 'cu'); return false;">수 정</a></li>
+                <li class='modify'><a href="javascript:;" onClick="comment_box('<?php echo element('cmt_id', $result); ?>', 'cu'); return false;">수 정</a></li>
                 <li class='small_font'>|</li>
                 <?php } ?>
                 <?php if (element('can_delete', $result)) { ?>
-                <li class='modify'><a href="javascript:delete_comment('<?php echo element('cmt_id', $result); ?>', '<?php echo element('post_id', $result); ?>', '<?php echo element('page', $view); ?>'); return false;">삭 제</a></li>
+                <li class='clear'><a href="javascript:;" onClick="delete_comment('<?php echo element('cmt_id', $result); ?>', '<?php echo element('post_id', $result); ?>', '<?php echo element('page', $view); ?>'); return false;">삭 제</a></li>
                 <li class='small_font'>|</li>
                 <?php } ?>
                 <?php if (element('can_comment_choose', $view)) { ?>
                     
-                    <a   id="btn-comment-choose-<?php echo element('cmt_id', $result); ?>" href="javasciprt:comment_choose('<?php echo element('cmt_id', $result); ?>', '1', 'comment-choose-<?php echo element('cmt_id', $result); ?>');" title="채택하기">채 택</a>
+                <li><a   id="btn-comment-choose-<?php echo element('cmt_id', $result); ?>" href="javascript:;" onClick="comment_choose('<?php echo element('cmt_id', $result); ?>', '1', 'comment-choose-<?php echo element('cmt_id', $result); ?>');" title="채택하기">채 택</a></li>
+                    <li class='small_font'>|</li>
                 <?php } ?>
                 
             </ul>

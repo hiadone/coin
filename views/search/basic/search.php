@@ -1,6 +1,6 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
-
-<h3><?php echo ($this->input->get('skeyword')) ? '검색결과 : ' . html_escape($this->input->get('skeyword')) : '검색페이지' ?></h3>
+<div class="container pt20" style="width:1200px">
+<!-- <h3><?php echo ($this->input->get('skeyword')) ? '검색결과 : ' . html_escape($this->input->get('skeyword')) : '검색페이지' ?></h3> -->
 <div class="row">
     <form action="<?php echo current_url(); ?>" onSubmit="return checkSearch(this);" class=" search_box text-center">
         <div class="group">
@@ -22,8 +22,8 @@
                 <option value="post_both" <?php echo $this->input->get('sfield') === 'post_both' ? 'selected="selected"' : ''; ?>>제목+내용</option>
                 <option value="post_title" <?php echo $this->input->get('sfield') === 'post_title' ? 'selected="selected"' : ''; ?>>제목</option>
                 <option value="post_content" <?php echo $this->input->get('sfield') === 'post_content' ? 'selected="selected"' : ''; ?>>내용</option>
-                <option value="post_userid" <?php echo $this->input->get('sfield') === 'post_userid' ? 'selected="selected"' : ''; ?>>회원아이디</option>
-                <option value="post_nickname" <?php echo $this->input->get('sfield') === 'post_nickname' ? 'selected="selected"' : ''; ?>>회원닉네임</option>
+                <!-- <option value="post_userid" <?php echo $this->input->get('sfield') === 'post_userid' ? 'selected="selected"' : ''; ?>>회원아이디</option>
+                <option value="post_nickname" <?php echo $this->input->get('sfield') === 'post_nickname' ? 'selected="selected"' : ''; ?>>회원닉네임</option> -->
             </select>
         </div>
         <div class="group">
@@ -56,8 +56,11 @@ if (element('board_rows', $view)) {
 </ul>
 <div class="media-box mt20" id="searchresult">
 <?php
+
 if (element('list', element('data', $view))) {
-    foreach (element('list', element('data', $view)) as $result) {
+    foreach (element('list', element('data', $view)) as $lkey => $lval) {
+        foreach($lval as $key => $result){
+            
 ?>
     <div class="media">
 <?php
@@ -73,8 +76,8 @@ if (element('list', element('data', $view))) {
 ?>
         <div class="media-body">
             <h4 class="media-heading"><a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('post_title', $result)); ?>"><?php echo html_escape(element('post_title', $result)); ?></a>
-                <?php if (element('post_comment_count', $result)) { ?><span class="label label-info label-xs"><?php echo element('post_comment_count', $result); ?> comments</span><?php } ?>
-                <a href="<?php echo element('post_url', $result); ?>" target="_blank" title="<?php echo html_escape(element('post_title', $result)); ?>"><span class="label label-default label-xs">새창</span></a>
+                <?php if (element('post_comment_count', $result)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $result); ?></span><?php } ?>
+                <!-- <a href="<?php echo element('post_url', $result); ?>" target="_blank" title="<?php echo html_escape(element('post_title', $result)); ?>"><span class="label label-default label-xs">새창</span></a> -->
             </h4>
             <p><?php echo element('content', $result); ?></p>
             <p class="media-info">
@@ -84,6 +87,7 @@ if (element('list', element('data', $view))) {
         </div>
     </div>
 <?php
+        }
     }
 }
 if ( ! element('list', element('data', $view))) {
@@ -98,7 +102,7 @@ if ( ! element('list', element('data', $view))) {
 ?>
 </div>
 <nav><?php echo element('paging', $view); ?></nav>
-
+</div>
 <script type="text/javascript">
 //<![CDATA[
 function checkSearch(f) {

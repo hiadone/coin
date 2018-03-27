@@ -166,7 +166,9 @@ class Search extends CB_Controller
                         element('mem_userid', $val),
                         element('mem_nickname', $val)
                     );
-                $search['list'][element('brd_id', $val)][$key]['display_datetime'] = display_datetime(element('post_datetime', $val));
+                
+                $search['list'][element('brd_id', $val)][$key]['content'] = cut_str(strip_tags(element('post_content', $val)),200);
+                $search['list'][element('brd_id', $val)][$key]['display_datetime'] = display_datetime(element('post_datetime', $val), 'user', 'Y-m-d H:i');
                 $search['list'][element('brd_id', $val)][$key]['post_title'] = cut_str(strip_tags(element('post_title', $val)),200);
                 $search['list'][element('brd_id', $val)][$key]['is_mobile'] = (element('post_device', $val) === 'mobile') ? true : false;
             }

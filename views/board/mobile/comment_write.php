@@ -22,7 +22,7 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 <input type="hidden" name="cmt_id" value="" id="cmt_id" />
                 <input type="hidden" name="cmt_page" value="" id="cmt_page" />
                 
-                <textarea <?php if($this->member->is_member() === false) {?> placeholder="댓글쓰기는 로그인후 이용이 가능합니다."  onfocus="this.placeholder=''" maxlength="100" onblur="this.placeholder='댓글쓰기는 로그인후 이용이 가능합니다.'" <?php } ?>class=" " name="cmt_content" id="cmt_content"  accesskey="c" <?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'onClick="alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} ?>><?php echo set_value('cmt_content', element('cmt_content', element('comment', $view))); ?></textarea>
+                <textarea <?php if($this->member->is_member() === false) {?> placeholder="댓글쓰기는 로그인후 이용이 가능합니다."  onfocus="this.placeholder=''" maxlength="100" onblur="this.placeholder='댓글쓰기는 로그인후 이용이 가능합니다.'" <?php } ?> class=" " name="cmt_content" id="cmt_content"  accesskey="c" <?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'onClick="alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} ?>><?php echo set_value('cmt_content', element('cmt_content', element('comment', $view))); ?></textarea>
                 <?php if (element('comment_min_length', element('board', $view)) OR element('comment_max_length', element('board', $view))) { ?>
                     <span class="char_count">
                         <span id="char_count">0</span>/
@@ -44,11 +44,11 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                             <button type="button" id="captcha" style="display:none;"></button>
                             <input type="hidden" name="recaptcha" />
                         <?php } else { ?>
-                            <div class="form-group"><img src="<?php echo base_url('assets/images/preload.png'); ?>" width="160" height="40" id="captcha" alt="captcha" title="captcha" /></div>
+                            <!-- <div class="form-group"><img src="<?php echo base_url('assets/images/preload.png'); ?>" width="160" height="40" id="captcha" alt="captcha" title="captcha" /></div>
                             <div class="form-group">
                                 <input type="text" class="input col-md-4" id="captcha_key" name="captcha_key" />
                             </div>
-                            <div class="form-group">자동등록방지 숫자를 순서대로 입력하세요.</div>
+                            <div class="form-group">자동등록방지 숫자를 순서대로 입력하세요.</div> -->
                         <?php } ?>
                     </div>
                 <?php } ?>

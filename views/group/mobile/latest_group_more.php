@@ -12,11 +12,11 @@
 
             if(element('brd_key',element('board',$view))==='live_news' || element('brd_key',element('board',$view))==='hot_news'){ ?>
                 <li class='gallery_news'>
-                    <a href="<?php echo element('url', $value); ?>" target="_blank">
+                    <a href="<?php echo element('url', $value); ?>" >
                     <figure>
                         <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                         <figcaption>
-                        <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?></h3>
+                        <h3 class="normal_font"><?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?><?php echo html_escape(element('title', $value)); ?></h3>
                         <p class="display_content"><?php echo element('display_content', $value); ?></p>
                         </figcaption>
                     </figure>
@@ -26,7 +26,8 @@
 
            <?php } else { ?>
                 <li>
-                    <a href="<?php echo element('url', $value); ?>" target="_blank">
+                    <a href="<?php echo element('url', $value); ?>" >
+                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
                     <?php echo html_escape(element('title', $value)); ?>
                      <span><?php if (element('post_comment_count', $value)) { ?> [<?php echo element('post_comment_count', $value); ?>]<?php } ?></span>
                     

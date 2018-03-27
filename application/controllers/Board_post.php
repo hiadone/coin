@@ -35,14 +35,14 @@ class Board_post extends CB_Controller
         if ( ! $this->member->item('mem_password') && $this->member->item('mem_id')) {
             redirect('membermodify');
         }
-        $this->load->library(array('pagination', 'querystring', 'accesslevel', 'videoplayer', 'point'));
+        $this->load->library(array('pagination', 'querystring', 'accesslevel', 'videoplayer', 'point','coin'));
     }
 
 
     /**
      * 게시판 목록입니다.
      */
-    public function lists($brd_key = '',$post_notice=0)
+    public function lists($brd_key = '')
     {
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_board_post_lists';
@@ -58,8 +58,10 @@ class Board_post extends CB_Controller
         // 이벤트가 존재하면 실행합니다
         $view['view']['event']['before'] = Events::trigger('before', $eventname);
 
-        $view['view']['list'] = $list = $this->_get_list($brd_key,'',$post_notice);
+        $view['view']['list'] = $list = $this->_get_list($brd_key);
         $view['view']['board_key'] = element('brd_key', element('board', $list));
+
+        $view['view']['view_coin'] = $this->get_coin_data();
 
         $where = array(
             'bgr_id' => element('bgr_id', element('board', $list)),
@@ -76,7 +78,7 @@ class Board_post extends CB_Controller
                 if($key===1 && element('bgr_id', element('board', $list))==='4') $board_list[]=array("brd_key"=>"attendance","board_name"=>"출석체크");
                 
                 $board_list[] = $this->board->item_all(element('brd_id', $val));
-                if($key===0 && element('bgr_id', element('board', $list))==='6') $board_list[]=array("brd_key"=>"live_news_sub","board_name"=>"인기뉴스");
+                if($key===0 && element('bgr_id', element('board', $list))==='6') $board_list[]=array("brd_key"=>"live_news","board_name"=>"인기뉴스","post_notice"=>"4");
             }
         }
 
@@ -735,10 +737,18 @@ class Board_post extends CB_Controller
             $view['view']['write_url'] = write_url(element('brd_key', $board));
         } elseif ($this->cbconfig->get_device_view_type() !== 'mobile'
             && element('always_show_write_button', $board)) {
-            $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+            if($this->member->is_member())
+                $view['view']['write_url'] = 'javascript:alert(\'회원님은 글을 작성할 수 있는 권한이 없습니다.\');';
+            else 
+                $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+            
         } elseif ($this->cbconfig->get_device_view_type() === 'mobile'
             && element('mobile_always_show_write_button', $board)) {
-            $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+            if($this->member->is_member())
+                $view['view']['write_url'] = 'javascript:alert(\'회원님은 글을 작성할 수 있는 권한이 없습니다.\');';
+            else 
+                $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+            
         }
 
         $view['view']['reply_url'] = ($can_reply === true && ! element('post_del', $post))
@@ -882,7 +892,7 @@ class Board_post extends CB_Controller
             : element('comment_default_content', $board);
 
         if ($show_list_from_view) {
-            $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1);
+            $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1,$post_id);
         }
 
 
@@ -1011,7 +1021,7 @@ class Board_post extends CB_Controller
     /**
      * 게시판 목록페이지입니다.
      */
-    public function _get_list($brd_key, $from_view = '',$post_notice=0)
+    public function _get_list($brd_key, $from_view = '',$post_id=0)
     {
 
         // 이벤트 라이브러리를 로딩합니다
@@ -1083,6 +1093,9 @@ class Board_post extends CB_Controller
         } else {
             $per_page = element('list_count', $board)
                 ? (int) element('list_count', $board) : 20;
+        }
+        if(!empty($post_id) && $from_view){
+            $per_page=10;
         }
         $offset = ($page - 1) * $per_page;
 
@@ -1219,8 +1232,8 @@ class Board_post extends CB_Controller
         }
 
 
-        if (!empty($post_notice)) {
-            $where['post_notice'] = $post_notice;
+        if (!empty($this->input->get('post_notice'))) {            
+            $where['post_notice'] = $this->input->get('post_notice');
         }
         
 
@@ -1362,6 +1375,8 @@ class Board_post extends CB_Controller
 
         $return['board'] = $board;
 
+        $return['board']['post_notice']=empty($this->input->get('post_notice')) ? 0 :$this->input->get('post_notice');
+
         $return['point_info'] = '';
         if ($this->cbconfig->item('use_point')
             && element('use_point', $board)
@@ -1461,7 +1476,13 @@ class Board_post extends CB_Controller
         /**
          * 페이지네이션을 생성합니다
          */
-        $config['base_url'] = board_url($brd_key) . '?' . $param->replace('page');
+        if(!empty($post_id) && $from_view){
+            $config['base_url'] = post_url($brd_key,$post_id) . '?' . $param->replace('page');
+        }
+        else {
+            $config['base_url'] = board_url($brd_key) . '?' . $param->replace('page');
+        }
+
         $config['total_rows'] = $result['total_rows'];
         $config['per_page'] = $per_page;
         if ($this->cbconfig->get_device_view_type() === 'mobile') {
@@ -1512,9 +1533,18 @@ class Board_post extends CB_Controller
         if ($can_write === true) {
             $return['write_url'] = write_url($brd_key);
         } elseif ($this->cbconfig->get_device_view_type() !== 'mobile' && element('always_show_write_button', $board)) {
-            $return['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+            if($this->member->is_member())
+                $return['write_url'] = 'javascript:alert(\'회원님은 글을 작성할 수 있는 권한이 없습니다.\');';
+            else 
+                $return['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
         } elseif ($this->cbconfig->get_device_view_type() === 'mobile' && element('mobile_always_show_write_button', $board)) {
-            $return['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+
+            if($this->member->is_member())
+                $return['write_url'] = 'javascript:alert(\'회원님은 글을 작성할 수 있는 권한이 없습니다.\');';
+            else 
+                $return['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+
+            
         }
 
         $return['list_delete_url'] = site_url('postact/listdelete/' . $brd_key . '?' . $param->output());
@@ -1564,5 +1594,16 @@ class Board_post extends CB_Controller
             $this->Stat_count_board_model->add_visit_board($brd_id);
 
         }
+    }
+
+    function get_coin_data($cur_unit=''){
+        
+        $this->cbconfig->get_device_view_type();
+        $config = array(
+            'skin' => 'mobile',
+            'cur_unit' => $cur_unit,
+            
+        );
+        return $this->coin->all_price($config);
     }
 }

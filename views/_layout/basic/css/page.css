@@ -1158,6 +1158,10 @@
 			text-align: center;
 		}
 
+		div.reply_cont ul li.small_font:last-child{
+            display: none;
+        }
+
 	/*reply_modify(댓글수정) css*/
 		.reply_modify{
 			width: 1100px;

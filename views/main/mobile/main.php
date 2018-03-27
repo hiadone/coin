@@ -474,7 +474,7 @@
 
     <!-- tab02(자유게시판,채굴정보,코인뉴스,실시간 정보) 영역 -->
         <section class="tab02 wrap middle_font">
-            <h3><a href="<?php echo site_url('/group/g-b/free') ?>">
+            <h3><a href="<?php echo site_url('/board/free') ?>">
                 커뮤니티
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
@@ -504,9 +504,9 @@
                                 foreach (element('latest', element('view', $board)) as $key => $value) {?>
                                 <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                     <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                    <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
-                                        
+                                    <td class="text-left">
                                         <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                        <?php echo html_escape(element('title', $value)); ?>
                                     </td>
                                     <td><?php echo element('display_datetime', $value); ?></td>
                                 </tr>                        
@@ -536,7 +536,7 @@
 
     <!-- tab07(최신뉴스,인기뉴스) 영역 -->
         <section class="tab007 wrap middle_font">
-            <h3><a href="<?php echo site_url('/group/g-c/live_news') ?>">
+            <h3><a href="<?php echo site_url('/board/live_news') ?>">
                 뉴스정보
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
@@ -569,8 +569,9 @@
                             <figure>
                                 <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                 <figcaption>
-                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?>
+                                <h3 class="normal_font">
                                     <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
+                                    <?php echo html_escape(element('title', $value)); ?>
                                 </h3>
                                 <p class="display_content"><?php echo element('display_content', $value); ?></p>
                                 </figcaption>
@@ -616,8 +617,10 @@
                             <figure>
                                 <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                 <figcaption>
-                                <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?>
+                                <h3 class="normal_font">
                                     <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    <?php echo html_escape(element('title', $value)); ?>
+                                    
                                 </h3>
                                 <p class="display_content"><?php echo element('display_content', $value); ?></p>
                                 </figcaption>
@@ -645,7 +648,7 @@
                     
     <!-- tab03(동영상강좌,코인지식,ICO,거래소별 코인) 영역 -->
         <section class="tab03 wrap middle_font">
-            <h3><a href="<?php echo site_url('/group/g-a/video') ?>">
+            <h3><a href="<?php echo site_url('/board/video') ?>">
                 코인강좌
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
@@ -676,8 +679,9 @@
                         foreach (element('latest', element('view', $board)) as $key => $value) {?>
                             <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                <td class="text-left">
                                     <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    <?php echo html_escape(element('title', $value)); ?>
                                 </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        
@@ -702,7 +706,7 @@
 
     <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역-->
         <section class="tab04 wrap middle_font">
-            <h3><a href="<?php echo site_url('/group/other/event') ?>">
+            <h3><a href="<?php echo site_url('/board/event') ?>">
                 서비스
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
@@ -732,8 +736,8 @@
                                 <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                     <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                     <td class="text-left">
-                                        <?php echo html_escape(element('title', $value)); ?>
                                         <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                        <?php echo html_escape(element('title', $value)); ?>
                                     </td>
                                     <td><?php echo element('display_datetime', $value); ?></td>
                                 </tr>                        
@@ -758,7 +762,7 @@
 
     <!-- tab05(유머,자유갤러리) 영역-->
         <section class="tab05 wrap middle_font">
-            <h3><a href="<?php echo site_url('/group/g-b-a/free_gallery') ?>">
+            <h3><a href="<?php echo site_url('/board/free_gallery') ?>">
                 갤러리/유머
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
@@ -826,8 +830,9 @@
                             foreach (element('latest', element('view', $board)) as $key => $value) {?>
                             <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                <td class="text-left">
                                     <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    <?php echo html_escape(element('title', $value)); ?>
                                 </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        

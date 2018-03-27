@@ -21,7 +21,13 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 <?php echo element('headercontent', element('board', $view)); ?>
 <article class="wrap01">
     <section class="main_title write_cont">
-        <h2><?php echo html_escape(element('board_name', element('board', $view))); ?></h2>
+        <h2>
+        <?php 
+            if(element('brd_key', element('board', $view))==='live_news' && $this->input->get('post_notice')) echo '인기뉴스';
+            else echo html_escape(element('board_name', element('board', $view)));
+
+         ?>
+        </h2>
         <?php echo show_alert_message($this->session->flashdata('message'), '<div class="alert-auto-close">', '</div>'); ?>
         <div class="board">
             <h3 class="post-view"><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>

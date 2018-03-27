@@ -98,7 +98,10 @@ class Comment_list extends CB_Controller
             element('access_comment_group', $board),
             $check
         );
-        $can_comment_choose=element('post_choose', $post) >0 ? false:true;
+
+
+        $can_comment_choose=element('post_choose', $post) < 1 && element('use_comment_like', $board) ? true : false;
+
         /**
          * 페이지에 숫자가 아닌 문자가 입력되거나 1보다 작은 숫자가 입력되면 에러 페이지를 보여줍니다.
          */

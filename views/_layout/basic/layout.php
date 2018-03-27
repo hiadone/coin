@@ -405,7 +405,7 @@ $(document).ready(function(){
 
     <div class="head_search">
         <form name="header_search" id="header_search" action="<?php echo site_url('search'); ?>" onSubmit="return headerSearch(this);">
-            <input type="text" class="form-control px150" placeholder="Search" name="skeyword" accesskey="s" />
+            <input type="text" class="form-control px150" placeholder="Search" onfocus="this.placeholder=''" onblur="this.placeholder='Search'" name="skeyword" accesskey="s" />
             <input type="image" class="search_img" src="<?php echo element('layout_skin_url', $layout); ?>/images/head_find.png" alt="head_find_img">
         </form>
         <script type="text/javascript">

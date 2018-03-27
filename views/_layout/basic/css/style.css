@@ -510,6 +510,7 @@ header .badge{margin-left:5px;display: inline-block;min-width: 10px;padding: 3px
 .pagination .active a { font-weight: bold;}
 .pagination li{width: 30px; height: 30px; line-height: 28px; display: inline-block; border:1px solid #ddd; border-right: 0;}
 .pagination li:last-child{border-right: 1px solid #ddd;}
+.pagination li a{padding:10px;}
 
 
 

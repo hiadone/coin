@@ -1284,7 +1284,7 @@
 
 		.write_cont ol.post-view li p{
 			padding:0 10% 0% 8%;
-			background: url("../images/reply.png") no-repeat 3% top;
+			background: url("/assets/images/reply.png") no-repeat 3% top;
 			background-size: 4%;
 			line-height: 20px;
 			margin:3% 0;
@@ -1424,7 +1424,7 @@
 		padding:2% 2% 1%;
 		box-sizing: border-box;
 		display: inline-block;
-		background:url("../images/arrow.png") no-repeat 97% center;
+		background:url("/assets/images/arrow.png") no-repeat 97% center;
 		background-size: 10%;
 	}
 
@@ -1459,7 +1459,7 @@
 
 /*네트워크 오류 영역 css*/
 	.error div{
-			background:url(../images/error.png) no-repeat center;
+			background:url(/assets/images/error.png) no-repeat center;
 			background-size:310px;
 			padding-top: 420px;
 			position: relative;
@@ -1470,7 +1470,7 @@
 			text-align: center;
 			top: 40px;
 			padding-top: 40px;
-			background:url(../images/caution.png) no-repeat top;
+			background:url(/assets/images/caution.png) no-repeat top;
 			background-size:40px;
 			font-weight: bold;
 			line-height: 20px;

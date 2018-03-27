@@ -669,7 +669,7 @@ class Board extends CI_Controller
         $period_second = element('period_second', $config);
         $cache_minute = element('cache_minute', $config);
         $post_notice = element('post_notice', $config,0);
-
+        $post_notice_param='';
         if ($limit <= 0) {
             return false;
         }
@@ -919,9 +919,10 @@ class Board extends CI_Controller
                 $post_start_datetime = cdate('Y-m-d H:i:s', ctimestamp() - $period_second);
                 $this->CI->db->where('post_datetime >=', $post_start_datetime);
             }
-
+            
             if($post_notice){            
                 $this->CI->db->where('post_notice', $post_notice);
+                $post_notice_param='?post_notice='.$post_notice;
             }
             if ($findex && $forder) {
                 $forder = (strtoupper($forder) === 'ASC') ? 'ASC' : 'DESC';
@@ -941,7 +942,7 @@ class Board extends CI_Controller
                         element('post_nickname', $value)
                     );
                     $brd_key = $this->CI->board->item_id('brd_key', element('brd_id', $value));
-                    $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value));
+                    $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value)).$post_notice_param;
                     $view['view']['latest'][$key]['title'] = $length ? cut_str(element('post_title', $value), $length) : element('post_title', $value);
                     $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('post_datetime', $value), '');
 
@@ -995,6 +996,7 @@ class Board extends CI_Controller
      */
     public function latest_group($config,$more=0)
     {
+
         $view = array();
         $view['view'] = array();
 
@@ -1015,6 +1017,7 @@ class Board extends CI_Controller
         $period_second = element('period_second', $config);
         $cache_minute = element('cache_minute', $config);
         $post_notice = element('post_notice', $config);
+        $post_notice_param='';
 
         if ($limit <= 0) {
             return false;
@@ -1111,6 +1114,8 @@ class Board extends CI_Controller
                 $view['view']['board'] = $board = $this->CI->board->item_all($brd_id);
             }
 
+            $view['view']['board']['post_notice']=$post_notice;
+
             $this->CI->allow_search_field = array('post_id','post_title', 'post_content', 'post_both', 'post_nickname'); // 검색이 가능한 필드
             $this->CI->search_field_equal = array('post_id'); // 검색중 like 가 아닌 = 검색을 하는 필드
 
@@ -1119,6 +1124,7 @@ class Board extends CI_Controller
             $where['post_secret'] = 0;
             if($post_notice){
                 $where['post_notice']=$post_notice;
+                $post_notice_param='?post_notice='.$post_notice;
             }
             $sfield =  $this->CI->input->post('sfield', null, '');
             if ($sfield === 'post_both') {
@@ -1248,7 +1254,7 @@ class Board extends CI_Controller
             if ($latest && is_array($latest)) {
                 foreach ($latest as $key => $value) {
                     $brd_key = $this->CI->board->item_id('brd_key', element('brd_id', $value));
-                    $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value));
+                    $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value)).$post_notice_param;
                     $view['view']['latest'][$key]['title'] = $length ? cut_str(element('post_title', $value), $length) : element('post_title', $value);
                     $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('post_datetime', $value), '');
                     $view['view']['latest'][$key]['display_name'] = display_username(
@@ -1469,8 +1475,8 @@ class Board extends CI_Controller
         
 
         $view['view']['skinurl'] = base_url( VIEW_DIR . 'group/' . $skin);
-        
-        $html = $this->CI->load->view('group/' . $skin . '/latest_group', $view, true);
+        if($more) $html = $this->CI->load->view('group/' . $skin . '/latest_group_more', $view, true);
+        else $html = $this->CI->load->view('group/' . $skin . '/latest_group', $view, true);
 
         if ($cache_minute> 0) {
             check_cache_dir('latest');
@@ -1608,6 +1614,7 @@ class Board extends CI_Controller
             $where['post_secret'] = 0;
             if($post_notice){
                 $where['post_notice']=$post_notice;
+
             }
             $sfield =  $this->CI->input->post('sfield', null, '');
             if ($sfield === 'post_both') {

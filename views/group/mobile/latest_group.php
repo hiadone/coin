@@ -18,12 +18,13 @@
 
             if(element('brd_key',element('board',$view))==='live_news' || element('brd_key',element('board',$view))==='hot_news'){ ?>
                 <li class='gallery_news'>
-                    <a href="<?php echo element('url', $value); ?>" target="_blank">
+                    <a href="<?php echo element('url', $value); ?>" >
                     <figure>
                         <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                         <figcaption>
-                        <h3 class="normal_font"><?php echo html_escape(element('title', $value)); ?>
+                        <h3 class="normal_font">
                             <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                            <?php echo html_escape(element('title', $value)); ?>
                         </h3>
                         <p class="display_content"><?php echo element('display_content', $value); ?></p>
                         </figcaption>
@@ -34,9 +35,9 @@
 
            <?php } else { ?>
                 <li>
-                    <a href="<?php echo element('url', $value); ?>" target="_blank">
-                    <?php echo html_escape(element('title', $value)); ?>
-                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                    <a href="<?php echo element('url', $value); ?>" >
+                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                        <?php echo html_escape(element('title', $value)); ?>
                      <span><?php if (element('post_comment_count', $value)) { ?> [<?php echo element('post_comment_count', $value); ?>]<?php } ?></span>
                     
                     <table>
@@ -79,6 +80,7 @@
          <div class='search' <?php echo $hide_style ?>>
         <form class="" name='frm'>
             <input type="hidden" name="brd_key" value="<?php echo element('brd_key',element('board',$view)) ?>" />
+            <input type="hidden" name="post_notice" value="<?php echo element('post_notice',element('board',$view)) ?>" />
             <input type="hidden" name="findex" value="<?php echo html_escape($this->input->post('findex')); ?>" />
             <input type="hidden" name="category_id" value="<?php echo html_escape($this->input->post('category_id')); ?>" />
             
@@ -125,7 +127,7 @@ var page=<?php echo element('page', $view) ?>;
         f.skeyword.focus();
         return false;
     }
-    href = cb_url + '/group/view_board/' + f.brd_key.value;
+    href = cb_url + '/group/view_board/' + f.brd_key.value+'/0/'+f.post_notice.value;;
 
     
 
@@ -144,7 +146,7 @@ var page=<?php echo element('page', $view) ?>;
 
 function boardViewMore(f) {
     
-    href = cb_url + '/group/view_board/' + f.brd_key.value+'/'+paging;
+    href = cb_url + '/group/view_board/' + f.brd_key.value+'/'+paging+'/'+f.post_notice.value;
 
     
 

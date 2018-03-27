@@ -138,11 +138,9 @@ $record_num = $this->uri->segment($last);
                 
             </select>
             <input type="text" class="" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
-            <button class="find_img" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
+            <button class="find_img pointer" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
             
-             <?php if (element('is_admin', $view)) { ?>
-            <div class="btn btn-default btn-sm pull-right" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선택삭제</div>
-            <?php } ?>
+             
         </form>
         </div> 
                 
@@ -167,13 +165,17 @@ $record_num = $this->uri->segment($last);
             <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a>
         <?php } ?> -->
             
-            <?php if (element('write_url', element('list', $view))) { ?>
+            
                 <div class="post_button">
                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">전 체</a>
-
+                    <?php if (element('write_url', element('list', $view))) { ?>
                     <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm" >글 쓰 기</a>
+                    <?php } ?>
+                     <?php if (element('is_admin', $view)) { ?>
+                    <a href="javascript:;" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?'); return false;" class="btn btn-success btn-sm">선택삭제</a>
+                    <?php } ?>
                 </div>
-            <?php } ?>
+            
         <div><?php echo element('paging', element('list', $view)); ?></div>
     </section>
     <span class='bar'></span>

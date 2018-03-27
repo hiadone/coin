@@ -23,7 +23,7 @@ $record_num = $this->uri->segment($last);
             <table class='post_table_li'>
                 
                 <tr>
-                    <?php if (element('is_admin', $view)) { ?><th><input onclick="if (this.checked) all_boardlist_checked(true); else all_boardlist_checked(false);" type="checkbox" /></th><?php } ?>
+                    
                     <th>번 호</th>
                     <th>제 목</th>
                     <th class="spoon-img">닉 네 임</th>
@@ -35,7 +35,7 @@ $record_num = $this->uri->segment($last);
                     foreach (element('list', element('data', element('list', $view))) as $result) {
                 ?>
                 <tr>
-                    <?php if (element('is_admin', $view)) { ?><td scope="row"><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /></td><?php } ?>
+                    
                     <td><?php echo element('num', $result); ?></td>
                     <td style="text-align: left;padding-left:20px;">
                         <?php if (element('category', $result)) { ?><a href="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>?category_id=<?php echo html_escape(element('bca_key', element('category', $result))); ?>"><span class="label label-default"><?php echo html_escape(element('bca_value', element('category', $result))); ?></span></a><?php } ?>
@@ -82,7 +82,7 @@ $record_num = $this->uri->segment($last);
             <?php echo form_close(); ?>
         </div>
         <div class="post_sear">
-        <form class="navbar-form navbar-right pull-right" action="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>" onSubmit="return postSearch(this);">
+        <form class="navbar-form navbar-right pull-right" action="<?php echo post_url(element('brd_key', element('board', element('list', $view))),element('post_id', element('post', $view))); ?>" onSubmit="return postSearch(this);">
             <input type="hidden" name="findex" value="<?php echo html_escape($this->input->get('findex')); ?>" />
             <input type="hidden" name="category_id" value="<?php echo html_escape($this->input->get('category_id')); ?>" />
             
@@ -95,9 +95,7 @@ $record_num = $this->uri->segment($last);
             <input type="text" class="" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
             <button class="find_img" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
             
-             <?php if (element('is_admin', $view)) { ?>
-            <div class="btn btn-default btn-sm pull-right" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선택삭제</div>
-            <?php } ?>
+             
         </form>
         </div> 
                 
