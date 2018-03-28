@@ -128,11 +128,15 @@ class Login extends CB_Controller
             $meta_author = $this->cbconfig->item('site_meta_author_login');
             $page_name = $this->cbconfig->item('site_page_name_login');
 
+            if($this->input->is_ajax_request())
+                $layout_dir=$this->cbconfig->item('layout_login');
+            else 
+                $layout_dir='basic';
             $layoutconfig = array(
                 'path' => 'login',
                 'layout' => 'layout',
                 'skin' => 'login',
-                'layout_dir' => $this->cbconfig->item('layout_login'),
+                'layout_dir' => $layout_dir,
                 'mobile_layout_dir' => $this->cbconfig->item('mobile_layout_login'),
                 'use_sidebar' => $this->cbconfig->item('sidebar_login'),
                 'use_mobile_sidebar' => $this->cbconfig->item('mobile_sidebar_login'),

@@ -64,12 +64,12 @@
                 </div>
             <?php } ?>
         </div>
-        <div class="panel-footer">
+        <!-- <div class="panel-footer">
             <div class="pull-right">
                 <a href="<?php echo site_url('register'); ?>" class="btn btn-success btn-sm" title="회원가입">회원가입</a>
                 <a href="<?php echo site_url('findaccount'); ?>" class="btn btn-default btn-sm" title="아이디 패스워드 찾기">아이디 패스워드 찾기</a>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

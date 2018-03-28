@@ -937,6 +937,7 @@ class Board extends CI_Controller
 
             if ($latest && is_array($latest)) {
                 foreach ($latest as $key => $value) {
+                    $link_player = '';
                     $view['view']['latest'][$key]['name'] = display_username(
                         element('post_userid', $value),
                         element('post_nickname', $value)
@@ -977,6 +978,23 @@ class Board extends CI_Controller
 
                                 $view['view']['latest'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $image_width, $image_height);
                             }
+                        } elseif (element('post_link_count', $value)) {
+                            $this->CI->load->model('Post_link_model');
+                            $linkwhere = array(
+                                'post_id' => element('post_id', $value),
+                            );
+                            $link = $this->CI->Post_link_model
+                                ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
+                            if ($link && is_array($link)) {
+                                if (element('use_autoplay', $board)) {
+                                    $this->CI->load->library('videoplayer');
+                                    $link_player .= $this->CI->videoplayer->get_video(prep_url(element('pln_url',element(0,$link))),array('image'=>1) );
+                                    $view['view']['latest'][$key]['thumb_url'] = $link_player;
+
+                                }
+                                
+                            }
+                            
                         } else {
 
                             $thumb_url = get_post_image_url(element('post_content', $value), $image_width, $image_height);

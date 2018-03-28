@@ -293,10 +293,14 @@ class Main extends CB_Controller
     }
 
     function get_coin_data($cur_unit=''){
-        
-        $this->cbconfig->get_device_view_type();
+
+        $skin='';
+        if($this->cbconfig->get_device_view_type()==='mobile')
+            $skin='mobile';
+        else $skin='basic';
+
         $config = array(
-            'skin' => 'mobile',
+            'skin' => $skin,
             'cur_unit' => $cur_unit,
             
         );
@@ -305,9 +309,13 @@ class Main extends CB_Controller
 
     function show_coin_data($cur_unit=''){
         
-        $this->cbconfig->get_device_view_type();
+        $skin='';
+        if($this->cbconfig->get_device_view_type()==='mobile')
+            $skin='mobile';
+        else $skin='basic';
+        
         $config = array(
-            'skin' => 'mobile',
+            'skin' => $skin,
             'cur_unit' => $cur_unit,
             
         );

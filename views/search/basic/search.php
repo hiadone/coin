@@ -1,5 +1,5 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
-<div class="container pt20" style="width:1200px">
+<div class="container pt20 pb20" style="width:1200px">
 <!-- <h3><?php echo ($this->input->get('skeyword')) ? '검색결과 : ' . html_escape($this->input->get('skeyword')) : '검색페이지' ?></h3> -->
 <div class="row">
     <form action="<?php echo current_url(); ?>" onSubmit="return checkSearch(this);" class=" search_box text-center">
@@ -101,7 +101,7 @@ if ( ! element('list', element('data', $view))) {
 }
 ?>
 </div>
-<nav><?php echo element('paging', $view); ?></nav>
+<div><?php echo element('paging', $view); ?></div>
 </div>
 <script type="text/javascript">
 //<![CDATA[

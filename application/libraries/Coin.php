@@ -30,6 +30,20 @@ class Coin extends CI_Controller
                     "poloniex"=>"플로닉스",
                     "bitfinex"=>"파이넥스"
                     );
+
+    public $vic_name = array("bitcoin"=>"비트코인",
+                    "ethereum"=>"이더리움",
+                    "ripple"=>"리 플",
+                    "bitcoin-cash"=>"비트코인 캐쉬",
+                    "litecoin"=>"라이트코인",
+                    "dash"=>"대 시",
+                    "monero"=>"모네로",
+                    "ethereum-classic"=>"이더리움 클래식",
+                    "zcash"=>"제트캐시",
+                    "qtum"=>"큐 텀",
+                    "eos"=>"EOS"
+                    );
+
     public $vic_title = array(
                             "btc"=>array(
                                 'BTC','btc','btc_krw','krw-btc','usdt_btc','usdt-btc','btcusd','BTC_JPY'
@@ -86,178 +100,202 @@ class Coin extends CI_Controller
             $skin = 'basic';
         }
 
-        if (empty($cur_unit)) {
-            $cur_unit = 'krw';
-        }
+        if($skin==='mobile'){
+            if (empty($cur_unit)) {
+                $cur_unit = 'krw';
+            }
 
-        $btcwhere_in = array("vic_type"=>array(
-            'bitfinex','bittrex','poloniex'
-        ));
-        $deal_bas_r=0;
-        $deal_bas_r = $this->CI->Virtual_coin_model
-            ->get_one('','vic_value',array("vic_type"=>"deal_bas_r","vic_title"=>"deal_bas_r","vic_key"=>"deal_bas_r"));
-        
-        element('vic_value',$deal_bas_r,0);
-        
-        $abroad_list = $this->CI->Virtual_coin_model
-            ->get_list_in('',$btcwhere_in);
-
-        foreach($abroad_list as $value){
-            $title_key='';
-            $vic_type='';
+            $btcwhere_in = array("vic_type"=>array(
+                'bitfinex','bittrex','poloniex'
+            ));
+            $deal_bas_r=0;
+            $deal_bas_r = $this->CI->Virtual_coin_model
+                ->get_one('','vic_value',array("vic_type"=>"deal_bas_r","vic_title"=>"deal_bas_r","vic_key"=>"deal_bas_r"));
             
-            if(element('vic_type',$value)==='poloniex'){
-                if(element('vic_key',$value)==='last'){
-                    $vic_type='current_price';
-                    
-                } else continue;
-            } elseif(element('vic_type',$value)==='bittrex'){
-                if(element('vic_key',$value)==='Last'){
-                    $vic_type='current_price';
-                }else continue;
-            } elseif(element('vic_type',$value)==='bitfinex'){
-                if(element('vic_key',$value)==='last_price'){
-                    $vic_type='current_price';
-                }else continue;
-            }else continue;   
-
-            foreach($this->vic_title as $tkey =>$tvalue){
-                if(in_array(element('vic_title',$value), $tvalue)) {
-                    $title_key =$tkey;
-                    break;
-                }
-            }
             
-            if($vic_type==='current_price' && $cur_unit ==='krw') 
-                $abroad_result[$title_key][element('vic_type',$value)][$vic_type] = (element('vic_value',$value)*element('vic_value',$deal_bas_r,0)) ;
-            else $abroad_result[$title_key][element('vic_type',$value)][$vic_type] = element('vic_value',$value);
-        }
-        $abroad_price='';
-
-        foreach($abroad_result as $key =>$value){
-            $abroad_current_price='';
-            foreach($value as $value_){
-                $abroad_current_price +=element('current_price',$value_,.0);
-            }
-
-            $abroad_price[$key]=$abroad_current_price/count($value);
-        }
-
-        $findex = "vic_type ='bithumb',vic_type='coinone',vic_type ='korbit',vic_type ='upbit',vic_type ='coinnest',vic_type ='bittrex',vic_type ='poloniex',vic_type ='bitfinex'";
-        $btc_list = $this->CI->Virtual_coin_model
-            ->get('','','','','',$findex,'DESC');
-
-        $result=array();
-        foreach($this->vic_title as $tkey =>$tvalue){
-            foreach($this->vic_type as $pkey =>$pvalue){
-                $result[$tkey][$pkey]='';
-            }
-        }
-        
-        
-        foreach($btc_list as $value){
-            $title_key='';
-            $vic_type='';
             
+            $abroad_list = $this->CI->Virtual_coin_model
+                ->get_list_in('',$btcwhere_in);
 
-            foreach($this->vic_title as $tkey =>$tvalue){
-                if(in_array(element('vic_title',$value), $tvalue)) {
-                    $title_key =$tkey;
-                    break;
-                }
-            }
-            if(element('vic_type',$value)==='bithumb'){
-                if(element('vic_key',$value)==='opening_price'){
-                    $vic_type='open_price';
-                } elseif(element('vic_key',$value)==='closing_price'){                    
-                    $vic_type='current_price';
-                }else continue;
+            foreach($abroad_list as $value){
+                $title_key='';
+                $vic_type='';
                 
-                if($cur_unit ==='usd') 
-                 $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
-            } 
-            elseif(element('vic_type',$value)==='coinone'){
-                if(element('vic_key',$value)==='last'){
-                    $vic_type='current_price';
-                } elseif(element('vic_key',$value)==='yesterday_last'){
-                    $vic_type='open_price';
-                }else continue;
+                if(element('vic_type',$value)==='poloniex'){
+                    if(element('vic_key',$value)==='last'){
+                        $vic_type='current_price';
+                        
+                    } else continue;
+                } elseif(element('vic_type',$value)==='bittrex'){
+                    if(element('vic_key',$value)==='Last'){
+                        $vic_type='current_price';
+                    }else continue;
+                } elseif(element('vic_type',$value)==='bitfinex'){
+                    if(element('vic_key',$value)==='last_price'){
+                        $vic_type='current_price';
+                    }else continue;
+                }else continue;   
 
-                if($cur_unit ==='usd') 
-                 $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
-            }     
-            elseif(element('vic_type',$value)==='upbit'){
-                if(element('vic_key',$value)==='tradePrice'){
-                    $vic_type='current_price';
-                } elseif(element('vic_key',$value)==='openingPrice'){
-                    $vic_type='open_price';
-                }else continue;
-
-                if($cur_unit ==='usd') 
-                 $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
-            }    
-            elseif(element('vic_type',$value)==='korbit'){
-                if(element('vic_key',$value)==='last'){
-                    $vic_type='current_price';
-                    
-                } elseif(element('vic_key',$value)==='yesterday_last'){
-                    $vic_type='open_price';
-                }else continue;
-
-                if($cur_unit ==='usd') 
-                 $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
-            }    
-            elseif(element('vic_type',$value)==='coinnest'){
-                if(element('vic_key',$value)==='last'){
-                    $vic_type='current_price';
-                } else continue;
-
-                if($cur_unit ==='usd') 
-                 $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
-            }    
-            elseif(element('vic_type',$value)==='poloniex'){
-
-                if(element('vic_key',$value)==='last'){
-                    $vic_type='current_price';
-                    
-                } elseif(element('vic_key',$value)==='yesterday_last'){
-                    $vic_type='open_price';
-                }else continue;
-
-                if($cur_unit ==='krw') {
-                 $value['vic_value'] = (element('vic_value',$value)*element('vic_value',$deal_bas_r,0)) ;
-
+                foreach($this->vic_title as $tkey =>$tvalue){
+                    if(in_array(element('vic_title',$value), $tvalue)) {
+                        $title_key =$tkey;
+                        break;
+                    }
                 }
-            }    
-            elseif(element('vic_type',$value)==='bittrex'){
-                if(element('vic_key',$value)==='Last'){
-                    $vic_type='current_price';
-                }else continue;
-                if($cur_unit ==='krw') {
-                    
-                 $value['vic_value'] = (element('vic_value',$value)*element('vic_value',$deal_bas_r,0)) ;
-                 
+                
+                if($vic_type==='current_price' && $cur_unit ==='krw') 
+                    $abroad_result[$title_key][element('vic_type',$value)][$vic_type] = (element('vic_value',$value)*element('vic_value',$deal_bas_r,0)) ;
+                else $abroad_result[$title_key][element('vic_type',$value)][$vic_type] = element('vic_value',$value);
+            }
+            $abroad_price='';
+
+            foreach($abroad_result as $key =>$value){
+                $abroad_current_price='';
+                foreach($value as $value_){
+                    $abroad_current_price +=element('current_price',$value_,.0);
                 }
-             
-            }    
-            elseif(element('vic_type',$value)==='bitfinex'){
-                if(element('vic_key',$value)==='last_price'){
-                    $vic_type='current_price';
-                }else continue;
 
-                if($cur_unit ==='krw') 
-                 $value['vic_value'] = (element('vic_value',$value)*element('vic_value',$deal_bas_r,0)) ;
-            // }    
-            // elseif(element('vic_type',$value)==='bitflye'){
-            //     if(element('vic_key',$value)==='ltp'){
-            //         $vic_type='current_price';
-            //     }else continue;
-            }else continue;
+                $abroad_price[$key]=$abroad_current_price/count($value);
+            }
 
+            $findex = "vic_type ='bithumb',vic_type='coinone',vic_type ='korbit',vic_type ='upbit',vic_type ='coinnest',vic_type ='bittrex',vic_type ='poloniex',vic_type ='bitfinex'";
+            $btc_list = $this->CI->Virtual_coin_model
+                ->get('','','','','',$findex,'DESC');
+
+            $result=array();
+            foreach($this->vic_title as $tkey =>$tvalue){
+                foreach($this->vic_type as $pkey =>$pvalue){
+                    $result[$tkey][$pkey]='';
+                }
+            }
             
+            
+            foreach($btc_list as $value){
+                $title_key='';
+                $vic_type='';
+                
 
-            $result[$title_key][element('vic_type',$value)][$vic_type] = element('vic_value',$value);
-            if($vic_type==='current_price' && !empty($abroad_price[$title_key]) && (element('vic_type',$value)==='bithumb' || element('vic_type',$value)==='coinone' || element('vic_type',$value)==='upbit' || element('vic_type',$value)==='korbit')) $result[$title_key][element('vic_type',$value)]['kprime'] = (element('vic_value',$value)-$abroad_price[$title_key])/$abroad_price[$title_key];
+                foreach($this->vic_title as $tkey =>$tvalue){
+                    if(in_array(element('vic_title',$value), $tvalue)) {
+                        $title_key =$tkey;
+                        break;
+                    }
+                }
+                if(element('vic_type',$value)==='bithumb'){
+                    if(element('vic_key',$value)==='opening_price'){
+                        $vic_type='open_price';
+                    } elseif(element('vic_key',$value)==='closing_price'){                    
+                        $vic_type='current_price';
+                    }else continue;
+                    
+                    if($cur_unit ==='usd') 
+                     $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
+                } 
+                elseif(element('vic_type',$value)==='coinone'){
+                    if(element('vic_key',$value)==='last'){
+                        $vic_type='current_price';
+                    } elseif(element('vic_key',$value)==='yesterday_last'){
+                        $vic_type='open_price';
+                    }else continue;
+
+                    if($cur_unit ==='usd') 
+                     $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
+                }     
+                elseif(element('vic_type',$value)==='upbit'){
+                    if(element('vic_key',$value)==='tradePrice'){
+                        $vic_type='current_price';
+                    } elseif(element('vic_key',$value)==='openingPrice'){
+                        $vic_type='open_price';
+                    }else continue;
+
+                    if($cur_unit ==='usd') 
+                     $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
+                }    
+                elseif(element('vic_type',$value)==='korbit'){
+                    if(element('vic_key',$value)==='last'){
+                        $vic_type='current_price';
+                        
+                    } elseif(element('vic_key',$value)==='yesterday_last'){
+                        $vic_type='open_price';
+                    }else continue;
+
+                    if($cur_unit ==='usd') 
+                     $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
+                }    
+                elseif(element('vic_type',$value)==='coinnest'){
+                    if(element('vic_key',$value)==='last'){
+                        $vic_type='current_price';
+                    } else continue;
+
+                    if($cur_unit ==='usd') 
+                     $value['vic_value'] = (element('vic_value',$value)/element('vic_value',$deal_bas_r,0)) ;
+                }    
+                elseif(element('vic_type',$value)==='poloniex'){
+
+                    if(element('vic_key',$value)==='last'){
+                        $vic_type='current_price';
+                        
+                    } elseif(element('vic_key',$value)==='yesterday_last'){
+                        $vic_type='open_price';
+                    }else continue;
+
+                    if($cur_unit ==='krw') {
+                     $value['vic_value'] = (element('vic_value',$value)*element('vic_value',$deal_bas_r,0)) ;
+
+                    }
+                }    
+                elseif(element('vic_type',$value)==='bittrex'){
+                    if(element('vic_key',$value)==='Last'){
+                        $vic_type='current_price';
+                    }else continue;
+                    if($cur_unit ==='krw') {
+                        
+                     $value['vic_value'] = (element('vic_value',$value)*element('vic_value',$deal_bas_r,0)) ;
+                     
+                    }
+                 
+                }    
+                elseif(element('vic_type',$value)==='bitfinex'){
+                    if(element('vic_key',$value)==='last_price'){
+                        $vic_type='current_price';
+                    }else continue;
+
+                    if($cur_unit ==='krw') 
+                     $value['vic_value'] = (element('vic_value',$value)*element('vic_value',$deal_bas_r,0)) ;
+                // }    
+                // elseif(element('vic_type',$value)==='bitflye'){
+                //     if(element('vic_key',$value)==='ltp'){
+                //         $vic_type='current_price';
+                //     }else continue;
+                }else continue;
+
+                
+
+                $result[$title_key][element('vic_type',$value)][$vic_type] = element('vic_value',$value);
+                if($vic_type==='current_price' && !empty($abroad_price[$title_key]) && (element('vic_type',$value)==='bithumb' || element('vic_type',$value)==='coinone' || element('vic_type',$value)==='upbit' || element('vic_type',$value)==='korbit')) $result[$title_key][element('vic_type',$value)]['kprime'] = (element('vic_value',$value)-$abroad_price[$title_key])/$abroad_price[$title_key];
+            }
+        } elseif($skin==='basic') {
+            
+            $deal_bas_r=0;
+            $deal_bas_r = $this->CI->Virtual_coin_model
+                ->get_one('','vic_value',array("vic_type"=>"deal_bas_r","vic_title"=>"deal_bas_r","vic_key"=>"deal_bas_r"));
+
+
+            $findex = "rank'";
+            $btc_list = $this->CI->Virtual_coin_model
+                ->get('','','');
+
+            $result=array();
+            // foreach($this->vic_title as $tkey =>$tvalue){
+            //     foreach($this->vic_type as $pkey =>$pvalue){
+            //         $result[$tkey][$pkey]='';
+            //     }
+            // }
+
+            foreach($btc_list as $value){
+                $result[]=$value;
+            }
+
         }
 
         $view['view']['vic_type'] = $this->vic_type;

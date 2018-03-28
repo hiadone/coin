@@ -2,7 +2,7 @@
 $last = $this->uri->total_segments();
 $record_num = $this->uri->segment($last);
 
-
+$param =& $this->querystring;
 ?>
 
 <?php echo element('headercontent', element('board', element('list', $view))); ?>
@@ -20,9 +20,22 @@ $record_num = $this->uri->segment($last);
                             
 
                             foreach (element(element('men_id', $mval), $menu) as $lkey => $lval) {
-                                
-                                if(str_replace("/","",element('men_link', $lval)) === implode("",$this->uri->segment_array())){
-
+                                if(!empty($param->output())){
+                                    if(str_replace("/","",element('men_link', $lval)) === implode("",$this->uri->segment_array()).'?'.$param->output()){
+                                        foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
+                                            $menu_active='';
+                                            
+                                            if($lkey === $skey) $menu_active='class="menu_active"';
+                                            $slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
+                                            $menuhtml .= '<li '.$menu_active.'><a href="' . $slink . '" ' . element('men_custom', $sval);
+                                            if (element('men_target', $sval)) {
+                                                $menuhtml .= ' target="' . element('men_target', $sval) . '"';
+                                            }
+                                            $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
+                                            $menuhtml .= '<li>|</li>';
+                                        }
+                                    }
+                                } elseif(str_replace("/","",element('men_link', $lval)) === implode("",$this->uri->segment_array())){
                                     foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
                                         $menu_active='';
                                         
@@ -35,12 +48,8 @@ $record_num = $this->uri->segment($last);
                                         $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
                                         $menuhtml .= '<li>|</li>';
                                     }
-
                                 }
-                                
                             }
-                            
-
                         } 
                     }
                 }
@@ -66,7 +75,15 @@ $record_num = $this->uri->segment($last);
         echo form_open('', $attributes);
         ?>
             <table class='post_table_li'>
-                
+                <colgroup>
+                    <?php if (element('is_admin', $view)) { ?><col class="px30"><?php } ?>
+                    <col class="px40" style="width:50px">
+                    <col class="">
+                    <col class="px130" >
+                    <col class="px80">
+                    <col class="px40">
+                </colgroup>
+                <thead>
                 <tr>
                     <?php if (element('is_admin', $view)) { ?><th><input onclick="if (this.checked) all_boardlist_checked(true); else all_boardlist_checked(false);" type="checkbox" /></th><?php } ?>
                     <th>번 호</th>
@@ -75,6 +92,8 @@ $record_num = $this->uri->segment($last);
                     <th>날 짜</th>
                     <th>조 회</th>
                 </tr>
+                </thead>
+                <tbody>
                 <?php
                 if (element('list', element('data', element('list', $view)))) {
                     foreach (element('list', element('data', element('list', $view))) as $result) {
@@ -122,7 +141,7 @@ $record_num = $this->uri->segment($last);
                     <td colspan="6" class="nopost">게시물이 없습니다</td>
                 </tr>
                 <?php } ?>
-                
+                <tbody>
             </table>
             <?php echo form_close(); ?>
         </div>

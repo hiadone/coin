@@ -138,6 +138,10 @@ $(document).ready(function(){
             infiniteLoop: true, //마지막에 도달 했을시, 첫페이지로 갈 것인가 멈출것인가
             //pagerCustom: '#bx-pager' // pager
             prevText: '▲',
+
+            onSliderLoad: function(){
+                $('.login_noice').css('visibility','visible');
+            }
         });
         
         // 클릭시 멈춤 현상 해결 //
@@ -436,7 +440,7 @@ $(document).ready(function(){
 
 <aside class="login">
     <section class="login_cont">
-        <div class="login_noice">
+        <div class="login_noice" style="visibility:hidden;">
             <h5>알 림</h5>
             <ul>
             <?php

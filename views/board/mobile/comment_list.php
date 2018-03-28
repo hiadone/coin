@@ -10,7 +10,7 @@ if (element('list', element('data', $view))) {
     <li id="comment_<?php echo element('cmt_id', $result); ?>" >
         <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_comment_id[]" value="<?php echo element('cmt_id', $result); ?>" /><?php } ?>
         <p class='comment-list'>
-            <?php echo element('content', $result); ?> <i class="fa fa-thumbs-o-up fa-xs"></i>
+            <?php echo element('content', $result); ?> 
         </p>
         <table class="small_font">
             <tr>

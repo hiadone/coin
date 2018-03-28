@@ -143,7 +143,7 @@ class Videoplayer extends CI_Controller
     /**
      * Video Player 를 보여줍니다
      */
-    function get_video($vid = '')
+    function get_video($vid = '',$video_info='')
     {
         if (empty($vid)) {
             return;
@@ -184,6 +184,9 @@ class Videoplayer extends CI_Controller
                 break;
         }
 
+        
+        
+
         $ratio = round((element('height', $video) / element('width', $video)), 4) * 100;
 
         $video_show = '';
@@ -200,9 +203,13 @@ class Videoplayer extends CI_Controller
             $show = '';
 
             if (element('type', $video) === 'youtube') { //유튜브
-                $vlist = element('vlist', $video) ? '&list=' . element('vlist', $video) : '';
-                $autoplay = (element('auto', $video)) ? '&autoplay=1' : '';
-                $show = '<iframe width="' . element('width', $video) . '" height="' . element('height', $video) . '" src="//www.youtube.com/embed/' . element('vid', $video) . '?autohide=1&vq=hd720' . $vlist . $autoplay . '" frameborder="0" allowfullscreen></iframe>';
+                if(!empty($video_info['image'])){
+                    $video_show = 'https://img.youtube.com/vi/'.element('vid', $video).'/2.jpg';
+                } else {
+                    $vlist = element('vlist', $video) ? '&list=' . element('vlist', $video) : '';
+                    $autoplay = (element('auto', $video)) ? '&autoplay=1' : '';
+                    $show = '<iframe width="' . element('width', $video) . '" height="' . element('height', $video) . '" src="//www.youtube.com/embed/' . element('vid', $video) . '?autohide=1&vq=hd720' . $vlist . $autoplay . '" frameborder="0" allowfullscreen></iframe>';
+                }
             } elseif (element('type', $video) === 'vimeo') { //비메오
                 $autoplay = (element('auto', $video)) ? '&amp;autoplay=1' : '';
                 $show = '<iframe src="http://player.vimeo.com/video/' . element('vid', $video) . '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff' . $autoplay . '&amp;wmode=opaque" width="' . element('width', $video) . '" height="' . element('height', $video) . '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';

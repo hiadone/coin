@@ -44,6 +44,9 @@
             autoDelay: 0, // 자동 재생 전 대기 시간 설정.
             infiniteLoop: true, //마지막에 도달 했을시, 첫페이지로 갈 것인가 멈출것인가
             //pagerCustom: '#bx-pager' // pager
+            onSliderLoad: function(){
+                $('.img_slide').css('visibility','visible');
+            }   
         });
 
         $(document).on('click','.bx-next, .bx-prev , .bx-pager',function() {
@@ -57,7 +60,7 @@
         });
 
         //tab 메뉴(메인의) 스크립트
-        $('.tab_cont div').hide();
+        $('.tab_cont > div').hide();
         $('.tab_cont div:first-child').show();
 
         //tab메뉴 클릭시
@@ -65,14 +68,15 @@
             $(this).siblings('li').removeClass('active');
             $(this).addClass('active');
 
-            $(this).parents("ul").siblings(".tab_cont").find("div").hide();
+            $(this).parents("ul").siblings(".tab_cont").children("div").hide();
 
             // 클릭한 메뉴의 순번 
             var index = $(this).index();
+
             // 클릭한 메뉴탭의 id 값
             var click_class = $(this).parents('ul').parents('section').attr('id');
-
-            $("#" + click_class + " .tab_cont div:eq(" + index + ")").fadeIn();
+            
+            $("#" + click_class + " .tab_cont > div:eq(" + index + ")").fadeIn();
         });
 
 
@@ -330,215 +334,22 @@
 
 
 
-<article class="img_slide"> 
-    <ul>
+<article class="img_slide text-center" style="visibility: hidden"> 
+    <ul >
         <?php echo banner('main_bxslider','order',3,0,'<li>','</li>'); ?>
     </ul>
 </article>
 
 <article class="content01">
-    <section class="coin_mall">
-        <table>
-            <tr>
-                <th>코인명</th>
-                <th>가격(원)</th>
-                <th>비트코인</th>
-                <th>달러</th>
-                <th>달러(원)</th>
-                <th>프리미엄</th>
-                <th>번동률(24시)</th>
-                <th>시가총액</th>
-                <th>거래량(24시)</th>
-            </tr>
 
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/bitcoin.png" alt="bitcoin_logo_img">
-                        <figcaption>비트코인</figcaption>
-                    </figure>
-                </td>
-                <td>12,850,000</td>
-                <td>1.0000000</td>  
-                <td>10,800</td> 
-                <td>11,707,256</td>
-                <td>1,142,743(9.76%)</td>   
-                <td>-0.66%</td>
-                <td>198조585억</td>
-                <td>9조1,422억</td>   
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/ethereum.png" alt="ethereum_logo_img">
-                        <figcaption>이더리움</figcaption>
-                    </figure>
-                </td>
-                <td>1,026,000</td>
-                <td>0.08043570</td> 
-                <td>859</td>    
-                <td>931,535</td>
-                <td>94,464(10.14%)</td> 
-                <td>-1.72%</td>
-                <td>90조8720억</td>
-                <td>2조4992억</td>    
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/ripple.png" alt="ripple_logo_img">
-                        <figcaption>리 플</figcaption>
-                    </figure>
-                </td>
-                <td>1,026,000</td>
-                <td>0.08043570</td> 
-                <td>859</td>    
-                <td>931,535</td>
-                <td>94,464(10.14%)</td> 
-                <td>-1.72%</td>
-                <td>90조8720억</td>
-                <td>2조4992억</td>    
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/bitcoin.png" alt="bitcoin_logo_img">
-                        <figcaption>비트코인 캐쉬</figcaption>
-                    </figure>
-                </td>
-                <td>12,850,000</td>
-                <td>1.0000000</td>  
-                <td>10,800</td> 
-                <td>11,707,256</td>
-                <td>1,142,743(9.76%)</td>   
-                <td>-0.66%</td>
-                <td>198조585억</td>
-                <td>9조1,422억</td>   
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/litecoin.png" alt="litecoin_logo_img">
-                        <figcaption>라이트코인</figcaption>
-                    </figure>
-                </td>
-                <td>1,026,000</td>
-                <td>0.08043570</td> 
-                <td>859</td>    
-                <td>931,535</td>
-                <td>94,464(10.14%)</td> 
-                <td>-1.72%</td>
-                <td>90조8720억</td>
-                <td>2조4992억</td>    
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/dash.png" alt="dash_logo_img">
-                        <figcaption>대 시</figcaption>
-                    </figure>
-                </td>
-                <td>1,026,000</td>
-                <td>0.08043570</td> 
-                <td>859</td>    
-                <td>931,535</td>
-                <td>94,464(10.14%)</td> 
-                <td>-1.72%</td>
-                <td>90조8720억</td>
-                <td>2조4992억</td>    
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/monero.png" alt="monero_logo_img">
-                        <figcaption>모네로</figcaption>
-                    </figure>
-                </td>
-                <td>1,026,000</td>
-                <td>0.08043570</td> 
-                <td>859</td>    
-                <td>931,535</td>
-                <td>94,464(10.14%)</td> 
-                <td>-1.72%</td>
-                <td>90조8720억</td>
-                <td>2조4992억</td>    
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/ethereum_classic.png" alt="ethereum_classic_logo_img">
-                        <figcaption>이더리움 클래식</figcaption>
-                    </figure>
-                </td>
-                <td>1,026,000</td>
-                <td>0.08043570</td> 
-                <td>859</td>    
-                <td>931,535</td>
-                <td>94,464(10.14%)</td> 
-                <td>-1.72%</td>
-                <td>90조8720억</td>
-                <td>2조4992억</td>    
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/zcash.png" alt="zcash_logo_img">
-                        <figcaption>제트캐시</figcaption>
-                    </figure>
-                </td>
-                <td>12,850,000</td>
-                <td>1.0000000</td>  
-                <td>10,800</td> 
-                <td>11,707,256</td>
-                <td>1,142,743(9.76%)</td>   
-                <td>-0.66%</td>
-                <td>198조585억</td>
-                <td>9조1,422억</td>   
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/qtum.png" alt="qtum_logo_img">
-                        <figcaption>큐 텀</figcaption>
-                    </figure>
-                </td>
-                <td>12,850,000</td>
-                <td>1.0000000</td>  
-                <td>10,800</td> 
-                <td>11,707,256</td>
-                <td>1,142,743(9.76%)</td>   
-                <td>-0.66%</td>
-                <td>198조585억</td>
-                <td>9조1,422억</td>   
-            </tr>
-
-            <tr>
-                <td>
-                    <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/store_logo/eos.png" alt="eos_logo_img">
-                        <figcaption>EOS</figcaption>
-                    </figure>
-                </td>
-                <td>12,850,000</td>
-                <td>1.0000000</td>  
-                <td>10,800</td> 
-                <td>11,707,256</td>
-                <td>1,142,743(9.76%)</td>       
-                <td>-0.66%</td>
-                <td>198조585억</td>
-                <td>9조1,422억</td>   
-            </tr>
-        </table>
-    </section>
+    <div id="coin_data" >
+        <?php 
+        if (element('view_coin', $view)) { 
+            echo element('view_coin', $view);
+        }
+        ?>
+    </div>
+    
 
     <section class="tab" id="news">
         <h2>뉴 스 정 보<span><a href="<?php echo site_url('/board/live_news/') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
@@ -567,7 +378,7 @@
                     foreach (element('latest', element('view', $board)) as $key => $value) {
                 ?>
                         <tr class="">
-                            <td onclick='location.href="<?php echo element('url', $value); ?>"'>
+                            <td class="pointer" onclick='location.href="<?php echo element('url', $value); ?>"'>
                                 <figure>
                                     <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                     <figcaption>
@@ -615,7 +426,7 @@
                         foreach (element('latest', element('view', $board)) as $key => $value) {
                     ?>
                             <tr class="">
-                                <td onclick='location.href="<?php echo element('url', $value); ?>"'>
+                                <td class="pointer" onclick='location.href="<?php echo element('url', $value); ?>"'>
                                     <figure>
                                         <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                         <figcaption>
@@ -673,7 +484,7 @@
                     echo '<div>
                     <table class="tab_text">';
                         foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                        <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                             <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
                                 
@@ -715,40 +526,88 @@
             $tab02=array('video','coin_int','ico','exchange');
 
             foreach($tab02 as $tvalue){
-                $config = array(
-                    'brd_key' => $tvalue,
-                    'limit' => 20,
-                    'length' => 70,
-                    );
-                $board=$this->board->data($config);
+                if($tvalue==='video'){
+                    $config = array(
+                        'brd_key' => $tvalue,
+                        'limit' => 6,
+                        'length' => 40,
+                        'is_gallery'=> 1,
+                        'image_width'=> 120,
+                        'image_height'=> 90,
+                        );
+                    $board=$this->board->data($config);
 
-                if (element('latest', element('view', $board))) {
-
-                    echo '<div>
-                    <table class="tab_text">';
-                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-                            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                            <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
-                                
-                                <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
-                            </td>
-                            <td><?php echo element('display_datetime', $value); ?></td>
-                        </tr>                        
-                        <?php 
-                    }
-                    echo '
-                    </table>
-                    </div>';
-                    } else {
+                    if (element('latest', element('view', $board))) {                    
                         echo '<div>
-                        <table >
-                            <tr>
-                                <td colspan="3">게시물이 없습니다.</td>
-                            </tr>
+                        <table >';
+                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                            <tr class="">
+                                <td class="pointer" onclick='location.href="<?php echo element('url', $value); ?>"'>
+                                    <figure>
+
+                                        <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                                        <figcaption>
+                                            <h3><?php echo html_escape(element('title', $value)); ?>
+                                            <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
+                                            </h3>
+                                            <p>
+                                                <?php echo element('display_content', $value); ?>
+                                            </p>
+                                        </figcaption>
+                                    </figure>   
+                                </td>
+                            </tr>                    
+                            <?php 
+                        }
+                        echo '
                         </table>
-                    </div>';
+                        </div>';
+                    } else {
+                            echo '<div>
+                            <table >
+                                <tr>
+                                    <td colspan="3">게시물이 없습니다.</td>
+                                </tr>
+                            </table>
+                        </div>';
+                    }
+
+                } else {
+                    $config = array(
+                        'brd_key' => $tvalue,
+                        'limit' => 20,
+                        'length' => 70,
+                        );
+                    $board=$this->board->data($config);
+
+                    if (element('latest', element('view', $board))) {                    
+                        echo '<div>
+                        <table class="tab_text">';
+                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                            <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
+                                <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                                    <?php echo element('thumb_url', $value); ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                </td>
+                                <td><?php echo element('display_datetime', $value); ?></td>
+                            </tr>                        
+                            <?php 
+                        }
+                        echo '
+                        </table>
+                        </div>';
+                    } else {
+                            echo '<div>
+                            <table >
+                                <tr>
+                                    <td colspan="3">게시물이 없습니다.</td>
+                                </tr>
+                            </table>
+                        </div>';
+                    }
                 }
+                
             }
             ?>  
         </div>
@@ -822,7 +681,7 @@
                     echo '<div >
                     <table class="tab_text">';
                         foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                        <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                        <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                             <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
                                 <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
@@ -849,7 +708,7 @@
     </section>
 
     <section class="tab" id="event">
-        <h2>이 벤 트<span><a href="<?php echo site_url('/group/other/event') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>이 벤 트<span><a href="<?php echo site_url('/board/event') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
         <ul class="menu_list">
             <li class="active">이 벤 트</li>
             <li>출 석 체 크</li>
@@ -873,7 +732,7 @@
                         echo '<div>
                         <table class="tab_text">';
                             foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                            <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                            <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                 <td class="text-left">
                                     <?php echo html_escape(element('title', $value)); ?>
@@ -924,7 +783,7 @@
                         echo '<div>
                         <table class="tab_text">';
                             foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                            <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                            <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                 <td class="text-left">
                                     <?php echo strip_tags(element('title', $value)); ?>

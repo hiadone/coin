@@ -580,9 +580,55 @@ class Cron extends CB_Controller {
                     
                     
                 }
+
             $this->Virtual_coin_model->save('bitflye','BTC_JPY', $virtualcoindata);
         }
     
+        
+    }
+
+    public function coinmarketcap_price()
+    {   
+
+        // {"product_code":"BTC_JPY","timestamp":"2018-01-15T02:04:05.733","tick_id":3090049,"best_bid":1714507.0,"best_ask":1715277.0,"best_bid_size":2.7064,"best_ask_size":10.39996,"total_bid_depth":2515.0200327,"total_ask_depth":2762.33896938,"ltp":거래가"volume":93727.63585889,"volume_by_product":거래량}
+        
+
+        
+        $url = 'https://api.coinmarketcap.com/v1/ticker/?limit=20';
+        // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
+        //     $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
+
+
+        $ch = curl_init();
+        curl_setopt ($ch, CURLOPT_URL, $url);
+        curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt ($ch, CURLOPT_SSLVERSION,1);
+        curl_setopt ($ch, CURLOPT_HEADER, 0);
+        curl_setopt ($ch, CURLOPT_POST, 0);
+        curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt ($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $json = json_decode($result, true); 
+
+        
+        $tempwhere = array(
+                'vic_type' => 'coinmarketcap',
+            );
+        $this->Virtual_coin_model->delete_where($tempwhere);
+        
+        $virtualcoindata='';
+        foreach($json as $key => $value){
+            
+            foreach($value as $key_ => $value_){
+                $virtualcoindata[$key_] = $value_;
+            }
+
+            $this->Virtual_coin_model->save('coinmarketcap',$value['id'], $virtualcoindata);
+        }
+
         
     }
 
@@ -636,7 +682,7 @@ class Cron extends CB_Controller {
                     
                         
                         
-                $virtualcoindata['deal_bas_r'] = str_replace(",","",element('deal_bas_r',element(0,$json)));
+                $virtualcoindata['deal_bas_r'] = str_replace(",","",element('ttb',element(0,$json)));
                         
                         
                     

@@ -752,6 +752,10 @@
 			display: none;
 		}
 
+		div.reply_cont ul li.small_font:last-child{
+			display: none;
+		}
+
 
 
 
