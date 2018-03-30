@@ -611,3 +611,6 @@ footer .copyright span{padding-right:7px;}
 
 
 .pointer {cursor: pointer;}
+
+
+.nomal_font02 ul li:last-child{display:none;}

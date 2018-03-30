@@ -10,30 +10,26 @@ html{
 	min-height: 100%;
 }
 
-/*메뉴 이름*/
 h2{
-	font-size: 14px;
-	font-weight: bold;
+	font-size: 15px;
+	font-family: 'Jeju Gothic', sans-serif; 
 }
 
-/*게시물의 제목*/
 h3{
-	font-size: 13px;
+	font-size: 14px;
 	display: inline-block;
-	font-weight: bold;
+	font-family: 'Jeju Gothic', sans-serif; 
 }
 
-/*팝업창의 타이틀*/
 h4{
 	font-size: 19px;
-	font-weight: bold;
+	font-family: 'Jeju Gothic', sans-serif; 
 }
 
-/*롤링텍스트의 알림글자*/
 h5{
 	font-size: 11px;
 	display: inline-block;
-	font-weight: bold;
+	font-family: 'Jeju Gothic', sans-serif; 
 }
 
 p{
@@ -56,6 +52,12 @@ p{
 	font-size: 11px;
 }
 
+.main_active{
+	color: #a61e23;
+	font-size: 15px;
+	line-height: 10px;
+}
+
 button{
 	border-radius: 5px;
 	outline: none;
@@ -64,6 +66,8 @@ button{
 	color: #fff;
 	font-size: 12px;
 	height: 25px;
+	line-height: 26px;
+	cursor: pointer;
 }
 
 
@@ -75,6 +79,208 @@ textarea{
 	outline: none;
 	border:1px solid #ededed;
 }
+
+.ad img{
+	width: 100%;
+}
+
+
+/*header css*/
+	header{
+		width: 1280px;
+		padding:10px 0 20px;
+		box-sizing: border-box;
+		margin:0 auto;
+	}
+
+	header .ad{
+		width: 250px;
+		display: inline-block;
+	}
+
+	header h1{
+		height: 100%;
+		display: inline-block; 
+		margin-right: 0.5%;
+	}
+
+	header h1 img{
+		width: 130px;
+		float: left;
+		margin-right: 5px;
+		cursor:pointer;
+	}
+
+/*nav css*/
+	nav{
+		display: inline-block;
+	}
+
+	nav li{
+		float: left;
+		text-align: center;
+		box-sizing: border-box;
+		color: #5d5d5d;
+		font-family:'Jeju Gothic', sans-serif; 
+		cursor: pointer;
+	}
+
+	nav li:nth-child(2n){
+		width: 40px;
+	}
+
+/*head_search css*/
+	.head_search{
+		width: 270px;
+		box-sizing: border-box;
+		border:2px solid #1c446d;
+		float: right;
+		margin-top: 19px;
+	}
+
+	.head_search input{
+		width: 90%;
+		height: 24px;
+		border:0;
+		outline: none;
+		padding: 5px;
+		box-sizing: border-box;
+	}
+
+	.head_search img{
+		width: 10%;
+		float: right;
+	}
+
+	.head_search input::-webkit-search-cancel-button{
+		-webkit-appearance: none;
+		appearance:none;
+		width: 15px;
+		height: 15px;
+		background:url(../images/head_clear.png) no-repeat;
+		background-size: 15px;
+	}
+
+	.head_search input::-ms-clear{
+		-webkit-appearance: none;
+		appearance:none;
+		width: 15px;
+		height: 15px;
+		background:url(../images/head_clear.png) no-repeat;
+		background-size: 15px;
+	}
+
+/*login css*/
+	.login{
+		width: 100%;
+		height: 30px;
+		background-color: #1c446d;
+		margin-bottom: 60px;
+	}
+
+	.login_cont{
+		width: 1280px;
+		height: 30px;
+		margin:0 auto;
+	}
+
+/*login_noice css*/
+	.login_noice{
+		width: 500px;
+		height: 30px;
+		float: left;
+	}
+
+	.login_noice h5{
+		width: 40px;
+		height: 20px;
+		background-color: #a61e23;
+		text-align: center;
+		line-height: 21px;
+		color: #fff;
+		border-radius: 5px;
+		margin:5px 10px 5px 0;
+		float: left;
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+
+	.login_noice .bx-wrapper{
+		width: 450px;
+		height: 30px;
+		float: left;
+	}
+
+	.login_noice .bx-viewport{
+		width: 420px !important;
+		float: left;
+	}
+
+	.login_noice .bx-viewport li{
+		height: 30px;
+		line-height: 27px;
+		color: #fff;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow:hidden;
+		cursor: pointer;
+	}
+
+	.login_noice .bx-controls{
+		width: 30px;
+		height: 30px;
+		float: right;
+		text-align: center;
+		line-height: 25px;
+	}
+
+	.login_noice .bx-default-pager{
+		display: none;
+	}
+
+	.login_noice .bx-prev{
+		color: #fff;
+		line-height: 30px;
+	}
+
+	.login_noice .bx-next{
+		display: none;
+	}
+
+/*login_list css*/
+	.login_list{
+		height: 30px;
+		float: right;
+		color: #fff;
+		font-family:'Jeju Gothic', sans-serif; 
+	}
+
+	.login_list li{
+		height: 30px;
+		line-height: 33px;
+		float: left;
+		text-align: center;
+		letter-spacing: 1px;
+	}
+
+	.login_list li.enter{
+		display: none;
+	}
+
+	.login_list li:nth-child(2n){
+		margin:0 15px;
+	}
+
+	.login_list li img{
+		width: 20px;
+		height: 20px;
+		margin-right: 5px;
+		margin:5px 5px 5px 0;
+		float: left;
+	}
+
+	.login_list li figcaption{
+		display: inline-block;
+	}
 
 /*ad css*/
 	.ad img{
@@ -94,8 +300,10 @@ textarea{
 	.ham > img{
 		width: 30px;
 		margin-top: 175px;
+		cursor: pointer;
 	}
-
+	
+/*ham_cont css*/
 	.ham_cont{
 		width: 320px;
 		height: 100%;
@@ -127,332 +335,117 @@ textarea{
 		margin-bottom:20px;
 	}
 
-	/*ham_login*/
-		.ham_login ul{
-			width: 90%;
-			margin:0 auto;
-		}
-
-		.ham_login ul li{
-			width: 100%;
-			height: 40px;
-			padding:0 3%;
-			box-sizing: border-box;
-			line-height: 40px;
-			margin-bottom: 3%;
-			border-radius: 10px;
-			color:#fff;
-			font-weight: bold;
-		}
-
-		.ham_login figure{
-			width: 80%;
-			float: left;
-		}
-
-		.ham_login figure img{
-			width:40px;
-			float: left;
-			margin-right: 1.5%;
-		}
-
-		.ham_login span{
-			width: 30px;
-			height: 30px;
-			display: inline-block;
-			float: right;
-			margin-top:5px;
-		}
-
-		.ham_login span img{
-			width: 100%;
-		}
-
-	/*ham_info*/
-		.ham_info span{
-			width:90%;
-			display: inline-block;
-			text-align: right;
-			margin:0 5%;
-		}
-		.ham_info table{
-			width: 90%;
-			margin:15px auto 20px;
-		}
-
-		.ham_info th,
-		.ham_info td{
-			padding:10px;
-			text-align: center;
-			border:1px solid #ededed;
-			vertical-align: middle;
-		}
-
-		.ham_info th{
-			width: 35%;
-			font-weight: bold;
-			background-color: #f0f3f7;
-		}
-
-		.ham_info figure{
-			height: 25px;
-			display: inline-block;
-		}
-
-		.ham_info img{
-			width: 25px;
-			margin-right: 5px;
-			float: left;
-		}
-
-		.ham_info figcaption{
-			display: inline-block;
-			height: 25px;
-			line-height: 25px;
-		}
-
-		.ham_info ul{
-			width: 90%;
-			margin: 0 auto;
-		}
-
-		.ham_info button{
-			width: 49%;
-			margin-right: 2%;
-			float: left;
-			font-weight: bold;
-		}
-
-		.ham_info li:last-child button{
-			margin-right: 0;
-		}
-
-	/*ham_out*/
-		.ham_out img{
-			margin-bottom: 20px;
-		}
-
-		.ham_out button{
-			width: 90%;
-			margin: 0 5%;
-		}
-
-/*header css*/
-	header{
-		width: 1280px;
-		height: 100px;
-		padding:15px 0;
-		box-sizing: border-box;
+/*ham_login*/
+	.ham_login ul{
+		width: 90%;
 		margin:0 auto;
-		text-align: center;
 	}
 
-	header .ad{
-		width: 250px;
-		height: 100%;
-		float: left;
-	}
-
-	header h1{
-		width: 300px;
-		height: 100%;
-		display: inline-block; 
-		position: relative;
-	}
-
-	header h1 img{
+	.ham_login ul li{
 		width: 100%;
-	}
-
-	header h1 span{
-		position: absolute;
-		top: 6px;
-		width: 100%;
-		display: inline-block;
-		text-align: center;
+		height: 40px;
+		padding:0 3%;
+		box-sizing: border-box;
+		line-height: 45px;
+		margin-bottom: 3%;
+		border-radius: 10px;
+		color:#fff;	
 		font-family: 'Jeju Gothic', sans-serif;
-		color:#4e4e50;
 	}
 
-	.head_search{
-		width: 250px;
-		height: 35px;
-		margin-top: 35px;
-		box-sizing: border-box;
-		border:2px solid #1c446d;
+	.ham_login figure{
+		width: 80%;
+		float: left;
+	}
+
+	.ham_login figure img{
+		width:40px;
+		float: left;
+		margin-right: 1.5%;
+	}
+
+	.ham_login span{
+		width: 30px;
+		height: 30px;
+		display: inline-block;
 		float: right;
-		padding: 5px;
+		margin-top:5px;
 	}
 
-	.head_search input{
-		width: 218px;
-		height: 21px;
-		float: left;
-		border:0;
-		outline: none;
-	}
-
-	.head_search img{
-		width: 17px;
-		margin-top: 2px;
-		float: left;
-	}
-
-	.head_search input::-webkit-search-cancel-button{
-		-webkit-appearance: none;
-		appearance:none;
-		width: 15px;
-		height: 15px;
-		background:url(../images/head_clear.png) no-repeat;
-		background-size: 15px;
-	}
-
-	.head_search input::-ms-clear{
-		-webkit-appearance: none;
-		appearance:none;
-		width: 15px;
-		height: 15px;
-		background:url(../images/head_clear.png) no-repeat;
-		background-size: 15px;
-	}
-	
-/*login(aside) css*/
-	.login{
+	.ham_login span img{
 		width: 100%;
-		height: 30px;
-		background-color: #1c446d;
 	}
 
-	.login_cont{
-		width: 1280px;
-		height: 30px;
-		margin:0 auto;
+/*ham_info*/
+	.ham_info span{
+		width:90%;
+		display: inline-block;
+		text-align: right;
+		margin:0 5%;
+	}
+	.ham_info table{
+		width: 90%;
+		margin:15px auto 20px;
 	}
 
-	/*알림 css*/
-		.login_noice{
-			width: 500px;
-			height: 30px;
-			float: left;
-		}
-
-		.login_noice h5{
-			width: 40px;
-			height: 20px;
-			background-color: #002643;
-			text-align: center;
-			line-height: 19px;
-			color: #fff;
-			border-radius: 5px;
-			margin:5px 10px 5px 0;
-			float: left;
-		}
-
-		.login_noice .bx-wrapper{
-			width: 450px;
-			height: 30px;
-			float: left;
-		}
-
-		.login_noice .bx-viewport{
-			width: 420px !important;
-			float: left;
-		}
-
-		.login_noice .bx-viewport li{
-			height: 30px;
-			line-height: 30px;
-			color: #fff;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow:hidden;
-		}
-
-		.login_noice .bx-controls{
-			width: 30px;
-			height: 30px;
-			float: right;
-			text-align: center;
-			line-height: 25px;
-		}
-
-		.login_noice .bx-default-pager{
-			display: none;
-		}
-
-		.login_noice .bx-prev{
-			color: #fff;
-			line-height: 30px;
-		}
-
-		.login_noice .bx-next{
-			display: none;
-		}
-
-	/*로그인,회원가입 css*/
-		.login_list{
-			height: 30px;
-			float: right;
-			color: #fff;
-			font-weight: bold;
-		}
-
-		.login_list li{
-			height: 30px;
-			line-height: 30px;
-			float: left;
-			text-align: center;
-		}
-
-		.login_list li.enter{
-			display: none;
-		}
-
-		.login_list li:nth-child(2n){
-			line-height: 28px;
-			margin:0 15px;
-		}
-
-		.login_list li img{
-			width: 20px;
-			height: 20px;
-			margin-right: 5px;
-			margin:5px 5px 5px 0;
-			float: left;
-		}
-
-		.login_list li figcaption{
-			display: inline-block;
-		}
-
-/*nav css*/
-	nav{
-		width: 100%;
-		height: 25px;
-		border-bottom:1px solid #ededed;
-	}
-
-	nav ul{
-		width: 1280px;
-		margin:0 auto;
-	}
-
-	nav li{
-		width: 13.85%;
-		line-height: 25px;
-		float: left;
+	.ham_info th,
+	.ham_info td{
+		padding:10px;
 		text-align: center;
-		box-sizing: border-box;
-		font-weight: normal;
-		color: #000;
+		border:1px solid #ededed;
+		vertical-align: middle;
 	}
 
-	nav li:nth-child(2n){
-		width: 0.5%;
-		color: #ededed;
+	.ham_info th{
+		width: 35%;
+		background-color: #f0f3f7;
+		font-family: 'Jeju Gothic', sans-serif;
 	}
 
-	/*메인메뉴 선택 css*/
+	.ham_info figure{
+		height: 25px;
+		display: inline-block;
+	}
+
+	.ham_info img{
+		width: 25px;
+		margin-right: 5px;
+		float: left;
+	}
+
+	.ham_info figcaption{
+		display: inline-block;
+		height: 25px;
+		line-height: 25px;
+	}
+
+	.ham_info ul{
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.ham_info button{
+		width: 49%;
+		margin-right: 2%;
+		float: left;
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+
+	.ham_info li:last-child button{
+		margin-right: 0;
+	}
+
+/*ham_out*/
+	.ham_out img{
+		margin-bottom: 20px;
+	}
+
+	.ham_out button{
+		width: 90%;
+		margin: 0 5%;
+	}
+
+/*메인메뉴 선택 css*/
 	nav .menu_check{
  		/*border-bottom:5px solid #1c446d;*/
  		font-weight: bold;
@@ -475,7 +468,7 @@ textarea{
 	}
 
 	.footer h1{
-		width: 170px;
+		width: 120px;
 		margin-right: 15px;
 		float: left;
 	}

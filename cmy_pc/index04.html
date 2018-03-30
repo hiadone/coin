@@ -1,462 +1,534 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>BitIssue_PC</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="shortcut icon" href="images/favi.png">
-<link href="css/import.css" rel="stylesheet" type="text/css">
+	<meta charset="utf-8">
+	<title>BitIssue_PC</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="images/favi.png">
+	<link href="css/import.css" rel="stylesheet" type="text/css">
 
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="js/com_js.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="js/com_js.js"></script>
 
-<script src="js/jquery.bxslider.min.js"></script>
-<script src="plugins/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.bxslider.min.js"></script>
+	<script src="plugins/jquery.easing.1.3.js"></script>
 
 </head>
 <body>
-<aside class="ham">
-	<img src="images/ham_btn.png" alt="ham_btn_img">
-	<section class="ham_cont ham_login" style="display: none" >
-		<h2>통 합 로 그 인</h2>
-		<div>
-			<h3>SNS 간편로그인</h3>
-			<p>
-				비트이슈에서는 SNS로 로그인하여<br>
-				간편하게 서비스를 이용하실 수 있습니다.<br><br>
-				원하시는 SNS를 선택하시고<br>
-				로그인 해주세요.
-			</p>
-		</div>
-		
-		<ul>
-			<li style="background-color:#fbe300; color:#3a1e1f">
-				<figure>
-					<img src="images/ham_talk.png" alt="ham_talk_img">
-					<figcaption class="big_font">카 카 오 톡</figcaption>
-				</figure>
-				<span>
-					<img src="images/ham_arrow.png" alt="ham_arrow_img">
-				</span>
-			</li>
-			<li style="background-color:#1ec802;">
-				<figure>
-					<img src="images/ham_naver.png" alt="ham_naver_img">
-					<figcaption class="big_font">네 이 버</figcaption>
-				</figure>
-				<span>
-					<img src="images/ham_arrow.png" alt="ham_arrow_img">
-				</span>
-			</li>
-			<li style="background-color:#3c589e;">
-				<figure>
-					<img src="images/ham_face.png" alt="ham_face_img">
-					<figcaption class="big_font">페 이 스 북</figcaption>
-				</figure>
-				<span>
-					<img src="images/ham_arrow.png" alt="ham_arrow_img">
-				</span>
-			</li>
-		</ul>
-	</section>
+	<aside class="ham">
+		<img src="images/ham_btn.png" alt="ham_btn_img">
+		<section class="ham_cont ham_login" style="display: none" >
+			<h2>통 합 로 그 인</h2>
+			<div>
+				<h3>SNS 간편로그인</h3>
+				<p>
+					비트이슈에서는 SNS로 로그인하여<br>
+					간편하게 서비스를 이용하실 수 있습니다.<br><br>
+					원하시는 SNS를 선택하시고<br>
+					로그인 해주세요.
+				</p>
+			</div>
 
-	<section class="ham_cont ham_info" >
-		<h2>회 원 정 보</h2>
-		<span class='small_font'>회원님의 정보를 알려 드립니다.</span>
-
-		<table>
-			<tr>
-				<th>아 이 디</th>
-				<td>사용자 아이디</td>
-			</tr>
-
-			<tr>
-				<th>닉 네 임</th>
-				<td>사용자 닉네임</td>
-			</tr>
-
-			<tr>
-				<th>포 인 트</th>
-				<td>1000 포인트</td>
-			</tr>
-
-			<tr>
-				<th>회 원 그 룹</th>
-				<td>
-					<figure>
-						<img src='images/gold_spoon.png' alt='gold_spoon_img'>
-						<figcaption>금 수 저</figcaption>
-					</figure>
-					
-				</td>
-			</tr>
-
-			<tr>
-				<th>가 입 일</th>
-				<td>
-					00-00 00:00
-				</td>
-			</tr>
-
-			<tr>
-				<th>최 근 로 그 인</th>
-				<td>
-					00-00 00:00
-				</td>
-			</tr>
-		</table>
-
-		<ul>
-			<li>
-				<button class='good_bye'>회 원 탈 퇴</button>
-			</li>
-
-			<li>
-				<button class='out'>로 그 아 웃</button>
-			</li>
-		</ul>
-	</section>
-
-	<section class="ham_cont ham_out" style="display: none">
-		<h2>회 원 탈 퇴</h2>
-		<div style="border:0;">
-			<img src='images/stop.png' alt='stop_img'>
-			<h3>정말로 탈퇴 하시겠습니까 ?</h3>
-			
-			<p>
-				회원 탈퇴시 모든 정보가 삭제되며<br>
-				어떠한 경우에도 복구되지 않습니다.<br><br>
-				탈퇴 시 동일한 SNS로 재가입은<br>
-				1개월 이내로는 재가입이 불가능 하며<br><br>
-
-				<b>
-					적립하신 모든 포인트가 소멸됩니다.<br>
-					탈퇴하시겠습니까?
-				</b>
-			</p>
-		</div>
-
-		<button class='good_bye02'>
-			탈 퇴 하 기
-		</button>
-	</section>
-</aside>
-
-<header>
-	<div class="ad">
-		<img src="images/head_ad.png" alt="head_ad_img">
-	</div>
-
-	<h1 onclick="location.href='index.html'">
-		<span class="small_font">비트코인 정보를 한번에!!</span>
-		<img src="images/logo.png" alt="logo_img">
-	</h1>
-
-	<div class="head_search">
-		<input type='search'>
-		<img src="images/head_find.png" alt="head_find_img">
-	</div>
-</header>
-
-<aside class="login">
-	<section class="login_cont">
-		<div class="login_noice">
-			<h5>알 림</h5>
 			<ul>
-		      <li>01. 02월 26일 10시 30분 비트코인(-2.38%), 라이트코인(5.6%), 이더리움 클래식(-4.98%)</li>
-		      <li>02. 비트코인 등 가상화폐 소폭 하락세… 에이다·라이트코인 상승</li>
-		      <li>03. 비트코인, 1100만원대서 5일째 '제자리걸음'</li>
-		      <li>04. 주말 비트코인 1만달러선 붕괴…전일 대비 0.34% 회복한 9,746달러</li>
-		      <li>05. 가상화폐 거래소 빗썸 , 보안 강화 가속... 비트코인 등 일요일 현재 시세!</li>
-		    </ul>
-		</div>
-
-		<div class="login_list">
-			<ul>
-				<li class='enter'>로그인</li>
-				<li class='enter'>|</li>
-				<li class='enter'>회원가입</li>
-				<li>
+				<li style="background-color:#fbe300; color:#3a1e1f">
 					<figure>
-						<img src="images/gold_spoon.png" alt="gold_spoon_img">
-						<figcaption>사용자 아이디</figcaption>
+						<img src="images/ham_talk.png" alt="ham_talk_img">
+						<figcaption class="big_font">카 카 오 톡</figcaption>
 					</figure>
+					<span>
+						<img src="images/ham_arrow.png" alt="ham_arrow_img">
+					</span>
 				</li>
-				<li>|</li>
-				<li>포인트 1000P</li>
-				<li>|</li>
-				<li class='user_info'>회원정보</li>
-				<li>|</li>
-				<li class='out'>로그아웃</li>
+				<li style="background-color:#1ec802;">
+					<figure>
+						<img src="images/ham_naver.png" alt="ham_naver_img">
+						<figcaption class="big_font">네 이 버</figcaption>
+					</figure>
+					<span>
+						<img src="images/ham_arrow.png" alt="ham_arrow_img">
+					</span>
+				</li>
+				<li style="background-color:#3c589e;">
+					<figure>
+						<img src="images/ham_face.png" alt="ham_face_img">
+						<figcaption class="big_font">페 이 스 북</figcaption>
+					</figure>
+					<span>
+						<img src="images/ham_arrow.png" alt="ham_arrow_img">
+					</span>
+				</li>
 			</ul>
-		</div>
-	</section>
-</aside>
+		</section>
 
-<nav>
-	<ul>
-		<li  onclick="location.href='index02.html'">뉴 스 정 보</li>
-		<li>|</li>
-		<li  onclick="location.href='index03.html'">커 뮤 니 티</li>
-		<li>|</li>
-		<li class="menu_check" onclick="location.href='index04.html'">코 인 지 식</li>
-		<li>|</li>
-		<li onclick="location.href='index05.html'">서 비 스</li>
-		<li>|</li>
-		<li onclick="location.href='index06.html'">이 벤 트</li>
-		<li>|</li>
-		<li onclick="location.href='index07.html'">공 지 사 항</li>
-		<li>|</li>
-		<li onclick="location.href='index08.html'">가 상 화 폐 트 위 터</li>
-	</ul>
-</nav>
+		<section class="ham_cont ham_info" >
+			<h2>회 원 정 보</h2>
+			<span class='small_font'>회원님의 정보를 알려 드립니다.</span>
 
-<article class="content02">
-	<section class="submenu sub_04">
-		<ul>
-			<li class='menu_active'><a href='#coin01'>동영상강좌</a></li>
-			<li>|</li>
-			<li><a href='#coin02'>코인지식</a></li>
-			<li>|</li>
-			<li><a href='#coin03'>ICO</a></li>
-			<li>|</li>
-			<li><a href='#coin04'>질문/답변</a></li>
-			<li class="submenu_arrow"></li>
-		</ul>
-	</section>
-
-	<section class='post_list'>
-		<div class='post_table' id='coin01'>
-			<table class='post_table_li'>
+			<table>
 				<tr>
-					<th>번 호</th>
-					<th>제 목</th>
+					<th>아 이 디</th>
+					<td>사용자 아이디</td>
+				</tr>
+
+				<tr>
 					<th>닉 네 임</th>
-					<th>날 짜</th>
-					<th>조 회</th>
+					<td>사용자 닉네임</td>
 				</tr>
 
 				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">동영상강좌 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
-						<figure>
-							<img src="images/gold_spoon.png" alt="gold_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>5</td>
+					<th>포 인 트</th>
+					<td>1000 포인트</td>
 				</tr>
 
 				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">동영상강좌 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
+					<th>회 원 그 룹</th>
 					<td>
 						<figure>
-							<img src="images/gold_spoon.png" alt="gold_spoon_img">
-							<figcaption>회원의 이름</figcaption>
+							<img src='images/gold_spoon.png' alt='gold_spoon_img'>
+							<figcaption>금 수 저</figcaption>
 						</figure>
+
 					</td>
-					<td>2018.00.00</td>
-					<td>2</td>
 				</tr>
 
 				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">동영상강좌 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
+					<th>가 입 일</th>
 					<td>
-						<figure>
-							<img src="images/gold_spoon.png" alt="gold_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
+						00-00 00:00
 					</td>
-					<td>2018.00.00</td>
-					<td>2</td>
 				</tr>
 
 				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">동영상강좌 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
+					<th>최 근 로 그 인</th>
 					<td>
-						<figure>
-							<img src="images/copper_spoon.png" alt="copper_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
+						00-00 00:00
 					</td>
-					<td>2018.00.00</td>
-					<td>0</td>
-				</tr>	
+				</tr>
 			</table>
+
+			<ul>
+				<li>
+					<button class='good_bye'>회 원 탈 퇴</button>
+				</li>
+
+				<li>
+					<button class='out'>로 그 아 웃</button>
+				</li>
+			</ul>
+		</section>
+
+		<section class="ham_cont ham_out" style="display: none">
+			<h2>회 원 탈 퇴</h2>
+			<div style="border:0;">
+				<img src='images/stop.png' alt='stop_img'>
+				<h3>정말로 탈퇴 하시겠습니까 ?</h3>
+
+				<p>
+					회원 탈퇴시 모든 정보가 삭제되며<br>
+					어떠한 경우에도 복구되지 않습니다.<br><br>
+					탈퇴 시 동일한 SNS로 재가입은<br>
+					1개월 이내로는 재가입이 불가능 하며<br><br>
+
+					<b>
+						적립하신 모든 포인트가 소멸됩니다.<br>
+						탈퇴하시겠습니까?
+					</b>
+				</p>
+			</div>
+
+			<button class='good_bye02'>
+				탈 퇴 하 기
+			</button>
+		</section>
+	</aside>
+
+	<header>
+		<h1 onclick="location.href='index.html'">
+			<img src="images/logo.png" alt="logo_img">
+		</h1>
+
+		<nav class='nomal_font02'>
+			<ul>
+				<li>
+					뉴 스 정 보
+				</li>
+
+				<li>|</li>
+
+				<li>
+					커 뮤 니 티
+				</li>
+
+				<li>|</li>
+
+				<li>
+					코 인 강 좌
+				</li>
+
+				<li>|</li>
+
+				<li>
+					갤러리/유머
+				</li>
+
+				<li>|</li>
+
+				<li>
+					이 벤 트
+				</li>
+
+				<li>|</li>
+
+				<li>
+					공 지 사 항
+				</li>
+
+				<li>|</li>
+
+				<li>
+					가상화폐트위터
+				</li>
+			</ul>
+		</nav>
+
+		<div class="head_search">
+			<input type='search'>
+			<img src="images/head_find.png" alt="head_find_img">
 		</div>
+	</header>
 
-		<div class='post_table' id='coin02'>
-			<table class='post_table_li'>
-				<tr>
-					<th>번 호</th>
-					<th>제 목</th>
-					<th>닉 네 임</th>
-					<th>날 짜</th>
-					<th>조 회</th>
-				</tr>
+	<aside class="login">
+		<section class="login_cont">
+			<div class="login_noice">
+				<h5>알 림</h5>
+				<ul>
+					<li>01. 02월 26일 10시 30분 비트코인(-2.38%), 라이트코인(5.6%), 이더리움 클래식(-4.98%)</li>
+					<li>02. 비트코인 등 가상화폐 소폭 하락세… 에이다·라이트코인 상승</li>
+					<li>03. 비트코인, 1100만원대서 5일째 '제자리걸음'</li>
+					<li>04. 주말 비트코인 1만달러선 붕괴…전일 대비 0.34% 회복한 9,746달러</li>
+					<li>05. 가상화폐 거래소 빗썸 , 보안 강화 가속... 비트코인 등 일요일 현재 시세!</li>
+				</ul>
+			</div>
 
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">코인지식 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
-						<figure>
-							<img src="images/copper_spoon.png" alt="copper_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>0</td>
-				</tr>	
-
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">코인지식 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
-						<figure>
-							<img src="images/copper_spoon.png" alt="copper_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>0</td>
-				</tr>	
-			</table>
-		</div>
-
-		<div class='post_table' id='coin03'>
-			<table class='post_table_li'>
-				<tr>
-					<th>번 호</th>
-					<th>제 목</th>
-					<th>닉 네 임</th>
-					<th>날 짜</th>
-					<th>조 회</th>
-				</tr>
-
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">ICO 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
+			<div class="login_list">
+				<ul>
+					<li class='enter' style='cursor: pointer;'>로그인</li>
+					<li class='enter'>|</li>
+					<li class='enter' style='cursor: pointer;'>회원가입</li>
+					<li>
 						<figure>
 							<img src="images/gold_spoon.png" alt="gold_spoon_img">
-							<figcaption>회원의 이름</figcaption>
+							<figcaption>사용자 아이디</figcaption>
 						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>5</td>
-				</tr>
+					</li>
+					<li>|</li>
+					<li>포인트 1000P</li>
+					<li>|</li>
+					<li class='user_info' style='cursor: pointer;'>회원정보</li>
+					<li>|</li>
+					<li class='out' style='cursor: pointer;'>로그아웃</li>
+				</ul>
+			</div>
+		</section>
+	</aside>
 
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">ICO 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
+	<article class="content02">
+		<section class="submenu">
+			<ul>
+				<li class='menu_active nomal_font02'><a href='index05.html'>자유갤러리</a></li>
+				<li>|</li>
+				<li class='nomal_font02'><a href='index005.html'>유 머</a></li>
+			</ul>
+		</section>
+
+		<section class='gallery_li img_li'>
+			<ul>
+				<li>
+					<a href=''>
 						<figure>
-							<img src="images/gold_spoon.png" alt="gold_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>2</td>
-				</tr>
+							<img src='images/service_01.png' alt='service_01'>
+							<figcaption>
+								<h3>01. 음악의 신 2 * 나인뮤지스 경리 인스타그램 사진</h3>
 
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">ICO 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
+								<div class='img_writer'>
+									<p class='small_font'>
+										<img src='images/gold_spoon.png' alt='gold_spoon'>작성자
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>조회수 5</p>
+								</div>
+
+								<div class='img_data'>
+									<p class='small_font'>
+										2018.00.00
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>댓글 5</p>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</li>
+
+				<li>
+					<a href=''>
 						<figure>
-							<img src="images/copper_spoon.png" alt="copper_spoon_img">
-							<figcaption>회원의 이름</figcaption>
+							<img src='images/service_02.png' alt='service_02'>
+							<figcaption>
+								<h3>02. 흑발 웨이브로 '미모 전성기'라고 불렸던 수지 역대급</h3>
+
+								<div class='img_writer'>
+									<p class='small_font'>
+										<img src='images/gold_spoon.png' alt='gold_spoon'>작성자
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>조회수 5</p>
+								</div>
+
+								<div class='img_data'>
+									<p class='small_font'>
+										2018.00.00
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>댓글 5</p>
+								</div>
+							</figcaption>
 						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>0</td>
-				</tr>	
-			</table>
-		</div>
+					</a>
+				</li>
 
-		<div class='post_table' id='coin04'>
-			<table class='post_table_li'>
-				<tr>
-					<th>번 호</th>
-					<th>제 목</th>
-					<th>닉 네 임</th>
-					<th>날 짜</th>
-					<th>조 회</th>
-				</tr>
-
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">질문/답변 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
+				<li>
+					<a href=''>
 						<figure>
-							<img src="images/gold_spoon.png" alt="gold_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>5</td>
-				</tr>
+							<img src='images/service_03.png' alt='service_03'>
+							<figcaption>
+								<h3>03. 설현 AOA Kim Seolhyun | pretty girls | Pinterest | Pretty</h3>
 
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">질문/답변 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
+								<div class='img_writer'>
+									<p class='small_font'>
+										<img src='images/gold_spoon.png' alt='gold_spoon'>작성자
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>조회수 5</p>
+								</div>
+
+								<div class='img_data'>
+									<p class='small_font'>
+										2018.00.00
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>댓글 5</p>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</li>
+
+				<li>
+					<a href=''>
 						<figure>
-							<img src="images/gold_spoon.png" alt="gold_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>2</td>
-				</tr>
+							<img src='images/service_04.png' alt='service_04'>
+							<figcaption><h3>04. 인기가요 EXID 하니 "코에 분필넣었다고? '성형괴물'</h3>
 
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">질문/답변 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
+								<div class='img_writer'>
+									<p class='small_font'>
+										<img src='images/gold_spoon.png' alt='gold_spoon'>작성자
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>조회수 5</p>
+								</div>
+
+								<div class='img_data'>
+									<p class='small_font'>
+										2018.00.00
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>댓글 5</p>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</li>
+
+				<li>
+					<a href=''>
 						<figure>
-							<img src="images/copper_spoon.png" alt="copper_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>0</td>
-				</tr>	
+							<img src='images/service_05.png' alt='service_05'>
+							<figcaption>
+								<h3>05. 헤지스 액세서리, 2018 SS 뮤즈에 '레드벨벳 아이린'</h3>
 
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">질문/답변 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
+								<div class='img_writer'>
+									<p class='small_font'>
+										<img src='images/gold_spoon.png' alt='gold_spoon'>작성자
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>조회수 5</p>
+								</div>
+
+								<div class='img_data'>
+									<p class='small_font'>
+										2018.00.00
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>댓글 5</p>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</li>
+
+				<li>
+					<a href=''>
 						<figure>
-							<img src="images/gold_spoon.png" alt="gold_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>2</td>
-				</tr>
+							<img src='images/service_06.png' alt='service_06'>
+							<figcaption>
+								<h3>06. 아이유 중국 출국 by 미스터신iu :: 아이유스튜디오</h3>
 
-				<tr>
-					<td></td>
-					<td onclick="location.href='index09.html'">질문/답변 내용 영역입니다 . 최대 50글자까지 입력가능합니다. <span>3</span></td>
-					<td>
+								<div class='img_writer'>
+									<p class='small_font'>
+										<img src='images/gold_spoon.png' alt='gold_spoon'>작성자
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>조회수 5</p>
+								</div>
+
+								<div class='img_data'>
+									<p class='small_font'>
+										2018.00.00
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>댓글 5</p>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</li>
+
+				<li>
+					<a href=''>
 						<figure>
-							<img src="images/copper_spoon.png" alt="copper_spoon_img">
-							<figcaption>회원의 이름</figcaption>
-						</figure>
-					</td>
-					<td>2018.00.00</td>
-					<td>0</td>
-				</tr>	
-			</table>
-		</div>
+							<img src='images/service_07.png' alt='service_07'>
+							<figcaption>
+								<h3>07. SNSD's Seohyun Subtlety Sexy and Elegant for New P</h3>
 
-		<div class="post_sear">
+								<div class='img_writer'>
+									<p class='small_font'>
+										<img src='images/gold_spoon.png' alt='gold_spoon'>작성자
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>조회수 5</p>
+								</div>
+
+								<div class='img_data'>
+									<p class='small_font'>
+										2018.00.00
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>댓글 5</p>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</li>
+
+				<li>
+					<a href=''>
+						<figure>
+							<img src='images/service_08.png' alt='service_08'>
+							<figcaption>
+								<h3>08. '우리 옆집에 엑소가 산다' 디오·찬열 홀린 문가영은 누구</h3>
+
+								<div class='img_writer'>
+									<p class='small_font'>
+										<img src='images/gold_spoon.png' alt='gold_spoon'>작성자
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>조회수 5</p>
+								</div>
+
+								<div class='img_data'>
+									<p class='small_font'>
+										2018.00.00
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>댓글 5</p>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</li>
+
+				<li>
+					<a href=''>
+						<figure>
+							<img src='images/service_09.png' alt='service_09'>
+							<figcaption>
+								<h3>09. 소유 "몸매관리? 체중 안 재기+옷 벗은 채 생활"</h3>
+
+								<div class='img_writer'>
+									<p class='small_font'>
+										<img src='images/gold_spoon.png' alt='gold_spoon'>작성자
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>조회수 5</p>
+								</div>
+
+								<div class='img_data'>
+									<p class='small_font'>
+										2018.00.00
+									</p>
+
+									<span>|</span> 
+
+									<p class='small_font'>댓글 5</p>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</li>
+
+
+
+
+
+			</ul>
+		</section>
+
+		<section class="post_sear">
 			<select class="normal_font">
 				<option>제목+내용</option>
 				<option>제 목</option>
@@ -465,14 +537,14 @@
 
 			<input placeholder="Search"  type='search' onfocus="this.placeholder=''" onblur="this.placeholder='Search'">
 			<button class="find_img"><img src="images/search_find.png" alt="find_img"></button>
-		</div>
+		</section>
 
-		<div class='post_button'>
+		<section class='post_button'>
 			<button>글 쓰 기</button>
 			<button>더 보 기</button>
-		</div>
+		</section>
 
-		<div class="post_page">
+		<section class="post_page">
 			<ul>
 				<li class="page_arrow" id="prev_all"> &lt;&lt; </li>
 				<li class="page_arrow" id="prev"> &lt; </li>
@@ -485,54 +557,51 @@
 				<li class="page_arrow" id="next"> &gt; </li>
 				<li class="page_arrow" id="next_all"> &gt;&gt; </li>
 			</ul>
+		</section>
+	</article>
+
+	<footer>
+		<div class="footer">
+			<h1>
+				<img src="images/logo.png" alt="logo_img">
+			</h1>
+
+			<ul>
+				<li>
+					<a href="">개인정보취급방침</a>
+				</li>
+
+				<li>
+					|
+				</li>
+
+				<li>
+					<a href="">개제중단요청</a>
+				</li>
+
+				<li>
+					|
+				</li>
+
+				<li>
+					<a href="">제휴문의</a>
+				</li>
+
+				<li>
+					|
+				</li>
+
+				<li>
+					<a href="">bitissue.help@gmail.com</a>
+				</li>
+			</ul>
+
+			<p>
+				Copyright ⓒ 시즌제이 . All Rights Reserved http://www.bitcoissue.com
+				<span class="big_font">TOP</span>
+			</p>
 		</div>
-	</section>	
-
-	<span class='bar'></span>
-</article>
-
-<footer>
-	<div class="footer">
-		<h1>
-			<img src="images/logo.png" alt="logo_img">
-		</h1>
-
-		<ul>
-			<li>
-				<a href="">개인정보취급방침</a>
-			</li>
-
-			<li>
-				|
-			</li>
-
-			<li>
-				<a href="">개제중단요청</a>
-			</li>
-
-			<li>
-				|
-			</li>
-
-			<li>
-				<a href="">제휴문의</a>
-			</li>
-
-			<li>
-				|
-			</li>
-
-			<li>
-				<a href="">bitissue.help@gmail.com</a>
-			</li>
-		</ul>
-
-		<p>
-			Copyright ⓒ 시즌제이 . All Rights Reserved http://www.bitcoissue.com
-			<span class="big_font">TOP</span>
-		</p>
-	</div>
-</footer>
+	</footer>
 
 </body>
 </html>

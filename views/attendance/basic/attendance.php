@@ -51,23 +51,22 @@ $record_num = $this->uri->segment($last);
         </ul>
         
     </section>
-    <section class='post_list'>
-        <div class='post_table' id='event02' style='border-bottom:0;'>
+    
 
 
-            <?php
-            $attributes = array('class' => 'atten_write', 'name' => 'attendanceform', 'id' => 'attendanceform');
-            echo form_open('', $attributes);
-            ?>
-                <label class='nomal_font02'>한마디</label>
-                <input type="text" name="memo" value="<?php echo html_escape(element(0, element('default_memo', $view))); ?>" id="att_memo" class="input" onClick="this.value='';" />
-                <button type="button" name="change_memo" class="refresh" id="change_memo"><img src='<?php echo element('layout_skin_url', $layout); ?>/images/refresh.png' alt='refresh_img'></button>
-                <button type="button" name="submit" class="btn btn-success" id="add_attendance">출첵하기</button>
+        <?php
+        $attributes = array('class' => 'atten_write', 'name' => 'attendanceform', 'id' => 'attendanceform');
+        echo form_open('', $attributes);
+        ?>
+            <label class='nomal_font02'>한마디</label>
+            <input type="text" name="memo" value="<?php echo html_escape(element(0, element('default_memo', $view))); ?>" id="att_memo" class="" onClick="this.value='';" />
+            <button type="button" name="change_memo" class="refresh" id="change_memo"><img src='<?php echo element('layout_skin_url', $layout); ?>/images/refresh.png' alt='refresh_img'></button>
+            <button type="button" name="submit"  id="add_attendance">출 첵 하 기</button>
+        
+            <p class="point nomal_font02 view_policy" >포 인 트 정 책 보 기</p>
             
-                <button type="button" name="view_policy" class="point nomal_font02 view_policy" >포인트정책보기</button>
-                
-            <?php echo form_close(); ?>
-        </div>
+        <?php echo form_close(); ?>
+        
         <div class="alert alert-dismissible alert-warning alert-point-policy">
             <button type="button" class="close alertclose" >&times;</button>
             <strong>포인트 정책</strong><br />
@@ -112,7 +111,7 @@ $record_num = $this->uri->segment($last);
             ?>
         </div>
 
-        <div class="atten_date"><h3 class='big_font'><?php echo element('date_format', $view); ?></h3>
+        <section class="atten_date"><h3 class='big_font'><?php echo element('date_format', $view); ?></h3>
         <table>
             <tr>
                 <td>◀ <a href="<?php echo site_url('attendance?date=' . element('lastmonth', $view)); ?>">지난 달</a></td>
@@ -121,7 +120,7 @@ $record_num = $this->uri->segment($last);
             </tr>
         </table>
         
-        <ul>
+        <ul class="date-navigation">
             
             <?php
             for ($day = 1; $day <= element('lastday', $view); $day++) {
@@ -132,11 +131,11 @@ $record_num = $this->uri->segment($last);
             ?>
             
         </ul>
-        </div>
-        <div id="viewattendance"></div>
         </section>
+        <div id="viewattendance"></div>
+        
     
-    <span class='bar' style="height: 60px;"></span>
+    
 </article>
 <script type="text/javascript">
 //<![CDATA[

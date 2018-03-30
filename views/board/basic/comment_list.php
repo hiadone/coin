@@ -3,13 +3,13 @@
 
 
 
-<section class='post_reply'>
-        <h2>Comment</h2>
-        <div class='reply_list'>
-        <div class="alert alert-auto-close alert-dismissible alert-comment-list-message" style="display:none;"><span class="alert-comment-list-message-content"></span></div>
+<section class='reply_list'>
+        
+    <div class="alert alert-auto-close alert-dismissible alert-comment-list-message" style="display:none;"><span class="alert-comment-list-message-content"></span></div>
 <?php
 if (element('list', element('data', $view))) {
-    echo '<ol class="post-view">';
+    echo '<h2>Comment</h2><ol class="post-view">';
+    
     foreach (element('list', element('data', $view)) as $result) {
 ?>
     <li id="comment_<?php echo element('cmt_id', $result); ?>" >
@@ -68,4 +68,7 @@ if (element('list', element('data', $view))) {
     echo '</ol>';
 }
 ?>
+</section>
+<section class="post_page">
 <div><?php echo element('paging', $view); ?></div>
+</section>

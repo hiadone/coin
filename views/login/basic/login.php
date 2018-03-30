@@ -35,11 +35,11 @@
             if ($this->cbconfig->item('use_sociallogin')) {
                 $this->managelayout->add_js(base_url('assets/js/social_login.js'));
             ?>
-            <section class="ham_login">
+            <section class="ham_cont ham_login">
                 <h2>통 합 로 그 인</h2>
                 <div>
-                    <h3>SNS 간편로그인</h3>
-                    <p>
+                    <h3 class="mg20">SNS 간편로그인</h3>
+                    <p class="mg20">
                         비트이슈에서는 SNS로 로그인하여<br>
                         간편하게 서비스를 이용하실 수 있습니다.<br><br>
                         원하시는 SNS를 선택하시고<br>

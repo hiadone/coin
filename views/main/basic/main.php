@@ -8,7 +8,7 @@
           $('.twit_pop').height(Math.floor(($(window).height()/1.5)));
         });
 
-        var slider = $('.img_slide ul').bxSlider({
+        var slider = $('#event ul').bxSlider({
             mode:'horizontal',            // 슬라이드의 이동방향 설정 vertical,fade
             speed: 700, // m/s ex > 1000 = 1s
             easing: 'ease-in-out', // 동작 가속도 css와 동일
@@ -25,39 +25,31 @@
             captions: false, // img 태그에 title속성값을 출력여부, 단 css .bx-wrapper .bx-caption 수정필요
 
             //responsive method
-            responsive: true, // 반응형 지원 여부
-            touchEnabled: true,// 터치스와이프 기능 사용여부
-            swipeThreshold: 50, // 터치하여 스와이프 할때 변환 효과에 소모되는 시간 설정
-            onoToOneTouch: true, // fade효과가 아닌 슬라이드는 손가락의 접지상태에 따라 슬라이드를 움직일수있다.
-            preventDefaultSwipeX: false, //onoToOneTouch 에서 true일 경우, 손가락을따라 x축으로 움직일지에 대한 여부
-            preventDefaultSwipeY: false, //onoToOneTouch 에서 true일 경우, 손가락을따라 y축으로 움직일지에 대한 여부
+                responsive: true, // 반응형 지원 여부
+                touchEnabled: true,// 터치스와이프 기능 사용여부
+                swipeThreshold: 50, // 터치하여 스와이프 할때 변환 효과에 소모되는 시간 설정
+                onoToOneTouch: true, // fade효과가 아닌 슬라이드는 손가락의 접지상태에 따라 슬라이드를 움직일수있다.
+                preventDefaultSwipeX: false, //onoToOneTouch 에서 true일 경우, 손가락을따라 x축으로 움직일지에 대한 여부
+                preventDefaultSwipeY: false, //onoToOneTouch 에서 true일 경우, 손가락을따라 y축으로 움직일지에 대한 여부
 
             //control method
-            controls: true, //좌, 우 컨트롤 버튼 출력  여부
-            auto: true, // 자동 재생 활성화.
-            autoControls: false, //자동재생 제어버튼 활성화 단, auto모드 활성화필요
-            autoControlsCombine: false, // 재생시 중지버튼 활성화(toggle)
-            pause: 4000, // 자동 재생 시 각 슬라이드 별 노출 시간
-            autoStart: true, // 페이지 로드가 되면, 슬라이드의 자동시작 여부
-            autoDirection: 'next', // 자동 재생시에 정순, 역순(prev) 방식 설정
-            autoHover: true, // 슬라이드 오버시 재생 중단 여부 (false : 오버무시)
-            autoDelay: 0, // 자동 재생 전 대기 시간 설정.
-            infiniteLoop: true, //마지막에 도달 했을시, 첫페이지로 갈 것인가 멈출것인가
-            //pagerCustom: '#bx-pager' // pager
-            onSliderLoad: function(){
+                controls: true, //좌, 우 컨트롤 버튼 출력  여부
+                auto: true, // 자동 재생 활성화.
+                autoControls: false, //자동재생 제어버튼 활성화 단, auto모드 활성화필요
+                autoControlsCombine: false, // 재생시 중지버튼 활성화(toggle)
+                pause: 4000, // 자동 재생 시 각 슬라이드 별 노출 시간
+                autoStart: true, // 페이지 로드가 되면, 슬라이드의 자동시작 여부
+                autoDirection: 'next', // 자동 재생시에 정순, 역순(prev) 방식 설정
+                autoHover: true, // 슬라이드 오버시 재생 중단 여부 (false : 오버무시)
+                autoDelay: 0, // 자동 재생 전 대기 시간 설정.
+                infiniteLoop: true, //마지막에 도달 했을시, 첫페이지로 갈 것인가 멈출것인가
+                //pagerCustom: '#bx-pager' // pager
+                onSliderLoad: function(){
                 $('.img_slide').css('visibility','visible');
-            }   
-        });
+                }   
+            });
 
-        $(document).on('click','.bx-next, .bx-prev , .bx-pager',function() {
-            slider.stopAuto();
-            slider.startAuto();
-        });
-
-        $(document).bind('touchend' , function(){
-            slider.stopAuto();
-            slider.startAuto();
-        });
+        
 
         //tab 메뉴(메인의) 스크립트
         $('.tab_cont > div').hide();
@@ -186,6 +178,37 @@
                 
             },500);
         });
+
+        // tabslide "많이 본 글" 스크립트
+            $('.hot_tab .hot_cont').children().css('display', 'none');
+            $('.hot_tab .hot_cont > div:first-child').css('display', 'block');
+            $('.hot_tab .hot_menu > li:first-child').addClass('on');
+            function tabonoff(o) {
+                var index = $('.hot_tab .hot_menu > li').index(o);
+                $(o).siblings().removeClass();
+                $(o).addClass('on');
+                $(o).parent().next('.hot_cont').children().css('display' , 'none').eq(index).css('display' , 'block');
+            }
+            (function(a){
+                a.fn.tabonoff_auto=function(p){
+                    var s_t_i=p&&p.scroller_time_interval?p.scroller_time_interval:"3000"; //롤링타임 수정가능
+                    var dom=a(this); 
+                    var s_length=dom.length; 
+                    var timer; 
+                    var current = 0; begin(); play();
+                    function begin(){
+                        dom.click(function(){current = dom.index($(this)); play(); stop()});
+                        dom.parent().parent().hover(function(){stop();},function(){timer = setTimeout(play,s_t_i);});
+                    }
+                    function stop(){clearTimeout(timer);}
+                    function play(){
+                        clearTimeout(timer); tabonoff(dom[current]);
+                        if(current >= s_length-1){current = 0;} else{current ++;}
+                        timer = setTimeout(play,s_t_i);
+                    }
+                }
+            })(jQuery);
+            $(".hot_tab > ul > li").tabonoff_auto();
 
         // // 팝업창의 순번 넣기
         //     $('.twit_pop table tr').each(function(){
@@ -334,13 +357,8 @@
 
 
 
-<article class="img_slide text-center" style="visibility: hidden"> 
-    <ul >
-        <?php echo banner('main_bxslider','order',3,0,'<li>','</li>'); ?>
-    </ul>
-</article>
 
-<article class="content01">
+<article class="main_top content01">
 
     <div id="coin_data" >
         <?php 
@@ -350,13 +368,87 @@
         ?>
     </div>
     
+    <section id='hot_text'>
+            <h2>
+                많이 본 글
+            </h2>
 
+            <div class="hot_tab">
+                <ul class="hot_menu">
+                    <li>인기글</li>
+                    <li>최신글</li>
+                    <li>최신댓글</li>
+                </ul>
+
+                <div class="hot_cont">
+                    <div>
+                        <ul>
+                            <?php
+                            $config = array(
+                                'skin' => 'basic2',
+                                'brd_id' => '',
+                                'limit' => 7,
+                                'length' =>50,
+                                'is_gallery' => '',
+                                'image_width' => '',
+                                'image_height' => '',
+                                'cache_minute' => 1,
+                                'findex' => 'post_hit',
+                            );
+                            echo $this->board->latest($config);
+                            ?>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <?php
+                            $config = array(
+                                'skin' => 'basic2',
+                                'brd_id' => '',
+                                'limit' => 7,
+                                'length' =>50,
+                                'is_gallery' => '',
+                                'image_width' => '',
+                                'image_height' => '',
+                                'cache_minute' => 1,
+                            );
+                            echo $this->board->latest($config);
+                            ?>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <?php
+                            $config = array(
+                                'skin' => 'basic2',
+                                'brd_id' => '',
+                                'limit' => 7,
+                                'length' => 20,
+                                'cache_minute' => 1,
+                            );
+                            echo $this->board->latest_comment($config);
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section class='ad img_slide' id='event' style="visibility: hidden;">
+    <ul >
+        <?php echo banner('main_banner','order',3,0,'<li>','</li>'); ?>
+    </ul>
+    </section>
+</article>
+<article class='main_mid01 content01'>
     <section class="tab" id="news">
         <h2>뉴 스 정 보<span><a href="<?php echo site_url('/board/live_news/') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active">최신뉴스</li>
-            <li>인기뉴스</li>
+            <li class="active nomal_font02">최신뉴스</li>
+            <li class="nomal_font02">인기뉴스</li>
         </ul>
 
         <div class="tab_cont">
@@ -365,7 +457,7 @@
                 <?php
                 $config = array(
                     'brd_key' => 'live_news',
-                    'limit' => 6,
+                    'limit' => 3,
                     'length' => 40,
                     'is_gallery'=> 1,
                     'image_width'=> 120,
@@ -413,7 +505,7 @@
                     <?php
                     $config = array(
                         'brd_key' => 'live_news',
-                        'limit' => 6,
+                        'limit' => 3,
                         'length' => 40,
                         'is_gallery'=> 1,
                         'image_width'=> 120,
@@ -462,9 +554,9 @@
         <h2>커 뮤 니 티<span><a href="<?php echo site_url('/board/free') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active">자유게시판</li>
-            <li>호 재 정 보</li>
-            <li>코 인 분 석</li>
+            <li class="active nomal_font02">자유게시판</li>
+            <li class='nomal_font02'>호 재 정 보</li>
+            <li class='nomal_font02'>코 인 분 석</li>
         </ul>
 
         <div class="tab_cont">
@@ -474,7 +566,7 @@
             foreach($tab02 as $tvalue){
                 $config = array(
                     'brd_key' => $tvalue,
-                    'limit' => 20,
+                    'limit' => 10,
                     'length' => 70,
                     );
                 $board=$this->board->data($config);
@@ -515,10 +607,10 @@
     <section class="tab" id="coin_info">
         <h2>코 인 지 식<span><a href="<?php echo site_url('/board/video') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
         <ul class="menu_list">
-            <li class="active">동영상강좌</li>
-            <li>코 인 지 식</li>
-            <li>I C O</li>
-            <li>질 문 / 답변 </li>
+            <li class="active nomal_font02">동영상강좌</li>
+            <li class='nomal_font02'>코 인 지 식</li>
+            <li class='nomal_font02'>I C O</li>
+            <li class='nomal_font02'>질 문 / 답변 </li>
         </ul>
 
         <div class="tab_cont">
@@ -526,10 +618,10 @@
             $tab02=array('video','coin_int','ico','exchange');
 
             foreach($tab02 as $tvalue){
-                if($tvalue==='video'){
+                if($tvalue==='video' && false){
                     $config = array(
                         'brd_key' => $tvalue,
-                        'limit' => 6,
+                        'limit' => 3,
                         'length' => 40,
                         'is_gallery'=> 1,
                         'image_width'=> 120,
@@ -575,7 +667,7 @@
                 } else {
                     $config = array(
                         'brd_key' => $tvalue,
-                        'limit' => 20,
+                        'limit' => 10,
                         'length' => 70,
                         );
                     $board=$this->board->data($config);
@@ -612,13 +704,14 @@
             ?>  
         </div>
     </section>
-
+</article>
+<article class='main_mid02 content01'>
     <section class="tab" id="service">
-        <h2>서 비 스<span><a href="<?php echo site_url('/board/free_gallery') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>갤러리/유머<span><a href="<?php echo site_url('/board/free_gallery') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active">자 유 갤 러 리</li>
-            <li>유 머</li>
+            <li class="active nomal_font02">자 유 갤 러 리</li>
+            <li class='nomal_font02'>유 머</li>
         </ul>
 
         <div class="tab_cont tab_cont02">
@@ -707,18 +800,18 @@
         </div>
     </section>
 
-    <section class="tab" id="event">
-        <h2>이 벤 트<span><a href="<?php echo site_url('/board/event') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+    <section class="tab" id="event02">
+        <h2>서 비 스<span><a href="<?php echo site_url('/board/event') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
         <ul class="menu_list">
-            <li class="active">이 벤 트</li>
-            <li>출 석 체 크</li>
-            <li>가 입 인 사</li>
+            <!-- <li class="active">이 벤 트</li> -->
+            <li class='active nomal_font02'>출 석 체 크</li>
+            <li class='nomal_font02'>가 입 인 사</li>
         </ul>
 
-        <div class="tab_cont tab_cont02">
+        <div class="tab_cont">
 
             <?php
-                $tab04=array('event','attendance','express');
+                $tab04=array('attendance','express');
                 foreach($tab04 as $tvalue){
 
                     $config = array(
@@ -760,14 +853,14 @@
     </section>
 
     <section class="tab" id="notice">
-        <h2>공 지 사 항<span><a href="<?php echo site_url('/faq/notice') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>공지사항<span><a href="<?php echo site_url('/board/notice') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active">공 지 사 항</li>
-            <li>F A Q</li>
+            <li class="active nomal_font02">공지사항</li>
+            <li class='nomal_font02'>FAQ</li>
         </ul>
 
-        <div class="tab_cont tab_cont02">
+        <div class="tab_cont ">
             <?php
                 $tab04=array('notice','faq');
                 foreach($tab04 as $tvalue){
@@ -809,28 +902,31 @@
                 ?>  
         </div>
     </section>
-
-    <section class="twit">
-        <div id="people_twit">
+</article>
+<article class='main_mid03 content01'>
+    <section class='twit' id="people_twit">
+        
             <h2>가상화폐 인물트위터</h2>
             <table class="twitter_table" data-bng_name="person_twitter">
                 <?php echo twitter("person_twitter",'order',11,"<td>","</td>") ?>
             </table>
-        </div>
-
-        <div id='coin_twit'>
+        
+    </section>
+    <section class='twit' id="coin_twit">
+        
             <h2>가상화폐 코인 공식 트위터</h2>
             <table class="twitter_table" data-bng_name="coin_twitter">
                 <?php echo twitter("coin_twitter",'order',11,"<td>","</td>") ?>
             </table>
-        </div>
-
-        <div id='coin_store'>
+        
+    </section>
+    <section class='twit' id="coin_store">
+        
             <h2>거래소 바로가기</h2>
             <table class="twitter_table" data-bng_name="coin_trade">
                 <?php echo twitter("coin_trade",'order',11,"<td>","</td>") ?>
             </table>
-        </div>
+        
     </section>
 </article>
 <script type="text/javascript">

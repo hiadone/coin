@@ -58,15 +58,15 @@ $(document).ready(function(){
             move = !move;
             if(move){
                 $('.ham').animate({'right':'-320'} , 800);
-                $('.ham > div > img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png');
+                $('.ham >  img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png');
             }else{
 
                 $('.ham').animate({'right':'0'} , 800);
-                $('.ham > div > img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn02.png');
+                $('.ham > img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn02.png');
             }
         }
         // ham 의 화살표 이미지 클릭시 ham 메뉴 움직이는 스크립트
-            $('.ham > div > img').click(function(){
+            $('.ham >  img').click(function(){
                 <?php if ($this->member->is_member()) { ?>
                     view_mypage('view_member');
                 <?php }else{ ?>
@@ -163,223 +163,6 @@ $(document).ready(function(){
         });
 
     
-
-    // // 팝업창 스크립트
-    //     var popup_hei = $('html').height() + 100;
-    //         $('.pop').css('height' , popup_hei);
-
-    //     // 스크롤바 따라 다니는 스크립트
-    //         var currentPosition = parseInt($(".pop section").css("top"));  
-    //         $(window).scroll(function(){  
-    //             var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
-    //             $(".pop section").stop().animate({"top":position+currentPosition+"px"},500);  
-    //         });
-
-    //     // 팝업창의 + 버튼 클릭시 입력창
-    //         $('.twit_pop li:first-child').click(function(){
-    //             $('.twit_pop form').slideDown();
-    //             $('.twit_pop li:first-child').css('display' , 'none');
-    //             $('.twit_pop li:nth-child(2)').css('display' , 'none');
-    //             $('.twit_pop li:last-child').css('display' , 'block');
-    //         });
-
-    //     // 팝업창의 - 버튼 클릭시
-    //         $('.twit_pop li:nth-child(2)').click(function(){
-    //             $('.twit_pop td span').css('display' ,'block');
-    //             $('.twit_pop li:first-child').css('display' , 'none');
-    //             $('.twit_pop li:nth-child(2)').css('display' , 'none');
-    //             $('.twit_pop li:last-child').css('display' , 'block');
-    //         });
-
-    //     // 체크버튼 클릭시 
-    //         $('.twit_pop li:nth-child(3)').click(function(){
-    //             $('.pop form').slideUp();
-    //             $('.twit_pop li:first-child').css('display' , 'block');
-    //             $('.twit_pop li:nth-child(2)').css('display' , 'block');
-    //             $('.twit_pop li:last-child').css('display' , 'none');
-    //             $('.twit_pop td span').css('display' ,'none');
-    //         });
-
-    //     // X 버튼 클릭시
-    //         $('.popup > span').click(function(){
-    //             $('.pop').fadeOut();
-    //             $('.popup').fadeOut();
-                    
-    //             setTimeout(function(){
-    //                 $('.pop form').slideUp();
-    //                 $('.twit_pop li:first-child').css('display' , 'block');
-    //                 $('.twit_pop li:nth-child(2)').css('display' , 'block');
-    //                 $('.twit_pop li:last-child').css('display' , 'none');
-    //                 $('.twit_pop td span').css('display' , 'none');
-    //             },500);
-    //         });
-
-    //     // 팝업창의 순번 넣기
-    //         $('.twit_pop table tr').each(function(){
-    //             var index_num ='0' + ($(this).index()+1) + '.';
-    //             $(this).children("td:first-child").html(index_num);
-    //         });
-
-    //     // 삭제버튼 클릭시
-    //         $('.twit_pop td span').click(function(){
-    //             $(this).parents('td').parents('tr').remove();
-
-    //             $('.twit_pop table tr').each(function(){
-    //                 var index_num = '0' + ($(this).index()+1) + '.';
-    //                 $(this).children("td:first-child").html(index_num);
-    //             });
-    //         });
-            
-    //     // 트위터(메인의) 더보기 클릭시   
-    //         $('.twit .twit_add').click(function(){
-    //             $('.pop').fadeIn();
-    //             $('.twit_pop').fadeIn();
-    //                 if($(this).parents("div").attr("id") == 'people_twit'){
-    //                     $('.twit_pop h4').text('인물트위터');
-    //                     $('.pop form input:first-child').attr('placeholder' , '인물트위터 명을 입력해 주세요.');
-
-    //                     $('.pop form input:first-child').blur(function(){
-    //                         $(this).attr('placeholder' , '인물트위터 명을 입력해 주세요.');
-    //                     });
-
-    //                 }else if($(this).parents("div").attr("id") == 'coin_twit'){
-    //                     $('.twit_pop h4').text('공식 트위터');   
-    //                     $('.pop form input:first-child').attr('placeholder' , '공식 트위터 명을 입력해 주세요.');
-
-    //                     $('.pop form input:first-child').blur(function(){
-    //                         $(this).attr('placeholder' , '공식 트위터 명을 입력해 주세요.');
-    //                     });
-    //                 }else if($(this).parents("div").attr("id") == 'coin_store'){
-    //                     $('.twit_pop h4').text('거래소 바로가기');
-    //                     $('.pop form input:first-child').attr('placeholder' , '거래소명을 입력해 주세요.');
-
-    //                     $('.twit_pop form input:first-child').blur(function(){
-    //                         $(this).attr('placeholder' , '거래소 명을 입력해 주세요.');
-    //                     }); 
-    //                 }
-    //         });
-            
-    // // submenu 의 화살표 이동 스크립트
-    //     $('.submenu li').click(function(){
-    //         if($(this).index() == '0'){
-    //             $('li.submenu_arrow').animate({'left':'66'});
-    //         }else if($(this).index() == '2'){
-    //             $('li.submenu_arrow').animate({'left':'222'});
-    //         }else if($(this).index() == '4'){
-    //             $('li.submenu_arrow').animate({'left':'378'});
-    //         }else if($(this).index() == '6'){
-    //             $('li.submenu_arrow').animate({'left':'534'});
-    //         }
-    //     });
-
-    // // post_table의 클릭한 메뉴의 리스트 보여주기 스크립트
-    //         var click_id = $('.submenu li.menu_active').children('a').attr('href');
-    //         $(click_id).css('display' , 'block');
-
-    //         $('.submenu li').click(function(){
-    //             // $('html,body').animate({'scrollTop' : '0'} , '1000');
-    //             $('.submenu li').removeClass('menu_active');
-    //             $(this).addClass('menu_active');
-
-    //             var click_id = $(this).children('a').attr('href');
-    //             $('.post_table').css('display' , 'none');
-    //             $(click_id).css('display' , 'block');
-
-    //             if(click_id == '#event02'){
-    //                 $('.bar').css('height' , '60');
-    //             }else{
-    //                 $('.bar').css('height' , '30');
-    //             }
-    //         });
-
-    // // post_table 의 순번 넣기 스크립트
-    //         $('.post_table').each(function(){
-    //             var tr_count = $(this).find('.post_table_li tr').length; 
-    //             $(this).find('td:first-child').each(function(){
-    //                 if($(this).html() ==''){
-    //                     var table_count = tr_count - $(this).parents('tr').index();
-    //                     $(this).html(table_count);
-    //                 }
-                    
-    //             });
-                
-    //         });
-
-    //     //post page 스크립트
-    //         $('.post_page li').click(function(){
-    //             if($(this).attr('id') == 'prev_all'){                               // 맨처음으로 버튼 클릭시
-    //                 $('.post_page li').removeClass('page_active');
-    //                 $('.post_page li:nth-child(3)').addClass('page_active');
-
-    //             }else if($(this).attr('id') == 'prev'){                             // 한칸 앞으로 버튼 클릭시
-    //                 var pager_num = $('.post_page li.page_active').index() -1;
-    //                 if($('.post_page li').eq(pager_num).attr('class') != 'page_arrow'){
-    //                     $('.post_page li').removeClass('page_active');
-    //                     $('.post_page li').eq(pager_num).addClass('page_active');
-    //                 }
-
-    //             }else if($(this).attr('id') == 'next_all'){                         // 맨뒤로 버튼 클릭시
-    //                 var pager_num = $('.post_page li').length - 3;
-    //                 $('.post_page li').removeClass('page_active');
-    //                 $('.post_page li').eq(pager_num).addClass('page_active');
-
-    //             }else if($(this).attr('id') == 'next'){                             // 한칸뒤로 버튼 클릭시 
-    //                 var pager_num = $('.post_page li.page_active').index() +1
-    //                 if($('.post_page li').eq(pager_num).attr('class') != 'page_arrow'){
-    //                     $('.post_page li').removeClass('page_active');
-    //                     $('.post_page li').eq(pager_num).addClass('page_active');
-    //                 }
-
-    //             }else if($(this).attr('class') != 'page_arrow'){
-    //                 $('.post_page li').removeClass('page_active');
-    //                 $(this).addClass('page_active');
-    //             }
-    //         });
-
-    // // 댓글영역 스크립트
-    //     // 글자수 카운터 스크립트
-    //         $('.write_area').keyup(function(){
-    //             var reply_cont = $(this).val();
-    //             $(this).siblings('span').html(reply_cont.length + '/1000');
-    //         });
-
-    //         $('.write_area').keyup();
-
-    //     // 댓글의 글자수 초과시 팝업창 스크립트
-    //         $('.write_area').keydown(function(){
-    //             var reply_cont = $(this).val().length;
-    //             if(reply_cont == 1000){
-    //                 alert('최대 1000자까지만 가능합니다.');
-    //             }
-    //         });
-
-    //     // 수정버튼 클릭시 수정영역 보여주기 스크립트
-    //         $('.modify').click(function(){
-    //             $('.reply_modify').slideUp();
-    //             var modify = $(this).parents('.reply_cont').siblings('.reply_modify');
-    //             if(modify.css('display') == 'none'){
-    //                 $(modify).slideDown();
-    //             }else if(modify.css('display') == 'block'){
-    //                 $(modify).slideUp();
-    //             }
-    //         });
-
-    //     // 삭제버튼 클릭시 리스트에서 삭제 스크립트
-    //         $('.clear').click(function(){
-    //             $(this).parents('li').remove();
-    //         });
-
-    // // 출석체크 스크립트
-    //     $('.atten_date li').click(function(){
-    //         $('.atten_date li').removeClass('active');
-    //         $(this).addClass('active');
-    //     });
-
-    //     // 포인트 정책보기(이벤트의 출석체크) 클릭시
-    //         $('.point').click(function(){
-    //             $('.pop').fadeIn();
-    //              $('.point_pop').fadeIn();
-    //         });
 });
 
 </script>
@@ -387,29 +170,70 @@ $(document).ready(function(){
 <body <?php echo isset($view) ? element('body_script', $view) : ''; ?>>
 
 <aside class="ham">
-    <div>
-        <img class="pointer pull-left" src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png" alt="ham_btn_img">
-    </div>
+    
+    <img class="pointer pull-left" src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png" alt="ham_btn_img">
+    
     <div id="view_member" class="ham_cont" >
     </div>
     
 </aside>
 
 <header>
-    <div class="ad">
-        <a href="<?php echo site_url(); ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/head_ad.png" alt="head_ad_img"></a>
-    </div>
-
     <h1>
         <a href="<?php echo site_url(); ?>">
-        <span class="small_font">비트코인 정보를 한번에!!</span>
-        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/logo.png" alt="logo_img">
+        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/logo.png" alt="logo_img" class="logo_img">
         </a>
     </h1>
+    
+    <nav class='nomal_font02'>
+        <ul>
+            <?php
+            $menuhtml = '';
+            if (element('menu', $layout)) {
+                $menu = element('menu', $layout);
+                if (element(0, $menu)) {
+                    foreach (element(0, $menu) as $mkey => $mval) {
+                        // if (element(element('men_id', $mval), $menu)) {
+                        //     $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
+                        //     $menuhtml .= '<li class="dropdown">
+                        //     <a href="' . $mlink . '" ' . element('men_custom', $mval);
+                        //     if (element('men_target', $mval)) {
+                        //         $menuhtml .= ' target="' . element('men_target', $mval) . '"';
+                        //     }
+                        //     $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a>
+                        //     <ul class="dropdown-menu">';
 
+                        //     foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
+                        //         $slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
+                        //         $menuhtml .= '<li><a href="' . $slink . '" ' . element('men_custom', $sval);
+                        //         if (element('men_target', $sval)) {
+                        //             $menuhtml .= ' target="' . element('men_target', $sval) . '"';
+                        //         }
+                        //         $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
+                        //     }
+                        //     $menuhtml .= '</ul></li>';
+
+                        // } else {
+                            $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
+                            $menuhtml .= '<li><a href="' . $mlink . '" ' . element('men_custom', $mval);
+                            if (element('men_target', $mval)) {
+                                $menuhtml .= ' target="' . element('men_target', $mval) . '"';
+                            }
+                            $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a></li>';
+
+                            $menuhtml .= '<li>|</li>';
+                        // }
+                    }
+                }
+            }
+            echo $menuhtml;
+            ?>
+           
+        </ul>
+    </nav>
     <div class="head_search">
         <form name="header_search" id="header_search" action="<?php echo site_url('search'); ?>" onSubmit="return headerSearch(this);">
-            <input type="text" class="form-control px150" placeholder="Search" onfocus="this.placeholder=''" onblur="this.placeholder='Search'" name="skeyword" accesskey="s" />
+            <input type="text" class="form-control" placeholder="Search" onfocus="this.placeholder=''" onblur="this.placeholder='Search'" name="skeyword" accesskey="s" />
             <input type="image" class="search_img" src="<?php echo element('layout_skin_url', $layout); ?>/images/head_find.png" alt="head_find_img">
         </form>
         <script type="text/javascript">
@@ -492,52 +316,7 @@ $(document).ready(function(){
 </aside>
 
 
-<nav>
-    <ul>
-        <?php
-        $menuhtml = '';
-        if (element('menu', $layout)) {
-            $menu = element('menu', $layout);
-            if (element(0, $menu)) {
-                foreach (element(0, $menu) as $mkey => $mval) {
-                    // if (element(element('men_id', $mval), $menu)) {
-                    //     $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-                    //     $menuhtml .= '<li class="dropdown">
-                    //     <a href="' . $mlink . '" ' . element('men_custom', $mval);
-                    //     if (element('men_target', $mval)) {
-                    //         $menuhtml .= ' target="' . element('men_target', $mval) . '"';
-                    //     }
-                    //     $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a>
-                    //     <ul class="dropdown-menu">';
 
-                    //     foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
-                    //         $slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
-                    //         $menuhtml .= '<li><a href="' . $slink . '" ' . element('men_custom', $sval);
-                    //         if (element('men_target', $sval)) {
-                    //             $menuhtml .= ' target="' . element('men_target', $sval) . '"';
-                    //         }
-                    //         $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
-                    //     }
-                    //     $menuhtml .= '</ul></li>';
-
-                    // } else {
-                        $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-                        $menuhtml .= '<li><a href="' . $mlink . '" ' . element('men_custom', $mval);
-                        if (element('men_target', $mval)) {
-                            $menuhtml .= ' target="' . element('men_target', $mval) . '"';
-                        }
-                        $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a></li>';
-
-                        $menuhtml .= '<li>|</li>';
-                    // }
-                }
-            }
-        }
-        echo $menuhtml;
-        ?>
-       
-    </ul>
-</nav>
 
 <!-- main start -->
 <div class="">

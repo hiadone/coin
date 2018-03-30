@@ -1,16 +1,14 @@
 
 $(document).ready(function(){
 	// ham 메뉴 움직이는 스크립트
-		var move = true;
+		var move = false;
 
 		function ham_slide(){
 			move = !move;
 			if(move){
-				
 				$('.ham').animate({'right':'-320'} , 800);
 				$('.ham > img').attr('src' , 'images/ham_btn.png');
 			}else{
-				
 				$('.ham').animate({'right':'0'} , 800);
 				$('.ham > img').attr('src' , 'images/ham_btn02.png');
 			}
@@ -24,7 +22,6 @@ $(document).ready(function(){
 			$('.enter').click(function(){
 				ham_slide();
 			});
-
 
 		// 회원정보 클릭시 ham 메뉴 움직이는 스크립트
 			$('.user_info').click(function(){
@@ -58,6 +55,14 @@ $(document).ready(function(){
 				$('.login_list li').css('display' , 'block');
 				$('.login_list li').not('.login_list li.enter').css('display' , 'none');
 			});
+
+		// 스크롤바 따라 다니는 스크립트
+			var ham_top = parseInt($(".ham").css("top"));  
+			$(window).scroll(function(){  
+		        var pos = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
+		        console.log(pos);
+		        $(".ham").stop().animate({"top":pos+ham_top+"px"},500);  
+	        });
 
 	// 로그인 롤링 텍트스	
 		var slider = $('.login_noice ul').bxSlider({
@@ -111,7 +116,7 @@ $(document).ready(function(){
 		    });
 
 	// 이미지 슬라이드	
-			var slider = $('.img_slide ul').bxSlider({
+			var slider = $('#event ul').bxSlider({
 	        mode:'horizontal',            // 슬라이드의 이동방향 설정 vertical,fade
 			speed: 700, // m/s ex > 1000 = 1s
 			easing: 'ease-in-out', // 동작 가속도 css와 동일
@@ -165,32 +170,36 @@ $(document).ready(function(){
 		});
 
 	//tab 메뉴(메인의) 스크립트
-		$('.tab_cont div').hide();
-		$('.tab_cont div:first-child').show();
+		$('.tab_cont > div').hide();
+		$('.tab_cont > div:first-child').show();
 
 		//tab메뉴 클릭시
 			$('.menu_list li').click(function(){
 			    	$(this).siblings('li').removeClass('active');
 			    	$(this).addClass('active');
 
-			    	$(this).parents("ul").siblings(".tab_cont").find("div").hide();
+			    	$(this).parents("ul").siblings(".tab_cont").children(".tab_cont > div").hide();
 
 			    	// 클릭한 메뉴의 순번 
 			    	var index = $(this).index();
+
 			    	// 클릭한 메뉴탭의 id 값
 			    	var click_class = $(this).parents('ul').parents('section').attr('id');
-
-			    	$("#" + click_class + " .tab_cont div:eq(" + index + ")").fadeIn();
+			    	console.log(click_class);
+			    	console.log(index);
+			    	$("#" + click_class + " .tab_cont > div:eq(" + index + ")").css('display' , 'block');
+			    	console.log($("#" + click_class + " .tab_cont > div:eq(" + index + ")").fadeIn());
 			});
 
 	// 팝업창 스크립트
-		var popup_hei = $('html').height() + 100;
+		var popup_hei = $('html').height()+ 100;
 			$('.pop').css('height' , popup_hei);
 
 		// 스크롤바 따라 다니는 스크립트
 			var currentPosition = parseInt($(".pop section").css("top"));  
 			$(window).scroll(function(){  
 		        var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
+		        console.log(position);
 		        $(".pop section").stop().animate({"top":position+currentPosition+"px"},500);  
 	        });
 
@@ -253,7 +262,7 @@ $(document).ready(function(){
 	 		$('.twit .twit_add').click(function(){
 			    $('.pop').fadeIn();
 			    $('.twit_pop').fadeIn();
-			        if($(this).parents("div").attr("id") == 'people_twit'){
+			        if($(this).parents("section").attr("id") == 'people_twit'){
 			        	$('.twit_pop h4').text('인물트위터');
 			        	$('.pop form input:first-child').attr('placeholder' , '인물트위터 명을 입력해 주세요.');
 
@@ -261,14 +270,14 @@ $(document).ready(function(){
 			        		$(this).attr('placeholder' , '인물트위터 명을 입력해 주세요.');
 			        	});
 
-			        }else if($(this).parents("div").attr("id") == 'coin_twit'){
+			        }else if($(this).parents("section").attr("id") == 'coin_twit'){
 			        	$('.twit_pop h4').text('공식 트위터');	
 			        	$('.pop form input:first-child').attr('placeholder' , '공식 트위터 명을 입력해 주세요.');
 
 			        	$('.pop form input:first-child').blur(function(){
 			        		$(this).attr('placeholder' , '공식 트위터 명을 입력해 주세요.');
 			        	});
-			        }else if($(this).parents("div").attr("id") == 'coin_store'){
+			        }else if($(this).parents("section").attr("id") == 'coin_store'){
 			        	$('.twit_pop h4').text('거래소 바로가기');
 			        	$('.pop form input:first-child').attr('placeholder' , '거래소명을 입력해 주세요.');
 
@@ -278,42 +287,8 @@ $(document).ready(function(){
 			        }
 			});
 			
-	// submenu 의 화살표 이동 스크립트
-		$('.submenu li').click(function(){
-			if($(this).index() == '0'){
-				$('li.submenu_arrow').animate({'left':'66'});
-			}else if($(this).index() == '2'){
-				$('li.submenu_arrow').animate({'left':'222'});
-			}else if($(this).index() == '4'){
-				$('li.submenu_arrow').animate({'left':'378'});
-			}else if($(this).index() == '6'){
-				$('li.submenu_arrow').animate({'left':'534'});
-			}
-		});
-
-	// post_table의 클릭한 메뉴의 리스트 보여주기 스크립트
-			var click_id = $('.submenu li.menu_active').children('a').attr('href');
-			$(click_id).css('display' , 'block');
-
-			$('.submenu li').click(function(){
-				// $('html,body').animate({'scrollTop' : '0'} , '1000');
-				$('.submenu li').removeClass('menu_active');
-				$(this).addClass('menu_active');
-
-				var click_id = $(this).children('a').attr('href');
-				$('.post_table').css('display' , 'none');
-				$(click_id).css('display' , 'block');
-
-				if(click_id == '#event02'){
-					$('.bar').css('height' , '60');
-				}else{
-					$('.bar').css('height' , '30');
-				}
-			});
-
 	// post_table 의 순번 넣기 스크립트
-			$('.post_table').each(function(){
-				var tr_count = $(this).find('.post_table_li tr').length; 
+				var tr_count = $(this).find('.post_table tr').length; 
 				$(this).find('td:first-child').each(function(){
 					if($(this).html() ==''){
 						var table_count = tr_count - $(this).parents('tr').index();
@@ -321,10 +296,8 @@ $(document).ready(function(){
 					}
 					
 				});
-				
-			});
 
-		//post page 스크립트
+	//post page 스크립트
 			$('.post_page li').click(function(){
 				if($(this).attr('id') == 'prev_all'){								// 맨처음으로 버튼 클릭시
 					$('.post_page li').removeClass('page_active');
@@ -357,15 +330,31 @@ $(document).ready(function(){
 
 	// 댓글영역 스크립트
 		// 글자수 카운터 스크립트
-			$('.write_area').keyup(function(){
+			$('.reply_write textarea').keyup(function(){
 				var reply_cont = $(this).val();
 				$(this).siblings('span').html(reply_cont.length + '/1000');
 			});
 
-			$('.write_area').keyup();
+			$('.reply_write textarea').keyup();
 
 		// 댓글의 글자수 초과시 팝업창 스크립트
-			$('.write_area').keydown(function(){
+			$('.reply_write textarea').keydown(function(){
+				var reply_cont = $(this).val().length;
+				if(reply_cont == 1000){
+					alert('최대 1000자까지만 가능합니다.');
+				}
+			});
+
+		// 글자수 카운터 스크립트
+			$('.reply_modify textarea').keyup(function(){
+				var reply_cont = $(this).val();
+				$(this).siblings('span').html(reply_cont.length + '/1000');
+			});
+
+			$('.reply_modify textarea').keyup();
+
+		// 댓글의 글자수 초과시 팝업창 스크립트
+			$('.reply_modify textarea').keydown(function(){
 				var reply_cont = $(this).val().length;
 				if(reply_cont == 1000){
 					alert('최대 1000자까지만 가능합니다.');
@@ -395,8 +384,63 @@ $(document).ready(function(){
 		});
 
 		// 포인트 정책보기(이벤트의 출석체크) 클릭시
-			$('.point').click(function(){
+			$('.atten_write p.point').click(function(){
 				$('.pop').fadeIn();
-				 $('.point_pop').fadeIn();
+				 $('.popup').fadeIn();
 			});
+
+	// tabslide "많이 본 글" 스크립트
+		$('.hot_tab .hot_cont').children().css('display', 'none');
+			$('.hot_tab .hot_cont > div:first-child').css('display', 'block');
+			$('.hot_tab .hot_menu > li:first-child').addClass('on');
+			function tabonoff(o) {
+				var index = $('.hot_tab .hot_menu > li').index(o);
+				$(o).siblings().removeClass();
+				$(o).addClass('on');
+				$(o).parent().next('.hot_cont').children().css('display' , 'none').eq(index).css('display' , 'block');
+			}
+			(function(a){
+				a.fn.tabonoff_auto=function(p){
+					var s_t_i=p&&p.scroller_time_interval?p.scroller_time_interval:"3000"; //롤링타임 수정가능
+					var dom=a(this); 
+					var s_length=dom.length; 
+					var timer; 
+					var current = 0; begin(); play();
+					function begin(){
+						dom.click(function(){current = dom.index($(this)); play(); stop()});
+						dom.parent().parent().hover(function(){stop();},function(){timer = setTimeout(play,s_t_i);});
+					}
+					function stop(){clearTimeout(timer);}
+					function play(){
+						clearTimeout(timer); tabonoff(dom[current]);
+						if(current >= s_length-1){current = 0;} else{current ++;}
+						timer = setTimeout(play,s_t_i);
+					}
+				}
+			})(jQuery);
+			$(".hot_tab > ul > li").tabonoff_auto();
+
+		// 글쓰기 영역 글자수 카운터 스크립트
+			$('.cont_write textarea').keyup(function(){
+				var reply_cont = $(this).val();
+				$(this).siblings('span').html(reply_cont.length + '/1000');
+			});
+
+			$('.cont_write textarea').keyup();
+
+	// 글쓰기의 파일 업로드 스크립트
+		var fileTarget = $(".cont_write input[type='file']");
+
+		fileTarget.on('change', function(){
+			if(window.FileReader){
+		            	// 파일명 추출
+		            	var filename = $(this)[0].files[0].name;
+		            }else {
+		            	// Old IE 파일명 추출
+		            	var filename = $(this).val().split('/').pop().split('\\').pop();
+		            };
+
+		            $(this).siblings('.cont_write input.file').val(filename);
+		            
+		        });
 });
