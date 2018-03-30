@@ -41,8 +41,16 @@
 			border:1px solid #ededed;
 			padding: 5px;
 			box-sizing: border-box;
-			text-align: center;
 			vertical-align: middle;
+		}
+
+		#coin_mall th{
+			text-align: center;
+		}
+
+		#coin_mall td{
+			text-align: right;
+			padding-right: 10px;
 		}
 
 		#coin_mall th{

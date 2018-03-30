@@ -193,7 +193,7 @@ class Postact extends CB_Controller
         $this->load->model('Board_group_model');
         $group = $this->Board_group_model->get_one(element('bgr_id', $board));
         
-        redirect(group_url(element('bgr_key', $group)).'/'.element('brd_key', $board));
+        redirect(board_url(element('brd_key', $board)));
 
     }
 

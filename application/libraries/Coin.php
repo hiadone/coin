@@ -278,7 +278,7 @@ class Coin extends CI_Controller
             
             $deal_bas_r=0;
             $deal_bas_r = $this->CI->Virtual_coin_model
-                ->get_one('','vic_value',array("vic_type"=>"deal_bas_r","vic_title"=>"deal_bas_r","vic_key"=>"deal_bas_r"));
+                ->get('','vic_value',array("vic_type"=>"deal_bas_r","vic_title"=>"deal_bas_r"));
 
             $where=array();
 
@@ -315,6 +315,7 @@ class Coin extends CI_Controller
 
         $view['view']['vic_type'] = $this->vic_type;
         $view['view']['coin_list'] = $result;
+        $view['view']['deal_bas_r'] = $deal_bas_r;
         $view['view']['skinurl'] = base_url( VIEW_DIR . 'main/' . $skin);
         $html = $this->CI->load->view('main/' . $skin . '/view_coin', $view, true);
 

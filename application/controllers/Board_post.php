@@ -978,7 +978,7 @@ class Board_post extends CB_Controller
             $this->data = $view;
             $this->layout = element('layout_skin_file', element('layout', $view));
             if ($show_list_from_view) {
-                $list_skin_file = element('use_gallery_list', $board) ? 'gallerylist_sub' : 'list_sub';
+                $list_skin_file = element('use_gallery_list', $board) && $this->cbconfig->get_device_view_type() === 'desktop' ? 'gallerylist_sub' : 'list_sub';
                 $listskindir = ($this->cbconfig->get_device_view_type() === 'mobile')
                     ? $mobile_skin_dir : $skin_dir;
                 if (empty($listskindir)) {
