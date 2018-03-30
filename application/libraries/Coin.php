@@ -280,10 +280,16 @@ class Coin extends CI_Controller
             $deal_bas_r = $this->CI->Virtual_coin_model
                 ->get_one('','vic_value',array("vic_type"=>"deal_bas_r","vic_title"=>"deal_bas_r","vic_key"=>"deal_bas_r"));
 
+            $where=array();
+
+            $where=array(
+                'vic_type' => 'coinmarketcap',
+            );
 
             $findex = "rank'";
             $btc_list = $this->CI->Virtual_coin_model
-                ->get('','','');
+                ->get('','',$where);
+
 
             $result=array();
             // foreach($this->vic_title as $tkey =>$tvalue){
@@ -293,9 +299,18 @@ class Coin extends CI_Controller
             // }
 
             foreach($btc_list as $value){
-                $result[]=$value;
+
+                    
+
+                    
+                    $result[$value['vic_title']][$value['vic_key']]=$value['vic_value'];    
+                    
+                    
+
+                
             }
 
+            
         }
 
         $view['view']['vic_type'] = $this->vic_type;

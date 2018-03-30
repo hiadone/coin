@@ -515,6 +515,7 @@ class Board extends CI_Controller
         $period_second = element('period_second', $config);
         $cache_minute = element('cache_minute', $config);
 
+
         if ($limit <= 0) {
             return false;
         }
@@ -524,7 +525,7 @@ class Board extends CI_Controller
             $cache_brd_key = is_array($brd_key) ? implode('-', $brd_key) : $brd_key;
             $cache_exclude_brd_id = is_array($exclude_brd_id) ? implode('-', $exclude_brd_id) : $exclude_brd_id;
             $cache_exclude_brd_key = is_array($exclude_brd_key) ? implode('-', $exclude_brd_key) : $exclude_brd_key;
-            $cachename = 'latest/latest-s-' . $skin . '-i-' . $cache_brd_id . '-k-' . $cache_brd_key . '-l-' . $cache_exclude_brd_id . '-k-' . $cache_exclude_brd_key . '-l-' . $limit . '-t-' . $length . '-g-' . $is_gallery . '-w-' . $image_width . '-h-' . $image_height . '-p-' . $period_second;
+            $cachename = 'latest/latest-s-' . $skin . '-i-' . $cache_brd_id . '-k-' . $cache_brd_key . '-l-' . $cache_exclude_brd_id . '-k-' . $cache_exclude_brd_key . '-l-' . $limit . '-t-' . $length . '-g-' . $is_gallery . '-w-' . $image_width . '-h-' . $image_height . '-p-' . $period_second.$findex;
             $html = $this->CI->cache->get($cachename);
             if ($html) {
                 return $html;
@@ -716,151 +717,151 @@ class Board extends CI_Controller
                 }
             }
             
-        }elseif($brd_key==="notice"){
-            $this->CI->load->model('Faq_model');
-            $this->CI->load->model('Faq_group_model');
+        // }elseif($brd_key==="notice"){
+        //     $this->CI->load->model('Faq_model');
+        //     $this->CI->load->model('Faq_group_model');
 
-            $where = array(
-                'fgr_key' => $brd_key,
-            );
-            $faqgroup = $this->CI->Faq_group_model->get_one('', '', $where);
+        //     $where = array(
+        //         'fgr_key' => $brd_key,
+        //     );
+        //     $faqgroup = $this->CI->Faq_group_model->get_one('', '', $where);
 
-            if ( ! element('fgr_id', $faqgroup)) {
-                show_404();
-            }
+        //     if ( ! element('fgr_id', $faqgroup)) {
+        //         show_404();
+        //     }
 
 
-            $findex = 'faq_order';
-            $forder = 'asc';
+        //     $findex = 'faq_order';
+        //     $forder = 'asc';
 
-            $this->CI->Faq_model->allow_order_field = array('faq_order'); // 정렬이 가능한 필드
+        //     $this->CI->Faq_model->allow_order_field = array('faq_order'); // 정렬이 가능한 필드
 
-            $where = array(
-                'fgr_id' => element('fgr_id', $faqgroup),
-            );
-            $result = $this->CI->Faq_model
-                ->get_list('', '', $where, '', $findex, $forder);
+        //     $where = array(
+        //         'fgr_id' => element('fgr_id', $faqgroup),
+        //     );
+        //     $result = $this->CI->Faq_model
+        //         ->get_list('', '', $where, '', $findex, $forder);
 
-            /**
-             * 게시판 목록에 필요한 정보를 가져옵니다.
-             */
+        //     /**
+        //      * 게시판 목록에 필요한 정보를 가져옵니다.
+        //      */
             
             
 
-            if (element('list', $result)) {
-                foreach (element('list', $result) as $key => $val) {
+        //     if (element('list', $result)) {
+        //         foreach (element('list', $result) as $key => $val) {
 
-                    $content = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
-                        ? (element('faq_mobile_content', $val) ? element('faq_mobile_content', $val)
-                        : element('faq_content', $val)) : element('faq_content', $val);
+        //             $content = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+        //                 ? (element('faq_mobile_content', $val) ? element('faq_mobile_content', $val)
+        //                 : element('faq_content', $val)) : element('faq_content', $val);
 
-                    $thumb_width = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
-                        ? $this->CI->cbconfig->item('faq_mobile_thumb_width')
-                        : $this->CI->cbconfig->item('faq_thumb_width');
+        //             $thumb_width = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+        //                 ? $this->CI->cbconfig->item('faq_mobile_thumb_width')
+        //                 : $this->CI->cbconfig->item('faq_thumb_width');
 
-                    $autolink = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
-                        ? $this->CI->cbconfig->item('use_faq_mobile_auto_url')
-                        : $this->CI->cbconfig->item('use_faq_auto_url');
+        //             $autolink = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+        //                 ? $this->CI->cbconfig->item('use_faq_mobile_auto_url')
+        //                 : $this->CI->cbconfig->item('use_faq_auto_url');
 
-                    $popup = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
-                        ? $this->CI->cbconfig->item('faq_mobile_content_target_blank')
-                        : $this->CI->cbconfig->item('faq_content_target_blank');
+        //             $popup = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+        //                 ? $this->CI->cbconfig->item('faq_mobile_content_target_blank')
+        //                 : $this->CI->cbconfig->item('faq_content_target_blank');
 
-                    $view['view']['latest'][$key]['title'] = display_html_content(
-                        element('faq_title', $val),
-                        element('faq_content_html_type', $val),
-                        $thumb_width,
-                        $autolink,
-                        $popup,
-                        $writer_is_admin = true
-                    );
+        //             $view['view']['latest'][$key]['title'] = display_html_content(
+        //                 element('faq_title', $val),
+        //                 element('faq_content_html_type', $val),
+        //                 $thumb_width,
+        //                 $autolink,
+        //                 $popup,
+        //                 $writer_is_admin = true
+        //             );
 
-                    $view['view']['latest'][$key]['url'] = base_url('/faq/notice/'.element('faq_id', $val));
-                    $view['view']['latest'][$key]['display_name'] = '관리자';
-                    $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('faq_datetime', $val));
-                    $view['view']['latest'][$key]['content'] = display_html_content(
-                        $content,
-                        element('faq_content_html_type', $val),
-                        $thumb_width,
-                        $autolink,
-                        $popup,
-                        $writer_is_admin = true
-                    );
-                }
-            }
+        //             $view['view']['latest'][$key]['url'] = base_url('/faq/notice/'.element('faq_id', $val));
+        //             $view['view']['latest'][$key]['display_name'] = '관리자';
+        //             $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('faq_datetime', $val));
+        //             $view['view']['latest'][$key]['content'] = display_html_content(
+        //                 $content,
+        //                 element('faq_content_html_type', $val),
+        //                 $thumb_width,
+        //                 $autolink,
+        //                 $popup,
+        //                 $writer_is_admin = true
+        //             );
+        //         }
+        //     }
             
-        }elseif($brd_key==="faq"){
-            $this->CI->load->model('Faq_model');
-            $this->CI->load->model('Faq_group_model');
+        // }elseif($brd_key==="faq"){
+        //     $this->CI->load->model('Faq_model');
+        //     $this->CI->load->model('Faq_group_model');
 
-            $where = array(
-                'fgr_key' => $brd_key,
-            );
-            $faqgroup = $this->CI->Faq_group_model->get_one('', '', $where);
+        //     $where = array(
+        //         'fgr_key' => $brd_key,
+        //     );
+        //     $faqgroup = $this->CI->Faq_group_model->get_one('', '', $where);
 
-            if ( ! element('fgr_id', $faqgroup)) {
-                show_404();
-            }
+        //     if ( ! element('fgr_id', $faqgroup)) {
+        //         show_404();
+        //     }
 
 
-            $findex = 'faq_order';
-            $forder = 'asc';
+        //     $findex = 'faq_order';
+        //     $forder = 'asc';
 
-            $this->CI->Faq_model->allow_order_field = array('faq_order'); // 정렬이 가능한 필드
+        //     $this->CI->Faq_model->allow_order_field = array('faq_order'); // 정렬이 가능한 필드
 
-            $where = array(
-                'fgr_id' => element('fgr_id', $faqgroup),
-            );
-            $result = $this->CI->Faq_model
-                ->get_list('', '', $where, '', $findex, $forder);
+        //     $where = array(
+        //         'fgr_id' => element('fgr_id', $faqgroup),
+        //     );
+        //     $result = $this->CI->Faq_model
+        //         ->get_list('', '', $where, '', $findex, $forder);
 
-            /**
-             * 게시판 목록에 필요한 정보를 가져옵니다.
-             */
+        //     /**
+        //      * 게시판 목록에 필요한 정보를 가져옵니다.
+        //      */
             
             
 
-            if (element('list', $result)) {
-                foreach (element('list', $result) as $key => $val) {
+        //     if (element('list', $result)) {
+        //         foreach (element('list', $result) as $key => $val) {
 
-                    $content = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
-                        ? (element('faq_mobile_content', $val) ? element('faq_mobile_content', $val)
-                        : element('faq_content', $val)) : element('faq_content', $val);
+        //             $content = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+        //                 ? (element('faq_mobile_content', $val) ? element('faq_mobile_content', $val)
+        //                 : element('faq_content', $val)) : element('faq_content', $val);
 
-                    $thumb_width = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
-                        ? $this->CI->cbconfig->item('faq_mobile_thumb_width')
-                        : $this->CI->cbconfig->item('faq_thumb_width');
+        //             $thumb_width = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+        //                 ? $this->CI->cbconfig->item('faq_mobile_thumb_width')
+        //                 : $this->CI->cbconfig->item('faq_thumb_width');
 
-                    $autolink = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
-                        ? $this->CI->cbconfig->item('use_faq_mobile_auto_url')
-                        : $this->CI->cbconfig->item('use_faq_auto_url');
+        //             $autolink = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+        //                 ? $this->CI->cbconfig->item('use_faq_mobile_auto_url')
+        //                 : $this->CI->cbconfig->item('use_faq_auto_url');
 
-                    $popup = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
-                        ? $this->CI->cbconfig->item('faq_mobile_content_target_blank')
-                        : $this->CI->cbconfig->item('faq_content_target_blank');
+        //             $popup = ($this->CI->cbconfig->get_device_view_type() === 'mobile')
+        //                 ? $this->CI->cbconfig->item('faq_mobile_content_target_blank')
+        //                 : $this->CI->cbconfig->item('faq_content_target_blank');
 
-                    $view['view']['latest'][$key]['title'] = display_html_content(
-                        element('faq_title', $val),
-                        element('faq_content_html_type', $val),
-                        $thumb_width,
-                        $autolink,
-                        $popup,
-                        $writer_is_admin = true
-                    );
+        //             $view['view']['latest'][$key]['title'] = display_html_content(
+        //                 element('faq_title', $val),
+        //                 element('faq_content_html_type', $val),
+        //                 $thumb_width,
+        //                 $autolink,
+        //                 $popup,
+        //                 $writer_is_admin = true
+        //             );
 
-                    $view['view']['latest'][$key]['url'] = base_url('/faq/faq/'.element('faq_id', $val));
-                    $view['view']['latest'][$key]['display_name'] = '관리자';
-                    $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('faq_datetime', $val));
-                    $view['view']['latest'][$key]['content'] = display_html_content(
-                        $content,
-                        element('faq_content_html_type', $val),
-                        $thumb_width,
-                        $autolink,
-                        $popup,
-                        $writer_is_admin = true
-                    );
-                }
-            }
+        //             $view['view']['latest'][$key]['url'] = base_url('/faq/faq/'.element('faq_id', $val));
+        //             $view['view']['latest'][$key]['display_name'] = '관리자';
+        //             $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('faq_datetime', $val));
+        //             $view['view']['latest'][$key]['content'] = display_html_content(
+        //                 $content,
+        //                 element('faq_content_html_type', $val),
+        //                 $thumb_width,
+        //                 $autolink,
+        //                 $popup,
+        //                 $writer_is_admin = true
+        //             );
+        //         }
+        //     }
             
         } else {
 

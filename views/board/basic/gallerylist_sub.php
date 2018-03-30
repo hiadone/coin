@@ -5,116 +5,12 @@ $record_num = $this->uri->segment($last);
 
 <?php echo element('headercontent', element('board', element('list', $view))); ?>
 <article class="content02">
-    <section class="submenu ">
-        <ul>
-            <?php
-            $menuhtml = '';
-            if (element('menu', $layout)) {
-                $menu = element('menu', $layout);
-                if (element(0, $menu)) {
-                    foreach (element(0, $menu) as $mkey => $mval) {
-                        if (element(element('men_id', $mval), $menu)) {
-                            
-
-                            foreach (element(element('men_id', $mval), $menu) as $lkey => $lval) {
-                                
-                                if(str_replace("/","",element('men_link', $lval)) === implode("",$this->uri->segment_array())){
-
-                                    foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
-                                        $menu_active='';
-                                        
-                                        if($lkey === $skey) $menu_active='class="menu_active"';
-                                        $slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
-                                        $menuhtml .= '<li '.$menu_active.'><a href="' . $slink . '" ' . element('men_custom', $sval);
-                                        if (element('men_target', $sval)) {
-                                            $menuhtml .= ' target="' . element('men_target', $sval) . '"';
-                                        }
-                                        $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
-                                        $menuhtml .= '<li>|</li>';
-                                    }
-
-                                }
-                                
-                            }
-                            
-
-                        } 
-                    }
-                }
-            }
-            
-            echo $menuhtml;
-            ?>
-
-            
-            <li class="submenu_arrow"></li>
-        </ul>
-        
-    </section>
-
-
-
-<section class='post_list'>
-    <div class='post_table'>
     
 
-    <?php
-    $attributes = array('name' => 'fboardlist', 'id' => 'fboardlist');
-    echo form_open('', $attributes);
-    ?>
 
-        <?php if (element('is_admin', $view)) { ?>
-            <div><label for="all_boardlist_check"><input id="all_boardlist_check" onclick="if (this.checked) all_boardlist_checked(true); else all_boardlist_checked(false);" type="checkbox" /> 전체선택</label></div>
-        <?php } ?>
 
-        <?php
-        if (element('notice_list', element('list', $view))) {
-        ?>
-            <table class="table table-hover">
-                <tbody>
-                <?php
-                foreach (element('notice_list', element('list', $view)) as $result) {
-                ?>
-                    <tr>
-                        <?php if (element('is_admin', $view)) { ?><th scope="row"><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /></th><?php } ?>
-                        <td><span class="label label-primary">공지</span></td>
-                        <td>
-                            <?php if (element('post_reply', $result)) { ?><span class="label label-primary" style="margin-left:<?php echo strlen(element('post_reply', $result)) * 10; ?>px">Re</span><?php } ?>
-                            <a href="<?php echo element('post_url', $result); ?>" style="
-                                <?php
-                                if (element('title_color', $result)) {
-                                    echo 'color:' . element('title_color', $result) . ';';
-                                }
-                                if (element('title_font', $result)) {
-                                    echo 'font-family:' . element('title_font', $result) . ';';
-                                }
-                                if (element('title_bold', $result)) {
-                                    echo 'font-weight:bold;';
-                                }
-                                if (element('post_id', element('post', $view)) === element('post_id', $result)) {
-                                    echo 'font-weight:bold;';
-                                }
-                                ?>
-                            " title="<?php echo html_escape(element('title', $result)); ?>"><?php echo html_escape(element('title', $result)); ?></a>
-                            <?php if (element('is_mobile', $result)) { ?><span class="fa fa-wifi"></span><?php } ?>
-                            <?php if (element('post_file', $result)) { ?><span class="fa fa-download"></span><?php } ?>
-                            <?php if (element('post_secret', $result)) { ?><span class="fa fa-lock"></span><?php } ?>
-                            <?php    if (element('ppo_id', $result)) { ?><i class="fa fa-bar-chart"></i><?php } ?>
-                            <?php if (element('post_comment_count', $result)) { ?><span class="label label-warning">+<?php echo element('post_comment_count', $result); ?></span><?php } ?>
-                        <td><?php echo element('display_name', $result); ?></td>
-                        <td><?php echo element('display_datetime', $result); ?></td>
-                        <td><?php echo number_format(element('post_hit', $result)); ?></td>
-                    </tr>
-                <?php
-                    }
-                ?>
-                </tbody>
-            </table>
-        <?php
-        }
-        ?>
-
-        <div class="table-image">
+<section class='gallery_li vod_li'>
+        <div class="mt30">
             <?php
             $i = 0;
             $open = false;
@@ -122,48 +18,44 @@ $record_num = $this->uri->segment($last);
             if (element('list', element('data', element('list', $view)))) {
                 foreach (element('list', element('data', element('list', $view))) as $result) {
                     if ($cols && $i % $cols === 0) {
-                        echo '<ul class="mt20">';
+                        echo '<ul class="">';
                         $open = true;
                     }
                     $marginright = (($i+1)% $cols === 0) ? 0 : 2;
             ?>
                 <li class="gallery-box" style="width:<?php echo element('gallery_percent', element('board', element('list', $view))); ?>%;margin-right:<?php echo $marginright;?>%;">
-                <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /><?php } ?>
-                <span class="label label-default"><?php echo element('num', $result); ?></span>
-                <?php if (element('is_mobile', $result)) { ?><span class="fa fa-wifi"></span><?php } ?>
-                <?php if (element('category', $result)) { ?><a href="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>?category_id=<?php echo html_escape(element('bca_key', element('category', $result))); ?>"><span class="label label-default"><?php echo html_escape(element('bca_value', element('category', $result))); ?></span></a><?php } ?>
-                <?php    if (element('ppo_id', $result)) { ?><i class="fa fa-bar-chart"></i><?php } ?>
-                <div>
-                    <a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('title', $result)); ?>"><img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class="thumbnail img-responsive" style="width:<?php echo element('gallery_image_width', element('board', element('list', $view))); ?>px;height:<?php echo element('gallery_image_height', element('board', element('list', $view))); ?>px;" /></a>
-                </div>
-                <p>
-                    <?php if (element('post_reply', $result)) { ?><span class="label label-primary">Re</span><?php } ?>
-                    <a href="<?php echo element('post_url', $result); ?>" style="
-                        <?php
-                        if (element('title_color', $result)) {
-                            echo 'color:' . element('title_color', $result) . ';';
-                        }
-                        if (element('title_font', $result)) {
-                            echo 'font-family:' . element('title_font', $result) . ';';
-                        }
-                        if (element('title_bold', $result)) {
-                            echo 'font-weight:bold;';
-                        }
-                        if (element('post_id', element('post', $view)) === element('post_id', $result)) {
-                            echo 'font-weight:bold;';
-                        }
-                        ?>
-                    " title="<?php echo html_escape(element('title', $result)); ?>"><?php echo html_escape(element('title', $result)); ?></a>
-                </p>
-                <p>
-                    <?php echo element('display_name', $result); ?>
-                    <?php //echo element('display_datetime', $result); ?>
-                    <?php if (element('is_hot', $result)) { ?><span class="label label-danger">Hot</span><?php } ?>
-                    <?php if (element('is_new', $result)) { ?><span class="label label-warning">New</span><?php } ?>
-                    <?php if (element('post_secret', $result)) { ?><span class="fa fa-lock"></span><?php } ?>
-                    <?php if (element('post_comment_count', $result)) { ?><span class="comment-count"><i class="fa fa-comments"></i><?php echo element('post_comment_count', $result); ?></span><?php } ?>
-                    <span class="hit-count"><i class="fa fa-eye"></i> <?php echo number_format(element('post_hit', $result)); ?></span>
-                </p>
+               
+                    <a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('title', $result)); ?>">
+                        <figure>
+                        <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class="" style="width:<?php echo element('gallery_image_width', element('board', element('list', $view))); ?>px;height:<?php echo element('gallery_image_height', element('board', element('list', $view))); ?>px;" />
+                            <figcaption>
+                                <h3><?php echo element('num', $result); ?>. <?php echo html_escape(element('title', $result)); ?></h3>
+                                <div class='img_writer'>
+                                    <p class='small_font'>
+                                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo $this->member->item('mem_level') ?>.png" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
+                                        <?php echo element('display_name', $result); ?>
+                                    </p>
+                                    
+                                    <span>|</span> 
+
+                                    <p class='small_font'>조회수 <?php echo number_format(element('post_hit', $result)); ?></p>
+                                </div>
+                
+                                <div class='img_data'>
+                                    <p class='small_font'>
+                                        <?php echo element('display_datetime', $result); ?>
+                                    </p>
+                                    
+                                    <span>|</span> 
+
+                                    <p class='small_font'>댓글 <?php echo element('post_comment_count', $result); ?></p>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </a>
+                
+                
+               
             </li>
         <?php
                 $i++;
@@ -181,9 +73,10 @@ $record_num = $this->uri->segment($last);
         }
         ?>
         </div>
-    <?php echo form_close(); ?>
+    </section>
+    
 
-    <div class="post_sear">
+    <section class="post_sear">
         <form class="navbar-form navbar-right pull-right" action="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>" onSubmit="return postSearch(this);">
             <input type="hidden" name="findex" value="<?php echo html_escape($this->input->get('findex')); ?>" />
             <input type="hidden" name="category_id" value="<?php echo html_escape($this->input->get('category_id')); ?>" />
@@ -197,8 +90,9 @@ $record_num = $this->uri->segment($last);
             <input type="text" class="" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
             <button class="find_img" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
             <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm pull-right">전체</a>
+            
         </form>
-        </div> 
+    </section> 
                 
         <script type="text/javascript">
         //<![CDATA[
@@ -222,13 +116,13 @@ $record_num = $this->uri->segment($last);
         <?php } ?> -->
             
             <?php if (element('write_url', element('list', $view))) { ?>
-                <div class="post_button">
+                <section class="post_button">
                     <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>
-                </div>
+                </section>
             <?php } ?>
-        <div><?php echo element('paging', element('list', $view)); ?></div>
-    </section>
-    <span class='bar'></span>
+        <section class="post_page">
+            <?php echo element('paging', element('list', $view)); ?>
+        </section>
 
 <?php echo element('footercontent', element('board', element('list', $view))); ?>
 </article>

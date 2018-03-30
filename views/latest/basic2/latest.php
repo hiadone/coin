@@ -3,8 +3,10 @@ $i = 0;
 if (element('latest', $view)) {
     foreach (element('latest', $view) as $key => $value) {
 ?>
-        <li><a href="<?php echo element('url', $value); ?>" title="<?php echo html_escape(element('title', $value)); ?>"><?php echo html_escape(element('title', $value)); ?></a>
-            <?php if (element('post_comment_count', $value)) { ?> <span class="latest_comment_count"> +<?php echo element('post_comment_count', $value); ?></span><?php } ?>
+        <li><a href="<?php echo element('url', $value); ?>" title="<?php echo html_escape(element('title', $value)); ?>">
+            <h4><?php echo ($key+1)?>.</h4>
+            <div><?php echo html_escape(element('title', $value)); ?></div>
+            </a>
         </li>
 <?php
     $i++;
