@@ -668,7 +668,7 @@ class Cron extends CB_Controller {
 
             $json = json_decode($result, true);
 
-            
+        
 
             
             if(element('deal_bas_r',element(0,$json))){
@@ -682,7 +682,9 @@ class Cron extends CB_Controller {
                     
                         
                         
-                $virtualcoindata['deal_bas_r'] = str_replace(",","",element('ttb',element(0,$json)));
+                $virtualcoindata['ttb'] = str_replace(",","",element('ttb',element(0,$json)));
+                $virtualcoindata['tts'] = str_replace(",","",element('tts',element(0,$json)));
+                $virtualcoindata['deal_bas_r'] = str_replace(",","",element('deal_bas_r',element(0,$json)));
                         
                         
                     

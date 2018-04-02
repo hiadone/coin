@@ -20,8 +20,10 @@ $param =& $this->querystring;
 
 
                             foreach (element(element('men_id', $mval), $menu) as $lkey => $lval) {
-                                if(!empty($param->output())){
-                                    if(str_replace("/","",element('men_link', $lval)) === implode("",$this->uri->segment_array()).'?'.$param->output()){
+                                if($record_num==='live_news' && $this->input->get('post_notice')){
+                                    
+                                    if(str_replace("/","",element('men_link', $lval)) === implode("",$this->uri->segment_array()).'?post_notice='.$this->input->get('post_notice')){
+
                                         foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
                                             $menu_active='';
                                             
@@ -34,8 +36,9 @@ $param =& $this->querystring;
                                             $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
                                             $menuhtml .= '<li>|</li>';
                                         }
-                                    }
+                                    } 
                                 } elseif(str_replace("/","",element('men_link', $lval)) === implode("",$this->uri->segment_array())){
+                                    
                                     foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
                                         $menu_active='';
                                         
