@@ -48,26 +48,20 @@ $record_num = $this->uri->segment($last);
 
             
             
-        </ul>
-        
+        </ul> 
     </section>
 
-
-
-    <section class='gallery_li vod_li'>
-    
-    
-
-    <?php
-    $attributes = array('name' => 'fboardlist', 'id' => 'fboardlist');
-    echo form_open('', $attributes);
-    ?>
+        <?php
+        $attributes = array('name' => 'fboardlist', 'id' => 'fboardlist');
+        echo form_open('', $attributes);
+        ?>
 
         <?php if (element('is_admin', $view)) { ?>
-            <div><label for="all_boardlist_check"><input id="all_boardlist_check" onclick="if (this.checked) all_boardlist_checked(true); else all_boardlist_checked(false);" type="checkbox" /> 전체선택</label></div>
+        <div style='margin-top:20px;''><label for="all_boardlist_check"><input id="all_boardlist_check" onclick="if (this.checked) all_boardlist_checked(true); else all_boardlist_checked(false);" type="checkbox" /> 전체선택</label>
+        </div>
         <?php } ?>
 
-        <div class="mt30">
+        <section class='gallery_li vod_li'>
             <?php
             $i = 0;
             $open = false;
@@ -79,58 +73,54 @@ $record_num = $this->uri->segment($last);
                         $open = true;
                     }
                     $marginright = (($i+1)% $cols === 0) ? 0 : 2;
-            ?>
-                <li class="gallery-box" style="width:<?php echo element('gallery_percent', element('board', element('list', $view))); ?>%;margin-right:<?php echo $marginright;?>%;">
-                <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /><?php } ?>
-                    <a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('title', $result)); ?>">
-                        <figure>
-                        <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class="" style="width:<?php echo element('gallery_image_width', element('board', element('list', $view))); ?>px;height:<?php echo element('gallery_image_height', element('board', element('list', $view))); ?>px;" />
-                            <figcaption>
-                                <h3><?php echo element('num', $result); ?>. <?php echo html_escape(element('title', $result)); ?></h3>
-                                <div class='img_writer'>
-                                    <p class='small_font'>
-                                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo $this->member->item('mem_level') ?>.png" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
-                                        <?php echo element('display_name', $result); ?>
-                                    </p>
-                                    
-                                    <span>|</span> 
+                    ?>
+                    <li class="gallery-box" >
+                        <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /><?php } ?>
+                        <a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('title', $result)); ?>">
+                            <figure>
+                                <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class="" style="width:<?php echo element('gallery_image_width', element('board', element('list', $view))); ?>px;height:<?php echo element('gallery_image_height', element('board', element('list', $view))); ?>px;" />
+                                <figcaption>
+                                    <h3><?php echo element('num', $result); ?>. <?php echo html_escape(element('title', $result)); ?></h3>
+                                    <div class='img_writer'>
+                                        <p class='small_font'>
+                                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo $this->member->item('mem_level') ?>.png" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
+                                            <?php echo element('display_name', $result); ?>
+                                        </p>
 
-                                    <p class='small_font'>조회수 <?php echo number_format(element('post_hit', $result)); ?></p>
-                                </div>
-                
-                                <div class='img_data'>
-                                    <p class='small_font'>
-                                        <?php echo element('display_datetime', $result); ?>
-                                    </p>
-                                    
-                                    <span>|</span> 
+                                        <span>|</span> 
 
-                                    <p class='small_font'>댓글 <?php echo element('post_comment_count', $result); ?></p>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </a>
-                
-                
-               
-            </li>
-        <?php
-                $i++;
-                if ($cols && $i > 0 && $i % $cols === 0 && $open) {
-                    echo '</ul>';
-                    $open = false;
+                                        <p class='small_font'>조회수 <?php echo number_format(element('post_hit', $result)); ?></p>
+                                    </div>
+
+                                    <div class='img_data'>
+                                        <p class='small_font'>
+                                            <?php echo element('display_datetime', $result); ?>
+                                        </p>
+
+                                        <span>|</span> 
+
+                                        <p class='small_font'>댓글 <?php echo element('post_comment_count', $result); ?></p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <?php
+                    $i++;
+                    if ($cols && $i > 0 && $i % $cols === 0 && $open) {
+                        echo '</ul>';
+                        $open = false;
+                    }
                 }
+            } else{
+                echo '<ul class="mt20"><li>게시물이 없습니다.</li></ul>';
             }
-        } else{
-            echo '<ul class="mt20"><li>게시물이 없습니다.</li></ul>';
-        }
-        if ($open) {
-            echo '</ul>';
-            $open = false;
-        }
-        ?>
-        </div>
-    </section>
+            if ($open) {
+                echo '</ul>';
+                $open = false;
+            }
+            ?>
+        </section>
     <?php echo form_close(); ?>
 
     <section class="post_sear">
@@ -144,12 +134,9 @@ $record_num = $this->uri->segment($last);
                 <option value="post_content" <?php echo ($this->input->get('sfield') === 'post_content') ? ' selected="selected" ' : ''; ?>>내용</option>
                 
             </select>
-            <input type="text" class="" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
+            <input class="" placeholder="Search" type="search" onfocus="this.placeholder=''" onblur="this.placeholder='Search'" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
             <button class="find_img" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
-            <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm pull-right">전체</a>
-            <?php if (element('is_admin', $view)) { ?>
-            <div class="btn btn-default btn-sm pull-right" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선택삭제</div>
-            <?php } ?>
+           
         </form>
     </section> 
                 
@@ -176,7 +163,14 @@ $record_num = $this->uri->segment($last);
             
             <?php if (element('write_url', element('list', $view))) { ?>
                 <section class="post_button">
-                    <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>
+                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">전체</a>
+            <?php if (element('is_admin', $view)) { ?>
+
+            <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>
+
+            <div class="btn btn-default btn-sm" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선택삭제</div>
+            <?php } ?>
+                    
                 </section>
             <?php } ?>
         <section class="post_page">

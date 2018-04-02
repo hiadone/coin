@@ -13,17 +13,12 @@ $record_num = $this->uri->segment($last);
     
 
 
-    <section class='post_list'>
-        <div class='post_table'>
-
         <?php
         $attributes = array('name' => 'fboardlist', 'id' => 'fboardlist');
         echo form_open('', $attributes);
         ?>
-            <table class='post_table_li'>
-                
+            <table class='post_table' style="border-top:2px solid #4f4f51">
                 <tr>
-                    
                     <th>번 호</th>
                     <th>제 목</th>
                     <th class="spoon-img">닉 네 임</th>
@@ -80,8 +75,7 @@ $record_num = $this->uri->segment($last);
                 
             </table>
             <?php echo form_close(); ?>
-        </div>
-        <div class="post_sear">
+        <section class="post_sear">
         <form class="navbar-form navbar-right pull-right" action="<?php echo post_url(element('brd_key', element('board', element('list', $view))),element('post_id', element('post', $view))); ?>" onSubmit="return postSearch(this);">
             <input type="hidden" name="findex" value="<?php echo html_escape($this->input->get('findex')); ?>" />
             <input type="hidden" name="category_id" value="<?php echo html_escape($this->input->get('category_id')); ?>" />
@@ -92,12 +86,12 @@ $record_num = $this->uri->segment($last);
                 <option value="post_content" <?php echo ($this->input->get('sfield') === 'post_content') ? ' selected="selected" ' : ''; ?>>내용</option>
                 
             </select>
-            <input type="text" class="" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
+            <input class="" placeholder="Search" type="search" onfocus="this.placeholder=''" onblur="this.placeholder='Search'" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
             <button class="find_img" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
             
              
         </form>
-        </div> 
+        </section> 
                 
         <script type="text/javascript">
         //<![CDATA[
@@ -121,13 +115,12 @@ $record_num = $this->uri->segment($last);
         <?php } ?> -->
             
             <?php if (element('write_url', element('list', $view))) { ?>
-                <div class="post_button">
-                    <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">전 체</a>
-                    <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>
-                </div>
+                <section class="post_button">
+                    <a href="<?php echo element('list_url', element('list', $view)); ?>">전 체</a>
+                    <a href="<?php echo element('write_url', element('list', $view)); ?>">글 쓰 기</a>
+                </section>
             <?php } ?>
-        <div><?php echo element('paging', element('list', $view)); ?></div>
-    </section>
+        <section class="post_page"><?php echo element('paging', element('list', $view)); ?></section>
     
 <?php echo element('footercontent', element('board', element('list', $view))); ?>
 

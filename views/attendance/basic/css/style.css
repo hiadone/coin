@@ -9,7 +9,7 @@
 .date-navigation {text-align: center;padding-bottom: 15px; }
 .date-navigation li{cursor:pointer;}
 
-.date-navigation li:hover{background: #428bca;color: #fff;}
+/*.date-navigation li:hover{background: #428bca;color: #fff;}*/
 
 .selected-date {text-align:center;padding-bottom:10px;font-size:14px;}
 .alert-point-policy {display:none; }

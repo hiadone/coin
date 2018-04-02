@@ -14,14 +14,14 @@
 
 	/*main_top css*/
 		.main_top{
-			height: 500px;
+			height:404px;
 			margin-bottom:40px;
 		}
 
 	/*coin_mall css*/
 		#coin_mall{
 			width: 990px;
-			height: 500px;
+			height: 404px;
 			top: 0;
 			left: 0;
 		}
@@ -39,7 +39,6 @@
 		#coin_mall td,
 		#coin_mall th{
 			border:1px solid #ededed;
-			padding: 5px;
 			box-sizing: border-box;
 			text-align: center;
 			vertical-align: middle;
@@ -90,7 +89,7 @@
 	/*hot_text css*/
 	 	#hot_text{
 	 		width: 275px;
-	 		height: 400px;
+	 		height: 300px;
 			top: 0;
 			right:0;
 	 	}
@@ -105,20 +104,21 @@
 	 	}
 
 	 	.hot_tab .hot_menu{
-	 		height: 25px;
+	 		height: 30px;
 	 	}
 
 	 	.hot_tab .hot_menu li{
 	 		width: 91px;
 	 		float: left;
 	 		text-align: center;
-	 		line-height: 23px;
+	 		line-height: 24px;
 	 		border-right:1px solid #ededed;
 	 		border-bottom: 1px solid #ededed;
 	 		box-sizing: border-box;
 	 		background-color: #f0f3f7;
 	 		font-family: 'Jeju Gothic', sans-serif; 
 	 		cursor: pointer;
+	 		font-size: 13px;
 	 	}
 
 	 	.hot_tab .hot_menu li:last-child{
@@ -132,7 +132,7 @@
 	 	}
 
 	 	.hot_tab .hot_cont{
-	 		height: 345px;
+	 		height: 245px;
 	 		padding: 10px;
 	 		box-sizing: border-box;
 	 	}
@@ -164,7 +164,7 @@
 			overflow:hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
-			font-size: 14px;
+			font-size: 13px;
 		}
 
 	/*event css*/
@@ -281,7 +281,7 @@
 		}
 
 		.tab_text td:nth-child(2){
-			width: 305px;
+			width: 295px;
 		}
 
 		.tab_text td:nth-child(3){
@@ -612,7 +612,11 @@
 			height: 100%;
 			float: left;
 			text-align: center;
+			font-size: 13px;
+		}
 
+		.submenu li:last-child{
+			display: none;
 		}
 
 		.submenu li.menu_active{
@@ -652,25 +656,22 @@
 		}
 
 		/*번호*/
-		.post_table td:nth-child(1),
-		.post_table th:nth-child(1){
-			width: 40px;
+		.post_table .post_num{
+			width: 60px;
 		}
 
 		/*제목*/
-		.post_table td:nth-child(2),
-		.post_table th:nth-child(2){
+		.post_table .post_title{
 			width: 945px;
 		}
 
-		.post_table td:nth-child(2) span{
+		.post_table .post_title span{
 			font-weight: bold;
 			color: #a61e23;
 		}
 
 		/*닉네임*/
-		.post_table td:nth-child(3),
-		.post_table th:nth-child(3){
+		.post_table .spoon-img{
 			width:135px;
 			padding:0 10px;
 			box-sizing: border-box;
@@ -678,40 +679,43 @@
 
 		.post_table td figure{
 			width: 115px;
+			display: inline-block;
+			text-align: center;
 		}
 
 		.post_table td figure img{
 			width: 25px;
-			margin-right: 10px;
 			float: left;
 		}
 
 		.post_table td figcaption{
-			width: 80px;
 			height: 25px;
 			line-height: 25px;
-			float: left;
 			text-align: left;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
+			display: inline-block;
 		}
 
 		/*날짜*/
-		.post_table td:nth-child(4),
-		.post_table th:nth-child(4){
+		.post_table .post_data{
 			width: 80px;
 		}
 
 		/*조회*/
-		.post_table td:nth-child(5),
-		.post_table th:nth-child(5){
+		.post_table .post_click{
 			width: 40px;
 		}	
 
 	/*gallery_li(이미지 갤러리 & 동영상) css*/
+		.gallery_li{
+			padding-top:30px;
+			box-sizing: border-box;
+			display: inline-block;
+		}
 		.gallery_li ul{
-			/*padding-top:30px;*/
+			padding-bottom: 40px;
 			box-sizing: border-box;
 			display: inline-block;
 		}
@@ -719,7 +723,7 @@
 		.gallery_li li{
 			width: 226px;
 			float: left;
-			margin:0 37px 40px 0;
+			margin-right: 37px;
 		}
 
 		.gallery_li li:nth-child(5n){
@@ -1071,13 +1075,20 @@
 			margin-bottom: 40px;
 		}
 
-		.post_button button{
+		.post_button > a{
 			line-height: 25px;
 			margin-right: 5px;
 			margin:5px 5px 0 0;
+			border-radius: 5px;
+			background-color: #1c446d;
+			color: #fff;
+			height: 25px;
+			cursor: pointer;
+			display: inline-block;
+			padding:1px 5px;
 		}
 
-		.post_button button:last-child{
+		.post_button > a:last-child{
 			margin-right: 0;
 		}
 
@@ -1109,12 +1120,8 @@
 			font-weight: normal;
 		}
 
-		.post_page li.page_arrow{
-			font-size: 10px;
-		}
-
 		.post_page li.page_active{
-			background-color: #ededed;
+			background-color: #f0f3f7;
 			font-weight: bold;
 		}
 
@@ -1198,7 +1205,6 @@
 	/*post_link css*/
 	.post_link{
 		border-bottom:1px solid #ededed;
-		height: 40px;
 	}
 
 	.post_link p{
@@ -1248,7 +1254,6 @@
 
 		.reply_list > ol > li{
 			width: 100%;
-			margin-bottom: 20px;
 			display: inline-block;
 		}
 
@@ -1256,7 +1261,6 @@
 			.reply_cont{
 				width: 98%;
 				display: inline-block;
-				margin-bottom: 20px;
 				float: right;
 			}
 
@@ -1289,6 +1293,10 @@
 				color: #404040;
 			}
 
+			.reply_cont li:last-child{
+				display: none;
+			}
+
 			.reply_cont li.small_font{
 				width: 30px;
 				text-align: center;
@@ -1296,9 +1304,9 @@
 
 		/*reply_modify(댓글수정) css*/
 			.reply_modify{
-				width: 90%;
+				width: 100%;
 				float: right;
-				display: none;
+				margin-top: 10px;
 			}
 
 			.reply_modify textarea{
@@ -1306,12 +1314,6 @@
 				height: 80px;
 				margin-left: 2%;
 				margin-bottom:10px;
-			}
-
-			.reply_modify span{
-				float: right;
-				height: 25px;
-				line-height: 30px;
 			}
 
 			.reply_modify button{
@@ -1322,10 +1324,6 @@
 		.reply_write{
 			width: 1280px;
 			margin:0 auto 40px;
-		}
-
-		.reply_write h3{
-			margin-bottom: 10px;
 		}
 
 		.reply_write button{
@@ -1346,74 +1344,10 @@
 		}
 
 
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .content04{
 	width: 970px;
 	margin: 40px auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*post_reply css*/
@@ -1421,17 +1355,6 @@
 		width: 1280px;
 		margin: 0 auto 40px;
 	}
-
-	
-
-	
-
-
-
-
-
-
-
 
 /*content04(글쓰기) css*/
 	.content04 h4{
@@ -1616,8 +1539,11 @@
 		}
 
 
-
-
+/*추가 css*/
+	#comment_write_box{
+		display: inline-block;
+		width: 100%;
+	}
 
 
 

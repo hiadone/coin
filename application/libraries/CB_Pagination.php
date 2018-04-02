@@ -52,7 +52,7 @@ class CB_Pagination extends CI_Pagination
     public $num_links = 5;
     public $cur_page = 1;
     public $use_page_numbers = true;
-    public $first_link = '<span aria-hidden="true">&laquo;</span>';
+    public $first_link = '<span aria-hidden="true" >&laquo;</span>';
     public $next_link = '<span aria-hidden="true">&gt;</span>';
     public $prev_link = '<span aria-hidden="true">&lt;</span>';
     public $last_link = '<span aria-hidden="true">&raquo;</span>';
@@ -60,13 +60,13 @@ class CB_Pagination extends CI_Pagination
     public $first_tag_close = '</li>';
     public $last_tag_open = '<li>';
     public $last_tag_close = '</li>';
-    public $cur_tag_open = '<li class="active"><a>';
+    public $cur_tag_open = '<li class="page_active"><a>';
     public $cur_tag_close = '</a></li>';
     public $next_tag_open = '<li>';
     public $next_tag_close = '</li>';
     public $prev_tag_open = '<li>';
     public $prev_tag_close = '</li>';
-    public $full_tag_open = '<ul class="pagination">';
+    public $full_tag_open = '<ul>';
     public $full_tag_close = '</ul>';
     public $num_tag_open = '<li>';
     public $num_tag_close = '</li>';

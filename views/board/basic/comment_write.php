@@ -1,5 +1,4 @@
-<section class='post_reply'>
-    <div class='reply_write'>
+<section class='reply_write'>
         <div class="alert alert-auto-close alert-dismissible alert-comment-message" style="display:none;"><span class="alert-comment-message-content"></span></div>
 <?php
 if ( ! element('post_hide_comment', element('post', $view)) && element('is_admin', $view)) {
@@ -13,9 +12,10 @@ if ( ! element('post_hide_comment', element('post', $view)) && element('is_admin
 }
 if (element('can_comment_write', element('comment', $view)) OR element('show_textarea', element('comment', $view))) {
 ?>  
-    <h3>댓글쓰기</h3>
+    
     <div id="comment_write_box">
-        <div class="well comment_write_box_inner">
+        <h3>댓 글</h3>
+        <div class="well reply_modify">
             
             <?php
             $attributes = array('name' => 'fcomment', 'id' => 'fcomment');
@@ -39,7 +39,7 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 ?>
                 <textarea  <?php if($this->member->is_member() === false) {?> placeholder="댓글쓰기는 로그인후 이용이 가능합니다."  onfocus="this.placeholder=''" maxlength="100" onblur="this.placeholder='댓글쓰기는 로그인후 이용이 가능합니다.'" <?php } ?> class="write_area" name="cmt_content" id="cmt_content" rows="3" accesskey="c" <?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'onClick="alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} ?>><?php echo set_value('cmt_content', element('cmt_content', element('comment', $view))); ?></textarea>
                 <?php if (element('comment_min_length', element('board', $view)) OR element('comment_max_length', element('board', $view))) { ?>
-                    <div class="reply-div" style="margin:5px 0;">현재 <strong><span id="char_count">0</span></strong> 글자이며,
+                    <div class="reply-div" style='text-align: right;'>현재 <strong><span id="char_count">0</span></strong> 글자이며,
                         <?php if (element('comment_min_length', element('board', $view))) { ?>
                             최소 <strong><?php echo number_format(element('comment_min_length', element('board', $view))); ?></strong> 글자 이상
                         <?php } if (element('comment_max_length', element('board', $view))) { ?>
@@ -77,7 +77,7 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
 }
 ?>
     </div>
-</section>
+
 <script type="text/javascript">
 // 글자수 제한
 var char_min = parseInt(<?php echo element('comment_min_length', element('board', $view)) + 0; ?>); // 최소

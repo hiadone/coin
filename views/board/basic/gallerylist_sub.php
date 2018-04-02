@@ -5,12 +5,7 @@ $record_num = $this->uri->segment($last);
 
 <?php echo element('headercontent', element('board', element('list', $view))); ?>
 <article class="content02">
-    
-
-
-
 <section class='gallery_li vod_li'>
-        <div class="mt30">
             <?php
             $i = 0;
             $open = false;
@@ -23,7 +18,7 @@ $record_num = $this->uri->segment($last);
                     }
                     $marginright = (($i+1)% $cols === 0) ? 0 : 2;
             ?>
-                <li class="gallery-box" style="width:<?php echo element('gallery_percent', element('board', element('list', $view))); ?>%;margin-right:<?php echo $marginright;?>%;">
+                <li class="gallery-box">
                
                     <a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('title', $result)); ?>">
                         <figure>
@@ -72,7 +67,6 @@ $record_num = $this->uri->segment($last);
             $open = false;
         }
         ?>
-        </div>
     </section>
     
 
@@ -89,7 +83,7 @@ $record_num = $this->uri->segment($last);
             </select>
             <input type="text" class="" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
             <button class="find_img" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
-            <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm pull-right">전체</a>
+           
             
         </form>
     </section> 
@@ -117,7 +111,8 @@ $record_num = $this->uri->segment($last);
             
             <?php if (element('write_url', element('list', $view))) { ?>
                 <section class="post_button">
-                    <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>
+                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default">전체</a>
+                    <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success">글 쓰 기</a>
                 </section>
             <?php } ?>
         <section class="post_page">

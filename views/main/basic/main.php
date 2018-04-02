@@ -355,9 +355,6 @@
     <?php echo form_close(); ?>        
 </article>
 
-
-
-
 <article class="main_top content01">
 
     <div id="coin_data" >
@@ -437,11 +434,12 @@
     </section>
 
     <section class='ad img_slide' id='event' style="visibility: hidden;">
-    <ul >
-        <?php echo banner('main_banner','order',3,0,'<li>','</li>'); ?>
-    </ul>
+        <ul >
+            <?php echo banner('main_banner','order',3,0,'<li>','</li>'); ?>
+        </ul>
     </section>
 </article>
+
 <article class='main_mid01 content01'>
     <section class="tab" id="news">
         <h2>뉴 스 정 보<span><a href="<?php echo site_url('/board/live_news/') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
@@ -705,6 +703,7 @@
         </div>
     </section>
 </article>
+
 <article class='main_mid02 content01'>
     <section class="tab" id="service">
         <h2>갤러리/유머<span><a href="<?php echo site_url('/board/free_gallery') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
@@ -903,6 +902,7 @@
         </div>
     </section>
 </article>
+
 <article class='main_mid03 content01'>
     <section class='twit' id="people_twit">
         
@@ -910,25 +910,24 @@
             <table class="twitter_table" data-bng_name="person_twitter">
                 <?php echo twitter("person_twitter",'order',11,"<td>","</td>") ?>
             </table>
-        
     </section>
+
     <section class='twit' id="coin_twit">
         
             <h2>가상화폐 코인 공식 트위터</h2>
             <table class="twitter_table" data-bng_name="coin_twitter">
                 <?php echo twitter("coin_twitter",'order',11,"<td>","</td>") ?>
-            </table>
-        
+            </table> 
     </section>
+
     <section class='twit' id="coin_store">
-        
             <h2>거래소 바로가기</h2>
             <table class="twitter_table" data-bng_name="coin_trade">
                 <?php echo twitter("coin_trade",'order',11,"<td>","</td>") ?>
             </table>
-        
     </section>
 </article>
+
 <script type="text/javascript">
     //<![CDATA[
     function view_twitter(id,twitter_key) {

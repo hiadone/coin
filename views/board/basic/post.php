@@ -22,12 +22,10 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 <?php echo element('headercontent', element('board', $view)); ?>
 
 <article class="content03">
-    
-        <h4>
-            <?php echo element('brd_name',element('board', $view)); ?>
-            <span class="small_font">비트코인에 관한 다양한 정보를 한번에 !!</span>
-        </h4>
-    
+    <h4>
+        <?php echo element('brd_name',element('board', $view)); ?>
+        <span class="small_font">비트코인에 관한 다양한 정보를 한번에 !!</span>
+    </h4>
     
     <section class="post_title">
         <h3><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>
@@ -44,59 +42,54 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
     </section>
 
     <span></span>
-        
-    
+
     <?php if (element('link_count', $view) > 0 OR element('file_download_count', $view) > 0) { ?>
     <section class='post_link'>
-        
-            <?php
-            if (element('file_download_count', $view) > 0) {
-                foreach (element('file_download', $view) as $key => $value) {
-            ?>
+        <?php
+        if (element('file_download_count', $view) > 0) {
+            foreach (element('file_download', $view) as $key => $value) {
+                ?>
                 <p>
                    <i class="fa fa-download"></i> <a href="javascript:file_download('<?php echo element('download_link', $value); ?>')"><?php echo html_escape(element('pfi_originname', $value)); ?>(<?php echo byte_format(element('pfi_filesize', $value)); ?>)</a> <span class="time"><i class="fa fa-clock-o"></i> <?php echo display_datetime(element('pfi_datetime', $value), 'full'); ?></span>
-                </p>
-            <?php
-                }
-            }
-            if (element('link_count', $view) > 0) {
-                foreach (element('link', $view) as $key => $value) {
+               </p>
+               <?php
+           }
+       }
+       if (element('link_count', $view) > 0) {
+        foreach (element('link', $view) as $key => $value) {
             ?>
-                <p>
-                    <i class="fa fa-link"></i> <a href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a>
-                        <?php if (element('show_url_qrcode', element('board', $view))) { ?>
-                            <span class="url-qrcode"  data-qrcode-url="<?php echo urlencode(element('pln_url', $value)); ?>"><i class="fa fa-qrcode"></i></span>
-                        <?php } ?>
-                    
-                </p>
+            <p>
+                <i class="fa fa-link"></i> <a href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a>
+                <?php if (element('show_url_qrcode', element('board', $view))) { ?>
+                <span class="url-qrcode"  data-qrcode-url="<?php echo urlencode(element('pln_url', $value)); ?>"><i class="fa fa-qrcode"></i></span>
+                <?php } ?>
+
+            </p>
             <?php
-                }
-            }
-            ?>
-            </tbody>
-        </table>
+        }
+        }
+        ?>
     </section>
     <?php } ?>
+
     <section class='post_area'>
-            <div class="contents-view">
-                <div class="contents-view-img">
+        <div class="contents-view">
+            <div class="contents-view-img">
                 <?php
                 if (element('file_image', $view)) {
                     foreach (element('file_image', $view) as $key => $value) {
-                ?>
-                    <img src="<?php echo element('thumb_image_url', $value); ?>" alt="<?php echo html_escape(element('pfi_originname', $value)); ?>" title="<?php echo html_escape(element('pfi_originname', $value)); ?>" class="view_full_image" data-origin-image-url="<?php echo element('origin_image_url', $value); ?>" style="max-width:100%;" />
-                <?php
+                        ?>
+                        <img src="<?php echo element('thumb_image_url', $value); ?>" alt="<?php echo html_escape(element('pfi_originname', $value)); ?>" title="<?php echo html_escape(element('pfi_originname', $value)); ?>" class="view_full_image" data-origin-image-url="<?php echo element('origin_image_url', $value); ?>" style="max-width:100%;" />
+                        <?php
                     }
                 }
                 ?>
-                </div>
-
-                <!-- 본문 내용 시작 -->
-                <div id="post-content"><?php echo element('content', element('post', $view)); ?></div>
-                <!-- 본문 내용 끝 -->
             </div>
+
+            <!-- 본문 내용 시작 -->
+            <div id="post-content"><?php echo element('content', element('post', $view)); ?></div>
+            <!-- 본문 내용 끝 -->
         </div>
-        
     </section>
     
     <section class='post_view'>
@@ -130,8 +123,6 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
     }
     ?>
 </article>
-
-    
 
 
 <?php echo element('footercontent', element('board', $view)); ?>
