@@ -34,7 +34,7 @@
 
             //control method
                 controls: true, //좌, 우 컨트롤 버튼 출력  여부
-                auto: true, // 자동 재생 활성화.
+                auto:false, // 자동 재생 활성화.
                 autoControls: false, //자동재생 제어버튼 활성화 단, auto모드 활성화필요
                 autoControlsCombine: false, // 재생시 중지버튼 활성화(toggle)
                 pause: 4000, // 자동 재생 시 각 슬라이드 별 노출 시간
@@ -356,15 +356,24 @@
 </article>
 
 <article class="main_top content01">
-
-    <div id="coin_data" >
+    <section id="coin_data">
         <?php 
         if (element('view_coin', $view)) { 
             echo element('view_coin', $view);
         }
         ?>
-    </div>
-    
+    </section>
+
+    <section class='ad main_ad'>
+        <img src='http://eventimg.auction.co.kr/md/p/pgeplus/0653C07293/130809_%ED%8C%B8%ED%8D%BC%EC%8A%A4_%EB%9D%A0%EB%B0%B0%EB%84%88.jpg'>
+    </section>
+
+    <section class='ad img_slide' id='event' style="visibility: hidden;">
+        <ul >
+            <?php echo banner('main_banner','order',3,0,'<li>','</li>'); ?>
+        </ul>
+    </section>
+
     <section id='hot_text'>
             <h2>
                 많이 본 글
@@ -384,7 +393,7 @@
                             $config = array(
                                 'skin' => 'basic2',
                                 'brd_id' => '',
-                                'limit' => 7,
+                                'limit' => 10,
                                 'length' =>50,
                                 'is_gallery' => '',
                                 'image_width' => '',
@@ -403,7 +412,7 @@
                             $config = array(
                                 'skin' => 'basic2',
                                 'brd_id' => '',
-                                'limit' => 7,
+                                'limit' => 10,
                                 'length' =>50,
                                 'is_gallery' => '',
                                 'image_width' => '',
@@ -421,7 +430,7 @@
                             $config = array(
                                 'skin' => 'basic2',
                                 'brd_id' => '',
-                                'limit' => 7,
+                                'limit' => 10,
                                 'length' => 20,
                                 'cache_minute' => 1,
                             );
@@ -431,12 +440,6 @@
                     </div>
                 </div>
             </div>
-    </section>
-
-    <section class='ad img_slide' id='event' style="visibility: hidden;">
-        <ul >
-            <?php echo banner('main_banner','order',3,0,'<li>','</li>'); ?>
-        </ul>
     </section>
 </article>
 
@@ -799,10 +802,14 @@
         </div>
     </section>
 
-    <section class="tab" id="event02">
+    <section >
+        
+    </section>
+
+<!--<section class="tab" id="event02">
         <h2>서 비 스<span><a href="<?php echo site_url('/board/event') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
         <ul class="menu_list">
-            <!-- <li class="active">이 벤 트</li> -->
+           <li class="active">이 벤 트</li> 
             <li class='active nomal_font02'>출 석 체 크</li>
             <li class='nomal_font02'>가 입 인 사</li>
         </ul>
@@ -900,7 +907,118 @@
                 }
                 ?>  
         </div>
+    </section> -->
+
+    <section class="tab" id="webtoon">
+        <h2>웹 툰<span><a href=""><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+
+        <ul class="menu_list">
+            <li class="active nomal_font02">????</li>
+            <li class='nomal_font02'>???</li>
+            <li class="nomal_font02">????</li>
+        </ul>
+
+        <div class="tab_cont">
+            <div>
+                 <table class="toon_li">
+                    <tr>
+                        <td>
+                            <a href="">
+                                <img src="/assets/images/toon01.png" alt="toon01">
+                            </a>
+                        </td>                        
+                    </tr>
+                </table>  
+            </div>
+
+            <div>
+                    <table class="tab_text"><tr>
+                        <tr>
+                            <td>02.</td>
+                            <td>3월29일 코인/경제이슈 정리</td>
+                            <td>03-29</td>
+                        </tr>                        
+                    </table>
+            </div>
+
+            <div>
+                <table class="tab_text"><tr>
+                    <tr>
+                        <td>03.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>                        
+                </table>
+            </div>
+
+            <div>
+                <table class="tab_text"><tr>
+                    <tr>
+                        <td>04.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>                        
+                </table>
+            </div>
+        </div>
     </section>
+
+    <section class="tab" id="notice">
+        <h2>서 비 스<span><a href=""><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+
+        <ul class="menu_list">
+            <li class="active nomal_font02">출석체크</li>
+            <li class='nomal_font02'>가입인사</li>
+            <li class="nomal_font02">공지사항</li>
+            <li class='nomal_font02'>FAQ</li>
+        </ul>
+
+        <div class="tab_cont">
+            <div>
+                    <table class="tab_text"><tr>
+                        <tr>
+                            <td>01.</td>
+                            <td>3월29일 코인/경제이슈 정리</td>
+                            <td>03-29</td>
+                        </tr>                        
+                    </table>
+            </div>
+
+            <div>
+                    <table class="tab_text"><tr>
+                        <tr>
+                            <td>02.</td>
+                            <td>3월29일 코인/경제이슈 정리</td>
+                            <td>03-29</td>
+                        </tr>                        
+                    </table>
+            </div>
+
+            <div>
+                <table class="tab_text"><tr>
+                    <tr>
+                        <td>03.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>                        
+                </table>
+            </div>
+
+            <div>
+                <table class="tab_text"><tr>
+                    <tr>
+                        <td>04.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>                        
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+    
 </article>
 
 <article class='main_mid03 content01'>

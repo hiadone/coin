@@ -184,7 +184,7 @@ textarea{
 		width: 100%;
 		height: 30px;
 		background-color: #1c446d;
-		margin-bottom: 60px;
+		margin-bottom: 20px;
 	}
 
 	.login_cont{
@@ -289,11 +289,6 @@ textarea{
 
 	.login_list li figcaption{
 		display: inline-block;
-	}
-
-/*ad css*/
-	.ad img{
-		width: 100%;
 	}
 
 /*ham css*/

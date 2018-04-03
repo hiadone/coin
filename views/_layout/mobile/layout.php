@@ -52,7 +52,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
     $(document).ready(function(){
         // ham 클릭시 ham_menu 이동 스크립트(메뉴 보여주기)
             $('header span:first-child img').click(function(){
-                 $('.cover_menu').css({'z-index':'200'});
+                 $('.cover_menu').css({'z-index':'1000000'});
                 $('.cover_menu .cover').animate({'opacity' : '0.5'} , 500);
                 $('.cover_menu .ham_cont').animate({'left' : '0'} , 700);
                 // $('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴
