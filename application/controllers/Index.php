@@ -44,7 +44,7 @@ class Index extends CB_Controller
     /**
      * 전체 메인 페이지입니다
      */
-    public function index($skin='index1')
+    public function empty($skin='index1')
     {
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_main_index';
