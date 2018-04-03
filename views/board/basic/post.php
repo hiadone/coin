@@ -23,13 +23,13 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 
 <article class="content03">
     <h4>
-        <?php echo element('brd_name',element('board', $view)); ?>
+        <?php echo element('brd_key',element('board', $view)) ==='live_news' && $this->input->get('post_notice')==='4' ? '인기뉴스' : element('brd_name',element('board', $view)); ?>
         <span class="small_font">비트코인에 관한 다양한 정보를 한번에 !!</span>
     </h4>
     
     <section class="post_title">
         <h3><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>
-        <?php echo show_alert_message($this->session->flashdata('message'), '<div class="alert alert-auto-close alert-dismissible alert-info"><button type="button" class="close alertclose" >&times;</button>', '</div>'); ?>
+        
         <ul>
             <li><b>조 회 수</b> : <?php echo number_format(element('post_hit', element('post', $view))); ?></li>
             <li class='small_font'>|</li>
@@ -39,38 +39,12 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <li class='small_font'>|</li>
             <li><b>댓 글</b><span>[<?php echo number_format(element('post_comment_count', element('post', $view))); ?>]</span></li>
         </ul>
+        <?php echo show_alert_message($this->session->flashdata('message'), '<div class="mt30 alert alert-auto-close alert-dismissible alert-info">', '</div>'); ?>
     </section>
-
+    
     <span></span>
 
-    <?php if (element('link_count', $view) > 0 OR element('file_download_count', $view) > 0) { ?>
-    <section class='post_link'>
-        <?php
-        if (element('file_download_count', $view) > 0) {
-            foreach (element('file_download', $view) as $key => $value) {
-                ?>
-                <p>
-                   <i class="fa fa-download"></i> <a href="javascript:file_download('<?php echo element('download_link', $value); ?>')"><?php echo html_escape(element('pfi_originname', $value)); ?>(<?php echo byte_format(element('pfi_filesize', $value)); ?>)</a> <span class="time"><i class="fa fa-clock-o"></i> <?php echo display_datetime(element('pfi_datetime', $value), 'full'); ?></span>
-               </p>
-               <?php
-           }
-       }
-       if (element('link_count', $view) > 0) {
-        foreach (element('link', $view) as $key => $value) {
-            ?>
-            <p>
-                <i class="fa fa-link"></i> <a href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a>
-                <?php if (element('show_url_qrcode', element('board', $view))) { ?>
-                <span class="url-qrcode"  data-qrcode-url="<?php echo urlencode(element('pln_url', $value)); ?>"><i class="fa fa-qrcode"></i></span>
-                <?php } ?>
-
-            </p>
-            <?php
-        }
-        }
-        ?>
-    </section>
-    <?php } ?>
+   
 
     <section class='post_area'>
         <div class="contents-view">
@@ -90,8 +64,48 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <div id="post-content"><?php echo element('content', element('post', $view)); ?></div>
             <!-- 본문 내용 끝 -->
         </div>
+
+         <?php if (element('link_count', $view) > 0 OR element('file_download_count', $view) > 0) { ?>
+        <div class='post_link'>
+            <?php
+            if (element('file_download_count', $view) > 0) {
+                foreach (element('file_download', $view) as $key => $value) {
+                    ?>
+                    <p>
+                       <i class="fa fa-download"></i> <a href="javascript:file_download('<?php echo element('download_link', $value); ?>')"><?php echo html_escape(element('pfi_originname', $value)); ?>(<?php echo byte_format(element('pfi_filesize', $value)); ?>)</a> <span class="time"><i class="fa fa-clock-o"></i> <?php echo display_datetime(element('pfi_datetime', $value), 'full'); ?></span>
+                   </p>
+                   <?php
+               }
+           }
+            if (element('link_count', $view) > 0) {
+                foreach (element('link', $view) as $key => $value) {
+                ?>
+                    <p>
+                        <i class="fa fa-link"></i> <a href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a>
+                        <?php if (element('show_url_qrcode', element('board', $view))) { ?>
+                        <span class="url-qrcode"  data-qrcode-url="<?php echo urlencode(element('pln_url', $value)); ?>"><i class="fa fa-qrcode"></i></span>
+                        <?php } ?>
+
+                    </p>
+                <?php
+                }
+            }
+            ?>
+        </div>
+        <?php } ?>
     </section>
     
+    
+    
+     <script type="text/javascript">
+    //<![CDATA[
+    function file_download(link) {
+        <?php if (element('point_filedownload', element('board', $view)) < 0) { ?>if ( ! confirm("파일을 다운로드 하시면 포인트가 차감(<?php echo number_format(element('point_filedownload', element('board', $view))); ?>점)됩니다.\n\n포인트는 게시물당 한번만 차감되며 다음에 다시 다운로드 하셔도 중복하여 차감하지 않습니다.\n\n그래도 다운로드 하시겠습니까?")) { return; }<?php }?>
+        document.location.href = link;
+    }
+    //]]>
+    </script>
+
     <section class='post_view'>
         <ul>
             <?php if (element('prev_post', $view)) { ?>

@@ -7,10 +7,8 @@
         <tr class="success">
             <th>이미지</th>
             <th>상품명</th>
-            <th>총수량</th>
-            <th>판매가</th>
-            <th>소계</th>
-            <th>다운로드가능기간</th>
+            
+            
         </tr>
     </thead>
     <tbody>
@@ -23,7 +21,7 @@
             <td><a href="<?php echo element('item_url', $result); ?>" title="<?php echo html_escape(element('cit_name', $result)); ?>"><img src="<?php echo thumb_url('cmallitem', element('cit_file_1', $result), 60, 60); ?>" class="thumbnail" style="margin:0;width:60px;height:60px;" alt="<?php echo html_escape(element('cit_name', $result)); ?>" title="<?php echo html_escape(element('cit_name', $result)); ?>" /></a></td>
             <td>
                 <a href="<?php echo element('item_url', $result); ?>" title="<?php echo html_escape(element('cit_name', $result)); ?>"><?php echo html_escape(element('cit_name', $result)); ?></a>
-                <ul class="cmall-options">
+                <ul class="cmall-options" style="display:none;">
                 <?php
                 $total_num = 0;
                 $total_price = 0;
@@ -38,10 +36,8 @@
                 ?>
                 </ul>
             </td>
-            <td><?php echo number_format($total_num); ?></td>
-            <td><?php echo number_format(element('cit_price', $result)); ?></td>
-            <td><?php echo number_format($total_price); ?><input type="hidden" name="total_price[<?php echo element('cit_id', $result); ?>]" value="<?php echo $total_price; ?>" /></td>
-            <td><?php echo (element('cit_download_days', $result)) ? '구매후 ' . element('cit_download_days', $result) . '일간 ' : '기간제한없음'; ?></td>
+            
+           
         </tr>
     <?php
         }
@@ -56,8 +52,17 @@
     ?>
     </tbody>
 </table>
+
 <div class="well well-sm mt20">
-    결제해야할 금액 <div class="total_price"><span class="checked_price"><?php echo number_format($total_price_sum); ?></span> 원</div>
+    사용가능 포인트 <div class="total_price"><span class="checked_price"><?php echo number_format($total_price_sum); ?></span> 점</div>
+</div>
+
+<div class="well well-sm mt20">
+    결제해야할 포인트 <div class="total_price"><span class="checked_price"><?php echo number_format($total_price_sum); ?></span> 점</div>
+</div>
+
+<div class="well well-sm mt20">
+    유효기간 <div class="total_price"><?php echo (element('cit_download_days', $result)) ? '구매후 ' . element('cit_download_days', $result) . '일간 ' : '기간제한없음'; ?></div>
 </div>
 
 <?php
@@ -74,6 +79,8 @@ if ($this->cbconfig->item('use_payment_pg') && element('use_pg', $view)) {
     <input type="hidden" name="unique_id" value="<?php echo element('unique_id', $view); ?>" />
     <input type="hidden" name="total_price_sum" id="total_price_sum" value="<?php echo $total_price_sum; ?>" />
     <input type="hidden" name="good_mny" value="0" />
+    <input type="radio" name="pay_type" value="bank" id="pay_type_bank" checked style="display:none;" />
+    <input type="text" name="order_deposit" id="order_deposit" class="form-control px100" value="0" />
 
     <div class="market-order-person">
         <p class="market-title mt20">구매하시는 분</p>
@@ -95,75 +102,23 @@ if ($this->cbconfig->item('use_payment_pg') && element('use_pg', $view)) {
                 <input type="text" name="mem_phone" class="input" value="<?php echo $this->member->item('mem_phone'); ?>" />
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label">하고싶은 말</label>
-            <div>
-                <textarea name="cor_content" class="input per90" cols="5"></textarea>
-            </div>
-        </div>
-        <p class="market-title mt20">결제정보</p>
-        <div class="form-group">
-            <label class="col-lg-2 control-label">총 주문금액</label>
-            <div class="col-lg-9">
-                <strong><?php echo number_format($total_price_sum); ?>원</strong>
-                <?php
-                if ($this->depositconfig->item('use_deposit')) {
-                ?>
-                    <br /><br />
-                    보유<?php echo html_escape($this->depositconfig->item('deposit_name')); ?> : (<?php echo number_format($this->member->item('total_deposit') + 0);?> <?php echo html_escape($this->depositconfig->item('deposit_unit')); ?>)중
-                    최대
-                    <?php
-                    $max_deposit = min(($this->member->item('total_deposit') +0), $total_price_sum);
-                    echo number_format($max_deposit);
-                    echo html_escape($this->depositconfig->item('deposit_unit'));
-                    ?>
-                    까지 사용 가능<br /><br />
-                    <input type="hidden" name="max_deposit" id="max_deposit" value="<?php echo $max_deposit; ?>" />
-                    사용<?php echo html_escape($this->depositconfig->item('deposit_name')); ?> : <input type="text" name="order_deposit" id="order_deposit" class="input" value="0" /> 원
-                <?php } else { ?>
-                    <input type="hidden" name="order_deposit" id="order_deposit" class="input" value="0" />
-                <?php }?>
-            </div>
-        </div>
+        
+        
+        <?php echo form_close();?>
 
-        <div class="feedback-box mb20">
-            <?php if ($this->cbconfig->item('use_payment_bank')) { ?>
-                <label class="radio-inline" for="pay_type_bank" >
-                    <input type="radio" name="pay_type" value="bank" id="pay_type_bank" /> 무통장입금
-                </label>
-            <?php } ?>
-            <?php if ($this->cbconfig->item('use_payment_card')) { ?>
-                <label class="radio-inline" for="pay_type_card" >
-                    <input type="radio" name="pay_type" value="card" id="pay_type_card" /> 신용카드
-                </label>
-            <?php } ?>
-            <?php if ($this->cbconfig->item('use_payment_realtime')) { ?>
-                <label class="radio-inline" for="pay_type_realtime" >
-                    <input type="radio" name="pay_type" value="realtime" id="pay_type_realtime" /> 계좌이체
-                </label>
-            <?php } ?>
-            <?php if ($this->cbconfig->item('use_payment_vbank')) { ?>
-                <label class="radio-inline" for="pay_type_vbank" >
-                    <input type="radio" name="pay_type" value="vbank" id="pay_type_vbank" /> 가상계좌
-                </label>
-            <?php } ?>
-            <?php if ($this->cbconfig->item('use_payment_phone')) { ?>
-                <label class="radio-inline" for="pay_type_phone" >
-                    <input type="radio" name="pay_type" value="phone" id="pay_type_phone" /> 휴대폰결제
-                </label>
-            <?php } ?>
-        </div>
+         <p class="market-title mt20">상품 상세설명</p>
+         <ul>
+            <li>
+                
+                상품 정보 
+            </li>
+        </ul>
+
+         <?php
+                if ($this->cbconfig->item('use_payment_pg')) {
+                    $this->load->view('paymentlib/' . $this->cbconfig->item('use_payment_pg') . '/' . element('form3name', $view), $sform);
+                } ?>
     </div>
-    <div class="alert alert-success bank-info">
-        <div><strong>계좌안내</strong></div>
-        <div><?php echo nl2br($this->cbconfig->item('payment_bank_info')); ?> </div>
-    </div>
-<?php
-if ($this->cbconfig->item('use_payment_pg')) {
-    $this->load->view('paymentlib/' . $this->cbconfig->item('use_payment_pg') . '/' . element('form3name', $view), $sform);
-}
-echo form_close();
-?>
 
 <script type="text/javascript">
 //<![CDATA[

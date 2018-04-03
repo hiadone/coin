@@ -479,6 +479,160 @@ class Postact extends CB_Controller
 
     }
 
+    /**
+     * 첨부파일 다운로드 하기
+     */
+    public function event_download($file_id = 0)
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_postact_download';
+        $this->load->event($eventname);
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('before', $eventname);
+
+        $file_id = (int) $file_id;
+        if (empty($file_id) OR $file_id < 1) {
+            show_404();
+        }
+
+        $this->load->model(array('Post_file_model', 'Comment_model', 'Like_model'));
+
+        $file = $this->Post_file_model->get_one($file_id);
+
+        if ( ! element('pfi_id', $file)) {
+            show_404();
+        }
+        if ( ! $this->session->userdata('post_id_' . element('post_id', $file))) {
+            alert('해당 게시물에서만 접근 가능합니다');
+        }
+        $post = $this->Post_model->get_one(element('post_id', $file));
+        $board = $this->board->item_all(element('brd_id', $post));
+
+        $is_admin = $this->member->is_admin(
+            array(
+                'board_id' => element('brd_id', $board),
+                'group_id' => element('bgr_id', $board),
+            )
+        );
+
+        $alertmessage = $this->member->is_member()
+            ? '회원님은 다운로드 할 수 있는 권한이 없습니다'
+            : '비회원은 다운로드할 수 있는 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오';
+        $check = array(
+            'group_id' => element('bgr_id', $board),
+            'board_id' => element('brd_id', $board),
+        );
+        $this->accesslevel->check(
+            element('access_download', $board),
+            element('access_download_level', $board),
+            element('access_download_group', $board),
+            $alertmessage,
+            $check
+        );
+
+        $mem_id = (int) $this->member->item('mem_id');
+
+        if (element('comment_to_download', $board) && $is_admin === false
+            && $mem_id && $mem_id !== (int) element('mem_id', $post)) {
+            $where = array(
+                'post_id' => element('post_id', $post),
+                'mem_id' => $mem_id,
+            );
+            $cmt_count = $this->Comment_model->count_by($where);
+            if ($cmt_count === 0) {
+                alert('댓글을 작성하신 후에 다운로드가 가능합니다.\\n댓글을 먼저 입력해주세요');
+                return false;
+            }
+        }
+
+        if (element('like_to_download', $board) && $is_admin === false
+            && $mem_id && $mem_id !== (int) element('mem_id', $post)) {
+            $where = array(
+                'target_id' => element('post_id', $post),
+                'target_type' => 1,
+                'mem_id' => $mem_id,
+            );
+            $like_count = $this->Like_model->count_by($where);
+            if ($like_count === 0) {
+                alert('추천을 하신 후에 다운로드가 가능합니다.\\n이 게시글을 먼저 추천해주세요');
+                return false;
+            }
+        }
+
+        if ($mem_id !== (int) element('mem_id', $post) && element('use_point', $board)) {
+
+            $Ymd = floor(microtime(true));
+            $point = $this->point->insert_point(
+                $mem_id,
+                element('point_filedownload', $board),
+                element('board_name', $board) . ' ' . element('post_id', $file) . ' 파일 다운로드',
+                'filedownload'.$Ymd,
+                $file_id,
+                '파일 다운로드'
+            );
+
+            if (element('point_filedownload', $board) < 0
+                && $point < 0
+                && $this->cbconfig->item('block_download_zeropoint')) {
+                $this->point->delete_point(
+                    $mem_id,
+                    'filedownload'.$Ymd,
+                    $file_id,
+                    '파일 다운로드'
+                );
+                alert('회원님은 포인트가 부족하므로 다운로드하실 수 없습니다. 다운로드시 ' . (element('point_filedownload', $board) * -1) . ' 포인트가 차감됩니다');
+                return false;
+            }
+            $point = $this->point->insert_point(
+                element('mem_id', $post),
+                element('point_filedownload_uploader', $board),
+                element('board_name', $board) . ' ' . element('post_id', $file) . ' 파일 다운로드',
+                'file_uploader',
+                $file_id,
+                '파일 다운로드 업로더 - ' . $mem_id
+            );
+        }
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('step1', $eventname);
+
+        if ( ! $this->session->userdata('post_file_download_' . element('pfi_id', $file))) {
+
+            $this->session->set_userdata(
+                'post_file_download_' . element('pfi_id', $file),
+                '1'
+            );
+
+            if (element('use_download_log', $board)) {
+                $insertdata = array(
+                    'pfi_id' => element('pfi_id', $file),
+                    'post_id' => element('post_id', $file),
+                    'brd_id' => element('brd_id', $file),
+                    'mem_id' => $mem_id,
+                    'pfd_datetime' => cdate('Y-m-d H:i:s'),
+                    'pfd_ip' => $this->input->ip_address(),
+                    'pfd_useragent' => $this->agent->agent_string(),
+                );
+                $this->load->model('Post_file_download_log_model');
+                $this->Post_file_download_log_model->insert($insertdata);
+            }
+            $this->Post_file_model->update_plus(element('pfi_id', $file), 'pfi_download', 1);
+
+        }
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('after', $eventname);
+
+        $this->load->helper('download');
+
+        // Read the file's contents
+        $data = file_get_contents(config_item('uploads_dir') . '/post/' . element('pfi_filename', $file));
+        $name = element('pfi_originname', $file);
+        force_download($name, $data);
+
+    }
 
     /**
      * 링크 클릭 하기
@@ -3825,6 +3979,223 @@ class Postact extends CB_Controller
         
 
         $result = array('success' => '선택된 항목이 삭제되었습니다');
+        exit(json_encode($result));
+
+    }
+
+    public function event_status_update($elh_id = 0, $flag = 0, $brd_key='')
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_postact_post_extra';
+        $this->load->event($eventname);
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('before', $eventname);
+
+        $result = array();
+        $this->output->set_content_type('application/json');
+
+        $elh_id = (int) $elh_id;
+        if (empty($elh_id) OR $elh_id < 1) {
+            $result = array('error' => '잘못된 접근입니다');
+            exit(json_encode($result));
+        }
+        $flag = (int) $flag;
+
+        
+        $this->load->model('Event_list_history_model');
+        
+
+        
+
+        $select = 'elh_id';
+
+        
+        $post = $this->Event_list_history_model->get_one($elh_id, $select);
+        
+
+        
+
+        if ( ! element('elh_id', $post)) {
+            $result = array('error' => '존재하지 않는 항목입니다');
+            exit(json_encode($result));
+        }
+
+
+        $is_admin = $this->member->is_admin();
+
+        if ($is_admin === false && $this->member->item('mem_level') < 5) {
+            $result = array('error' => '접근권한이 없습니다');
+            exit(json_encode($result));
+        }
+
+        
+        $postupdate = array(
+            'elh_status' => $flag,
+            
+         );
+        
+
+        
+        $this->Event_list_history_model->update($elh_id,$postupdate);
+        
+        
+
+        if($flag===1) $success = '유효 처리하셨습니다' ;
+        else $success = '무효 처리하셨습니다' ;
+        
+        $result = array('success' => $success);
+        exit(json_encode($result));
+
+    }
+
+    public function event_memo_update($elh_id = 0, $elh_memo = '', $brd_key='')
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_postact_post_extra';
+        $this->load->event($eventname);
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('before', $eventname);
+
+        $result = array();
+        $this->output->set_content_type('application/json');
+
+        $elh_id = (int) $elh_id;
+        if (empty($elh_id) OR $elh_id < 1) {
+            $result = array('error' => '잘못된 접근입니다');
+            exit(json_encode($result));
+        }
+
+
+        
+        $this->load->model('Event_list_history_model');
+        
+        
+
+        $select = 'elh_id';
+
+        
+        $post = $this->Event_list_history_model->get_one($elh_id, $select);
+        
+
+        
+
+        if ( ! element('elh_id', $post)) {
+            $result = array('error' => '존재하지 않는 항목입니다');
+            exit(json_encode($result));
+        }
+
+
+        $is_admin = $this->member->is_admin();
+
+        if ($is_admin === false &&  $this->member->item('mem_level') < 5) {
+            $result = array('error' => '접근권한이 없습니다');
+            exit(json_encode($result));
+        }
+
+        
+        $postupdate = array(
+            'elh_memo' => urldecode($elh_memo),
+            
+         );
+
+        
+        $this->Event_list_history_model->update($elh_id,$postupdate);
+        
+        
+
+        
+        
+        
+
+    }
+
+    /**
+     * 목록에서 여러 게시물 비밀글 설정 및 해제 하기
+     */
+    public function event_multi_status_update($flag = 0, $brd_key = '')
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_postact_post_multi_secret';
+        $this->load->event($eventname);
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('before', $eventname);
+
+        $result = array();
+        $this->output->set_content_type('application/json');
+
+        $post_ids = $this->input->post('chk_post_id');
+        // $elh_memos = $this->input->post('elh_memo');
+        if (empty($post_ids)) {
+            $result = array('error' => '선택된 항목이 없습니다.');
+            exit(json_encode($result));
+        }
+        $flag = (int) $flag;
+
+        
+        $this->load->model('Event_list_history_model');
+        
+        
+
+        $select = 'elh_id';
+        
+
+
+        foreach ($post_ids as $elh_id) {
+            $elh_id = (int) $elh_id;
+            if (empty($elh_id) OR $elh_id < 1) {
+                $result = array('error' => '잘못된 접근입니다');
+                exit(json_encode($result));
+            }
+
+            $select = 'elh_id';
+
+            
+            $post = $this->Event_list_history_model->get_one($elh_id, $select);
+            
+
+            
+
+            if ( ! element('elh_id', $post)) {
+                $result = array('error' => '존재하지 않는 항목입니다');
+                exit(json_encode($result));
+            }
+
+            
+            $is_admin = $this->member->is_admin();
+
+            if ($is_admin === false && $this->member->item('mem_level') < 5) {
+                $result = array('error' => '접근권한이 없습니다');
+                exit(json_encode($result));
+            }
+
+            
+
+            $postupdate = array(
+                'elh_status' => $flag,
+                // 'elh_memo' => $elh_memos[$elh_id],
+            );
+
+            
+            $this->Event_list_history_model->update($elh_id,$postupdate);
+            
+
+            
+        }
+
+        
+        
+
+        
+        if($flag===1) $success = '유효 처리하셨습니다' ;
+        else $success = '무효 처리하셨습니다' ;
+
+        $result = array('success' => $success);
         exit(json_encode($result));
 
     }

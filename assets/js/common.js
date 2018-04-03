@@ -970,4 +970,57 @@ if (typeof(COMMON_JS) === 'undefined') {
                 element_layer.style.display = 'block';
         }
     }
+
+
+    function post_action_event(action_type, action_id, flag, brd_key) {
+        var href;
+        if ( action_type == '') {
+            return false;
+        }
+        if ( action_id == '') {
+            return false;
+        }
+        var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
+
+        
+        var t = $('#mlh_memo_'+action_id).val().replace(regExp, "");
+        
+        if(flag==0) 
+            href = cb_url + '/postact/' + action_type + '/' + action_id + '/' + encodeURIComponent(t) + '/' + brd_key;
+        else 
+            href = cb_url + '/postact/' + action_type + '/' + action_id + '/' + flag + '/' + brd_key;
+        
+        
+
+
+        var $that = $(this);
+        $.ajax({
+            url : href,
+            type : 'post',
+            data : {
+             csrf_test_name: cb_csrf_hash
+            },
+            dataType : 'json',
+            success : function(data) {
+                if (data.error) {
+                    alert(data.error);
+                    document.location.reload();
+                    return false;
+                } else if (data.success) {
+                    alert(data.success);
+                    if (data.url) {
+                        document.location.href=data.url;
+                        return false;
+                    } else {
+                        document.location.reload();
+                        return false;
+                    }
+                } 
+            },
+            complete : function (response) {
+                document.location.reload();
+            }
+
+        });
+    }
 }

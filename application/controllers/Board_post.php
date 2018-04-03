@@ -469,7 +469,7 @@ class Board_post extends CB_Controller
                         $value['thumb_image_url'] = thumb_url('post', element('pfi_filename', $value), $image_width);
                         $view['view']['file_image'][] = $value;
                     } else {
-                        $value['download_link'] = site_url('postact/download/' . element('pfi_id', $value));
+                        $value['download_link'] = site_url('postact/event_download/' . element('pfi_id', $value));
                         $view['view']['file_download'][] = $value;
                         if (element('use_autoplay', $board) && in_array(element('pfi_type', $value), $play_extension)) {
                             $file_player .= $this->videoplayer->get_jwplayer(site_url(config_item('uploads_dir') . '/post/' . element('pfi_filename', $value)), $image_width);
@@ -892,7 +892,15 @@ class Board_post extends CB_Controller
             : element('comment_default_content', $board);
 
         if ($show_list_from_view) {
-            $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1,$post_id);
+
+
+            if(element('brd_key', $board) === 'event'){
+                $view['view']['list'] = $list = $this->get_event_list_history(element('brd_key', $board), element('post_id', $post),$this->input->get('eventstatus',null,0));
+                $view['view']['api_list']  = $this->get_event_list_history_api_flag(element('brd_key', $board), element('post_id', $post));
+
+
+            } else 
+                $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1,$post_id);
         }
 
 
@@ -958,6 +966,7 @@ class Board_post extends CB_Controller
             $use_mobile_sidebar = element('board_mobile_sidebar', $board) ? element('board_mobile_sidebar', $board) : $this->cbconfig->item('mobile_sidebar_board');
             $skin_dir = element('board_skin', $board) ? element('board_skin', $board) : $this->cbconfig->item('skin_board');
             $mobile_skin_dir = element('board_mobile_skin', $board) ? element('board_mobile_skin', $board) : $this->cbconfig->item('mobile_skin_board');
+
             $layoutconfig = array(
                 'path' => 'board',
                 'layout' => 'layout',
@@ -987,6 +996,10 @@ class Board_post extends CB_Controller
                         ? $this->cbconfig->item('mobile_skin_default')
                         : $this->cbconfig->item('skin_default');
                 }
+
+                if(element('brd_key', $board)==='event')
+                    $list_skin_file='list_show_list_'.element('brd_key', $board);
+
                 $this->view = array(
                     element('view_skin_file', element('layout', $view)),
                     'board/' . $listskindir . '/' . $list_skin_file,
@@ -1622,5 +1635,208 @@ class Board_post extends CB_Controller
             
         );
         return $this->coin->all_price($config);
+    }
+
+
+    public function get_event_list_history($brd_key,$post_id,$eventstatus=0)
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_admin_stat_registerlog_index';
+        $this->load->event($eventname);
+
+        $view = array();
+        $view['view'] = array();
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        /**
+         * 페이지에 숫자가 아닌 문자가 입력되거나 1보다 작은 숫자가 입력되면 에러 페이지를 보여줍니다.
+         */
+
+
+        $this->load->model('Event_list_history_model');
+
+        $param =& $this->querystring;
+        $page = (((int) $this->input->get('page')) > 0) ? ((int) $this->input->get('page')) : 1;
+        $findex = $this->input->get('findex') ? $this->input->get('findex') : $this->Event_list_history_model->primary_key;
+        $forder = $this->input->get('forder', null, 'desc');
+        $sfield = $this->input->get('sfield', null, '');
+        $skeyword = $this->input->get('skeyword', null, '');
+
+        $per_page = 20;
+        $offset = ($page - 1) * $per_page;
+        $where = array();
+        
+        $where['event_list_history.post_id'] = $post_id;
+        if(!empty($eventstatus)) $where['elh_status'] = $eventstatus;
+        
+        
+
+        /**
+         * 게시판 목록에 필요한 정보를 가져옵니다.
+         */
+
+        
+
+        $this->Event_list_history_model->allow_search_field = array('elh_name','elh_mobileno'); // 검색이 가능한 필드
+        //$this->{$this->modelname}->search_field_equal = array('msh_name','msh_mobileno'); // 검색중 like 가 아닌 = 검색을 하는 필드
+        $this->Event_list_history_model->allow_order_field = array('elh_name'); // 정렬이 가능한 필드
+        $result = $this->Event_list_history_model
+            ->get_admin_list($per_page, $offset, $where, '', $findex, $forder, $sfield, $skeyword,'');
+        $list_num = $result['total_rows'] - ($page - 1) * $per_page;
+
+        if (element('list', $result)) {
+
+            foreach (element('list', $result) as $key => $val) {
+
+                // $board = $this->board->item_all(element('brd_id', $val));
+
+
+                $result['list'][$key]['display_name'] = element('elh_name', $val);
+                $result['list'][$key]['display_datetime'] = display_datetime(element('elh_datetime', $val));
+                
+                $result['list'][$key]['num'] = $list_num--;
+                $result['list'][$key]['display_rst2_datetime'] = display_datetime(element('elh_rst2_date', $val));
+            }
+
+            
+        }
+
+        
+        $return['list_url'] = post_url($brd_key,$post_id);
+        
+
+        $return['data'] = $result;
+
+
+
+        /**
+         * primary key 정보를 저장합니다
+         */
+        $return['primary_key'] = $this->Event_list_history_model->primary_key;
+
+        /**
+         * 페이지네이션을 생성합니다
+         */
+        $config['base_url'] = post_url($brd_key,$post_id) . '?' . $param->replace('page');
+        $config['total_rows'] = $result['total_rows'];
+        $config['per_page'] = $per_page;
+        $this->pagination->initialize($config);
+        $return['paging'] = $this->pagination->create_links();
+        $return['page'] = $page;
+
+       
+
+        
+        return $return;
+    }
+
+    public function excel_event_list_history($brd_key,$post_id)
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_admin_member_members_excel';
+        $this->load->event($eventname);
+
+        $view = array();
+        $view['view'] = array();
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        $view['view']['is_admin'] = $is_admin = $this->member->is_admin();
+
+        $board = $this->_get_board($brd_key);
+
+        /**
+         * 페이지에 숫자가 아닌 문자가 입력되거나 1보다 작은 숫자가 입력되면 에러 페이지를 보여줍니다.
+         */
+        $this->load->model('Event_list_history_model');
+
+        $param =& $this->querystring;
+        $page = (((int) $this->input->get('page')) > 0) ? ((int) $this->input->get('page')) : 1;
+        $findex = $this->input->get('findex') ? $this->input->get('findex') : $this->Event_list_history_model->primary_key;
+        $forder = $this->input->get('forder', null, 'desc');
+        $sfield = $this->input->get('sfield', null, '');
+        $skeyword = $this->input->get('skeyword', null, '');
+
+        $where = array();
+        
+        $where['event_list_history.post_id'] = $post_id;
+        // $where['mlh_status'] = 1;
+
+        
+        $result = $this->Event_list_history_model
+            ->get_admin_list('', '', $where, '', $findex, $forder, $sfield, $skeyword);
+
+       if (element('list', $result)) {
+
+            foreach (element('list', $result) as $key => $val) {
+
+                // $board = $this->board->item_all(element('brd_id', $val));
+
+
+                $result['list'][$key]['display_name'] = element('elh_name', $val);
+                
+            }
+        }
+
+        $view['view']['data'] = $result;
+        
+
+        /**
+         * primary key 정보를 저장합니다
+         */
+        $view['view']['primary_key'] = $this->Event_list_history_model->primary_key;
+
+        $post = $this->Post_model->get_one($post_id);
+        
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+
+        $skin_dir = element('board_skin', $board) ? element('board_skin', $board) : 'basic';
+
+        // header('Content-type: application/vnd.ms-excel');
+        // header('Content-Disposition: attachment; filename='.element('post_title', $post).'_' . cdate('Y_m_d') . '.xls');
+        echo $this->load->view('/board/'.$skin_dir.'/excel_'.$brd_key, $view, true);
+    }
+
+    public function get_event_list_history_api_flag($brd_key,$post_id)
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_admin_stat_registerlog_index';
+        $this->load->event($eventname);
+
+        $view = array();
+        $view['view'] = array();
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        /**
+         * 페이지에 숫자가 아닌 문자가 입력되거나 1보다 작은 숫자가 입력되면 에러 페이지를 보여줍니다.
+         */
+
+
+        $this->load->model('Event_list_history_model');
+
+        
+        $where = array();
+        
+        $where['event_list_history.post_id'] = $post_id;
+        $where['elh_api_flag2'] = 0;
+
+        /**
+         * 게시판 목록에 필요한 정보를 가져옵니다.
+         */
+        
+        $result = $this->Event_list_history_model
+            ->get_admin_list('', '', $where);
+        $return['data'] = $result;
+        
+        return $return;
     }
 }

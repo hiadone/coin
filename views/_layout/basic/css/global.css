@@ -127,11 +127,15 @@ textarea{
 		box-sizing: border-box;
 		color: #5d5d5d;
 		font-family:'Jeju Gothic', sans-serif; 
-		cursor: pointer;
+		
 	}
 
 	nav li:nth-child(2n){
 		width: 40px;
+	}
+
+	nav li a{
+		padding:5px 0;
 	}
 
 /*head_search css*/

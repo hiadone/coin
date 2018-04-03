@@ -141,6 +141,7 @@ $param =& $this->querystring;
                             <section class="post_sear">
                                 <form class="navbar-form navbar-right" action="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>" onSubmit="return postSearch(this);">
                                     <input type="hidden" name="findex" value="<?php echo html_escape($this->input->get('findex')); ?>" />
+                                    <input type="hidden" name="post_notice" value="<?php echo html_escape($this->input->get('post_notice')); ?>" />
                                     <input type="hidden" name="category_id" value="<?php echo html_escape($this->input->get('category_id')); ?>" />
 
                                     <select class="normal_font" name="sfield">

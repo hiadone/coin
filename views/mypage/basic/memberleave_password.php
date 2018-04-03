@@ -27,7 +27,7 @@
                 </b>
             </p>
             <span>비밀번호</span>
-            <input type="password" class="input px150" id="mem_password" name="mem_password" />
+            <!-- <input type="password" class="input px150" id="mem_password" name="mem_password" /> -->
             </div>
             <button type="submit">탈 퇴 하 기</button>
             <?php echo form_close(); ?>

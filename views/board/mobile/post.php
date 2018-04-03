@@ -35,7 +35,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <table class="small_font post-view">
                 <tr>
                     <td>조회수 : <?php echo number_format(element('post_hit', element('post', $view))); ?></td>
-                    <td>2017.00.00</td>
+                    <td><?php echo element('display_datetime', element('post', $view)); ?></td>
                     <td><?php echo element('display_name', element('post', $view)); ?></td>
                 </tr>
             </table>

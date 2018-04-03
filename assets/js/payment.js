@@ -134,11 +134,11 @@ if (typeof(PAYMENT_JS) === 'undefined') {
             return false;
         }
 
-        if( !phone_regexp.test(mem_phone_val) ){
-            alert("휴대폰 번호를 올바르게 입력해 주세요.");
-            f.mem_phone.select();
-            return false;
-        }
+        // if( !phone_regexp.test(mem_phone_val) ){
+        //     alert("휴대폰 번호를 올바르게 입력해 주세요.");
+        //     f.mem_phone.select();
+        //     return false;
+        // }
 
         if (ptype === 'deposit') {
             var money_val = document.getElementsByName('money_value');
@@ -161,7 +161,8 @@ if (typeof(PAYMENT_JS) === 'undefined') {
         }
 
         var pay_type = document.getElementsByName('pay_type');
-        var pay_type_check = false;
+        var pay_type_check = true;
+        
         for (i = 0; i < pay_type.length; i++) {
             if (pay_type[i].checked) {
                 pay_type_check = true;

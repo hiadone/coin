@@ -86,7 +86,7 @@
                     <th class='nomal_font02'>닉 네 임</th>
                     <td><?php echo $this->member->item('mem_nickname') ?></td>
                     <th class='nomal_font02'>작성일</th>
-                    <td><?php echo date('Y.m.d') ?></td>
+                    <td><?php echo element('post_datetime', element('post', $view)) ? element('post_datetime', element('post', $view)) : date('Y.m.d') ?></td>
                 </tr>
                 <?php
                 if (element('extra_content', $view)) {
