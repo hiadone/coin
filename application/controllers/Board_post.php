@@ -48,84 +48,89 @@ class Board_post extends CB_Controller
         $eventname = 'event_board_post_lists';
         $this->load->event($eventname);
 
-        if (empty($brd_key)) {
-            show_404();
-        }
-
-        $view = array();
-        $view['view'] = array();
-
-        // 이벤트가 존재하면 실행합니다
-        $view['view']['event']['before'] = Events::trigger('before', $eventname);
-
-        $view['view']['list'] = $list = $this->_get_list($brd_key);
-        $view['view']['board_key'] = element('brd_key', element('board', $list));
-
-        $view['view']['view_coin'] = $this->get_coin_data();
-
-        $where = array(
-            'bgr_id' => element('bgr_id', element('board', $list)),
-            'brd_search' => 1,
-        );
-        $board_id = $this->Board_model->get_board_list($where);
-
-        $board_list = array();
-
-
-        if ($board_id && is_array($board_id)) {
-            foreach ($board_id as $key => $val) {
-                
-                if($key===1 && element('bgr_id', element('board', $list))==='4') $board_list[]=array("brd_key"=>"attendance","board_name"=>"출석체크");
-                
-                $board_list[] = $this->board->item_all(element('brd_id', $val));
-                if($key===0 && element('bgr_id', element('board', $list))==='6') $board_list[]=array("brd_key"=>"live_news","board_name"=>"인기뉴스","post_notice"=>"4");
+        if($brd_key!=='post_hit'){
+            if (empty($brd_key)) {
+                show_404();
             }
-        }
 
-        $view['view']['board_list'] = $board_list;
-        // stat_count_board ++
-        $this->_stat_count_board(element('brd_id', element('board', $list)));
+            $view = array();
+            $view['view'] = array();
 
-        $view['view']['is_admin'] = $is_admin = $this->member->is_admin(
-            array(
-                'board_id' => element('brd_id', element('board', $list)),
-                'group_id' => element('bgr_id', element('board', $list)),
-            )
-        );
+            // 이벤트가 존재하면 실행합니다
+            $view['view']['event']['before'] = Events::trigger('before', $eventname);
 
-        // 이벤트가 존재하면 실행합니다
-        $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+            $view['view']['list'] = $list = $this->_get_list($brd_key);
+            $view['view']['board_key'] = element('brd_key', element('board', $list));
 
-        /**
-         * 레이아웃을 정의합니다
-         */
-        $page_title = $this->cbconfig->item('site_meta_title_board_list');
-        $meta_description = $this->cbconfig->item('site_meta_description_board_list');
-        $meta_keywords = $this->cbconfig->item('site_meta_keywords_board_list');
-        $meta_author = $this->cbconfig->item('site_meta_author_board_list');
-        $page_name = $this->cbconfig->item('site_page_name_board_list');
+            $view['view']['view_coin'] = $this->get_coin_data();
 
-        $searchconfig = array(
-            '{게시판명}',
-        );
-        $replaceconfig = array(
-            element('board_name', element('board', $list)),
-        );
+            $where = array(
+                'bgr_id' => element('bgr_id', element('board', $list)),
+                'brd_search' => 1,
+            );
+            $board_id = $this->Board_model->get_board_list($where);
 
-        $page_title = str_replace($searchconfig, $replaceconfig, $page_title);
-        $meta_description = str_replace($searchconfig, $replaceconfig, $meta_description);
-        $meta_keywords = str_replace($searchconfig, $replaceconfig, $meta_keywords);
-        $meta_author = str_replace($searchconfig, $replaceconfig, $meta_author);
-        $page_name = str_replace($searchconfig, $replaceconfig, $page_name);
+            $board_list = array();
 
-        $list_skin_file = element('use_gallery_list', element('board', $list)) ? 'gallerylist' : 'list';
-        $layout_dir = element('board_layout', element('board', $list)) ? element('board_layout', element('board', $list)) : $this->cbconfig->item('layout_board');
-        $mobile_layout_dir = element('board_mobile_layout', element('board', $list)) ? element('board_mobile_layout', element('board', $list)) : $this->cbconfig->item('mobile_layout_board');
-        $use_sidebar = element('board_sidebar', element('board', $list)) ? element('board_sidebar', element('board', $list)) : $this->cbconfig->item('sidebar_board');
-        $use_mobile_sidebar = element('board_mobile_sidebar', element('board', $list)) ? element('board_mobile_sidebar', element('board', $list)) : $this->cbconfig->item('mobile_sidebar_board');
-        $skin_dir = element('board_skin', element('board', $list)) ? element('board_skin', element('board', $list)) : $this->cbconfig->item('skin_board');
-        $mobile_skin_dir = element('board_mobile_skin', element('board', $list)) ? element('board_mobile_skin', element('board', $list)) : $this->cbconfig->item('mobile_skin_board');
-        $layoutconfig = array(
+
+            if ($board_id && is_array($board_id)) {
+                foreach ($board_id as $key => $val) {
+                    
+                    if($key===1 && element('bgr_id', element('board', $list))==='4') $board_list[]=array("brd_key"=>"attendance","board_name"=>"출석체크");
+                    
+                    $board_list[] = $this->board->item_all(element('brd_id', $val));
+                    if($key===0 && element('bgr_id', element('board', $list))==='6') $board_list[]=array("brd_key"=>"live_news","board_name"=>"인기뉴스","post_notice"=>"4");
+                }
+            }
+
+            $view['view']['board_list'] = $board_list;
+            // stat_count_board ++
+            $this->_stat_count_board(element('brd_id', element('board', $list)));
+
+            $view['view']['is_admin'] = $is_admin = $this->member->is_admin(
+                array(
+                    'board_id' => element('brd_id', element('board', $list)),
+                    'group_id' => element('bgr_id', element('board', $list)),
+                )
+            );
+
+            // 이벤트가 존재하면 실행합니다
+            $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+
+            /**
+             * 레이아웃을 정의합니다
+             */
+            $page_title = $this->cbconfig->item('site_meta_title_board_list');
+            $meta_description = $this->cbconfig->item('site_meta_description_board_list');
+            $meta_keywords = $this->cbconfig->item('site_meta_keywords_board_list');
+            $meta_author = $this->cbconfig->item('site_meta_author_board_list');
+            $page_name = $this->cbconfig->item('site_page_name_board_list');
+
+            $searchconfig = array(
+                '{게시판명}',
+            );
+            $replaceconfig = array(
+                element('board_name', element('board', $list)),
+            );
+
+            $page_title = str_replace($searchconfig, $replaceconfig, $page_title);
+            $meta_description = str_replace($searchconfig, $replaceconfig, $meta_description);
+            $meta_keywords = str_replace($searchconfig, $replaceconfig, $meta_keywords);
+            $meta_author = str_replace($searchconfig, $replaceconfig, $meta_author);
+            $page_name = str_replace($searchconfig, $replaceconfig, $page_name);
+
+            // $list_skin_file = element('use_gallery_list', element('board', $list)) ? 'gallerylist' : 'list';
+            // 
+
+            $list_skin_file = element('use_gallery_list', element('board', $list)) && $this->cbconfig->get_device_view_type() === 'desktop' ? 'gallerylist' : 'list';
+            
+            $layout_dir = element('board_layout', element('board', $list)) ? element('board_layout', element('board', $list)) : $this->cbconfig->item('layout_board');
+            $mobile_layout_dir = element('board_mobile_layout', element('board', $list)) ? element('board_mobile_layout', element('board', $list)) : $this->cbconfig->item('mobile_layout_board');
+            $use_sidebar = element('board_sidebar', element('board', $list)) ? element('board_sidebar', element('board', $list)) : $this->cbconfig->item('sidebar_board');
+            $use_mobile_sidebar = element('board_mobile_sidebar', element('board', $list)) ? element('board_mobile_sidebar', element('board', $list)) : $this->cbconfig->item('mobile_sidebar_board');
+            $skin_dir = element('board_skin', element('board', $list)) ? element('board_skin', element('board', $list)) : $this->cbconfig->item('skin_board');
+            $mobile_skin_dir = element('board_mobile_skin', element('board', $list)) ? element('board_mobile_skin', element('board', $list)) : $this->cbconfig->item('mobile_skin_board');
+            $layoutconfig = array(
             'path' => 'board',
             'layout' => 'layout',
             'skin' => $list_skin_file,
@@ -140,7 +145,33 @@ class Board_post extends CB_Controller
             'meta_keywords' => $meta_keywords,
             'meta_author' => $meta_author,
             'page_name' => $page_name,
-        );
+            );
+        } else {
+
+            $view['view']['view_coin'] = $this->get_coin_data();
+            
+            $page_title = $this->cbconfig->item('site_meta_title_board_list');
+            $meta_description = $this->cbconfig->item('site_meta_description_board_list');
+            $meta_keywords = $this->cbconfig->item('site_meta_keywords_board_list');
+            $meta_author = $this->cbconfig->item('site_meta_author_board_list');
+            $page_name = $this->cbconfig->item('site_page_name_board_list');
+
+            $layoutconfig = array(
+            'path' => 'board',
+            'layout' => 'layout',
+            'skin' => 'post_hit',
+            'layout_dir' => 'basic',
+            'mobile_layout_dir' => 'mobile',
+            'skin_dir' => 'basic',
+            'mobile_skin_dir' => 'mobile',
+            'page_title' => $page_title,
+            'meta_description' => $meta_description,
+            'meta_keywords' => $meta_keywords,
+            'meta_author' => $meta_author,
+            'page_name' => $page_name,
+            );
+        }
+        
         $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
         $this->data = $view;
         $this->layout = element('layout_skin_file', element('layout', $view));
