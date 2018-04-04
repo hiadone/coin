@@ -337,7 +337,7 @@
 
 		.tab_img img{
 			width: 122px;
-			height: 100px;
+			height: 140px;
 			margin:0 10px 10px 0;
 			cursor: pointer;
 			border:1px solid #ededed;
@@ -438,7 +438,7 @@
 
 	/*main_mid02 css*/
 		.main_mid02{
-			height:423px;
+			height:552px;
 		}
 		.main_mid02 > section{
 			width: 417px;
@@ -468,6 +468,43 @@
 
 		#webtoon .menu_list li:first-child{
 			width: 34%;
+		}
+
+		#webtoon tr{
+			margin-bottom: 10px;
+			display: inline-block;
+		}
+
+		#webtoon tr:last-child{
+			margin-bottom: 0;
+		}
+
+		#webtoon figure{
+			display: inline-block;
+			width: 122px;
+			margin-right: 10px;
+		}
+
+		#webtoon td:last-child figure{
+			margin-right: 0;
+		}
+
+		#webtoon figure img{
+			width: 100%;
+			height: 100px;
+			margin-bottom:10px;
+			box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+		}
+
+		#webtoon figcaption{
+			width: 100%;
+			height: 30px;
+			line-height: 15px;
+			text-align: center;
+			overflow:hidden;
+			display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
 		}
 
 	/*notice css*/

@@ -92,7 +92,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
             $('.cover_menu02').css('height' , hei);
 
             $('header span:nth-child(3) img').click(function(){
-                $('.cover_menu02').css({'z-index':'200'});
+                $('.cover_menu02').css({'z-index':'2000'});
                 $('.find_area').animate({'right' : '0'} , 700);
                 $('.find_area').css('height' ,hei+5);
                 $('.find_area').css('z-index' ,500);
@@ -246,7 +246,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
             <section class="find_area">
                 <form action="<?php echo base_url('/search'); ?>" onSubmit="return headerSearch(this);">
                 <input type="hidden" name="sfield" value="post_both">
-                   <input name="skeyword" placeholder="사이트 통합검색" onfocus="this.placeholder=''" onblur="this.placeholder='사이트 통합검색'" >
+                   <input type='search' name="skeyword" placeholder="사이트 통합검색" onfocus="this.placeholder=''" onblur="this.placeholder='사이트 통합검색'" >
                    <button type="submit" class="middle_font">검색</button>
                 </form>
                 <img src="<?php echo base_url('/assets/images/clear03.png') ?>" alt="clear">

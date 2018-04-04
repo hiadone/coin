@@ -802,10 +802,6 @@
         </div>
     </section>
 
-    <section >
-        
-    </section>
-
 <!--<section class="tab" id="event02">
         <h2>서 비 스<span><a href="<?php echo site_url('/board/event') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
         <ul class="menu_list">
@@ -920,45 +916,276 @@
 
         <div class="tab_cont">
             <div>
-                 <table class="toon_li">
+                <table>
                     <tr>
                         <td>
                             <a href="">
-                                <img src="/assets/images/toon01.png" alt="toon01">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
                             </a>
-                        </td>                        
+                        </td>
+
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>                
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>                
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>                
                     </tr>
                 </table>  
             </div>
 
             <div>
-                    <table class="tab_text"><tr>
-                        <tr>
-                            <td>02.</td>
-                            <td>3월29일 코인/경제이슈 정리</td>
-                            <td>03-29</td>
-                        </tr>                        
-                    </table>
+                <table>
+                    <tr>
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon02.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon02.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon02.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>                
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon02.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon02.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon02.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>                
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon02.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon02.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon02.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>                
+                    </tr>
+                </table>  
             </div>
 
             <div>
-                <table class="tab_text"><tr>
+                <table>
                     <tr>
-                        <td>03.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>                        
-                </table>
-            </div>
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
 
-            <div>
-                <table class="tab_text"><tr>
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>                
+                    </tr>
+
                     <tr>
-                        <td>04.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>                        
-                </table>
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>                
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>
+
+                         <td>
+                            <a href="">
+                                <figure>
+                                    <img src="/assets/images/toon01.png" alt="toon01">
+                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                </figure>
+                            </a>
+                        </td>                
+                    </tr>
+                </table>  
             </div>
         </div>
     </section>
@@ -975,13 +1202,91 @@
 
         <div class="tab_cont">
             <div>
-                    <table class="tab_text"><tr>
-                        <tr>
-                            <td>01.</td>
-                            <td>3월29일 코인/경제이슈 정리</td>
-                            <td>03-29</td>
-                        </tr>                        
-                    </table>
+                <table class="tab_text"><tr>
+                    <tr>
+                        <td>01.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>02.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>03.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>04.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>05.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>06.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>07.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>08.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>09.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>10.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>11.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>12.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>  
+
+                    <tr>
+                        <td>13.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>
+
+                    <tr>
+                        <td>14.</td>
+                        <td>3월29일 코인/경제이슈 정리</td>
+                        <td>03-29</td>
+                    </tr>                      
+                </table>
             </div>
 
             <div>
@@ -1015,10 +1320,6 @@
             </div>
         </div>
     </section>
-
-
-
-    
 </article>
 
 <article class='main_mid03 content01'>

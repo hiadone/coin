@@ -89,6 +89,18 @@
                 $("#" + activeTab).fadeIn()
             });
 
+        // tab09 영역 스크립트
+            $(".tab09_cont").hide();
+            $(".tab09_cont:first").show();
+
+            $("ul.tab09_tabs li").click(function () {
+                $("ul.tab09_tabs li").removeClass("active").css("color" , "#333");
+                $(this).addClass("active").css({"color": "#1c446d"});
+                $(".tab09_cont").hide()
+                coinActiveTab = $(this).attr("rel");
+                $("#" + coinActiveTab).fadeIn();
+            });
+
         // 접기버튼 클릭시 conin_info 슬라이드 업 스크립트
             $('.btn_up').click(function(){
                 $('.tab01').slideToggle();
@@ -710,7 +722,7 @@
             </div>
         </section>
 
-    <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역-->
+    <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역
         <section class="tab04 wrap middle_font">
             <h3><a href="<?php echo site_url('/board/event') ?>">
                 서비스
@@ -765,6 +777,130 @@
                     ?>  
             </div>
         </section>
+    -->
+
+    <!-- tab09(웹툰 영역) -->
+           <section class="tab09 wrap middle_font">
+                <h3><a href=''>웹 툰<span><img src="assets/images/more.png" alr="more_img"></span></a></h3>
+                <ul class="tab09_tabs tabs">
+                    <li class='active' rel='tab09_drama'>드 라 마</li>
+                    <li rel='tab09_romance'>로 맨 스</li>
+                    <li rel='tab09_action' style="width: 34%;">학원 / 액션</li>
+                </ul>
+
+                <div class="tab09_wrap cont_wrap">
+                    <div id='tab09_drama' class='tab09_cont cont'>
+                       <ul>
+                           <li>
+                               <a href=''>
+                                   <figure>
+                                       <img src='assets/images/toon01.png' alt='toon01'>
+                                       <figcaption>
+                                           애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품
+                                       </figcaption>
+                                   </figure>
+                               </a>
+                           </li>
+
+                           <li>
+                               <a href=''>
+                                   <figure>
+                                       <img src='assets/images/toon01.png' alt='toon01'>
+                                       <figcaption>
+                                           애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품
+                                       </figcaption>
+                                   </figure>
+                               </a>
+                           </li>
+
+                           <li>
+                               <a href=''>
+                                   <figure>
+                                       <img src='assets/images/toon01.png' alt='toon01'>
+                                       <figcaption>
+                                           애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품
+                                       </figcaption>
+                                   </figure>
+                               </a>
+                           </li>
+
+                           <li>
+                               <a href=''>
+                                   <figure>
+                                       <img src='assets/images/toon01.png' alt='toon01'>
+                                       <figcaption>
+                                           애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품
+                                       </figcaption>
+                                   </figure>
+                               </a>
+                           </li>
+
+                           <li>
+                               <a href=''>
+                                   <figure>
+                                       <img src='assets/images/toon01.png' alt='toon01'>
+                                       <figcaption>
+                                           애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품
+                                       </figcaption>
+                                   </figure>
+                               </a>
+                           </li>
+
+                           <li>
+                               <a href=''>
+                                   <figure>
+                                       <img src='assets/images/toon01.png' alt='toon01'>
+                                       <figcaption>
+                                           애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품
+                                       </figcaption>
+                                   </figure>
+                               </a>
+                           </li>
+
+                           <li>
+                               <a href=''>
+                                   <figure>
+                                       <img src='assets/images/toon01.png' alt='toon01'>
+                                       <figcaption>
+                                           애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품
+                                       </figcaption>
+                                   </figure>
+                               </a>
+                           </li>
+
+                           <li>
+                               <a href=''>
+                                   <figure>
+                                       <img src='assets/images/toon01.png' alt='toon01'>
+                                       <figcaption>
+                                           애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품
+                                       </figcaption>
+                                   </figure>
+                               </a>
+                           </li>
+
+                           <li>
+                               <a href=''>
+                                   <figure>
+                                       <img src='assets/images/toon01.png' alt='toon01'>
+                                       <figcaption>
+                                           애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품
+                                       </figcaption>
+                                   </figure>
+                               </a>
+                           </li>
+                       </ul>
+                    </div>
+
+                    <div id='tab09_romance' class='tab09_cont cont'>
+                       222
+                    </div>
+
+                    <div id='tab09_action' class='tab09_cont cont'>
+                      333
+                    </div>
+                </div>
+           </section>
 
     <!-- tab05(유머,자유갤러리) 영역-->
         <section class="tab05 wrap middle_font">
