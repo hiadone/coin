@@ -457,7 +457,6 @@
                 <th>가 격 <span class='small_font'>(원)</span></th>
                 <th>비 트 코 인</th>
                 <th>달 러</th>
-                <th>달 러 <span class='small_font'>(원)</span></th>
                 <th>프 리 미 엄</th>
                 <th>변 동 률 <span class='small_font'>(24시)</span></th>
                 <th>시 가 총 액</th>
@@ -1016,63 +1015,64 @@
     </section> -->
 
     <section class="tab" id="webtoon">
-        <h2>웹 툰<span><a href=""><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>웹 툰<span><a href="<?php echo site_url('/board/w-1') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02">????</li>
-            <li class='nomal_font02'>???</li>
-            <li class="nomal_font02">????</li>
+            <li class="active nomal_font02">드 라 마</li>
+            <li class='nomal_font02'>로 멘 스</li>
+            <li class="nomal_font02">학원 / 액션</li>
         </ul>
 
         <div class="tab_cont">
             <?php
-            
-            $config = array(
-                'brd_key' => 'free_gallery',
-                        'limit' => 9,
-                        'length' => 40,
-                        'is_gallery'=> 1,
-                        'image_width'=> 130,
-                        'image_height'=> 100,
-                        );
-            $board=$this->board->data($config);
+            $tab04=array('w-1','w-2','w-3');
+            foreach($tab04 as $value){
+                $config = array(
+                    'brd_key' => $value,
+                            'limit' => 9,
+                            'length' => 40,
+                            'is_gallery'=> 1,
+                            'image_width'=> 130,
+                            'image_height'=> 100,
+                            );
+                $board=$this->board->data($config);
 
-            if (element('latest', element('view', $board))) {
+                if (element('latest', element('view', $board))) {
 
-                echo '<div>
-                <table class="tab_img">';
-                    foreach (element('latest', element('view', $board)) as $key => $value) {
-                    if($key % 3===0 || $key ===0) echo '<tr>';
-                        ?>
-
-                    
-                        
-                        <td>
-                            <a href="<?php echo element('url', $value); ?>">
-                                <figure>
-                                    <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
-                                    <figcaption class='nomal_font02'><?php echo html_escape(element('title', $value)); ?></figcaption>
-                                </figure>
-                                
-                            </a>
-                        </td>                        
-                    
-                    <?php 
-                    if($key % 3===2) echo '</tr>';
-                }
-                echo '
-                </table>
-                </div>';
-                } else {
                     echo '<div>
-                    <table >
-                        <tr>
-                            <td colspan="3">게시물이 없습니다.</td>
-                        </tr>
+                    <table class="tab_img">';
+                        foreach (element('latest', element('view', $board)) as $key => $value) {
+                        if($key % 3===0 || $key ===0) echo '<tr>';
+                            ?>
+
+                        
+                            
+                            <td>
+                                <a href="<?php echo element('url', $value); ?>">
+                                    <figure>
+                                        <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                                        <figcaption class='nomal_font02'><?php echo html_escape(element('title', $value)); ?></figcaption>
+                                    </figure>
+                                    
+                                </a>
+                            </td>                        
+                        
+                        <?php 
+                        if($key % 3===2) echo '</tr>';
+                    }
+                    echo '
                     </table>
-                </div>';
+                    </div>';
+                    } else {
+                        echo '<div>
+                        <table >
+                            <tr>
+                                <td colspan="3">게시물이 없습니다.</td>
+                            </tr>
+                        </table>
+                    </div>';
+                }
             }
-            
             ?>  
 
             

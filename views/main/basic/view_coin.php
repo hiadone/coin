@@ -79,7 +79,7 @@ function won($k) {
 
             <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? number_format(element('current_price',$value_)/element('current_price',element($key_,element('btc',element('coin_list',$view)))),5) : '-'; ?></td>
             <td class='text-right'><?php echo !empty(element('current_price_usd',$value_)) ? '$ '.number_format(element('current_price_usd',$value_)) : '-'; ?></td>
-            <td class='text-right'><?php echo !empty(element('current_price_usd',$value_)) ? '$ '.number_format(element('current_price_usd',$value_)) : '-'; ?></td>
+            
            
             
             <?php 
