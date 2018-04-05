@@ -302,10 +302,6 @@
 			box-sizing: border-box;
 		}
 
-		.tab_cont02{
-			height: 333px;
-		}
-
 		.tab_text{
 			width: 100%;
 		}
@@ -337,7 +333,7 @@
 
 		.tab_img img{
 			width: 122px;
-			height: 140px;
+			height: 143px;
 			margin:0 10px 10px 0;
 			cursor: pointer;
 			border:1px solid #ededed;
@@ -1503,19 +1499,6 @@
 			float: left;
 		}
 
-
-
-
-
-
-
-
-
-		
-
-		
-
-		
 		.link_li li,
 		.upload_li li{
 			display: inline-block;
@@ -1611,6 +1594,49 @@
 			line-height: 17px;
 		}
 
+/* 스토어의 상품리스트 css */
+	.store_list{
+		display: inline-block;
+	}
+	.store_list li{
+		width: 190px;
+		margin:0 28px 40px 0;
+		float: left;
+	}
+
+	.store_list li:nth-child(6n){
+		margin-right: 0;
+	}
+
+	.store_list li img{
+		width: 100%;
+		border:1px solid #ededed;
+		margin-bottom: 20px;
+	}
+
+	.store_list li h3{
+		padding-top: 2px;
+		margin-bottom:10px;
+		display: block;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	.store_list li strong{
+		display: inline-block;
+		width: 100%;
+		color: #a61e23;
+		font-weight: bold;
+		font-family: 'Jeju Gothic', sans-serif;
+		text-align:right;
+	}
+
+	.store_list li strong span{
+		margin-right: 5px;
+		font-weight: normal;
+		color: #000;
+	}
 
 /*추가 css*/
 	#comment_write_box{
