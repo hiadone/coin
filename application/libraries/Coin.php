@@ -100,6 +100,9 @@ class Coin extends CI_Controller
             $skin = 'basic';
         }
 
+        $market_cap_usd=array();
+        $result=array();
+
         if($skin==='mobile'){
             if (empty($cur_unit)) {
                 $cur_unit = 'krw';
@@ -162,7 +165,7 @@ class Coin extends CI_Controller
             $btc_list = $this->CI->Virtual_coin_model
                 ->get('','','','','',$findex,'DESC');
 
-            $result=array();
+            
             foreach($this->vic_title as $tkey =>$tvalue){
                 foreach($this->vic_type as $pkey =>$pvalue){
                     $result[$tkey][$pkey]='';
@@ -293,8 +296,7 @@ class Coin extends CI_Controller
                 ->get('','',$where);
 
 
-            $market_cap_usd=array();
-            $result=array();
+            
             // foreach($this->vic_title as $tkey =>$tvalue){
             //     foreach($this->vic_type as $pkey =>$pvalue){
             //         $result[$tkey][$pkey]='';
