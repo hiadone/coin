@@ -420,11 +420,11 @@
 			right: 0;
 		}
 		#community .menu_list li{
-			width: 33%;
+			width: 25%;
 		}
 
 		#community .menu_list li:first-child{
-			width: 34%;
+			/*width: 25%;*/
 		}
 
 	/*coin_info css*/

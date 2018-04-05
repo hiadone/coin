@@ -15,998 +15,111 @@ $vic_name = array("bitcoin"=>"비트코인",
 $last = $this->uri->total_segments();
 $last_segment = $this->uri->segment($last);
 
+function won($k) {
+       
+       $len = strlen ($k);
+
+       $len_ahr = ceil($len/4);
+
+       $len_skanwj = $len%4;
+
+
+       $a=0;
+       $k2='';
+       for ($i=1;$i<=$len_ahr;$i++) {
+                            
+              $sub = array("원", "만", "억","조");
+                     
+              $a=$a-4;
+
+              if ($i < $len_ahr) {
+                     if (substr($k, $a, 4) !="0000") {
+                            $str=substr($k, $a, 4)+0;
+                            $k2 = $str.$sub[$i-1].$k2;
+                     }
+              }else {
+                     if ($len_skanwj==0) {
+                            $len_skanwj=4;
+                     }
+                     $k2 = substr($k, $a,$len_skanwj).$sub[$i-1].$k2;
+              }
+
+
+       }
+
+       $ch = strpos($k2,"원");
+
+       if ($ch == 0) {
+              $k2=$k2."원";
+       }
+
+
+       return $k2;
+}
+
+
 ?>  
 
-<section class='tab' id='coin_mall'>
-    <ul class='menu_list nomal_font02'>
-        <li class="active">
-            <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/bitcoin.png' alt='bitcoin_logo'>
-                <figcaption>
-                    비트코인
-                </figcaption>
-            </figure>
-        </li>
 
-        <li style='width: 88px;'>
-            <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/ethereum.png' alt='bitcoin_logo'>
-                <figcaption>
-                    이더리움
-                </figcaption>
-            </figure>
-        </li>
+    <?php 
 
-        <li style='width: 85px;'>
-            <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/ripple.png' alt='bitcoin_logo'>
-                <figcaption>
-                    리플
-                </figcaption>
-            </figure>
-        </li>
+    foreach(element('coin_list',$view) as $key => $value){?>
+
+    
+        <div style="display:none;">
+        <table class='coin_cont nomal_font02'>
+    <?php foreach($value as $key_ => $value_){ 
         
-        <li style='width: 118px;'>
-            <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/bitcoin-cash.png' alt='bitcoin_logo'>
-                <figcaption>
-                    비트코인캐시
-                </figcaption>
-            </figure>
-        </li>
-
-
-        <li style='width: 108px;'>
-            <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/litecoin.png' alt='bitcoin_logo'>
-                <figcaption>
-                    라이트코인
-                </figcaption>
-            </figure>
-        </li>
-
-        <li>
-            <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/eos.png' alt='bitcoin_logo'>
-                <figcaption>
-                    아오스
-                </figcaption>
-            </figure> 
-        </li>
-
-        <li> 
-            <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/monero.png' alt='bitcoin_logo'>
-                <figcaption>
-                모네로
-                </figcaption>
-            </figure>
-        </li>
-
-        <li style='width: 85px;'>
-           <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/dash.png' alt='bitcoin_logo'>
-                <figcaption>
-                   대시
-                </figcaption>
-            </figure>  
-        </li>
-
-        <li style='width: 125px;'>
-            <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/ethereum-classic.png' alt='bitcoin_logo'>
-                <figcaption>
-                    이더리움 클래식
-                </figcaption>
-            </figure>
-        </li>
-
-        <li style='width: 85px;'>
-            <figure>
-                <img src='http://www.bitcoissue.com/views/_layout/basic/images/store_logo/qtum.png' alt='bitcoin_logo'>
-                <figcaption>
-                    큐 텀
-                </figcaption>
-            </figure>
-        </li>
-    </ul>
-
-    <table class='coin_title nomal_font02'>
+        // if($key_==="bitfinex") continue;
+        ?>
         <tr>
-            <th>거 래 소</th>
-            <th>가 격 <span class='small_font'>(원)</span></th>
-            <th>비 트 코 인</th>
-            <th>달 러</th>
-            <th>달 러 <span class='small_font'>(원)</span></th>
-            <th>프 리 미 엄</th>
-            <th>변 동 률 <span class='small_font'>(24시)</span></th>
-            <th>시 가 총 액</th>
-            <th>거 래 량 <span class='small_font'>(24시)</span></th>
+            <td><?php echo element($key_,element('vic_type',$view)); ?></td>
+
+            <td class='text-right'><?php echo !empty(element('current_price_krw',$value_)) ? '₩ '.number_format(element('current_price_krw',$value_)) : '-'; ?></td>
+
+            <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? number_format(element('current_price',$value_)/element('current_price',element($key_,element('btc',element('coin_list',$view)))),5) : '-'; ?></td>
+            <td class='text-right'><?php echo !empty(element('current_price_usd',$value_)) ? '$ '.number_format(element('current_price_usd',$value_)) : '-'; ?></td>
+            <td class='text-right'><?php echo !empty(element('current_price_usd',$value_)) ? '$ '.number_format(element('current_price_usd',$value_)) : '-'; ?></td>
+           
+            
+            <?php 
+            if(empty(element('kprime',$value_))){
+                echo '<td class="text-right premium nomal_font02">-';
+            } else {
+                if(element('kprime',$value_)>0)
+                    echo '<td class="text-right premium nomal_font02" style="color:blue;">';
+                else 
+                    echo '<td class="text-right premium nomal_font02" style="color:green;">';
+
+                echo number_format(element('kprime',$value_)*100,2).' %' ;
+            }
+                
+            ?> 
+            </td>
+
+             <?php 
+            if(!empty(element('open_price',$value_))) {
+                if((element('current_price',$value_) - element('open_price',$value_)) > 0)
+                    echo "<td class='text-right rate nomal_font02' style='color:red;'>▲ ";
+                else echo "<td class='text-right rate nomal_font02 minus' style='color:blue;'>▼ ";
+                echo number_format((element('current_price',$value_) - element('open_price',$value_))/element('open_price',$value_) *100,2).' % (₩ '.number_format((element('current_price_krw',$value_) - element('open_price_krw',$value_))).')' ;
+            }else {
+                echo "<td>-";
+            }
+            ?>  
+            </td>
+            <td class='text-right'><?php echo !empty(element('market_cap_usd',element($key,element('market_cap_usd',$view)))) ? won((int)round(element('market_cap_usd',element($key,element('market_cap_usd',$view))),-10)) : '-'; ?></td>
+            <td class='text-right'><?php echo !empty(element('volume_1day',$value_)) ? number_format(element('volume_1day',$value_)).' (BTC)' : '-'; ?></td>
         </tr>
-    </table>
-
-    <div class='tab_cont' style='padding:0;'>
-        <div>
-            <table class='coin_cont nomal_font02'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
-
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
+    <?php } ?>
+        </table>
         </div>
 
-        <div>
-            <table class='coin_cont'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
+<?php } ?>
 
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
+  
+   
 
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div>
-            <table class='coin_cont'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
-
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div>
-            <table class='coin_cont'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
-
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div>
-            <table class='coin_cont'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
-
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div>
-            <table class='coin_cont'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
-
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div>
-            <table class='coin_cont'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
-
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div>
-            <table class='coin_cont'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
-
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div>
-            <table class='coin_cont'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
-
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-
-        <div>
-            <table class='coin_cont'>
-                <tr>
-                    <td>빗 썸</td>
-                    <td>\25,000</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td>1111</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>1111</td>
-                    <td>-</td>
-                </tr>
-
-                <tr>
-                    <td>업비트</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>코인원</td>
-                    <td>\25,000</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>3333</td>
-                    <td>3333</td>
-                </tr>
-
-                <tr>
-                    <td>코 빗</td>
-                    <td>\20,000</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+3%</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
-
-                <tr>
-                    <td>플라이어</td>
-                    <td>\20,000</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                    <td class='premium nomal_font02'>10%</td>
-                    <td class='rate nomal_font02'>▲+6%</td>
-                    <td>4444</td>
-                    <td>4444</td>
-                </tr>
-
-                <tr>
-                    <td>바이낸스</td>
-                    <td>\20,000</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                    <td class='premium nomal_font02'>6%</td>
-                    <td class='rate nomal_font02 minus'>▼-8%</td>
-                    <td>5555</td>
-                    <td>5555</td>
-                </tr>
-
-                <tr>
-                    <td>파이넥스</td>
-                    <td>\25,000</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td>6666</td>
-                    <td class='premium nomal_font02'>25%</td>
-                    <td class='rate nomal_font02 minus'>▼-5%</td>
-                    <td>6666</td>
-                    <td>-</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</section>
 
 <!--  <section class="coin_mall">
         <table>

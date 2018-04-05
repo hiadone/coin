@@ -2,6 +2,7 @@
     // 전체 스크립트 
     $(document).ready(function(){
         
+        // setInterval('view_coin()',5000);
         $('.twit_pop').height(Math.floor(($(window).height()/1.5)));
 
         $( window ).resize(function() {
@@ -53,7 +54,7 @@
 
         //tab 메뉴(메인의) 스크립트
         $('.tab_cont > div').hide();
-        $('.tab_cont div:first-child').show();
+        $('.tab_cont > div:first-child').show();
 
         //tab메뉴 클릭시
         $('.menu_list li').click(function(){
@@ -61,7 +62,7 @@
             $(this).addClass('active');
 
             $(this).parents("ul").siblings(".tab_cont").children("div").hide();
-
+            console.log($(this).parents("ul").siblings(".tab_cont").children("div"));
             // 클릭한 메뉴의 순번 
             var index = $(this).index();
 
@@ -356,21 +357,129 @@
 </article>
 
 <article class="main_top content01">
-    <section id="coin_data">
+    <section class='tab' id='coin_mall'>
+        <ul class='menu_list nomal_font02'>
+            <li class="active">
+                <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/bitcoin.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                        비트코인
+                    </figcaption>
+                </figure>
+            </li>
+
+            <li style='width: 88px;'>
+                <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ethereum.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                        이더리움
+                    </figcaption>
+                </figure>
+            </li>
+
+            <li style='width: 85px;'>
+                <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ripple.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                        리플
+                    </figcaption>
+                </figure>
+            </li>
+            
+            <li style='width: 118px;'>
+                <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/bitcoin-cash.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                        비트코인캐시
+                    </figcaption>
+                </figure>
+            </li>
+
+
+            <li style='width: 108px;'>
+                <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/litecoin.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                        라이트코인
+                    </figcaption>
+                </figure>
+            </li>
+
+            <li>
+                <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/eos.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                        아오스
+                    </figcaption>
+                </figure> 
+            </li>
+
+            <li> 
+                <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/monero.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                    모네로
+                    </figcaption>
+                </figure>
+            </li>
+
+            <li style='width: 85px;'>
+               <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/dash.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                       대시
+                    </figcaption>
+                </figure>  
+            </li>
+
+            <li style='width: 125px;'>
+                <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ethereum-classic.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                        이더리움 클래식
+                    </figcaption>
+                </figure>
+            </li>
+
+            <li style='width: 85px;'>
+                <figure>
+                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/qtum.png') ?>' alt='bitcoin_logo'>
+                    <figcaption>
+                        큐 텀
+                    </figcaption>
+                </figure>
+            </li>
+        </ul>
+
+        <table class='coin_title nomal_font02'>
+            <tr>
+                <th>거 래 소</th>
+                <th>가 격 <span class='small_font'>(원)</span></th>
+                <th>비 트 코 인</th>
+                <th>달 러</th>
+                <th>달 러 <span class='small_font'>(원)</span></th>
+                <th>프 리 미 엄</th>
+                <th>변 동 률 <span class='small_font'>(24시)</span></th>
+                <th>시 가 총 액</th>
+                <th>거 래 량 <span class='small_font'>(24시)</span></th>
+            </tr>
+        </table>
+        <div id="coin_data" class="tab_cont" style="padding:0;">
         <?php 
         if (element('view_coin', $view)) { 
             echo element('view_coin', $view);
         }
         ?>
+        </div>
     </section>
 
     <section class='ad main_ad'>
-        <img src='http://eventimg.auction.co.kr/md/p/pgeplus/0653C07293/130809_%ED%8C%B8%ED%8D%BC%EC%8A%A4_%EB%9D%A0%EB%B0%B0%EB%84%88.jpg'>
+        <?php echo banner('main_banner'); ?>
     </section>
 
     <section class='ad img_slide' id='event' style="visibility: hidden;">
         <ul >
-            <?php echo banner('main_banner','order',3,0,'<li>','</li>'); ?>
+            <?php echo banner('main_event','order',3,0,'<li>','</li>'); ?>
         </ul>
     </section>
 
@@ -558,11 +667,12 @@
             <li class="active nomal_font02">자유게시판</li>
             <li class='nomal_font02'>호 재 정 보</li>
             <li class='nomal_font02'>코 인 분 석</li>
+            <li class='nomal_font02'>추 천 코 인</li>
         </ul>
 
         <div class="tab_cont">
             <?php
-            $tab02=array('free','mine_info','profit');
+            $tab02=array('free','mine_info','profit','b-1');
 
             foreach($tab02 as $tvalue){
                 $config = array(
@@ -915,283 +1025,62 @@
         </ul>
 
         <div class="tab_cont">
-            <div>
-                <table>
-                    <tr>
+            <?php
+            
+            $config = array(
+                'brd_key' => 'free_gallery',
+                        'limit' => 9,
+                        'length' => 40,
+                        'is_gallery'=> 1,
+                        'image_width'=> 130,
+                        'image_height'=> 100,
+                        );
+            $board=$this->board->data($config);
+
+            if (element('latest', element('view', $board))) {
+
+                echo '<div>
+                <table class="tab_img">';
+                    foreach (element('latest', element('view', $board)) as $key => $value) {
+                    if($key % 3===0 || $key ===0) echo '<tr>';
+                        ?>
+
+                    
+                        
                         <td>
-                            <a href="">
+                            <a href="<?php echo element('url', $value); ?>">
                                 <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
+                                    <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                                    <figcaption class='nomal_font02'><?php echo html_escape(element('title', $value)); ?></figcaption>
                                 </figure>
+                                
                             </a>
-                        </td>
+                        </td>                        
+                    
+                    <?php 
+                    if($key % 3===2) echo '</tr>';
+                }
+                echo '
+                </table>
+                </div>';
+                } else {
+                    echo '<div>
+                    <table >
+                        <tr>
+                            <td colspan="3">게시물이 없습니다.</td>
+                        </tr>
+                    </table>
+                </div>';
+            }
+            
+            ?>  
 
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>                
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>                
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>                
-                    </tr>
-                </table>  
-            </div>
-
-            <div>
-                <table>
-                    <tr>
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon02.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon02.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon02.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>                
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon02.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon02.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon02.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>                
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon02.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon02.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon02.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>                
-                    </tr>
-                </table>  
-            </div>
-
-            <div>
-                <table>
-                    <tr>
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>                
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>                
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>
-
-                         <td>
-                            <a href="">
-                                <figure>
-                                    <img src="/assets/images/toon01.png" alt="toon01">
-                                    <figcaption class='nomal_font02'>애나 우정 같은 감정은 사람과 사람 사이뿐 아니라 주변 환경에 좌우되는 문제이기도 하기에 그리게 된 작품</figcaption>
-                                </figure>
-                            </a>
-                        </td>                
-                    </tr>
-                </table>  
-            </div>
+            
         </div>
     </section>
 
     <section class="tab" id="notice">
-        <h2>서 비 스<span><a href=""><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>서 비 스<span><a href="<?php echo site_url('/board/express') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
             <li class="active nomal_font02">출석체크</li>
@@ -1201,123 +1090,46 @@
         </ul>
 
         <div class="tab_cont">
-            <div>
-                <table class="tab_text"><tr>
-                    <tr>
-                        <td>01.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
+            
+            <?php
+            $tab04=array('attendance','express','notice','faq');
+            foreach($tab04 as $tvalue){
 
-                    <tr>
-                        <td>02.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
+                $config = array(
+                    'brd_key' => $tvalue,
+                    'limit' => 10,
+                    'length' => 70,
+                    );
+                $board=$this->board->data($config);
 
-                    <tr>
-                        <td>03.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>04.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>05.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>06.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>07.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>08.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>09.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>10.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>11.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>12.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>  
-
-                    <tr>
-                        <td>13.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>
-
-                    <tr>
-                        <td>14.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>                      
-                </table>
-            </div>
-
-            <div>
-                    <table class="tab_text"><tr>
-                        <tr>
-                            <td>02.</td>
-                            <td>3월29일 코인/경제이슈 정리</td>
-                            <td>03-29</td>
+                if (element('latest', element('view', $board))) {
+                    echo '<div>
+                    <table class="tab_text">';
+                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
+                            <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                            <td class="text-left">
+                                <?php echo html_escape(element('title', $value)); ?>
+                                <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                            </td>
+                            <td><?php echo element('display_datetime', $value); ?></td>
                         </tr>                        
+                        <?php 
+                    }
+                    echo '
                     </table>
-            </div>
-
-            <div>
-                <table class="tab_text"><tr>
+                </div>';
+            } else {
+                echo '<div>
+                <table >
                     <tr>
-                        <td>03.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>                        
+                        <td colspan="3">게시물이 없습니다.</td>
+                    </tr>
                 </table>
-            </div>
-
-            <div>
-                <table class="tab_text"><tr>
-                    <tr>
-                        <td>04.</td>
-                        <td>3월29일 코인/경제이슈 정리</td>
-                        <td>03-29</td>
-                    </tr>                        
-                </table>
-            </div>
+                     </div>';
+                }
+            }
+            ?>  
         </div>
     </section>
 </article>
@@ -1360,9 +1172,9 @@
         postact_flag = false;
     }
 
-    function view_coin(cur_unit) {
-        global_cur_unit = cur_unit;
-        var list_url = cb_url + '/main/show_coin_data/' + global_cur_unit;
+    function view_coin() {
+        
+        var list_url = cb_url + '/main/show_coin_data/';
         $('#coin_data').load(list_url,function(){
             $("#" + coinActiveTab).hide();
             $("#" + coinActiveTab).fadeIn();

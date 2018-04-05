@@ -501,11 +501,12 @@
                 <li class="active" rel="tab02_free">자유게시판</li>
                 <li rel="tab02_mine_info">호재정보</li>
                 <li rel="tab02_profit">코인분석</li>
+                <li rel="tab02_b-1">추천코인</li>
             </ul>
 
             <div class="tab02_wrap cont_wrap">
                 <?php
-                    $tab02=array('free','mine_info','profit');
+                    $tab02=array('free','mine_info','profit','b-1');
 
                     foreach($tab02 as $tvalue){
                         $config = array(

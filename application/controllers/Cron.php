@@ -626,7 +626,7 @@ class Cron extends CB_Controller {
                 $virtualcoindata[$key_] = $value_;
             }
 
-            $this->Virtual_coin_model->save('coinmarketcap',$value['id'], $virtualcoindata);
+            $this->Virtual_coin_model->save('coinmarketcap',$value['symbol'], $virtualcoindata);
         }
 
         

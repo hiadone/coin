@@ -346,11 +346,11 @@ html, body{
 
 /* tab02(자유게시판,채굴정보,코인뉴스 수익인증 / main화면) 영역*/
 	.tab02_tabs li{
-		width:33%;
+		width:25%;
 	}
 
 	.tab02_tabs li:nth-child(2){
-		width: 34%;
+		/*width: 34%;*/
 	}
 
 /* tab03(동영상강좌 , 코인지식 , ICO, 거래소별 코인 / main화면) 영역*/

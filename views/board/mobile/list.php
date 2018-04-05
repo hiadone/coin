@@ -237,86 +237,54 @@
             <div class="tab08_wrap cont_wrap">
                 <div id='tab08_hottext' class='tab08_cont cont'>
                     <ul>
-                        <li>
-                            <a href=''>
-                              <h4>1.</h4>
-                              <div>[가상화폐] 라이트코인, '라이트페이' 출시 예정.."게임체인저 될 것"</div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href=''>
-                              <h4>2.</h4>
-                              <div>코인레일, “가상화폐 신용 등급 발표 후 이오스 거래량 늘어”</div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href=''>
-                              <h4>3.</h4>
-                              <div>가상화폐, 위메프에서 쓴다…주요 쇼핑몰 첫 사례</div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href=''>
-                              <h4>4.</h4>
-                              <div>'가상화폐' 규제와 인정 사이에 갈등하는 국가들</div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href=''>
-                              <h4>5.</h4>
-                              <div>"가상화폐 거래소 폐쇄 후 中자본 일본으로"</div>
-                            </a>
-                        </li>
-                        <!-- 
-                        <li>
-                            <a href=''>
-                              <h4>5.</h4>
-                              <div>[가상화폐] 라이트코인, '라이트페이' 출시 예정.."게임체인저 될 것"</div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href=''>
-                              <h4>6.</h4>
-                              <div>[가상화폐] 라이트코인, '라이트페이' 출시 예정.."게임체인저 될 것"</div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href=''>
-                              <h4>7.</h4>
-                              <div>[가상화폐] 라이트코인, '라이트페이' 출시 예정.."게임체인저 될 것"</div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href=''>
-                              <h4>8.</h4>
-                              <div>[가상화폐] 라이트코인, '라이트페이' 출시 예정.."게임체인저 될 것"</div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href=''>
-                              <h4>9.</h4>
-                              <div>[가상화폐] 라이트코인, '라이트페이' 출시 예정.."게임체인저 될 것"</div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href=''>
-                              <h4>10.</h4>
-                              <div>[가상화폐] 라이트코인, '라이트페이' 출시 예정.."게임체인저 될 것"</div>
-                            </a>
-                        </li> -->
+                        <?php
+                        $config = array(
+                            'skin' => 'mobile2',
+                            'brd_id' => '',
+                            'limit' => 10,
+                            'length' =>50,
+                            'is_gallery' => '',
+                            'image_width' => '',
+                            'image_height' => '',
+                            'cache_minute' => 1,
+                            'findex' => 'post_hit',
+                        );
+                        echo $this->board->latest($config);
+                        ?>
                     </ul> 
                 </div>
-                <div id='tab08_newtext' class='tab08_cont cont'>222</div>
-                <div id='tab08_newreply' class='tab08_cont cont'>333</div>
+                <div id='tab08_hot02' class='tab08_cont cont'>
+                    <ul>
+                        <?php
+                        $config = array(
+                            'skin' => 'mobile2',
+                            'brd_id' => '',
+                            'limit' => 10,
+                            'length' =>50,
+                            'is_gallery' => '',
+                            'image_width' => '',
+                            'image_height' => '',
+                            'cache_minute' => 1,
+                        );
+                        echo $this->board->latest($config);
+                        ?>
+                    </ul> 
+                </div>
+                <div id='tab08_hot03' class='tab08_cont cont'>
+                    <ul>
+                        <?php
+                        $config = array(
+                            'skin' => 'mobile2',
+                            'brd_id' => '',
+                            'limit' => 10,
+                            'length' => 20,
+                            'cache_minute' => 1,
+                        );
+                        echo $this->board->latest_comment($config);
+                        ?>
+                    </ul> 
+                </div>
+
             </div>
         </section>
 
@@ -637,6 +605,7 @@
                 <div id='tab09_action' class='tab09_cont cont'>
                     333
                 </div>
+
 
 
 
