@@ -398,7 +398,7 @@
                 <figure><img src="'.base_url('assets/images/spoon_'.$this->member->item('mem_level').'.png').'" alt="spoon"><figcaption>'.$this->member->item('mem_nickname').
                 '</figcaption></figure></li>';
                 echo '<li>|</li>';
-                echo '<li>포인트 '.number_format($this->member->item('mem_point')).'P</li>';
+                echo '<li onClick=\'location.href="'.site_url('/board/event').'";\'  title="스토어">스토어</li>';
                 echo '<li>|</li>';
                  echo '<li onClick=\'location.href="'.site_url('mypage').'";\'>회원정보</li>';
                  echo '<li>|</li>';

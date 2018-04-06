@@ -1,9 +1,19 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
 <article class="wrap01">
-        <section class="main_title my_info">
-            <h2>회 원 정 보</h2>
-            <span>회원님의 정보를 알려드립니다.</span>
+        <section class="info_area main_title my_info">
+            <ul>
+                  
+                  <li class='active' onclick="location.href='<?php echo site_url('/mypage'); ?>';">
+                       <h2 style='background:url("/assets/images/user_info03.png") no-repeat center left; background-size: 19px;'>회원정보</h2>
+                  </li>
+                  <li onclick="location.href='<?php echo site_url('/mypage/point'); ?>';">
+                      <h2 style='background:url("/assets/images/point_info02.png") no-repeat center left; background-size: 19px;'>포인트정보</h2>
+                  </li>
+
+            </ul>
+            
+            <span class='small_font'>회원님의 정보를 알려드립니다.</span>
             <table>
                 <tr>
                     <th>아 이 디</th>

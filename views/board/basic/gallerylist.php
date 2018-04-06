@@ -160,7 +160,7 @@ $record_num = $this->uri->segment($last);
         <!-- <?php if (element('search_list_url', element('list', $view))) { ?>
             <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a>
         <?php } ?> -->
-            <section class="post_button">
+        <section class="post_button">
                      <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">전체</a>
             <?php if (element('write_url', element('list', $view))) { ?>
                 <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>    

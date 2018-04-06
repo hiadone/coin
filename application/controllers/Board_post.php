@@ -123,6 +123,8 @@ class Board_post extends CB_Controller
             // 
 
             $list_skin_file = element('use_gallery_list', element('board', $list)) && $this->cbconfig->get_device_view_type() === 'desktop' ? 'gallerylist' : 'list';
+
+            if(element('brd_key', element('board', $list))==='event') $list_skin_file='gallerylist_event';
             
             $layout_dir = element('board_layout', element('board', $list)) ? element('board_layout', element('board', $list)) : $this->cbconfig->item('layout_board');
             $mobile_layout_dir = element('board_mobile_layout', element('board', $list)) ? element('board_mobile_layout', element('board', $list)) : $this->cbconfig->item('mobile_layout_board');
@@ -998,10 +1000,15 @@ class Board_post extends CB_Controller
             $skin_dir = element('board_skin', $board) ? element('board_skin', $board) : $this->cbconfig->item('skin_board');
             $mobile_skin_dir = element('board_mobile_skin', $board) ? element('board_mobile_skin', $board) : $this->cbconfig->item('mobile_skin_board');
 
+            $skin='post';
+
+            if(element('brd_key', $board)==='event'){
+                $skin='post_event';
+            }
             $layoutconfig = array(
                 'path' => 'board',
                 'layout' => 'layout',
-                'skin' => 'post',
+                'skin' => $skin,
                 'layout_dir' => $layout_dir,
                 'mobile_layout_dir' => $mobile_layout_dir,
                 'use_sidebar' => $use_sidebar,
@@ -1028,7 +1035,7 @@ class Board_post extends CB_Controller
                         : $this->cbconfig->item('skin_default');
                 }
 
-                if(element('brd_key', $board)==='event')
+                if(element('brd_key', $board)==='event' && $this->member->is_admin() === 'super' && $this->cbconfig->get_device_view_type() === 'desktop')
                     $list_skin_file='list_show_list_'.element('brd_key', $board);
 
                 $this->view = array(
@@ -1290,6 +1297,10 @@ class Board_post extends CB_Controller
         if (empty($category_id) OR $category_id < 1) {
             $category_id = '';
         }
+
+        $extravars = element('extravars', $board);
+        $form = json_decode($extravars, true);
+
         $result = $this->Post_model
             ->get_post_list($per_page, $offset, $where, $category_id, $findex, $sfield, $skeyword);
         $list_num = $result['total_rows'] - ($page - 1) * $per_page;
@@ -1415,6 +1426,41 @@ class Board_post extends CB_Controller
 
                         $result['list'][$key]['origin_image_url'] = $thumb_url;
                     }
+                }
+
+                if(element('brd_key', $board)==='event'){
+                    $extravars='';
+                    $extravars = $this->Post_extra_vars_model->get_all_meta(element('post_id', $val));
+                    $extra_content = '';
+                    $k = 0;
+                    if ($form && is_array($form)) {
+                        foreach ($form as $key_ => $value_) {
+                            if ( ! element('use', $value_)) {
+                                continue;
+                            }
+
+                            $item = element(element('field_name', $value_),  $extravars);
+                            $extra_content[$k]['field_name'] = element('field_name', $value_);
+                            $extra_content[$k]['display_name'] = element('display_name', $value_);
+                            if (element('field_type', $value_) === 'checkbox') {
+                                $tmp_value = json_decode($item);
+                                $tmp = '';
+                                if ($tmp_value) {
+                                    foreach ($tmp_value as $val1) {
+                                        if ($tmp) {
+                                            $tmp .= ', ';
+                                        }
+                                        $tmp .= $val1;
+                                    }
+                                }
+                                $item = $tmp;
+                            }
+                            $extra_content[$k]['output'] = $item;
+                            $k++;
+                        }
+                    }
+
+                    $result['list'][$key]['extra_content'] = $extra_content;
                 }
             }
         }

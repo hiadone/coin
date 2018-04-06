@@ -125,19 +125,21 @@
         <?php } ?>
         <?php
         if (element('extra_content', $view)) {
+            echo '<div class="link_area">
+                        <ul>';
             foreach (element('extra_content', $view) as $key => $value) {
         ?>
             <li>
-                <span><?php echo element('display_name', $value); ?></span>
+                <label><?php echo element('display_name', $value); ?></label>
                 <?php echo element('input', $value); ?>
             </li>
         <?php
             }
+            echo '</ul></div>';
         }
         ?>
         
-        
-            
+      
 
             <?php echo display_dhtml_editor('post_content', set_value('post_content', element('post_content', element('post', $view))), $classname = '', $is_dhtml_editor = element('use_dhtml', element('board', $view)), $editor_type = $this->cbconfig->item('post_editor_type')); ?>
             <?php if ( ! element('use_dhtml', element('board', $view)) AND (element('post_min_length', element('board', $view)) OR element('post_max_length', element('board', $view)))) { ?>

@@ -1,79 +1,10 @@
-<script>
-    $(document).ready(function(){
-            $('.point_disappear').css('height' , $(window).height() + 125);
-            $('.point_more').click(function(){
-                $('.point_disappear').fadeIn();
-                $('.point_disappear').css('z-index' , '20000000');
-            });
 
-
-            $('.point_clear').click(function(){
-                $('.point_disappear').fadeOut();
-                $('.point_disappear').css('z-index' , '-20000000');
-            });
-    }); 
-</script>
 
 <style>
 
 </style>
 
-<section class='main_title point_disappear'>
-    <h2>
-        소멸 예정 포인트
-        <span class='point_clear'>
-            <img src='http://cmy.bitcoissue.com/assets/images/clear02.png' alt='clear02'>
-        </span>
-    </h2>
 
-    <span>소멸예정 인 포인트 를 확인하실 수 있습니다.</span>
-
-    <div class='point_notice'>
-           <h3>※ 소멸 예정포인트 유의사항 ※</h3>
-           <p>
-            유효기간은 적립일로부터 <strong class='big_font'>1년</strong> 입니다.
-            <br>
-            <br>
-            유효기간이 지나면 적립 "월" 기준으로<br>
-            순차적으로 익월 1일 00시에 소멸됩니다.
-            <br>
-            <br>
-            포인트에 관한 기타 문의는 <br>고객센터에 문의해 주세요. 
-           </p>
-    </div>
-
-    <table>
-           <tr>
-               <th>소멸예정 일시</th>
-               <th>소멸예정 포인트</th>
-           </tr>
-
-           <tr>
-               <td>2018년 00월</td>
-               <td class='small_font'><strong class='big_font'>1,000</strong> 포인트</td>
-           </tr>
-
-           <tr>
-               <td>2018년 00월</td>
-               <td class='small_font'><strong class='big_font'>5,000</strong> 포인트</td>
-           </tr>
-
-           <tr>
-               <td>2018년 00월</td>
-               <td class='small_font'><strong class='big_font'>300</strong> 포인트</td>
-           </tr>
-
-           <tr>
-               <td>2018년 00월</td>
-               <td class='small_font'><strong class='big_font'>1,000</strong> 포인트</td>
-           </tr>
-
-           <tr>
-               <td>2018년 00월</td>
-               <td class='small_font'><strong class='big_font'>5,000</strong> 포인트</td>
-           </tr>
-    </table>
-</section>
 
 <article class="wrap01">
    <!--<section class="loing_join">

@@ -92,12 +92,14 @@
                 if (element('extra_content', $view)) {
                     foreach (element('extra_content', $view) as $key => $value) {
                 ?>
-                    <th class='nomal_font02'>
-                        <?php echo element('display_name', $value); ?>
-                    </th>
-                    <td colspan="3">
-                        <?php echo element('input', $value); ?>
-                    </td>
+                    <tr>
+                        <th class='nomal_font02'>
+                            <?php echo element('display_name', $value); ?>
+                        </th>
+                        <td colspan="3">
+                            <?php echo element('input', $value); ?>
+                        </td>
+                    </tr>
                 <?php
                     }
                 }

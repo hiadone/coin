@@ -47,6 +47,15 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
    
 
     <section class='post_area'>
+        <?php if (element('extra_content', $view)) { ?>
+            <ul class="list-group">
+                <?php foreach (element('extra_content', $view) as $key => $value) { ?>
+                    <li class="list-group-item">
+                        <div class="col-sm-2"> <strong><?php echo html_escape(element('display_name', $value)); ?></strong></div>
+                        <div class="list-group-item-text" style="min-height:20px;"><?php echo nl2br(html_escape(element('output', $value))); ?></div></li>
+                <?php } ?>
+            </ul>
+        <?php } ?>
         <div class="contents-view">
             <div class="contents-view-img">
                 <?php
