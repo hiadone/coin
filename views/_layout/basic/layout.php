@@ -98,7 +98,12 @@ $(document).ready(function(){
                   }
             });
 
-        
+        var ham_top = parseInt($(".ham").css("top"));  
+            $(window).scroll(function(){  
+                var pos = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
+                console.log(pos);
+                $(".ham").stop().animate({"top":pos+ham_top+"px"},500);  
+            });
 
     // 로그인 롤링 텍트스   
         var slider_noice = $('.login_noice ul').bxSlider({
@@ -154,27 +159,317 @@ $(document).ready(function(){
                 slider_noice.stopAuto();
                 slider_noice.startAuto();
             });
-
- 
-           
+   
     // footer의 TOP 클릭시 맨 상단으로 이동
         $(".footer p span").click(function(){
             $('html,body').animate({'scrollTop' : '0'} , '1000');
+        });  
+
+    // 소멸예정 포인트 팝업
+        $(".point_info_cont .dis_point > img").click(function(){
+            $('.disapp_point').fadeIn();
+            $('.disapp_point').css('z-index' ,"200000000");
         });
 
-    
-});
+        $(".disapp_point h2 span img").click(function(){
+            $('.disapp_point').fadeOut();
+            $('.disapp_point').css('z-index' ,"-200000000");
+        });
 
+
+});
 </script>
+
+
 </head>
 <body <?php echo isset($view) ? element('body_script', $view) : ''; ?>>
 
 <aside class="ham">
-    
     <img class="pointer pull-left" src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png" alt="ham_btn_img">
-    
-    <div id="view_member" class="ham_cont" >
-    </div>
+<!--    <div id="view_member" class="ham_cont02">
+   </div> -->
+
+    <section class="ham_cont02 disapp_point">
+        <h2>
+            소멸예정 포인트
+            <span ><img src="http://cmy.bitcoissue.com/assets/images/clear02.png" alt="clear02"></span>
+        </h2>
+
+        <span class='small_font'>
+            소멸예정 인 포인트를 확인하실 수 있습니다 .
+        </span>
+
+        <div class='point_notice'>
+           <h3>소멸예정 포인트 주의사항</h3>
+           <p>
+             유효기간은 적립일로부터 <strong class="big_font">1년</strong> 입니다.
+            <br>
+            <br>
+            유효기간이 지나면 적립 "월" 기준으로<br>
+            순차적으로 익월 1일 00시에 소멸됩니다.
+            <br>
+            <br>
+            포인트에 관한 기타 문의는 <br>고객센터에 문의해 주세요.   
+           </p>
+        </div>
+
+        <table>
+            <tr>
+                <th>소멸예정 일시</th>
+                <th>소멸예정 포인트</th>
+            </tr>
+
+            <tr>
+                <td>2018년 00 월</td>
+                <td>
+                    <strong class='big_font'>1,000 <span class='small_font'>포인트</span></strong>
+                </td>
+            </tr>
+
+            <tr>
+                <td>2018년 00 월</td>
+                <td>
+                    <strong class='big_font'>2,000 <span class='small_font'>포인트</span></strong>
+                </td>
+            </tr>
+
+            <tr>
+                <td>2018년 00 월</td>
+                <td>
+                    <strong class='big_font'>500 <span class='small_font'>포인트</span></strong>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="ham_cont point_info">
+        <ul class="info_menu">
+            <li class='active'>
+                <h2 style='background:url("http://cmy.bitcoissue.com/assets/images/point_info01.png") no-repeat center left; background-size: 19px;'>
+                    포인트 정보
+                </h2>
+            </li>
+
+            <li>
+                <h2 style="background:url('http://cmy.bitcoissue.com/assets/images/user_info04.png') no-repeat center left; background-size: 19px;">회원정보</h2>
+            </li>
+        </ul>
+
+        <div class='point_info_cont'>
+            <img src="http://cmy.bitcoissue.com/assets/images/spoon_1.png" alt="grade">
+            <div class='my_point'>
+                <h3>현재 포인트</h3>
+                <strong>5,000 P</strong>
+            </div> 
+
+            <div class="dis_point">
+                <div>
+                    <h3>소멸 예정 포인트</h3>
+                    <strong class='big_font'>
+                        300 P
+                    </strong>
+                </div>
+                <img class="point_more" src="http://cmy.bitcoissue.com/assets/images/point_more.png" alt="point_more">
+            </div>
+        </div>
+
+        <span class="small_font">최근 3개월간 적립/사용 내역입니다.</span>
+
+        <table>
+            <tr>
+                <th class='nomal_font02'>날 짜</th>
+                <th class='point_use_cont nomal_font02'>내 용</th>
+                <th class='nomal_font02'>적립/사용</th>
+            </tr>
+
+            <tr>
+                <td>
+                   15.11.05 
+                </td>
+
+                <td>
+                   최근 3개월 간의 사용 내역입니다 .
+                </td>
+
+                <td>
+                    <figure>
+                        <img src="http://cmy.bitcoissue.com/assets/images/add.png" alt="add">
+                        <figcaption class='nomal_font02'>200P</figcaption>
+                    </figure>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                   15.11.05 
+                </td>
+
+                <td>
+                   최근 3개월 간의 사용 내역입니다 .
+                </td>
+
+                <td>
+                    <figure>
+                        <img src="http://cmy.bitcoissue.com/assets/images/down.png" alt="down">
+                        <figcaption class='nomal_font02'>200P</figcaption>
+                    </figure>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                   15.11.05 
+                </td>
+
+                <td>
+                   최근 3개월 간의 사용 내역입니다 .
+                </td>
+
+                <td>
+                    <figure>
+                        <img src="http://cmy.bitcoissue.com/assets/images/add.png" alt="add">
+                        <figcaption class='nomal_font02'>200P</figcaption>
+                    </figure>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                   15.11.05 
+                </td>
+
+                <td>
+                   최근 3개월 간의 사용 내역입니다 .
+                </td>
+
+                <td>
+                    <figure>
+                        <img src="http://cmy.bitcoissue.com/assets/images/down.png" alt="down">
+                        <figcaption class='nomal_font02'>200P</figcaption>
+                    </figure>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+<!--     <section class="ham_cont user_info">
+        <ul class="info_menu">
+            <li>
+                <h2 style='background:url("http://cmy.bitcoissue.com/assets/images/point_info02.png") no-repeat center left; background-size: 19px;'>
+                    포인트 정보
+                </h2>
+            </li>
+
+            <li class='active'>
+                <h2 style="background:url('http://cmy.bitcoissue.com/assets/images/user_info03.png') no-repeat center left; background-size: 19px;">회원정보</h2>
+            </li>
+        </ul>
+
+        <span class="small_font">회원님의 정보를 알려 드립니다 .</span>
+
+        <table>
+            <tr>
+                <th>아 이 디</th>
+                <td>-social_71731210</td>
+            </tr>
+
+            <tr>
+                <th>닉 네 임</th>
+                <td>aldduddk</td>
+            </tr>
+
+            <tr>
+                <th>포 인 트</th>
+                <td>220 포인트</td>
+            </tr>
+
+            <tr>
+                <th>회 원 그 룹</th>
+                <td>
+                    <figure>
+                        <img src="http://www.bitcoissue.com/views/_layout/basic/images/spoon_1.png" alt="spoon_img">
+                        <figcaption>흙수저</figcaption>
+                    </figure>
+                    
+                </td>
+            </tr>
+
+            <tr>
+                <th>가 입 일</th>
+                <td>02-06 14:45</td>
+            </tr>
+
+            <tr>
+                <th>최 근 로 그 인</th>
+                <td>15:13</td>
+            </tr>
+        </table>
+
+        <ul class="info_btn">
+            <li>
+                <button class="" title="회원탈퇴" onclick="view_memberleave('view_member');">회 원 탈 퇴</button>
+            </li>
+
+            <li>
+                <button class="" title="로그아웃" onclick="location.href='http://www.bitcoissue.com/login/logout?url=http%3A%2F%2Fwww.bitcoissue.com%2F';">로 그 아 웃</button>
+            </li>
+        </ul>
+    </section>  -->
+
+   <!--  <section class="ham_cont02 ham_out">
+        <h2>회 원 탈 퇴</h2>
+        <div class='logout_notice' style="border:0;">
+            <img src="<?php echo base_url('/assets/images/stop.png') ?>" alt="stop">
+            <?php
+            echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
+            echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-warning"><button type="button" class="close alertclose" >&times;</button>', '</div>');
+            ?>
+            <?php
+            $attributes = array('class' => 'form-horizontal', 'name' => 'fconfirmpassword', 'id' => 'fconfirmpassword', 'onsubmit' => 'return confirmleave()');
+            echo form_open(current_url(), $attributes);
+            ?>
+
+            <h3>정말로 탈퇴 하시겠습니까 ?</h3>
+            
+            <p>
+                회원 탈퇴시 모든 정보가 삭제되며<br>
+                어떠한 경우에도 복구되지 않습니다.<br><br>
+                탈퇴 시 동일한 SNS로 재가입은<br>
+                1개월 이내로는 재가입이 불가능 하며<br><br>
+
+                <strong class='nomal_font02'>
+                    적립하신 모든 포인트가 소멸됩니다.<br>
+                    탈퇴하시겠습니까?
+                </strong>
+            </p>
+        </div>
+        <button type="submit" class='big_font'>탈 퇴 하 기</button>
+        <?php echo form_close(); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    </section> -->
+
+
+
     
 </aside>
 

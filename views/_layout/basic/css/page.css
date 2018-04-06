@@ -64,10 +64,7 @@
 			border-bottom:1px solid #ededed;
 		}
 
-		#coin_mall .coin_title th{
-			width: 10%;
-		}
-
+		
 		#coin_mall .coin_cont{
 			width: 100%;
 			height: 270px;	
@@ -86,7 +83,6 @@
 		}
 
 		#coin_mall .coin_cont td{
-			width: 10%;
 			vertical-align: middle;
 			text-align: center;
 		}
@@ -415,12 +411,9 @@
 			left: 0;
 			right: 0;
 		}
+
 		#community .menu_list li{
 			width: 25%;
-		}
-
-		#community .menu_list li:first-child{
-			/*width: 25%;*/
 		}
 
 	/*coin_info css*/
@@ -1203,7 +1196,7 @@
 
 /*content03 css*/
 
-	/*대메뉴 영역*/
+/*대메뉴 영역*/
 		.content03 h4{
 			width: 1280px;
 			height: 30px;
@@ -1232,64 +1225,64 @@
 			border-bottom: 1px solid #ededed;
 		}
 
-	/*post_title(게시물 제목) css*/
-	.post_title{
-		width: 1260px;
-		height: 60px;
-		margin:0 auto;
-	}
+/*post_title(게시물 제목) css*/
+		.post_title{
+			width: 1260px;
+			height: 60px;
+			margin:0 auto;
+		}
 
-	.post_title h3{
-		width: 100%;
-		height: 30px;
-		line-height: 45px;
-	}
+		.post_title h3{
+			width: 100%;
+			height: 30px;
+			line-height: 45px;
+		}
 
-	.post_title ul{
-		float: right;
-	}
+		.post_title ul{
+			float: right;
+		}
 
-	.post_title li{
-		height: 30px;
-		line-height: 30px;
-		float: left;
-	}
+		.post_title li{
+			height: 30px;
+			line-height: 30px;
+			float: left;
+		}
 
-	.post_title li.small_font{
-		width: 30px;
-		text-align:center;
-	}
+		.post_title li.small_font{
+			width: 30px;
+			text-align:center;
+		}
 
-	.post_title li b{
-		font-weight: bold;
-	}
+		.post_title li b{
+			font-weight: bold;
+		}
 
-	.post_title li span{
-		font-weight: bold;
-		color: darkred;
-		margin-left: 5px;
-		display: inline-block;
-	}
+		.post_title li span{
+			font-weight: bold;
+			color: darkred;
+			margin-left: 5px;
+			display: inline-block;
+		}
 
-	/*post_link css*/
-	.post_link{
-		border-bottom:1px solid #ededed;
-	}
+/*post_link css*/
+		.post_link{
+			border-bottom:1px solid #ededed;
+		}
 
-	.post_link p{
-		width: 1260px;
-		margin:0 auto;
-		font-weight: bold;
-		line-height: 40px;
-	}
+		.post_link p{
+			width: 1260px;
+			margin:0 auto;
+			font-weight: bold;
+			line-height: 40px;
+		}
 
-	/*post_area(게시물 컨텐츠) css*/
+/*post_area(게시물 컨텐츠) css*/
 		.post_area{
 			width: 1200px;
 			margin:40px auto;
 		}
 
-	/*post_view(게시물 컨텐츠의 이전글 다음글 목록) css*/
+/*post_view(게시물 컨텐츠의 이전글 다음글 목록) css*/
 		.post_view{
 			width: 1280px;
 			margin: 0 auto 20px;
@@ -1311,7 +1304,7 @@
 			width: 30px;
 		}
 
-	/*reply_list css*/
+/*reply_list css*/
 		.reply_list{
 			width: 1280px;
 			margin:0 auto;
@@ -1389,7 +1382,7 @@
 				margin-left: 2%;
 			}
 
-	/*reply_write(댓글쓰기) css*/
+/*reply_write(댓글쓰기) css*/
 		.reply_write{
 			width: 1280px;
 			margin:0 auto 40px;
@@ -1417,7 +1410,6 @@
 	width: 970px;
 	margin: 40px auto;
 }
-
 
 /*post_reply css*/
 	.post_reply{
@@ -1637,6 +1629,145 @@
 		font-weight: normal;
 		color: #000;
 	}
+
+/* 스토어 상품구매 css*/
+	.item_detail {
+		width: 900px;
+		margin:0 auto 40px;
+		position: relative;
+	}
+
+	.item_detail img{
+		width: 400px;
+		border:1px solid #ededed;
+		box-sizing: border-box;
+	}
+
+	.item_info{
+		float: right;
+		width: 450px;
+		position: absolute;
+		right: 0;
+		bottom:0;
+	}
+
+	.item_info h2{
+		font-size: 18px;
+		margin-bottom: 35px;
+	}
+
+	.item_info ul{
+		margin-bottom: 30px;
+	}
+
+	.item_info li{
+		padding-bottom: 10px;
+		border-bottom:1px solid #ededed;
+		margin-bottom: 15px;
+	}
+
+	.item_info li:last-child{
+		margin-bottom:0;
+		border:0;
+	}
+
+	.item_info li p{
+		font-size: 13px;
+		float: right;
+	}
+
+	.item_info li strong,
+	.item_info li b{
+		color:#a61e23;
+		font-family: 'Jeju Gothic', sans-serif;
+		font-size: 17px;
+		font-weight: normal;
+	}
+
+	.item_info li strong{
+		float: right;
+
+	}
+
+	.item_info form input{
+		width: 100%;
+		height: 30px;
+		padding:3px 5px;
+		margin-bottom: 10px;
+		box-sizing: border-box;
+		outline: none;
+	}
+
+	.item_info form span{
+		width: 100%;
+		margin-bottom: 20px;
+		text-align: center;
+		font-family: 'Jeju Gothic', sans-serif;
+		color:#a61e23;
+		display: inline-block;
+		line-height: 17px;
+	}
+
+	.item_info form button{
+		width: 100%;
+		height: 40px;
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+
+	.item_explain{
+		width: 900px;
+		margin:0 auto;
+	}
+
+	.item_explain h2{
+		margin-bottom:20px; 
+	}
+
+/*웹툰 서브 페이지*/
+ 	.toon_list{
+        padding-top: 30px;
+        display: inline-block;
+    }
+    .toon_list li{
+        width: 190px;
+        margin:0 28px 40px 0;
+        float: left;
+    }
+
+    .toon_list li:nth-child(6n){
+        margin-right: 0;
+    }
+
+
+
+    .toon_list li figure img{
+        width: 100%;
+        border:1px solid #ededed;
+        margin-bottom: 20px;
+    }
+
+    .toon_list li figcaption h3{
+        height:39px;
+        display:-webkit-box;
+        -webkit-line-clamp:2;
+        -webkit-box-orient:vertical;
+        line-height:20px;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    .toon_writer p{
+        display: inline-block;
+        font-weight: bold;
+        color: #5d5d5d;
+    }
+
+    .toon_writer p img{
+        border:0;
+        width: 17px;
+        float: left;
+        margin-right: 5px;
+    }
 
 /*추가 css*/
 	#comment_write_box{
