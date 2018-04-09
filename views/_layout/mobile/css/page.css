@@ -14,13 +14,12 @@ html, body{
 	position: relative;
 	padding-bottom:125px;
 }
-
 /*new_click css*/
 	.new_btn{
 		width: 50px;
 		height: 50px;
 		position: fixed;
-		bottom: 50px;
+		bottom: 7px;
 		right: 20px;
 		z-index: 100;
 		box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
@@ -31,6 +30,12 @@ html, body{
 		width: 100%;
 	}
 
+/*새글 N 이미지*/
+	#new_text{
+		width: 15px;
+		float: left;
+		margin-right: 5px;
+	}
 /*광고배너*/
 	.ad img{
 		width: 100%;
@@ -240,12 +245,6 @@ html, body{
 		width: 55%;
 	}
 
-	.cont_wrap div table td:nth-child(2) img{
-		width: 15px;
-		float: left;
-		margin-right: 3px;
-	}
-
 /*tab01(거래소별 시세) 영역*/
 	.tab01{
 		margin-bottom:0;
@@ -347,13 +346,8 @@ html, body{
 
 /* tab02(자유게시판,채굴정보,코인뉴스 수익인증 / main화면) 영역*/
 	.tab02_tabs li{
-		width:33%;
+		width:25%;
 	}
-
-	.tab02_tabs li:nth-child(2){
-		width: 34%;
-	}
-
 /* tab03(동영상강좌 , 코인지식 , ICO, 거래소별 코인 / main화면) 영역*/
 	.tab03_tabs li {
 		width:25%;
@@ -376,7 +370,7 @@ html, body{
 	/*자유갤러리 영역*/
 	.tab05_cont ul{
 		width: 100%;
-		padding: 3%;
+		padding: 3% 3% 0;
 		box-sizing: border-box;
 		display: inline-block;
 	}
@@ -563,7 +557,7 @@ html, body{
 			overflow:hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-			margin-bottom:10px;
+			margin: 0 0 10px;
 		}
 
 		.gallery_news figcaption h3 img{
@@ -1937,7 +1931,7 @@ html, body{
     }
 
     .store_li li{
-        /*width: 32%;*/
+        width: 32%;
         margin:0 2% 5% 0;
         float: left;
     }
@@ -2168,14 +2162,14 @@ html, body{
         box-sizing: border-box;
     }
 
-    .info_area ul{
+    .info_menu_tab{
         display: inline-block;
         width:100%;
         border:1px solid #1c446d;
         margin-bottom: 5%;
     }
 
-    .info_area li{
+    .info_menu_tab li{
         width: 50%;
         height: 30px;
         line-height: 30px;
@@ -2185,12 +2179,12 @@ html, body{
         font-weight: bold;
     }
 
-    .info_area li h2{
+    .info_menu_tab li h2{
         padding-left: 22px;
         display: inline-block;
     }
 
-    .info_area li.active{
+    .info_menu_tab li.active{
         background-color: #1c446d;
         color: #fff;
     }
@@ -2198,26 +2192,29 @@ html, body{
     .point_info_cont{
         display: inline-block;
         margin-bottom: 5%;
+        width: 100%;
     }
 
-
     .point_info_cont > img{
-        width: 30%;
-        margin-right: 3%;
+        width: 90px;
         float: left;
     }
 
     .point_info_cont .my_point{
-        padding-bottom: 1%;
-        border-bottom:2px solid #000;
-        display: inline-block;
         width: 67%;
-        margin-bottom: 3%;
-        margin-top: 3.5%;
+        display: inline-block;
+        float: right;
+        padding:3px;
+        box-sizing: border-box;
+        border-bottom:2px solid #000;
+        margin:14px 0 10px;
     }
 
     .point_info_cont .my_point h3{
         font-weight: bold;
+        display: inline-block;
+        height: 27px;
+        line-height: 34px;
     }
 
     .point_info_cont .my_point strong{
@@ -2232,17 +2229,18 @@ html, body{
         display: inline-block;
         width: 67%;
         float: right;
-        padding-bottom:1.5%;
+        padding:3px;
+        box-sizing: border-box;
         border-bottom:1px solid #000;
         box-sizing: border-box;
+        font-weight: bold;
     }
 
     .point_info_cont .dis_point > div{
-        width: 87%;
-        margin-right: 3%;
+        width: 85%;
         float: left;
         height: 20px;
-        line-height: 23px;
+        line-height: 20px;
     }
 
     .point_info_cont .dis_point h3{
@@ -2251,7 +2249,6 @@ html, body{
     }
 
     .point_info_cont .dis_point strong{
-        font-weight: bold;
         float: right;
     }
 
@@ -2268,47 +2265,81 @@ html, body{
 
     .point_info table{
         width: 100%;
+        margin-bottom: 5%;
         table-layout: fixed;
     }
 
-    .point_info th{
+    .point_info table th{
         font-weight: bold;
         background-color:#f0f3f7; 
     }
 
-    .point_info th,
-    .point_info td{
+    .point_info table th,
+    .point_info table td{
         border:1px solid #ededed;
         padding:2%;
         text-align: center;
         vertical-align: middle;
     }
 
-    .point_info .table_cont{
-        width: 50%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+    .point_info table th:nth-child(1),
+    .point_info table td:nth-child(1){
+    	width: 18%;
     }
 
-    .point_info figure{
+    .point_info table th:nth-child(3),
+    .point_info table td:nth-child(3){
+    	width: 33.5%;
+    }
+
+    .point_info table figure{
         display: inline-block;
+        margin-top: 3px;
+        width: 100%;
     }
 
-    .point_info figure img{
+    .point_info table figure img{
         width: 18px;
         float: left;
         margin-right: 5px;
     }
 
-    .point_info figcaption{
+    .point_info table figcaption{
         font-weight: bold;
         font-size: 14px;
         display: inline-block;
         height: 18px;
-        line-height: 17px;
+        line-height: 20px;
         float: left;
     }
+
+/*mo_pager 모바일 pager css*/
+	.mo_pager{
+		text-align: center;
+	}
+	.mo_pager ul{
+		display: inline-block;
+		border:1px solid #ededed;
+	}
+
+	.mo_pager ul li{
+		font-weight: normal;
+		text-align: center;
+		float: left;
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+		border-right: 1px solid #ededed;
+	}
+
+	.mo_pager ul li:last-child{
+		border-right:0;
+	}
+
+	.mo_pager ul li.page_active{
+		font-weight: bold;
+		background-color: #f0f3f7;
+	}
 
 @media screen and (min-width:421px){
 	body{

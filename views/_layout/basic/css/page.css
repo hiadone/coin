@@ -1769,6 +1769,104 @@
         margin-right: 5px;
     }
 
+/*닉네임 설정 페이지*/
+	.nick_name{
+		width: 350px;
+		height: 256px;
+		margin:auto; 
+		text-align: center;
+		position: absolute;
+		top: -130px;
+		bottom:0;
+		right: 0;
+		left: 0;
+	}
+
+	.nick_name > img{
+		width: 50%;
+		margin-bottom: 15px;
+	}
+
+	.nick_name p{
+		font-family: 'Jeju Gothic', sans-serif;
+		margin-bottom: 30px;
+		letter-spacing: 1px;
+	}
+
+	.nick_name form{
+		width: 100%;
+	}
+
+	.nick_name form label.big_font{
+		width: 30%;
+		float: left;
+		padding:10px 0 7px;
+		box-sizing: border-box;
+		border:1px solid #ededed;
+		border-right: 0;
+		display: inline-block;
+		font-family: 'Jeju Gothic', sans-serif;
+		background-color: #f0f3f7;
+		margin-bottom: 15px;
+	}
+
+	.nick_name form #mem_nickname{
+		width: 70%;
+		float: right;
+		border:1px solid #ededed;
+		padding:9px 10px 8px;
+		box-sizing: border-box;
+		outline: none;
+		margin-bottom: 15px;
+	}
+
+	.nick_name form .name_notice{
+		display: inline-block;
+		width: 100%;
+		text-align: right;
+		color: #a61e23;
+		margin-bottom: 30px;
+		font-family:'Jeju Gothic', sans-serif;
+	}
+
+	.nick_name form button{
+		width: 100%;
+		height: 40px;
+		font-family:'Jeju Gothic', sans-serif; 
+	}
+
+
+/*welcome css*/
+	.welcome{
+		width: 350px;
+		height: 256px;
+		margin:auto; 
+		text-align: center;
+		position: absolute;
+		top: -130px;
+		bottom:0;
+		right: 0;
+		left: 0;
+	}
+
+	.welcome > img{
+		width: 50%;
+		margin-bottom: 20px;
+	}
+
+	.welcome p{
+		font-family: 'Jeju Gothic', sans-serif;
+		margin-bottom: 30px;
+		letter-spacing: 1px;
+		line-height: 20px;
+	}
+
+	.welcome button{
+		width: 100%;
+		height: 40px;
+		font-family:'Jeju Gothic', sans-serif; 
+	}
+
 /*추가 css*/
 	#comment_write_box{
 		display: inline-block;

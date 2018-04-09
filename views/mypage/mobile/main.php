@@ -2,7 +2,7 @@
 
 <article class="wrap01">
         <section class="info_area main_title my_info">
-            <ul>
+            <ul class='info_menu_tab'>
                   
                   <li class='active' onclick="location.href='<?php echo site_url('/mypage'); ?>';">
                        <h2 style='background:url("/assets/images/user_info03.png") no-repeat center left; background-size: 19px;'>회원정보</h2>

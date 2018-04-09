@@ -36,7 +36,7 @@
            <?php } else { ?>
                 <li>
                     <a href="<?php echo element('url', $value); ?>" >
-                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                        <?php if (element('is_new', $value)) { ?><img id='new_text' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
                         <?php echo html_escape(element('title', $value)); ?>
                      <span><?php if (element('post_comment_count', $value)) { ?> [<?php echo element('post_comment_count', $value); ?>]<?php } ?></span>
                     

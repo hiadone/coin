@@ -26,7 +26,7 @@
     </section> -->
 
     <section class='info_area my_info main_title'>
-      <ul>
+      <ul class='info_menu_tab'>
             <li>
                 <h2 style='background:url("http://cmy.bitcoissue.com/assets/images/point_info02.png") no-repeat center left; background-size: 19px;'>포인트정보</h2>
             </li>

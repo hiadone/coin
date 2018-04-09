@@ -85,7 +85,7 @@
         ?>
         </tbody>
     </table>
-    <nav><?php echo element('paging', $view); ?></nav>
+    <nav class='mo_pager'><?php echo element('paging', $view); ?></nav>
 </div>
 <!-- ad 영역 -->
 <section class="ad">

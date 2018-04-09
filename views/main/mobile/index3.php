@@ -34,7 +34,7 @@
     </section>-->
 
     <section class='point_info info_area'>
-       <ul>
+       <ul class='info_menu_tab'>
             <li class='active'>
                 <h2 style='background:url("http://cmy.bitcoissue.com/assets/images/point_info01.png") no-repeat center left; background-size: 19px;'>포인트정보</h2>
             </li>
@@ -68,13 +68,13 @@
         <table>
             <tr>
                    <th>날 짜</th>
-                   <th class='table_cont'>내 용</th>
+                   <th>내 용</th>
                    <th>적립/사용</th>
             </tr>
 
             <tr>
                    <td>15.11.05</td>
-                   <td class='table_cont'>최근 3개월간 사용한 내역입니다..</td>
+                   <td>최근 3개월간 사용한 내역입니다..</td>
 
                    <td>
                        <figure>
@@ -86,7 +86,7 @@
 
             <tr>
                    <td>15.11.05</td>
-                   <td class='table_cont'>최근 3개월간 사용한 내역입니다..</td>
+                   <td>최근 3개월간 사용한 내역입니다..</td>
                    
                    <td>
                        <figure>
@@ -98,7 +98,7 @@
 
             <tr>
                    <td>15.11.05</td>
-                   <td class='table_cont'>최근 3개월간 사용한 내역입니다..</td>
+                   <td>최근 3개월간 사용한 내역입니다..</td>
                    
                    <td>
                        <figure>
@@ -110,7 +110,7 @@
 
             <tr>
                    <td>15.11.05</td>
-                   <td class='table_cont'>최근 3개월간 사용한 내역입니다..</td>
+                   <td>최근 3개월간 사용한 내역입니다..</td>
                    
                    <td>
                        <figure>
@@ -122,7 +122,7 @@
 
             <tr>
                    <td>15.11.05</td>
-                   <td class='table_cont'>최근 3개월간 사용한 내역입니다..</td>
+                   <td>최근 3개월간 사용한 내역입니다..</td>
                    
                    <td>
                        <figure>
