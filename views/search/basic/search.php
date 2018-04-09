@@ -101,7 +101,7 @@ if ( ! element('list', element('data', $view))) {
 }
 ?>
 </div>
-<div><?php echo element('paging', $view); ?></div>
+<div class='post_page'><?php echo element('paging', $view); ?></div>
 </div>
 <script type="text/javascript">
 //<![CDATA[
