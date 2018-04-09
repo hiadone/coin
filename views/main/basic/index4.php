@@ -6,7 +6,7 @@
 </script>
 
 <article class='content04 name_wrap' style="position: relative; margin: 0 auto;">
-	<!-- <section class='nick_name'>
+	<section class='nick_name'>
 		<img src='http://cmy.bitcoissue.com/assets/images/logo.png'>
 		<p class="nomal_font02">Bit Issue 에서 사용할 닉네임을 설정해 주세요.</p>
 
@@ -19,7 +19,7 @@
 			<label class='name_notice'>※공백없이 한글, 영문, 숫자만 입력 가능 2글자 이상※</label>
 			<button type="submit" class="big_font">닉 네 임 등 록</button> 
 		</form>
-	</section> -->
+	</section>
 
 	<section class='welcome'>
 		<img src='http://cmy.bitcoissue.com/assets/images/logo.png'>

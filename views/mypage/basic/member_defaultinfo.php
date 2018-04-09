@@ -1,8 +1,9 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
-<article class="wrap01">
-        <section class="main_title login">
-            <h2>닉네임을 입력해 주세요.</h2>
+<article class='content04 name_wrap' style="position: relative; margin: 0 auto;height:520px;">
+        <section class='nick_name'>
+            <img src="<?php echo base_url('/assets/images/logo.png')?>">
+            <p class="nomal_font02">Bit Issue 에서 사용할 닉네임을 설정해 주세요.</p>
             
             <?php
             echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
@@ -17,11 +18,11 @@
             
             <label class="big_font">닉 네 임</label>
             <input type="text" id="mem_nickname" name="mem_nickname" value="<?php echo html_escape($this->member->item('mem_nickname'));?>" >
-            <label class="small_font mb10">공백없이 한글, 영문, 숫자만 입력 가능 2글자 이상</label>
-            <button type="submit" class="">등 록</button>
+            <label class="name_notice">공백없이 한글, 영문, 숫자만 입력 가능 2글자 이상</label>
+            <button type="submit" class="big_font">닉 네 임 등 록</button>
             <?php echo form_close(); ?>
-        </section>
-    </article>
+    </section>
+</article>
 
 
 

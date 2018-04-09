@@ -23,7 +23,7 @@
                         <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                         <figcaption>
                         <h3 class="normal_font">
-                            <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                            <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
                             <?php echo html_escape(element('title', $value)); ?>
                         </h3>
                         <p class="display_content"><?php echo element('display_content', $value); ?></p>
@@ -36,7 +36,7 @@
            <?php } else { ?>
                 <li>
                     <a href="<?php echo element('url', $value); ?>" >
-                        <?php if (element('is_new', $value)) { ?><img id='new_text' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                        <?php if (element('is_new', $value)) { ?><img  src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
                         <?php echo html_escape(element('title', $value)); ?>
                      <span><?php if (element('post_comment_count', $value)) { ?> [<?php echo element('post_comment_count', $value); ?>]<?php } ?></span>
                     

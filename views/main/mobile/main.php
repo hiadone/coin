@@ -524,7 +524,7 @@
                                 <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                     <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                     <td class="text-left">
-                                        <?php if (element('is_new', $value)) { ?><img id='new_text' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
                                         <?php echo html_escape(element('title', $value)); ?>
                                     </td>
                                     <td><?php echo element('display_datetime', $value); ?></td>
@@ -589,7 +589,7 @@
                        <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                 <figcaption>
                                 <h3 class="normal_font">
-                                    <?php if (element('is_new', $value)) { ?><img id='new_text' src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
+                                    <?php if (element('is_new', $value)) { ?><img  src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text" ><?php } ?>
                                     <?php echo html_escape(element('title', $value)); ?>
                                 </h3>
                                 <p class="display_content"><?php echo element('display_content', $value); ?></p>
@@ -637,7 +637,7 @@
                                 <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>"> 
                                 <figcaption>
                                 <h3 class="normal_font">
-                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
                                     <?php echo html_escape(element('title', $value)); ?>
                                     
                                 </h3>
@@ -699,7 +699,7 @@
                             <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                 <td class="text-left">
-                                    <?php if (element('is_new', $value)) { ?><img id='new_text' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    <?php if (element('is_new', $value)) { ?><img  src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
                                     <?php echo html_escape(element('title', $value)); ?>
                                 </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
@@ -755,7 +755,7 @@
                                 <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                     <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                     <td class="text-left">
-                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
                                         <?php echo html_escape(element('title', $value)); ?>
                                     </td>
                                     <td><?php echo element('display_datetime', $value); ?></td>
@@ -805,7 +805,7 @@
                     $board=$this->board->data($config);
 
                     if (element('latest', element('view', $board))) {
-                        echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
+                        echo '<div id="tab09_'.element('brd_key',$config).'" class="tab09_cont cont">
                         <ul>';
                             foreach (element('latest', element('view', $board)) as $key => $value) {?>
                             <li>
@@ -824,7 +824,7 @@
                         </ul>
                     </div>';
                     } else {
-                        echo '<div id="tab05_'.element('brd_key',$config).'" class="tab05_cont cont">
+                        echo '<div id="tab09_'.element('brd_key',$config).'" class="tab09_cont cont">
                         <table>
                             <tr>
                                 <td colspan="3">게시물이 없습니다.</td>
@@ -912,7 +912,7 @@
                             <tr onClick="location.href='<?php echo element('url', $value); ?>'">
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                 <td class="text-left">
-                                    <?php if (element('is_new', $value)) { ?><img class='new_img' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
                                     <?php echo html_escape(element('title', $value)); ?>
                                 </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
