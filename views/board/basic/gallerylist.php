@@ -161,12 +161,12 @@ $record_num = $this->uri->segment($last);
             <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a>
         <?php } ?> -->
         <section class="post_button">
-                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">전체</a>
+                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">전 체</a>
             <?php if (element('write_url', element('list', $view))) { ?>
                 <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>    
             <?php } ?>
             <?php if (element('is_admin', $view)) { ?>
-            <div class="btn btn-default btn-sm" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선택삭제</div>
+            <div class="btn btn-default btn-sm" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선 택 삭 제</div>
             <?php } ?>
         </section>
         <section class="post_page">

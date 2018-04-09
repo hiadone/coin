@@ -583,8 +583,10 @@
                                 <figure>
                                     <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                     <figcaption>
-                                        <h3><?php echo html_escape(element('title', $value)); ?>
-                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text" ><?php } ?>
+                                        <h3>
+                                        <?php if (element('is_new', $value)) { ?><img id='img_text' src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
+                                        <?php echo html_escape(element('title', $value)); ?>
+                                        
                                         </h3>
                                         <p>
                                             <?php echo element('display_content', $value); ?>
@@ -631,8 +633,9 @@
                                     <figure>
                                         <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                         <figcaption>
-                                            <h3><?php echo html_escape(element('title', $value)); ?>
-                                            <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text" ><?php } ?>
+                                            <h3>
+                                            <?php if (element('is_new', $value)) { ?><img id='img_text' src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
+                                            <?php echo html_escape(element('title', $value)); ?>
                                             </h3>
                                             <p>
                                                 <?php echo element('display_content', $value); ?>
@@ -690,7 +693,7 @@
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                             <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
                                 
-                                <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
+                                <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
                             </td>
                             <td><?php echo element('display_datetime', $value); ?></td>
                         </tr>                        
@@ -750,7 +753,7 @@
                                         <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                         <figcaption>
                                             <h3><?php echo html_escape(element('title', $value)); ?>
-                                            <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text" ><?php } ?>
+                                            <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
                                             </h3>
                                             <p>
                                                 <?php echo element('display_content', $value); ?>
@@ -790,7 +793,7 @@
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                 <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
                                     <?php echo element('thumb_url', $value); ?>
-                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
+                                    <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
                                 </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        
@@ -876,7 +879,7 @@
                     
                 $config = array(
                     'brd_key' => 'humor',
-                    'limit' => 10,
+                    'limit' => 14,
                     'length' => 70,
                     );
                 $board=$this->board->data($config);
@@ -888,7 +891,7 @@
                         <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                             <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
-                                <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text" ><?php } ?>
+                                <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
                             </td>
                             <td><?php echo element('display_datetime', $value); ?></td>
                         </tr>                        
@@ -940,7 +943,7 @@
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                 <td class="text-left">
                                     <?php echo html_escape(element('title', $value)); ?>
-                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
                                 </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        
@@ -991,7 +994,7 @@
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                                 <td class="text-left">
                                     <?php echo strip_tags(element('title', $value)); ?>
-                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
+                                    <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
                                 </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        
@@ -1110,7 +1113,7 @@
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                             <td class="text-left">
                                 <?php echo html_escape(element('title', $value)); ?>
-                                <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
+                                <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
                             </td>
                             <td><?php echo element('display_datetime', $value); ?></td>
                         </tr>                        

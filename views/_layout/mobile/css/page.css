@@ -31,7 +31,7 @@ html, body{
 	}
 
 /*새글 N 이미지*/
-	#new_text{
+	#img_text{
 		width: 15px;
 		float: left;
 		margin-right: 5px;

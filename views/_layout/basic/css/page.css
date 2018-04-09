@@ -1,5 +1,11 @@
 @charset "utf-8";
 /* page */
+/*새글 N 이미지*/
+	#img_text{
+		width: 15px;
+		float: left;
+		margin-right:5px; 
+	}
 
 /*main*/
 	.content01{
@@ -53,8 +59,6 @@
 			float: left;
 		}
 
-
-
 		#coin_mall .coin_title{
 			width: 100%;
 			height: 40px;
@@ -64,7 +68,6 @@
 			border-bottom:1px solid #ededed;
 		}
 
-		
 		#coin_mall .coin_cont{
 			width: 100%;
 			height: 270px;	
@@ -88,17 +91,59 @@
 		}
 
 		#coin_mall .coin_cont .premium{
-			font-weight: bold;
+			font-family:'Jeju Gothic', sans-serif;
+			font-size: 14px;
 		}
 
 		#coin_mall .coin_cont .rate{
-			font-weight: bold;
-			color:#1c446d;
+			font-family:'Jeju Gothic', sans-serif;
+			font-size: 14px;
 		}
 
 		#coin_mall .coin_cont .minus{
 			color:#a61e23;
 		}
+
+		/*coin table width 값*/
+			.coin_title th:nth-child(1),
+			.coin_cont td:nth-child(1){
+				width: 99px;
+			}
+
+			.coin_title th:nth-child(2),
+			.coin_cont td:nth-child(2){
+				width: 130px;
+			}
+
+			.coin_title th:nth-child(3),
+			.coin_cont td:nth-child(3){
+				width: 83px;
+			}
+
+			.coin_title th:nth-child(4),
+			.coin_cont td:nth-child(4){
+				width: 77px;
+			}
+
+			.coin_title th:nth-child(5),
+			.coin_cont td:nth-child(5){
+				width: 90px;
+			}
+
+			.coin_title th:nth-child(6),
+			.coin_cont td:nth-child(6){
+				width: 185px;
+			}
+
+			.coin_title th:nth-child(7),
+			.coin_cont td:nth-child(7){
+				width: 148px;
+			}
+
+			.coin_title th:nth-child(8),
+			.coin_cont td:nth-child(8){
+				width: 133px;
+			}
 
 	/*main_ad css*/
 		.main_ad{
@@ -329,7 +374,7 @@
 
 		.tab_img img{
 			width: 122px;
-			height: 143px;
+			height: 142px;
 			margin:0 10px 10px 0;
 			cursor: pointer;
 			border:1px solid #ededed;
@@ -393,6 +438,7 @@
 	 		overflow: hidden;
 	 		margin-bottom:9px;
 	 		padding-top: 3px;
+	 		line-height: 18px;
 	 	}
 
 	 	#news figcaption p{
@@ -794,6 +840,7 @@
 
 		.gallery_li li figure > img{
 			width: 100%;
+			height: 150px;
 			margin-bottom: 15px;
 			border:5px solid #fff;
 			box-sizing: border-box;
@@ -1265,9 +1312,9 @@
 		}
 
 /*post_link css*/
-		.post_link{
+		/*.post_link{
 			border-bottom:1px solid #ededed;
-		}
+		}*/
 
 		.post_link p{
 			width: 1260px;
