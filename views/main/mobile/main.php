@@ -550,7 +550,7 @@
 
     <!-- ad 영역 -->
         <section class="ad">
-            <?php echo banner("main_banner2") ?>
+            <?php echo banner('main_mobile_banner') ?>
         </section>
 
     <!-- tab07(최신뉴스,인기뉴스) 영역 -->
@@ -814,7 +814,7 @@
                         <ul>';
                             foreach (element('latest', element('view', $board)) as $key => $value) {?>
                             <li>
-                                <a href="<?php echo element('pln_url', $value); ?>">
+                                <a href="<?php echo element('pln_url', $value); ?>" target="_blank">
                                     <figure>
                                     <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                         <figcaption>
@@ -967,7 +967,7 @@
 
     <!-- ad 영역 -->
         <section class="ad">
-            <?php echo banner("main_banner") ?>
+            <?php echo banner('main_mobile_banner') ?>
         </section>
     
     <!-- N버튼 영역 -->

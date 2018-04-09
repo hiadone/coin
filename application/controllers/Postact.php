@@ -545,6 +545,65 @@ class Postact extends CB_Controller
 
     }
 
+    public function webtoon_link($link_id = 0)
+    {
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_postact_link';
+        $this->load->event($eventname);
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('before', $eventname);
+
+        $link_id = (int) $link_id;
+        if (empty($link_id) OR $link_id < 1) {
+            show_404();
+        }
+
+        $mem_id = (int) $this->member->item('mem_id');
+
+        $this->load->model(array('Post_link_model'));
+
+        $link = $this->Post_link_model->get_one($link_id);
+
+        if ( ! element('pln_id', $link)) {
+            show_404();
+        }
+      
+
+        $post = $this->Post_model->get_one(element('post_id', $link));
+        $board = $this->board->item_all(element('brd_id', $post));
+
+        // if ( ! $this->session->userdata('post_link_click_' . element('pln_id', $link))) {
+
+            $this->session->set_userdata(
+                'post_link_click_' . element('pln_id', $link),
+                '1'
+            );
+
+            if (element('use_link_click_log', $board)) {
+                $insertdata = array(
+                    'pln_id' => element('pln_id', $link),
+                    'post_id' => element('post_id', $link),
+                    'brd_id' => element('brd_id', $link),
+                    'mem_id' => $mem_id,
+                    'plc_datetime' => cdate('Y-m-d H:i:s'),
+                    'plc_ip' => $this->input->ip_address(),
+                    'plc_useragent' => $this->agent->agent_string(),
+                );
+                $this->load->model('Post_link_click_log_model');
+                $this->Post_link_click_log_model->insert($insertdata);
+            }
+            $this->Post_link_model->update_plus(element('pln_id', $link), 'pln_hit', 1);
+        // }
+
+        // 이벤트가 존재하면 실행합니다
+        Events::trigger('after', $eventname);
+
+        redirect(prep_url(strip_tags(element('pln_url', $link))));
+
+    }
+
 
     /**
      * 게시물 추천/비추천 하기

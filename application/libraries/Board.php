@@ -988,7 +988,7 @@ class Board extends CI_Controller
                                 $link = $this->CI->Post_link_model
                                     ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
                                 if ($link && is_array($link)) {
-                                    $view['view']['latest'][$key]['pln_url'] = prep_url(element('pln_url',element(0,$link)));
+                                    $view['view']['latest'][$key]['pln_url'] = site_url('postact/webtoon_link/' . element('pln_id', element(0,$link)));
                                     
                                 }
                             }
@@ -1329,7 +1329,7 @@ class Board extends CI_Controller
                                 $link = $this->CI->Post_link_model
                                     ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
                                 if ($link && is_array($link)) {
-                                    $view['view']['latest'][$key]['pln_url'] = prep_url(element('pln_url',element(0,$link)));
+                                    $view['view']['latest'][$key]['pln_url'] = site_url('postact/webtoon_link/' . element('pln_id', element(0,$link)));
                                     
                                 }
                             }

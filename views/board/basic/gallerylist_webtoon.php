@@ -76,14 +76,15 @@ $record_num = $this->uri->segment($last);
                     ?>
                     <li class="gallery-box" >
                         <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /><?php } ?>
-                        <a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('title', $result)); ?>">
+                        <a href="<?php echo element('post_url', $result); ?>" target="_blank" title="<?php echo html_escape(element('title', $result)); ?>">
                             <figure>
                                 <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class=""  />
                                 <figcaption>
                                     <h3><?php echo element('title', $result); ?></h3>
                                     <div class='img_writer'>
                                         <p class='small_font'>
-                                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo $this->member->item('mem_level') ?>.png" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
+                                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo element('display_level', $result); ?>.png" alt="spoon_img">
+                                            
                                             <?php echo element('display_name', $result); ?>
                                         </p>
 

@@ -600,6 +600,7 @@ if ( ! function_exists('banner')) {
         $result = $CI->Banner_model->get_banner($position, $type, $limit,$offset);
 
         if ($result) {
+            
             foreach ($result as $key => $val) {
                 if(element('ban_activated', $val)!=='1'){
                     continue;

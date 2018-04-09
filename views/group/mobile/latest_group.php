@@ -11,8 +11,12 @@
     
     if(element('brd_key',element('board',$view))==="attendance") $hide_style="style='display:none';";
     
-    echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab0'.element('bgr_id',element('board',$view)).'_cont cont ">
-            <ul>';
+    if(element('bgr_id',element('board',$view))==='8')
+        echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab08_cont cont">';
+    else
+        echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab06_cont cont">';
+    
+        echo    '<ul>';
     if (element('latest', $view)) {
         foreach (element('latest', $view) as $key => $value) {
 
@@ -35,7 +39,7 @@
             <?php } elseif(element('bgr_id',element('board',$view))==='8') { ?>
 
                 <li>
-                     <a href="<?php echo element('pln_url', $value); ?>" >
+                     <a href="<?php echo element('pln_url', $value); ?>" target="_blank">
                          <figure>
                               <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                              <figcaption>

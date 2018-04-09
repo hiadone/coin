@@ -128,7 +128,7 @@ class Board_post extends CB_Controller
 
             if(element('brd_key', element('board', $list))==='event') $list_skin_file='gallerylist_event';
 
-            if(element('bgr_id', element('board', $list))==='8') $list_skin_file='gallerylist_webtoon';
+            if(element('bgr_id', element('board', $list))==='8' && $this->cbconfig->get_device_view_type() === 'desktop') $list_skin_file='gallerylist_webtoon';
             
             $layout_dir = element('board_layout', element('board', $list)) ? element('board_layout', element('board', $list)) : $this->cbconfig->item('layout_board');
             $mobile_layout_dir = element('board_mobile_layout', element('board', $list)) ? element('board_mobile_layout', element('board', $list)) : $this->cbconfig->item('mobile_layout_board');
@@ -1417,6 +1417,19 @@ class Board_post extends CB_Controller
                             ->get_one('', '', $filewhere, '', '', 'pfi_id', 'ASC');
                         $result['list'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $gallery_image_width, $gallery_image_height);
                         $result['list'][$key]['origin_image_url'] = thumb_url('post', element('pfi_filename', $file));
+
+                        if($brd_key ==='w-1'||$brd_key ==='w-2'||$brd_key ==='w-3'){
+                                $this->load->model('Post_link_model');
+                                $linkwhere = array(
+                                    'post_id' => element('post_id', $val),
+                                );
+                                $link = $this->Post_link_model
+                                    ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
+                                if ($link && is_array($link)) {
+                                    $result['list'][$key]['post_url'] = site_url('postact/webtoon_link/' . element('pln_id', element(0,$link))); 
+                                    $result['list'][$key]['post_hit'] = element('pln_hit', element(0,$link)); 
+                                }
+                            }
                     } elseif (element('post_link_count', $val)) {
                             $this->load->model('Post_link_model');
                             $linkwhere = array(

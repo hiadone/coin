@@ -476,7 +476,7 @@
         <?php echo banner('main_banner'); ?>
     </section>
 
-    <section class='ad img_slide' id='event' style="visibility: hidden;">
+    <section class='ad img_slide' id='event' >
         <ul >
             <?php echo banner('main_event'); ?>
         </ul>
@@ -1051,7 +1051,7 @@
                         
                             
                             <td>
-                                <a href="<?php echo element('pln_url', $value); ?>">
+                                <a href="<?php echo element('pln_url', $value); ?>" target="_blank">
                                     <figure>
                                         <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                         <figcaption class='nomal_font02'><?php echo element('title', $value); ?></figcaption>
