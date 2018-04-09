@@ -577,25 +577,25 @@ html, body{
 			display:-webkit-box;
 		}
 
-/*tab08 (인기글,최신글,최신댓글) 영역*/
-	.tab08_tabs li{
+/*tab09 (인기글,최신글,최신댓글) 영역*/
+	.tab09_tabs li{
 		width:33%;
 	}
 
-	.tab08_cont{
+	.tab09_cont{
 		width: 90%;
 		margin: 3% auto;
 	}
 
-	.tab08_cont li{
+	.tab09_cont li{
 		margin-bottom: 3%;
 	}
 
-	.tab08_cont li:last-child{
+	.tab09_cont li:last-child{
 		margin-bottom:0;
 	}
 
-	.tab08_cont h4{
+	.tab09_cont h4{
 		width: 5%;
 		font-weight: bold;
 		display: inline-block;
@@ -605,7 +605,7 @@ html, body{
 		text-align: right;
 	}
 
-	.tab08_cont div{
+	.tab09_cont div{
 		text-overflow: ellipsis;
 		white-space:nowrap;
 		overflow: hidden;
@@ -614,34 +614,34 @@ html, body{
 	}
 
 
-/*tab09 (웹툰) 영역*/
-	.tab09_tabs li{
+/*tab08 (웹툰) 영역*/
+	.tab08_tabs li{
 		width:33%;
 	}
 
-	.tab09_cont ul{
+	.tab08_cont ul{
 		width: 100%;
 		padding:3% 3% 0;
 		box-sizing: border-box;
 		display: inline-block;
 	}
 
-	.tab09_cont li{
+	.tab08_cont li{
 		width: 32%;
 		margin:0 2% 2% 0;
 		float: left;
 	}
 
-	.tab09_cont li:nth-child(3n){
+	.tab08_cont li:nth-child(3n){
 		margin-right: 0;
 	}
 
-	.tab09_cont li figure img{
+	.tab08_cont li figure img{
 		width: 100%;
 		margin-bottom: 5%;
 	}
 
-	.tab09_cont li figcaption{
+	.tab08_cont li figcaption{
 		width: 100%;
 		height: 30px;
 		overflow:hidden;

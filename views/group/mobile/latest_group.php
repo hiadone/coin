@@ -11,7 +11,7 @@
     
     if(element('brd_key',element('board',$view))==="attendance") $hide_style="style='display:none';";
     
-    echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab06_cont cont">
+    echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab0'.element('bgr_id',element('board',$view)).'_cont cont ">
             <ul>';
     if (element('latest', $view)) {
         foreach (element('latest', $view) as $key => $value) {
@@ -32,8 +32,19 @@
                 </a>
                 </li>                        
 
+            <?php } elseif(element('bgr_id',element('board',$view))==='8') { ?>
 
-           <?php } else { ?>
+                <li>
+                     <a href="<?php echo element('pln_url', $value); ?>" >
+                         <figure>
+                              <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
+                             <figcaption>
+                                 <?php echo element('title', $value); ?>
+                             </figcaption>
+                         </figure>
+                     </a>
+                </li>
+            <?php } else { ?>
                 <li>
                     <a href="<?php echo element('url', $value); ?>" >
                         <?php if (element('is_new', $value)) { ?><img  src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
@@ -77,7 +88,8 @@
     ?>
 
         </ul>
-         <div class='search' <?php echo $hide_style ?>>
+        <?php if(element('bgr_id',element('board',$view))!=='8'){ ?>
+        <div class='search' <?php echo $hide_style ?>>
         <form class="" name='frm'>
             <input type="hidden" name="brd_key" value="<?php echo element('brd_key',element('board',$view)) ?>" />
             <input type="hidden" name="post_notice" value="<?php echo element('post_notice',element('board',$view)) ?>" />
@@ -104,7 +116,7 @@
                 <a href="<?php echo element('write_url',$view); ?>"><?php echo element('write_text',$view); ?></a>
                 <a href="javascript:boardViewMore(document.frm);" style="margin-left:2%;">더 보 기</a>
         </div>
-
+        <?php } ?>
         
         
 

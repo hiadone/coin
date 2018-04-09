@@ -124,7 +124,11 @@ class Board_post extends CB_Controller
 
             $list_skin_file = element('use_gallery_list', element('board', $list)) && $this->cbconfig->get_device_view_type() === 'desktop' ? 'gallerylist' : 'list';
 
+            // $list_skin_file = element('use_gallery_list', element('board', $list)) && (element('brd_key', element('board', $list))==='w-1' || element('brd_key', element('board', $list))==='w-2' || element('brd_key', element('board', $list))==='w-3') ? 'gallerylist' : 'list';
+
             if(element('brd_key', element('board', $list))==='event') $list_skin_file='gallerylist_event';
+
+            if(element('bgr_id', element('board', $list))==='8') $list_skin_file='gallerylist_webtoon';
             
             $layout_dir = element('board_layout', element('board', $list)) ? element('board_layout', element('board', $list)) : $this->cbconfig->item('layout_board');
             $mobile_layout_dir = element('board_mobile_layout', element('board', $list)) ? element('board_mobile_layout', element('board', $list)) : $this->cbconfig->item('mobile_layout_board');
@@ -1626,7 +1630,7 @@ class Board_post extends CB_Controller
 
         $this->load->model('Board_group_model');
         $group = $this->Board_group_model->get_one(element('bgr_id', $board));
-
+        
         if ($skeyword) {
             $return['list_url'] = board_url(element('brd_key', $board));
             $return['group_list_url'] = group_url(element('bgr_key', $group)).'/'.element('brd_key', $board);

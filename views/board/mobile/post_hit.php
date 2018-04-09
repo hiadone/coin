@@ -76,14 +76,14 @@
                 slider.startAuto();
             });   
 
-        // tab08 영역 스크립트
-            $(".tab08_cont").hide();
-            $(".tab08_cont:first").show();
+        // tab09 영역 스크립트
+            $(".tab09_cont").hide();
+            $(".tab09_cont:first").show();
 
-            $("ul.tab08_tabs li").click(function () {
-                $("ul.tab08_tabs li").removeClass("active").css("color" , "#333");
+            $("ul.tab09_tabs li").click(function () {
+                $("ul.tab09_tabs li").removeClass("active").css("color" , "#333");
                 $(this).addClass("active").css({"color": "#1c446d"});
-                $(".tab08_cont").hide()
+                $(".tab09_cont").hide()
                 coinActiveTab = $(this).attr("rel");
                 $("#" + coinActiveTab).fadeIn();
             });
@@ -184,16 +184,16 @@
     <!-- tab06 영역--> 
         
     
-    <!-- tab08 영역 -->
-        <section class='tab08 wrap middle_font'>
-            <ul class="tab08_tabs tabs">
-                <li class='active' rel='tab08_hot01'>인기글</li>
-                <li rel='tab08_hot02'>최신글</li>
-                <li rel='tab08_hot03' style="width: 34%;">최신댓글</li>
+    <!-- tab09 영역 -->
+        <section class='tab09 wrap middle_font'>
+            <ul class="tab09_tabs tabs">
+                <li class='active' rel='tab09_hot01'>인기글</li>
+                <li rel='tab09_hot02'>최신글</li>
+                <li rel='tab09_hot03' style="width: 34%;">최신댓글</li>
             </ul>
 
-            <div class="tab08_wrap cont_wrap">
-                <div id='tab08_hot01' class='tab08_cont cont'>
+            <div class="tab09_wrap cont_wrap">
+                <div id='tab09_hot01' class='tab09_cont cont'>
                     <ul>
                         <?php
                         $config = array(
@@ -211,7 +211,7 @@
                         ?>
                     </ul> 
                 </div>
-                <div id='tab08_hot02' class='tab08_cont cont'>
+                <div id='tab09_hot02' class='tab09_cont cont'>
                     <ul>
                         <?php
                         $config = array(
@@ -228,7 +228,7 @@
                         ?>
                     </ul> 
                 </div>
-                <div id='tab08_hot03' class='tab08_cont cont'>
+                <div id='tab09_hot03' class='tab09_cont cont'>
                     <ul>
                         <?php
                         $config = array(

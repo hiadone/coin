@@ -979,6 +979,19 @@ class Board extends CI_Controller
 
                                 $view['view']['latest'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $image_width, $image_height);
                             }
+
+                            if($brd_key ==='w-1'||$brd_key ==='w-2'||$brd_key ==='w-3'){
+                                $this->CI->load->model('Post_link_model');
+                                $linkwhere = array(
+                                    'post_id' => element('post_id', $value),
+                                );
+                                $link = $this->CI->Post_link_model
+                                    ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
+                                if ($link && is_array($link)) {
+                                    $view['view']['latest'][$key]['pln_url'] = prep_url(element('pln_url',element(0,$link)));
+                                    
+                                }
+                            }
                         } elseif (element('post_link_count', $value)) {
                             $this->CI->load->model('Post_link_model');
                             $linkwhere = array(
@@ -1297,6 +1310,7 @@ class Board extends CI_Controller
                     }
 
                     if ($is_gallery) {
+
                         if (element('post_image', $value)) {
                             $imagewhere = array(
                                 'post_id' => element('post_id', $value),
@@ -1306,6 +1320,20 @@ class Board extends CI_Controller
                             if (element('pfi_filename', $file)) {
                                 $view['view']['latest'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $image_width, $image_height);
                             }
+
+                            if($brd_key ==='w-1'||$brd_key ==='w-2'||$brd_key ==='w-3'){
+                                $this->CI->load->model('Post_link_model');
+                                $linkwhere = array(
+                                    'post_id' => element('post_id', $value),
+                                );
+                                $link = $this->CI->Post_link_model
+                                    ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
+                                if ($link && is_array($link)) {
+                                    $view['view']['latest'][$key]['pln_url'] = prep_url(element('pln_url',element(0,$link)));
+                                    
+                                }
+                            }
+                            
                         } else {
                             $thumb_url = get_post_image_url(element('post_content', $value), $image_width, $image_height);
                             $view['view']['latest'][$key]['thumb_url'] = $thumb_url ? $thumb_url : thumb_url('', '', $image_width, $image_height);
@@ -1490,7 +1518,10 @@ class Board extends CI_Controller
         
         $view['view']['page'] = ceil($total_rows['rownum'] / $per_page);
         
+        $this->get_group(element('bgr_id', $board));
+
         
+        $view['view']['bgr_key']=element('bgr_key',element(element('bgr_id', $board),$this->group));
         
 
         $view['view']['skinurl'] = base_url( VIEW_DIR . 'group/' . $skin);

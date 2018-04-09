@@ -191,6 +191,18 @@ class Group extends CB_Controller
                     'image_height'=> 90,
                     'post_notice'=> $post_notice,
                 );
+            }elseif($brd_key==='w-1' || $brd_key==='w-2' || $brd_key==='w-3'){
+                
+                $config = array(
+                    'skin' => 'mobile',            
+                    'brd_key' => $brd_key,
+                    'limit' => 27,
+                    'length' => 40,
+                    'is_gallery'=> 1,
+                    'image_width'=> 120,
+                    'image_height'=> 90,
+                    
+                );
             }  else {
                 
                 $config = array(

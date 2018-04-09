@@ -60,31 +60,26 @@ $(document).ready(function(){
                 $('.ham').animate({'right':'-320'} , 800);
                 $('.ham >  img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png');
             }else{
-
+                view_mypage('view_member');
                 $('.ham').animate({'right':'0'} , 800);
                 $('.ham > img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn02.png');
             }
         }
         // ham 의 화살표 이미지 클릭시 ham 메뉴 움직이는 스크립트
             $('.ham >  img').click(function(){
-                <?php if ($this->member->is_member()) { ?>
-                    view_mypage('view_member');
-                <?php }else{ ?>
-                    view_login('view_member');
-                <?php } ?>
                 ham_slide();
             });
 
         // 로그인 , 회원 가입 클릭시 ham 메뉴 움직이는 스크립트
             $('li.login-li').click(function(){
-                view_login('view_member');
+                
                 ham_slide();
             });
 
 
         // 회원정보 클릭시 ham 메뉴 움직이는 스크립트
             $('li.user_info').click(function(){
-                view_mypage('view_member');
+                
                 ham_slide();
             });
 

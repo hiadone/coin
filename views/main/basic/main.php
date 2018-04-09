@@ -1051,10 +1051,10 @@
                         
                             
                             <td>
-                                <a href="<?php echo element('url', $value); ?>">
+                                <a href="<?php echo element('pln_url', $value); ?>">
                                     <figure>
                                         <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
-                                        <figcaption class='nomal_font02'><?php echo html_escape(element('title', $value)); ?></figcaption>
+                                        <figcaption class='nomal_font02'><?php echo element('title', $value); ?></figcaption>
                                     </figure>
                                     
                                 </a>

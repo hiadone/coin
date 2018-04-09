@@ -782,7 +782,12 @@
 
     <!-- tab09(웹툰 영역) -->
            <section class="tab09 wrap middle_font">
-                <h3><a href=''>웹 툰<span><img src="assets/images/more.png" alr="more_img"></span></a></h3>
+                <h3>
+                    <a href="<?php echo site_url('/board/w-1') ?>">
+                    웹 툰
+                    <span><img src="assets/images/more.png" alr="more_img"></span>
+                    </a>
+                </h3>
                 <ul class="tab09_tabs tabs">
                     <li class='active' rel='tab09_w-1'>드 라 마</li>
                     <li rel='tab09_w-2'>로 맨 스</li>
@@ -809,11 +814,11 @@
                         <ul>';
                             foreach (element('latest', element('view', $board)) as $key => $value) {?>
                             <li>
-                                <a href="<?php echo element('url', $value); ?>">
+                                <a href="<?php echo element('pln_url', $value); ?>">
                                     <figure>
                                     <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
                                         <figcaption>
-                                            <?php echo html_escape(element('title', $value)); ?>
+                                            <?php echo element('title', $value); ?>
                                         </figcaption>
                                     </figure>
                                 </a>
