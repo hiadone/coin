@@ -71,15 +71,8 @@
             <?php
             }
             ?>
-           <!--  <tr class="success">
-                <td>소계</td>
-                <td></td>
-                
-                <td><?php echo number_format(element('minus', element('data', $view))); ?> p<br>
-                    +<?php echo number_format(element('plus', element('data', $view))); ?> p
 
-                </td>
-            </tr> -->
         </table>
         <nav class='mo_pager'><?php echo element('paging', $view); ?></nav>
     </div>
+

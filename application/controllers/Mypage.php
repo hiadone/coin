@@ -87,11 +87,16 @@ class Mypage extends CB_Controller
         $meta_author = $this->cbconfig->item('site_meta_author_mypage');
         $page_name = $this->cbconfig->item('site_page_name_mypage');
 
+        if($this->input->is_ajax_request())
+                $layout_dir='empty';
+            else
+                $layout_dir=$this->cbconfig->item('layout_login'); 
+            
         $layoutconfig = array(
             'path' => 'mypage',
             'layout' => 'layout',
             'skin' => 'main',
-            'layout_dir' => $this->cbconfig->item('layout_mypage'),
+            'layout_dir' => $layout_dir,
             'mobile_layout_dir' => $this->cbconfig->item('mobile_layout_mypage'),
             'use_sidebar' => $this->cbconfig->item('sidebar_mypage'),
             'use_mobile_sidebar' => $this->cbconfig->item('mobile_sidebar_mypage'),

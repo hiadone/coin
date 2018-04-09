@@ -1083,16 +1083,16 @@
         <h2>서 비 스<span><a href="<?php echo site_url('/board/express') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02">출석체크</li>
-            <li class='nomal_font02'>가입인사</li>
-            <li class="nomal_font02">공지사항</li>
-            <li class='nomal_font02'>FAQ</li>
+            <li class="active nomal_font02" style="width:33.3%">출석체크</li>
+            <li class='nomal_font02' style="width:33.3%">가입인사</li>
+            <li class="nomal_font02" style="width:33.4%">공지사항</li>
+            <!-- <li class='nomal_font02'>FAQ</li> -->
         </ul>
 
         <div class="tab_cont">
             
             <?php
-            $tab04=array('attendance','express','notice','faq');
+            $tab04=array('attendance','express','notice');
             foreach($tab04 as $tvalue){
 
                 $config = array(

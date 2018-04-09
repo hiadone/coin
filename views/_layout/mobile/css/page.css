@@ -1931,7 +1931,7 @@ html, body{
     }
 
     .store_li li{
-        width: 32%;
+        /*width: 32%;*/
         margin:0 2% 5% 0;
         float: left;
     }

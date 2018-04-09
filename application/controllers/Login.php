@@ -129,9 +129,10 @@ class Login extends CB_Controller
             $page_name = $this->cbconfig->item('site_page_name_login');
 
             if($this->input->is_ajax_request())
-                $layout_dir=$this->cbconfig->item('layout_login');
-            else 
-                $layout_dir='basic';
+                $layout_dir='empty';
+            else
+                $layout_dir=$this->cbconfig->item('layout_login'); 
+                
             $layoutconfig = array(
                 'path' => 'login',
                 'layout' => 'layout',

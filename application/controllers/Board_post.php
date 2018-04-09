@@ -408,7 +408,7 @@ class Board_post extends CB_Controller
         if (element('mem_id', $post) >= 0) {
             $dbmember = $this->Member_model
                 ->get_by_memid(element('mem_id', $post), 'mem_icon,mem_level');
-            $view['view']['post']['display_level']= element('mem_level', $dbmember);
+            $view['view']['post']['display_level']= element('mem_level', $dbmember,1);
             $view['view']['post']['display_name'] = display_username(
                 element('post_userid', $post),
                 element('post_nickname', $post),
@@ -925,15 +925,10 @@ class Board_post extends CB_Controller
             : element('comment_default_content', $board);
 
         if ($show_list_from_view) {
-
-
-            if(element('brd_key', $board) === 'event'){
-                $view['view']['list'] = $list = $this->get_event_list_history(element('brd_key', $board), element('post_id', $post),$this->input->get('eventstatus',null,0));
-                $view['view']['api_list']  = $this->get_event_list_history_api_flag(element('brd_key', $board), element('post_id', $post));
-
-
-            } else 
-                $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1,$post_id);
+            $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1,$post_id);
+        } elseif(element('brd_key', $board) === 'event' && $this->member->is_admin() === 'super' ){
+            $view['view']['list'] = $list = $this->get_event_list_history(element('brd_key', $board), element('post_id', $post),$this->input->get('eventstatus',null,0));
+            $view['view']['api_list']  = $this->get_event_list_history_api_flag(element('brd_key', $board), element('post_id', $post));
         }
 
 
@@ -1035,14 +1030,31 @@ class Board_post extends CB_Controller
                         : $this->cbconfig->item('skin_default');
                 }
 
-                if(element('brd_key', $board)==='event' && $this->member->is_admin() === 'super' && $this->cbconfig->get_device_view_type() === 'desktop')
-                    $list_skin_file='list_show_list_'.element('brd_key', $board);
+                
 
                 $this->view = array(
                     element('view_skin_file', element('layout', $view)),
                     'board/' . $listskindir . '/' . $list_skin_file,
                 );
-            } else {
+            } elseif(element('brd_key', $board)==='event' && $this->member->is_admin() === 'super' && $this->cbconfig->get_device_view_type() === 'desktop'){
+                $list_skin_file='list_show_list_'.element('brd_key', $board);
+
+                $listskindir = ($this->cbconfig->get_device_view_type() === 'mobile')
+                    ? $mobile_skin_dir : $skin_dir;
+                if (empty($listskindir)) {
+                    $listskindir
+                        = ($this->cbconfig->get_device_view_type() === 'mobile')
+                        ? $this->cbconfig->item('mobile_skin_default')
+                        : $this->cbconfig->item('skin_default');
+                }
+
+                
+
+                $this->view = array(
+                    element('view_skin_file', element('layout', $view)),
+                    'board/' . $listskindir . '/' . $list_skin_file,
+                );
+            }else {
                 $this->view = element('view_skin_file', element('layout', $view));
             }
         } else {
@@ -1332,7 +1344,7 @@ class Board_post extends CB_Controller
                 if (element('mem_id', $val) >= 0) {
                     $dbmember = $this->Member_model
                         ->get_by_memid(element('mem_id', $val), 'mem_level');
-                    $result['list'][$key]['display_level']= element('mem_level', $dbmember);
+                    $result['list'][$key]['display_level']= element('mem_level', $dbmember,1);
                     $result['list'][$key]['display_name'] = display_username(
                         element('post_userid', $val),
                         element('post_nickname', $val),
