@@ -71,6 +71,13 @@
                         <input type="checkbox" name="post_notice" id="post_notice_4" value="4" <?php echo set_checkbox('post_notice', '4', (element('post_notice', element('post', $view)) === '4' ? true : false)); ?> /> 
                         
                     </li>
+
+                     <li style="width: 66px;">
+                        <label class="checkbox-inline middle_font" for="post_notice_5">인기+해드</label>
+                   
+                        <input type="checkbox" name="post_notice" id="post_notice_5" value="5" <?php echo set_checkbox('post_notice', '5', (element('post_notice', element('post', $view)) === '5' ? true : false)); ?> /> 
+                        
+                    </li>
                     <?php } ?>
 
 
