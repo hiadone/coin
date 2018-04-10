@@ -893,7 +893,7 @@ class Board_write extends CB_Controller
             $today_post = $this->Post_model->today_post();
             
             if ($mem_id > 0 && element('use_point', $board) ) {
-                if(element('point_write', $board)> 0 && ($today_post===0 || element('brd_key', $board)==='express'){
+                if(element('point_write', $board)> 0 && ($today_post===0 || element('brd_key', $board)==='express')){
                     $point = $this->point->insert_point(
                         $mem_id,
                         element('point_write', $board),
