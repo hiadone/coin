@@ -152,7 +152,7 @@ class _Common
         // 관리자 페이지
         if ($CI->member->is_admin() !== 'super'
             && $CI->uri->segment(1) === config_item('uri_segment_admin')) {
-            redirect('login?url=' . urlencode(current_full_url()));
+            redirect('/');
         }
 
         if (config_item('use_lock_ip')

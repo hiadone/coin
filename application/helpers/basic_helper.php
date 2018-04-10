@@ -369,7 +369,8 @@ if ( ! function_exists('required_user_login')) {
                     'message',
                     '로그인 후 이용이 가능합니다'
                 );
-                redirect('login?url=' . urlencode(current_full_url()));
+                // redirect('login?url=' . urlencode(current_full_url()));
+                redirect('/');
             }
         }
         return true;
