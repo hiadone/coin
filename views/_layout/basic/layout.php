@@ -311,7 +311,7 @@ $(document).ready(function(){
                     </figure>
                 </li>
                 <li>|</li>
-                <li><?php echo '포인트 '.number_format($this->member->item('mem_point')).'P';?></li>
+                <li class="pointer" onClick="location.href='<?php echo site_url('/board/event') ?>';"  title="스토어">스토어</li>
                 <li>|</li>
                 <li class='user_info pointer' title="회원정보">회원정보</li>
                 <li>|</li>
