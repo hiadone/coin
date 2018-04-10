@@ -506,7 +506,7 @@ class Board_post extends CB_Controller
                         $value['thumb_image_url'] = thumb_url('post', element('pfi_filename', $value), $image_width);
                         $view['view']['file_image'][] = $value;
                     } else {
-                        $value['download_link'] = site_url('postact/event_download/' . element('pfi_id', $value));
+                        $value['download_link'] = site_url('postact/download/' . element('pfi_id', $value));
                         $view['view']['file_download'][] = $value;
                         if (element('use_autoplay', $board) && in_array(element('pfi_type', $value), $play_extension)) {
                             $file_player .= $this->videoplayer->get_jwplayer(site_url(config_item('uploads_dir') . '/post/' . element('pfi_filename', $value)), $image_width);
@@ -1288,6 +1288,7 @@ class Board_post extends CB_Controller
         $where = array(
             'brd_id' => $this->board->item_key('brd_id', $brd_key),
         );
+        $where_in=array();
         $where['post_del <>'] = 2;
         if (element('except_notice', $board)
             && $this->cbconfig->get_device_view_type() !== 'mobile') {
@@ -1299,8 +1300,9 @@ class Board_post extends CB_Controller
         }
 
 
-        if (!empty($this->input->get('post_notice'))) {            
-            $where['post_notice'] = $this->input->get('post_notice');
+        if (!empty($this->input->get('post_notice'))) {
+
+            $where_in= array('post_notice' => array($this->input->get('post_notice'),5));
         }
         
 
@@ -1318,7 +1320,7 @@ class Board_post extends CB_Controller
         $form = json_decode($extravars, true);
 
         $result = $this->Post_model
-            ->get_post_list($per_page, $offset, $where, $category_id, $findex, $sfield, $skeyword);
+            ->get_post_list($per_page, $offset, $where, $category_id, $findex, $sfield, $skeyword,'',$where_in);
         $list_num = $result['total_rows'] - ($page - 1) * $per_page;
         if (element('list', $result)) {
             foreach (element('list', $result) as $key => $val) {

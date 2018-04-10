@@ -42,41 +42,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
         
     
     
-    <?php /*if (element('link_count', $view) > 0 OR element('file_download_count', $view) > 0) { ?>
-        <div class="table-box">
-            <table class="table-body">
-                <tbody>
-                <?php
-                if (element('file_download_count', $view) > 0) {
-                    foreach (element('file_download', $view) as $key => $value) {
-                ?>
-                    <tr>
-                        <td><i class="fa fa-download"></i> <a href="javascript:file_download('<?php echo element('download_link', $value); ?>')"><?php echo html_escape(element('pfi_originname', $value)); ?>(<?php echo byte_format(element('pfi_filesize', $value)); ?>)</a> <span class="time"><i class="fa fa-clock-o"></i> <?php echo display_datetime(element('pfi_datetime', $value), 'full'); ?></span><span class="badge"><?php echo number_format(element('pfi_download', $value)); ?></span></td>
-                    </tr>
-                <?php
-                    }
-                }
-                if (element('link_count', $view) > 0) {
-                    foreach (element('link', $view) as $key => $value) {
-                ?>
-                    <tr>
-                        <td><i class="fa fa-link"></i> <a href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a><span class="badge"><?php echo number_format(element('pln_hit', $value)); ?></span>
-                            <?php if (element('show_url_qrcode', element('board', $view))) { ?>
-                                <span class="url-qrcode"  data-qrcode-url="<?php echo urlencode(element('pln_url', $value)); ?>"><i class="fa fa-qrcode"></i></span>
-                            <?php } ?>
-                        </td>
-                    </tr>
-                <?php
-                    }
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>
-    <?php
-        }
-        */
-    ?>
+    
     <script type="text/javascript">
     //<![CDATA[
     function file_download(link) {
@@ -118,6 +84,41 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <div id="post-content"><?php echo element('content', element('post', $view)); ?></div>
             <!-- 본문 내용 끝 -->
         </div>
+        <?php if (element('link_count', $view) > 0 OR element('file_download_count', $view) > 0) { ?>
+        <div class="table-box">
+            <table class="table-body">
+                <tbody>
+                <?php
+                if (element('file_download_count', $view) > 0) {
+                    foreach (element('file_download', $view) as $key => $value) {
+                ?>
+                    <tr>
+                        <td><i class="fa fa-download"></i> <a href="javascript:file_download('<?php echo element('download_link', $value); ?>')"><?php echo html_escape(element('pfi_originname', $value)); ?>(<?php echo byte_format(element('pfi_filesize', $value)); ?>)</a> </td>
+                    </tr>
+                <?php
+                    }
+                }
+                if (element('link_count', $view) > 0) {
+                    foreach (element('link', $view) as $key => $value) {
+                ?>
+                    <tr>
+                        <td><i class="fa fa-link"></i> <a href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a><span class="badge"><?php echo number_format(element('pln_hit', $value)); ?></span>
+                            <?php if (element('show_url_qrcode', element('board', $view))) { ?>
+                                <span class="url-qrcode"  data-qrcode-url="<?php echo urlencode(element('pln_url', $value)); ?>"><i class="fa fa-qrcode"></i></span>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                <?php
+                    }
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    <?php
+        }
+        
+    ?>
         <div class="border_button middle_font ">
         <div class="btn-group pull-left" role="group" aria-label="...">
             <?php if (element('modify_url', $view)) { ?>

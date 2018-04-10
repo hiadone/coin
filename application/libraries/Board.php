@@ -921,8 +921,8 @@ class Board extends CI_Controller
                 $this->CI->db->where('post_datetime >=', $post_start_datetime);
             }
             
-            if($post_notice){            
-                $this->CI->db->where('post_notice', $post_notice);
+            if($post_notice){        
+                $this->CI->db->where_in('post_notice', array($post_notice,5));
                 $post_notice_param='?post_notice='.$post_notice;
             }
             if ($findex && $forder) {
@@ -1155,7 +1155,7 @@ class Board extends CI_Controller
             $where['post_del'] = 0;
             $where['post_secret'] = 0;
             if($post_notice){
-                $where['post_notice']=$post_notice;
+                $this->CI->db->where_in('post_notice', array($post_notice,5));
                 $post_notice_param='?post_notice='.$post_notice;
             }
             $sfield =  $this->CI->input->post('sfield', null, '');
@@ -1663,8 +1663,7 @@ class Board extends CI_Controller
             $where['post_del'] = 0;
             $where['post_secret'] = 0;
             if($post_notice){
-                $where['post_notice']=$post_notice;
-
+                $this->CI->db->where_in('post_notice', array($post_notice,5));
             }
             $sfield =  $this->CI->input->post('sfield', null, '');
             if ($sfield === 'post_both') {

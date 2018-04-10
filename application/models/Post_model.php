@@ -40,8 +40,9 @@ class Post_model extends CB_Model
     /**
      * List 페이지 커스테마이징 함수
      */
-    public function get_post_list($limit = '', $offset = '', $where = '', $category_id = '', $orderby = '', $sfield = '', $skeyword = '', $sop = 'OR')
+    public function get_post_list($limit = '', $offset = '', $where = '', $category_id = '', $orderby = '', $sfield = '', $skeyword = '', $sop = 'OR',$where_in)
     {
+
         if ( ! in_array(strtolower($orderby), $this->allow_order)) {
             $orderby = 'post_num, post_reply';
         }
@@ -103,6 +104,9 @@ class Post_model extends CB_Model
         if ($where) {
             $this->db->where($where);
         }
+        if ($where_in) {
+            $this->db->where_in(key($where_in),$where_in[key($where_in)]);
+        }
         if ($search_where) {
             $this->db->where($search_where);
         }
@@ -145,6 +149,9 @@ class Post_model extends CB_Model
         $this->db->join('member', 'post.mem_id = member.mem_id', 'left');
         if ($where) {
             $this->db->where($where);
+        }
+        if ($where_in) {
+            $this->db->where_in(key($where_in),$where_in[key($where_in)]);
         }
         if ($search_where) {
             $this->db->where($search_where);

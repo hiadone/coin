@@ -115,12 +115,14 @@ $record_num = $this->uri->segment($last);
             <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a>
         <?php } ?> -->
             
-            <?php if (element('write_url', element('list', $view))) { ?>
+            
                 <section class="post_button">
                     <a href="<?php echo element('list_url', element('list', $view)); ?>">전 체</a>
+                    <?php if (element('write_url', element('list', $view))) { ?>
                     <a href="<?php echo element('write_url', element('list', $view)); ?>">글 쓰 기</a>
+                    <?php } ?>
                 </section>
-            <?php } ?>
+            
         <section class="post_page"><?php echo element('paging', element('list', $view)); ?></section>
     
 <?php echo element('footercontent', element('board', element('list', $view))); ?>

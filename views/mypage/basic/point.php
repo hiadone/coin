@@ -4,10 +4,10 @@
       <section class="ham_cont point_info">
         <ul class="info_menu">
             <li class='pointer' onclick="view_mypage('view_member');">
-                       <h2 style='background:url("/assets/images/user_info03.png") no-repeat center left; background-size: 19px;'>회원정보</h2>
+                       <h2 style='background:url("<?php echo base_url('/assets/images/user_info04.png')?>") no-repeat center left; background-size: 19px;'>회원정보</h2>
               </li>
               <li class='active' onclick="view_mypoint('view_member');">
-                  <h2 style='background:url("/assets/images/point_info02.png") no-repeat center left; background-size: 19px;'>포인트정보</h2>
+                  <h2 style='background:url("<?php echo base_url('/assets/images/point_info01.png')?>") no-repeat center left; background-size: 19px;'>포인트정보</h2>
               </li>
        </ul>
 

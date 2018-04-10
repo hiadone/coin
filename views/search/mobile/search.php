@@ -12,18 +12,18 @@
                     <option value="post_content" <?php echo $this->input->get('sfield') === 'post_content' ? 'selected="selected"' : ''; ?>>내용</option>
                 </select>
             
-                <select class="" name="board_id">
-                    <option value="">전체게시판</option>
-                    <?php
-                    if (element('boardlist', $view)) {
-                        foreach (element('boardlist', $view) as $key => $value) {
-                    ?>
-                        <option value="<?php echo element('brd_id', $value); ?>" <?php echo element('brd_id', $value) === $this->input->get('board_id') ? 'selected="selected"' : ''; ?>><?php echo element('brd_name', $value); ?></option>
-                    <?php
-                        }
-                    }
-                    ?>
-                </select>
+                <select class="" name="group_id">
+                               <option value="">전체그룹</option>
+                               <?php
+                               if (element('grouplist', $view)) {
+                                   foreach (element('grouplist', $view) as $key => $value) {
+                               ?>
+                                   <option value="<?php echo element('bgr_id', $value); ?>" <?php echo element('bgr_id', $value) === $this->input->get('group_id') ? 'selected="selected"' : ''; ?>><?php echo element('bgr_name', $value); ?></option>
+                               <?php
+                                   }
+                               }
+                               ?>
+                           </select>
                 <input type="text" class="" name="skeyword" onfocus="this.placeholder=''" onblur="this.placeholder='검색어'" placeholder="검색어" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
                 <button type="submit" class="middle_font">검색</button>
             </div>
