@@ -722,7 +722,9 @@
                     ?>  
             </div>
         </section>
-
+        <section class="ad">
+            <?php echo banner('main_mobile_event') ?>
+        </section>
     <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역
         <section class="tab04 wrap middle_font">
             <h3><a href="<?php echo site_url('/board/event') ?>">

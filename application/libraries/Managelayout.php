@@ -354,8 +354,8 @@ class Managelayout extends CI_Controller
                 </table>
                 <ul class="small_font">
                     <li><a href="'.document_url('provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a></li>
-                    <li><a href="'.document_url('privacy').'" title="게제중단요청">게제중단요청</a></li>
-                    <li><a href="'.document_url('privacy').'" title="제휴문의">제휴문의</a></li>
+                    <li>'.mailto('bitissue.help@gmail.com','게제중단요청').'</li>
+                    <li>'.mailto('bitissue.help@gmail.com','제휴문의').'</li>
                 </ul>
 
                 
@@ -383,7 +383,7 @@ class Managelayout extends CI_Controller
                         </li>
 
                         <li>
-                            <a href="'.document_url('privacy').'" title="게제중단요청">개제중단요청</a>
+                            '.mailto('bitissue.help@gmail.com','게제중단요청').'
                         </li>
 
                         <li>
@@ -391,7 +391,7 @@ class Managelayout extends CI_Controller
                         </li>
 
                         <li>
-                            <a href=""'.document_url('privacy').'" title="제휴문의"">제휴문의</a>
+                            '.mailto('bitissue.help@gmail.com','제휴문의').'
                         </li>
 
                         <li>
