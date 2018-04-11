@@ -131,6 +131,7 @@ $record_num = $this->uri->segment($last);
             <?php } ?>
             <?php if (element('is_admin', $view)) { ?>
             <div class="btn btn-default btn-sm" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선택삭제</div>
+            <div class="btn btn-default btn-sm" onClick="post_modify(document.flist);">선택수정 </div>
             <?php } ?>
         </section>
         <section class="post_page">

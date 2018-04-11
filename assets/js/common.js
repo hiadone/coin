@@ -1023,4 +1023,25 @@ if (typeof(COMMON_JS) === 'undefined') {
 
         });
     }
+
+    function post_modify(f) {
+
+
+        if ($("input[name='chk_post_id[]']:checked", f).length < 1) {
+            alert('자료를 하나 이상 선택하세요.');
+            return;
+        }
+        
+        $("input[name='chk_post_id[]']:checked", f).each(
+            function(){
+                var href = cb_url + '/modify/'+$(this).val();
+                document.location.href=href;
+                return ;
+            }
+        ); 
+            
+        
+      
+    }
+
 }
