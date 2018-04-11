@@ -181,7 +181,7 @@ $param =& $this->querystring;
                 <a href="<?php echo element('write_url', element('list', $view)); ?>" >글 쓰 기</a>
                 <?php } ?>
                 <?php if (element('is_admin', $view)) { ?>
-                <a href="javascript:;" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?'); return false;">선택삭제</a>
+                <a href="javascript:;" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?'); return false;">선 택 삭 제</a>
                 <?php } ?>
             </section>
             

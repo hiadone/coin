@@ -85,7 +85,9 @@
             <?php } ?>
         </section>
         <section class="post_page">
+            <nav class="mo_pager">
             <?php echo element('paging', element('list', $view)); ?>
+            </nav>
         </section>
 </div>
 

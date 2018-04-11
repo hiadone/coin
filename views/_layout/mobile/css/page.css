@@ -577,25 +577,25 @@ html, body{
 			display:-webkit-box;
 		}
 
-/*tab09 (인기글,최신글,최신댓글) 영역*/
-	.tab09_tabs li{
+/*tab08 (인기글,최신글,최신댓글) 영역*/
+	.tab08_tabs li{
 		width:33%;
 	}
 
-	.tab09_cont{
+	.tab08_cont{
 		width: 90%;
 		margin: 3% auto;
 	}
 
-	.tab09_cont li{
+	.tab08_cont li{
 		margin-bottom: 3%;
 	}
 
-	.tab09_cont li:last-child{
+	.tab08_cont li:last-child{
 		margin-bottom:0;
 	}
 
-	.tab09_cont h4{
+	.tab08_cont h4{
 		width: 5%;
 		font-weight: bold;
 		display: inline-block;
@@ -605,7 +605,7 @@ html, body{
 		text-align: right;
 	}
 
-	.tab09_cont div{
+	.tab08_cont div{
 		text-overflow: ellipsis;
 		white-space:nowrap;
 		overflow: hidden;
@@ -614,34 +614,34 @@ html, body{
 	}
 
 
-/*tab08 (웹툰) 영역*/
-	.tab08_tabs li{
+/*tab09 (웹툰) 영역*/
+	.tab09_tabs li{
 		width:33%;
 	}
 
-	.tab08_cont ul{
+	.tab09_cont ul{
 		width: 100%;
 		padding:3% 3% 0;
 		box-sizing: border-box;
 		display: inline-block;
 	}
 
-	.tab08_cont li{
+	.tab09_cont li{
 		width: 32%;
 		margin:0 2% 2% 0;
 		float: left;
 	}
 
-	.tab08_cont li:nth-child(3n){
+	.tab09_cont li:nth-child(3n){
 		margin-right: 0;
 	}
 
-	.tab08_cont li figure img{
+	.tab09_cont li figure img{
 		width: 100%;
 		margin-bottom: 5%;
 	}
 
-	.tab08_cont li figcaption{
+	.tab09_cont li figcaption{
 		width: 100%;
 		height: 30px;
 		overflow:hidden;
@@ -1925,28 +1925,28 @@ html, body{
 	.store_li{
         margin-bottom: 0;
     }
-    .store_li ul{
+    .store_li form ul{
         display: inline-block;
         padding:0 3%;
     }
 
-    .store_li li{
+    .store_li form ul li{
         /*width: 32%;*/
         margin:0 2% 5% 0;
         float: left;
     }
 
-    .store_li li:nth-child(3n){
+    .store_li form ul li:nth-child(3n){
         margin-right: 0;
     }
 
-    .store_li li img{
+    .store_li form ul img{
         width: 100%;
         border:1px solid #ededed;
         margin-bottom: 3%;
     }
 
-    .store_li li h3{
+    .store_li form ul h3{
         font-weight: bold;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -1955,7 +1955,7 @@ html, body{
         margin-bottom: 3%;
     }
 
-    .store_li li p span{
+    .store_li form ul p span{
         font-weight: bold;
         color: #a61e23;
     }

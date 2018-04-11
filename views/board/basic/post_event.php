@@ -10,6 +10,7 @@
         스토어 상품구매
         <span class="small_font">비트코인에 관한 다양한 정보를 한번에 !!</span>
     </h4>
+
     <section class='item_detail'>
         <?php echo show_alert_message($this->session->flashdata('message'), '<div class="mt10 alert alert-auto-close alert-dismissible alert-info">', '</div>'); ?>
          <?php
@@ -60,13 +61,18 @@
             </div>
         </div>
     </section>
+    
     <section class='item_explain'>
         <h2>상 품 설 명</h2>
          <p>
             <?php echo element('content', element('post', $view)); ?>
         </p>
     </section>
-    <section class='item_explain post_view'>
+
+    <div id="viewcomment"></div>
+</article>
+
+<section class='post_view'>
         <ul>
             <?php if (element('prev_post', $view)) { ?>
                 <li><a href="<?php echo element('url', element('prev_post', $view)); ?>" class="">◀ 이전글</a></li>
@@ -90,12 +96,8 @@
             <?php } ?>
             <li><a href="<?php echo element('list_url', $view); ?>" class="">목록</a></li>
         </ul>
-    </section>
-    
-    <div id="viewcomment"></div>
-    
+</section>
 
-</article>
  <script type="text/javascript">
     //<![CDATA[
     

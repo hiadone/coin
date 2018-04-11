@@ -39,9 +39,9 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <li class='small_font'>|</li>
             <li><b>댓 글</b><span>[<?php echo number_format(element('post_comment_count', element('post', $view))); ?>]</span></li>
         </ul>
-        <?php echo show_alert_message($this->session->flashdata('message'), '<div class="mt30 alert alert-auto-close alert-dismissible alert-info">', '</div>'); ?>
+        
     </section>
-    
+    <?php echo show_alert_message($this->session->flashdata('message'), '<div style="width:1260px; margin:20px auto 0" class="alert alert-auto-close alert-dismissible alert-info">', '</div>'); ?>
     <span></span>
 
    

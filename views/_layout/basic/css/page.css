@@ -533,7 +533,7 @@
 
 		#webtoon figcaption{
 			width: 100%;
-			height: 30px;
+			height: 55px;
 			line-height: 15px;
 			text-align: center;
 			overflow:hidden;
@@ -773,7 +773,7 @@
 			width: 945px;
 		}
 
-		.post_table .post_title span{
+		.post_table .post_title .comment-count{
 			font-weight: bold;
 			color: #a61e23;
 		}
@@ -877,7 +877,7 @@
 			margin-right: 5px;
 		}
 
-		.gallery_li li span{
+		.gallery_li .img_data li span{
 			width: 5px;
 			display: inline-block;
 			text-align: center;
@@ -904,6 +904,11 @@
 			-webkit-box-orient:vertical;
 			line-height:20px;
 		}
+
+		.vod_li li h3 .highlight{
+			font-weight: normal;
+		}
+
 	/*img_li css*/
 		.img_li li h3{
 			white-space: nowrap;
@@ -912,9 +917,9 @@
 	/*atten_write(출석체크) css*/
 		.atten_write{
 			width: 100%;
-			height: 60px;
+			height: 100px;
 			margin-bottom:55px; 
-			padding:15px;
+			padding:15px 137px;
 			box-sizing: border-box;
 			background-color: #f0f3f7;
 		}
@@ -924,7 +929,7 @@
 			height: 30px;
 			line-height: 30px;
 			font-weight: bold;
-			margin-right: 5px;
+			margin:0 5px 20px 0;
 			float: left;
 		}
 
@@ -934,33 +939,35 @@
 			outline: none;
 			padding:3px 7px;
 			box-sizing: border-box;
-			margin-right: 5px;
+			margin:0 5px 20px 0;
 			border:1px solid #ededed;
 			float: left;
-
 		}
 
 		.atten_write button{
 			height: 30px;
 			float: left;
+			margin-bottom: 20px;
 		}
 
 		.atten_write p.point{
 			margin-right: 0;
 			background: none;
 			color: #000;
-			line-height: 45px;
+			/*line-height: 45px;*/
 			font-weight: bold;
-			margin-left: 130px;
+			/*margin-left: 130px;*/
 			padding: 0;
-			float: right;
-			cursor: pointer;
+			text-align: right;
+			letter-spacing: 1px;
+			/*float: right;*/
+			/*cursor: pointer;*/
 		}
 
 		.atten_write button.refresh{
 			padding: 0;
 			width: 30px;
-			margin-right: 5px;
+			margin:0 5px 20px 0;
 		}
 
 		.atten_write button img{
@@ -1065,7 +1072,9 @@
 		}
 
 	/*point_pop(출석체크 포인트 정책) css*/
-		.point_pop{
+
+
+		/*.point_pop{
 			width: 360px;
 			height: 320px;
 		}
@@ -1117,7 +1126,7 @@
 			text-align: right;
 			letter-spacing: 1px;
 			margin-bottom: 20px;
-		}
+		}*/
 
 	/*post_sear(검색) css */
 		.post_sear{
@@ -1185,7 +1194,7 @@
 		}
 
 		.post_button > a{
-			line-height: 25px;
+			line-height: 23px;
 			margin-right: 5px;
 			margin:5px 5px 0 0;
 			border-radius: 5px;
@@ -1364,6 +1373,7 @@
 		.reply_list > ol > li{
 			width: 100%;
 			display: inline-block;
+			margin-bottom: 30px;
 		}
 
 		/*reply_cont(작성된 댓글) css*/
@@ -1416,6 +1426,7 @@
 				width: 100%;
 				float: right;
 				margin-top: 10px;
+				margin-bottom: 30px;
 			}
 
 			.reply_modify textarea{

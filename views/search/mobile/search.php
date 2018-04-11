@@ -69,7 +69,7 @@ if ( ! element('list', element('data', $view))) {
 }
 ?>
     </div>
-    <nav><?php echo element('paging', $view); ?></nav>
+    <nav class="mo_pager"><?php echo element('paging', $view); ?></nav>
     </section>
 </article>
 

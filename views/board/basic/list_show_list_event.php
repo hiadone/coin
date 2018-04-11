@@ -7,9 +7,9 @@ $record_num = $this->uri->segment($last);
 
 <article class="content02">
     
-    <h3>이벤트 신청 리스트</h3>
+    <h3 style='margin-bottom: 20px;'>이벤트 신청 리스트</h3>
 
-    <div class="clearfix">     </div>  
+    <div class="clearfix"></div>  
     
         <div class="pull-left pd10">전체 : <?php echo element('total_rows', element('data', element('list', $view))); ?>건</div>
         <div class="pull-left pl20" >
