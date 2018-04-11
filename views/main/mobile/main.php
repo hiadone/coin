@@ -723,7 +723,7 @@
             </div>
         </section>
         <section class="ad">
-            <?php echo banner('main_mobile_event') ?>
+            <?php echo banner('main_mobile_banner2') ?>
         </section>
     <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역
         <section class="tab04 wrap middle_font">
@@ -804,7 +804,7 @@
                     $config = array(
                         'brd_key' => $tvalue,
                         'limit' => 9,
-                        'length' => 40,
+                        'length' => 140,
                         'is_gallery'=> 1,
                         'image_width'=> 120,
                         'image_height'=> 90,
@@ -969,7 +969,7 @@
 
     <!-- ad 영역 -->
         <section class="ad">
-            <?php echo banner('main_mobile_banner') ?>
+            <?php echo banner('main_mobile_banner3') ?>
         </section>
     
     <!-- N버튼 영역 -->

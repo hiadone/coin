@@ -55,7 +55,7 @@ class Board_post extends CB_Controller
 
             $view = array();
             $view['view'] = array();
-
+            
             // 이벤트가 존재하면 실행합니다
             $view['view']['event']['before'] = Events::trigger('before', $eventname);
 
@@ -76,7 +76,7 @@ class Board_post extends CB_Controller
             if ($board_id && is_array($board_id)) {
                 foreach ($board_id as $key => $val) {
                     
-                    if($key===1 && element('bgr_id', element('board', $list))==='4') $board_list[]=array("brd_key"=>"attendance","board_name"=>"출석체크");
+                    
                     
                     $board_list[] = $this->board->item_all(element('brd_id', $val));
                     if($key===0 && element('bgr_id', element('board', $list))==='6') $board_list[]=array("brd_key"=>"live_news","board_name"=>"인기뉴스","post_notice"=>"4");

@@ -1033,7 +1033,7 @@
                 $config = array(
                     'brd_key' => $value,
                             'limit' => 9,
-                            'length' => 40,
+                            'length' => 140,
                             'is_gallery'=> 1,
                             'image_width'=> 130,
                             'image_height'=> 100,

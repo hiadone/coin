@@ -78,8 +78,6 @@ class Group extends CB_Controller
         if ($board_id && is_array($board_id)) {
             foreach ($board_id as $key => $val) {
                 
-                if($key===1 && $bgr_key==='other') $board_list[]=array("brd_key"=>"attendance","board_name"=>"출석체크");
-                
                 $board_list[] = $this->board->item_all(element('brd_id', $val));
                 if($key===0 && $bgr_key==='g-c') $board_list[]=array("brd_key"=>"live_news_sub","board_name"=>"인기뉴스");
             }
@@ -197,7 +195,7 @@ class Group extends CB_Controller
                     'skin' => 'mobile',            
                     'brd_key' => $brd_key,
                     'limit' => 27,
-                    'length' => 40,
+                    'length' => 140,
                     'is_gallery'=> 1,
                     'image_width'=> 120,
                     'image_height'=> 90,

@@ -1511,6 +1511,11 @@ class Board extends CI_Controller
             $result = $this->CI->db->get();
 
             $total_rows = $result->row_array();
+
+            $this->get_group(element('bgr_id', $board));
+
+            
+            $view['view']['bgr_key']=element('bgr_key',element(element('bgr_id', $board),$this->group));
         }
         
         
@@ -1518,10 +1523,7 @@ class Board extends CI_Controller
         
         $view['view']['page'] = ceil($total_rows['rownum'] / $per_page);
         
-        $this->get_group(element('bgr_id', $board));
-
         
-        $view['view']['bgr_key']=element('bgr_key',element(element('bgr_id', $board),$this->group));
         
 
         $view['view']['skinurl'] = base_url( VIEW_DIR . 'group/' . $skin);

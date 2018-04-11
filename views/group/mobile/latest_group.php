@@ -9,7 +9,7 @@
     $hide_style='';
 
     
-    if(element('brd_key',element('board',$view))==="attendance") $hide_style="style='display:none';";
+    if(element('brd_key',element('board',$view))==="attendance" || element('brd_key',element('board',$view))==="express") $hide_style="style='display:none';";
     
     if(element('bgr_id',element('board',$view))==='8')
         echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab08_cont cont">';
