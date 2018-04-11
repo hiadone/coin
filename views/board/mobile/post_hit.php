@@ -216,7 +216,7 @@
                         <?php
                         $config = array(
                             'skin' => 'mobile2',
-                            'brd_id' => '',
+                            'brd_id' => array(15,3,10,5),
                             'limit' => 10,
                             'length' =>50,
                             'is_gallery' => '',

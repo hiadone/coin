@@ -66,7 +66,7 @@ function won($k) {
     foreach(element('coin_list',$view) as $key => $value){?>
 
     
-        <div style="display:none;">
+        <div id="tab01_<?php echo $key ?>" style="display:none;">
         <table class='coin_cont nomal_font02'>
     <?php foreach($value as $key_ => $value_){ 
         
