@@ -1114,8 +1114,8 @@
 
 		.atten_list figcaption p{
 			margin-bottom:15px;
-			width: 890px;
-			float: left;
+			/*width: 890px;
+			float: left;*/
 		}
 
 		.atten_list figcaption span{

@@ -785,7 +785,7 @@
     <!-- tab09(웹툰 영역) -->
            <section class="tab09 wrap middle_font">
                 <h3>
-                    <a href="<?php echo site_url('/board/w-3') ?>">
+                    <a href="<?php echo site_url('/board/w-2') ?>">
                     웹 툰
                     <span><img src="assets/images/more.png" alr="more_img"></span>
                     </a>

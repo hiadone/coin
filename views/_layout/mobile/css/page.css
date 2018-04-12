@@ -383,6 +383,7 @@ html, body{
 
 	.tab05_cont li img{
 		width: 100%;
+		height:90px;
 	}
 
 	.tab05_cont li:nth-child(3n){
