@@ -67,7 +67,7 @@ function won($k) {
 
     
         <div style="display:none;">
-        <table class='coin_cont nomal_font02'>
+        <table class='coin_cont'>
     <?php foreach($value as $key_ => $value_){ 
         
         // if($key_==="bitfinex") continue;
@@ -84,12 +84,12 @@ function won($k) {
             
             <?php 
             if(empty(element('kprime',$value_))){
-                echo '<td class="text-right premium nomal_font02">-';
+                echo '<td class="text-right premium">-';
             } else {
                 if(element('kprime',$value_)>0)
-                    echo '<td class="text-right premium nomal_font02" style="color:blue;">';
+                    echo '<td class="text-right premium" style="color:blue;">';
                 else 
-                    echo '<td class="text-right premium nomal_font02" style="color:green;">';
+                    echo '<td class="text-right premium" style="color:green;">';
 
                 echo number_format(element('kprime',$value_)*100,2).' %' ;
             }
@@ -100,8 +100,8 @@ function won($k) {
              <?php 
             if(!empty(element('open_price',$value_))) {
                 if((element('current_price',$value_) - element('open_price',$value_)) > 0)
-                    echo "<td class='text-right rate nomal_font02' style='color:red;'>▲ ";
-                else echo "<td class='text-right rate nomal_font02 minus' style='color:blue;'>▼ ";
+                    echo "<td class='text-right rate' style='color:red;'>▲ ";
+                else echo "<td class='text-right rate minus' style='color:blue;'>▼ ";
                 echo number_format((element('current_price',$value_) - element('open_price',$value_))/element('open_price',$value_) *100,2).' % (₩ '.number_format((element('current_price_krw',$value_) - element('open_price_krw',$value_))).')' ;
             }else {
                 echo "<td>-";

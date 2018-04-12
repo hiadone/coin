@@ -61,7 +61,7 @@ $record_num = $this->uri->segment($last);
         </div>
         <?php } ?>
 
-        <section class='gallery_li vod_li'>
+        <section class='gallery_li'>
             <?php
             $i = 0;
             $open = false;
@@ -74,14 +74,14 @@ $record_num = $this->uri->segment($last);
                     }
                     $marginright = (($i+1)% $cols === 0) ? 0 : 2;
                     ?>
-                    <li class="gallery-box" >
+                    <li class="webtoon_sub" >
                         <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /><?php } ?>
                         <a href="<?php echo element('post_url', $result); ?>" target="_blank" title="<?php echo html_escape(element('title', $result)); ?>">
                             <figure>
                                 <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class=""  />
                                 <figcaption>
-                                    <h3><?php echo element('title', $result); ?></h3>
-                                    <div class='img_writer'>
+                                    <!-- <h3> --><?php echo element('title', $result); ?><!-- </h3> -->
+                                    <!-- <div class='img_writer'>
                                         <p class='small_font'>
                                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo element('display_level', $result); ?>.png" alt="spoon_img">
                                             
@@ -91,9 +91,7 @@ $record_num = $this->uri->segment($last);
                                         <span>|</span> 
 
                                         <p class='small_font'>조회수 <?php echo number_format(element('post_hit', $result)); ?></p>
-                                    </div>
-
-                                   
+                                    </div> -->
                                 </figcaption>
                             </figure>
                         </a>
@@ -130,8 +128,8 @@ $record_num = $this->uri->segment($last);
                 <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>    
             <?php } ?>
             <?php if (element('is_admin', $view)) { ?>
-            <div class="btn btn-default btn-sm" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선택삭제</div>
-            <div class="btn btn-default btn-sm" onClick="post_modify(document.flist);">선택수정 </div>
+            <div style='height: 27px; margin-right: 5px;' class="btn btn-default btn-sm" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');">선 택 삭 제</div>
+            <div style='height: 27px;' class="btn btn-default btn-sm" onClick="post_modify(document.flist);">선 택 수 정 </div>
             <?php } ?>
         </section>
         <section class="post_page">

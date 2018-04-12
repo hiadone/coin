@@ -57,7 +57,7 @@ $record_num = $this->uri->segment($last);
         ?>
 
         <?php if (element('is_admin', $view)) { ?>
-        <div style='margin-top:20px;''><label for="all_boardlist_check"><input id="all_boardlist_check" onclick="if (this.checked) all_boardlist_checked(true); else all_boardlist_checked(false);" type="checkbox" /> 전체선택</label>
+        <div style='margin-top:20px;''><label for="all_boardlist_check"><input id="all_boardlist_check" onclick="if (this.checked) all_boardlist_checked(true); else all_boardlist_checked(false);" type="checkbox" /> 전 체 선 택</label>
         </div>
         <?php } ?>
 

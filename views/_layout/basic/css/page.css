@@ -92,12 +92,10 @@
 
 		#coin_mall .coin_cont .premium{
 			font-family:'Jeju Gothic', sans-serif;
-			font-size: 14px;
 		}
 
 		#coin_mall .coin_cont .rate{
 			font-family:'Jeju Gothic', sans-serif;
-			font-size: 14px;
 		}
 
 		#coin_mall .coin_cont .minus{
@@ -374,7 +372,7 @@
 
 		.tab_img img{
 			width: 122px;
-			height: 142px;
+			height: 120px;
 			margin:0 10px 10px 0;
 			cursor: pointer;
 			border:1px solid #ededed;
@@ -473,7 +471,7 @@
 
 	/*main_mid02 css*/
 		.main_mid02{
-			height:552px;
+			height:615px;
 		}
 		.main_mid02 > section{
 			width: 417px;
@@ -506,7 +504,7 @@
 		}
 
 		#webtoon tr{
-			margin-bottom: 10px;
+			margin-bottom: 5px;
 			display: inline-block;
 		}
 
@@ -541,6 +539,76 @@
             -webkit-line-clamp:2;
             -webkit-box-orient:vertical;
 		}
+
+		#webtoon h3{
+			font-family: none;
+			margin-bottom: 2px;
+			width: 100%;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
+		#webtoon p{
+			margin-bottom: 2px;
+			color: #9d9d9d;
+
+		}
+
+		#webtoon span{
+			color: #2d75b5;
+			font-size: 12px;
+		}
+		
+	/*webtoon_seb css*/
+	 .webtoon_sub{
+	 	width: 226px;
+	 	float: left;
+	 	margin-right: 37px;
+	 }
+
+	 .webtoon_sub:nth-child(5n){
+	 	margin-right: 0;
+	 }
+
+	 .webtoon_sub figure > img{
+	 	width: 100%;
+	 	height: 150px;
+	 	margin-bottom: 15px;
+	 	border:5px solid #fff;
+	 	box-sizing: border-box;
+	 	box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+	 }
+
+	 .webtoon_sub figcaption{
+	 	width: 100%;
+	 	display: inline-block;
+	 	padding:0 5px;
+	 	box-sizing: border-box;
+	 	text-align: center;
+	 }
+
+	 .webtoon_sub figcaption h3{
+	 	font-family: none;
+	 	margin-bottom: 10px;
+	 	width: 100%;
+	 	text-overflow: ellipsis;
+	 	white-space: nowrap;
+	 	overflow: hidden;
+	 }
+
+	 .webtoon_sub figcaption p{
+	 	margin-bottom:5px;
+	 	color: #9d9d9d;
+	 }
+
+	 .webtoon_sub figcaption span{
+	 	color: #2d75b5;
+	 	font-size: 12px;
+	 }
+
+
+
 
 	/*notice css*/
 	 	#notice{
@@ -828,17 +896,17 @@
 			display: inline-block;
 		}
 
-		.gallery_li li{
+		.gallery-box{
 			width: 226px;
 			float: left;
 			margin-right: 37px;
 		}
 
-		.gallery_li li:nth-child(5n){
+		.gallery-box:nth-child(5n){
 			margin-right: 0;
 		}
 
-		.gallery_li li figure > img{
+		.gallery-box figure > img{
 			width: 100%;
 			height: 150px;
 			margin-bottom: 15px;
@@ -847,30 +915,28 @@
 			box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
 		}
 
-		.gallery_li figcaption{
+		.gallery-box figcaption{
 			width: 100%;
 			display: inline-block;
 			padding: 0 5px;
 			box-sizing: border-box;
 		}
 
-		.gallery_li li h3{
+		.gallery-box h3{
 			width: 100%;
 			text-overflow: ellipsis;
 			overflow:hidden;
 			padding:3px 0;
-			margin-bottom: 3px;
+			margin-bottom: 10px;
 		}
 
-
-
-		.gallery_li li p{
+		.gallery-box p{
 			display: inline-block;
 			font-weight: bold;
 			color: #5d5d5d;
 		}
 
-		.gallery_li li p img{
+		.gallery-box p img{
 			border:0;
 			width: 17px;
 			float: left;
@@ -1548,6 +1614,17 @@
 			display: inline-block;
 			float: left;
 		}
+
+		.cont_write #post_title-error{
+			margin-left: 15px;
+		}
+
+		.cont_write #post_content-error{
+			margin:15px;
+			display: inline-block; 
+		}
+
+
 
 		.link_li li,
 		.upload_li li{

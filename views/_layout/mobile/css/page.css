@@ -1168,6 +1168,10 @@ html, body{
 			width: 100%;
 		}
 
+		.cont_write td #post_title-error{
+			margin-left: 15px;
+		}
+
 	/*링크 업로드 영역*/
 		.link_area li{
 			position: relative;

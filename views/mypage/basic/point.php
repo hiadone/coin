@@ -83,5 +83,5 @@
         </tr> -->
     
     </table>
-    <nav><?php echo element('paging', $view); ?></nav>
+    <nav class="post_page"><?php echo element('paging', $view); ?></nav>
 </div>

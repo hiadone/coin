@@ -833,7 +833,7 @@
             
             $config = array(
                 'brd_key' => 'free_gallery',
-                        'limit' => 9,
+                        'limit' => 12,
                         'length' => 40,
                         'is_gallery'=> 1,
                         'image_width'=> 120,
@@ -879,7 +879,7 @@
                     
                 $config = array(
                     'brd_key' => 'humor',
-                    'limit' => 14,
+                    'limit' => 16,
                     'length' => 70,
                     );
                 $board=$this->board->data($config);

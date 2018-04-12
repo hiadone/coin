@@ -111,7 +111,7 @@ $record_num = $this->uri->segment($last);
             
             <?php if (element('write_url', element('list', $view))) { ?>
                 <section class="post_button">
-                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default">전체</a>
+                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default">전 체</a>
                     <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success">글 쓰 기</a>
                 </section>
             <?php } ?>

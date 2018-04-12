@@ -127,7 +127,7 @@ textarea{
 		
 	}
 
-	nav li:nth-child(2n){
+	header nav li:nth-child(2n){
 		width: 40px;
 	}
 
@@ -314,6 +314,7 @@ textarea{
 	.ham_cont02{
 		width: 320px;
 		height: 100%;
+
 		box-sizing: border-box;
 		float: right;
 		border-left:1px solid #ededed;
@@ -437,6 +438,9 @@ textarea{
 	}
 
 /*포인트 정보 css*/
+	.point_info{
+		overflow-y: auto;
+	}
     .point_info_cont{
         display: inline-block;
         width: 100%;
@@ -507,11 +511,22 @@ textarea{
 
     .point_info table{
         width: 100%;
+        margin-bottom: 20px;
     }
 
     .point_info th{
         font-family:'Jeju Gothic', sans-serif; 
         background-color: #f0f3f7;
+    }
+
+    .point_info th:first-child,
+    .point_info td:first-child{
+    	width: 50px;
+    }
+
+    .point_info th:nth-child(3),
+    .point_info td:nth-child(3){
+    	width: 80px;
     }
 
     .point_info th,
@@ -528,7 +543,7 @@ textarea{
     }
 
     .point_info td figure img{
-        width: 18px;
+        width: 15px;
         float: left;
         margin-right: 5px;
     }
