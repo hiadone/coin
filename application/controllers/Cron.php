@@ -691,4 +691,111 @@ class Cron extends CB_Controller {
                 $this->Virtual_coin_model->save('deal_bas_r','deal_bas_r', $virtualcoindata);
             }
     }
+
+    public function attendance_scheduler()
+    {
+
+        if ( ! $this->cbconfig->item('use_attendance')) {
+            return ;
+        }
+
+        $this->load->model('Attendance_model');
+        
+        $max_data = $this->Attendance_model->get_today_max_ranking();
+
+        $max_ranking = element('att_ranking', $max_data);
+
+        if (empty($max_ranking)) {
+            $my_ranking = 1;
+            
+        } else {
+            $my_ranking = $max_ranking + 1;
+        }
+
+        $attendance_default_memo = str_replace(
+            array("\r\n", "\r", "\n"),
+            "\n",
+            $this->cbconfig->item('attendance_default_memo')
+        );
+        $default_memo = explode("\n", $attendance_default_memo);
+        shuffle($default_memo);
+        
+        $attendance_att_demo = str_replace(
+            array("\r\n", "\r", "\n"),
+            "\n",
+            config_item('att_demo')
+        );
+        $att_demo = explode("\n", $attendance_att_demo);
+        shuffle($att_demo);
+
+        
+        $curdatetime = cdate('Y-m-d H:i:s', ctimestamp() - rand(1,60) * 6);
+
+        $insertdata = array(
+            'mem_id' => 41,
+            'att_point' => 10,
+            'att_memo' => html_escape(element(0, $default_memo)),
+            'att_continuity' => 0,
+            'att_ranking' => $my_ranking,
+            'att_date' => cdate('Y-m-d'),
+            'att_datetime' => $curdatetime,
+            'att_demo' => html_escape(element(0, $att_demo)),
+        );
+        $att_id = $this->Attendance_model->insert($insertdata);
+    }
+
+
+    public function express_scheduler()
+    {
+
+        
+
+        $this->load->model('Post_model');
+        
+        $attendance_att_demo = str_replace(
+            array("\r\n", "\r", "\n"),
+            "\n",
+            config_item('att_demo')
+        );
+        $att_demo = explode("\n", $attendance_att_demo);
+        shuffle($att_demo);
+
+        $express_default_memo = str_replace(
+            array("\r\n", "\r", "\n"),
+            "\n",
+            config_item('express_default_memo')
+        );
+        $default_memo = explode("\n", $express_default_memo);
+        shuffle($default_memo);
+
+
+        $post_num = $this->Post_model->next_post_num();
+        $post_reply = '';
+
+        $curdatetime = cdate('Y-m-d H:i:s', ctimestamp() - rand(1,60) * 6);
+
+        $updatedata = array(
+            'post_num' => $post_num,
+            'post_reply' => $post_reply,
+            'post_title' => html_escape(element(0, $default_memo)),
+            'post_content' => html_escape(element(1, $default_memo)),
+            'post_html' => 1,
+            'post_datetime' => $curdatetime,
+            'post_updated_datetime' => $curdatetime,
+            'post_ip' => $this->input->ip_address(),
+            'brd_id' => 13,
+        );
+
+
+        $updatedata['mem_id'] = 41;
+        $updatedata['post_userid'] = '';
+        $updatedata['post_username'] = html_escape(element(0, $att_demo));
+        $updatedata['post_nickname'] = html_escape(element(0, $att_demo));
+        $updatedata['post_email'] = '';
+        $updatedata['post_homepage'] = '';
+        $updatedata['post_notice'] = 99;
+
+
+        $post_id = $this->Post_model->insert($updatedata);
+    }
 }

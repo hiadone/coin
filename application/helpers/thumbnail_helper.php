@@ -51,6 +51,7 @@ if ( ! function_exists('thumb_url')) {
 if ( ! function_exists('thumbnail')) {
     function thumbnail($type = '', $filename = '', $thumb_width = 0, $thumb_height = 0, $is_create = false, $is_crop = true, $crop_mode = 'center', $is_sharpen = false, $um_value = '80/0.5/3', $create_animate_thumb = false)
     {
+     
         $source_file = config_item('uploads_dir') . '/';
         if ($type) {
             $source_file .= $type . '/';

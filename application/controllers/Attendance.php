@@ -313,14 +313,23 @@ class Attendance extends CB_Controller
         if (element('list', $result)) {
             foreach (element('list', $result) as $key => $val) {
 
-                $dbmember = $this->Member_model
-                        ->get_by_memid(element('mem_id', $val), 'mem_level');
-                $result['list'][$key]['display_level']= element('mem_level', $dbmember);
+                if(!element('att_demo',$val)){
+                    $dbmember = $this->Member_model
+                            ->get_by_memid(element('mem_id', $val), 'mem_level');
+                    $result['list'][$key]['display_level']= element('mem_level', $dbmember);
 
-                
-                
-
+                    
+                    $result['list'][$key]['display_name'] = display_username(
+                        element('mem_userid', $val),
+                        element('mem_nickname', $val),
+                        element('mem_icon', $val)
+                    );
+                } else {
+                    $result['list'][$key]['display_name'] = element('att_demo',$val);
+                    $dbmember['mem_level'] = ((element('att_ranking',$val)%5)+1);
+                    $result['list'][$key]['display_level']= element('mem_level', $dbmember);
                     // $this->load->model('Member_group_model');
+                }
 
                     
                 $item = $this->Member_group_model->get_one('','',array('mgr_order'=>element('mem_level', $dbmember)));
@@ -329,11 +338,7 @@ class Attendance extends CB_Controller
                     
                 
 
-                $result['list'][$key]['display_name'] = display_username(
-                    element('mem_userid', $val),
-                    element('mem_nickname', $val),
-                    element('mem_icon', $val)
-                );
+                
                 $result['list'][$key]['display_datetime'] = display_datetime(
                     element('att_datetime', $val),
                     $attendance_date_style,

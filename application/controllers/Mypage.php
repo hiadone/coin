@@ -367,7 +367,7 @@ class Mypage extends CB_Controller
         $findex = $this->Point_model->primary_key;
         $forder = 'desc';
 
-        $per_page = $this->cbconfig->item('list_count') ? (int) $this->cbconfig->item('list_count') : 20;
+        $per_page = 10;
         $offset = ($page - 1) * $per_page;
 
         /**

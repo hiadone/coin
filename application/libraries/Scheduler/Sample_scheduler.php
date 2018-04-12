@@ -23,6 +23,7 @@ class Sample_scheduler extends CI_Controller
 
     public function scheduler()
     {
+
         $ip = $this->CI->input->ip_address();
         log_message('debug', $ip . '에서 Sample_scheduler 가 실행되었습니다.');
     }
