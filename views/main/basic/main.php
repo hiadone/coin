@@ -1027,14 +1027,14 @@
         <h2>웹 툰<span><a href="<?php echo site_url('/board/w-1') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02">드 라 마</li>
-            <li class='nomal_font02'>로 멘 스</li>
-            <li class="nomal_font02">학원 / 액션</li>
+            <li class="active nomal_font02">월간신작 TOP 9</li>
+            <li class='nomal_font02'>학원 / 액션</li>
+            <li class="nomal_font02">드라마</li>
         </ul>
 
         <div class="tab_cont">
             <?php
-            $tab04=array('w-1','w-2','w-3');
+            $tab04=array('w-2','w-3','w-1');
             foreach($tab04 as $value){
                 $config = array(
                     'brd_key' => $value,

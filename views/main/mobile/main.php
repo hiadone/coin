@@ -785,15 +785,15 @@
     <!-- tab09(웹툰 영역) -->
            <section class="tab09 wrap middle_font">
                 <h3>
-                    <a href="<?php echo site_url('/board/w-1') ?>">
+                    <a href="<?php echo site_url('/board/w-3') ?>">
                     웹 툰
                     <span><img src="assets/images/more.png" alr="more_img"></span>
                     </a>
                 </h3>
                 <ul class="tab09_tabs tabs">
-                    <li class='active' rel='tab09_w-1'>드 라 마</li>
-                    <li rel='tab09_w-2'>로 맨 스</li>
-                    <li rel='tab09_w-3' style="width: 34%;">학원 / 액션</li>
+                    <li class='active' rel='tab09_w-2'>월간신작 TOP 9</li>
+                    <li rel='tab09_w-3'>학원 / 액션</li>
+                    <li rel='tab09_w-1' style="width: 34%;">드라마</li>
                 </ul>
 
                 <div class="tab09_wrap cont_wrap">
