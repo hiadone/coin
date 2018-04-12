@@ -65,11 +65,10 @@ button{
 	background-color:#1c446d;
 	color: #fff;
 	font-size: 12px;
-	height: 25px;
+	height: 27px;
 	line-height: 26px;
 	cursor: pointer;
 }
-
 
 textarea{
 	overflow-y: auto;

@@ -11,14 +11,17 @@ $record_num = $this->uri->segment($last);
 
     <div class="clearfix"></div>  
     
-        <div class="pull-left pd10">전체 : <?php echo element('total_rows', element('data', element('list', $view))); ?>건</div>
-        <div class="pull-left pl20" >
+        <div class="pull-left pd10" style="margin-bottom: 20px;">전 체 :<span class='big_font' style='font-family: "Jeju Gothic", sans-serif; color:#a61e23;'> <?php echo element('total_rows', element('data', element('list', $view))); ?><span>건</div>
+        <div class="pull-left pl20" style="margin-bottom: 20px;">
             <?php if (element('is_admin', $view) || $this->member->item('mem_level') > 4) { ?>
-            <button type="button" onClick="post_multi_action('event_multi_status_update', '2', '선택하신 항목을 무효처리 하시겠습니까?','<?php echo element('brd_key',element('board',$view))?>');" class="btn btn-danger btn-sm">선택무효</button>
-            <button type="button" onClick="post_multi_action('event_multi_status_update', '1', '선택하신 항목을 휴효처리 하시겠습니까?','<?php echo element('brd_key',element('board',$view))?>');" class="btn btn-success btn-sm">선택유효</button>
+            <button style='height: 27px; line-height: 29px; margin-right: 5px;' type="button" onClick="post_multi_action('event_multi_status_update', '2', '선택하신 항목을 무효처리 하시겠습니까?','<?php echo element('brd_key',element('board',$view))?>');" class="btn btn-sm">선 택 무 효</button>
+            <button style='height: 27px; line-height: 29px;' type="button" onClick="post_multi_action('event_multi_status_update', '1', '선택하신 항목을 휴효처리 하시겠습니까?','<?php echo element('brd_key',element('board',$view))?>');" class="btn btn-success btn-sm">선 택 유 효</button>
             <?php } ?>
         </div>
-        <section class="post_sear pull-right" style="margin-bottom:0px">
+
+
+
+        <section class="post_sear pull-right" style="margin-bottom:20px">
             <form class="navbar-form navbar-right pull-right" action="<?php echo post_url(element('brd_key', element('board', element('list', $view))),element('post_id', element('post', $view))); ?>" onSubmit="return postSearch(this);">
                 <input type="hidden" name="findex" value="<?php echo html_escape($this->input->get('findex')); ?>" />
                 <input type="hidden" name="category_id" value="<?php echo html_escape($this->input->get('category_id')); ?>" />
@@ -34,7 +37,7 @@ $record_num = $this->uri->segment($last);
                 
                  
             </form>
-         </section> 
+        </section> 
         
        
             
@@ -68,7 +71,7 @@ $record_num = $this->uri->segment($last);
         $category = element('category', element('board', element('list', $view)));
     ?>
         <ul class="nav nav-tabs clearfix">
-            <li role="presentation" <?php if ( ! $this->input->get('category_id')) { ?>class="active" <?php } ?>><a href="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>?findex=<?php echo html_escape($this->input->get('findex')); ?>&category_id=">전체</a></li>
+            <li role="presentation" <?php if ( ! $this->input->get('category_id')) { ?>class="active" <?php } ?>><a href="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>?findex=<?php echo html_escape($this->input->get('findex')); ?>&category_id=">전 체</a></li>
             <?php
             if (element(0, $category)) {
                 foreach (element(0, $category) as $ckey => $cval) {
@@ -126,7 +129,7 @@ $record_num = $this->uri->segment($last);
                     <td><?php echo element('display_datetime', $result) ?></td>
                     <td><?php echo html_escape(element('elh_text', $result)) ?></td>
                     <!-- <td><a href="<?php echo goto_url(element('elh_referer', $result)); ?>" target="_blank"><?php echo element('elh_referer', $result); ?></a></td> -->
-                    <td><a href="javascript:post_action_event('event_status_update', '<?php echo element('elh_id', $result);?>', '<?php echo element('elh_status', $result) ==='1' ? '2':'1';?>','<?php echo element('brd_key',element('board',$view))?>');" class="btn <?php echo element('elh_status', $result) ==='1' ? 'btn-success':'btn-danger';?> btn-xs"><?php echo element('elh_status', $result) === '1' ? '유효' : '무효'; ?></a></td>
+                    <td><a style='height: 27px; line-height: 27px;' href="javascript:post_action_event('event_status_update', '<?php echo element('elh_id', $result);?>', '<?php echo element('elh_status', $result) ==='1' ? '2':'1';?>','<?php echo element('brd_key',element('board',$view))?>');" class="btn <?php echo element('elh_status', $result) ==='1' ? 'btn-success':'btn-danger';?> btn-xs"><?php echo element('elh_status', $result) === '1' ? '유 효' : '무 효'; ?></a></td>
                     <td><input type="text" class="px100" style="border: 1px solid #e5e6e7;outline: 0 none;padding: 3px 12px;background-color: #FFFFFF;background-image: none;border-radius: 5px;"  name="elh_memo[<?php echo element('elh_id', $result);?>]" id="elh_memo_<?php echo element('elh_id', $result);?>" data-elh_id="<?php echo element('elh_id', $result);?>" value="<?php echo html_escape(element('elh_memo', $result)) ?>" /></td>
                     <?php
                      if (element('is_admin', $view)) {
@@ -152,16 +155,16 @@ $record_num = $this->uri->segment($last);
 
     <div class="border_button">
         <div class="pull-left mr10">
-            <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">전체목록</a>
-            <a href="<?php echo element('list_url', element('list', $view)); ?>?eventstatus=1" class="btn btn-success btn-sm">유효목록</a>
-            <a href="<?php echo element('list_url', element('list', $view)); ?>?eventstatus=2" class="btn btn-danger btn-sm">무효목록</a>
+            <a style='height: 27px; line-height: 27px; margin-right: 5px;' href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">전 체 목 록</a>
+            <a style='height: 27px; line-height: 27px; margin-right: 5px;' href="<?php echo element('list_url', element('list', $view)); ?>?eventstatus=1" class="btn btn-success btn-sm">유 효 목 록</a>
+            <a style='height: 27px; line-height: 27px;' href="<?php echo element('list_url', element('list', $view)); ?>?eventstatus=2" class="btn btn-danger btn-sm">무 효 목 록</a>
         </div>
         <div class="box-info">
             <div class="btn-group pull-right" role="group" aria-label="...">
                 <?php if (element('is_admin', $view)) { ?>
-                <button type="button" class="btn btn-outline btn-danger btn-sm mr10" id="export_to_event">체크 항목 이벤트 발송</button> 
+                <button type="button" class="btn-outline btn-sm" id="export_to_event" style='margin-right: 5px;'>체크 항목 이벤트 발송</button> 
                 <?php } ?>
-                <button type="button" class="btn btn-outline btn-success btn-sm" id="export_to_excel"><i class="fa fa-file-excel-o"></i> 엑셀 다운로드</button>
+                <button type="button" class="btn-outline btn-success btn-sm" id="export_to_excel"><i class="fa fa-file-excel-o"></i> 엑셀 다운로드</button>
             </div>            
         </div>
     </div>

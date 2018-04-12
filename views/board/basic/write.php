@@ -10,7 +10,7 @@
         </h4>
     
 
-    <section class="cont_write">
+<section class="cont_write">
     <?php
     echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
     echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-info"><button type="button" class="close alertclose" >&times;</button>', '</div>');
@@ -181,7 +181,7 @@
                             <div class='upload_clear'>
                             <a href="<?php echo $download_link; ?>"><?php echo html_escape(element('pfi_originname', element($i, element('file', $view)))); ?></a>
                             <label for="<?php echo $del_column; ?>">
-                                <input type="checkbox" name="<?php echo $del_column; ?>" id="<?php echo $del_column; ?>" value="1" <?php echo set_checkbox($del_column, '1'); ?> /> 삭제
+                                <input type="checkbox" name="<?php echo $del_column; ?>" id="<?php echo $del_column; ?>" value="1" <?php echo set_checkbox($del_column, '1'); ?> /> 삭 제
                             </label>
                             </div>
                         <?php } ?>
@@ -211,8 +211,8 @@
                     </div>
                 <?php } ?>
                 <div class="post_button">
-                    <button type="submit" class="">작 성 완 료</button>
-                    <button type="button" class="btn-history-back">취소</button>
+                    <button style='margin-right: 5px;' type="submit" class="">작 성 완 료</button>
+                    <button type="button" class="btn-history-back">취 소</button>
                 </div>
             
     <?php echo form_close(); ?>

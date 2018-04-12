@@ -1,10 +1,10 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
-<div class="container pt20 pb20" style="width:1200px">
+<div class="container" style="width:1200px; margin: 40px auto;">
 <!-- <h3><?php echo ($this->input->get('skeyword')) ? '검색결과 : ' . html_escape($this->input->get('skeyword')) : '검색페이지' ?></h3> -->
-<div class="row">
-    <form action="<?php echo current_url(); ?>" onSubmit="return checkSearch(this);" class=" search_box text-center">
-        <div class="group">
-            <select class="input" name="group_id">
+<div class="row post_sear" style='width: 100%;'>
+    <form  action="<?php echo current_url(); ?>" onSubmit="return checkSearch(this);">
+        <div class="group" style="display: inline-block;">
+            <select class='normal_font' name="group_id">
                 <option value="">전체그룹</option>
                 <?php
                 if (element('grouplist', $view)) {
@@ -17,8 +17,9 @@
                 ?>
             </select>
         </div>
-        <div class="group">
-            <select class="input per100" name="sfield">
+
+        <div class="group" style="display: inline-block;">
+            <select class="normal_font" name="sfield">
                 <option value="post_both" <?php echo $this->input->get('sfield') === 'post_both' ? 'selected="selected"' : ''; ?>>제목+내용</option>
                 <option value="post_title" <?php echo $this->input->get('sfield') === 'post_title' ? 'selected="selected"' : ''; ?>>제목</option>
                 <option value="post_content" <?php echo $this->input->get('sfield') === 'post_content' ? 'selected="selected"' : ''; ?>>내용</option>
@@ -26,21 +27,27 @@
                 <option value="post_nickname" <?php echo $this->input->get('sfield') === 'post_nickname' ? 'selected="selected"' : ''; ?>>회원닉네임</option> -->
             </select>
         </div>
-        <div class="group">
-            <input type="text" class="input per100" name="skeyword" placeholder="검색어" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
-        </div>
-        <div class="group">
-            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> 검색</button>
-        </div>
-        <div class="group">
-            <select class="input" name="sop">
+
+        <div class="group" style="display: inline-block;">
+            <select name="sop" style="width: 60px;">
                 <option value="OR" <?php echo strtoupper($this->input->get('sop')) !== 'AND' ? 'selected="selected"' : ''; ?>>OR</option>
                 <option value="AND" <?php echo strtoupper($this->input->get('sop')) === 'AND' ? 'selected="selected"' : ''; ?>>AND</option>
             </select>
         </div>
+
+        <div class="group" style="display: inline-block;">
+            <input style='width: 873px;' type="text" name="skeyword" placeholder="검색어" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
+        </div>
+
+        
+
+        <div class="group" style="display: inline-block;">
+            <button type="submit"><img src="http://www.bitcoissue.com/views/_layout/basic/images/search_find.png" alt="find_img"></button>
+        </div>
+        
     </form>
 </div>
-<ul class="nav nav-tabs mt20">
+<ul>
 <?php
 if (element('board_rows', $view)) {
 ?>
@@ -74,12 +81,12 @@ if (element('list', element('data', $view))) {
 <?php
         }
 ?>
-        <div class="media-body">
-            <h4 class="media-heading"><a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('post_title', $result)); ?>"><?php echo html_escape(element('post_title', $result)); ?></a>
+        <div class="media-body" style='margin-bottom: 40px; display: block; width: 100%;'>
+            <h4 class="big_font" style='margin-bottom: 10px;'><a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('post_title', $result)); ?>"><?php echo html_escape(element('post_title', $result)); ?></a>
                 <?php if (element('post_comment_count', $result)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $result); ?></span><?php } ?>
                 <!-- <a href="<?php echo element('post_url', $result); ?>" target="_blank" title="<?php echo html_escape(element('post_title', $result)); ?>"><span class="label label-default label-xs">새창</span></a> -->
             </h4>
-            <p><?php echo element('content', $result); ?></p>
+            <p class='nomal_font02'><?php echo element('content', $result); ?></p>
             <p class="media-info">
                 <span><?php echo element('display_name', $result); ?></span>
                 <span><i class="fa fa-clock-o"></i> <?php echo element('display_datetime', $result); ?></span>
