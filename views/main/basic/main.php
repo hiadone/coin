@@ -1,4 +1,8 @@
 <script>
+
+    var postact_flag=false;
+    var coinActiveTab='tab01_btc';
+    setInterval('view_coin()',10000);
     // 전체 스크립트 
     $(document).ready(function(){
         
@@ -68,7 +72,9 @@
 
             // 클릭한 메뉴탭의 id 값
             var click_class = $(this).parents('ul').parents('section').attr('id');
-            
+
+            if($(this).attr("rel"))
+                coinActiveTab = $(this).attr("rel");
             $("#" + click_class + " .tab_cont > div:eq(" + index + ")").fadeIn();
         });
 
@@ -359,7 +365,7 @@
 <article class="main_top content01">
     <section class='tab' id='coin_mall'>
         <ul class='menu_list nomal_font02'>
-            <li class="active">
+            <li class="active" rel="tab01_btc">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/bitcoin.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -368,7 +374,7 @@
                 </figure>
             </li>
 
-            <li style='width: 88px;'>
+            <li style='width: 88px;' rel="tab01_eth">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ethereum.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -377,7 +383,7 @@
                 </figure>
             </li>
 
-            <li style='width: 85px;'>
+            <li style='width: 85px;' rel="tab01_dash">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ripple.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -386,7 +392,7 @@
                 </figure>
             </li>
             
-            <li style='width: 118px;'>
+            <li style='width: 118px;' rel="tab01_xrp">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/bitcoin-cash.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -396,7 +402,7 @@
             </li>
 
 
-            <li style='width: 108px;'>
+            <li style='width: 108px;' rel="tab01_ltc">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/litecoin.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -405,7 +411,7 @@
                 </figure>
             </li>
 
-            <li>
+            <li rel="tab01_etc">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/eos.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -414,7 +420,7 @@
                 </figure> 
             </li>
 
-            <li> 
+            <li rel="tab01_bch"> 
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/monero.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -423,7 +429,7 @@
                 </figure>
             </li>
 
-            <li style='width: 85px;'>
+            <li style='width: 85px;' rel="tab01_xmr">
                <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/dash.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -432,7 +438,7 @@
                 </figure>  
             </li>
 
-            <li style='width: 125px;'>
+            <li style='width: 125px;' rel="tab01_zec">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ethereum-classic.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -441,7 +447,7 @@
                 </figure>
             </li>
 
-            <li style='width: 85px;'>
+            <li style='width: 85px;' rel="tab01_qtum">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/qtum.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -519,7 +525,7 @@
                             <?php
                             $config = array(
                                 'skin' => 'basic2',
-                                'brd_id' => '',
+                                'brd_id' => array(15,3,10,5),
                                 'limit' => 10,
                                 'length' =>50,
                                 'is_gallery' => '',

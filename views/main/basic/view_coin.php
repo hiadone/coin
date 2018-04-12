@@ -68,6 +68,8 @@ function won($k) {
     
         <div style="display:none;">
         <table class='coin_cont'>
+        <div id="tab01_<?php echo $key ?>" style="display:none;">
+        <table class='coin_cont'>
     <?php foreach($value as $key_ => $value_){ 
         
         // if($key_==="bitfinex") continue;
