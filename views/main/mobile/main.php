@@ -10,7 +10,7 @@
 
     // 전체 스크립트 
     $(document).ready(function(){
-         $("body").scrollTop($(document).height());
+         $("html,body").animate({scrollTop:0},'500');
         // tab01 영역 스크립트
             $(".tab01_cont").hide();
             $(".tab01_cont:first").show();
@@ -264,9 +264,6 @@
     });
 </script> 
 
-<style>
-    
-</style>
 
 <article class="cover_menu_sub">
     <section class="cover_sub">
@@ -550,7 +547,7 @@
 
     <!-- ad 영역 -->
         <section class="ad">
-            <?php echo banner('main_mobile_banner') ?>
+           <?php echo banner('main_mobile_banner') ?>
         </section>
 
     <!-- tab07(최신뉴스,인기뉴스) 영역 -->
@@ -725,6 +722,7 @@
         <section class="ad">
             <?php echo banner('main_mobile_banner2') ?>
         </section>
+        
     <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역
         <section class="tab04 wrap middle_font">
             <h3><a href="<?php echo site_url('/board/event') ?>">
@@ -786,14 +784,15 @@
            <section class="tab09 wrap middle_font">
                 <h3>
                     <a href="<?php echo site_url('/board/w-2') ?>">
+                    <a href="<?php echo site_url('/board/w-1') ?>">
                     웹 툰
                     <span><img src="assets/images/more.png" alr="more_img"></span>
                     </a>
                 </h3>
                 <ul class="tab09_tabs tabs">
-                    <li class='active' rel='tab09_w-2'>월간신작 TOP 9</li>
-                    <li rel='tab09_w-3'>학원 / 액션</li>
-                    <li rel='tab09_w-1' style="width: 34%;">드라마</li>
+                    <li class='active' rel='tab09_w-1'>드 라 마</li>
+                    <li rel='tab09_w-2'>로 맨 스</li>
+                    <li rel='tab09_w-3' style="width: 34%;">학원 / 액션</li>
                 </ul>
 
                 <div class="tab09_wrap cont_wrap">

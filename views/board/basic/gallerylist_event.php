@@ -78,23 +78,17 @@ $record_num = $this->uri->segment($last);
                
 
 
-                    <li class="gallery-box" >
+                    <li>
                         <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /><?php } ?>
                         <a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('title', $result)); ?>">
                             <figure>
-                                <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class="" style="width:<?php echo element('gallery_image_width', element('board', element('list', $view))); ?>px;height:<?php echo element('gallery_image_height', element('board', element('list', $view))); ?>px;" />
+                                <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class=""/>
                                 <figcaption>
                                     <h3><?php echo html_escape(element('title', $result)); ?></h3>
                                     
                                         <strong class='big_font'>
                                              <span class='small_font'>포인트</span><?php echo number_format(element('output',element(0,element('extra_content', $result)))); ?> P
                                         </strong>
-
-                                        
-                                        
-                                    
-
-                                    
                                 </figcaption>
                             </figure>
                         </a>

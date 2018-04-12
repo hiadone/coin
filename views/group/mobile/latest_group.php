@@ -109,8 +109,8 @@
                     
                 </select>
                 <input type="text" placeholder="Search" name="skeyword" value="<?php echo html_escape($this->input->post('skeyword')); ?>" />
-                <button class="middle_font" type="button" onClick='boardSearch(document.frm);' style="width: 25px;"><i class="fa fa-search"></i></button>
-                <button class="middle_font" type="button" onClick='boardtotal(this.form);'>전 체</button>
+                <button type="button" onClick='boardSearch(document.frm);' style="width: 25px;"><i class="fa fa-search"></i></button>
+                <button type="button" onClick='boardtotal(this.form);'>전 체</button>
             
         </form>
         </div>

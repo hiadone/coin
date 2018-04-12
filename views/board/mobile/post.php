@@ -31,7 +31,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
         <?php echo show_alert_message($this->session->flashdata('message'), '<div class="alert-auto-close">', '</div>'); ?>
         <div class="board">
             <h3 class="post-view"><?php echo html_escape(element('post_title', element('post', $view))); ?></h3>
-            <b class="middle_font">댓글 <span>[ <?php echo number_format(element('post_comment_count', element('post', $view))); ?> 개 ]</span></b>
+            <b class="middle_font">댓 글 <span>[ <?php echo number_format(element('post_comment_count', element('post', $view))); ?> 개 ]</span></b>
             <table class="small_font post-view">
                 <tr>
                     <td>조회수 : <?php echo number_format(element('post_hit', element('post', $view))); ?></td>
@@ -39,33 +39,30 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
                     <td><?php echo element('display_name', element('post', $view)); ?></td>
                 </tr>
             </table>
-        
-    
-    
-    
+
     <script type="text/javascript">
-    //<![CDATA[
-    function file_download(link) {
-        <?php if (element('point_filedownload', element('board', $view)) < 0) { ?>if ( ! confirm("파일을 다운로드 하시면 포인트가 차감(<?php echo number_format(element('point_filedownload', element('board', $view))); ?>점)됩니다.\n\n포인트는 게시물당 한번만 차감되며 다음에 다시 다운로드 하셔도 중복하여 차감하지 않습니다.\n\n그래도 다운로드 하시겠습니까?")) { return; }<?php }?>
-        document.location.href = link;
-    }
-    //]]>
+        //<![CDATA[
+        function file_download(link) {
+            <?php if (element('point_filedownload', element('board', $view)) < 0) { ?>if ( ! confirm("파일을 다운로드 하시면 포인트가 차감(<?php echo number_format(element('point_filedownload', element('board', $view))); ?>점)됩니다.\n\n포인트는 게시물당 한번만 차감되며 다음에 다시 다운로드 하셔도 중복하여 차감하지 않습니다.\n\n그래도 다운로드 하시겠습니까?")) { return; }<?php }?>
+            document.location.href = link;
+        }
+        //]]>
     </script>
 
-    <?php if (element('extra_content', $view)) { ?>
-        <div class="table-box">
-            <table class="table-body">
-                <tbody>
-                <?php foreach (element('extra_content', $view) as $key => $value) { ?>
-                    <tr>
-                        <th class="px150"><?php echo html_escape(element('display_name', $value)); ?></th>
-                        <td><?php echo nl2br(html_escape(element('output', $value))); ?></td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-        </div>
-    <?php } ?>
+        <?php if (element('extra_content', $view)) { ?>
+            <div class="table-box">
+                <table class="table-body">
+                    <tbody>
+                    <?php foreach (element('extra_content', $view) as $key => $value) { ?>
+                        <tr>
+                            <th class="px150"><?php echo html_escape(element('display_name', $value)); ?></th>
+                            <td><?php echo nl2br(html_escape(element('output', $value))); ?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } ?>
 
         <div class="contents-view">
             <div class="contents-view-img">
@@ -83,17 +80,17 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <!-- 본문 내용 시작 -->
             <div id="post-content"><?php echo element('content', element('post', $view)); ?></div>
             <!-- 본문 내용 끝 -->
-        </div>
-        <?php if (element('link_count', $view) > 0 OR element('file_download_count', $view) > 0) { ?>
-        <div class="table-box">
-            <table class="table-body">
+
+             <?php if (element('link_count', $view) > 0 OR element('file_download_count', $view) > 0) { ?>
+        <div>
+            <table class="table-body" style='table-layout: fixed; font-weight: bold;'>
                 <tbody>
                 <?php
                 if (element('file_download_count', $view) > 0) {
                     foreach (element('file_download', $view) as $key => $value) {
                 ?>
                     <tr>
-                        <td><i class="fa fa-download"></i> <a href="javascript:file_download('<?php echo element('download_link', $value); ?>')"><?php echo html_escape(element('pfi_originname', $value)); ?>(<?php echo byte_format(element('pfi_filesize', $value)); ?>)</a> </td>
+                        <td style='border-top: 0;'><i class="fa fa-download"></i> <a href="javascript:file_download('<?php echo element('download_link', $value); ?>')"><?php echo html_escape(element('pfi_originname', $value)); ?>(<?php echo byte_format(element('pfi_filesize', $value)); ?>)</a> </td>
                     </tr>
                 <?php
                     }
@@ -102,7 +99,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
                     foreach (element('link', $view) as $key => $value) {
                 ?>
                     <tr>
-                        <td><i class="fa fa-link"></i> <a href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a><span class="badge"><?php echo number_format(element('pln_hit', $value)); ?></span>
+                        <td style='border-top: 0; padding:0;'><a style='width: 100%; display: inline-block; word-break: break-all;' href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a><!-- <span class="badge"><?php echo number_format(element('pln_hit', $value)); ?></span> -->
                             <?php if (element('show_url_qrcode', element('board', $view))) { ?>
                                 <span class="url-qrcode"  data-qrcode-url="<?php echo urlencode(element('pln_url', $value)); ?>"><i class="fa fa-qrcode"></i></span>
                             <?php } ?>
@@ -119,6 +116,9 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
         }
         
     ?>
+
+        </div>
+       
         <div class="border_button middle_font ">
         <div class="btn-group pull-left" role="group" aria-label="...">
             <?php if (element('modify_url', $view)) { ?>
@@ -133,7 +133,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
         </div>
         <?php if (element('write_url', $view)) { ?>
             <div class="pull-right middle_font">
-                <a href="<?php echo element('write_url', $view); ?>" class="btn-sm">글쓰기</a>
+                <a href="<?php echo element('write_url', $view); ?>" class="btn-sm">글 쓰 기</a>
             </div>
         <?php } ?>
         </div>

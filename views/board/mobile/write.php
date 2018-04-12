@@ -327,8 +327,8 @@
         <?php } ?>
             <div class="text-center middle_font" style="margin-bottom: 0;">
                 
-                <button type="submit" class="per45 middle_font">저 장</button>
-                <button type="button" class="btn-history-back per45 middle_font">취 소</button>
+                <button type="submit">저 장</button>
+                <button type="button">취 소</button>
             </div>
         </div>
     <?php echo form_close(); ?>

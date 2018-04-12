@@ -43,7 +43,7 @@
                 ?>
                     <strong><?php echo number_format(element('output', $value)); ?> P</strong>
                 <?php } else { ?>
-                    <strong><?php echo nl2br(html_escape(element('output', $value))); ?></strong>
+                    <p><?php echo nl2br(html_escape(element('output', $value))); ?></p>
                 <?php } ?>
             </li>
         <?php } ?>
@@ -76,21 +76,22 @@
             <?php echo form_close(); ?>
         </div>
     </section>
-    <div class="border_button middle_font ">
+    <div class="border_button middle_font" style='padding:0 3%; margin-bottom: 5%;'>
         <div class="btn-group pull-left" role="group" aria-label="...">
             <?php if (element('modify_url', $view)) { ?>
-                <a href="<?php echo element('modify_url', $view); ?>" class="btn-sm">수정</a>
+                <a style='margin-right: 5px;' href="<?php echo element('modify_url', $view); ?>" class="btn-sm">수 정</a>
             <?php } ?>
             <?php    if (element('delete_url', $view)) { ?>
-                <a  class=" btn-sm btn-one-delete" data-one-delete-url="<?php echo element('delete_url', $view); ?>">삭제</a>
+                <a  class=" btn-sm btn-one-delete" data-one-delete-url="<?php echo element('delete_url', $view); ?>">삭 제</a>
             <?php } ?>
                 <!-- <a href="<?php echo element('list_url', $view); ?>" class="btn btn-default btn-sm">목록</a> -->
             
            
         </div>
         <?php if (element('write_url', $view)) { ?>
-            <div class="pull-right middle_font">
-                <a href="<?php echo element('write_url', $view); ?>" class="btn-sm">글쓰기</a>
+            <div class="pull-right">
+                <a style='background:#1c446d; display: inline-block; text-align: center; color: #fff;
+                 border-radius: 5px; font-size: 12px; font-weight: bold; padding:5px; box-sizing: border-box;' href="<?php echo element('write_url', $view); ?>">글 쓰 기</a>
             </div>
         <?php } ?>
         </div>
@@ -115,6 +116,7 @@
 
    
     <div id="viewcomment"></div>
+    <div class='write_cont' style='margin-bottom: 5%;'>
     <ul class="middle_font post-view">
         <li><a href="<?php echo element('list_url', $view); ?>" class="">목 록</a></li>
         <?php if (element('prev_post', $view)) { ?>
@@ -125,7 +127,7 @@
         <?php } ?>
         
     </ul>
-
+    </div>
 </article>
  <script type="text/javascript">
     //<![CDATA[
