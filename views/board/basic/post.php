@@ -75,7 +75,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
         </div>
 
          <?php if (element('link_count', $view) > 0 OR element('file_download_count', $view) > 0) { ?>
-        <div class='post_link'>
+        <div class='post_link' style="margin-top: 20px;">
             <?php
             if (element('file_download_count', $view) > 0) {
                 foreach (element('file_download', $view) as $key => $value) {

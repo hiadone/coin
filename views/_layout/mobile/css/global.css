@@ -40,6 +40,8 @@ input{
 	box-sizing: border-box;
 	padding-left: 5px;
 	border-radius: 0;
+	-webkit-appearance: none;
+    -webkit-border-radius: 0;
 }
 
 button{
