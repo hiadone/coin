@@ -9,7 +9,7 @@
 
 /*main*/
 	.content01{
-		width: 1280px;
+		width: 1200px;
 		position: relative;
 		margin:0 auto 40px;
 	}
@@ -20,22 +20,19 @@
 
 	/*main_top css*/
 		.main_top{
-			height:525px;
+			height:505px;
 			margin-bottom:40px;
 		}
 
 	/*coin_mall css*/
 		#coin_mall{
-			width: 990px;
-			height: 350px;
+			width: 950px;
 			top: 0;
 			left: 0;
 		}
 
 		#coin_mall .menu_list li{
-			width: 98px;
-			height: 35px;
-			line-height: 35px;
+			width: 88px;
 			border:0;
 			border-right: 1px solid #ededed;
 		}
@@ -61,8 +58,7 @@
 
 		#coin_mall .coin_title{
 			width: 100%;
-			height: 40px;
-			line-height: 40px;
+			line-height: 30px;
 			font-weight: bold;
 			text-align: center;
 			border-bottom:1px solid #ededed;
@@ -145,8 +141,7 @@
 
 	/*main_ad css*/
 		.main_ad{
-			width: 990px;
-			height: 160px;
+			width: 950px;
 			bottom: 0;
 		}
 
@@ -158,7 +153,7 @@
 
 	/*hot_text css*/
 	 	#hot_text{
-	 		width: 275px;
+	 		width: 235px;
 	 		height: 350px;
 			bottom: 0;
 			right:0;
@@ -178,7 +173,7 @@
 	 	}
 
 	 	.hot_tab .hot_menu li{
-	 		width: 91px;
+	 		width: 77px;
 	 		float: left;
 	 		text-align: center;
 	 		line-height: 24px;
@@ -192,6 +187,7 @@
 	 	}
 
 	 	.hot_tab .hot_menu li:last-child{
+	 		width: 79px;
 	 		border-right: 0;
 	 	}
 
@@ -232,7 +228,7 @@
 		}
 
 		.hot_cont li > a div{
-			width:223px;
+			width:183px;
 			height:20px;
 			line-height: 20px;
 			overflow:hidden;
@@ -243,8 +239,7 @@
 
 	/*event css*/
 	 	#event{
-	 		width: 275px;
-	 		height: 160px;
+	 		width: 235px;
 			top: 0;
 			right:0;
 			background-color: #ededed;
@@ -257,7 +252,7 @@
 
 
 	 	#event .bx-wrapper {width:100%; position: relative; padding: 0; *zoom: 1;}
-		#event .bx-wrapper img {max-width: 100%;  display: block; width: 100%; height: 160px; border:1px solid #ededed; box-sizing: border-box;}
+		#event .bx-wrapper img {max-width: 100%;  display: block; width: 100%;border:1px solid #ededed; box-sizing: border-box;}
 
 
 		#event .bx-wrapper .bx-viewport {	/*fix other elements on the page moving (on Chrome)*/-webkit-transform: translatez(0);-moz-transform: translatez(0);-ms-transform: translatez(0);-o-transform:translatez(0);transform: translatez(0);}
@@ -357,7 +352,7 @@
 		}
 
 		.tab_text td:nth-child(2){
-			width: 295px;
+			width: 275px;
 		}
 
 		.tab_text td:nth-child(3){
@@ -377,7 +372,7 @@
 		}
 
 		.tab_img img{
-			width: 122px;
+			width: 112px;
 			height: 120px;
 			margin:0 10px 10px 0;
 			cursor: pointer;
@@ -400,7 +395,7 @@
 			margin-bottom: 20px;
 		}
 		.main_mid01 > section{
-			width: 417px;
+			width: 390px;
 			height: 100%;
 		}
 
@@ -429,7 +424,7 @@
 	 	}
 
 	 	#news figcaption{
-	 		width: 227px;
+	 		width: 200px;
 	 		height: 70px;
 	 		float: left;
 	 		margin:15px 0;
@@ -480,7 +475,7 @@
 			height:615px;
 		}
 		.main_mid02 > section{
-			width: 417px;
+			width: 390px;
 			height: 100%;
 		}
 
@@ -520,7 +515,7 @@
 
 		#webtoon figure{
 			display: inline-block;
-			width: 122px;
+			width: 112px;
 			margin-right: 10px;
 		}
 
@@ -568,9 +563,9 @@
 		
 	/*webtoon_seb css*/
 	 .webtoon_sub{
-	 	width: 226px;
+	 	width: 220px;
 	 	float: left;
-	 	margin-right: 37px;
+	 	margin-right: 25px;
 	 }
 
 	 .webtoon_sub:nth-child(5n){
@@ -631,7 +626,7 @@
 		}
 
 		.main_mid03 > section{
-			width: 417px;
+			width: 390px;
 			height: 100%;
 		}
 
@@ -771,13 +766,13 @@
 
 /*게시판*/
 	.content02{
-		width: 1280px;
+		width: 1200px;
 		margin: 40px auto;
 	}
 
 	/*submenu css*/
 		.submenu{
-			width: 1280px;
+			width: 1200px;
 			height: 30px;
 			margin: 0 auto;
 			text-align: center;
@@ -903,7 +898,7 @@
 		}
 
 		.gallery-box{
-			width: 226px;
+			width: 210px;
 			float: left;
 			margin-right: 37px;
 		}
@@ -997,7 +992,7 @@
 		}
 
 		.atten_write label{
-			width: 60px;
+			width: 40px;
 			height: 30px;
 			line-height: 30px;
 			font-weight: bold;
@@ -1006,7 +1001,7 @@
 		}
 
 		.atten_write input{
-			width: 830px;
+			width: 770px;
 			height: 30px;
 			outline: none;
 			padding:3px 7px;
@@ -1095,6 +1090,10 @@
 		.atten_list  li{
 			margin-bottom: 25px;
 			display: inline-block;
+		}
+
+		.atten_list  li:last-child{
+			margin-bottom: 0;
 		}
 
 		.atten_list figure > img{
@@ -1325,7 +1324,7 @@
 
 /*대메뉴 영역*/
 		.content03 h4{
-			width: 1280px;
+			width: 1200px;
 			height: 30px;
 			line-height: 35px;
 			margin:0 auto;
@@ -1354,7 +1353,7 @@
 
 /*post_title(게시물 제목) css*/
 		.post_title{
-			width: 1260px;
+			width: 1150px;
 			height: 60px;
 			margin:0 auto;
 		}
@@ -1405,13 +1404,13 @@
 
 /*post_area(게시물 컨텐츠) css*/
 		.post_area{
-			width: 1200px;
+			width: 1150px;
 			margin:40px auto;
 		}
 
 /*post_view(게시물 컨텐츠의 이전글 다음글 목록) css*/
 		.post_view{
-			width: 1280px;
+			width: 1200px;
 			margin: 0 auto 20px;
 			text-align: right;
 		}
@@ -1433,7 +1432,7 @@
 
 /*reply_list css*/
 		.reply_list{
-			width: 1280px;
+			width: 1200px;
 			margin:0 auto;
 		}
 
@@ -1513,7 +1512,7 @@
 
 /*reply_write(댓글쓰기) css*/
 		.reply_write{
-			width: 1280px;
+			width: 1200px;
 			margin:0 auto 40px;
 		}
 
@@ -1731,8 +1730,8 @@
 		display: inline-block;
 	}
 	.store_list li{
-		width: 190px;
-		margin:0 28px 40px 0;
+		width: 179px;
+		margin:0 25px 40px 0;
 		float: left;
 	}
 
@@ -2007,6 +2006,16 @@
 		font-family:'Jeju Gothic', sans-serif; 
 	}
 
+/*info_policy (개인정보취급방침) css*/
+	.info_policy{
+		border:1px solid #ededed;
+		padding:20px;
+		box-sizing: border-box;
+		line-height: 20px;
+	}
+	.info_policy h3{
+		margin-bottom: 20px;
+	}
 /*추가 css*/
 	#comment_write_box{
 		display: inline-block;

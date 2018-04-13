@@ -1519,6 +1519,12 @@ html, body{
 
 	.login div h2{
 		margin-bottom: 5%;
+		font-weight: bold;
+	}
+
+	.login div p strong{
+		font-weight: bold;
+		color: #a61e23;
 	}
 
 

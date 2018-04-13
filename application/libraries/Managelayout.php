@@ -375,7 +375,7 @@ class Managelayout extends CI_Controller
 
                     <ul>
                         <li>
-                            <a href="'.document_url('provision').'" title="이용약관및개인정보취급방침">개인정보취급방침</a>
+                            <a href="'.document_url('provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a>
                         </li>
 
                         <li>

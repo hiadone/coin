@@ -1,4 +1,6 @@
-<h3><?php echo html_escape(element('doc_title', element('data', $view))); ?></h3>
+<section class="content02 info_policy nomal_font02">
+
+<h3 class="big_font"><?php echo html_escape(element('doc_title', element('data', $view))); ?></h3>
 
 <?php echo element('content', element('data', $view)); ?>
 
@@ -7,3 +9,4 @@
         <a href="<?php echo admin_url('page/document/write/' . element('doc_id', element('data', $view))); ?>" class="btn btn-danger btn-sm" target="_blank">내용수정</a>
     </div>
 <?php } ?>
+</section>

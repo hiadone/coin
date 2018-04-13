@@ -88,7 +88,7 @@ textarea{
 
 /*header css*/
 	header{
-		width: 1280px;
+		width: 1200px;
 		padding:10px 0 20px;
 		box-sizing: border-box;
 		margin:0 auto;
@@ -184,7 +184,7 @@ textarea{
 	}
 
 	.login_cont{
-		width: 1280px;
+		width: 1200px;
 		height: 30px;
 		margin:0 auto;
 	}
@@ -206,7 +206,6 @@ textarea{
 		border-radius: 5px;
 		margin:5px 10px 5px 0;
 		float: left;
-		font-family: 'Jeju Gothic', sans-serif;
 	}
 
 	.login_noice .bx-wrapper{
@@ -393,6 +392,14 @@ textarea{
 	.ham_login .login_notice h3{
 		margin-bottom: 20px;
 	}
+
+	.ham_login .login_notice p strong{
+		font-family:'Jeju Gothic', sans-serif;
+		color: #a61e23;
+		line-height: 13px;
+	}
+
+
 
 	.ham_login ul{
 		width: 299px;
@@ -722,7 +729,7 @@ textarea{
 	}
 
 	.footer{
-		width: 1280px;
+		width: 1200px;
 		height: 46px;
 		margin: 27px auto;
 	}
@@ -738,7 +745,7 @@ textarea{
 	}
 
 	.footer ul{
-		width: 1095px;
+		width: 1025px;
 		height: 23px;
 		line-height: 23px;
 		float: left;

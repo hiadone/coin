@@ -374,7 +374,7 @@
                 </figure>
             </li>
 
-            <li style='width: 88px;' rel="tab01_eth">
+            <li rel="tab01_eth">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ethereum.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -383,7 +383,7 @@
                 </figure>
             </li>
 
-            <li style='width: 85px;' rel="tab01_dash">
+            <li style='width: 75px;' rel="tab01_dash">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ripple.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
