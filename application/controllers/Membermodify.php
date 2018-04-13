@@ -32,7 +32,7 @@ class Membermodify extends CB_Controller
         /**
          * 라이브러리를 로딩합니다
          */
-        $this->load->library(array('querystring', 'form_validation', 'email', 'notelib'));
+        $this->load->library(array('querystring', 'form_validation', 'email', 'notelib', 'point'));
     }
 
 
@@ -1767,13 +1767,18 @@ class Membermodify extends CB_Controller
                 $skin = 'member_admin';
             } else {
                 $skin = 'memberleave_password';
-            }
+            }   
+
+            if($this->input->is_ajax_request())
+                $layout_dir='empty';
+            else
+                $layout_dir=$this->cbconfig->item('layout_login'); 
 
             $layoutconfig = array(
                 'path' => 'mypage',
                 'layout' => 'layout',
                 'skin' => $skin,
-                'layout_dir' => $this->cbconfig->item('layout_mypage'),
+                'layout_dir' => $layout_dir,
                 'mobile_layout_dir' => $this->cbconfig->item('mobile_layout_mypage'),
                 'use_sidebar' => $this->cbconfig->item('sidebar_mypage'),
                 'use_mobile_sidebar' => $this->cbconfig->item('mobile_sidebar_mypage'),
@@ -1979,6 +1984,25 @@ class Membermodify extends CB_Controller
             }
 
             $this->member->delete_member($mem_id);
+
+            
+//             if ($this->cbconfig->item('point_recommended')) {
+
+//                 $this->load->model('Member_register_model');
+//                 $recommended = $this->Member_register_model->get_one('','mrg_recommend_mem_id',array('mem_id'=>$mem_id));
+// print_r($recommended);
+//                 exit;
+//                 // 추천인이 존재할 경우 추천된 사람
+//                 $this->point->delete_point(
+//                     element('mem_id', $recommended),                    
+//                     'member_recommended',
+//                     $mem_id,
+//                     '회원가입추천'
+//                 );
+//             }
+                
+            
+
             $this->session->sess_destroy();
 
             // 이벤트가 존재하면 실행합니다

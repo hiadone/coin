@@ -897,7 +897,7 @@ class Board_write extends CB_Controller
                     $point = $this->point->insert_point(
                         $mem_id,
                         element('point_write', $board),
-                        element('board_name', $board) . ' ' . $post_id . ' 게시글 작성',
+                        element('board_name', $board) . ' '. '게시글 작성',
                         'post',
                         $post_id,
                         '게시글 작성'
@@ -906,7 +906,7 @@ class Board_write extends CB_Controller
                     $point = $this->point->insert_point(
                         $mem_id,
                         element('point_write', $board),
-                        element('board_name', $board) . ' ' . $post_id . ' 게시글 작성',
+                        element('board_name', $board) . ' '. '게시글 작성',
                         'post',
                         $post_id,
                         '게시글 작성'

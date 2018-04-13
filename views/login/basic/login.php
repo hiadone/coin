@@ -35,6 +35,7 @@
             if ($this->cbconfig->item('use_sociallogin')) {
                 $this->managelayout->add_js(base_url('assets/js/social_login.js'));
             ?>
+            <input type="hidden" id="elh_mem_id" value="<?php echo element('elh_mem_id',$view); ?>">
             <section class="ham_cont02 ham_login">
                 <h2>통 합 로 그 인</h2>
 

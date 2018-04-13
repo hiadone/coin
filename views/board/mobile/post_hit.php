@@ -83,9 +83,8 @@
             $("ul.tab08_tabs li").click(function () {
                 $("ul.tab08_tabs li").removeClass("active").css("color" , "#333");
                 $(this).addClass("active").css({"color": "#1c446d"});
-                $(".tab08_cont").hide()
-                coinActiveTab = $(this).attr("rel");
-                $("#" + coinActiveTab).fadeIn();
+                $(".tab08_cont").hide();
+                $("#" + $(this).attr("rel")).fadeIn();
             });
     });
 </script>

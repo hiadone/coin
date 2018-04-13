@@ -326,7 +326,7 @@ class Attendance extends CB_Controller
                     );
                 } else {
                     $result['list'][$key]['display_name'] = element('att_demo',$val);
-                    $dbmember['mem_level'] = ((element('att_ranking',$val)%5)+1);
+                    $dbmember['mem_level'] = ((strtotime(element('att_datetime',$val))%5)+1);
                     $result['list'][$key]['display_level']= element('mem_level', $dbmember);
                     // $this->load->model('Member_group_model');
                 }

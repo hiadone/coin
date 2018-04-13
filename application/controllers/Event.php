@@ -42,9 +42,9 @@ class Event extends CB_Controller
 
 
     /**
-     * event 정보
+     * event_insert 정보
      */
-    public function event($post_id = 0)
+    public function event_insert($post_id = 0)
     {
         
         if (empty($post_id)) {
@@ -227,90 +227,33 @@ class Event extends CB_Controller
     /**
      * event rendering
      */
-    public function Event_render($brd_key = 0,$post_id = 0,$cookie_id = 0)
+    public function event_register($brd_key = 0,$post_id = 0,$cookie_id = 0)
     {
         
-        if (empty($post_id) || empty($brd_key)) {
-            show_404();
-        }
-        $this->db->cache_on();
-        $where = array(
-            'post_id' => $post_id,
-            'brd_id' => $this->board->item_key('brd_id', $brd_key),
-        );
-
-        $post = $this->Post_model->get_one('','',$where);
+        $view = array();
+        $view['view'] = array();
         
-
-        
-
-        if (element('post_del', $post) > 1) {
-            show_404();
-        }
-
-        $post['extravars'] = $this->Post_extra_vars_model->get_all_meta(element('post_id', $post));
-        
-        if (!empty($cookie_id)) {
-            $short_cookie = $this->Cookie_model->get_one($cookie_id);
-            $view['view']['short_cookie']=$short_cookie;
-        }
-        
-        
-        
-        $view['view']['post'] = $post;
-        
-        
-        $view['view']['link'] = $link = array();
-
-        if (element('post_link_count', $post)) {
-            $this->load->model('Post_link_model');
-            $linkwhere = array(
-                'post_id' => element('post_id', $post),
-            );
-            $view['view']['link'] = $link = $this->Post_link_model
-                ->get('', '', $linkwhere, '', '', 'pln_id', 'ASC');
-            if ($link && is_array($link)) {
-                foreach ($link as $key => $value) {
-                    $view['view']['link'][$key]['link_link'] = site_url('postact/shortcut_link/' . element('pln_id', $value));
-                }
-            }
-        }
-        $view['view']['link_count'] = $link_count = count($link);
-
-        if (element('post_file', $post) OR element('post_image', $post)) {
-            $this->load->model('Post_file_model');
-            $filewhere = array(
-                'post_id' => $post_id,
-            );
-            $view['view']['file'] = $file = $this->Post_file_model
-                ->get('', '', $filewhere, '', '', 'pfi_id', 'ASC');
-                
-            $view['view']['file_image'] = array();
-            
-
-            if ($file && is_array($file)) {
-                foreach ($file as $key => $value) {
-                    if (element('pfi_is_image', $value)) {
-                        $value['origin_image_url'] = site_url(config_item('uploads_dir') . '/post/' . element('pfi_filename', $value));
-                        $value['download_link'] = site_url('postact/shortcut_download/' . element('pfi_id', $value));
-                        $value['thumb_image_url'] = thumb_url('post', element('pfi_filename', $value));
-                        $view['view']['file_image'][] = $value;
-                    } 
-                }
-            }
-            $view['view']['file_image_count'] = count($view['view']['file_image']);
-        }
-        $this->db->cache_off();
-        $userAgent = $this->agent->agent_string() ? $this->agent->agent_string() : '';        
-        $view['view']['userAgent']=get_useragent_info($userAgent);
+        $page_title = $this->cbconfig->item('site_meta_title_main');
+        $meta_description = $this->cbconfig->item('site_meta_description_main');
+        $meta_keywords = $this->cbconfig->item('site_meta_keywords_main');
+        $meta_author = $this->cbconfig->item('site_meta_author_main');
+        $page_name = $this->cbconfig->item('site_page_name_main');
 
         $layoutconfig = array(
-            'layout' => 'blank',
-            'skin' => element('post_md', $post),
-            'layout_dir' => 'bootstrap',
-            'skin_dir' => 'event',
-            'mobile_layout_dir' => 'bootstrap',
-            'mobile_skin_dir' => 'event',
+            'path' => 'event',
+            'layout' => 'layout',
+            'skin' => 'event_register',
+            'layout_dir' => $this->cbconfig->item('layout_main'),
+            'mobile_layout_dir' => $this->cbconfig->item('mobile_layout_main'),
+            'use_sidebar' => $this->cbconfig->item('sidebar_main'),
+            'use_mobile_sidebar' => $this->cbconfig->item('mobile_sidebar_main'),
+            'skin_dir' => $this->cbconfig->item('skin_main'),
+            'mobile_skin_dir' => $this->cbconfig->item('mobile_skin_main'),
+            'page_title' => $page_title,
+            'meta_description' => $meta_description,
+            'meta_keywords' => $meta_keywords,
+            'meta_author' => $meta_author,
+            'page_name' => $page_name,
         );
         $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
         $this->data = $view;
