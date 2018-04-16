@@ -55,14 +55,16 @@ $(document).ready(function(){
     // ham 메뉴 움직이는 스크립트
         var move = true;
 
-        function ham_slide(point){
+        function ham_slide(type){
             move = !move;
             if(move){
                 $('.ham').animate({'right':'-320'} , 800);
                 $('.ham >  img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png');
             }else{
-                if(point)
+                if(type=='point')
                     view_mypoint('view_member');
+                else if(type=='register')
+                    view_register('view_member');
                 else 
                     view_mypage('view_member');
                 $('.ham').animate({'right':'0'} , 800);
@@ -78,6 +80,11 @@ $(document).ready(function(){
             $('li.login-li').click(function(){
                 
                 ham_slide();
+            });
+
+            $('li.register-li').click(function(){
+                
+                ham_slide('register');
             });
 
 
@@ -310,7 +317,7 @@ $(document).ready(function(){
                 <?php if (!$this->member->is_member()) { ?>
                 <li class="pointer login-li"   title="로그인">로그인</li>
                 <li>|</li>
-                <li class="pointer login-li"   title="회원가입">회원가입</li>
+                <li class="pointer register-li"   title="회원가입">회원가입</li>
                 <?php } else { ?>
                 <li class='user_info pointer' >
                     <figure>
@@ -400,6 +407,19 @@ function view_mypoint(id) {
 function view_login(id) {
     
     var comment_url = cb_url + '/login?url=<?php echo urlencode(current_full_url());?>' ;
+    var hash = window.location.hash;
+
+    $('#' + id).load(comment_url, function() {
+        if (hash) {
+            var st = $(hash).offset().top;
+            $('html, body').animate({ scrollTop: st }, 200); //200ms duration
+        }
+    });
+}
+
+function view_register(id) {
+    
+    var comment_url = cb_url + '/login/register' ;
     var hash = window.location.hash;
 
     $('#' + id).load(comment_url, function() {

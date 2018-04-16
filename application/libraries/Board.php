@@ -617,6 +617,16 @@ class Board extends CI_Controller
                 if (element('post_category', $value)) {
                         $view['view']['latest'][$key]['category'] = $this->CI->Board_category_model->get_category_info(element('brd_id', $value), element('post_category', $value));
                 }
+
+                if($findex === 'post_hit'){
+                    $view['view']['latest'][$key]['is_new'] = false;
+                    $new_icon_hour = 24;
+
+                    if ($new_icon_hour && ( ctimestamp() - strtotime(element('post_datetime', $value)) <= $new_icon_hour * 3600) && !in_array(element('post_id', $value),explode('||',get_cookie('post_id_cookie')))) {
+                        $view['view']['latest'][$key]['is_new'] = true;
+                    }
+                }
+
                 if ($is_gallery) {
                     if (element('post_image', $value)) {
                         $imagewhere = array(
@@ -1108,12 +1118,17 @@ class Board extends CI_Controller
 
             if (element('list', $result)) {
                 foreach (element('list', $result) as $key => $val) {
+                    if(!element('att_demo',$val)){
+                        $view['view']['latest'][$key]['display_name'] = display_username(
+                            element('mem_userid', $val),
+                            element('mem_nickname', $val)
+                        );
+                    } else {
+                        $view['view']['latest'][$key]['display_name'] = element('att_demo',$val);
+                    }
                     $view['view']['latest'][$key]['url'] = base_url('/attendance');
                     $view['view']['latest'][$key]['title'] = $length ? cut_str(element('att_memo', $val), $length) : element('att_memo', $value);
-                    $view['view']['latest'][$key]['display_name'] = display_username(
-                        element('mem_userid', $val),
-                        element('mem_nickname', $val)
-                    );
+                    
                     $view['view']['latest'][$key]['display_datetime'] = display_datetime(
                         element('att_datetime', $val)
                     );

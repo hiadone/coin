@@ -73,9 +73,12 @@
             // 클릭한 메뉴탭의 id 값
             var click_class = $(this).parents('ul').parents('section').attr('id');
 
-            if($(this).attr("rel"))
+            if($(this).attr("rel")){
                 coinActiveTab = $(this).attr("rel");
-            $("#" + click_class + " .tab_cont > div:eq(" + index + ")").fadeIn();
+                $("#"+coinActiveTab).fadeIn();
+            } else{
+                $("#" + click_class + " .tab_cont > div:eq(" + index + ")").fadeIn();
+            }
         });
 
 
@@ -383,7 +386,7 @@
                 </figure>
             </li>
 
-            <li style='width: 75px;' rel="tab01_dash">
+            <li style='width: 75px;' rel="tab01_xrp">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ripple.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -392,7 +395,7 @@
                 </figure>
             </li>
             
-            <li style='width: 118px;' rel="tab01_xrp">
+            <li style='width: 118px;' rel="tab01_bch">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/bitcoin-cash.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -411,16 +414,16 @@
                 </figure>
             </li>
 
-            <li rel="tab01_etc">
+            <li rel="tab01_eos">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/eos.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
-                        아오스
+                        이오스
                     </figcaption>
                 </figure> 
             </li>
 
-            <li rel="tab01_bch"> 
+            <li rel="tab01_xmr"> 
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/monero.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -429,7 +432,7 @@
                 </figure>
             </li>
 
-            <li style='width: 85px;' rel="tab01_xmr">
+            <li style='width: 85px;' rel="tab01_dash">
                <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/dash.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -438,7 +441,7 @@
                 </figure>  
             </li>
 
-            <li style='width: 125px;' rel="tab01_zec">
+            <li style='width: 125px;' rel="tab01_etc">
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ethereum-classic.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
@@ -1089,7 +1092,7 @@
     </section>
 
     <section class="tab" id="notice">
-        <h2>서 비 스<span><a href="<?php echo site_url('/board/express') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>서 비 스<span><a href="<?php echo site_url('/attendance') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
             <li class="active nomal_font02" style="width:33.3%">출석체크</li>

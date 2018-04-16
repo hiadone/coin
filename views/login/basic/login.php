@@ -37,18 +37,13 @@
             ?>
             <input type="hidden" id="elh_mem_id" value="<?php echo element('elh_mem_id',$view); ?>">
             <section class="ham_cont02 ham_login">
-                <h2>통 합 로 그 인</h2>
+                <h2>SNS 로그인</h2>
 
                 <div class='login_notice'>
-                    <h3>SNS 간편로그인</h3>
+                    <h3>SNS 로그인</h3>
                     <p class='small_font'>
-                        비트이슈에서는 SNS로 로그인하여<br>
-                        간편하게 서비스를 이용하실 수 있습니다.<br><br>
-                        원하시는 SNS를 선택하시고<br>
+                        가입하신 SNS를 선택하시고<br>
                         로그인 해주세요.<br>
-                        <br>
-                        <strong>로그인과 함께 비트이슈의 이용약관 및<br> 
-                        개인정보취급방침에 동의하신 것으로 간주합니다.</strong><br>
                     </p>
                 </div>
                 

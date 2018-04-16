@@ -31,6 +31,16 @@ class Coin extends CI_Controller
                     "bitfinex"=>"파이넥스"
                     );
 
+    public $vic_url = array("bithumb"=>"https://www.bithumb.com/",
+                    "coinone"=>"https://coinone.co.kr/",
+                    "korbit"=>"https://www.korbit.co.kr/",
+                    "upbit"=>"https://www.upbit.com/",
+                    "coinnest"=>"https://www.coinnest.co.kr/",
+                    "bittrex"=>"https://bittrex.com/",
+                    "poloniex"=>"https://poloniex.com/",
+                    "bitfinex"=>"파이넥스"
+                    );
+
     public $vic_name = array("bitcoin"=>"비트코인",
                     "ethereum"=>"이더리움",
                     "ripple"=>"리 플",
@@ -77,6 +87,9 @@ class Coin extends CI_Controller
                             ),
                             "btg"=>array(
                                 'BTG','btg','btg_krw','krw-btg','usdt_btg','usdt-btg','btgusd'
+                            ),
+                            "eos"=>array(
+                                'EOS','eos','eos_krw','krw-eos','usdt_eos','usdt-eos','eosusd'
                             ),
                         );
 
@@ -555,6 +568,7 @@ class Coin extends CI_Controller
         }
 
         $view['view']['vic_type'] = $this->vic_type;
+        $view['view']['vic_url'] = $this->vic_url;
         $view['view']['coin_list'] = $result;
         $view['view']['market_cap_usd'] = $market_cap_usd;
         $view['view']['deal_bas_r'] = $deal_bas_r;

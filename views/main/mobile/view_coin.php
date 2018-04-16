@@ -23,7 +23,7 @@ foreach(element('coin_list',$view) as $key => $value){ ?>
         // if($key_==="bitfinex") continue;
         ?>
         <tr>
-            <td><?php echo element($key_,element('vic_type',$view)); ?></td>
+            <td><a href="<?php echo element($key_,element('vic_url',$view)); ?>" target="_blank" style="color:blue;" title="<?php echo element($key_,element('vic_type',$view)); ?>"><?php echo element($key_,element('vic_type',$view)); ?></a></td>
 
             <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? $unit.number_format(element('current_price',$value_)) : '-'; ?></td>
 

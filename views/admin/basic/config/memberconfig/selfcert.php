@@ -86,6 +86,15 @@
                             <div class="help-block">KCP 에서 받은 SITE CODE 를 입력해주세요</div>
                         </div>
                     </div>
+                     <div class="form-group">
+                        <label class="col-sm-2 control-label">NICE평가정보<br />CheckPlus 사이트코드</label>
+                        <div class="col-sm-10 form-inline">
+                            SITE CODE : <input type="text" class="form-control" name="selfcert_nice_mid" id="selfcert_nice_mid" value="<?php echo set_value('selfcert_nice_mid', element('selfcert_nice_mid', element('data', $view))); ?>" />
+                            Password : <input type="password" class="form-control" name="selfcert_nice_passwd" id="selfcert_nice_passwd" value="<?php echo set_value('selfcert_nice_passwd', element('selfcert_nice_passwd', element('data', $view))); ?>" />
+                            <div class="help-block">NICE 에서 받은 SITE CODE 와 Password 를 입력해주세요</div>
+                            
+                        </div>
+                    </div>
                     <!--div class="form-group">
                         <label class="col-sm-2 control-label">LG유플러스 상점아이디</label>
                         <div class="col-sm-10 form-inline">

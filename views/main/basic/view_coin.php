@@ -11,7 +11,18 @@ $vic_name = array("bitcoin"=>"비트코인",
                     "qtum"=>"큐 텀",
                     "eos"=>"EOS"
                     );
-
+$vic_name = array("bitcoin"=>"비트코인",
+                    "ethereum"=>"이더리움",
+                    "ripple"=>"리 플",
+                    "bitcoin-cash"=>"비트코인 캐쉬",
+                    "litecoin"=>"라이트코인",
+                    "dash"=>"대 시",
+                    "monero"=>"모네로",
+                    "ethereum-classic"=>"이더리움 클래식",
+                    "zcash"=>"제트캐시",
+                    "qtum"=>"큐 텀",
+                    "eos"=>"EOS"
+                    );
 $last = $this->uri->total_segments();
 $last_segment = $this->uri->segment($last);
 
@@ -72,12 +83,12 @@ function won($k) {
         // if($key_==="bitfinex") continue;
         ?>
         <tr>
-            <td><?php echo element($key_,element('vic_type',$view)); ?></td>
+            <td><a href="<?php echo element($key_,element('vic_url',$view)); ?>" target="_blank" style="color:blue;" title="<?php echo element($key_,element('vic_type',$view)); ?>"><?php echo element($key_,element('vic_type',$view)); ?></a></td>
 
             <td class='text-right'><?php echo !empty(element('current_price_krw',$value_)) ? '₩ '.number_format(element('current_price_krw',$value_)) : '-'; ?></td>
 
             <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? number_format(element('current_price',$value_)/element('current_price',element($key_,element('btc',element('coin_list',$view)))),5) : '-'; ?></td>
-            <td class='text-right'><?php echo !empty(element('current_price_usd',$value_)) ? '$ '.number_format(element('current_price_usd',$value_)) : '-'; ?></td>
+            <td class='text-right'><?php echo !empty(element('current_price_usd',$value_)) ? '$ '.number_format(element('current_price_usd',$value_),2) : '-'; ?></td>
             
            
             

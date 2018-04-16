@@ -340,7 +340,7 @@ class Login extends CB_Controller
             $layoutconfig = array(
                 'path' => 'login',
                 'layout' => 'layout',
-                'skin' => 'login',
+                'skin' => 'register',
                 'layout_dir' => $layout_dir,
                 'mobile_layout_dir' => $this->cbconfig->item('mobile_layout_login'),
                 'use_sidebar' => $this->cbconfig->item('sidebar_login'),
