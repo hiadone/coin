@@ -14,7 +14,7 @@
     if(element('bgr_id',element('board',$view))==='8')
         echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab09_cont cont">';
     else
-        echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab09_cont cont">';
+        echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab06_cont cont">';
     
         echo    '<ul>';
     if (element('latest', $view)) {

@@ -185,7 +185,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                         </figcaption>
                                     </figure>
 
-                                    <button class="btn-sm small_font" title="회원정보" style="margin-right: 5%;" onclick="location.href='<?php echo site_url('mypage'); ?>';">
+                                    <button class="btn-sm small_font" title="회원정보" style="margin-right: 3%;" onclick="location.href='<?php echo site_url('mypage'); ?>';">
                                         <i class="fa fa-sign-out"></i>
                                         회원정보
                                     </button>
