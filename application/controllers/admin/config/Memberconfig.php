@@ -1080,6 +1080,16 @@ class Memberconfig extends CB_Controller
                 'rules' => 'trim',
             ),
             array(
+                'field' => 'selfcert_nice_mid',
+                'label' => 'NICE평가정보 CheckPlus 사이트코드',
+                'rules' => 'trim',
+            ),
+            array(
+                'field' => 'selfcert_nice_passwd',
+                'label' => 'NICE평가정보 CheckPlus 패스워드',
+                'rules' => 'trim',
+            ),
+            array(
                 'field' => 'selfcert_lg_mid',
                 'label' => 'LG유플러스 상점아이디',
                 'rules' => 'trim',
@@ -1113,7 +1123,7 @@ class Memberconfig extends CB_Controller
             $array = array(
                 'use_selfcert', 'use_selfcert_required', 'selfcert_try_limit',
                 'use_selfcert_test', 'use_selfcert_ipin', 'use_selfcert_phone',
-                'selfcert_kcb_mid', 'selfcert_kcp_mid', 'selfcert_lg_mid', 'selfcert_lg_key'
+                'selfcert_kcb_mid', 'selfcert_kcp_mid','selfcert_nice_mid','selfcert_nice_passwd', 'selfcert_lg_mid', 'selfcert_lg_key'
             );
             foreach ($array as $value) {
                 $savedata[$value] = $this->input->post($value, null, '');

@@ -61,7 +61,7 @@
     <div class='item_buy'>
         <?php
             $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite', 'id' => 'fwrite', 'onSubmit' => 'return submitContents(this)');
-            echo form_open(base_url('/event/event/'.element('post_id',element('post', $view))), $attributes);
+            echo form_open(base_url('/event/event_insert/'.element('post_id',element('post', $view))), $attributes);
             ?>
             <input type="hidden" name="post_id" id="post_id" value="<?php echo element('post_id',element('post', $view));?>">
             <input type="hidden" name="redirecturl" value="<?php  echo current_full_url()?>">

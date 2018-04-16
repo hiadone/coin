@@ -10,6 +10,7 @@
 <?php if (element('meta_author', $layout)) { ?><meta name="author" content="<?php echo html_escape(element('meta_author', $layout)); ?>"><?php } ?>
 <?php if (element('favicon', $layout)) { ?><link rel="shortcut icon" type="image/x-icon" href="<?php echo element('favicon', $layout); ?>" /><?php } ?>
 <?php if (element('canonical', $view)) { ?><link rel="canonical" href="<?php echo element('canonical', $view); ?>" /><?php } ?>
+<meta name="naver-site-verification" content="198e8e28067f3f38761488506290231146288364"/>
 <link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/import.css?<?php echo $this->cbconfig->item('browser_cache_version') ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/style.css" />
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" />
@@ -54,13 +55,18 @@ $(document).ready(function(){
     // ham 메뉴 움직이는 스크립트
         var move = true;
 
-        function ham_slide(){
+        function ham_slide(type){
             move = !move;
             if(move){
                 $('.ham').animate({'right':'-320'} , 800);
                 $('.ham >  img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png');
             }else{
-                view_mypage('view_member');
+                if(type=='point')
+                    view_mypoint('view_member');
+                else if(type=='register')
+                    view_register('view_member');
+                else 
+                    view_mypage('view_member');
                 $('.ham').animate({'right':'0'} , 800);
                 $('.ham > img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn02.png');
             }
@@ -76,6 +82,11 @@ $(document).ready(function(){
                 ham_slide();
             });
 
+            $('li.register-li').click(function(){
+                
+                ham_slide('register');
+            });
+
 
         // 회원정보 클릭시 ham 메뉴 움직이는 스크립트
             $('li.user_info').click(function(){
@@ -83,6 +94,10 @@ $(document).ready(function(){
                 ham_slide();
             });
 
+            $('li.user_point').click(function(){
+                
+                ham_slide('point');
+            });
         
 
         // 회원탈퇴의 회원탈퇴 클릭시
@@ -302,7 +317,7 @@ $(document).ready(function(){
                 <?php if (!$this->member->is_member()) { ?>
                 <li class="pointer login-li"   title="로그인">로그인</li>
                 <li>|</li>
-                <li class="pointer login-li"   title="회원가입">회원가입</li>
+                <li class="pointer register-li"   title="회원가입">회원가입</li>
                 <?php } else { ?>
                 <li class='user_info pointer' >
                     <figure>
@@ -311,7 +326,7 @@ $(document).ready(function(){
                     </figure>
                 </li>
                 <li>|</li>
-                <li class="pointer" onClick="location.href='<?php echo site_url('/board/event') ?>';"  title="스토어">스토어</li>
+                <li class="user_point pointer"   title="포인트"><?php echo $this->member->item('mem_point') ?> P</li>
                 <li>|</li>
                 <li class='user_info pointer' title="회원정보">회원정보</li>
                 <li>|</li>
@@ -392,6 +407,19 @@ function view_mypoint(id) {
 function view_login(id) {
     
     var comment_url = cb_url + '/login?url=<?php echo urlencode(current_full_url());?>' ;
+    var hash = window.location.hash;
+
+    $('#' + id).load(comment_url, function() {
+        if (hash) {
+            var st = $(hash).offset().top;
+            $('html, body').animate({ scrollTop: st }, 200); //200ms duration
+        }
+    });
+}
+
+function view_register(id) {
+    
+    var comment_url = cb_url + '/login/register' ;
     var hash = window.location.hash;
 
     $('#' + id).load(comment_url, function() {

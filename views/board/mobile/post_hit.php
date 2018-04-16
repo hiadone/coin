@@ -83,9 +83,8 @@
             $("ul.tab08_tabs li").click(function () {
                 $("ul.tab08_tabs li").removeClass("active").css("color" , "#333");
                 $(this).addClass("active").css({"color": "#1c446d"});
-                $(".tab08_cont").hide()
-                coinActiveTab = $(this).attr("rel");
-                $("#" + coinActiveTab).fadeIn();
+                $(".tab08_cont").hide();
+                $("#" + $(this).attr("rel")).fadeIn();
             });
     });
 </script>
@@ -108,7 +107,9 @@
 
                 echo '<li style="width:49%; text-align:right; padding-right:3%;" onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="로그인" style="text-align:right;">로 그 인</li>';
                 echo '<li>|</li>';
-                echo '<li style="width:49%; text-align:left; padding-left:3%;" onClick=\'location.href="'.site_url('login?url=' . urlencode(current_full_url())).'";\'  title="회원가입" style="text-align:left;"">회 원 가 입</li>';
+                echo '<li style="width:49%; text-align:left; padding-left:3%;" onClick=\'location.href="'.site_url('login/register').'";\'  title="회원가입" style="text-align:left;"">회 원 가 입</li>';
+                echo '<li>|</li>';
+                echo '<li style="width:49%; text-align:left; padding-left:3%;" onClick=\'location.href="'.site_url('/board/event').'";\'  title="스토어" style="text-align:left;"">스 토 어</li>';
             }
             ?>
         </ul>

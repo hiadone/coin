@@ -9,7 +9,7 @@
             <figcaption>
                 <p class='big_font'><?php echo html_escape(element('att_memo', $result)); ?></p>
                 <?php if(element('att_ranking', $result) < 4) {?>
-                <span><img src='<?php echo element('layout_skin_url', $layout); ?>/images/rank_0<?php echo element('att_ranking', $result); ?>.png' alt='rank_0<?php echo element('att_ranking', $result); ?>_img'></span>
+                <!-- <span><img src='<?php echo element('layout_skin_url', $layout); ?>/images/rank_0<?php echo element('att_ranking', $result); ?>.png' alt='rank_0<?php echo element('att_ranking', $result); ?>_img'></span> -->
                 <?php } ?>
                 <ul>
                     <li><?php echo element('display_name', $result); ?></li>

@@ -2,9 +2,7 @@
 
     <section class="ham_cont02 ham_out">
         <h2>회 원 탈 퇴</h2>
-        <div class='logout_notice' >
-            <img src="<?php echo base_url('/assets/images/stop.png') ?>" alt="stop">
-            <?php
+        <?php
             echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
             echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-warning"><button type="button" class="close alertclose" >&times;</button>', '</div>');
             ?>
@@ -12,6 +10,9 @@
             $attributes = array('class' => 'form-horizontal', 'name' => 'fconfirmpassword', 'id' => 'fconfirmpassword', 'onsubmit' => 'return confirmleave()');
             echo form_open(current_url(), $attributes);
             ?>
+        <div class='logout_notice' >
+            <img src="<?php echo base_url('/assets/images/stop.png') ?>" alt="stop">
+            
 
             <h3>정말로 탈퇴 하시겠습니까 ?</h3>
             
@@ -32,13 +33,14 @@
             
             
         </div>
-        <button type="submit" class='big_font'>탈 퇴 하 기</button>
+        <button type="submit"  class='big_font'>탈 퇴 하 기</button>
         <?php echo form_close(); ?>
     </section>
 
 
 
 <script type="text/javascript">
+
 //<![CDATA[
 // $(function() {
 //     $('#fconfirmpassword').validate({
@@ -48,6 +50,7 @@
 //     });
 // });
 function confirmleave() {
+
     if (confirm('정말 회원 탈퇴를 하시겠습니까? 탈퇴한 회원정보는 복구할 수 없으므로 신중히 선택하여주세요. 확인을 누르시면 탈퇴가 완료됩니다 ')) {
         return true;
     } else {

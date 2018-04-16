@@ -20,6 +20,7 @@ class Social extends CB_Controller
      */
     protected $models = array('Social', 'Social_meta', 'Member_nickname');
 
+    protected $mem_recommend='';
     /**
      * 헬퍼를 로딩합니다
      */
@@ -51,13 +52,14 @@ class Social extends CB_Controller
     /**
      * 페이스북 연동 함수입니다
      */
-     public function facebook_login()
+     public function facebook_login($elh_mem_id='')
     {
 
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_social_facebook_login';
         $this->load->event($eventname);
 
+        $this->mem_recommend=$elh_mem_id;
         // 이벤트가 존재하면 실행합니다
         Events::trigger('before', $eventname);
 
@@ -135,12 +137,12 @@ class Social extends CB_Controller
     /**
      * 트위터 연동 함수입니다
      */
-     public function twitter_login()
+     public function twitter_login($elh_mem_id='')
     {
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_social_twitter_login';
         $this->load->event($eventname);
-
+        $this->mem_recommend=$elh_mem_id;
         // 이벤트가 존재하면 실행합니다
         Events::trigger('before', $eventname);
 
@@ -239,12 +241,12 @@ class Social extends CB_Controller
     /**
      * 구글 연동 함수입니다
      */
-     public function google_login()
+     public function google_login($elh_mem_id='')
     {
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_social_google_login';
         $this->load->event($eventname);
-
+        $this->mem_recommend=$elh_mem_id;
         // 이벤트가 존재하면 실행합니다
         Events::trigger('before', $eventname);
 
@@ -352,12 +354,12 @@ class Social extends CB_Controller
     /**
      * 네이버 연동 함수입니다
      */
-     public function naver_login()
+     public function naver_login($elh_mem_id='')
     {
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_social_naver_login';
         $this->load->event($eventname);
-
+        $this->mem_recommend=$elh_mem_id;
         // 이벤트가 존재하면 실행합니다
         Events::trigger('before', $eventname);
 
@@ -483,13 +485,19 @@ class Social extends CB_Controller
     /**
      * 카카오 연동 함수입니다
      */
-     public function kakao_login()
+     public function kakao_login($elh_mem_id='')
     {
 
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_social_kakao_login';
         $this->load->event($eventname);
 
+        if(!empty($elh_mem_id)){
+        $this->session->set_userdata(
+                    'mem_recommend',
+                    $elh_mem_id
+                );
+        }
         // 이벤트가 존재하면 실행합니다
         Events::trigger('before', $eventname);
 
@@ -1092,8 +1100,51 @@ class Social extends CB_Controller
                     'mrg_useragent' => $this->agent->agent_string(),
                     'mrg_referer' => $this->session->userdata('site_referer'),
                 );
+
+
+                if(!empty($this->session->userdata('mem_recommend'))) {
+                    $this->mem_recommend = $this->session->userdata('mem_recommend');
+                    $this->session->unset_userdata('mem_recommend');
+                }
+
+                $recommended = '';
+                if ($this->mem_recommend) {
+                    $recommended = $this->Member_model->get_one('','mem_id',array('mem_nickname'=>$this->mem_recommend));
+                    if (element('mem_id', $recommended)) {
+                        $member_register_data['mrg_recommend_mem_id'] = element('mem_id', $recommended);
+                    } else {
+                        $recommended['mem_id'] = 0;
+                    }
+                }
+
                 $this->load->model('Member_register_model');
                 $this->Member_register_model->insert($member_register_data);
+
+
+                if ($this->mem_recommend) {
+                    if ($this->cbconfig->item('point_recommended')) {
+                        // 추천인이 존재할 경우 추천된 사람
+                        $this->point->insert_point(
+                            element('mem_id', $recommended),
+                            $this->cbconfig->item('point_recommended'),
+                            $nickname . ' 님이 회원가입시 추천함',
+                            'member_recommended',
+                            $mem_id,
+                            '회원가입추천'
+                        );
+                    }
+                    if ($this->cbconfig->item('point_recommender')) {
+                        // 추천인이 존재할 경우 가입자에게
+                        $this->point->insert_point(
+                            $mem_id,
+                            $this->cbconfig->item('point_recommender'),
+                            '회원가입 추천인존재',
+                            'member_recommender',
+                            $mem_id,
+                            '회원가입추천인존재'
+                        );
+                    }
+                }
 
 
                 $metadata = array(
@@ -1109,6 +1160,7 @@ class Social extends CB_Controller
                     $url_after_login = site_url($url_after_login);
                 }
 
+                
                 // 이벤트가 존재하면 실행합니다
                 Events::trigger('common_login_after', $eventname);
 
@@ -1117,7 +1169,7 @@ class Social extends CB_Controller
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
                 } else {
-                    echo 'window.opener.location.reload();';
+                    echo 'window.opener.location.reload("/");';
                 }
                 echo '</script>';
                 exit;

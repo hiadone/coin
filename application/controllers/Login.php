@@ -231,6 +231,212 @@ class Login extends CB_Controller
         }
     }
 
+    /**
+     * 로그인 페이지입니다
+     */
+    public function register($elh_mem_id='')
+    {
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_login_index';
+        $this->load->event($eventname);
+
+        if ($this->member->is_member() !== false && ! ($this->member->is_admin() === 'super' && $this->uri->segment(1) === config_item('uri_segment_admin'))) {
+            alert('이미 회원이십니다.');
+        }
+        $elh_mem_id=urldecode($elh_mem_id);
+        $view = array();
+        $view['view'] = array();
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        $this->load->library(array('form_validation'));
+
+         if ( ! function_exists('password_hash')) {
+            $this->load->helper('password');
+        }
+
+        $use_login_account = $this->cbconfig->item('use_login_account');
+
+        /**
+         * 전송된 데이터의 유효성을 체크합니다
+         */
+        if ($use_login_account === 'both') {
+            $config[] = array(
+                'field' => 'mem_userid',
+                'label' => '아이디 또는 이메일',
+                'rules' => 'trim|required',
+            );
+            $view['view']['userid_label_text'] = '아이디 또는 이메일';
+        } elseif ($use_login_account === 'email') {
+            $config[] = array(
+                'field' => 'mem_userid',
+                'label' => '이메일',
+                'rules' => 'trim|required|valid_email',
+            );
+            $view['view']['userid_label_text'] = '이메일';
+        } else {
+            $config[] = array(
+                'field' => 'mem_userid',
+                'label' => '아이디',
+                'rules' => 'trim|required|alphanumunder|min_length[3]|max_length[20]',
+            );
+            $view['view']['userid_label_text'] = '아이디';
+        }
+        $config[] = array(
+            'field' => 'mem_password',
+            'label' => '패스워드',
+            'rules' => 'trim|required|min_length[4]|callback__check_id_pw[' . $this->input->post('mem_userid') . ']',
+        );
+
+        $this->form_validation->set_rules($config);
+        /**
+         * 유효성 검사를 하지 않는 경우, 또는 유효성 검사에 실패한 경우입니다.
+         * 즉 글쓰기나 수정 페이지를 보고 있는 경우입니다
+         */
+        if ($this->form_validation->run() === false) {
+
+            // 이벤트가 존재하면 실행합니다
+            $view['view']['event']['formrunfalse'] = Events::trigger('formrunfalse', $eventname);
+
+            if ( ! $this->_mem_nickname_check($elh_mem_id)) {
+
+            }
+
+            if ($this->input->post('returnurl')) {
+                if (validation_errors('<div class="alert alert-warning" role="alert">', '</div>')) {
+                    $this->session->set_flashdata(
+                        'loginvalidationmessage',
+                        validation_errors('<div class="alert alert-warning" role="alert">', '</div>')
+                    );
+                }
+                $this->session->set_flashdata(
+                    'loginuserid',
+                    $this->input->post('mem_userid')
+                );
+                redirect(urldecode($this->input->post('returnurl')));
+            }
+
+            $view['view']['canonical'] = site_url('login');
+
+            $view['view']['elh_mem_id'] = $elh_mem_id;
+            // 이벤트가 존재하면 실행합니다
+            $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+
+            /**
+             * 레이아웃을 정의합니다
+             */
+            $page_title = $this->cbconfig->item('site_meta_title_login');
+            $meta_description = $this->cbconfig->item('site_meta_description_login');
+            $meta_keywords = $this->cbconfig->item('site_meta_keywords_login');
+            $meta_author = $this->cbconfig->item('site_meta_author_login');
+            $page_name = $this->cbconfig->item('site_page_name_login');
+
+            if($this->input->is_ajax_request())
+                $layout_dir='empty';
+            else
+                $layout_dir=$this->cbconfig->item('layout_login'); 
+                
+            $layoutconfig = array(
+                'path' => 'login',
+                'layout' => 'layout',
+                'skin' => 'register',
+                'layout_dir' => $layout_dir,
+                'mobile_layout_dir' => $this->cbconfig->item('mobile_layout_login'),
+                'use_sidebar' => $this->cbconfig->item('sidebar_login'),
+                'use_mobile_sidebar' => $this->cbconfig->item('mobile_sidebar_login'),
+                'skin_dir' => $this->cbconfig->item('skin_login'),
+                'mobile_skin_dir' => $this->cbconfig->item('mobile_skin_login'),
+                'page_title' => $page_title,
+                'meta_description' => $meta_description,
+                'meta_keywords' => $meta_keywords,
+                'meta_author' => $meta_author,
+                'page_name' => $page_name,
+            );
+            $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
+            $this->data = $view;
+            $this->layout = element('layout_skin_file', element('layout', $view));
+            $this->view = element('view_skin_file', element('layout', $view));
+        } else {
+            /**
+             * 유효성 검사를 통과한 경우입니다.
+             * 즉 데이터의 insert 나 update 의 process 처리가 필요한 상황입니다
+             */
+
+            // 이벤트가 존재하면 실행합니다
+            $view['view']['event']['formruntrue'] = Events::trigger('formruntrue', $eventname);
+
+            
+
+            if ($use_login_account === 'both') {
+                $userinfo = $this->Member_model->get_by_both($this->input->post('mem_userid'), 'mem_id, mem_userid');
+            } elseif ($use_login_account === 'email') {
+                $userinfo = $this->Member_model->get_by_email($this->input->post('mem_userid'), 'mem_id, mem_userid');
+            } else {
+                $userinfo = $this->Member_model->get_by_userid($this->input->post('mem_userid'), 'mem_id, mem_userid');
+            }
+            $this->member->update_login_log(element('mem_id', $userinfo), $this->input->post('mem_userid'), 1, '로그인 성공');
+            $this->session->set_userdata(
+                'mem_id',
+                element('mem_id', $userinfo)
+            );
+
+            if ($this->input->post('autologin')) {
+                $vericode = array('$', '/', '.');
+                $hash = str_replace(
+                    $vericode,
+                    '',
+                    password_hash(random_string('alnum', 10) . element('mem_id', $userinfo) . ctimestamp() . element('mem_userid', $userinfo), PASSWORD_BCRYPT)
+                );
+                $insertautologin = array(
+                    'mem_id' => element('mem_id', $userinfo),
+                    'aul_key' => $hash,
+                    'aul_ip' => $this->input->ip_address(),
+                    'aul_datetime' => cdate('Y-m-d H:i:s'),
+                );
+                $this->load->model(array('Autologin_model'));
+                $this->Autologin_model->insert($insertautologin);
+
+                $cookie_name = 'autologin';
+                $cookie_value = $hash;
+                $cookie_expire = 2592000; // 30일간 저장
+                set_cookie($cookie_name, $cookie_value, $cookie_expire);
+            }
+
+            $change_password_date = $this->cbconfig->item('change_password_date');
+            $site_title = $this->cbconfig->item('site_title');
+            if ($change_password_date) {
+
+                $meta_change_pw_datetime = $this->member->item('meta_change_pw_datetime');
+                if ( ctimestamp() - strtotime($meta_change_pw_datetime) > $change_password_date * 86400) {
+                    $this->session->set_userdata(
+                        'membermodify',
+                        '1'
+                    );
+                    $this->session->set_flashdata(
+                        'message',
+                        html_escape($site_title) . ' 은(는) 회원님의 비밀번호를 주기적으로 변경하도록 권장합니다.
+                        <br /> 오래된 비밀번호를 사용중인 회원님께서는 안전한 서비스 이용을 위해 비밀번호 변경을 권장합니다'
+                    );
+                    redirect('membermodify/password_modify');
+                }
+            }
+
+            $url_after_login = $this->cbconfig->item('url_after_login');
+            if ($url_after_login) {
+                $url_after_login = site_url($url_after_login);
+            }
+            if (empty($url_after_login)) {
+                $url_after_login = $this->input->get_post('url') ? urldecode($this->input->get_post('url')) : site_url();
+            }
+
+            // 이벤트가 존재하면 실행합니다
+            Events::trigger('after', $eventname);
+
+            redirect($url_after_login);
+        }
+    }
+
     public function admin()
     {
         // 이벤트 라이브러리를 로딩합니다
@@ -586,5 +792,38 @@ class Login extends CB_Controller
         Events::trigger('after', $eventname);
 
         redirect($url_after_logout, 'refresh');
+    }
+
+    public function _mem_nickname_check($str='')
+    {
+        $this->load->helper('chkstring');
+        if(!empty($str)){
+            if (chkstring($str, _HANGUL_ + _ALPHABETIC_ + _NUMERIC_) === false) {
+
+                alert_refresh_close($str.'닉네임은 공백없이 한글, 영문, 숫자만 입력 가능합니다');
+                // $this->form_validation->set_message(
+                //     '_mem_nickname_check',
+                //     '닉네임은 공백없이 한글, 영문, 숫자만 입력 가능합니다'
+                // );
+                return false;
+            }
+
+            
+            $countwhere = array(
+                'mem_nickname' => $str,
+            );
+            $row = $this->Member_model->count_by($countwhere);
+
+            if ($row < 1) {
+
+                alert_refresh_close($str . ' 는 없는 닉네임입니다');
+                // $this->form_validation->set_message(
+                //     '_mem_nickname_check',
+                //     $str . ' 는 이미 다른 회원이 사용하고 있는 닉네임입니다'
+                // );
+                return false;
+            }
+        }
+        return true;
     }
 }
