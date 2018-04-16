@@ -12,9 +12,9 @@
     if(element('brd_key',element('board',$view))==="attendance" || element('brd_key',element('board',$view))==="express") $hide_style="style='display:none';";
     
     if(element('bgr_id',element('board',$view))==='8')
-        echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab08_cont cont">';
+        echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab09_cont cont">';
     else
-        echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab06_cont cont">';
+        echo '<div id="tab06_'.element('brd_key',element('board',$view)).'" class="tab09_cont cont">';
     
         echo    '<ul>';
     if (element('latest', $view)) {
