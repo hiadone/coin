@@ -1102,7 +1102,10 @@ class Social extends CB_Controller
                 );
 
 
-                if(!empty($this->session->userdata('mem_recommend'))) $this->mem_recommend = $this->session->userdata('mem_recommend');
+                if(!empty($this->session->userdata('mem_recommend'))) {
+                    $this->mem_recommend = $this->session->userdata('mem_recommend');
+                    $this->session->unset_userdata('mem_recommend');
+                }
 
                 $recommended = '';
                 if ($this->mem_recommend) {
@@ -1157,6 +1160,7 @@ class Social extends CB_Controller
                     $url_after_login = site_url($url_after_login);
                 }
 
+                
                 // 이벤트가 존재하면 실행합니다
                 Events::trigger('common_login_after', $eventname);
 
@@ -1165,7 +1169,7 @@ class Social extends CB_Controller
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
                 } else {
-                    echo 'window.opener.location.reload();';
+                    echo 'window.opener.location.reload("/");';
                 }
                 echo '</script>';
                 exit;

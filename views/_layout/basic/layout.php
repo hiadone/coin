@@ -55,13 +55,16 @@ $(document).ready(function(){
     // ham 메뉴 움직이는 스크립트
         var move = true;
 
-        function ham_slide(){
+        function ham_slide(point){
             move = !move;
             if(move){
                 $('.ham').animate({'right':'-320'} , 800);
                 $('.ham >  img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png');
             }else{
-                view_mypage('view_member');
+                if(point)
+                    view_mypoint('view_member');
+                else 
+                    view_mypage('view_member');
                 $('.ham').animate({'right':'0'} , 800);
                 $('.ham > img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn02.png');
             }
@@ -84,6 +87,10 @@ $(document).ready(function(){
                 ham_slide();
             });
 
+            $('li.user_point').click(function(){
+                
+                ham_slide('point');
+            });
         
 
         // 회원탈퇴의 회원탈퇴 클릭시
@@ -312,7 +319,7 @@ $(document).ready(function(){
                     </figure>
                 </li>
                 <li>|</li>
-                <li class="pointer" onClick="location.href='<?php echo site_url('/board/event') ?>';"  title="스토어">스토어</li>
+                <li class="user_point pointer"   title="포인트"><?php echo $this->member->item('mem_point') ?> P</li>
                 <li>|</li>
                 <li class='user_info pointer' title="회원정보">회원정보</li>
                 <li>|</li>
