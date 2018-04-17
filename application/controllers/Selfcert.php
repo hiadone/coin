@@ -18,7 +18,7 @@ class Selfcert extends CB_Controller
     /**
      * 모델을 로딩합니다
      */
-    protected $models = array();
+    protected $models = array('Post_extra_vars');
 
     /**
      * 헬퍼를 로딩합니다
@@ -158,19 +158,19 @@ class Selfcert extends CB_Controller
 
         /*
         $field_name_IPIN_DEC = array(
-            "dupInfo        ",	// 0
-            "coinfo1        ",	// 1
-            "coinfo2        ",	// 2
-            "ciupdate       ",	// 3
-            "virtualNo      ",	// 4
-            "cpCode         ",	// 5
-            "realName       ",	// 6
-            "cpRequestNumber",	// 7
-            "age            ",	// 8
-            "sex            ",	// 9
-            "nationalInfo   ",	// 10
-            "birthDate      ",	// 11
-            "authInfo       ",	// 12
+            "dupInfo        ",  // 0
+            "coinfo1        ",  // 1
+            "coinfo2        ",  // 2
+            "ciupdate       ",  // 3
+            "virtualNo      ",  // 4
+            "cpCode         ",  // 5
+            "realName       ",  // 6
+            "cpRequestNumber",  // 7
+            "age            ",  // 8
+            "sex            ",  // 9
+            "nationalInfo   ",  // 10
+            "birthDate      ",  // 11
+            "authInfo       ",  // 12
         );
         */
 
@@ -369,6 +369,79 @@ class Selfcert extends CB_Controller
             $this->load->view('selfcert/lg/phone_form', $view);
 
 
+        }
+
+        if($this->cbconfig->item('use_selfcert_phone') == 'nice') {
+            
+            //setlocale(LC_CTYPE, 'ko_KR.euc-kr');
+
+            $niceconfig = $this->_nice_phone_config();
+
+
+            $authtype = "M";             // 없으면 기본 선택화면, X: 공인인증서, M: 핸드폰, C: 카드
+
+            $popgubun   = "Y";          //Y : 취소버튼 있음 / N : 취소버튼 없음
+            $customize  = "Mobile";           //없으면 기본 웹페이지 / Mobile : 모바일페이지
+
+            $gender = "";               // 없으면 기본 선택화면, 0: 여자, 1: 남자
+
+            $reqseq = "REQ_0123456789";     // 요청 번호, 이는 성공/실패후에 같은 값으로 되돌려주게 되므로
+                             // 업체에서 적절하게 변경하여 쓰거나, 아래와 같이 생성한다.
+                             
+            // 실행방법은 싱글쿼터(`) 외에도, 'exec(), system(), shell_exec()' 등등 귀사 정책에 맞게 처리하시기 바랍니다.
+            $reqseq = exec($niceconfig['home_dir'].' SEQ '.$niceconfig['site_cd']);
+            $niceconfig['reqseq'] = $reqseq;
+
+            // reqseq값은 성공페이지로 갈 경우 검증을 위하여 세션에 담아둔다.
+            $this->session->REQ_SEQ = $niceconfig['reqseq'];
+
+            // CheckPlus(본인인증) 처리 후, 결과 데이타를 리턴 받기위해 다음예제와 같이 http부터 입력합니다.
+            // 리턴url은 인증 전 인증페이지를 호출하기 전 url과 동일해야 합니다. ex) 인증 전 url : http://www.~ 리턴 url : http://www.~
+            $returnurl = site_url('selfcert/nice_phone_return_success');    // 성공시 이동될 URL
+            $errorurl = site_url('selfcert/nice_phone_return_fail');        // 실패시 이동될 URL
+
+            
+
+            // 입력될 plain 데이타를 만든다.
+            $plaindata = "7:REQ_SEQ" . strlen($reqseq) . ":" . $reqseq .
+            "8:SITECODE" . strlen($niceconfig['site_cd']) . ":" . $niceconfig['site_cd'] .
+            "9:AUTH_TYPE" . strlen($authtype) . ":". $authtype .
+            "7:RTN_URL" . strlen($returnurl) . ":" . $returnurl .
+            "7:ERR_URL" . strlen($errorurl) . ":" . $errorurl .
+            "11:POPUP_GUBUN" . strlen($popgubun) . ":" . $popgubun .
+            "9:CUSTOMIZE" . strlen($customize) . ":" . $customize .
+            "6:GENDER" . strlen($gender) . ":" . $gender ;
+
+            $enc_data = exec($niceconfig['home_dir'].' ENC '.$niceconfig['site_cd'].' '.$niceconfig['site_pw'].' '.$plaindata);
+
+            if( $enc_data == -1 ){
+                alert_close("암/복호화 시스템 오류입니다.");
+                $enc_data = "";
+            }
+            else if( $enc_data== -2 ){
+                alert_close("암호화 처리 오류입니다.");
+                $enc_data = "";
+            }
+            else if( $enc_data== -3 ){
+                alert_close("암호화 데이터 오류 입니다.");
+                $enc_data = "";
+            }
+            else if( $enc_data== -9 ){
+                alert_close("입력값 오류 입니다.");
+                $enc_data = "";
+            }
+
+            $niceconfig['enc_data']=$enc_data;
+
+            $niceconfig['post_id']=$this->input->get('post_id',null,0);
+                        
+            //nice 요청에 의해 reqseq값은 성공페이지로 갈 경우 검증을 위하여 세션에 담아둔다.
+
+            
+
+            $view['view']['niceconfig'] = $niceconfig;
+
+            $this->load->view('selfcert/nice/phone_form', $view);
         }
     }
 
@@ -808,8 +881,8 @@ class Selfcert extends CB_Controller
         $view['view']['CST_MID'] = $CST_MID = $this->cbconfig->item('selfcert_lg_mid');       // 상점아이디(LG유플러스으로 부터 발급받으신 상점아이디를 입력하세요)
                                                                                     //테스트 아이디는 't'를 반드시 제외하고 입력하세요.
         $view['view']['LGD_MID'] = $LGD_MID = (('test' == $CST_PLATFORM) ? 't' : '').$CST_MID;  //상점아이디(자동생성)
-        $LGD_AUTHONLYKEY        = $_POST['LGD_AUTHONLYKEY'];			            //LG유플러스으로부터 부여받은 인증키
-        $LGD_PAYTYPE  			= $_POST['LGD_PAYTYPE'];				            //인증요청타입 (신용카드:ASC001, 휴대폰:ASC002, 계좌:ASC004)
+        $LGD_AUTHONLYKEY        = $_POST['LGD_AUTHONLYKEY'];                        //LG유플러스으로부터 부여받은 인증키
+        $LGD_PAYTYPE            = $_POST['LGD_PAYTYPE'];                            //인증요청타입 (신용카드:ASC001, 휴대폰:ASC002, 계좌:ASC004)
 
         require_once(FCPATH . 'plugin/selfcert/lg/XPayClient.php');
         require_once(FCPATH . 'plugin/selfcert/lg/XPay.php');
@@ -986,6 +1059,269 @@ class Selfcert extends CB_Controller
     }
 
 
+    /**
+     * NICE 휴대폰 본인인증 결과 리턴 페이지입니다
+     */
+     public function nice_phone_return_success()
+    {   
+        if ( ! $this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_phone') != 'nice') {
+            alert('이 웹사이트는 NICE 휴대폰 본인 인증기능을 사용하지 않습니다.');
+        }
+        if( ! $this->_selfcert_tried_count('phone')) {
+            alert_close('오늘 본인 인증 기능을 ' . $this->cbconfig->item('selfcert_try_limit') . '회 사용하셔서 더 이상 이용하실 수가 없습니다.');
+        }
+
+        $niceconfig = $this->_nice_phone_config();
+
+        $enc_data = $this->input->post("EncodeData",null,'');       // 암호화된 결과 데이타
+
+            //////////////////////////////////////////////// 문자열 점검///////////////////////////////////////////////
+        if(preg_match('~[^0-9a-zA-Z+/=]~', $enc_data, $match)) {echo "입력 값 확인이 필요합니다 : ".$match[0]; exit;} // 문자열 점검 추가. 
+        if(base64_encode(base64_decode($enc_data))!=$enc_data) {echo "입력 값 확인이 필요합니다"; exit;}
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+        if ($enc_data != "") {
+
+            $plaindata = exec($niceconfig['home_dir'].' DEC '.$niceconfig['site_cd'].' '.$niceconfig['site_pw'].' '.$enc_data);     // 암호화된 결과 데이터의 복호화
+            
+            if ($plaindata == -1){
+                alert_close("암/복호화 시스템 오류");
+            }else if ($plaindata == -4){
+                alert_close("복호화 처리 오류");
+            }else if ($plaindata == -5){
+                alert_close("HASH값 불일치 - 복호화 데이터는 리턴됨");
+            }else if ($plaindata == -6){
+                alert_close("복호화 데이터 오류");
+            }else if ($plaindata == -9){
+                alert_close("입력값 오류");
+            }else if ($plaindata == -12){
+                alert_close("사이트 비밀번호 오류");
+            }else{
+                // 복호화가 정상적일 경우 데이터를 파싱합니다.
+
+                $ciphertime = exec($niceconfig['home_dir'].' CTS '.$niceconfig['site_cd'].' '.$niceconfig['site_pw'].' '.$enc_data);    // 암호화된 결과 데이터 검증 (복호화한 시간획득)
+            
+                $requestnumber = $this->getValue($plaindata , "REQ_SEQ");
+                $responsenumber = $this->getValue($plaindata , "RES_SEQ");
+                $authtype = $this->getValue($plaindata , "AUTH_TYPE");
+                $name = $this->getValue($plaindata , "NAME");
+                //$name = $this->getValue($plaindata , "UTF8_NAME"); //charset utf8 사용시 주석 해제 후 사용
+                $birthdate = $this->getValue($plaindata , "BIRTHDATE");
+                $gender = $this->getValue($plaindata , "GENDER");
+                $nationalinfo = $this->getValue($plaindata , "NATIONALINFO");  //내/외국인정보(사용자 매뉴얼 참조)
+                $dupinfo = $this->getValue($plaindata , "DI");
+                $conninfo = $this->getValue($plaindata , "CI");
+                $mobileno = $this->getValue($plaindata , "MOBILE_NO");
+                $mobileco = $this->getValue($plaindata , "MOBILE_CO");
+
+                if(strcmp($this->session->REQ_SEQ, $requestnumber) != 0)
+                {
+                    echo "세션값이 다릅니다. 올바른 경로로 접근하시기 바랍니다.<br>";
+                    $requestnumber = "";
+                    $responsenumber = "";
+                    $authtype = "";
+                    $name = "";
+                    $birthdate = "";
+                    $gender = "";
+                    $nationalinfo = "";
+                    $dupinfo = "";
+                    $conninfo = "";
+                    $mobileno = "";
+                    $mobileco = "";
+                } else {
+
+                    $selfcertinfo['ciphertime'] = $ciphertime;
+                    $selfcertinfo['name'] = iconv('euc-kr', 'utf-8',$name);
+                    //$name = $this->getValue($plaindata , "UTF8_NAME"); //charset utf8 사용시 주석 해제 후 사용
+                    $selfcertinfo['birthdate'] = $birthdate;
+                    $selfcertinfo['gender'] = $gender;
+                    $selfcertinfo['nationalinfo'] = $nationalinfo;  //내/외국인정보(사용자 매뉴얼 참조)
+                    $selfcertinfo['dupinfo'] = empty($dupinfo) ? '':$dupinfo;
+                    $selfcertinfo['conninfo'] = $conninfo;
+                    $selfcertinfo['mobileno'] = $mobileno;
+                    $selfcertinfo['mobileco'] = empty($mobileco) ? '':$mobileco; 
+
+
+                    $selfcertinfo['message'] = '정상적으로 신청되었습니다.';
+                    $view['view']['selfcert_result'] = 'success';
+                    $msh_status=1;
+                    $extravars = $this->Post_extra_vars_model->get_all_meta($this->input->post('param_r1', null, 0));
+
+                    
+                    if(element('campaign_gender',$extravars)){
+                        if(element('campaign_gender',$extravars)==='남성') {
+                            if(element('gender', $selfcertinfo)!=='1') {
+                                
+                                $selfcertinfo['message'] = '남성만 참여 할수 있습니다.';
+                                $view['view']['selfcert_result'] = 'fail';
+                                $msh_status=2;
+                            }
+                        }
+
+                        if(element('campaign_gender',$extravars)==='여성') {
+                            if(element('gender', $selfcertinfo)!=='0') {
+                                $selfcertinfo['message'] = '여성만 참여 할수 있습니다.';
+                                $view['view']['selfcert_result'] = 'fail';
+                                $msh_status=2;
+                            }
+                        }
+                    } 
+                    if(element('campaign_age',$extravars) && $view['view']['selfcert_result']==='success'){
+                        $campaign_age = explode("~",element('campaign_age',$extravars));
+
+                        $campaign_age[0]=trim($campaign_age[0]);
+                        $campaign_age[1]=trim($campaign_age[1]);
+                     
+                        if($campaign_age[0] && $campaign_age[0] > is_age(element('birthdate', $selfcertinfo))){
+                            $selfcertinfo['message'] = $campaign_age[0].'세 이상만 참여 할수 있습니다.';
+                            $view['view']['selfcert_result'] = 'fail';
+                            $msh_status=2;
+                        }
+                        
+                        if($campaign_age[1] && $campaign_age[1] < is_age(element('birthdate', $selfcertinfo))){
+                            $selfcertinfo['message'] = $campaign_age[1].'세 이하만 참여 할수 있습니다.';
+                            $view['view']['selfcert_result'] = 'fail';
+                            $msh_status=2;
+                        }
+                    }
+
+                    $insertdata = array(
+                        'post_id' => $this->input->post("param_r1",null,0),
+                        'msh_company' => 'NICE',
+                        'msh_authtype' => 'phone',
+                        'msh_dupinfo' => element('dupinfo', $selfcertinfo),
+                        'msh_name' => element('name', $selfcertinfo),
+                        'msh_birthdate' => element('birthdate', $selfcertinfo),
+                        'msh_gender' => element('gender', $selfcertinfo),
+                        'msh_nationalinfo' => element('nationalinfo', $selfcertinfo),
+                        'msh_mobileno' => element('mobileno', $selfcertinfo),
+                        'msh_mobileco' => element('mobileco', $selfcertinfo),
+                        'msh_datetime' => cdate('Y-m-d H:i:s'),
+                        'msh_ip' => $this->input->ip_address(),
+                        'msh_referer' => $this->input->get('param_r2', null, ''),
+                        'msh_status' => $msh_status,
+                    );
+
+                    $this->load->model('Media_selfcert_history_model');
+                    $this->Media_selfcert_history_model->insert($insertdata);
+                }
+            }
+        } else {
+            $selfcertinfo['message'] = '알수 없는 오류로 인하여 중지 되었습니다.';
+        }
+
+
+        
+        
+
+        
+        
+        $view['view']['selfcertinfo'] = $selfcertinfo;
+        $view['view']['selfcert_type'] = 'phone';
+
+        $view['view']['redirecturl'] = $this->session->userdata('redirecturl');
+        $this->session->unset_userdata('redirecturl');
+        
+        $this->load->view('selfcert/nice/phone_result', $view);
+
+    }
+
+    /**
+     * NICE 휴대폰 본인인증 결과 리턴 페이지입니다
+     */
+     public function nice_phone_return_fail()
+    {
+        if ( ! $this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_phone') != 'nice') {
+            alert('이 웹사이트는 NICE 휴대폰 본인 인증기능을 사용하지 않습니다.');
+        }
+        if( ! $this->_selfcert_tried_count('phone')) {
+            alert_close('오늘 본인 인증 기능을 ' . $this->cbconfig->item('selfcert_try_limit') . '회 사용하셔서 더 이상 이용하실 수가 없습니다.');
+        }
+
+        $niceconfig = $this->_nice_phone_config();
+
+        $enc_data = $this->input->post("EncodeData",null,'');       // 암호화된 결과 데이타
+
+            //////////////////////////////////////////////// 문자열 점검///////////////////////////////////////////////
+        if(preg_match('~[^0-9a-zA-Z+/=]~', $enc_data, $match)) {echo "입력 값 확인이 필요합니다 : ".$match[0]; exit;} // 문자열 점검 추가. 
+        if(base64_encode(base64_decode($enc_data))!=$enc_data) {echo "입력 값 확인이 필요합니다"; exit;}
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+        if ($enc_data != "") {
+
+            $plaindata = exec($niceconfig['home_dir'].' DEC '.$niceconfig['site_cd'].' '.$niceconfig['site_pw'].' '.$enc_data);     // 암호화된 결과 데이터의 복호화
+
+            if ($plaindata == -1){
+                alert_close("암/복호화 시스템 오류");
+            }else if ($plaindata == -4){
+                alert_close("복호화 처리 오류");
+            }else if ($plaindata == -5){
+                alert_close("HASH값 불일치 - 복호화 데이터는 리턴됨");
+            }else if ($plaindata == -6){
+                alert_close("복호화 데이터 오류");
+            }else if ($plaindata == -9){
+                alert_close("입력값 오류");
+            }else if ($plaindata == -12){
+                alert_close("사이트 비밀번호 오류");
+            }else{
+                // 복호화가 정상적일 경우 데이터를 파싱합니다.
+
+                $selfcertinfo['ciphertime'] = exec($niceconfig['home_dir'].' CTS '.$niceconfig['site_cd'].' '.$niceconfig['site_pw'].' '.$enc_data);    // 암호화된 결과 데이터 검증 (복호화한 시간획득)
+                
+                $selfcertinfo['requestnumber'] = $this->getValue($plaindata , "REQ_SEQ");
+                $selfcertinfo['errcode'] = $this->getValue($plaindata , "ERR_CODE");
+                $selfcertinfo['authtype'] = $this->getValue($plaindata , "AUTH_TYPE");
+                
+                
+            }
+        }
+
+        $errcode=array(
+        '0001' =>'인증 불일치(통신사선택오류, 생년월일/성명/휴대폰번호 불일치, 휴대폰일시정지, 선불폰가입자, SMS발송실패, 인증문자불일치)',
+        '0003' =>'기타인증오류',
+        '0010' =>'인증번호 불일치(소켓)',
+        '0012' =>'요청정보오류(입력값오류)',
+        '0013' =>'암호화 시스템 오류',
+        '0013' =>'암호화 처리 오류',
+        '0015' =>'암호화 데이터 오류',
+        '0016' =>'복호화 처리 오류',
+        '0017' =>'복호화 데이터 오류',
+        '0018' =>'통신오류',
+        '0019' =>'데이터베이스 오류',
+        '0020' =>'유효하지않은 CP코드',
+        '0021' =>'중단된 CP코드',
+        '0022' =>'휴대전화본인확인 사용불가 CP코드',
+        '0023' =>'미등록 CP코드',
+        '0031' =>'유효한 인증이력 없음',
+        '0035' =>'기인증완료건(소켓)',
+        '0040' =>'본인확인차단고객(통신사)',
+        '0041' =>'인증문자발송차단고객(통신사)',
+        '0050' =>'NICE 명의보호서비스 이용고객 차단',
+        '0052' =>'부정사용차단',
+        '0070' =>'간편인증앱 미설치',
+        '0071' =>'1앱인증 미완료',
+        '0072' =>'간편인증 처리중 오류',
+        '0073' =>'간편인증앱 미설치(LG U+ Only)',
+        '0074' =>'간편인증앱 재설치필요',
+        '0075' =>'간편인증사용불가-스마트폰아님',
+        '0076' =>'간편인증앱 미설치',
+        '0078' =>'14세 미만 인증 오류',
+        '0079' =>'간편인증 시스템 오류',
+        '9097' =>'인증번호 3회 불일치');
+
+        $selfcertinfo['message'] = $errcode[$selfcertinfo['errcode']].' 로 인하여\\n\\n본인 인증에 실패 하였습니다.';
+        
+        $view['view']['selfcert_result'] = 'fail';
+        $view['view']['selfcert_type'] = 'phone';
+        $view['view']['selfcertinfo'] = $selfcertinfo;
+        $view['view']['redirecturl'] = $this->session->userdata('redirecturl');
+        $this->session->unset_userdata('redirecturl');
+
+        $this->load->view('selfcert/nice/phone_result', $view);
+
+    }
     /**
      * 본인인증 사용회수 체크 페이지입니다
      */
@@ -1201,6 +1537,69 @@ class Selfcert extends CB_Controller
         require_once $home_dir . '/lib/kcp.lib.php';
 
         return $return;
+    }
+
+    public function _nice_phone_config()
+    {
+
+        $return['home_dir'] = $home_dir = FCPATH . 'plugin/selfcert/nice/bin/CPClient'; // CPClient 절대경로
+
+        // DI 를 위한 중복확인 식별 아이디
+        //web_siteid 값이 없으면 NICE 에서 지정한 값으로 설정됨
+        $web_siteid = '';
+
+        if($this->cbconfig->item('use_selfcert_test')) {
+        // 테스트일 경우
+        // nice 는 테스트 환경을 제공해 주지 않는다.
+            $return['site_cd'] = $this->cbconfig->item('selfcert_nice_mid');
+            $return['site_pw'] = $this->cbconfig->item('selfcert_nice_passwd');
+            $return['cert_url'] = 'https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb';
+            $return['referer'] = $this->agent->is_referral();
+        } else {
+            $return['site_cd'] = $this->cbconfig->item('selfcert_nice_mid');
+            $return['site_pw'] = $this->cbconfig->item('selfcert_nice_passwd');
+            $return['cert_url'] = 'https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb';
+            $return['referer'] = $this->agent->is_referral();
+
+        }
+
+        if( ! $return['site_cd'])
+            alert_close('NICE 휴대폰 본인확인 서비스 사이트코드가 없습니다.\\관리자 > 기본환경설정에 NICE 사이트코드를 입력해 주십시오.');
+
+        if( ! $return['site_pw'])
+            alert_close('NICE 휴대폰 본인확인 서비스 패스워드가 없습니다.\\관리자 > 기본환경설정에 NICE 패스워드를 입력해 주십시오.');
+
+        
+
+        return $return;
+    }
+
+    public function getValue($str , $name) //해당 함수에서 에러 발생 시 $len => (int)$len 로 수정 후 사용하시기 바랍니다.
+    {
+        $pos1 = 0;  //length의 시작 위치
+        $pos2 = 0;  //:의 위치
+
+        while( $pos1 <= strlen($str) )
+        {
+            $pos2 = strpos( $str , ":" , $pos1);
+            $len = (int) substr($str , $pos1 , $pos2 - $pos1);
+            $key = substr($str , $pos2 + 1 , $len);
+            $pos1 = $pos2 + $len + 1;
+            if( $key == $name )
+            {
+                $pos2 = strpos( $str , ":" , $pos1);
+                $len = substr($str , $pos1 , $pos2 - $pos1);
+                $value = substr($str , $pos2 + 1 , $len);
+                return $value;
+            }
+            else
+            {
+                // 다르면 스킵한다.
+                $pos2 = strpos( $str , ":" , $pos1);
+                $len = substr($str , $pos1 , $pos2 - $pos1);
+                $pos1 = $pos2 + $len + 1;
+            }            
+        }
     }
 
 }

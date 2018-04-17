@@ -445,13 +445,13 @@
             <ul class="tab01_tabs tabs ">
                 <li class="active" rel="tab01_btc">BTC</li>
                 <li rel="tab01_eth">ETH</li>
-                <li rel="tab01_dash">DASH</li>
                 <li rel="tab01_xrp">XRP</li>
-                <li rel="tab01_ltc">LTC</li>
-                <li rel="tab01_etc">ETC</li>
                 <li rel="tab01_bch">BCH</li>
+                <li rel="tab01_ltc">LTC</li>
+                <li rel="tab01_eos">EOS</li>
                 <li rel="tab01_xmr">XMR</li>
-                <li rel="tab01_zec">ZEC</li>
+                <li rel="tab01_dash">DASH</li>
+                <li rel="tab01_etc">ETC</li>
                 <li rel="tab01_qtum">QTUM</li>
                 <li rel="tab01_btg">BTG</li>
             </ul>
@@ -785,22 +785,22 @@
     <!-- tab09(웹툰 영역) -->
            <section class="tab09 wrap middle_font">
                 <h3>
+
                     <a href="<?php echo site_url('/board/w-2') ?>">
-                    <a href="<?php echo site_url('/board/w-1') ?>">
                     웹 툰
                     <span><img src="assets/images/more.png" alr="more_img"></span>
                     </a>
                 </h3>
                 <ul class="tab09_tabs tabs">
-                    <li class='active' rel='tab09_w-1'>드 라 마</li>
-                    <li rel='tab09_w-2'>로 맨 스</li>
-                    <li rel='tab09_w-3' style="width: 34%;">학원 / 액션</li>
+                    <li class='active' rel='tab09_w-2'>월간신작 TOP 9</li>
+                    <li rel='tab09_w-3'>학원 / 액션</li>
+                    <li rel='tab09_w-1' style="width: 34%;">드 라 마</li>
                 </ul>
 
                 <div class="tab09_wrap cont_wrap">
 
                 <?php
-                $tab04=array('w-1','w-2','w-3');
+                $tab04=array('w-2','w-3','w-1');
                 foreach($tab04 as $tvalue){
                     $config = array(
                         'brd_key' => $tvalue,

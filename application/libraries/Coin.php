@@ -326,28 +326,29 @@ class Coin extends CI_Controller
                         case 'ETH':
                             $vic_title='eth';
                             break;
-                        case 'EOS':
-                            $vic_title='dash';
-                            break;
                         case 'XRP':
                             $vic_title='xrp';
-                            break;
-                        case 'LTC':
-                            $vic_title='ltc';
-                            break;
-                        case 'ADA':
-                            $vic_title='etc';
                             break;
                         case 'BCH':
                             $vic_title='bch';
                             break;
-                        case 'XLM':
-                            $vic_title='XLM';
+                        case 'LTC':
+                            $vic_title='ltc';
                             break;
-                        case 'NEO':
-                            $vic_title='zec';
+                        case 'EOS':
+                            $vic_title='eos';
                             break;
-                        case 'MIOTA':
+                        case 'XMR':
+                            $vic_title='xmr';
+                            break;
+                        case 'DASH':
+                            $vic_title='dash';
+                            break;
+                        case 'ETC':
+                            $vic_title='etc';
+                            break;
+                        case 'QTUM':
+                            break;
                             $vic_title='qtum';
                             break;
                         case 'XMR':

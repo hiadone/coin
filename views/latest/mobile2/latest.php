@@ -5,7 +5,8 @@ if (element('latest', $view)) {
 ?>
         <li><a href="<?php echo element('url', $value); ?>" title="<?php echo html_escape(element('title', $value)); ?>">
             <h4><?php echo ($key+1)?>.</h4>
-            <div><?php echo html_escape(element('title', $value)); ?></div>
+            <div> <?php if (element('is_new', $value)) { ?><img id='img_text' src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?> <?php echo html_escape(element('title', $value)); ?></div>
+            
             </a>
         </li>
 <?php
