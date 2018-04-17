@@ -10,10 +10,11 @@
         var $opener = window.opener;
         $opener.$("input[name=selfcert_type]").val("<?php echo element('selfcert_type', $view); ?>");
         alert("<?php echo element('message',element('selfcertinfo', $view)); ?>");
+        location.href='/social/' + $opener.$("input[name=socialtype]").val() + '_login/'+encodeURI($opener.$("#elh_mem_id").val());
     <?php if (element('redirecturl', $view)) { ?>
         $opener.location.href='<?php echo element('redirecturl', $view); ?>';
     <?php } ?>
-        window.close();
+        // window.close();
     });
     </script>
 <?php } else {?>

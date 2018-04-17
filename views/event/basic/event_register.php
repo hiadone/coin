@@ -168,7 +168,9 @@
                 $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite', 'id' => 'fwrite');
                 echo form_open(base_url('/event/event_insert/'.element('post_id',element('post', $view))), $attributes);
                 ?>
-                    <input type="hidden" name="redirecturl" value="<?php  echo current_full_url()?>">
+                    
+                    <input type="hidden" name="socialtype" id="socialtype" value="">
+                    <input type="hidden" name="selfcert_type" id="selfcert_type" value="" />
                     <input type='text' name="elh_mem_id" id="elh_mem_id" placeholder="추천인 닉네임 입력" onfocus="this.placeholder=''" onblur="this.placeholder='추천인 닉네임 입력'">
                     <span>추천하실 회원님을 정확히 입력해 주세요. 닉네임을 입력하지 않으시면 500P를 받으실수 없습니다.</span>
                 <?php echo form_close(); ?>
@@ -210,6 +212,9 @@
             <img id="img_bottom" style='position: relative; ' src="<?php echo base_url('/assets/images/bitissue_event_03.png')?>">
     </section>
     <div id="btn_mem_selfcert_phone"></div>
+    <span class="input-group-btn">
+                            <button type="button" class="btn btn-md btn-default" id="btn_google_map" onClick="open_google_map();">지도</button>
+                        </span>
 </body>
 </html>
 <script type="text/javascript">
@@ -236,17 +241,32 @@ function submitContents(social_type) {
 }
 
 function view_event_register(social_type) {
-    $("#btn_mem_selfcert_phone").click();
-    // var comment_url = cb_url + '/login/register/'+elh_mem_id;
-    // var hash = window.location.hash;
+    var flag=false;
+    $("input[name=socialtype]").val(social_type);
+    
+    var href = cb_url + '/postact/mem_nickname_check/'+$('#elh_mem_id').val();
+    
 
-    // $('#event_register').load(comment_url, function() {
-    //     $('.pop').fadeIn();
-    //     if (hash) {
-    //         var st = $(hash).offset().top;
-    //         $('html, body').animate({ scrollTop: st }, 200); //200ms duration
-    //     }
-    // });
+
+    $.ajax({
+        async: false,
+        url : href,
+        type : 'get',
+        dataType : 'json',
+        success : function(data) {
+            if (data.error) {
+                alert(data.error);
+                flag = false;
+            } else {
+                flag = true;
+                
+            }
+        }
+    });
+
+    if(flag)
+        $("#btn_mem_selfcert_phone").click();
+    else return false;
 }
     //]]>
     </script>

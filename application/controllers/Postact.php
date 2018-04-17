@@ -4105,4 +4105,54 @@ class Postact extends CB_Controller
         exit(json_encode($result));
 
     }
+
+
+    /**
+     * 목록에서 여러 게시물 비밀글 설정 및 해제 하기
+     */
+    public function mem_nickname_check($str='')
+    {
+        $error='';
+
+        $str = urldecode($str);
+        $this->load->helper('chkstring');
+        if(!empty($str)){
+            if (chkstring($str, _HANGUL_ + _ALPHABETIC_ + _NUMERIC_) === false) {
+
+                $error = $str.'닉네임은 공백없이 한글, 영문, 숫자만 입력 가능합니다';
+                // $this->form_validation->set_message(
+                //     '_mem_nickname_check',
+                //     '닉네임은 공백없이 한글, 영문, 숫자만 입력 가능합니다'
+                // );
+                
+            }
+
+            
+            $countwhere = array(
+                'mem_nickname' => $str,
+            );
+            $row = $this->Member_model->count_by($countwhere);
+
+            if ($row < 1) {
+
+                $error = $str . ' 는 없는 닉네임입니다';
+                // $this->form_validation->set_message(
+                //     '_mem_nickname_check',
+                //     $str . ' 는 이미 다른 회원이 사용하고 있는 닉네임입니다'
+                // );
+                
+            }
+        }
+        
+
+        
+        
+
+        
+        
+
+        $result = array('error' => $error);
+        exit(json_encode($result));
+
+    }
 }

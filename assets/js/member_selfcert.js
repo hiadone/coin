@@ -39,9 +39,9 @@ $(document).on('click', '#btn_mem_selfcert_ipin', function() {
 
 // 휴대폰인증
 $(document).on('click', '#btn_mem_selfcert_phone', function() {
-    alert(1);
-	if( ! selfcert_confirm())
-		return false;
+    
+	// if( ! selfcert_confirm())
+	// 	return false;
 
 	var openurl = cb_url + '/selfcert/phone';
 
@@ -53,3 +53,4 @@ $(document).on('click', '#btn_mem_selfcert_phone', function() {
 	popupWindow.focus();
 	return;
 });
+
