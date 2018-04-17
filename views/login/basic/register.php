@@ -44,13 +44,24 @@
                     <p class='small_font'>
                         비트이슈에서는 SNS로 로그인하여<br>
                         간편하게 서비스를 이용하실 수 있습니다.<br><br>
-                        원하시는 SNS를 선택해 주세요.<br>
-                        
-                        <br>
-                        <strong>로그인과 함께 비트이슈의 이용약관 및<br> 
-                        개인정보취급방침에 동의하신 것으로 간주합니다.</strong><br>
+                        원하시는 SNS를 선택해 주세요.<br><br>
                     </p>
+                        
+                        <strong class="nomal_font02">
+                            회원 가입 시 추천인의 닉네임을<br> 
+                            입력하면 가입고객 전원 500P 적립
+                        </strong>
+
+                    <br><br>
+
+                    <button style="width: 100%; font-family: 'Jeju Gothic', sans-serif; background-color: #a61e23;">이 벤 트 바 로 가 기</button>
+                    
+                    <br><br><br>
+
+                     <span><a href="http://www.bitcoissue.com/document/provision">로그인과 함께 비트이슈의 이용약관 및 개인정보<br> 취급방침에 동의하신 것으로 간주합니다.</a></span>
                 </div>
+
+
                 
                 <ul >
                     <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
@@ -58,7 +69,7 @@
                         <a href="javascript:;" onClick="social_connect_on('kakao');" title="카카오 로그인">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_talk.png" alt="ham_talk_img">
-                            <figcaption class="big_font">카 카 오 톡</figcaption>
+                            <figcaption class="big_font">카 카 오 톡 로 그 인</figcaption>
                         </figure>
                         <span>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
@@ -71,7 +82,7 @@
                         <a href="javascript:;" onClick="social_connect_on('naver');" title="네이버 로그인" style="color:#fff;">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_naver.png" alt="ham_naver_img">
-                            <figcaption class="big_font">네 이 버</figcaption>
+                            <figcaption class="big_font">네 이 버 로 그 인</figcaption>
                         </figure>
                         <span>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
@@ -84,7 +95,7 @@
                         <a href="javascript:;" onClick="social_connect_on('facebook');" title="페이스북 로그인" style="color:#fff;">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_face.png" alt="ham_face_img">
-                            <figcaption class="big_font">페 이 스 북</figcaption>
+                            <figcaption class="big_font">페 이 스 북 로 그 인</figcaption>
                         </figure>
                         <span>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">

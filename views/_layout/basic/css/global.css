@@ -393,13 +393,21 @@ textarea{
 		margin-bottom: 20px;
 	}
 
-	.ham_login .login_notice p strong{
+	.ham_login .login_notice span{
+		display: block;
+		line-height: 15px;
+		font-size: 11px;
 		font-family:'Jeju Gothic', sans-serif;
-		color: #a61e23;
-		line-height: 13px;
 	}
 
+	.ham_login .login_notice span a{
+		text-decoration: underline;
+	}
 
+	.ham_login .login_notice strong{
+		font-family:'Jeju Gothic', sans-serif;
+		line-height: 13px;
+	}
 
 	.ham_login ul{
 		width: 299px;
@@ -431,7 +439,7 @@ textarea{
 		font-family:'Jeju Gothic', sans-serif;
 	}
 
-	.ham_login span{
+	.ham_login li span{
 		width: 30px;
 		height: 30px;
 		display: inline-block;
@@ -439,7 +447,7 @@ textarea{
 		margin-top:5px;
 	}
 
-	.ham_login span img{
+	.ham_login li span img{
 		width: 100%;
 	}
 

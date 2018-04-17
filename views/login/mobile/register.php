@@ -44,11 +44,23 @@
                             - 비트이슈에서는 SNS로 로그인하여 <br>
                               간편하게 서비스를 이용하실 수 있습니다.<br><br>
                             - 원하시는 SNS를 선택해 주세요.<br><br>
-                            <strong>
+                        </p>
+
+                        <strong>
+                            회원 가입 시 추천인의 닉네임을<br> 
+                            입력하면 가입고객 전원 500P 적립
+                        </strong>
+
+                        <button>이 벤 트 바 로 가 기</button>
+
+                        <br><br>
+                        
+                        <span class='small_font'>
+                            <a href="http://www.bitcoissue.com/document/provision">
                             로그인과 함께 비트이슈의 이용약관 및<br> 
                             개인정보취급방침에 동의하신 것으로 간주합니다.
-                            </strong>
-                        </p>
+                            </a>
+                        </span>
                     </div>
                     <ul>
                         <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>

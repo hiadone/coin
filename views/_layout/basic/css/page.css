@@ -86,6 +86,10 @@
 			text-align: center;
 		}
 
+		#coin_mall .coin_cont td a{
+			color: #000 !important;
+		}
+
 		#coin_mall .coin_cont .premium{
 			font-family:'Jeju Gothic', sans-serif;
 		}
@@ -416,7 +420,7 @@
 	 	}
 
 	 	#news figure > img{
-	 		width: 148px;
+	 		width: 14s7px;
 	 		height: 100px;
 	 		float: left;
 	 		border:1px solid #ededed;

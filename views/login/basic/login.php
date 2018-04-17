@@ -53,7 +53,7 @@
                         <a href="javascript:;" onClick="social_connect_on('kakao');" title="카카오 로그인">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_talk.png" alt="ham_talk_img">
-                            <figcaption class="big_font">카 카 오 톡</figcaption>
+                            <figcaption class="big_font">카 카 오 톡 로 그 인</figcaption>
                         </figure>
                         <span>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
@@ -66,7 +66,7 @@
                         <a href="javascript:;" onClick="social_connect_on('naver');" title="네이버 로그인" style="color:#fff;">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_naver.png" alt="ham_naver_img">
-                            <figcaption class="big_font">네 이 버</figcaption>
+                            <figcaption class="big_font">네 이 버 로 그 인</figcaption>
                         </figure>
                         <span>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
@@ -79,7 +79,7 @@
                         <a href="javascript:;" onClick="social_connect_on('facebook');" title="페이스북 로그인" style="color:#fff;">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_face.png" alt="ham_face_img">
-                            <figcaption class="big_font">페 이 스 북</figcaption>
+                            <figcaption class="big_font">페 이 스 북 로 그 인</figcaption>
                         </figure>
                         <span>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
