@@ -905,7 +905,7 @@
                 
                 <li class="active" rel="tab04_attendance">출석체크</li>
                 <li rel="tab04_express">가입인사</li>
-                <li rel="tab04_notice">가입인사</li>
+                <li rel="tab04_notice">공지사항</li>
             </ul>
 
             <div class="tab04_wrap cont_wrap">
