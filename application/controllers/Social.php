@@ -718,9 +718,19 @@ class Social extends CB_Controller
                 if ($url_after_login) {
                     $url_after_login = site_url($url_after_login);
                 }
-		redirect($url_after_login);
 
+
+                echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
+                if($leverup_message)echo '<script type="text/javascript"> alert("'.$leverup_message.'");</script>';
+                echo '<script type="text/javascript">alert("이미 로그인 한 상태입니다"); window.close();';
+                if ($url_after_login) {
+                    echo 'window.opener.document.location.href = "' . $url_after_login . '";';
+                } else {
+                    echo 'window.opener.location.reload();';
+                }
+                echo '</script>';
                 exit;
+
                 } else {
                     // 다른 회원 아이디에 연결된 계정으로 로그인 시도함
 
@@ -1165,7 +1175,7 @@ class Social extends CB_Controller
                 Events::trigger('common_login_after', $eventname);
 
                 echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
-                echo '<script type="text/javascript"> window.close();';
+                echo '<script type="text/javascript">window.close();';
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
                 } else {

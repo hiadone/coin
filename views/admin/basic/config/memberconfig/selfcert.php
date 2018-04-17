@@ -68,6 +68,7 @@
                                 <option value="" <?php echo set_select('use_selfcert_phone', '', ( ! element('use_selfcert_phone', element('data', $view)) ? true : false)); ?> >사용하지 않음</option>
                                 <option value="kcb" <?php echo set_select('use_selfcert_phone', 'kcb', (element('use_selfcert_phone', element('data', $view)) === 'kcb' ? true : false)); ?> >코리아크레딧뷰로(KCB) 휴대폰 본인확인</option>
                                 <option value="kcp" <?php echo set_select('use_selfcert_phone', 'kcp', (element('use_selfcert_phone', element('data', $view)) === 'kcp' ? true : false)); ?> >한국사이버결제(KCP) 휴대폰 본인확인</option>
+                                <option value="nice" <?php echo set_select('use_selfcert_phone', 'nice', (element('use_selfcert_phone', element('data', $view)) === 'nice' ? true : false)); ?> >NICE평가정보 CheckPlus 휴대폰 본인확인</option>
                                 <!--option value="lg" <?php echo set_select('use_selfcert_phone', 'lg', (element('use_selfcert_phone', element('data', $view)) === 'lg' ? true : false)); ?> >LG유플러스 휴대폰 본인확인</option-->
                             </select>
                         </div>

@@ -1111,7 +1111,7 @@
 
                 $config = array(
                     'brd_key' => $tvalue,
-                    'limit' => 10,
+                    'limit' => 15,
                     'length' => 70,
                     );
                 $board=$this->board->data($config);

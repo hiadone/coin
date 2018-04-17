@@ -41,6 +41,14 @@ if ( ! function_exists('module_exec_check')) {
                 $exe = FCPATH . 'plugin/selfcert/kcp/bin/ct_cli_x64';
         }
 
+        // nice일 때     ( 본인인증 )
+        if ($type == 'nice') {
+            if(PHP_INT_MAX == 2147483647) // 32-bit
+                $exe = FCPATH . 'plugin/selfcert/nice/bin/CPClient';
+            else
+                $exe = FCPATH . 'plugin/selfcert/nice/bin/CPClient';
+        }
+
         // LG의 경우 log 디렉토리 체크
         if ($type == 'lg') {
             return;
@@ -116,6 +124,21 @@ if ( ! function_exists('module_exec_check')) {
 
                             for($i=0; $i<count($out); $i++) {
                                 if(strpos(strtolower($out[$i]), 'ret code') !== false) {
+                                    $search = true;
+                                    break;
+                                }
+                            }
+                            break;
+                        case 'nice':
+                            exec($exe.' -h 2>&1', $out, $return_var);
+                            
+                            if($return_var == 139) {
+                                $isbinary = false;
+                                break;
+                            }
+                            
+                            for($i=0; $i<count($out); $i++) {
+                                if(strpos($out[$i], '-9') !== false) {
                                     $search = true;
                                     break;
                                 }

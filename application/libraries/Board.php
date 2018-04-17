@@ -711,7 +711,7 @@ class Board extends CI_Controller
                 'att_date' => $date,
             );
             $result = $this->CI->Attendance_model
-                ->get_attend_list(15,'', $where, $findex, $forder);
+                ->get_attend_list($limit,'', $where, $findex, $forder);
 
             if (element('list', $result)) {
                 foreach (element('list', $result) as $key => $val) {

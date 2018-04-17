@@ -254,6 +254,10 @@
                         infiniteLoop: true, //마지막에 도달 했을시, 첫페이지로 갈 것인가 멈출것인가
                         //pagerCustom: '#bx-pager' // pager
                         prevText: '▲',
+
+                        onSliderLoad: function(){
+                        $('.rolling_news ul').css('visibility','visible');
+                        }   
                     });
 
                     // 클릭시 멈춤 현상 해결 //
@@ -417,7 +421,7 @@
 
     <!-- 롤링 뉴스 영역 -->
         <section class="rolling_news">
-            <ul class="big_font">
+            <ul class="big_font" style="visibility:hidden">
                  <?php
                  $board='';
                  $config = array(
@@ -725,62 +729,8 @@
             <?php echo banner('main_mobile_banner2') ?>
         </section>
         
-    <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역
-        <section class="tab04 wrap middle_font">
-            <h3><a href="<?php echo site_url('/board/event') ?>">
-                서비스
-                <span><img src="assets/images/more.png" alr="more_img"></span>
-                </a>
-            </h3>
-            <ul class="tab04_tabs tabs">
-                <li class="active" rel="tab04_event">이벤트</li>
-                <li rel="tab04_attendance">출석체크</li>
-                <li rel="tab04_express">가입인사</li>
-            </ul>
-
-            <div class="tab04_wrap cont_wrap">
-                    <?php
-                    $tab04=array('event','attendance','express');
-                    foreach($tab04 as $tvalue){
-
-                        $config = array(
-                            'brd_key' => $tvalue,
-                            'limit' => 3,
-                            'length' => 40,
-                            );
-                        $board=$this->board->data($config);
-
-                        if (element('latest', element('view', $board))) {
-                            echo '<div id="tab04_'.element('brd_key',$config).'" class="tab04_cont cont">
-                            <table>';
-                                foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                                <tr onClick="location.href='<?php echo element('url', $value); ?>'">
-                                    <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                    <td class="text-left">
-                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
-                                        <?php echo html_escape(element('title', $value)); ?>
-                                    </td>
-                                    <td><?php echo element('display_datetime', $value); ?></td>
-                                </tr>                        
-                                <?php 
-                            }
-                            echo '
-                        </table>
-                    </div>';
-                } else {
-                    echo '<div id="tab04_'.element('brd_key',$config).'" class="tab04_cont cont">
-                    <table>
-                        <tr>
-                            <td colspan="3">게시물이 없습니다.</td>
-                        </tr>
-                    </table>
-                         </div>';
-                    }
-                    }
-                    ?>  
-            </div>
-        </section>
-    -->
+   
+   
 
     <!-- tab09(웹툰 영역) -->
            <section class="tab09 wrap middle_font">
@@ -943,7 +893,64 @@
             ?>  
             </div>
         </section>
-    
+        
+         <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역 -->
+        <section class="tab04 wrap middle_font">
+            <h3><a href="<?php echo site_url('/attendance') ?>">
+                서비스
+                <span><img src="assets/images/more.png" alr="more_img"></span>
+                </a>
+            </h3>
+            <ul class="tab04_tabs tabs">
+                
+                <li class="active" rel="tab04_attendance">출석체크</li>
+                <li rel="tab04_express">가입인사</li>
+                <li rel="tab04_notice">가입인사</li>
+            </ul>
+
+            <div class="tab04_wrap cont_wrap">
+                    <?php
+                    $tab04=array('attendance','express','notice');
+                    foreach($tab04 as $tvalue){
+
+                        $config = array(
+                            'brd_key' => $tvalue,
+                            'limit' => 5,
+                            'length' => 40,
+                            );
+                        $board=$this->board->data($config);
+
+                        if (element('latest', element('view', $board))) {
+                            echo '<div id="tab04_'.element('brd_key',$config).'" class="tab04_cont cont">
+                            <table>';
+                                foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                                <tr onClick="location.href='<?php echo element('url', $value); ?>'">
+                                    <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
+                                    <td class="text-left">
+                                        <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
+                                        <?php echo html_escape(element('title', $value)); ?>
+                                    </td>
+                                    <td><?php echo element('display_datetime', $value); ?></td>
+                                </tr>                        
+                                <?php 
+                            }
+                            echo '
+                        </table>
+                    </div>';
+                } else {
+                    echo '<div id="tab04_'.element('brd_key',$config).'" class="tab04_cont cont">
+                    <table>
+                        <tr>
+                            <td colspan="3">게시물이 없습니다.</td>
+                        </tr>
+                    </table>
+                         </div>';
+                    }
+                    }
+                    ?>  
+            </div>
+        </section>
+
     <!-- 가상화폐 인물 트위터 리스트 영역-->
         <section class="table_li person_twitter">
             <h3>가상화폐 인물 트위터</h3>

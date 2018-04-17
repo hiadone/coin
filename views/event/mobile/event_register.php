@@ -1,131 +1,229 @@
+<?php
+            if ($this->cbconfig->item('use_sociallogin')) {
+                $this->managelayout->add_js(base_url('assets/js/social_login.js'));
+                }
+            ?>
+    
+    <style>
+        @font-face {
+          font-family: 'Jeju Gothic';
+          font-style: normal;
+          font-weight: 400;
+          src: url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
+          src: url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
+               url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
+               url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
+               url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
+        }
 
-	
-	<style>
-		@font-face {
-		  font-family: 'Jeju Gothic';
-		  font-style: normal;
-		  font-weight: 400;
-		  src: url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
-		  src: url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
-		       url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
-		       url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
-		       url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
-		}
+        *{
+            margin:0;
+            padding:0;
+        }
 
-		#event_wrap{
-			width: 100%;
-			max-width: 700px;
-			min-width: 320px;
-			margin: 0 auto;
-			text-align: center;
-			border:10px solid #005da3;
-			box-sizing: border-box;
-		}
+        #event_wrap{
+            width: 100%;
+            max-width: 700px;
+            min-width: 300px;
+            padding:5px;
+            margin: 0 auto;
+            text-align: center;
+            box-sizing: border-box;
+        }
 
-		#event_wrap img{
-			width: 100%;
-		}
+        #event_wrap > img{
+            width: 100%;
+        }
 
-		#event_wrap form{
-			width: 100%;
-			padding:0 8.5%; 
-			box-sizing: border-box;
-			background-color: #fff;
-			display: inline-block;
-		}
+        #event_form{
+            position: relative;
+            background: url('<?php echo base_url('/assets/images/bitissue_event_02.png') ?>') no-repeat top center;
+            background-size: 100%;
+            padding:0 11%;
+            box-sizing: border-box;
+        }
 
-		#event_wrap form input{
-			height: 35px;
-			margin-bottom: 15px;
-			outline: none;
-			border:1px solid #ededed;
-			padding: 0 8px;
-			box-sizing: border-box; 
-			float: left;
-		}
+        #event_form form input{
+            width: 100%;
+            height: 35px;
+            padding:0 2%; 
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            outline: none;
+        }
 
-		#event_wrap form button{
-			height: 35px;
-			margin-bottom: 15px;
-			font-family: 'Jeju Gothic', sans-serif;
-			font-size: 15px;
-			line-height: 35px;
-			border: 0;
-			border-radius: 10px;
-			background-color:#005da3;
-			color: #fff;
-			float: right;
-			outline: none;
-		}
+        #event_form form span{
+            display: inline-block;
+            font-size: 12px;
+            line-height: 15px;
+            color: #a61e24;
+            font-family: 'Jeju Gothic', sans-serif;
+            margin-bottom: 15px;
+        }
 
-		#event_wrap form span{
-			display: inline-block;
-			width: 100%;
-			text-align: center;
-			font-size: 13px;
-			color: #b73434;
-			font-family: 'Jeju Gothic', sans-serif;
-			line-height: 18px;
-		}
+        #event_form ul{
+            width: 100%;
+        }
 
-	
+        #event_form li{
+            list-style: none;
+            overflow:hidden;
+            height:35px;
+            border-radius: 8px;
+        }
 
-	@media screen and (min-width:320px) {
- 			#event_wrap form input{
-			width: 100%;
-		}
+        #event_form li img{
+            width: 35px;
+            float: left;
+        }
 
-		#event_wrap form button{
-			width: 100%;
-		}
-	}
+        #event_form li figcaption{
+            height: 35px;
+            line-height: 38px;
+            font-size: 13px;
+            text-align:left; 
+            font-family: 'Jeju Gothic', sans-serif;
+            cursor: pointer;
+        }
+
+        #event_form li figcaption img{
+            float: right;
+        }
+
+        @media screen and (min-width:720px) {
+            #event_form{
+                top: -8px;
+            }
+
+            #event_form form{
+                margin-bottom: 15px;
+            }
+
+            #event_form h2{
+                font-size: 14px;
+                font-family: 'Jeju Gothic', sans-serif;
+                text-align: left;
+                margin-bottom: 10px;
+                font-weight: normal;
+            }
+
+            #event_form ul{
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+
+            #event_form li{
+                width: 32%;
+                box-sizing: border-box;
+                margin-right: 2%;
+                float: left;
+            }
+
+            #event_form li:last-child{
+                margin-right: 0;
+            }
+
+            #event_form span{
+                font-size: 12px;
+                font-family: 'Jeju Gothic', sans-serif;
+                color: #a61e24;
+            }
+
+            #img_bottom{
+                top:-8px;
+            }
+        }
+
+        @media screen and (max-width:719px) {
+            #event_form{
+                top:-5px;
+            }
+            #event_form li{
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            #event_form form span{
+                font-size: 11px;
+            }
+
+            #img_bottom{
+                top:-15px;
+            }
 
 
-	@media screen and (min-width:1000px) {
- 			#event_wrap form input{
-			width: 72%;
-		}
-
-		#event_wrap form button{
-			width: 25%;
-		}
-	}
-
-	</style>
+        }
+    </style>
 </head>
 
-
-<article class="wrap01">
+<body>
     <input type="hidden" name="redirecturl" value="<?php  echo current_full_url()?>">
-	<section id="event_wrap" style="margin-bottom: 20px;">
-			<img src="<?php echo base_url('/assets/images/bitissue_event_01.png') ?>">
-			<?php
-		    $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite', 'id' => 'fwrite', 'onSubmit' => 'return submitContents(this)');
-		    echo form_open(base_url('/event/event_insert/'.element('post_id',element('post', $view))), $attributes);
-		    ?>
-				<input type="text" name="elh_mem_id" id="elh_mem_id">
-				<button type="submit">회 원 가 입 하 기</button>
-				<span>추천하실 회원님을 정확히 입력해 주세요.<br>닉네임을 입력하지 않으시면 500P를 받으실 수 없습니다</span>
-			<?php echo form_close(); ?>
-			<img style="position: relative; bottom: -4px;" src="<?php echo base_url('/assets/images/bitissue_event_03.png') ?>">	
-	</section>
-</article>
+    <section id='event_wrap'>
+            <img src="<?php echo base_url('/assets/images/bitissue_event_01.png') ?>">
+            <div id="event_form">
+                <?php
+                $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite', 'id' => 'fwrite');
+                echo form_open(base_url('/event/event_insert/'.element('post_id',element('post', $view))), $attributes);
+                ?>
+                    <input type="hidden" name="redirecturl" value="<?php  echo current_full_url()?>">
+                    <input type='text' name="elh_mem_id" id="elh_mem_id" placeholder="추천인 닉네임 입력" onfocus="this.placeholder=''" onblur="this.placeholder='추천인 닉네임 입력'">
+                    <span>추천하실 회원님을 정확히 입력해 주세요. 닉네임을 입력하지 않으시면 500P를 받으실수 없습니다.</span>
+                <?php echo form_close(); ?>
+
+                <h2>추천인 닉네임을 입력하시고 , 다음 SNS로 로그인해 주세요.</h2>
+
+                <ul>
+                    <li style='background-color:#1dc800; color:#fff;'>
+                        <a href="javascript:;" onClick="submitContents('naver');" title="naver 로그인" style="color:#fff;">
+                        <figure>
+                            <img src="<?php echo base_url('/assets/images/naver.png') ?>">
+                            <figcaption>네이버 아이디로 가입<img src="<?php echo base_url('/assets/images/ham_arrow.png')?>"></figcaption>
+                        </figure>
+                        </a>
+                    </li>
+
+                    <li style='background-color:#3b589e; color:#fff;'>
+                        <a href="javascript:;" onClick="submitContents('face');" title="face 로그인" style="color:#fff;">
+                        <figure>
+                            <img src="<?php echo base_url('/assets/images/face.png') ?>">
+                            <figcaption>페이스북 아이디로 가입<img src="<?php echo base_url('/assets/images/ham_arrow.png')?>"></figcaption>
+                        </figure>
+                        </a>
+                    </li>
+
+                    <li style='background-color:#fbe300;'>
+                        <a href="javascript:;" onClick="submitContents('kakao');" title="kakao 로그인">
+                        <figure>
+                            <img src="<?php echo base_url('/assets/images/kakao.png') ?>">
+                            <figcaption>카카오톡 아이디로 가입<img src="<?php echo base_url('/assets/images/ham_arrow.png')?>"></figcaption>
+                        </figure>
+                        </a>
+                    </li>
+                </ul>
+
+                <span>이벤트 참여 시 본인 인증 절차가 진행됩니다.</span>
+                
+            </div>
+            <img id="img_bottom" style='position: relative; ' src="<?php echo base_url('/assets/images/bitissue_event_03.png')?>">
+    </section>
+</body>
+</html>
 <script type="text/javascript">
     //<![CDATA[
     
-view_event_register();
-function submitContents(f) {
+
+function submitContents(social_type) {
         
         
         var href;
         if( ! jQuery.trim($('#elh_mem_id').val()) ) {
-         	if ( ! confirm("닉네임을 입력하지 않으시면 500p 를 받으실 수 없습니다..\n 그래도 회원 가입 하시겠습니까?")) { return false; }
+            if ( ! confirm("닉네임을 입력하지 않으시면 500p 를 받으실 수 없습니다..\n 그래도 회원 가입 하시겠습니까?")) { return false; }
             alert(1);
-            view_event_register();
+            social_connect_on(social_type);
             return false;
         } else {
             alert(2);
-            view_event_register();
+            view_event_register(social_type);
             return false;
         }
         alert(3);
@@ -133,13 +231,13 @@ function submitContents(f) {
     
 }
 
-function view_event_register() {
+function view_event_register(social_type) {
 
-    var comment_url = cb_url + '/login/register';
+    var comment_url = cb_url + '/login/register/'+elh_mem_id;
     var hash = window.location.hash;
 
     $('#event_register').load(comment_url, function() {
-    	$('.pop').fadeIn();
+        $('.pop').fadeIn();
         if (hash) {
             var st = $(hash).offset().top;
             $('html, body').animate({ scrollTop: st }, 200); //200ms duration
