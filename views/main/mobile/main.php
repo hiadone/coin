@@ -620,7 +620,7 @@
             <?php
                 $config = array(
                     'brd_key' => 'live_news',
-                    'limit' => 6,
+                    'limit' => 4,
                     'length' => 40,
                     'is_gallery'=> 1,
                     'image_width'=> 120,
