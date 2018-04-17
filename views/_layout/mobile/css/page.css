@@ -207,6 +207,10 @@ html, body{
 		color: rgb(28, 68, 109);
 	}
 
+	.tabs li.active a{
+		color: rgb(28, 68, 109);
+	}
+
 /*컨텐츠 css 영역*/
 	.cont_wrap{
 		clear: both;
@@ -618,6 +622,7 @@ html, body{
 		text-overflow: ellipsis;
 		white-space:nowrap;
 		overflow: hidden;
+		padding-left: 2.5%;
 		height: 26px;
 		line-height: 25px;
 	}
@@ -2340,7 +2345,6 @@ html, body{
     .point_info table td{
         border:1px solid #ededed;
         padding:2%;
-        text-align: center;
         vertical-align: middle;
     }
 

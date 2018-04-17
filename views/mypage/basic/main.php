@@ -16,22 +16,22 @@
             <table class="mb20">
                 <tr>
                     <th style='width: 70px;'>아 이 디</th>
-                    <td><?php echo html_escape($this->member->item('mem_userid')); ?></td>
+                    <td style='text-align: center;'><?php echo html_escape($this->member->item('mem_userid')); ?></td>
                 </tr>
 
                 <tr>
                     <th style='width: 70px;'>닉 네 임</th>
-                    <td><?php echo html_escape($this->member->item('mem_nickname')); ?></td>
+                    <td style='text-align: center;'><?php echo html_escape($this->member->item('mem_nickname')); ?></td>
                 </tr>
 
                 <tr>
                     <th style='width: 70px;'>포 인 트</th>
-                    <td><?php echo number_format($this->member->item('mem_point')); ?> 포인트</td>
+                    <td style='text-align: center;'><?php echo number_format($this->member->item('mem_point')); ?> 포인트</td>
                 </tr>
 
                 <tr>
                     <th style='width: 70px;'>회 원 그 룹</th>
-                    <td>
+                    <td style='text-align: center;'>
                     <figure>
                       <img style='width: 30px;' src='<?php echo base_url('/views/_layout/basic/images/spoon_'.$this->member->item('mem_level').'.png') ?>' alt='spoon_img'>  <figcaption style='height: 30px; line-height: 35px;'><?php echo element('member_group_name',$view);?></td></figcaption>
                     </figure>
@@ -40,12 +40,12 @@
 
                 <tr>
                     <th style='width: 70px;'>가 입 일</th>
-                    <td><?php echo display_datetime($this->member->item('mem_register_datetime'), 'full'); ?></td>
+                    <td style='text-align: center;'><?php echo display_datetime($this->member->item('mem_register_datetime'), 'full'); ?></td>
                 </tr>
 
                 <tr>
                     <th style='width: 70px;'>최 근 로 그 인</th>
-                    <td><?php echo display_datetime($this->member->item('mem_lastlogin_datetime'), 'full'); ?></td>
+                    <td style='text-align: center;'><?php echo display_datetime($this->member->item('mem_lastlogin_datetime'), 'full'); ?></td>
                 </tr>
             </table>
             <ul class="info_btn">

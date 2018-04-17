@@ -536,6 +536,7 @@ textarea{
     .point_info th:first-child,
     .point_info td:first-child{
     	width: 50px;
+    	text-align: center;
     }
 
     .point_info th:nth-child(3),
@@ -547,7 +548,6 @@ textarea{
     .point_info td{
         border:1px solid #ededed;
         padding:10px 5px 5px;
-        text-align: center;
         vertical-align: middle;
         line-height: 17px;
     }

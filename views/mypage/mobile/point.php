@@ -44,7 +44,7 @@
                 foreach (element('list', element('data', $view)) as $result) {
             ?>
                 <tr>
-                    <td><?php echo display_datetime(element('poi_datetime', $result)); ?></td>
+                    <td style="text-align: center;"><?php echo display_datetime(element('poi_datetime', $result)); ?></td>
                     <td class='table_cont'><?php echo html_escape(element('poi_content', $result)); ?></td>
                     <td>
                         <figure>
