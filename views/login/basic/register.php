@@ -47,7 +47,14 @@
                     <h3>SNS 회원가입</h3>
                     <p class='small_font'>
                         비트이슈에서는 SNS로 로그인하여<br>
-                        간편하게 서비스를 이용하실 수 있습니다.<br><br>
+                        간편하게 서비스를 이용하실 수 있습니다.
+                    </p>
+                    <br><br>
+
+                    <p style="font-weight: bold;"> 회원 가입 시 본인 인증 절차가 진행됩니다.</p>
+                    <br><br>
+                    
+                    <p>
                         원하시는 SNS를 선택해 주세요.<br><br>
                     </p>
                         
