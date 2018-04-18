@@ -487,9 +487,11 @@ class Social extends CB_Controller
 
         if ($this->input->get('state')) {
             if ($this->input->get('state') === $this->session->userdata('naver_state')) {
-                return RESPONSE_SUCCESS;
+                return ;
+                // return RESPONSE_SUCCESS;
             } else {
-                return RESPONSE_UNAUTHORIZED;
+                return ;
+                // return RESPONSE_UNAUTHORIZED;
             }
             exit;
         }
