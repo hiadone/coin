@@ -1190,9 +1190,9 @@ class Selfcert extends CB_Controller
                     $where = array(
                         'msh_dupinfo' => $dupinfo,
                     );
-
+                    $this->load->model('Media_selfcert_history_model');
                     if(!empty($this->input->post('param_r2'))){
-                        $this->load->model('Media_selfcert_history_model');
+                        
                         $selfcert_count = $this->Media_selfcert_history_model->count_by($where);
 
                         if($selfcert_count > 0 ){
