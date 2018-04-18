@@ -85,7 +85,7 @@
                     <ul>
                         <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
                             <li style="background-color:#fbe300;">
-                                <a href="javascript:;" onClick="view_register('kakao');" title="카카오 로그인">
+                                <a href="javascript:;" onClick="social_register('kakao');" title="카카오 로그인">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/kakao.png');?>" alt="kakao">
                                     <figcaption class="big_font" style="color:#3a1e1f">
@@ -98,7 +98,7 @@
 
                         <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
                             <li style="background-color:#1ec802;">
-                                <a href="javascript:;" onClick="view_register('naver');" title="네이버 로그인">
+                                <a href="javascript:;" onClick="social_register('naver');" title="네이버 로그인">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/naver.png');?>" alt="naver">
                                     <figcaption class="big_font">
@@ -111,7 +111,7 @@
 
                         <?php if ($this->cbconfig->item('use_sociallogin_facebook')) {?>
                             <li style="background-color:#3c589e;">
-                                <a href="javascript:;" onClick="view_register('facebook');" title="페이스북 로그인">
+                                <a href="javascript:;" onClick="social_register('facebook');" title="페이스북 로그인">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/face.png');?>" alt="face">
                                     <figcaption class="big_font">
@@ -156,7 +156,7 @@ $(document).on('change', "input:checkbox[name='autologin']", function() {
 
 
 
-function view_register(social_type) {
+function social_register(social_type) {
     
     $("input[name=socialtype]").val(social_type);
     

@@ -16,7 +16,7 @@ if (element('list', element('data', $view))) {
         <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_comment_id[]" value="<?php echo element('cmt_id', $result); ?>" /><?php } ?>
         <div class='reply_cont'>
             <figure>
-                <img src='<?php echo base_url('/views/_layout/basic/images/reply_icon.png') ?> ' alt='reply_icon_img'>
+                <img src="<?php echo base_url('/views/_layout/basic/images/spoon_'.element('display_level', $result,1).'.png')?>" alt='reply_icon_img'>
                 <figcaption>
                     <h3><?php echo element('display_name', $result); ?></h3>
                     <p class='comment-list'>

@@ -56,10 +56,12 @@ $(document).ready(function(){
         var move = true;
 
         function ham_slide(type){
+            
             move = !move;
             if(move){
                 $('.ham').animate({'right':'-320'} , 800);
                 $('.ham >  img').attr('src' , '<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png');
+
             }else{
                 if(type=='point')
                     view_mypoint('view_member');
@@ -83,7 +85,6 @@ $(document).ready(function(){
             });
 
             $('li.register-li').click(function(){
-                
                 ham_slide('register');
             });
 
@@ -421,7 +422,7 @@ function view_register(id) {
     
     var comment_url = cb_url + '/login/register' ;
     var hash = window.location.hash;
-
+    alert(id);
     $('#' + id).load(comment_url, function() {
         if (hash) {
             var st = $(hash).offset().top;

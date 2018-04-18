@@ -564,8 +564,9 @@ class Social extends CB_Controller
             $thumbnail_image = element('thumbnail_image', element('properties', $json));
 
             if (empty($nickname)) {
-                $this->session->unset_userdata('kakao_access_token');
-                alert_close('이름 정보를 확인할 수 없어 로그인할 수 없습니다');
+                $nickname="익명사용자";
+                // $this->session->unset_userdata('kakao_access_token');
+                // alert_close('이름 정보를 확인할 수 없어 로그인할 수 없습니다');
             }
 
 

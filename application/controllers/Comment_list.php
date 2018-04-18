@@ -213,6 +213,11 @@ class Comment_list extends CB_Controller
                     } else {
                         $bestresult[$key]['display_name'] = '익명사용자';
                     }
+
+                    $dbmember = $this->Member_model
+                            ->get_by_memid(element('mem_id', $val), 'mem_level');
+                    $bestresult[$key]['display_level']= element('mem_level', $dbmember);
+
                     $bestresult[$key]['display_datetime'] = display_datetime(
                         element('cmt_datetime', $val),
                         $comment_date_style,
@@ -299,6 +304,13 @@ class Comment_list extends CB_Controller
                     $comment_date_style,
                     $comment_date_style_manual
                 );
+
+
+                $dbmember = $this->Member_model
+                            ->get_by_memid(element('mem_id', $val), 'mem_level');
+                    $result['list'][$key]['display_level']= element('mem_level', $dbmember);
+
+
                 $result['list'][$key]['is_mobile'] = (element('cmt_device', $val) === 'mobile') ? true : false;
                 $result['list'][$key]['display_ip'] = '';
 
