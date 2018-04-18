@@ -170,7 +170,7 @@ class Event extends CB_Controller
                 $this->point->delete_point(
                     $mem_id,
                     'eventdownload'.$Ymd,
-                    $file_id,
+                    $post_id,
                     '구매'
                 );
                 alert('회원님은 포인트가 부족하므로 구매하실 수 없습니다. 구매시 ' . ($point_eventdownload * -1) . ' 포인트가 차감됩니다');
@@ -214,9 +214,9 @@ class Event extends CB_Controller
 
             
             if($this->input->post('redirecturl'))
-                redirect($this->input->post('redirecturl'));
+                echo($this->input->post('redirecturl'));
             else 
-               redirect(post_url(element('brd_key', $board), $post_id));
+               echo(post_url(element('brd_key', $board), $post_id));
             
         }
     }

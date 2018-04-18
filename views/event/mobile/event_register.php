@@ -172,7 +172,7 @@
     </style>
 </head>
 
-<body>
+<body style="max-width:700px;">
     <input type="hidden" name="redirecturl" value="<?php  echo current_full_url()?>">
     <section id='event_wrap'>
             <img src="<?php echo base_url('/assets/images/bitissue_event_01.png') ?>">
@@ -223,7 +223,7 @@
             </div>
             <img id="img_bottom" style='position: relative; ' src="<?php echo base_url('/assets/images/bitissue_event_03.png')?>">
     </section>
-    <div id="btn_mem_selfcert_phone">111</div>
+    <div id="btn_mem_selfcert_phone"></div>
 </body>
 </html>
 <script type="text/javascript">
