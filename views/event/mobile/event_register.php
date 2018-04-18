@@ -94,7 +94,7 @@
 
 
 
-        @media screen and (min-width:720px) {
+       /* @media screen and (min-width:720px) {
             #event_form{
                 top: -8px;
             }
@@ -139,7 +139,7 @@
             }
         }
 
-        @media screen and (max-width:719px) {
+        @media screen and (max-width:719px) {*/
             #event_form{
                 top:-5px;
             }
@@ -166,7 +166,7 @@
             #img_bottom{
                 top:-5px;
             }
-        }
+        /*}*/
 
         
     </style>

@@ -401,6 +401,14 @@ class Managelayout extends CI_Controller
                         <li>
                             '.mailto('bitissue.help@gmail.com','bitissue.help@gmail.com').'
                         </li>
+
+                        <li>
+                            |
+                        </li>
+                        
+                        <li>
+                            모바일버전으로 보기
+                        </li>
                     </ul>
 
                     <p>
