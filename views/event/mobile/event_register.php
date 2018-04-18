@@ -236,8 +236,8 @@ function submitContents(social_type) {
         var href;
         if( ! jQuery.trim($('#elh_mem_id').val()) ) {
             if ( ! confirm("닉네임을 입력하지 않으시면 500p 를 받으실 수 없습니다..\n 그래도 회원 가입 하시겠습니까?")) { return false; }
-            
-            social_connect_on(social_type);
+            $("input[name=socialtype]").val(social_type);
+            $("#btn_mem_selfcert_phone").click();
             return false;
         } else {
             
