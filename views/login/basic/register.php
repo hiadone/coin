@@ -54,11 +54,11 @@
 
                     <br><br>
 
-                    <button style="width: 100%; font-family: 'Jeju Gothic', sans-serif; background-color: #a61e23;">이 벤 트 바 로 가 기</button>
+                    <button type="button" onClick="location.href='<?php echo site_url('/event/event_register') ?>';" style="width: 100%; font-family: 'Jeju Gothic', sans-serif; background-color: #a61e23;">이 벤 트 바 로 가 기</button>
                     
                     <br><br><br>
 
-                     <span><a href="http://www.bitcoissue.com/document/provision">로그인과 함께 비트이슈의 이용약관 및 개인정보<br> 취급방침에 동의하신 것으로 간주합니다.</a></span>
+                     <span><a href="<?php echo document_url('provision')?>" title="이용약관및개인정보취급방침">로그인과 함께 비트이슈의 이용약관 및 개인정보<br> 취급방침에 동의하신 것으로 간주합니다.</a></span>
                 </div>
 
 

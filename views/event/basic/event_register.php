@@ -166,7 +166,7 @@
             <div id="event_form">
                 <?php
                 $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite', 'id' => 'fwrite');
-                echo form_open(base_url('/event/event_insert/'.element('post_id',element('post', $view))), $attributes);
+                echo form_open('', $attributes);
                 ?>
                     
                     <input type="hidden" name="socialtype" id="socialtype" value="">
@@ -212,9 +212,7 @@
             <img id="img_bottom" style='position: relative; ' src="<?php echo base_url('/assets/images/bitissue_event_03.png')?>">
     </section>
     <div id="btn_mem_selfcert_phone"></div>
-    <span class="input-group-btn">
-                            <button type="button" class="btn btn-md btn-default" id="btn_google_map" onClick="open_google_map();">지도</button>
-                        </span>
+    
 </body>
 </html>
 <script type="text/javascript">
@@ -227,15 +225,15 @@ function submitContents(social_type) {
         var href;
         if( ! jQuery.trim($('#elh_mem_id').val()) ) {
             if ( ! confirm("닉네임을 입력하지 않으시면 500p 를 받으실 수 없습니다..\n 그래도 회원 가입 하시겠습니까?")) { return false; }
-            alert(1);
+            
             social_connect_on(social_type);
             return false;
         } else {
-            alert(2);
+            
             view_event_register(social_type);
             return false;
         }
-        alert(3);
+        
     return false;
     
 }
@@ -268,5 +266,6 @@ function view_event_register(social_type) {
         $("#btn_mem_selfcert_phone").click();
     else return false;
 }
+
     //]]>
     </script>

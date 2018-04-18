@@ -48,6 +48,10 @@ $(document).on('click', '#btn_mem_selfcert_phone', function() {
 	if ($(this).data('redirecturl')) {
 		openurl += '?redirecturl=' +  $(this).data('redirecturl');
 	}
+
+    if ($('#elh_mem_id').val()) {
+        openurl += '?elh_mem_id=' +  $('#elh_mem_id').val();
+    }
 	
 	var popupWindow = window.open( openurl, 'auth_popup', 'left=200, top=100, status=0, width=450, height=550' );
 	popupWindow.focus();

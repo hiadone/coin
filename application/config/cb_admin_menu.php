@@ -86,6 +86,7 @@ $config['admin_page_menu'] = array(
 			'searchkeyword'            => array('인기검색어현황', ''),
 			'currentvisitor'                => array('현재접속자', ''),
 			'registerlog'                    => array('회원가입경로', ''),
+			'niceselfcert'                    => array('본인인증통계', ''),
 		),
 	),
 	'sms'                                       => array(

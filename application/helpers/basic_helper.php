@@ -1778,3 +1778,26 @@ if ( ! function_exists('check_cache_dir')) {
         return true;
     }
 }
+
+/**
+ * 생년 월일 얻기
+ */
+if ( ! function_exists('get_birthdate')) {
+    function get_birthdate($birthdate, $hyphen=1)
+    {
+        
+        if ($hyphen) {
+            $preg = "$1년 $2월 $3일";
+        } else {
+            $preg = "$1$2$3";
+        }
+
+        $birthdate = str_replace('-', '', trim($birthdate));
+        $birthdate = preg_replace(
+            "/([0-9]{4})([0-9]{2})([0-9]{2})$/",
+            $preg,
+            $birthdate
+        );
+        return $birthdate;
+    }
+}

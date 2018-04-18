@@ -40,7 +40,7 @@ class Post_model extends CB_Model
     /**
      * List 페이지 커스테마이징 함수
      */
-    public function get_post_list($limit = '', $offset = '', $where = '', $category_id = '', $orderby = '', $sfield = '', $skeyword = '', $sop = 'OR',$where_in)
+    public function get_post_list($limit = '', $offset = '', $where = '', $category_id = '', $orderby = '', $sfield = '', $skeyword = '', $sop = 'OR',$where_in='')
     {
 
         if ( ! in_array(strtolower($orderby), $this->allow_order)) {

@@ -48,7 +48,7 @@ class Media_selfcert_history_model extends CB_Model
 
         $this->db->where('left(msh_datetime, 10) >=', $start_date);
         $this->db->where('left(msh_datetime, 10) <=', $end_date);
-        $this->db->select('msh_referer');
+        $this->db->select('msh_mobileco');
         $qry = $this->db->get($this->_table);
         $result = $qry->result_array();
 

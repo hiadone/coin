@@ -434,6 +434,7 @@ class Selfcert extends CB_Controller
             $niceconfig['enc_data']=$enc_data;
 
             $niceconfig['post_id']=$this->input->get('post_id',null,0);
+            $niceconfig['elh_mem_id']=$this->input->get('elh_mem_id',null,0);
                         
             //nice 요청에 의해 reqseq값은 성공페이지로 갈 경우 검증을 위하여 세션에 담아둔다.
 
@@ -1186,6 +1187,17 @@ class Selfcert extends CB_Controller
                         }
                     }
 
+                    $where = array(
+                        'msh_dupinfo' => $dupinfo,
+                    );
+                    $this->load->model('Media_selfcert_history_model');
+                    $selfcert_count = $this->Media_selfcert_history_model->count_by($where);
+
+                    // if($selfcert_count > 0 ){
+                    //     $selfcertinfo['message'] = '이미 이벤트 참여한 핸드폰 번호입니다.';
+                    //     $view['view']['selfcert_result'] = 'fail';
+                    //     $msh_status=2;
+                    // }
                     $insertdata = array(
                         'post_id' => $this->input->post("param_r1",null,0),
                         'msh_company' => 'NICE',
@@ -1199,11 +1211,11 @@ class Selfcert extends CB_Controller
                         'msh_mobileco' => element('mobileco', $selfcertinfo),
                         'msh_datetime' => cdate('Y-m-d H:i:s'),
                         'msh_ip' => $this->input->ip_address(),
-                        'msh_referer' => $this->input->get('param_r2', null, ''),
+                        'msh_mem_id' => $this->input->post('param_r2', null, ''),
                         'msh_status' => $msh_status,
                     );
 
-                    $this->load->model('Media_selfcert_history_model');
+                    
                     $this->Media_selfcert_history_model->insert($insertdata);
                 }
             }

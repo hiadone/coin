@@ -51,12 +51,12 @@
                             입력하면 가입고객 전원 500P 적립
                         </strong>
 
-                        <button>이 벤 트 바 로 가 기</button>
+                        <button type="button" onClick="location.href='<?php echo site_url('/event/event_register') ?>';">이 벤 트 바 로 가 기</button>
 
                         <br><br>
                         
                         <span class='small_font'>
-                            <a href="http://www.bitcoissue.com/document/provision">
+                            <a href="<?php echo document_url('provision')?>" title="이용약관및개인정보취급방침">
                             로그인과 함께 비트이슈의 이용약관 및<br> 
                             개인정보취급방침에 동의하신 것으로 간주합니다.
                             </a>
