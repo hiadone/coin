@@ -422,7 +422,7 @@ function view_register(id) {
     
     var comment_url = cb_url + '/login/register' ;
     var hash = window.location.hash;
-    alert(id);
+    
     $('#' + id).load(comment_url, function() {
         if (hash) {
             var st = $(hash).offset().top;
