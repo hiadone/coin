@@ -2,6 +2,9 @@
             if ($this->cbconfig->item('use_sociallogin')) {
                 $this->managelayout->add_js(base_url('assets/js/social_login.js'));
                 }
+            if ($this->cbconfig->item('use_selfcert') && ($this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_ipin'))) {
+                    $this->managelayout->add_js(base_url('assets/js/member_selfcert.js'));
+                }
             ?>
     
     <style>
@@ -54,7 +57,6 @@
 
         #event_form form span{
             display: inline-block;
-            font-size: 12px;
             line-height: 15px;
             color: #a61e24;
             font-family: 'Jeju Gothic', sans-serif;
@@ -90,6 +92,8 @@
             float: right;
         }
 
+
+
         @media screen and (min-width:720px) {
             #event_form{
                 top: -8px;
@@ -102,7 +106,8 @@
             #event_form h2{
                 font-size: 14px;
                 font-family: 'Jeju Gothic', sans-serif;
-                text-align: left;
+                line-height: 18px;
+                text-align: center;
                 margin-bottom: 10px;
                 font-weight: normal;
             }
@@ -124,7 +129,7 @@
             }
 
             #event_form span{
-                font-size: 12px;
+                font-size: 11px;
                 font-family: 'Jeju Gothic', sans-serif;
                 color: #a61e24;
             }
@@ -143,16 +148,27 @@
                 margin-bottom: 10px;
             }
 
-            #event_form form span{
+            #event_form h2{
+                font-size: 13px;
+                font-family: 'Jeju Gothic', sans-serif;
+                line-height: 17px;
+                text-align: center;
+                margin-bottom: 10px;
+                font-weight: normal;
+            }
+
+            #event_form span{
                 font-size: 11px;
+                font-family: 'Jeju Gothic', sans-serif;
+                color: #a61e24;
             }
 
             #img_bottom{
-                top:-15px;
+                top:-5px;
             }
-
-
         }
+
+        
     </style>
 </head>
 
@@ -207,7 +223,7 @@
             </div>
             <img id="img_bottom" style='position: relative; ' src="<?php echo base_url('/assets/images/bitissue_event_03.png')?>">
     </section>
-    <div id="btn_mem_selfcert_phone"></div>
+    <div id="btn_mem_selfcert_phone">111</div>
 </body>
 </html>
 <script type="text/javascript">

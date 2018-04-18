@@ -97,8 +97,8 @@
                 $("ul.tab09_tabs li").removeClass("active").css("color" , "#333");
                 $(this).addClass("active").css({"color": "#1c446d"});
                 $(".tab09_cont").hide()
-                coinActiveTab = $(this).attr("rel");
-                $("#" + coinActiveTab).fadeIn();
+                activeTab = $(this).attr("rel");
+                $("#" + activeTab).fadeIn();
             });
 
         // 접기버튼 클릭시 conin_info 슬라이드 업 스크립트

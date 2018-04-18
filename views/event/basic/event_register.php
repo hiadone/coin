@@ -7,7 +7,7 @@
     }
             ?>
 
-    <style>
+     <style>
         @font-face {
           font-family: 'Jeju Gothic';
           font-style: normal;
@@ -57,7 +57,6 @@
 
         #event_form form span{
             display: inline-block;
-            font-size: 12px;
             line-height: 15px;
             color: #a61e24;
             font-family: 'Jeju Gothic', sans-serif;
@@ -93,6 +92,8 @@
             float: right;
         }
 
+
+
         @media screen and (min-width:720px) {
             #event_form{
                 top: -8px;
@@ -105,7 +106,8 @@
             #event_form h2{
                 font-size: 14px;
                 font-family: 'Jeju Gothic', sans-serif;
-                text-align: left;
+                line-height: 18px;
+                text-align: center;
                 margin-bottom: 10px;
                 font-weight: normal;
             }
@@ -127,7 +129,7 @@
             }
 
             #event_form span{
-                font-size: 12px;
+                font-size: 11px;
                 font-family: 'Jeju Gothic', sans-serif;
                 color: #a61e24;
             }
@@ -146,16 +148,27 @@
                 margin-bottom: 10px;
             }
 
-            #event_form form span{
+            #event_form h2{
+                font-size: 13px;
+                font-family: 'Jeju Gothic', sans-serif;
+                line-height: 17px;
+                text-align: center;
+                margin-bottom: 10px;
+                font-weight: normal;
+            }
+
+            #event_form span{
                 font-size: 11px;
+                font-family: 'Jeju Gothic', sans-serif;
+                color: #a61e24;
             }
 
             #img_bottom{
-                top:-15px;
+                top:-5px;
             }
-
-
         }
+
+        
     </style>
 </head>
 
