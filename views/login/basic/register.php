@@ -34,6 +34,10 @@
             <?php
             if ($this->cbconfig->item('use_sociallogin')) {
                 $this->managelayout->add_js(base_url('assets/js/social_login.js'));
+
+            if ($this->cbconfig->item('use_selfcert') && ($this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_ipin'))) {
+        $this->managelayout->add_js(base_url('assets/js/member_selfcert.js'));
+    }
             ?>
             <input type="hidden" id="elh_mem_id" value="<?php echo element('elh_mem_id',$view); ?>">
             <section class="ham_cont02 ham_login">
@@ -62,11 +66,16 @@
                 </div>
 
 
-                
+                <?php
+                $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite2', 'id' => 'fwrite2');
+                echo form_open('', $attributes);
+                ?>
+                    <input type="hidden" name="socialtype" id="socialtype" value="">
+                    <input type="hidden" name="selfcert_type" id="selfcert_type" value="" />
                 <ul >
                     <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
                     <li style="background-color:#fbe300; color:#3a1e1f">
-                        <a href="javascript:;" onClick="social_connect_on('kakao');" title="카카오 로그인">
+                        <a href="javascript:;" onClick="view_register('kakao');" title="카카오 로그인">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_talk.png" alt="ham_talk_img">
                             <figcaption class="big_font">카 카 오 톡 로 그 인</figcaption>
@@ -79,7 +88,7 @@
                     <?php } ?>
                     <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
                     <li style="background-color:#1ec802;">
-                        <a href="javascript:;" onClick="social_connect_on('naver');" title="네이버 로그인" style="color:#fff;">
+                        <a href="javascript:;" onClick="view_register('naver');" title="네이버 로그인" style="color:#fff;">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_naver.png" alt="ham_naver_img">
                             <figcaption class="big_font">네 이 버 로 그 인</figcaption>
@@ -92,7 +101,7 @@
                     <?php } ?>
                     <?php if ($this->cbconfig->item('use_sociallogin_facebook')) {?>
                     <li style="background-color:#3c589e;color:#fff;">
-                        <a href="javascript:;" onClick="social_connect_on('facebook');" title="페이스북 로그인" style="color:#fff;">
+                        <a href="javascript:;" onClick="view_register('facebook');" title="페이스북 로그인" style="color:#fff;">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_face.png" alt="ham_face_img">
                             <figcaption class="big_font">페 이 스 북 로 그 인</figcaption>
@@ -105,9 +114,10 @@
                     <?php } ?>
                 </ul>
             </section>
+            <?php echo form_close(); ?>
         <?php } ?>
        
-
+<div id="btn_mem_selfcert_phone"></div>
 <script type="text/javascript">
 //<![CDATA[
 $(function() {
@@ -125,5 +135,15 @@ $(document).on('change', "input:checkbox[name='autologin']", function() {
         $('.autologinalert').hide(300);
     }
 });
+
+
+function view_register(social_type) {
+    
+    $("input[name=socialtype]").val(social_type);
+    
+    
+    $("#btn_mem_selfcert_phone").click();
+    return false;
+}
 //]]>
 </script>

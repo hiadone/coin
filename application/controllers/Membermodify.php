@@ -1290,7 +1290,7 @@ class Membermodify extends CB_Controller
 
 
             } else {
-                $view['view']['result_message'] = '회원정보가 변경되었습니다. <br />감사합니다';
+                $view['view']['result_message'] = '회원가입이 완료 되었습니다. <br />감사합니다';
             }
 
             // 이벤트가 존재하면 실행합니다
@@ -2005,6 +2005,7 @@ class Membermodify extends CB_Controller
 
             $this->session->sess_destroy();
 
+            redirect('/');
             // 이벤트가 존재하면 실행합니다
             $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
 
