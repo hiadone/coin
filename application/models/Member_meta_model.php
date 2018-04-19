@@ -180,6 +180,19 @@ class Member_meta_model extends CB_Model
         
     }
 
+     public function is_already_selfcert_array($mem_id = 0, $selfkey = '')
+    {
+        $this->db->select('mem_id');
+        $this->db->where('mmt_key', 'selfcert_key');
+        $this->db->where('mmt_value', $selfkey);
+        $this->db->where('mem_id <>', $mem_id);
+        $qry = $this->db->get($this->_table);
+        $result = $qry->result_array();
+
+        return $result;
+        
+    }
+
     public function is_already_social_type($mem_id = 0,$social_type='')
     {
         $this->db->select('mem_id');

@@ -1184,13 +1184,16 @@ class Selfcert extends CB_Controller
                 $already='';
                 $social_already='';
                 $this->load->model('Member_meta_model');
-                $already = $this->Member_meta_model->is_already_selfcert($mem_id, element('selfcert_key', $selfcertinfo));
-                $social_already = $this->Member_meta_model->is_already_social_type(element('mem_id', $already), element('selfcert_param_r1', $selfcertinfo));
-                if (element('mem_id', $social_already) && !empty($selfcertinfo['selfcert_param_r1']) ) {
-                    $meminfo = $this->Member_model->get_one(element('mem_id', $social_already), 'mem_nickname');
-                    alert_close("입력하신 본인확인 정보로 가입된 내역이 존재합니다.\\n회원닉네임 : " . element('mem_nickname', $meminfo));
-                }
+                $already = $this->Member_meta_model->is_already_selfcert_array($mem_id, element('selfcert_key', $selfcertinfo));
+                foreach($already as $value){
+                    $social_already = $this->Member_meta_model->is_already_social_type(element('mem_id', $value), element('selfcert_param_r1', $selfcertinfo));
+                    if (element('mem_id', $social_already) && !empty($selfcertinfo['selfcert_param_r1']) ) {
+                        $meminfo = $this->Member_model->get_one(element('mem_id', $social_already), 'mem_nickname');
 
+                        alert_close("입력하신 본인확인 정보로 가입된 내역이 존재합니다.\\n회원닉네임 : " . element('mem_nickname', $meminfo));
+                    }
+                }
+                
                 $this->session->set_userdata(
                     'selfcertinfo',
                     $selfcertinfo

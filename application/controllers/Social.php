@@ -1029,7 +1029,7 @@ class Social extends CB_Controller
                 $mem_id = $this->Member_model->insert($insertdata);
                 $this->load->model('Member_meta_model');
                 if ($selfcert_meta) {
-                    echo "a";
+                    
                     foreach ($selfcert_meta as $certkey => $certvalue) {
                         $metadata[$certkey] = $certvalue;
                     }
@@ -1039,6 +1039,7 @@ class Social extends CB_Controller
                     );
                     $selfcertwhere = array(
                         'msh_cert_key' => $selfcert_key,
+                        'mem_id' => 0
                     );
 
                     $this->load->model('Member_selfcert_history_model');
