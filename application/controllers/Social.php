@@ -761,7 +761,7 @@ class Social extends CB_Controller
 
                 echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
                 if($leverup_message)echo '<script type="text/javascript"> alert("'.$leverup_message.'");</script>';
-                echo '<script type="text/javascript">alert("이미 로그인 한 상태입니다"); window.close();';
+                // echo '<script type="text/javascript">alert("이미 로그인 한 상태입니다"); window.close();';
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
                 } else {
@@ -829,11 +829,11 @@ class Social extends CB_Controller
                     $this->session->unset_userdata('logintype');
                 }
                 $leverup_message=$this->leverup();
-            
+                $this->session->unset_userdata('selfcertinfo');
                 echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
                 if($leverup_message)echo '<script type="text/javascript"> alert("'.$leverup_message.'");</script>';
                 if($register_message)echo '<script type="text/javascript"> alert("'.$register_message.'");</script>';
-                echo '<script type="text/javascript"> window.close();';
+                // echo '<script type="text/javascript"> window.close();';
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
                 } else {
@@ -847,6 +847,53 @@ class Social extends CB_Controller
 
                 if ($this->cbconfig->item('use_register_block')) {
                     alert_close('현재 이 사이트는 회원가입이 금지되어 있습니다.');
+                }
+
+                if ($this->cbconfig->item('use_selfcert') && $this->cbconfig->item('use_selfcert_required') &&  ! $this->session->userdata('selfcertinfo')) {
+                    if ( ! $this->session->userdata('selfcertinfo')) {
+                        alert_close('본인 확인 후에 회원가입이 가능합니다.');
+                    }
+                }
+                
+
+
+                $selfcert_phone = $selfcert_username = $selfcert_birthday = $selfcert_sex = '';
+                $selfcert_meta = '';
+                $metadata = array();
+                print_r($this->session->userdata('selfcertinfo'));
+                if ($this->cbconfig->item('use_selfcert') && $this->session->userdata('selfcertinfo')) {
+                    $selfcertinfo = $this->session->userdata('selfcertinfo');
+                    if (element('selfcert_type', $selfcertinfo) == 'phone') {
+                        if ($this->cbconfig->item('use_selfcert_phone') == 'kcb' OR $this->cbconfig->item('use_selfcert_phone') == 'kcp' OR $this->cbconfig->item('use_selfcert_phone') == 'nice') {
+                            $selfcert_phone = element('selfcert_phone', $selfcertinfo);
+                            $selfcert_username = element('selfcert_username', $selfcertinfo);
+                            $selfcert_birthday = element('selfcert_birthday', $selfcertinfo);
+                            $selfcert_sex = element('selfcert_sex', $selfcertinfo);
+                            $selfcert_key = element('selfcert_key', $selfcertinfo);
+                            $selfcert_local_code = element('selfcert_local_code', $selfcertinfo);
+                            $selfcert_meta = array(
+                                'selfcert_type' => element('selfcert_type', $selfcertinfo),
+                                'selfcert_company' => $this->cbconfig->item('use_selfcert_phone'),
+                                'selfcert_comm_id' => element('selfcert_comm_id', $selfcertinfo),
+                                'selfcert_phone' => $selfcert_phone,
+                                'selfcert_username' => $selfcert_username,
+                                'selfcert_birthday' => $selfcert_birthday,
+                                'selfcert_sex' => $selfcert_sex,
+                                'selfcert_key' => $selfcert_key,
+                                'selfcert_local_code' => $selfcert_local_code,
+                                'param_r2' => element('selfcert_param_r2', $selfcertinfo),
+                                'social_type' => $social_type,
+                            );
+                        }
+                    }
+                }
+
+                $this->load->model('Member_meta_model');
+                $already = $this->Member_meta_model->is_already_selfcert($mem_id, element('selfcert_key', $selfcertinfo));
+
+                 if (element('mem_id', $already) && !empty($selfcertinfo['selfcert_param_r1']) && $selfcertinfo['selfcert_param_r1'] === element('param_r1', $already)) {
+                    $meminfo = $this->Member_model->get_one(element('mem_id', $already), 'mem_userid');
+                    alert_close("입력하신 본인확인 정보로 가입된 내역이 존재합니다.\\n회원닉네임 : " . element('mem_nickname', $meminfo));
                 }
 
                 $socialwhere = array(
@@ -967,6 +1014,7 @@ class Social extends CB_Controller
                     $k++;
                 }
 
+
                 $mem_level = (int) $this->cbconfig->item('register_level');
                 $insertdata = array();
                 $insertdata['mem_userid'] = $user_id;
@@ -979,13 +1027,40 @@ class Social extends CB_Controller
                 $insertdata['mem_lastlogin_ip'] = $this->input->ip_address();
 
                 $mem_id = $this->Member_model->insert($insertdata);
+                $this->load->model('Member_meta_model');
+                if ($selfcert_meta) {
+                    echo "a";
+                    foreach ($selfcert_meta as $certkey => $certvalue) {
+                        $metadata[$certkey] = $certvalue;
+                    }
 
+                    $selfcertupdatedata = array(
+                        'mem_id' => $mem_id
+                    );
+                    $selfcertwhere = array(
+                        'msh_cert_key' => $selfcert_key,
+                    );
+
+                    $this->load->model('Member_selfcert_history_model');
+                    $this->Member_selfcert_history_model->update('', $selfcertupdatedata, $selfcertwhere);
+                }
+                print_r($metadata);
+                $this->Member_meta_model->save($mem_id, $metadata);
+
+                $updatedata = array(
+                        'mem_username' => $selfcert_username,
+                        'mem_phone' => $selfcert_phone,
+                        'mem_birthday' => $selfcert_birthday,
+                        'mem_sex' => $selfcert_sex,
+                    );
+                $this->Member_model->update($mem_id, $updatedata);
                 $nickinsert = array(
                     'mem_id' => $mem_id,
                     'mni_nickname' => $nickname,
                     'mni_start_datetime' => cdate('Y-m-d H:i:s'),
                 );
                 $this->Member_nickname_model->insert($nickinsert);
+
 
                 $levelhistoryinsert = array(
                     'mem_id' => $mem_id,
@@ -1215,12 +1290,13 @@ class Social extends CB_Controller
                     $url_after_login = site_url($url_after_login);
                 }
 
-                
+                $this->session->unset_userdata('selfcertinfo');
+
                 // 이벤트가 존재하면 실행합니다
                 Events::trigger('common_login_after', $eventname);
 
                 echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
-                echo '<script type="text/javascript">window.close();';
+                // echo '<script type="text/javascript">window.close();';
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
                 } else {

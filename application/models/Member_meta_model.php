@@ -179,4 +179,17 @@ class Member_meta_model extends CB_Model
         return $result;
         
     }
+
+    public function is_already_social_type($mem_id = 0,$social_type='')
+    {
+        $this->db->select('mem_id');
+        $this->db->where('mmt_key', 'social_type');
+        $this->db->where('mmt_value', $social_type);
+        $this->db->where('mem_id', $mem_id);
+        $qry = $this->db->get($this->_table);
+        $result = $qry->row_array();
+
+        return $result;
+        
+    }
 }

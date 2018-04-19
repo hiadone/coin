@@ -10,7 +10,7 @@
 
 <input type="hidden" name="m" value="checkplusSerivce">                     <!-- 필수 데이타로, 누락하시면 안됩니다. -->
 <input type="hidden" name="EncodeData" value="<?php echo element('enc_data', element('niceconfig', $view)); ?>">        <!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
-<input type="hidden" name="param_r1" value="<?php echo element('post_id', element('niceconfig', $view)); ?>">
+<input type="hidden" name="param_r1" value="<?php echo element('socialtype', element('niceconfig', $view)); ?>">
 <input type="hidden" name="param_r2" value="<?php echo element('elh_mem_id', element('niceconfig', $view)); ?>">
 </form>
 

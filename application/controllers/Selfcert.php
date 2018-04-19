@@ -433,7 +433,7 @@ class Selfcert extends CB_Controller
 
             $niceconfig['enc_data']=$enc_data;
 
-            $niceconfig['post_id']=$this->input->get('post_id',null,0);
+            $niceconfig['socialtype']=$this->input->get('socialtype',null,0);
             $niceconfig['elh_mem_id']=$this->input->get('elh_mem_id',null,0);
                         
             //nice 요청에 의해 reqseq값은 성공페이지로 갈 경우 검증을 위하여 세션에 담아둔다.
@@ -1085,7 +1085,8 @@ class Selfcert extends CB_Controller
         if ($enc_data != "") {
 
             $plaindata = exec($niceconfig['home_dir'].' DEC '.$niceconfig['site_cd'].' '.$niceconfig['site_pw'].' '.$enc_data);     // 암호화된 결과 데이터의 복호화
-            
+            $mem_id = (int) $this->member->item('mem_id');
+
             if ($plaindata == -1){
                 alert_close("암/복호화 시스템 오류");
             }else if ($plaindata == -4){
@@ -1133,93 +1134,148 @@ class Selfcert extends CB_Controller
                 } else {
 
                     $selfcertinfo['ciphertime'] = $ciphertime;
-                    $selfcertinfo['name'] = iconv('euc-kr', 'utf-8',$name);
+                    $selfcertinfo['selfcert_username'] = iconv('euc-kr', 'utf-8',$name);
                     //$name = $this->getValue($plaindata , "UTF8_NAME"); //charset utf8 사용시 주석 해제 후 사용
-                    $selfcertinfo['birthdate'] = $birthdate;
-                    $selfcertinfo['gender'] = $gender;
+                    $selfcertinfo['selfcert_birthday'] = $birthdate;
+                    $selfcertinfo['selfcert_sex'] = $gender;
                     $selfcertinfo['nationalinfo'] = $nationalinfo;  //내/외국인정보(사용자 매뉴얼 참조)
-                    $selfcertinfo['dupinfo'] = empty($dupinfo) ? '':$dupinfo;
+                    $selfcertinfo['selfcert_key'] = empty($dupinfo) ? '':$dupinfo;
                     $selfcertinfo['conninfo'] = $conninfo;
-                    $selfcertinfo['mobileno'] = $mobileno;
-                    $selfcertinfo['mobileco'] = empty($mobileco) ? '':$mobileco; 
+                    $selfcertinfo['selfcert_phone'] = $mobileno;
+                    $selfcertinfo['selfcert_comm_id'] = empty($mobileco) ? '':$mobileco; 
+
+                    $selfcertinfo['selfcert_param_r1'] = empty($this->input->post('param_r1')) ? '':$this->input->post('param_r1'); 
+                    $selfcertinfo['selfcert_param_r2'] = empty($this->input->post('param_r2')) ? '':$this->input->post('param_r2'); 
+
 
 
                     $selfcertinfo['message'] = '정상적으로 신청되었습니다.';
-                    $view['view']['selfcert_result'] = 'success';
-                    $msh_status=1;
-                    $extravars = $this->Post_extra_vars_model->get_all_meta($this->input->post('param_r1', null, 0));
+
+
+                    $selfcertinfo['selfcert_type'] = 'phone';
+
+                                    // 인증내역기록
+                                    $insertdata = array(
+                                        'mem_id' => $mem_id,
+                                        'msh_company' => 'NICE',
+                                        'msh_certtype' => 'phone',
+                                        'msh_cert_key' => element('selfcert_key', $selfcertinfo),
+                                        'msh_datetime' => cdate('Y-m-d H:i:s'),
+                                        'msh_ip' => $this->input->ip_address(),
+                                    );
+
+                                    $this->load->model('Member_selfcert_history_model');
+                                    $this->Member_selfcert_history_model->insert($insertdata);
+
+                                    // 중복정보 체크
+                $selfcertwhere = array(
+                    'msh_cert_key' => element('selfcert_key', $selfcertinfo),
+                );
+
+                $this->load->model('Member_selfcert_history_model');
+                $already = $this->Member_selfcert_history_model->get('','', $selfcertwhere);
+
+                if (count($already) > 0 && !empty($selfcertinfo['selfcert_param_r2'])) {
+
+                    $meminfo = $this->Member_model->get_one(element('mem_id', $already), 'mem_userid');
+                    alert_close("입력하신 본인확인 정보로 이벤트에 참여한 내역이 존재합니다.");
+                }
+
+                $already='';
+                $social_already='';
+                $this->load->model('Member_meta_model');
+                $already = $this->Member_meta_model->is_already_selfcert($mem_id, element('selfcert_key', $selfcertinfo));
+                $social_already = $this->Member_meta_model->is_already_social_type(element('mem_id', $already), element('selfcert_param_r1', $selfcertinfo));
+                if (element('mem_id', $social_already) && !empty($selfcertinfo['selfcert_param_r1']) ) {
+                    $meminfo = $this->Member_model->get_one(element('mem_id', $social_already), 'mem_nickname');
+                    alert_close("입력하신 본인확인 정보로 가입된 내역이 존재합니다.\\n회원닉네임 : " . element('mem_nickname', $meminfo));
+                }
+
+                $this->session->set_userdata(
+                    'selfcertinfo',
+                    $selfcertinfo
+                );
+
+                if ($mem_id) {
+                    $selfcert_phone = element('selfcert_phone', $selfcertinfo);
+                    $selfcert_username = element('selfcert_username', $selfcertinfo);
+                    $selfcert_birthday = element('selfcert_birthday', $selfcertinfo);
+                    $selfcert_sex = element('selfcert_sex', $selfcertinfo);
+                    $selfcert_key = element('selfcert_key', $selfcertinfo);
+                    $metadata = array(
+                        'selfcert_type' => element('selfcert_type', $selfcertinfo),
+                        'selfcert_company' => $this->cbconfig->item('use_selfcert_phone'),
+                        'selfcert_comm_id' => element('selfcert_comm_id', $selfcertinfo),
+                        'selfcert_phone' => $selfcert_phone,
+                        'selfcert_username' => $selfcert_username,
+                        'selfcert_birthday' => $selfcert_birthday,
+                        'selfcert_sex' => $selfcert_sex,
+                        'selfcert_key' => $selfcert_key,
+                        'param_r2' => element('selfcert_param_r2', $selfcertinfo),
+                        'social_type' => element('selfcert_param_r1', $selfcertinfo),
+                    );
+                    $updatedata = array(
+                        'mem_username' => $selfcert_username,
+                        'mem_phone' => $selfcert_phone,
+                        'mem_birthday' => $selfcert_birthday,
+                        'mem_sex' => $selfcert_sex,
+                    );
+                    $this->Member_meta_model->save($mem_id, $metadata);
+                    $this->Member_model->update($mem_id, $updatedata);
+                }
+
+
+                $view['view']['selfcert_result'] = 'success';
+                    
+                    
+                    // $this->load->model('Media_selfcert_history_model');
+                    // if(!empty($this->input->post('param_r2'))){
+                    //     $where = array(
+                    //         'msh_dupinfo' => $dupinfo,
+                    //     );
+                    //     $selfcert_count = $this->Media_selfcert_history_model->count_by($where);
+
+                    //     if($selfcert_count > 0 ){
+                    //         $selfcertinfo['message'] = '이미 이벤트 참여한 핸드폰 번호입니다.';
+                    //         $view['view']['selfcert_result'] = 'fail';
+                    //         $msh_status=2;
+                    //     }
+                    // }
+
+                    // if(!empty($this->input->post('param_r1'))){
+                    //     $where = array(
+                    //         'msh_dupinfo' => $dupinfo,
+                    //         'msh_socialtype' => $this->input->post('param_r1')
+                    //     );
+                    //     $selfcert_count = $this->Media_selfcert_history_model->count_by($where);
+
+                    //     if($selfcert_count > 0 ){
+                    //         $selfcertinfo['message'] = '이미 '.$this->input->post('param_r1').' 으로 가입한 핸드폰 번호입니다.';
+                    //         $view['view']['selfcert_result'] = 'fail';
+                    //         $msh_status=2;
+                    //     }
+                    // }
+                    // $insertdata = array(
+                    //     'post_id' => 0,
+                    //     'msh_company' => 'NICE',
+                    //     'msh_authtype' => 'phone',
+                    //     'msh_dupinfo' => element('dupinfo', $selfcertinfo),
+                    //     'msh_name' => element('name', $selfcertinfo),
+                    //     'msh_birthdate' => element('birthdate', $selfcertinfo),
+                    //     'msh_gender' => element('gender', $selfcertinfo),
+                    //     'msh_nationalinfo' => element('nationalinfo', $selfcertinfo),
+                    //     'msh_mobileno' => element('mobileno', $selfcertinfo),
+                    //     'msh_mobileco' => element('mobileco', $selfcertinfo),
+                    //     'msh_datetime' => cdate('Y-m-d H:i:s'),
+                    //     'msh_ip' => $this->input->ip_address(),
+                    //     'msh_mem_id' => $this->input->post('param_r2', null, ''),
+                    //     'msh_status' => $msh_status,
+                    //     'msh_socialtype' =>$this->input->post("param_r1",null,''),
+                        
+                    // );
 
                     
-                    if(element('campaign_gender',$extravars)){
-                        if(element('campaign_gender',$extravars)==='남성') {
-                            if(element('gender', $selfcertinfo)!=='1') {
-                                
-                                $selfcertinfo['message'] = '남성만 참여 할수 있습니다.';
-                                $view['view']['selfcert_result'] = 'fail';
-                                $msh_status=2;
-                            }
-                        }
-
-                        if(element('campaign_gender',$extravars)==='여성') {
-                            if(element('gender', $selfcertinfo)!=='0') {
-                                $selfcertinfo['message'] = '여성만 참여 할수 있습니다.';
-                                $view['view']['selfcert_result'] = 'fail';
-                                $msh_status=2;
-                            }
-                        }
-                    } 
-                    if(element('campaign_age',$extravars) && $view['view']['selfcert_result']==='success'){
-                        $campaign_age = explode("~",element('campaign_age',$extravars));
-
-                        $campaign_age[0]=trim($campaign_age[0]);
-                        $campaign_age[1]=trim($campaign_age[1]);
-                     
-                        if($campaign_age[0] && $campaign_age[0] > is_age(element('birthdate', $selfcertinfo))){
-                            $selfcertinfo['message'] = $campaign_age[0].'세 이상만 참여 할수 있습니다.';
-                            $view['view']['selfcert_result'] = 'fail';
-                            $msh_status=2;
-                        }
-                        
-                        if($campaign_age[1] && $campaign_age[1] < is_age(element('birthdate', $selfcertinfo))){
-                            $selfcertinfo['message'] = $campaign_age[1].'세 이하만 참여 할수 있습니다.';
-                            $view['view']['selfcert_result'] = 'fail';
-                            $msh_status=2;
-                        }
-                    }
-
-                    $where = array(
-                        'msh_dupinfo' => $dupinfo,
-                    );
-                    $this->load->model('Media_selfcert_history_model');
-                    if(!empty($this->input->post('param_r2'))){
-                        
-                        $selfcert_count = $this->Media_selfcert_history_model->count_by($where);
-
-                        if($selfcert_count > 0 ){
-                            $selfcertinfo['message'] = '이미 이벤트 참여한 핸드폰 번호입니다.';
-                            $view['view']['selfcert_result'] = 'fail';
-                            $msh_status=2;
-                        }
-                    }
-                    $insertdata = array(
-                        'post_id' => $this->input->post("param_r1",null,0),
-                        'msh_company' => 'NICE',
-                        'msh_authtype' => 'phone',
-                        'msh_dupinfo' => element('dupinfo', $selfcertinfo),
-                        'msh_name' => element('name', $selfcertinfo),
-                        'msh_birthdate' => element('birthdate', $selfcertinfo),
-                        'msh_gender' => element('gender', $selfcertinfo),
-                        'msh_nationalinfo' => element('nationalinfo', $selfcertinfo),
-                        'msh_mobileno' => element('mobileno', $selfcertinfo),
-                        'msh_mobileco' => element('mobileco', $selfcertinfo),
-                        'msh_datetime' => cdate('Y-m-d H:i:s'),
-                        'msh_ip' => $this->input->ip_address(),
-                        'msh_mem_id' => $this->input->post('param_r2', null, ''),
-                        'msh_status' => $msh_status,
-                    );
-
-                    
-                    $this->Media_selfcert_history_model->insert($insertdata);
+                    // $this->Media_selfcert_history_model->insert($insertdata);
                 }
             }
         } else {
