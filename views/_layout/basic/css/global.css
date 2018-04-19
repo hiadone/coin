@@ -132,6 +132,8 @@ textarea{
 
 	nav li a{
 		padding:5px 0;
+		display: inline-block;
+		width: 100%;
 	}
 
 /*head_search css*/
