@@ -396,7 +396,12 @@ class Mypage extends CB_Controller
         /**
          * 페이지네이션을 생성합니다
          */
-        $config['base_url'] = site_url('mypage/point') . '?' . $param->replace('page');
+        
+        
+        if($this->input->is_ajax_request())
+        $config['base_url'] = 'javascript:return;';
+        else 
+            $config['base_url'] = site_url('mypage/point') . '?' . $param->replace('page');
         $config['total_rows'] = $result['total_rows'];
         $config['per_page'] = $per_page;
         $this->pagination->initialize($config);

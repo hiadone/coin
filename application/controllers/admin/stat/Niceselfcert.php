@@ -24,12 +24,12 @@ class Niceselfcert extends CB_Controller
     /**
      * 모델을 로딩합니다
      */
-    protected $models = array('Media_selfcert_history','Post');
+    protected $models = array('Member_selfcert_history','Post');
 
     /**
      * 이 컨트롤러의 메인 모델 이름입니다
      */
-    protected $modelname = 'Media_selfcert_history_model';
+    protected $modelname = 'Member_selfcert_history_model';
 
     /**
      * 헬퍼를 로딩합니다

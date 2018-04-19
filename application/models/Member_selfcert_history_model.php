@@ -47,4 +47,34 @@ class Member_selfcert_history_model extends CB_Model
         return $result;
 
     }
+
+
+    public function get_admin_list($limit = '', $offset = '', $where = '', $like = '', $findex = '', $forder = '', $sfield = '', $skeyword = '', $sop = 'OR',$where_in='')  
+    {   
+        if(!empty($where_in)) $where_in_['member_selfcert_history.'.key($where_in)]=$where_in[key($where_in)];
+        else $where_in_='';
+        
+        $select = 'member_selfcert_history.*';
+        
+        $result = $this->_get_list_common($select, '', $limit, $offset, $where, $like, $findex, $forder, $sfield, $skeyword, $sop,$where_in_);
+
+        return $result;
+    }
+
+
+    public function get_graph($start_date = '', $end_date = '')
+    {
+        if (empty($start_date) OR empty($end_date)) {
+            return false;
+        }
+
+        $this->db->where('left(msh_datetime, 10) >=', $start_date);
+        $this->db->where('left(msh_datetime, 10) <=', $end_date);
+        $this->db->select('msh_mobileco');
+        $qry = $this->db->get($this->_table);
+        $result = $qry->result_array();
+
+        return $result;
+    }
+    
 }

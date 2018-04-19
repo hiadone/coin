@@ -36,7 +36,7 @@
                             <th>인증일시</th>
                             <!-- <th>유입 URL</th>
                             <th>관련미디어</th> -->
-                            <th>상태</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -53,7 +53,7 @@
                             <td><?php echo display_datetime(element('msh_datetime', $result), 'full'); ?></td>
                             <!-- <td><a href="<?php echo goto_url(element('msh_referer', $result)); ?>" target="_blank"><?php echo element('msh_referer', $result); ?></a></td>
                             <td><?php echo html_escape(element('post_title', $result)); ?><a href="<?php echo goto_url(element('post_url', $result)); ?>" target="_blank"><span class="fa fa-external-link"></span></a></td> -->
-                            <td><?php echo element('msh_status', $result) === '1' ? '유효' : '무효'; ?></td>
+                            
                         </tr>
                     <?php
                         }

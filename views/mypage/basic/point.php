@@ -85,3 +85,16 @@
     </table>
     <nav class="post_page"><?php echo element('paging', $view); ?></nav>
 </div>
+
+<script>
+
+$('nav.post_page ul li a').click(function(){
+    
+    var comment_url = cb_url + '/mypage/point?page='+$(this).data('ci-pagination-page');
+    var hash = window.location.hash;
+
+    $('#view_member').load(comment_url, function() {
+    
+    });
+});
+</script>

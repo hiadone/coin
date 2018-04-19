@@ -231,7 +231,8 @@ class Attendance extends CB_Controller
             // 이벤트가 존재하면 실행합니다
             Events::trigger('after', $eventname);
 
-            $result = array('success' => $my_ranking . '등으로 출석하셨습니다. 감사합니다');
+            $result = array('success' => '출석하셨습니다. 감사합니다');
+            // $result = array('success' => $my_ranking . '등으로 출석하셨습니다. 감사합니다');
             exit(json_encode($result));
         }
     }

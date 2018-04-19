@@ -186,7 +186,7 @@ if (typeof(COMMON_JS) === 'undefined') {
 
         $.confirm({
             title: 'Confirm!',
-            content: '답변을 채택 하시겠습니까?<br>채택 취소는 불가능 합니다.<br>500P 를 돌려 받습니다.',
+            content: '답변을 채택 하시겠습니까?<br>채택 취소는 불가능 합니다.',
             buttons: {
                 확인: function () {
                     $.ajax({
