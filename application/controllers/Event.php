@@ -214,9 +214,9 @@ class Event extends CB_Controller
 
             
             if($this->input->post('redirecturl'))
-                echo($this->input->post('redirecturl'));
+                redirect($this->input->post('redirecturl'));
             else 
-               echo(post_url(element('brd_key', $board), $post_id));
+               redirect(post_url(element('brd_key', $board), $post_id));
             
         }
     }
