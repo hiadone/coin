@@ -47,8 +47,8 @@
                         <tr>
                             <td><?php echo number_format(element('num', $result)); ?></td>
                             <td><?php echo element('display_name', $result); ?></td>
-                            <td><?php echo get_phone(element('msh_mobileno', $result)); ?></td>
-                            <td><?php echo get_birthdate(element('msh_birthdate', $result)); ?></td>
+                            <td><?php echo get_phone(element('mem_phone', $result)); ?></td>
+                            <td><?php echo get_birthdate(element('mem_birthday', $result)); ?></td>
                             <td><?php echo element('msh_gender', $result) === '1' ? '남성' : '여성'; ?></td>
                             <td><?php echo display_datetime(element('msh_datetime', $result), 'full'); ?></td>
                             <!-- <td><a href="<?php echo goto_url(element('msh_referer', $result)); ?>" target="_blank"><?php echo element('msh_referer', $result); ?></a></td>

@@ -54,9 +54,9 @@ class Member_selfcert_history_model extends CB_Model
         if(!empty($where_in)) $where_in_['member_selfcert_history.'.key($where_in)]=$where_in[key($where_in)];
         else $where_in_='';
         
-        $select = 'member_selfcert_history.*';
-        
-        $result = $this->_get_list_common($select, '', $limit, $offset, $where, $like, $findex, $forder, $sfield, $skeyword, $sop,$where_in_);
+        $select = 'member_selfcert_history.*, member.mem_phone, member.mem_nickname, member.mem_birthday';
+        $join[] = array('table' => 'member', 'on' => 'member_selfcert_history.mem_id = member.mem_id', 'type' => 'left');
+        $result = $this->_get_list_common($select, $join, $limit, $offset, $where, $like, $findex, $forder, $sfield, $skeyword, $sop,$where_in_);
 
         return $result;
     }

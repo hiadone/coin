@@ -240,3 +240,37 @@ ul.de_pg_tab li.tab-current a{background:#2CC185;color:#fff}
 	.content_wrapper{margin-left:0;}
 	.search{display:none;}
 }
+
+
+/*post_page(게시물 목록의 pager) css*/
+        div.box-info{
+            text-align: center;
+            width: 100%;
+            display: inline-block;
+        }
+
+        div.box-info ul{
+            display: inline-block;
+            border:1px solid #ededed;
+        }
+
+        div.box-info li{
+            float: left;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-right: 1px solid #ededed;
+        }
+
+        div.box-info li:last-child{
+            border-right: 0;
+        }
+
+        div.box-info li{
+            font-weight: normal;
+        }
+
+        div.box-info li.page_active{
+            background-color: #f0f3f7;
+            font-weight: bold;
+        }

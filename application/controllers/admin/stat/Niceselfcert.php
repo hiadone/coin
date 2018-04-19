@@ -75,9 +75,9 @@ class Niceselfcert extends CB_Controller
         $offset = ($page - 1) * $per_page;
         $where = array();
         $where_in='';
-        if ($this->input->get('msh_status')) {
-            $where['msh_status'] = $this->input->get('msh_status');
-        }
+        
+            $where['member_selfcert_history.mem_id <> '] = 0;
+        
 
         if(!empty($this->input->get('post_id_', null, 0))) $where_in['post_id'] = $this->input->get('post_id_');
         
@@ -85,9 +85,9 @@ class Niceselfcert extends CB_Controller
         /**
          * 게시판 목록에 필요한 정보를 가져옵니다.
          */
-        $this->{$this->modelname}->allow_search_field = array('msh_name','msh_mobileno'); // 검색이 가능한 필드
+        $this->{$this->modelname}->allow_search_field = array('mem_nickname','mem_phone'); // 검색이 가능한 필드
         //$this->{$this->modelname}->search_field_equal = array('msh_name','msh_mobileno'); // 검색중 like 가 아닌 = 검색을 하는 필드
-        $this->{$this->modelname}->allow_order_field = array('msh_name'); // 정렬이 가능한 필드
+        $this->{$this->modelname}->allow_order_field = array('mem_nickname'); // 정렬이 가능한 필드
         $result = $this->{$this->modelname}
             ->get_admin_list($per_page, $offset, $where, '', $findex, $forder, $sfield, $skeyword,'',$where_in);
         $list_num = $result['total_rows'] - ($page - 1) * $per_page;
@@ -98,7 +98,7 @@ class Niceselfcert extends CB_Controller
                 $board = $this->board->item_all(element('brd_id', $val));
 
 
-                $result['list'][$key]['display_name'] = element('msh_name', $val);
+                $result['list'][$key]['display_name'] = element('mem_nickname', $val);
                 $result['list'][$key]['display_datetime'] = display_datetime(element('msh_datetime', $val));
                 
                 $result['list'][$key]['num'] = $list_num--;
