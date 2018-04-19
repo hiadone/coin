@@ -761,7 +761,7 @@ class Social extends CB_Controller
 
                 echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
                 if($leverup_message)echo '<script type="text/javascript"> alert("'.$leverup_message.'");</script>';
-                // echo '<script type="text/javascript">alert("이미 로그인 한 상태입니다"); window.close();';
+                echo '<script type="text/javascript">alert("이미 로그인 한 상태입니다"); window.close();';
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
                 } else {
@@ -833,7 +833,7 @@ class Social extends CB_Controller
                 echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
                 if($leverup_message)echo '<script type="text/javascript"> alert("'.$leverup_message.'");</script>';
                 if($register_message)echo '<script type="text/javascript"> alert("'.$register_message.'");</script>';
-                // echo '<script type="text/javascript"> window.close();';
+                echo '<script type="text/javascript"> window.close();';
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
                 } else {
@@ -1296,7 +1296,7 @@ class Social extends CB_Controller
                 Events::trigger('common_login_after', $eventname);
 
                 echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
-                // echo '<script type="text/javascript">window.close();';
+                echo '<script type="text/javascript">window.close();';
                 if ($url_after_login) {
                     echo 'window.opener.document.location.href = "' . $url_after_login . '";';
                 } else {
