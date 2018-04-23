@@ -181,29 +181,3 @@ if (element('highlight_keyword', $view)) {
     </script>
 <?php } ?>
 
-<script language = "javascript"> 
- var stateObj = { forward: "forward" };
-    $(document).ready(function() {
-    if (window.history && window.history.pushState) {
-
-        if('state' in window.history && window.history.state !== null) window.history.replaceState(stateObj, null, document.location.href);
-        else window.history.pushState(stateObj, null, document.location.href);
-
-        console.log(document.location.hash);
-        
-        var popped = ('state' in window.history && window.history.state !== null), initialURL = location.href;
-
-        $(window).bind('hashchange', function (event) {
-            alert(1);
-          // Ignore inital popstate that some browsers fire on page load
-          var initialPop = !popped && location.href == initialURL
-          popped = true
-          if (initialPop) return;
-          
-          parent.top.location.replace("http://newspopcon.com");
-          
-
-        });
-    }
-});
-</script>
