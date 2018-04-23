@@ -128,6 +128,7 @@ textarea{
 
 	header nav li:nth-child(2n){
 		width: 40px;
+		line-height: 23px;
 	}
 
 	nav li a{
@@ -718,10 +719,6 @@ textarea{
 	}
 
 
-
-
-
-
 /*메인메뉴 선택 css*/
 	nav .menu_check{
  		/*border-bottom:5px solid #1c446d;*/
@@ -782,3 +779,5 @@ textarea{
 		font-weight: bold;
 		font-family: 'Jeju Gothic', sans-serif;
 	}
+
+

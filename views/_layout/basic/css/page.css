@@ -602,6 +602,7 @@
 	 	text-overflow: ellipsis;
 	 	white-space: nowrap;
 	 	overflow: hidden;
+	 	padding-top: 5px;
 	 }
 
 	 .webtoon_sub figcaption p{
