@@ -161,7 +161,7 @@ function social_register(social_type) {
     $("input[name=socialtype]").val(social_type);
     
     alert(3);
-    $("#btn_mem_selfcert_phone").click();
+    
     social_register_on();
 }
 //]]>
