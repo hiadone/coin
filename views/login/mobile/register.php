@@ -85,7 +85,7 @@
                     <ul>
                         <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
                             <li style="background-color:#fbe300;">
-                                <a href="javascript:;" onClick="social_register('kakao');" title="카카오 로그인">
+                                <a href="javascript:;" onClick="social_register_on();" title="카카오 로그인">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/kakao.png');?>" alt="kakao">
                                     <figcaption class="big_font" style="color:#3a1e1f">
