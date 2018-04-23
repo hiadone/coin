@@ -64,9 +64,5 @@ $(document).on('click', '#btn_mem_selfcert_phone', function() {
 
 function social_register_on() {
         alert(33);
-        var openurl = cb_url + '/selfcert/phone';
         
-            
-            var popupWindow = window.open( openurl, 'auth_popup', 'left=200, top=100, status=0, width=450, height=550' );
-            popupWindow.focus();
     }
