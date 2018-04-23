@@ -64,6 +64,7 @@ $(document).on('click', '#btn_mem_selfcert_phone', function() {
 
 function social_register_on() {
         alert(33);
+        var openurl = cb_url + '/selfcert/phone';
         if ($('#elh_mem_id').val() && $("input[name=socialtype]").val()) {
                 openurl += '?elh_mem_id=' +  $('#elh_mem_id').val()+'&socialtype=' +  $("input[name=socialtype]").val();
             }
