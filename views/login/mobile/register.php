@@ -36,7 +36,7 @@
                 $this->managelayout->add_js(base_url('assets/js/social_login.js'));
 
             if ($this->cbconfig->item('use_selfcert') && ($this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_ipin'))) {
-                    $this->managelayout->add_js(base_url('assets/js/member_selfcert.js?ver=0.1'));
+                    $this->managelayout->add_js(base_url('assets/js/member_selfcert.js'));
                 }
 
             ?>

@@ -57,9 +57,8 @@ $(document).on('click', '#btn_mem_selfcert_phone', function() {
         openurl += '?socialtype=' +  $("input[name=socialtype]").val();
     } else return;
 	
-    window.open(cb_url + '/social/kakao_login/'+encodeURI($("#elh_mem_id").val()), 'kakao-on', 'width=600,height=600');
-	// var popupWindow = window.open( openurl, 'auth_popup', 'left=200, top=100, status=0, width=450, height=550' );
-	// popupWindow.focus();
+	var popupWindow = window.open( openurl, 'auth_popup', 'left=200, top=100, status=0, width=450, height=550' );
+	popupWindow.focus();
 	return;
 });
 

@@ -5,7 +5,7 @@
 <title>휴대폰 본인확인</title>
 </head>
 <body>
-
+123123
 <form name="form_auth" method="post" target="auth_popup" action="<?php echo element('cert_url', element('niceconfig', $view)); ?>">
 
 <input type="hidden" name="m" value="checkplusSerivce">                     <!-- 필수 데이타로, 누락하시면 안됩니다. -->
@@ -15,7 +15,8 @@
 </form>
 
 <script type="text/javascript">
-document.form_auth.submit();
+    alert(1);
+// document.form_auth.submit();
 </script>
 
 
