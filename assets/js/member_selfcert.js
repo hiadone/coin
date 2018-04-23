@@ -62,3 +62,16 @@ $(document).on('click', '#btn_mem_selfcert_phone', function() {
 	return;
 });
 
+function social_register_on() {
+        alert(33);
+        if ($('#elh_mem_id').val() && $("input[name=socialtype]").val()) {
+                openurl += '?elh_mem_id=' +  $('#elh_mem_id').val()+'&socialtype=' +  $("input[name=socialtype]").val();
+            }
+            
+            if ($("input[name=socialtype]").val()) {
+                openurl += '?socialtype=' +  $("input[name=socialtype]").val();
+            } else return;
+            
+            var popupWindow = window.open( openurl, 'auth_popup', 'left=200, top=100, status=0, width=450, height=550' );
+            popupWindow.focus();
+    }
