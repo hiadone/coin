@@ -157,7 +157,7 @@ $(document).on('change', "input:checkbox[name='autologin']", function() {
 
 
 function social_register(social_type) {
-    alert(b);
+    alert(2);
     $("input[name=socialtype]").val(social_type);
     
     
