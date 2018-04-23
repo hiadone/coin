@@ -36,7 +36,7 @@
                 $this->managelayout->add_js(base_url('assets/js/social_login.js'));
 
             if ($this->cbconfig->item('use_selfcert') && ($this->cbconfig->item('use_selfcert_phone') OR $this->cbconfig->item('use_selfcert_ipin'))) {
-                    $this->managelayout->add_js(base_url('assets/js/member_selfcert.js'));
+                    $this->managelayout->add_js(base_url('assets/js/member_selfcert.js?u='.date()));
                 }
 
             ?>
@@ -85,7 +85,7 @@
                     <ul>
                         <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
                             <li style="background-color:#fbe300;">
-                                <a href="javascript:;" onClick="social_register_on();" title="카카오 로그인">
+                                <a href="javascript:;" onClick="social_register('kakao');" title="카카오 로그인">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/kakao.png');?>" alt="kakao">
                                     <figcaption class="big_font" style="color:#3a1e1f">
@@ -157,12 +157,12 @@ $(document).on('change', "input:checkbox[name='autologin']", function() {
 
 
 function social_register(social_type) {
-    alert(2);
+    
     $("input[name=socialtype]").val(social_type);
     
-    alert(3);
     
-    social_register_on();
+    $("#btn_mem_selfcert_phone").click();
+    return false;
 }
 //]]>
 </script>

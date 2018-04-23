@@ -39,7 +39,7 @@ $(document).on('click', '#btn_mem_selfcert_ipin', function() {
 
 // 휴대폰인증
 $(document).on('click', '#btn_mem_selfcert_phone', function() {
-    alert(1);
+    
 	// if( ! selfcert_confirm())
 	// 	return false;
 
@@ -62,7 +62,3 @@ $(document).on('click', '#btn_mem_selfcert_phone', function() {
 	return;
 });
 
-function social_register_on() {
-        alert(33);
-        
-    }
