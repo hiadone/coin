@@ -858,7 +858,7 @@
                     
                     $config = array(
                         'brd_key' => 'humor',
-                        'limit' => 3,
+                        'limit' => 5,
                         'length' => 40,
                         );
                     $board=$this->board->data($config);

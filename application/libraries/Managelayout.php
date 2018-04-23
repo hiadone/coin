@@ -348,8 +348,8 @@ class Managelayout extends CI_Controller
                 <table>
                     <tr>
                         <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="로그인">로그인</a></td>
-                        <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="회원가입">회원가입</a></td>
-                        <td><a href="'.current_full_url().'" class="viewpcversion">PC</a></td>
+                        <td><a href="'.site_url("login/register").'" title="회원가입">회원가입</a></td>
+                        <td><a href="'.current_full_url().'" class="viewpcversion">PC 버전</a></td>
                     </tr>
                 </table>
                 <ul class="small_font">
@@ -407,7 +407,7 @@ class Managelayout extends CI_Controller
                         </li>
                         
                         <li>
-                            모바일버전으로 보기
+                            <a href="'.current_full_url().'" class="viewmobileversion"> 모바일버전으로 보기 </a>
                         </li>
                     </ul>
 

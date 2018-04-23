@@ -623,7 +623,8 @@ if ( ! function_exists('banner')) {
                         if (element('ban_target', $val)) {
                             $html .= ' target="_blank" ';
                         }
-                        $html .= ' title="' . html_escape(element('ban_title', $val)) . '" ';
+                        // $html .= ' title="' . html_escape(element('ban_title', $val)) . '" ';
+                        $html .= ' title="" ';
                         $html .= ' >';
                     }
 
@@ -636,7 +637,7 @@ if ( ! function_exists('banner')) {
                         )
                         . '" class="cb_banner" id="cb_banner_' . element('ban_id', $val) . '" '
                         . ' alt="' . html_escape(element('ban_title', $val))
-                        . '" title="' . html_escape(element('ban_title', $val)) . '" />';
+                        . '" title="" />';
                     if (element('ban_url', $val)) {
                         $html .= '</a>';
                     }

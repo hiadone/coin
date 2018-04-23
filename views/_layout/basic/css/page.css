@@ -373,7 +373,7 @@
 			white-space: nowrap;
 			overflow: hidden;
 			font-size: 13px;
-			cursor: pointer;
+			/*cursor: pointer;*/
 		}
 
 		.tab_img img{

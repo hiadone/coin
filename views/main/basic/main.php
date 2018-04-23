@@ -704,9 +704,9 @@
                     echo '<div>
                     <table class="tab_text">';
                         foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                        <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
+                        <tr >
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                            <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
+                            <td class="text-left pointer"  onClick="location.href='<?php echo element('url', $value); ?>'"><?php echo html_escape(element('title', $value)); ?>
                                 
                                 <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
                             </td>

@@ -17,10 +17,13 @@
 <input type="hidden" name="EncodeData" value="<?php echo element('enc_data', element('niceconfig', $view)); ?>">        <!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
 <input type="hidden" name="param_r1" value="<?php echo element('socialtype', element('niceconfig', $view)); ?>">
 <input type="hidden" name="param_r2" value="<?php echo element('elh_mem_id', element('niceconfig', $view)); ?>">
+ <a href="javascript:fnPopup();"> CheckPlus 안심본인인증 Click</a>
 </form>
 
 <script type="text/javascript">
-document.form_auth.submit();
+    function fnPopup(){
+    document.form_auth.submit();
+}
 </script>
 
 
