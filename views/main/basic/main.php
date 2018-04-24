@@ -1,8 +1,3 @@
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=1100">
-
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-
 
 <script>
 
@@ -85,6 +80,10 @@
             } else{
                 $("#" + click_class + " .tab_cont > div:eq(" + index + ")").fadeIn();
             }
+
+            var boardUrl = $(this).data("board_url");
+            $(this).parent().parent().find('h2 span a.board_url').attr('href',boardUrl);
+            
         });
 
 
@@ -568,11 +567,11 @@
 
 <article class='main_mid01 content01'>
     <section class="tab" id="news">
-        <h2>뉴 스 정 보<span><a href="<?php echo site_url('/board/live_news/') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>뉴 스 정 보<span><a href="<?php echo site_url('/board/live_news/') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02">최신뉴스</li>
-            <li class="nomal_font02">인기뉴스</li>
+            <li class="active nomal_font02" data-board_url="<?php echo site_url('/board/live_news') ?>">최신뉴스</li>
+            <li class="nomal_font02" data-board_url="<?php echo site_url('/board/live_news?post_notice=4') ?>">인기뉴스</li>
         </ul>
 
         <div class="tab_cont">
@@ -678,13 +677,13 @@
     </section>
 
     <section class="tab" id="community">
-        <h2>커 뮤 니 티<span><a href="<?php echo site_url('/board/free') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>커 뮤 니 티<span><a href="<?php echo site_url('/board/free') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02">자유게시판</li>
-            <li class='nomal_font02'>호 재 정 보</li>
-            <li class='nomal_font02'>코 인 분 석</li>
-            <li class='nomal_font02'>추 천 코 인</li>
+            <li class="active nomal_font02" data-board_url="<?php echo site_url('/board/free') ?>">자유게시판</li>
+            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/mine_info') ?>">호 재 정 보</li>
+            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/profit') ?>">코 인 분 석</li>
+            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/b-1') ?>">추 천 코 인</li>
         </ul>
 
         <div class="tab_cont">
@@ -733,12 +732,12 @@
 
 
     <section class="tab" id="coin_info">
-        <h2>코 인 지 식<span><a href="<?php echo site_url('/board/video') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>코 인 지 식<span><a href="<?php echo site_url('/board/video') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
         <ul class="menu_list">
-            <li class="active nomal_font02">동영상강좌</li>
-            <li class='nomal_font02'>코 인 지 식</li>
-            <li class='nomal_font02'>I C O</li>
-            <li class='nomal_font02'>질 문 / 답변 </li>
+            <li class="active nomal_font02" data-board_url="<?php echo site_url('/board/video') ?>">동영상강좌</li>
+            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/coin_int') ?>">코 인 지 식</li>
+            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/ico') ?>">I C O</li>
+            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/exchange') ?>">질 문 / 답변 </li>
         </ul>
 
         <div class="tab_cont">
@@ -836,11 +835,11 @@
 
 <article class='main_mid02 content01'>
     <section class="tab" id="service">
-        <h2>갤러리/유머<span><a href="<?php echo site_url('/board/free_gallery') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>갤러리/유머<span><a href="<?php echo site_url('/board/free_gallery') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02">자 유 갤 러 리</li>
-            <li class='nomal_font02'>유 머</li>
+            <li class="active nomal_font02" data-board_url="<?php echo site_url('/board/free_gallery') ?>">자 유 갤 러 리</li>
+            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/humor') ?>">유 머</li>
         </ul>
 
         <div class="tab_cont tab_cont02">
@@ -1033,12 +1032,12 @@
     </section> -->
 
     <section class="tab" id="webtoon">
-        <h2>웹 툰<span><a href="<?php echo site_url('/board/w-2') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>웹 툰<span><a href="<?php echo site_url('/board/w-2') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02">월간신작 TOP 9</li>
-            <li class='nomal_font02'>학원 / 액션</li>
-            <li class="nomal_font02">드라마</li>
+            <li class="active nomal_font02" data-board_url="<?php echo site_url('/board/w-3') ?>">월간신작 TOP 9</li>
+            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/w-2') ?>">학원 / 액션</li>
+            <li class="nomal_font02" data-board_url="<?php echo site_url('/board/w-1') ?>">드라마</li>
         </ul>
 
         <div class="tab_cont">
@@ -1098,12 +1097,12 @@
     </section>
 
     <section class="tab" id="notice">
-        <h2>서 비 스<span><a href="<?php echo site_url('/attendance') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>서 비 스<span><a href="<?php echo site_url('/attendance') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02" style="width:33.3%">출석체크</li>
-            <li class='nomal_font02' style="width:33.3%">가입인사</li>
-            <li class="nomal_font02" style="width:33.4%">공지사항</li>
+            <li class="active nomal_font02" style="width:33.3%" data-board_url="<?php echo site_url('/attendance') ?>">출석체크</li>
+            <li class='nomal_font02' style="width:33.3%" data-board_url="<?php echo site_url('/board/express') ?>">가입인사</li>
+            <li class="nomal_font02" style="width:33.4%" data-board_url="<?php echo site_url('/board/notice') ?>">공지사항</li>
             <!-- <li class='nomal_font02'>FAQ</li> -->
         </ul>
 

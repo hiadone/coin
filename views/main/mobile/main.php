@@ -34,6 +34,9 @@
                 $(this).addClass("active").css("color", "#1c446d");
                 $(".tab02_cont").hide()
                 var activeTab = $(this).attr("rel");
+                var boardUrl = $(this).data("board_url");
+                $(this).parent().parent().find('h3 a.board_url').attr('href',boardUrl);
+                
                 $("#" + activeTab).fadeIn()
             });
 
@@ -47,6 +50,8 @@
                 $(this).addClass("active").css("color", "#1c446d");
                 $(".tab03_cont").hide()
                 var activeTab = $(this).attr("rel");
+                var boardUrl = $(this).data("board_url");
+                $(this).parent().parent().find('h3 a.board_url').attr('href',boardUrl);
                 $("#" + activeTab).fadeIn()
             });
 
@@ -60,6 +65,8 @@
                 $(this).addClass("active").css("color", "#1c446d");
                 $(".tab04_cont").hide()
                 var activeTab = $(this).attr("rel");
+                var boardUrl = $(this).data("board_url");
+                $(this).parent().parent().find('h3 a.board_url').attr('href',boardUrl);
                 $("#" + activeTab).fadeIn()
             });
 
@@ -73,6 +80,8 @@
                 $(this).addClass("active").css("color", "#1c446d");
                 $(".tab05_cont").hide()
                 var activeTab = $(this).attr("rel");
+                var boardUrl = $(this).data("board_url");
+                $(this).parent().parent().find('h3 a.board_url').attr('href',boardUrl);
                 $("#" + activeTab).fadeIn()
             });
 
@@ -86,6 +95,8 @@
                 $(this).addClass("active").css("color", "#1c446d");
                 $(".tab07_cont").hide()
                 var activeTab = $(this).attr("rel");
+                var boardUrl = $(this).data("board_url");
+                $(this).parent().parent().find('h3 a.board_url').attr('href',boardUrl);
                 $("#" + activeTab).fadeIn()
             });
 
@@ -98,6 +109,8 @@
                 $(this).addClass("active").css({"color": "#1c446d"});
                 $(".tab09_cont").hide()
                 activeTab = $(this).attr("rel");
+                var boardUrl = $(this).data("board_url");
+                $(this).parent().parent().find('h3 a.board_url').attr('href',boardUrl);
                 $("#" + activeTab).fadeIn();
             });
 
@@ -495,16 +508,16 @@
 
     <!-- tab02(자유게시판,채굴정보,코인뉴스,실시간 정보) 영역 -->
         <section class="tab02 wrap middle_font">
-            <h3><a href="<?php echo site_url('/board/free') ?>">
+            <h3><a href="<?php echo site_url('/board/free') ?>" class="board_url">
                 커뮤니티
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
             </h3>
             <ul class="tab02_tabs tabs">
-                <li class="active" rel="tab02_free" style="width:25%">자유게시판</li>
-                <li rel="tab02_mine_info" style="width:25%">호재정보</li>
-                <li rel="tab02_profit" style="width:25%">코인분석</li>
-                <li rel="tab02_b-1" style="width:25%">추천코인</li>
+                <li class="active" rel="tab02_free" data-board_url="<?php echo site_url('/board/free') ?>" style="width:25%">자유게시판</li>
+                <li rel="tab02_mine_info" style="width:25%" data-board_url="<?php echo site_url('/board/mine_info') ?>">호재정보</li>
+                <li rel="tab02_profit" style="width:25%" data-board_url="<?php echo site_url('/board/profit') ?>">코인분석</li>
+                <li rel="tab02_b-1" style="width:25%" data-board_url="<?php echo site_url('/board/b-1') ?>">추천코인</li>
             </ul>
 
             <div class="tab02_wrap cont_wrap">
@@ -558,14 +571,14 @@
 
     <!-- tab07(최신뉴스,인기뉴스) 영역 -->
         <section class="tab007 wrap middle_font">
-            <h3><a href="<?php echo site_url('/board/live_news') ?>">
+            <h3><a href="<?php echo site_url('/board/live_news') ?>" class="board_url">
                 뉴스정보
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
             </h3>
             <ul class="tab07_tabs tabs">
-                <li class="active" rel="tab07_live_news">최신뉴스</li>
-                <li rel="tab07_hot_news">인기뉴스</li>
+                <li class="active" rel="tab07_live_news" data-board_url="<?php echo site_url('/board/live_news') ?>">최신뉴스</li>
+                <li rel="tab07_hot_news" data-board_url="<?php echo site_url('/board/live_news?post_notice=4') ?>">인기뉴스</li>
             </ul>
 
             <div class="tab07_wrap cont_wrap">
@@ -670,16 +683,16 @@
                     
     <!-- tab03(동영상강좌,코인지식,ICO,거래소별 코인) 영역 -->
         <section class="tab03 wrap middle_font">
-            <h3><a href="<?php echo site_url('/board/video') ?>">
+            <h3><a href="<?php echo site_url('/board/video') ?>" class="board_url">
                 코인강좌
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
             </h3>
             <ul class="tab03_tabs tabs">
-                <li class="active" rel="tab03_video">동영상 강좌</li>
-                <li rel="tab03_coin_int">코인 지식</li>
-                <li rel="tab03_ico">ICO</li>
-                <li rel="tab03_exchange">질문/답변</li>
+                <li class="active" rel="tab03_video" data-board_url="<?php echo site_url('/board/video') ?>">동영상 강좌</li>
+                <li rel="tab03_coin_int" data-board_url="<?php echo site_url('/board/coin_int') ?>">코인 지식</li>
+                <li rel="tab03_ico" data-board_url="<?php echo site_url('/board/ico') ?>">ICO</li>
+                <li rel="tab03_exchange" data-board_url="<?php echo site_url('/board/exchange') ?>">질문/답변</li>
             </ul>
 
             <div class="tab03_wrap cont_wrap">
@@ -736,15 +749,15 @@
            <section class="tab09 wrap middle_font">
                 <h3>
 
-                    <a href="<?php echo site_url('/board/w-3') ?>">
+                    <a href="<?php echo site_url('/board/w-3') ?>" class="board_url">
                     웹 툰
                     <span><img src="assets/images/more.png" alr="more_img"></span>
                     </a>
                 </h3>
                 <ul class="tab09_tabs tabs">
-                    <li class='active' rel='tab09_w-3'>월간신작 TOP 9</li>
-                    <li rel='tab09_w-2'>학원 / 액션</li>
-                    <li rel='tab09_w-1' style="width: 34%;">드 라 마</li>
+                    <li class='active' rel='tab09_w-3' data-board_url="<?php echo site_url('/board/w-3') ?>">월간신작 TOP 9</li>
+                    <li rel='tab09_w-2' data-board_url="<?php echo site_url('/board/w-2') ?>">학원 / 액션</li>
+                    <li rel='tab09_w-1' style="width: 34%;" data-board_url="<?php echo site_url('/board/w-1') ?>">드 라 마</li>
                 </ul>
 
                 <div class="tab09_wrap cont_wrap">
@@ -801,14 +814,14 @@
 
     <!-- tab05(유머,자유갤러리) 영역-->
         <section class="tab05 wrap middle_font">
-            <h3><a href="<?php echo site_url('/board/free_gallery') ?>">
+            <h3><a href="<?php echo site_url('/board/free_gallery') ?>" class="board_url">
                 갤러리/유머
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
             </h3>
             <ul class="tab05_tabs tabs">
-                <li class="active" rel="tab05_free_gallery">자유갤러리</li>
-                <li rel="tab05_humor">유 머</li>
+                <li class="active" rel="tab05_free_gallery" data-board_url="<?php echo site_url('/board/free_gallery') ?>">자유갤러리</li>
+                <li rel="tab05_humor" data-board_url="<?php echo site_url('/board/humor') ?>">유 머</li>
             </ul>
 
             <div class="tab05_wrap cont_wrap">
@@ -896,16 +909,16 @@
         
          <!-- tab04(이벤트 , 출석체크 , 가입인사) 영역 -->
         <section class="tab04 wrap middle_font">
-            <h3><a href="<?php echo site_url('/attendance') ?>">
+            <h3><a href="<?php echo site_url('/attendance') ?>" class="board_url">
                 서비스
                 <span><img src="assets/images/more.png" alr="more_img"></span>
                 </a>
             </h3>
             <ul class="tab04_tabs tabs">
                 
-                <li class="active" rel="tab04_attendance">출석체크</li>
-                <li rel="tab04_express">가입인사</li>
-                <li rel="tab04_notice">공지사항</li>
+                <li class="active" rel="tab04_attendance" data-board_url="<?php echo site_url('/attendance') ?>">출석체크</li>
+                <li rel="tab04_express" data-board_url="<?php echo site_url('/board/express') ?>">가입인사</li>
+                <li rel="tab04_notice" data-board_url="<?php echo site_url('/board/notice') ?>">공지사항</li>
             </ul>
 
             <div class="tab04_wrap cont_wrap">
