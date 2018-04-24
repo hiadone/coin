@@ -851,7 +851,7 @@ class Social extends CB_Controller
 
                 if ($this->cbconfig->item('use_selfcert') && $this->cbconfig->item('use_selfcert_required') &&  ! $this->session->userdata('selfcertinfo')) {
                     if ( ! $this->session->userdata('selfcertinfo')) {
-                        alert_close('본인 확인 후에 회원가입이 가능합니다.');
+                        alert_close('회원가입후 이용이 가능합니다.');
                     }
                 }
                 
