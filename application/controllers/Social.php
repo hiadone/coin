@@ -860,7 +860,7 @@ class Social extends CB_Controller
                 $selfcert_phone = $selfcert_username = $selfcert_birthday = $selfcert_sex = '';
                 $selfcert_meta = '';
                 $metadata = array();
-                print_r($this->session->userdata('selfcertinfo'));
+                
                 if ($this->cbconfig->item('use_selfcert') && $this->session->userdata('selfcertinfo')) {
                     $selfcertinfo = $this->session->userdata('selfcertinfo');
                     if (element('selfcert_type', $selfcertinfo) == 'phone') {
@@ -1045,7 +1045,7 @@ class Social extends CB_Controller
                     $this->load->model('Member_selfcert_history_model');
                     $this->Member_selfcert_history_model->update('', $selfcertupdatedata, $selfcertwhere);
                 }
-                print_r($metadata);
+                
                 $this->Member_meta_model->save($mem_id, $metadata);
 
                 $updatedata = array(
