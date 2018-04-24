@@ -4,9 +4,10 @@
 
 <article class="content04">
     
-        <h4>
+        <h4><a href="<?php echo board_url(element('brd_key', element('board', $view))); ?>" style="color: inherit;">
             <?php echo html_escape(element('board_name', element('board', $view))); ?> 글쓰기
             <span class="small_font">비트코인에 관한 다양한 정보를 한번에 !!</span>
+            </a>
         </h4>
     
 

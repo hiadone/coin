@@ -22,9 +22,11 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 <?php echo element('headercontent', element('board', $view)); ?>
 
 <article class="content03">
-    <h4>
+    <h4><a href="<?php echo board_url(element('brd_key', element('board', $view))); ?>" style="color: inherit;">
         <?php echo element('brd_key',element('board', $view)) ==='live_news' && $this->input->get('post_notice')==='4' ? '인기뉴스' : element('brd_name',element('board', $view)); ?>
+        </a>
         <span class="small_font">비트코인에 관한 다양한 정보를 한번에 !!</span>
+
     </h4>
     
     <section class="post_title">

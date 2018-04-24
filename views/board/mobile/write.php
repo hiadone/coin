@@ -3,7 +3,7 @@
 
 <article class="wrap01">
     <section class="main_title write_area">
-        <h2><?php echo html_escape(element('board_name', element('board', $view))); ?></h2>
+        <h2><a href="<?php echo board_url(element('brd_key', element('board', $view))); ?>" style="color: inherit;"><?php echo html_escape(element('board_name', element('board', $view))); ?></a></h2>
         <!-- 제목 입력 영역 -->
             <div class="text_area">
             <?php
@@ -328,7 +328,7 @@
             <div class="text-center middle_font" style="margin-bottom: 0;">
                 
                 <button type="submit">저 장</button>
-                <button type="button">취 소</button>
+                <button type="button" class="btn-history-back">취 소</button>
             </div>
         </div>
     <?php echo form_close(); ?>
