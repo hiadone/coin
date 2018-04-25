@@ -760,9 +760,8 @@
                     <li rel='tab09_w-1' style="width: 34%;" data-board_url="<?php echo site_url('/board/w-1') ?>">드 라 마</li>
                 </ul>
 
-                <div class="tab09_wrap cont_wrap">
-
-                <?php
+ <!--                 <div class="tab09_wrap cont_wrap">
+               <?php
                 $tab04=array('w-3','w-2','w-1');
                 foreach($tab04 as $tvalue){
                     $config = array(
@@ -804,11 +803,11 @@
                     </div>';
                     }
                 }
-                ?>  
-
-                    
-
-                   
+                ?> </div>  -->
+                <div class="tab09_wrap cont_wrap tab09_cont cont">
+                    <ul>
+                        <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
+                    </ul>
                 </div>
            </section>
 

@@ -37,7 +37,8 @@
             ?>
             
             <section class="ham_cont02 ham_login">
-                <h2>SNS 로그인</h2>
+                    
+                <!-- <h2>SNS 로그인</h2> -->
 
                 <div class='login_notice'>
                     <h3>SNS 로그인</h3>

@@ -166,7 +166,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                 </a>
                             </li>
 
-                            <li style="background: url('/assets/images/face_bg.png') no-repeat center; background-size: 100%;">
+                          <!--   <li style="background: url('/assets/images/face_bg.png') no-repeat center; background-size: 100%;">
                                 <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
                                    <figure>
                                        <figcaption class="small_font">
@@ -174,7 +174,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                        </figcaption>
                                    </figure>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                         <?php } else { ?>
                             <table>

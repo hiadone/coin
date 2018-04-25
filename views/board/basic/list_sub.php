@@ -54,7 +54,7 @@ $record_num = $this->uri->segment($last);
                         <?php if (element('post_comment_count', $result)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $result); ?></span><?php } ?></td>
                     <td class="spoon-img">
                         <figure>
-                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo element('display_level', $result); ?>.png" alt="spoon_img">
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/post_spoon/spoon_<?php echo element('display_level', $result); ?>.png" alt="spoon_img">
                             <figcaption><?php echo element('display_name', $result); ?></figcaption>
                         </figure>
                         

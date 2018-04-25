@@ -41,7 +41,7 @@
             ?>
             <input type="hidden" id="elh_mem_id" value="<?php echo element('elh_mem_id',$view); ?>">
             <section class="ham_cont02 ham_login">
-                <h2>SNS 회원가입</h2>
+                <!-- <h2>SNS 회원가입</h2> -->
 
                 <div class='login_notice'>
                     <h3>SNS 회원가입</h3>
@@ -65,7 +65,7 @@
 
                     <br><br>
 
-                    <button type="button" onClick="location.href='<?php echo site_url('/event/event_register') ?>';" style="width: 100%; font-family: 'Jeju Gothic', sans-serif; background-color: #a61e23;">이 벤 트 바 로 가 기</button>
+                    <button type="button" onClick="location.href='<?php echo site_url('/event/event_register') ?>';" style="width: 100%; font-family: 'Jeju Gothic', sans-serif;">이 벤 트 바 로 가 기</button>
                     
                     <br><br><br>
 

@@ -27,7 +27,7 @@ $record_num = $this->uri->segment($last);
                                 <h3><?php echo element('num', $result); ?>. <?php echo html_escape(element('title', $result)); ?></h3>
                                 <div class='img_writer'>
                                     <p class='small_font'>
-                                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo element('display_level', $result); ?>.png" alt="spoon_img">
+                                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/post_spoon/spoon_<?php echo element('display_level', $result); ?>.png" alt="spoon_img">
                                         
                                         <?php echo element('display_name', $result); ?>
                                     </p>

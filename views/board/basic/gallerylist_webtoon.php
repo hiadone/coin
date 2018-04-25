@@ -62,7 +62,7 @@ $record_num = $this->uri->segment($last);
         <?php } ?>
 
         <section class='gallery_li'>
-            <?php
+<!--             <?php
             $i = 0;
             $open = false;
             $cols = element('gallery_cols', element('board', element('list', $view)));
@@ -80,8 +80,8 @@ $record_num = $this->uri->segment($last);
                             <figure>
                                 <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="" class=""  />
                                 <figcaption>
-                                    <!-- <h3> --><?php echo element('title', $result); ?><!-- </h3> -->
-                                    <!-- <div class='img_writer'>
+                                    <h3><?php echo element('title', $result); ?></h3>
+                                    <div class='img_writer'>
                                         <p class='small_font'>
                                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo element('display_level', $result); ?>.png" alt="spoon_img">
                                             
@@ -91,7 +91,7 @@ $record_num = $this->uri->segment($last);
                                         <span>|</span> 
 
                                         <p class='small_font'>조회수 <?php echo number_format(element('post_hit', $result)); ?></p>
-                                    </div> -->
+                                    </div>
                                 </figcaption>
                             </figure>
                         </a>
@@ -110,7 +110,10 @@ $record_num = $this->uri->segment($last);
                 echo '</ul>';
                 $open = false;
             }
-            ?>
+            ?> -->
+            <ul class='webtoon_sub'>
+            <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
+            </ul>
         </section>
     <?php echo form_close(); ?>
 

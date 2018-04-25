@@ -155,20 +155,20 @@
                         </a>
                     </li>
 
-                    <!-- <li style='background-color:#3b589e; color:#fff;'>
-                        <a href="javascript:;" onClick="submitContents('face');" title="face 로그인" style="color:#fff;">
-                        <figure>
-                            <img src="<?php echo base_url('/assets/images/face.png') ?>">
-                            <figcaption>페이스북 아이디로 가입</figcaption>
-                        </figure>
-                        </a>
-                    </li> -->
-
                     <li style='background-color:#fbe300;'>
                         <a href="javascript:;" onClick="submitContents('kakao');" title="kakao 로그인">
                         <figure>
                             <img src="<?php echo base_url('/assets/images/kakao.png') ?>">
                             <figcaption>카카오톡 아이디로 가입</figcaption>
+                        </figure>
+                        </a>
+                    </li>
+
+                    <li style='background-color:#3b589e; color:#fff;'>
+                        <a href="javascript:;" onClick="submitContents('face');" title="face 로그인" style="color:#fff;">
+                        <figure>
+                            <img src="<?php echo base_url('/assets/images/face.png') ?>">
+                            <figcaption>페이스북 아이디로 가입</figcaption>
                         </figure>
                         </a>
                     </li>

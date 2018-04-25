@@ -198,7 +198,7 @@ $(document).ready(function(){
 <body <?php echo isset($view) ? element('body_script', $view) : ''; ?>>
 
 <aside class="ham">
-    <img class="pointer pull-left" src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png" alt="ham_btn_img">
+    <img class="pointer" src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png" alt="ham_btn_img">
    <div id="view_member" class="ham_cont02">
    </div>
 </aside>
@@ -324,7 +324,7 @@ $(document).ready(function(){
                 <?php } else { ?>
                 <li class='user_info pointer' >
                     <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/spoon_<?php echo $this->member->item('mem_level') ?>.png" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
+                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/head_spoon/spoon_<?php echo $this->member->item('mem_level') ?>.png" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
                         <figcaption><?php echo $this->member->item('mem_nickname') ?></figcaption>
                     </figure>
                 </li>

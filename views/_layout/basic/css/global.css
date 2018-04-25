@@ -204,11 +204,12 @@ textarea{
 		height: 20px;
 		background-color: #a61e23;
 		text-align: center;
-		line-height: 21px;
+		line-height: 20px;
 		color: #fff;
 		border-radius: 5px;
 		margin:5px 10px 5px 0;
 		float: left;
+		font-family:"Nanum Gothic", sans-serif; 
 	}
 
 	.login_noice .bx-wrapper{
@@ -258,15 +259,15 @@ textarea{
 		height: 30px;
 		float: right;
 		color: #fff;
-		font-family:'Jeju Gothic', sans-serif; 
 	}
 
 	.login_list li{
 		height: 30px;
-		line-height: 33px;
+		line-height:29px;
 		float: left;
 		text-align: center;
 		letter-spacing: 1px;
+		font-weight: bold;
 	}
 
 	.login_list li.enter{
@@ -278,10 +279,7 @@ textarea{
 	}
 
 	.login_list li img{
-		width: 20px;
-		height: 20px;
-		margin-right: 5px;
-		margin:5px 5px 5px 0;
+		margin:2px 5px 2px 0;
 		float: left;
 	}
 
@@ -296,18 +294,22 @@ textarea{
 
 /*ham css*/
 	.ham{
-		width: 350px;
+		width: 320px;
 		position: absolute;
 		top: 0;
 		bottom: 0;
 		right:-320px;
 		z-index: 500;
+		border-left: 1px solid #ededed;
+		background-color: #fff;
 	}
 
 	.ham > img{
 		width: 30px;
 		margin-top: 175px;
 		cursor: pointer;
+		position: absolute;
+		left: -30px;
 	}
 
 /*ham_cont css*/
@@ -315,10 +317,10 @@ textarea{
 	.ham_cont02{
 		width: 320px;
 		height: 100%;
-
+		margin: 0 auto;
 		box-sizing: border-box;
-		float: right;
-		border-left:1px solid #ededed;
+/*		float: right;
+		border-left:1px solid #ededed;*/
 		background-color: #fff;
 	}
 
@@ -385,15 +387,15 @@ textarea{
 /*ham_login*/
 	.ham_login .login_notice{
 		width: 299px;
-        margin:0 10px 20px;
-        border:1px solid #ededed;
-        padding:20px;
+        margin:0px 10px 20px;
+        padding:100px 20px 0px;
         box-sizing: border-box;
         text-align: center; 
 	}
 
 	.ham_login .login_notice h3{
 		margin-bottom: 20px;
+		font-size: 16px;
 	}
 
 	.ham_login .login_notice span{
@@ -544,7 +546,7 @@ textarea{
 
     .point_info th:nth-child(3),
     .point_info td:nth-child(3){
-    	width: 80px;
+    	width: 85px;
     }
 
     .point_info th,
@@ -560,7 +562,6 @@ textarea{
     }
 
     .point_info td figure img{
-        width: 15px;
         float: left;
         margin-right: 5px;
     }
@@ -742,13 +743,8 @@ textarea{
 	}
 
 	.footer h1{
-		width: 120px;
 		margin-right: 15px;
 		float: left;
-	}
-
-	.footer h1 img{
-		width: 100%;
 	}
 
 	.footer ul{

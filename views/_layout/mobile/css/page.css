@@ -646,7 +646,7 @@ html, body{
 		float: left;
 	}
 
-	.tab09_cont li:nth-child(3n){
+	.tab09_cont li:nth-child(3n+1){
 		margin-right: 0;
 	}
 
@@ -833,11 +833,11 @@ html, body{
 	}
 
 	.ham_cont div > ul li{
-		width: 32%;
+		width: 49%;
 		margin-right: 2%;
 		float: left;
 		box-sizing: border-box;
-		border-radius:5px;
+		border-radius:7px;
 	}
 
 	.ham_cont div > ul li:last-child{
