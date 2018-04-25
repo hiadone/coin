@@ -223,8 +223,9 @@
                 }
                  ?>
             </ul>
-
+            
             <div class="tab06_wrap cont_wrap" id="view_board">
+
             </div>
         </section>
 </article>
@@ -232,10 +233,27 @@
 <script type="text/javascript">
     //<![CDATA[
     function view_board(id,brd_key) {
-        var list_url = cb_url + '/group/view_board/' + brd_key+'/0/<?php echo $this->input->get('post_notice')?>';
-        $('#' + id).load(list_url,'',function(){
-        });
-    }
+        if(brd_key=='w-1' || brd_key=='w-2' || brd_key=='w-3'){
+            $.ajax({
+            type: "GET", 
+            async: true,
+            data: "pageid=08y7&lang=utf-8&out=json", 
+            url: "https://ssl-hiadone.ad4989.co.kr/cgi-bin/pelicanc.dll?impr", 
+            cache: false, 
+            dataType: "jsonp", 
+            jsonp: "jquerycallback", 
+            success: function(data) 
+            {
+              $("#" +id).html(data.tag); 
+            },
+            error: function(xhr, status, error) { ; } 
+            });
+        } else {
+            var list_url = cb_url + '/group/view_board/' + brd_key+'/0/<?php echo $this->input->get('post_notice')?>';
+            $('#' + id).load(list_url,'',function(){
+            });
+        }
+    }   
 
     function view_coin(cur_unit) {
         global_cur_unit = cur_unit;

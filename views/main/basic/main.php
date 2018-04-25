@@ -1031,7 +1031,7 @@
     </section> -->
 
     <section class="tab" id="webtoon">
-        <h2>웹 툰<span><a href="<?php echo site_url('/board/w-2') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
+        <h2>웹 툰<span><a href="<?php echo site_url('/board/w-3') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
             <li class="active nomal_font02" data-board_url="<?php echo site_url('/board/w-3') ?>">월간신작 TOP 9</li>
@@ -1039,7 +1039,7 @@
             <li class="nomal_font02" data-board_url="<?php echo site_url('/board/w-1') ?>">드라마</li>
         </ul>
 
-<!--         <div class="tab_cont">
+        <div class="tab_cont">
             <?php
             $tab04=array('w-2','w-3','w-1');
             foreach($tab04 as $value){
@@ -1051,8 +1051,16 @@
                             'image_width'=> 130,
                             'image_height'=> 100,
                             );
-                $board=$this->board->data($config);
 
+                echo '<div>
+            <ul class="tab_img">
+                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
+            </ul>
+            </div>
+        ';
+
+                // $board=$this->board->data($config);
+                /*
                 if (element('latest', element('view', $board))) {
 
                     echo '<div>
@@ -1088,16 +1096,14 @@
                         </table>
                     </div>';
                 }
+                */
             }
             ?>  
-        </div> -->
-
-        <div class="tab_cont">
-            <ul class='tab_img'>
-                <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
-            </ul>
         </div>
+
+        
     </section>
+
 
     <section class="tab" id="notice">
         <h2>서 비 스<span><a href="<?php echo site_url('/attendance') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>

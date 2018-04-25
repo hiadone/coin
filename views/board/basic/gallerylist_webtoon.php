@@ -50,8 +50,15 @@ $record_num = $this->uri->segment($last);
             
         </ul> 
     </section>
-
-        <?php
+    <section class="tab" id="webtoon">
+    <div class="tab_cont">
+    <div>
+            <ul class="tab_img">
+                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
+            </ul>
+            </div>
+        </div></section>
+ <!--       <?php
         $attributes = array('name' => 'fboardlist', 'id' => 'fboardlist');
         echo form_open('', $attributes);
         ?>
@@ -62,7 +69,7 @@ $record_num = $this->uri->segment($last);
         <?php } ?>
 
         <section class='gallery_li'>
-<!--             <?php
+             <?php
             $i = 0;
             $open = false;
             $cols = element('gallery_cols', element('board', element('list', $view)));
@@ -110,7 +117,7 @@ $record_num = $this->uri->segment($last);
                 echo '</ul>';
                 $open = false;
             }
-            ?> -->
+            ?> 
             <ul class='webtoon_sub'>
             <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
             </ul>
@@ -122,10 +129,10 @@ $record_num = $this->uri->segment($last);
 
         
                 
-        <!-- <?php if (element('search_list_url', element('list', $view))) { ?>
+         <?php if (element('search_list_url', element('list', $view))) { ?>
             <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a>
         <?php } ?> -->
-        <section class="post_button">
+       <!--  <section class="post_button">
                      
             <?php if (element('write_url', element('list', $view))) { ?>
                 <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글 쓰 기</a>    
@@ -137,7 +144,7 @@ $record_num = $this->uri->segment($last);
         </section>
         <section class="post_page">
             <?php echo element('paging', element('list', $view)); ?>
-        </section>
+        </section> -->
     
     
 

@@ -760,7 +760,7 @@
                     <li rel='tab09_w-1' style="width: 34%;" data-board_url="<?php echo site_url('/board/w-1') ?>">드 라 마</li>
                 </ul>
 
- <!--                 <div class="tab09_wrap cont_wrap">
+                 <div class="tab09_wrap cont_wrap">
                <?php
                 $tab04=array('w-3','w-2','w-1');
                 foreach($tab04 as $tvalue){
@@ -772,43 +772,16 @@
                         'image_width'=> 120,
                         'image_height'=> 90,
                         );
-                    $board=$this->board->data($config);
 
-                    if (element('latest', element('view', $board))) {
-                        echo '<div id="tab09_'.element('brd_key',$config).'" class="tab09_cont cont">
-                        <ul>';
-                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                            <li>
-                                <a href="<?php echo element('pln_url', $value); ?>" target="_blank">
-                                    <figure>
-                                    <img src="<?php echo element('thumb_url', $value); ?>" alr="<?php echo html_escape(element('title', $value)); ?>">
-                                        <figcaption>
-                                            <?php echo element('title', $value); ?>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </li>                        
-                            <?php 
-                        }
-                        echo '
-                        </ul>
-                    </div>';
-                    } else {
-                        echo '<div id="tab09_'.element('brd_key',$config).'" class="tab09_cont cont">
-                        <table>
-                            <tr>
-                                <td colspan="3">게시물이 없습니다.</td>
-                            </tr>
-                        </table>
-                    </div>';
-                    }
-                }
-                ?> </div>  -->
-                <div class="tab09_wrap cont_wrap tab09_cont cont">
+                    echo '<div id="tab09_'.element('brd_key',$config).'" class="tab09_cont cont">
                     <ul>
-                        <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
+                        <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
                     </ul>
-                </div>
+                </div>';
+                    
+                }
+                ?> </div> 
+                
            </section>
 
     <!-- tab05(유머,자유갤러리) 영역-->
