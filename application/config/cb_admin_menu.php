@@ -83,6 +83,7 @@ $config['admin_page_menu'] = array(
 			'statcounter'                   => array('접속자통계', ''),
 			'boardcounter'               => array('게시판별접속자', ''),
 			'registercounter'             => array('회원가입통계', ''),
+			'leavecounter'             => array('회원탈퇴통계', ''),
 			'searchkeyword'            => array('인기검색어현황', ''),
 			'currentvisitor'                => array('현재접속자', ''),
 			'registerlog'                    => array('회원가입경로', ''),

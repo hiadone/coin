@@ -326,11 +326,13 @@ class Login extends CB_Controller
             /**
              * 레이아웃을 정의합니다
              */
-            $page_title = $this->cbconfig->item('site_meta_title_login');
-            $meta_description = $this->cbconfig->item('site_meta_description_login');
-            $meta_keywords = $this->cbconfig->item('site_meta_keywords_login');
-            $meta_author = $this->cbconfig->item('site_meta_author_login');
-            $page_name = $this->cbconfig->item('site_page_name_login');
+            
+
+            $page_title = $this->cbconfig->item('site_meta_title_register');
+            $meta_description = $this->cbconfig->item('site_meta_description_register');
+            $meta_keywords = $this->cbconfig->item('site_meta_keywords_register');
+            $meta_author = $this->cbconfig->item('site_meta_author_register');
+            $page_name = $this->cbconfig->item('site_page_name_register');
 
             if($this->input->is_ajax_request())
                 $layout_dir='empty';

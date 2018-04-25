@@ -81,14 +81,14 @@ $(document).ready(function(){
             });
 
         // 로그인 , 회원 가입 클릭시 ham 메뉴 움직이는 스크립트
-            $('li.login-li').click(function(){
+            // $('li.login-li').click(function(){
                 
-                ham_slide();
-            });
+            //     ham_slide();
+            // });
 
-            $('li.register-li').click(function(){
-                ham_slide('register');
-            });
+            // $('li.register-li').click(function(){
+            //     ham_slide('register');
+            // });
 
 
         // 회원정보 클릭시 ham 메뉴 움직이는 스크립트
@@ -318,9 +318,9 @@ $(document).ready(function(){
         <div class="login_list">
             <ul>   
                 <?php if (!$this->member->is_member()) { ?>
-                <li class="pointer login-li"   title="로그인">로그인</li>
+                <li class="pointer login-li"   title="로그인"><a href="<?php echo site_url('/login'); ?>" style="color: inherit;">로그인</a></li>
                 <li>|</li>
-                <li class="pointer register-li"   title="회원가입">회원가입</li>
+                <li class="pointer register-li"   title="회원가입"><a href="<?php echo site_url('/login/register'); ?>" style="color: inherit;">회원가입</a></li>
                 <?php } else { ?>
                 <li class='user_info pointer' >
                     <figure>

@@ -110,15 +110,27 @@ class Member_model extends CB_Model
         $left = ($type === 'y') ? 4 : ($type === 'm' ? 7 : 10);
         if (strtolower($orderby) !== 'desc') $orderby = 'asc';
 
-        $this->db->select('count(*) as cnt, left(mem_register_datetime, ' . $left . ') as day ', false);
-        $this->db->where('left(mem_register_datetime, 10) >=', $start_date);
-        $this->db->where('left(mem_register_datetime, 10) <=', $end_date);
-        $this->db->where('mem_denied', 0);
-        $this->db->group_by('day');
-        $this->db->order_by('mem_register_datetime', $orderby);
-        $qry = $this->db->get($this->_table);
-        $result = $qry->result_array();
 
-        return $result;
+
+
+
+
+
+        // $this->db->select('count(*) as cnt, left(mem_register_datetime, ' . $left . ') as day ', false);
+        // $this->db->where('left(me1m_register_datetime, 10) >=', $start_date);
+        // $this->db->where('left(mem_register_datetime, 10) <=', $end_date);
+        // $this->db->where('mem_denied', 0);
+        // $this->db->group_by('day');
+        // $this->db->order_by('mem_register_datetime', $orderby);
+        // $qry = $this->db->get($this->_table);
+        $query = $this->db->query("select count(*) as cnt ,left(mem_register_datetime, 10) day from (
+SELECT * FROM `cb_member` WHERE left(mem_register_datetime, 10) >= '2018-04-01' AND left(mem_register_datetime, 10) <= '2018-04-25' AND `mem_denied` =0  
+ UNION
+SELECT * FROM `cb_memberleave` WHERE left(mem_register_datetime, 10) >= '2018-04-01' AND left(mem_register_datetime, 10) <= '2018-04-25' AND `mem_denied` =0  
+) d group by day order by day asc");
+
+        
+
+        return $query->result_array();
     }
 }

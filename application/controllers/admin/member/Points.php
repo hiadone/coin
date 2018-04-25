@@ -49,7 +49,7 @@ class Points extends CB_Controller
     /**
      * 목록을 가져오는 메소드입니다
      */
-    public function index()
+    public function index($export = '')
     {
         // 이벤트 라이브러리를 로딩합니다
         $eventname = 'event_admin_member_points_index';
@@ -61,6 +61,13 @@ class Points extends CB_Controller
         // 이벤트가 존재하면 실행합니다
         $view['view']['event']['before'] = Events::trigger('before', $eventname);
 
+        $start_date = $this->input->get('start_date') ? $this->input->get('start_date') : cdate('Y-m-01');
+        $end_date = $this->input->get('end_date') ? $this->input->get('end_date') : cdate('Y-m-d');
+
+
+        $where=array('left(poi_datetime,10) >' =>$start_date,'left(poi_datetime,10) <' =>$end_date);
+
+
         /**
          * 페이지에 숫자가 아닌 문자가 입력되거나 1보다 작은 숫자가 입력되면 에러 페이지를 보여줍니다.
          */
@@ -69,11 +76,15 @@ class Points extends CB_Controller
         $findex = $this->input->get('findex') ? $this->input->get('findex') : $this->{$this->modelname}->primary_key;
         $forder = $this->input->get('forder', null, 'desc');
         $sfield = $this->input->get('sfield', null, '');
-        $skeyword = $this->input->get('skeyword', null, '');
+        $skeyword = $this->input->get('skeyword_', null, '');
 
         $per_page = admin_listnum();
         $offset = ($page - 1) * $per_page;
+        if ($export === 'excel') {
 
+            $per_page = '';
+            $offset = '';
+        }
         /**
          * 게시판 목록에 필요한 정보를 가져옵니다.
          */
@@ -81,7 +92,7 @@ class Points extends CB_Controller
         $this->{$this->modelname}->search_field_equal = array('poi_id', 'point.mem_id'); // 검색중 like 가 아닌 = 검색을 하는 필드
         $this->{$this->modelname}->allow_order_field = array('poi_id'); // 정렬이 가능한 필드
         $result = $this->{$this->modelname}
-            ->get_admin_list($per_page, $offset, '', '', $findex, $forder, $sfield, $skeyword);
+            ->get_admin_list($per_page, $offset, $where, '', $findex, $forder, $sfield, $skeyword);
         $list_num = $result['total_rows'] - ($page - 1) * $per_page;
         if (element('list', $result)) {
             foreach (element('list', $result) as $key => $val) {
@@ -111,10 +122,12 @@ class Points extends CB_Controller
         $view['view']['paging'] = $this->pagination->create_links();
         $view['view']['page'] = $page;
 
+        $view['view']['start_date'] = $start_date;
+        $view['view']['end_date'] = $end_date;
         /**
          * 쓰기 주소, 삭제 주소등 필요한 주소를 구합니다
          */
-        $search_option = array('poi_datetime' => '날짜', 'poi_content' => '내용');
+        $search_option = array( 'poi_content' => '내용');
         $view['view']['skeyword'] = ($sfield && array_key_exists($sfield, $search_option)) ? $skeyword : '';
         $view['view']['search_option'] = search_option($search_option, $sfield);
         $view['view']['listall_url'] = admin_url($this->pagedir);
@@ -124,14 +137,25 @@ class Points extends CB_Controller
         // 이벤트가 존재하면 실행합니다
         $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
 
-        /**
-         * 어드민 레이아웃을 정의합니다
-         */
-        $layoutconfig = array('layout' => 'layout', 'skin' => 'index');
-        $view['layout'] = $this->managelayout->admin($layoutconfig, $this->cbconfig->get_device_view_type());
-        $this->data = $view;
-        $this->layout = element('layout_skin_file', element('layout', $view));
-        $this->view = element('view_skin_file', element('layout', $view));
+
+        if ($export === 'excel') {
+            
+            header('Content-type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment; filename=포인트통계_' . cdate('Y_m_d') . '.xls');
+            echo $this->load->view('admin/' . ADMIN_SKIN . '/' . $this->pagedir . '/index_excel', $view, true);
+
+        } else {
+            /**
+             * 어드민 레이아웃을 정의합니다
+             */
+            $layoutconfig = array('layout' => 'layout', 'skin' => 'index');
+            $view['layout'] = $this->managelayout->admin($layoutconfig, $this->cbconfig->get_device_view_type());
+            $this->data = $view;
+            $this->layout = element('layout_skin_file', element('layout', $view));
+            $this->view = element('view_skin_file', element('layout', $view));
+        }
+
+        
     }
 
     /**

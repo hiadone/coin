@@ -14,6 +14,7 @@
                 ob_start();
                 ?>
                     <div class="btn-group pull-right" role="group" aria-label="...">
+                        <button type="button" class="btn btn-outline btn-success btn-sm" id="export_to_excel"><i class="fa fa-file-excel-o"></i> 엑셀 다운로드</button>
                         <a href="<?php echo element('listall_url', $view); ?>" class="btn btn-outline btn-default btn-sm">전체목록</a>
                         <button type="button" class="btn btn-outline btn-default btn-sm btn-list-delete btn-list-selected disabled" data-list-delete-url = "<?php echo element('list_delete_url', $view); ?>" >선택삭제</button>
                         <a href="<?php echo element('write_url', $view); ?>" class="btn btn-outline btn-danger btn-sm">포인트추가</a>
@@ -77,12 +78,16 @@
     <form name="fsearch" id="fsearch" action="<?php echo current_full_url(); ?>" method="get">
         <div class="box-search">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+                <span class="mr10 pull-left col-md-offset-1">
+                        기간 : <input type="text" class="form-control input-small datepicker px150" name="start_date" value="<?php echo element('start_date', $view); ?>" readonly="readonly" /> - <input type="text" class="form-control input-small datepicker px150" name="end_date" value="<?php echo element('end_date', $view); ?>" readonly="readonly" />
+                    </span>
+                <div class="col-md-6 ">
+                    
                     <select class="form-control" name="sfield" >
                         <?php echo element('search_option', $view); ?>
                     </select>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="skeyword" value="<?php echo html_escape(element('skeyword', $view)); ?>" placeholder="Search for..." />
+                        <input type="text" class="form-control" name="skeyword_" value="<?php echo html_escape(element('skeyword', $view)); ?>" placeholder="Search for..." />
                         <span class="input-group-btn">
                             <button class="btn btn-default btn-sm" name="search_submit" type="submit">검색!</button>
                         </span>
@@ -92,3 +97,18 @@
         </div>
     </form>
 </div>
+<script type="text/javascript">
+
+$(document).on('click', '#export_to_excel', function(){
+    exporturl = '<?php echo admin_url($this->pagedir . '/index/excel' . '?' . $this->input->server('QUERY_STRING', null, '')); ?>';
+    if ($('#withoutzero:checked').length)
+    {
+        exporturl += '&withoutzero=1';
+    }
+    if ($('#orderdesc:checked').length)
+    {
+        exporturl += '&orderby=desc';
+    }
+    document.location.href = exporturl;
+})
+</script>
