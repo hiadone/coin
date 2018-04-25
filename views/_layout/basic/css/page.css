@@ -1384,7 +1384,7 @@
 		}*/
 
 		.post_link p{
-			width: 1260px;
+			width: 100%;
 			margin:0 auto;
 			font-weight: bold;
 			line-height: 20px;
@@ -1395,6 +1395,14 @@
 			width: 1150px;
 			margin:40px auto;
 		}
+
+		.post_area p{
+			font-size: 11pt;
+			line-height: 22px;
+			word-break: break-all;
+		}
+
+
 
 /*post_view(게시물 컨텐츠의 이전글 다음글 목록) css*/
 		.post_view{

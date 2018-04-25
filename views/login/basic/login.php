@@ -75,7 +75,7 @@
                         </a>
                     </li>
                     <?php } ?>
-                    <?php if ($this->cbconfig->item('use_sociallogin_facebook')) {?>
+                    <!-- <?php if ($this->cbconfig->item('use_sociallogin_facebook')) {?>
                     <li style="background-color:#3c589e;color:#fff;">
                         <a href="javascript:;" onClick="social_connect_on('facebook');" title="페이스북 로그인" style="color:#fff;">
                         <figure>
@@ -87,7 +87,7 @@
                         </span>
                         </a>
                     </li>
-                    <?php } ?>
+                    <?php } ?> -->
                 </ul>
             </section>
         <?php } ?>

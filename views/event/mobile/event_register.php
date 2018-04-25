@@ -164,14 +164,14 @@
                         </a>
                     </li>
 
-                    <li style='background-color:#3b589e; color:#fff;'>
+                    <!-- <li style='background-color:#3b589e; color:#fff;'>
                         <a href="javascript:;" onClick="submitContents('face');" title="face 로그인" style="color:#fff;">
                         <figure>
                             <img src="<?php echo base_url('/assets/images/face.png') ?>">
                             <figcaption>페이스북 아이디로 가입</figcaption>
                         </figure>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
 
                 <span>회원 가입 시 본인 인증 절차가 진행됩니다. </span>
