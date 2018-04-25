@@ -52,7 +52,7 @@
                                 <th>소셜연동</th>
                             <?php } ?>
                             <th><a href="<?php echo element('mem_point', element('sort', $view)); ?>">포인트</a></th>
-                            <th><?php echo $this->depositconfig->item('deposit_name') ? html_escape($this->depositconfig->item('deposit_name')) : '예치금'; ?></th>
+                            <!-- <th><?php echo $this->depositconfig->item('deposit_name') ? html_escape($this->depositconfig->item('deposit_name')) : '예치금'; ?></th> -->
                             <th><a href="<?php echo element('mem_register_datetime', element('sort', $view)); ?>">가입일</a></th>
                             <th><a href="<?php echo element('mem_lastlogin_datetime', element('sort', $view)); ?>">최근로그인</a></th>
                             <th>회원그룹</th>
@@ -107,7 +107,7 @@
                                 </td>
                             <?php } ?>
                             <td class="text-right"><?php echo number_format(element('mem_point', $result)); ?></td>
-                            <td class="text-right"><?php echo number_format(element('total_deposit', element('meta', $result)) + 0); ?></td>
+                            <!-- <td class="text-right"><?php echo number_format(element('total_deposit', element('meta', $result)) + 0); ?></td> -->
                             <td><?php echo display_datetime(element('mem_register_datetime', $result), 'full'); ?></td>
                             <td><?php echo display_datetime(element('mem_lastlogin_datetime', $result), 'full'); ?></td>
                             <td><?php echo element('member_group', $result); ?></td>
