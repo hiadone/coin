@@ -5,9 +5,9 @@
 
             if( !get_id || $(this).prop("nodeName") != 'TEXTAREA' ) return true;
 
-            var ua = navigator.userAgent.toLowerCase();
             
-            if(ua.indexOf("iphone") < 0 && ua.indexOf("ipad") < 0 && ua.indexOf("ipod") < 0 && ua.indexOf("android") < 0){
+            
+            if(cb_device_type =='desktop'){
                 nhn.husky.EZCreator.createInIFrame({
                     oAppRef: oEditors,
                     elPlaceHolder: get_id,
