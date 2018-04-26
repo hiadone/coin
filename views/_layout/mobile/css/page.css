@@ -8,7 +8,7 @@ html, body{
 	max-width: 420px;
 	min-width: 320px;
 	margin: 0 auto;
-	font-size: 13px;
+	font-size: 12px;
 	color: #272727;
 	min-height: 100%;
 	position: relative;
@@ -428,8 +428,8 @@ html, body{
 	}*/
 
 	.tab06_cont ul li a{
-						display: inline-block;
-						width: 100%;
+		display: inline-block;
+		width: 100%;
 	}
 
 	.tab06_cont ul li.active {
@@ -437,25 +437,22 @@ html, body{
 	}
 
 	.tab06_cont {
-		display: block;
-	}
-
-	.tab06_cont {
 		max-width: 640px;
 		margin: 0 auto;
-		display: block;
+		display: inline-block;
 	}
 
-	.cont_wrap .tab06_cont > ul li h3{
+	.tab06_cont > ul li h3{
 		width: 90%;
 		float: left;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
+		font-size: 13px;
 	}
 
 
-	.cont_wrap .tab06_cont > ul li span{
+	.tab06_cont > ul li a span{
 		width: 10%;
 		text-align: center;
 		display: inline-block;
@@ -463,20 +460,22 @@ html, body{
 		float: right;
 	}
 
-	.cont_wrap .tab06_cont > ul li table{
+	.tab06_cont > ul li a table{
 		width: 100%;
 		color: #5d5d5d;
 		text-align: center;
 		table-layout: fixed;
+		margin-top: 10px;
 	}
 
-	.cont_wrap .tab06_cont > ul li td{
+	.tab06_cont > ul li a td{
 		width: 33%;
-		text-align: left;
+		text-align: right;
+		font-size: 12px;
 		padding:0;
 	}
 
-	.cont_wrap .tab06_cont > ul li td:nth-child(2){
+	.tab06_cont > ul li a td:nth-child(2){
 		width: 34%;
 	}
 	/*tab06 검색영역 css*/
@@ -780,7 +779,7 @@ html, body{
 	.cover_menu .ham_cont{
 		width:85%;
 		height: 100%;
-		overflow:scroll;
+		overflow:auto;
 		position: absolute;
 		top: 0;
 		left: -85%;
