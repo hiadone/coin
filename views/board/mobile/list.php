@@ -237,14 +237,18 @@
             $.ajax({
             type: "GET", 
             async: true,
-            data: "pageid=08y7&lang=utf-8&out=json", 
+            data: "pageid=08yE&lang=utf-8&out=json", 
             url: "https://ssl-hiadone.ad4989.co.kr/cgi-bin/pelicanc.dll?impr", 
             cache: false, 
             dataType: "jsonp", 
             jsonp: "jquerycallback", 
             success: function(data) 
             {
+<<<<<<< Updated upstream
               $("#" +id).html('<div class="tab09_cont cont" ><ul>'+data.tag+'</ul></div>'); 
+=======
+              $("#" +id).html('<div class="tab09_cont cont" >'+data.tag+'</div>'); 
+>>>>>>> Stashed changes
             },
             error: function(xhr, status, error) { ; } 
             });

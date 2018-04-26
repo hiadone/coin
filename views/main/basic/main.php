@@ -486,8 +486,13 @@
     </section>
 
     <section class='ad main_ad'>
+<<<<<<< Updated upstream
         <?php //echo banner('main_banner'); ?>
         <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y9&out=script"></script>
+=======
+        <!-- <?php echo banner('main_banner'); ?> -->
+       <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y9&out=script"></script>
+>>>>>>> Stashed changes
     </section>
 
     <section class='ad img_slide' id='event' >

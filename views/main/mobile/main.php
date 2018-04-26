@@ -10,12 +10,13 @@
 
     // 전체 스크립트 
     $(document).ready(function(){
-         $("html,body").animate({scrollTop:0},'500');
+         $("html,body").animate({scrollTop:0});
+
         // tab01 영역 스크립트
             $(".tab01_cont").hide();
             $(".tab01_cont:first").show();
 
-            $("ul.tab01_tabs li").click(function () {
+            $("ul.tab01_tabs li").click(function (){
 
                 $("ul.tab01_tabs li").removeClass("active").css("color" , "#333");
                 $(this).addClass("active").css("color", "#1c446d");
@@ -567,7 +568,7 @@
     <!-- ad 영역 -->
         <section class="ad">
            <!-- <?php echo banner('main_mobile_banner') ?> -->
-           <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08yB&out=script"></script>
+          <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08yB&out=script"></script>
         </section>
 
     <!-- tab07(최신뉴스,인기뉴스) 영역 -->
@@ -775,9 +776,7 @@
                         );
 
                     echo '<div id="tab09_'.element('brd_key',$config).'" class="tab09_cont cont">
-                    <ul>
                         <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
-                    </ul>
                 </div>';
                     
                 }
@@ -964,15 +963,17 @@
     <!-- ad 영역 -->
         <section class="ad">
            <!--  <?php echo banner('main_mobile_banner3') ?> -->
-           <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08yC&out=script"></script>
+            <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08yC&out=script"></script>
         </section>
     
     <!-- N버튼 영역 -->
-        <span class='new_btn'>
+        <div class='new_btn'>
+            <span>
                 <a href='<?php echo site_url('/board/post_hit') ?>'>
                     <img src='<?php echo site_url('/assets/images/new_click.png') ?>' alt='newclick_img'>
                 </a>
-        </span>
+            </span>
+        </div>
 </article>
 
 

@@ -50,11 +50,11 @@ $record_num = $this->uri->segment($last);
             
         </ul> 
     </section>
-    <section class="tab" id="webtoon">
-    <div class="tab_cont">
+    <section>
     <div>
-            <ul class="tab_img">
-                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
+    <div class='gallery_li'>
+            <ul class="webtoon_sub">
+                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08yE&lang=utf-8&out=script"></script>
             </ul>
             </div>
         </div></section>
