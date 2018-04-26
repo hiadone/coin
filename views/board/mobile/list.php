@@ -244,11 +244,11 @@
             jsonp: "jquerycallback", 
             success: function(data) 
             {
-<<<<<<< Updated upstream
-              $("#" +id).html('<div class="tab09_cont cont" ><ul>'+data.tag+'</ul></div>'); 
-=======
+
+              // $("#" +id).html('<div class="tab09_cont cont" ><ul>'+data.tag+'</ul></div>'); 
+
               $("#" +id).html('<div class="tab09_cont cont" >'+data.tag+'</div>'); 
->>>>>>> Stashed changes
+
             },
             error: function(xhr, status, error) { ; } 
             });

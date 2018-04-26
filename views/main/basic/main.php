@@ -486,19 +486,15 @@
     </section>
 
     <section class='ad main_ad'>
-<<<<<<< Updated upstream
+
         <?php //echo banner('main_banner'); ?>
-        <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y9&out=script"></script>
-=======
-        <!-- <?php echo banner('main_banner'); ?> -->
-       <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y9&out=script"></script>
->>>>>>> Stashed changes
+       <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08y9&out=script"></script>
     </section>
 
     <section class='ad img_slide' id='event' >
         <ul >
             <?php //echo banner('main_event'); ?>
-            <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08yA&out=script"></script>
+            <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08yA&out=script"></script>
         </ul>
     </section>
 
