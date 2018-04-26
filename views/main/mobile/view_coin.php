@@ -33,7 +33,7 @@ foreach(element('coin_list',$view) as $key => $value){ ?>
                 if((element('current_price',$value_) - element('open_price',$value_)) > 0)
                     echo "<td class='text-right' style='color:red;'>▲ ";
                 else echo "<td class='text-right' style='color:blue;'>▼ ";
-                echo number_format((element('current_price',$value_) - element('open_price',$value_))/element('open_price',$value_) *100,2).' %' ;
+                echo number_format(abs(element('current_price',$value_) - element('open_price',$value_))/element('open_price',$value_) *100,2).' %' ;
             }else {
                 echo "<td>-";
             }
@@ -45,11 +45,11 @@ foreach(element('coin_list',$view) as $key => $value){ ?>
                 echo '<td class="text-right">-';
             } else {
                 if(element('kprime',$value_)>0)
-                    echo '<td class="text-right" style="color:blue;">';
+                    echo '<td class="text-right" style="color:red;">▲ ';
                 else 
-                    echo '<td class="text-right" style="color:green;">';
+                    echo '<td class="text-right" style="color:blue;">▼ ';
 
-                echo number_format(element('kprime',$value_)*100,2).' %' ;
+                echo number_format(abs(element('kprime',$value_))*100,2).' %' ;
             }
                 
             ?> 

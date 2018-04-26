@@ -224,7 +224,7 @@
                  ?>
             </ul>
             
-            <div class="tab06_wrap cont_wrap" id="view_board">
+            <div class="" id="view_board">
 
             </div>
         </section>
@@ -244,7 +244,7 @@
             jsonp: "jquerycallback", 
             success: function(data) 
             {
-              $("#" +id).html(data.tag); 
+              $("#" +id).html('<div class="tab09_cont cont" ><ul>'+data.tag+'</ul></div>'); 
             },
             error: function(xhr, status, error) { ; } 
             });

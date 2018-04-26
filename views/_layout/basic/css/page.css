@@ -83,7 +83,7 @@
 
 		#coin_mall .coin_cont td{
 			vertical-align: middle;
-			text-align: center;
+			/*text-align: center;*/
 		}
 
 		#coin_mall .coin_cont td a{
@@ -108,39 +108,68 @@
 				width: 99px;
 			}
 
-			.coin_title th:nth-child(2),
+			.coin_title th:nth-child(2){
+				width: 130px; 
+			}
+
 			.coin_cont td:nth-child(2){
-				width: 130px;
+				width: 110px; 
+				padding-right:20px;
 			}
 
-			.coin_title th:nth-child(3),
-			.coin_cont td:nth-child(3){
+			.coin_title th:nth-child(3){
 				width: 83px;
+
 			}
 
-			.coin_title th:nth-child(4),
-			.coin_cont td:nth-child(4){
+			.coin_cont td:nth-child(3){
+				width: 73px;
+				padding-right:10px;
+			}	
+
+			.coin_title th:nth-child(4){
 				width: 77px;
 			}
 
-			.coin_title th:nth-child(5),
-			.coin_cont td:nth-child(5){
+			.coin_cont td:nth-child(4){
+				width: 67px;
+				padding-right:10px;
+			}
+
+			.coin_title th:nth-child(5){
 				width: 90px;
 			}
 
-			.coin_title th:nth-child(6),
-			.coin_cont td:nth-child(6){
+			.coin_cont td:nth-child(5){
+				width: 70px;
+				padding-right:20px;
+			}
+
+			.coin_title th:nth-child(6){
 				width: 185px;
 			}
 
-			.coin_title th:nth-child(7),
-			.coin_cont td:nth-child(7){
+			.coin_cont td:nth-child(6){
+				width: 155px;
+				padding-right:30px;
+			}
+
+			.coin_title th:nth-child(7){
 				width: 148px;
 			}
 
-			.coin_title th:nth-child(8),
-			.coin_cont td:nth-child(8){
+			.coin_cont td:nth-child(7){
+				width: 118px;
+				padding-right:30px;
+			}
+
+			.coin_title th:nth-child(8){
 				width: 133px;
+			}
+
+			.coin_cont td:nth-child(8){
+				width: 103px;
+				padding-right:30px;
 			}
 
 	/*main_ad css*/

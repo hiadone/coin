@@ -337,7 +337,7 @@ html, body{
 		padding-right: 4%;
 		box-sizing: border-box;
 		font-weight: bold;
-		color:#000 !important;
+		/*color:#000 !important;*/
 	}
 
 		/*거래소 리스트 영역*/

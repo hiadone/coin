@@ -6,7 +6,7 @@
         var postact_flag=false;
         var global_cur_unit='krw';
         var coinActiveTab='tab01_btc';
-        setInterval('view_coin(global_cur_unit)',10000);
+        // setInterval('view_coin(global_cur_unit)',10000);
 
     // 전체 스크립트 
     $(document).ready(function(){

@@ -83,9 +83,9 @@ function won($k) {
         // if($key_==="bitfinex") continue;
         ?>
         <tr>
-            <td><a href="<?php echo element($key_,element('vic_url',$view)); ?>" target="_blank" style="color:blue;" title="<?php echo element($key_,element('vic_type',$view)); ?>"><?php echo element($key_,element('vic_type',$view)); ?></a></td>
+            <td class='text-center'><a href="<?php echo element($key_,element('vic_url',$view)); ?>" target="_blank" style="color:blue;" title="<?php echo element($key_,element('vic_type',$view)); ?>"><?php echo element($key_,element('vic_type',$view)); ?></a></td>
 
-            <td class='text-right'><?php echo !empty(element('current_price_krw',$value_)) ? '₩ '.number_format(element('current_price_krw',$value_)) : '-'; ?></td>
+            <td class='text-right' style="text-indent:30px;"><?php echo !empty(element('current_price_krw',$value_)) ? '₩ '.number_format(element('current_price_krw',$value_)) : '-'; ?></td>
 
             <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? number_format(element('current_price',$value_)/element('current_price',element($key_,element('btc',element('coin_list',$view)))),5) : '-'; ?></td>
             <td class='text-right'><?php echo !empty(element('current_price_usd',$value_)) ? '$ '.number_format(element('current_price_usd',$value_),2) : '-'; ?></td>
@@ -94,14 +94,14 @@ function won($k) {
             
             <?php 
             if(empty(element('kprime',$value_))){
-                echo '<td class="text-right premium">-';
+                echo '<td class="text-right premium">';
             } else {
                 if(element('kprime',$value_)>0)
-                    echo '<td class="text-right premium" style="color:blue;">';
+                    echo '<td class="text-right premium" style="color:red;">▲ ';
                 else 
-                    echo '<td class="text-right premium" style="color:green;">';
+                    echo '<td class="text-right premium" style="color:blue;">▼ ';
 
-                echo number_format(element('kprime',$value_)*100,2).' %' ;
+                echo number_format(abs(element('kprime',$value_))*100,2).' %' ;
             }
                 
             ?> 
@@ -109,10 +109,14 @@ function won($k) {
 
              <?php 
             if(!empty(element('open_price',$value_))) {
-                if((element('current_price',$value_) - element('open_price',$value_)) > 0)
+                if((element('current_price',$value_) - element('open_price',$value_)) > 0){
                     echo "<td class='text-right rate' style='color:red;'>▲ ";
-                else echo "<td class='text-right rate minus' style='color:blue;'>▼ ";
-                echo number_format((element('current_price',$value_) - element('open_price',$value_))/element('open_price',$value_) *100,2).' % (₩ '.number_format((element('current_price_krw',$value_) - element('open_price_krw',$value_))).')' ;
+                    echo number_format(abs(element('current_price',$value_) - element('open_price',$value_))/element('open_price',$value_) *100,2).' % (▲ ₩ '.number_format(abs(element('current_price_krw',$value_) - element('open_price_krw',$value_))).')' ;
+                } else {
+                    echo "<td class='text-right rate minus' style='color:blue;'>▼ ";
+                    echo number_format(abs(element('current_price',$value_) - element('open_price',$value_))/element('open_price',$value_) *100,2).' % (▼ ₩ '.number_format(abs(element('current_price_krw',$value_) - element('open_price_krw',$value_))).')' ;
+                }
+                
             }else {
                 echo "<td>-";
             }

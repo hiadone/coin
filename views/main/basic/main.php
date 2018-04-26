@@ -467,13 +467,13 @@
         <table class='coin_title nomal_font02'>
             <tr>
                 <th>거 래 소</th>
-                <th>가 격 <span class='small_font'>(원)</span></th>
+                <th>가 격<span class='small_font'>(원)</span></th>
                 <th>비 트 코 인</th>
                 <th>달 러</th>
                 <th>프 리 미 엄</th>
-                <th>변 동 률 <span class='small_font'>(24시)</span></th>
+                <th>변 동 률<span class='small_font'>(24시)</span></th>
                 <th>시 가 총 액</th>
-                <th>거 래 량 <span class='small_font'>(24시)</span></th>
+                <th>거 래 량<span class='small_font'>(24시)</span></th>
             </tr>
         </table>
         <div id="coin_data" class="tab_cont" style="padding:0;">
@@ -486,13 +486,13 @@
     </section>
 
     <section class='ad main_ad'>
-        <!-- <?php echo banner('main_banner'); ?> -->
+        <?php //echo banner('main_banner'); ?>
         <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y9&out=script"></script>
     </section>
 
     <section class='ad img_slide' id='event' >
         <ul >
-            <!-- <?php echo banner('main_event'); ?> -->
+            <?php //echo banner('main_event'); ?>
             <script src="http://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08yA&out=script"></script>
         </ul>
     </section>
@@ -1043,7 +1043,7 @@
 
         <div class="tab_cont">
             <?php
-            $tab04=array('w-2','w-3','w-1');
+            $tab04=array('w-3','w-2','w-1');
             foreach($tab04 as $value){
                 $config = array(
                     'brd_key' => $value,
@@ -1125,7 +1125,7 @@
 
                 $config = array(
                     'brd_key' => $tvalue,
-                    'limit' => 10,
+                    'limit' => 16,
                     'length' => 70,
                     );
                 $board=$this->board->data($config);
