@@ -94,7 +94,7 @@
                 </p>
 
                 <p class="nomal_font02">
-                   <a href="">로그인 바로가기</a>
+                   <a href="<?php echo base_url('/login') ?>">로그인 바로가기</a>
                 </p>
 
 
