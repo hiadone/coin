@@ -27,7 +27,7 @@ class _Stat
         }
 
 
-        if ( ! get_cookie('user_ip') OR $CI->uri->segment(1) !== config_item('uri_segment_admin')) {
+        if ( ! get_cookie('user_ip') && $CI->uri->segment(1) !== config_item('uri_segment_admin')) {
 
             // 방문자 기록
             if (get_cookie('user_ip') !== $CI->input->ip_address()) {
