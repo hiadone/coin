@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 $last = $this->uri->total_segments();
 $record_num = $this->uri->segment($last);
-$pageid=array('w-3'=>'08y7','w-2'=>'08yF','w-1'=>'08yG');
+$pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
 ?>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/plugins/jquery.easing.1.3.js'); ?>"></script>
