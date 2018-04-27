@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=1280">
 <!-- <meta name="naver-site-verification" content="198e8e28067f3f38761488506290231146288364"/> -->
 <meta name="google-site-verification" content="6FfNGOyp00RKYp_kGK_GrIRzIJn6KM3jEqVCoJ_sEIE" />
+<meta name="naver-site-verification" content="198e8e28067f3f38761488506290231146288364"/>
 <title><?php echo html_escape(element('page_title', $layout)); ?></title>
 <?php if (element('meta_description', $layout)) { ?><meta name="description" content="<?php echo html_escape(element('meta_description', $layout)); ?>"><?php } ?>
 <?php if (element('meta_keywords', $layout)) { ?><meta name="keywords" content="<?php echo html_escape(element('meta_keywords', $layout)); ?>"><?php } ?>
