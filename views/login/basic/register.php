@@ -82,7 +82,7 @@
                         <a href="javascript:;" onClick="social_register('naver');" title="네이버 로그인" style="color:#fff;">
                         <figure>
                             <img src="<?php echo element('layout_skin_url', $layout); ?>/images/pc_sns/naver.png" alt="ham_naver_img">
-                            <figcaption class="big_font">로 그 인</figcaption>
+                            <figcaption class="big_font">회 원 가 입</figcaption>
                         </figure>
                         </a>
                     </li>

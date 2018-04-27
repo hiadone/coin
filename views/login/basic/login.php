@@ -81,7 +81,7 @@
                 </ul>
 
                 <p class='nomal_font02'>
-                   <a href="">회원가입 바로가기</a> 
+                   <a href="<?php echo base_url('/login/register') ?>">회원가입 바로가기</a> 
                 </p>
             </section>
         <?php } ?>

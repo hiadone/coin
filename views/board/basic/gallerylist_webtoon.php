@@ -3,7 +3,7 @@ $last = $this->uri->total_segments();
 $record_num = $this->uri->segment($last);
 
 
-$pageid=array('w-3'=>'08y7','w-2'=>'08yF','w-1'=>'08yG');
+$pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
 ?>
 
 <?php echo element('headercontent', element('board', element('list', $view))); ?>
