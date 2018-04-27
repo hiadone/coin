@@ -196,13 +196,13 @@ $(document).ready(function(){
 
 </head>
 <body <?php echo isset($view) ? element('body_script', $view) : ''; ?>>
-
+<?php if ($this->member->is_member()) { ?>
 <aside class="ham">
     <img class="pointer" src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png" alt="ham_btn_img">
    <div id="view_member" class="ham_cont02">
    </div>
 </aside>
-
+<?php } ?>
 <header>
     <h1>
         <a href="<?php echo site_url(); ?>">

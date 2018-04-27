@@ -62,12 +62,12 @@ $record_num = $this->uri->segment($last);
             <input type="text" name="memo" value="<?php echo html_escape(element(0, element('default_memo', $view))); ?>" id="att_memo" class="" onClick="this.value='';" />
             <button type="button" name="change_memo" class="refresh" id="change_memo"><img src='<?php echo element('layout_skin_url', $layout); ?>/images/refresh.png' alt='refresh_img'></button>
             <button type="button" name="submit"  id="add_attendance">출 첵 하 기</button>
-            <p class="point nomal_font02" >출석가능시간 : 00:00:00 ~ 23:59:59 , 출석포인트 : 10점</p>
-           <!--  <p class="point nomal_font02 view_policy" >포 인 트 정 책 보 기</p>
+            <p class="point nomal_font02" >출석가능시간 : <?php echo $this->cbconfig->item('attendance_start_time'); ?> ~ <?php echo $this->cbconfig->item('attendance_end_time'); ?> , 출석포인트 : <?php echo $this->cbconfig->item('attendance_point') ?>점</p>
+            <!-- <p class="point nomal_font02 view_policy" >포 인 트 정 책 보 기</p> -->
             
         <?php echo form_close(); ?>
         
-        <div class="alert alert-dismissible alert-warning alert-point-policy point_policy">
+        <!-- <div class="alert alert-dismissible alert-warning alert-point-policy point_policy">
             <button type="button" class="close alertclose" >&times;</button>
             <strong>포인트 정책</strong><br/>
             출석가능시간 : <?php echo $this->cbconfig->item('attendance_start_time'); ?> ~ <?php echo $this->cbconfig->item('attendance_end_time'); ?><br />
@@ -108,8 +108,8 @@ $record_num = $this->uri->segment($last);
             if ($this->cbconfig->item('attendance_point_regular') && $this->cbconfig->item('attendance_point_regular_days')) {
                 echo '개근포인트 : ' . $this->cbconfig->item('attendance_point_regular') . '점, ' . $this->cbconfig->item('attendance_point_regular_days') . '일 마다 지급<br />';
             }
-            ?> -->
-        </div>
+            ?>
+        </div> -->
 
         <section class="atten_date"><h3 class='big_font'><?php echo element('date_format', $view); ?></h3>
         <table>

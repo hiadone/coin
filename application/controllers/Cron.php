@@ -733,7 +733,7 @@ class Cron extends CB_Controller {
 
         $insertdata = array(
             'mem_id' => 41,
-            'att_point' => 10,
+            'att_point' => $this->cbconfig->item('attendance_point'),
             'att_memo' => html_escape(element(0, $default_memo)),
             'att_continuity' => 0,
             'att_ranking' => $my_ranking,
