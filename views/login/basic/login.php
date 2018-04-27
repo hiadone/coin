@@ -40,7 +40,7 @@
                 <div class='login_notice'>
                     <figure>
                         <img src="<?php echo base_url('/assets/images/login_logo/logo.png')?>">
-                        <h3 class='big_font'>가입하신 SNS를 선택하시고 로그인 해주세요.</h3>
+                        <h3 style="font-size:20px; color:#403f3f; ">로그인</h3>
                     </figure>
                 </div>
                 
