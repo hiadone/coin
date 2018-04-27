@@ -568,7 +568,7 @@
     <!-- ad 영역 -->
         <section class="ad">
            
-          <script src="http://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08yB&out=script"></script>
+          <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08yB&out=script"></script>
         </section>
 
     <!-- tab07(최신뉴스,인기뉴스) 영역 -->
@@ -963,7 +963,7 @@
     <!-- ad 영역 -->
         <section class="ad">
            
-            <script src="http://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08yC&out=script"></script>
+            <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08yC&out=script"></script>
         </section>
     
     <!-- N버튼 영역 -->
