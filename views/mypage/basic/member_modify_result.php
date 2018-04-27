@@ -2,7 +2,7 @@
 
 <article class='content04 name_wrap' style="position: relative; margin: 0 auto;height:520px;">
     <section class='welcome'>
-        <img src="<?php echo base_url('/assets/images/logo.png')?>">
+        <img src="<?php echo base_url('/assets/images/login_logo/logo.png')?>">
         <p class="big_font">
             <?php echo element('result_message', $view); ?>
         </p>

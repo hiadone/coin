@@ -8,6 +8,7 @@ html{
 	font-size: 12px;
 	font-family: 'Nanum Gothic', sans-serif;
 	min-height: 100%;
+	overflow-y: auto;
 }
 
 h2{
@@ -313,14 +314,11 @@ textarea{
 	}
 
 /*ham_cont css*/
-	.ham_cont,
-	.ham_cont02{
+	.ham_cont{
 		width: 320px;
 		height: 100%;
 		margin: 0 auto;
 		box-sizing: border-box;
-/*		float: right;
-		border-left:1px solid #ededed;*/
 		background-color: #fff;
 	}
 
@@ -361,7 +359,12 @@ textarea{
 
 /*ham_cont02 css*/
     .ham_cont02{
-		padding:0;
+    	max-width: 420px;
+    	height: 100%;
+		padding:70px 10px;
+		box-sizing: border-box;
+		margin: 0 auto;
+		text-align: center;
 	}
 
 	.ham_cont02 > h2{
@@ -382,79 +385,78 @@ textarea{
         display: inline-block;
 	}
 
-
-
 /*ham_login*/
 	.ham_login .login_notice{
-		width: 299px;
-        margin:0px 10px 20px;
-        padding:100px 20px 0px;
-        box-sizing: border-box;
-        text-align: center; 
-	}
-
-	.ham_login .login_notice h3{
-		margin-bottom: 20px;
-		font-size: 16px;
-	}
-
-	.ham_login .login_notice span{
-		display: block;
-		line-height: 15px;
-		font-size: 11px;
-		font-family:'Jeju Gothic', sans-serif;
-	}
-
-	.ham_login .login_notice span a{
-		text-decoration: underline;
-	}
-
-	.ham_login .login_notice strong{
-		font-family:'Jeju Gothic', sans-serif;
-		line-height: 13px;
-	}
-
-	.ham_login ul{
-		width: 299px;
-		display: inline-block;
-		margin:0 10px;
-	}
-
-	.ham_login ul li{
-		display: inline-block;
 		width: 100%;
-		border-radius:10px;
+		display: inline-block;
+	}
+
+	.ham_login .login_notice figure{
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	.ham_login .login_notice figure img{
 		margin-bottom: 10px;
 	}
 
-	.ham_login figure{
-		width: 240px;
-		float: left;
+	.ham_login .login_notice h3{
+		display: block;
+		margin-bottom: 20px;
 	}
 
-	.ham_login figure img{
-		width:40px;
-		float: left;
-		margin: 0 10px 0 10px;
+	.ham_login ul li{
+		padding:3%;
+		border:1px solid #ededed;
+		box-sizing: border-box;
+		text-align: center;
 	}
 
-	.ham_login figcaption{
-		height: 40px;
-		line-height: 40px;
-		font-family:'Jeju Gothic', sans-serif;
-	}
-
-	.ham_login li span{
-		width: 30px;
-		height: 30px;
+	.ham_login ul li figure{
 		display: inline-block;
-		float: right;
-		margin-top:5px;
+		height: 25px;
 	}
 
-	.ham_login li span img{
-		width: 100%;
+	.ham_login ul li img{
+		height: 25px;
+		float: left;
+		margin-right: 10px;
 	}
+
+	.ham_login ul li figcaption{
+		display: inline-block;
+		font-family: 'Jeju Gothic', sans-serif;
+		height: 25px;
+		line-height:32px;
+		color:#585858;
+	}
+
+	.ham_login .login_notice p{
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+
+	.ham_login strong{
+		font-family: 'Jeju Gothic', sans-serif;
+		color: #a61e23;
+		margin-bottom: 10px;
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+	}
+
+	.ham_login p.nomal_font02{
+		text-align: center;
+		text-decoration: underline;
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+
+
+	
+
+
+
+
+
 
 /*포인트 정보 css*/
 	.point_info{

@@ -44,8 +44,61 @@
                 <!-- <h2>SNS 회원가입</h2> -->
 
                 <div class='login_notice'>
-                    <h3>SNS 회원가입</h3>
-                    <p class='small_font'>
+                    <figure>
+                        <img src="<?php echo base_url('/assets/images/login_logo/logo.png')?>">
+                        <h3 class='big_font'>비트이슈 SNS 회원가입</h3>
+                        <p>
+                            비트이슈에서는 SNS아이디로 로그인하여 간편하게<br>
+                            서비스를 이용하실 수 있습니다.                            
+                        </p>
+                    </figure>
+                </div>
+
+                <strong class='nomal_font02'>
+                    추천이 닉네임을 입력하면 가입고객 전원 500P 적립
+                </strong>
+
+                 <button type="button" onClick="location.href='<?php echo site_url('/event/event_register') ?>';" style="width: 70%; font-family: 'Jeju Gothic', sans-serif; margin-bottom: 30px;">이 벤 트 바 로 가 기</button>
+
+                <?php
+                $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite2', 'id' => 'fwrite2');
+                echo form_open('', $attributes);
+                ?>
+                    <input type="hidden" name="socialtype" id="socialtype" value="">
+                    <input type="hidden" name="selfcert_type" id="selfcert_type" value="" />
+                <ul >
+                    <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
+                    <li style="margin-bottom: 10px;">
+                        <a href="javascript:;" onClick="social_register('kakao');" title="카카오 로그인">
+                        <figure>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/pc_sns/kakao.png" alt="ham_talk_img">
+                            <figcaption class="big_font">회 원 가 입</figcaption>
+                        </figure>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
+                    <li style="margin-bottom: 30px;">
+                        <a href="javascript:;" onClick="social_register('naver');" title="네이버 로그인" style="color:#fff;">
+                        <figure>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/pc_sns/naver.png" alt="ham_naver_img">
+                            <figcaption class="big_font">로 그 인</figcaption>
+                        </figure>
+                        </a>
+                    </li>
+                    <?php } ?>
+                </ul>
+
+                <p class="nomal_font02">
+                   <a href="<?php echo document_url('provision')?>" title="이용약관및개인정보취급방침">로그인과 함께 비트이슈의 이용약관 및 개인정보<br> 취급방침에 동의하신 것으로 간주합니다.</a>
+                </p>
+
+
+
+
+
+                    
+<!--                     <p class='small_font'>
                         비트이슈에서는 SNS로 로그인하여<br>
                         간편하게 서비스를 이용하실 수 있습니다.
                     </p>
@@ -65,47 +118,15 @@
 
                     <br><br>
 
-                    <button type="button" onClick="location.href='<?php echo site_url('/event/event_register') ?>';" style="width: 100%; font-family: 'Jeju Gothic', sans-serif;">이 벤 트 바 로 가 기</button>
+                   
                     
                     <br><br><br>
 
-                     <span><a href="<?php echo document_url('provision')?>" title="이용약관및개인정보취급방침">로그인과 함께 비트이슈의 이용약관 및 개인정보<br> 취급방침에 동의하신 것으로 간주합니다.</a></span>
+                     <span><a href="<?php echo document_url('provision')?>" title="이용약관및개인정보취급방침">로그인과 함께 비트이슈의 이용약관 및 개인정보<br> 취급방침에 동의하신 것으로 간주합니다.</a></span> -->
                 </div>
 
 
-                <?php
-                $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite2', 'id' => 'fwrite2');
-                echo form_open('', $attributes);
-                ?>
-                    <input type="hidden" name="socialtype" id="socialtype" value="">
-                    <input type="hidden" name="selfcert_type" id="selfcert_type" value="" />
-                <ul >
-                    <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
-                    <li style="background-color:#fbe300; color:#3a1e1f">
-                        <a href="javascript:;" onClick="social_register('kakao');" title="카카오 로그인">
-                        <figure>
-                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_talk.png" alt="ham_talk_img">
-                            <figcaption class="big_font">카 카 오 톡 로 그 인</figcaption>
-                        </figure>
-                        <span>
-                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
-                        </span>
-                        </a>
-                    </li>
-                    <?php } ?>
-                    <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
-                    <li style="background-color:#1ec802;">
-                        <a href="javascript:;" onClick="social_register('naver');" title="네이버 로그인" style="color:#fff;">
-                        <figure>
-                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_naver.png" alt="ham_naver_img">
-                            <figcaption class="big_font">네 이 버 로 그 인</figcaption>
-                        </figure>
-                        <span>
-                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
-                        </span>
-                        </a>
-                    </li>
-                    <?php } ?>
+
                    <!--  <?php if ($this->cbconfig->item('use_sociallogin_facebook')) {?>
                     <li style="background-color:#3c589e;color:#fff;">
                         <a href="javascript:;" onClick="social_register('facebook');" title="페이스북 로그인" style="color:#fff;">

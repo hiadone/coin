@@ -37,41 +37,31 @@
             ?>
             
             <section class="ham_cont02 ham_login">
-                    
-                <!-- <h2>SNS 로그인</h2> -->
-
                 <div class='login_notice'>
-                    <h3>SNS 로그인</h3>
-                    <p class='small_font'>
-                        가입하신 SNS를 선택하시고<br>
-                        로그인 해주세요.<br>
-                    </p>
+                    <figure>
+                        <img src="<?php echo base_url('/assets/images/login_logo/logo.png')?>">
+                        <h3 class='big_font'>가입하신 SNS를 선택하시고 로그인 해주세요.</h3>
+                    </figure>
                 </div>
                 
                 <ul >
                     <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
-                    <li style="background-color:#fbe300; color:#3a1e1f">
+                    <li style="margin-bottom:10px;">
                         <a href="javascript:;" onClick="social_connect_on('kakao');" title="카카오 로그인">
                         <figure>
-                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_talk.png" alt="ham_talk_img">
-                            <figcaption class="big_font">카 카 오 톡 로 그 인</figcaption>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/pc_sns/kakao.png" alt="ham_talk_img">
+                            <figcaption class="big_font">로 그 인</figcaption>
                         </figure>
-                        <span>
-                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
-                        </span>
                         </a>
                     </li>
                     <?php } ?>
                     <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
-                    <li style="background-color:#1ec802;">
+                    <li style="margin-bottom:30px;">
                         <a href="javascript:;" onClick="social_connect_on('naver');" title="네이버 로그인" style="color:#fff;">
                         <figure>
-                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_naver.png" alt="ham_naver_img">
-                            <figcaption class="big_font">네 이 버 로 그 인</figcaption>
+                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/pc_sns/naver.png" alt="ham_naver_img">
+                            <figcaption class="big_font">로 그 인</figcaption>
                         </figure>
-                        <span>
-                            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_arrow.png" alt="ham_arrow_img">
-                        </span>
                         </a>
                     </li>
                     <?php } ?>
@@ -89,6 +79,10 @@
                     </li>
                     <?php } ?> -->
                 </ul>
+
+                <p class='nomal_font02'>
+                   <a href="">회원가입 바로가기</a> 
+                </p>
             </section>
         <?php } ?>
        
