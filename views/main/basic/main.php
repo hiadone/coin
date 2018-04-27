@@ -1044,7 +1044,7 @@
 
         <div class="tab_cont">
             <?php
-            $tab04=array('w-3','w-2','w-1');
+            $tab04=array('08y7','08yF','08yG');
             foreach($tab04 as $value){
                 $config = array(
                     'brd_key' => $value,
@@ -1057,7 +1057,7 @@
 
                 echo '<div>
             <ul class="tab_img">
-                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
+                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid='.$value.'&lang=utf-8&out=script"></script>
             </ul>
             </div>
         ';

@@ -1,6 +1,9 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); 
 $last = $this->uri->total_segments();
 $record_num = $this->uri->segment($last);
+
+
+$pageid=array('w-3'=>'08y7','w-2'=>'08yF','w-1'=>'08yG');
 ?>
 
 <?php echo element('headercontent', element('board', element('list', $view))); ?>
@@ -54,7 +57,7 @@ $record_num = $this->uri->segment($last);
     <div>
     <div class='gallery_li'>
             <ul class="webtoon_sub">
-                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08yE&lang=utf-8&out=script"></script>
+                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=<?php echo element(element('brd_key',element('board', element('list', $view))),$pageid) ?>&lang=utf-8&out=script"></script>
             </ul>
             </div>
         </div></section>

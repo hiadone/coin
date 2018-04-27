@@ -1,4 +1,8 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); 
+$last = $this->uri->total_segments();
+$record_num = $this->uri->segment($last);
+$pageid=array('w-3'=>'08y7','w-2'=>'08yF','w-1'=>'08yG');
+?>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/plugins/jquery.easing.1.3.js'); ?>"></script>
 <script>
@@ -237,7 +241,7 @@
             $.ajax({
             type: "GET", 
             async: true,
-            data: "pageid=08yE&lang=utf-8&out=json", 
+            data: "pageid=<?php echo element(element('brd_key',element('board', element('list', $view))),$pageid) ?>&lang=utf-8&out=json", 
             url: "https://ssl-hiadone.ad4989.co.kr/cgi-bin/pelicanc.dll?impr", 
             cache: false, 
             dataType: "jsonp", 

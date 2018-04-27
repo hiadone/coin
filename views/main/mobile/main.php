@@ -757,14 +757,14 @@
                     </a>
                 </h3>
                 <ul class="tab09_tabs tabs">
-                    <li class='active' rel='tab09_w-3' data-board_url="<?php echo site_url('/board/w-3') ?>">월간신작 TOP 9</li>
-                    <li rel='tab09_w-2' data-board_url="<?php echo site_url('/board/w-2') ?>">학원 / 액션</li>
-                    <li rel='tab09_w-1' style="width: 34%;" data-board_url="<?php echo site_url('/board/w-1') ?>">드 라 마</li>
+                    <li class='active' rel='tab09_08y7' data-board_url="<?php echo site_url('/board/w-3') ?>">월간신작 TOP 9</li>
+                    <li rel='tab09_08yF' data-board_url="<?php echo site_url('/board/w-2') ?>">학원 / 액션</li>
+                    <li rel='tab09_08yG' style="width: 34%;" data-board_url="<?php echo site_url('/board/w-1') ?>">드 라 마</li>
                 </ul>
 
                  <div class="tab09_wrap cont_wrap">
                <?php
-                $tab04=array('w-3','w-2','w-1');
+                $tab04=array('08y7','08yF','08yG');
                 foreach($tab04 as $tvalue){
                     $config = array(
                         'brd_key' => $tvalue,
@@ -776,7 +776,7 @@
                         );
 
                     echo '<div id="tab09_'.element('brd_key',$config).'" class="tab09_cont cont">
-                        <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08y7&lang=utf-8&out=script"></script>
+                        <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid='.$tvalue.'&lang=utf-8&out=script"></script>
                 </div>';
                     
                 }
