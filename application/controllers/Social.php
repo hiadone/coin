@@ -957,6 +957,20 @@ class Social extends CB_Controller
                     $nickname = '사용자';
                 }
 
+                $this->load->model('Memberleave_model');
+                $countwhere = array(
+                            'mem_userid' => $user_id
+                        );
+                $userinfo = $this->Memberleave_model->get_by_userid($user_id,'mem_lastlogin_datetime');
+
+                $criterion = cdate('Y-m-d 00:00:00', strtotime('-1 month'));
+
+                if( $criterion < element('mem_lastlogin_datetime',$userinfo,date('Y-m-d'))){
+                    $lastlogin_datetime = cdate('Y-m-d', strtotime('+1 month',element('mem_lastlogin_datetime',$userinfo,date('Y-m-d')))); 
+                    
+                    alert_close("탈퇴한 회원은 30이내 재가입을 할 수 없습니다.\\n회원님은 " . $lastlogin_datetime ." 일 이후 가입이 가능하십니다.");
+                }
+
                 $nickname_origin = $nickname;
                 $k = 1;
                 while (true) {
