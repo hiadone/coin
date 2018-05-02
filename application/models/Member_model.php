@@ -124,9 +124,9 @@ class Member_model extends CB_Model
         // $this->db->order_by('mem_register_datetime', $orderby);
         // $qry = $this->db->get($this->_table);
         $query = $this->db->query("select count(*) as cnt ,left(mem_register_datetime, 10) day from (
-SELECT * FROM `cb_member` WHERE left(mem_register_datetime, 10) >= '2018-04-01' AND left(mem_register_datetime, 10) <= '2018-04-25' AND `mem_denied` =0  
+SELECT * FROM `cb_member` WHERE left(mem_register_datetime, 10) >= '".$start_date."' AND left(mem_register_datetime, 10) <= '".$end_date."' AND `mem_denied` =0  
  UNION
-SELECT * FROM `cb_memberleave` WHERE left(mem_register_datetime, 10) >= '2018-04-01' AND left(mem_register_datetime, 10) <= '2018-04-25' AND `mem_denied` =0  
+SELECT * FROM `cb_memberleave` WHERE left(mem_register_datetime, 10) >= '".$start_date."' AND left(mem_register_datetime, 10) <= '".$end_date."' AND `mem_denied` =0  
 ) d group by day order by day asc");
 
         

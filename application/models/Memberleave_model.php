@@ -110,12 +110,12 @@ class Memberleave_model extends CB_Model
         $left = ($type === 'y') ? 4 : ($type === 'm' ? 7 : 10);
         if (strtolower($orderby) !== 'desc') $orderby = 'asc';
 
-        $this->db->select('count(*) as cnt, left(mem_register_datetime, ' . $left . ') as day ', false);
-        $this->db->where('left(mem_register_datetime, 10) >=', $start_date);
-        $this->db->where('left(mem_register_datetime, 10) <=', $end_date);
+        $this->db->select('count(*) as cnt, left(mem_lastlogin_datetime, ' . $left . ') as day ', false);
+        $this->db->where('left(mem_lastlogin_datetime, 10) >=', $start_date);
+        $this->db->where('left(mem_lastlogin_datetime, 10) <=', $end_date);
         $this->db->where('mem_denied', 0);
         $this->db->group_by('day');
-        $this->db->order_by('mem_register_datetime', $orderby);
+        $this->db->order_by('mem_lastlogin_datetime', $orderby);
         $qry = $this->db->get($this->_table);
         $result = $qry->result_array();
 
