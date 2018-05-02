@@ -753,7 +753,7 @@ html, body{
 		min-width: 320px;
 		margin: 0 auto;
 		position: fixed;
-		z-index: -100;
+		z-index: 100;
 		overflow: hidden;
 	}
 
@@ -777,12 +777,12 @@ html, body{
 
 /*ham_menu 의 내용*/
 	.cover_menu .ham_cont{
-		width:85%;
+		width:80%;
 		height: 100%;
 		overflow:auto;
 		position: absolute;
 		top: 0;
-		left: -85%;
+		left: -80%;
 	}
 
 /*X버튼 이미지*/
@@ -795,7 +795,7 @@ html, body{
 
 /*ham 메뉴  영역*/
 	.ham_cont div{
-		width: 88%;
+		/*width: 88%;*/
 		padding:3% 2% 5%;
 		background-color: #3d3d3d;
 		color: #fff;

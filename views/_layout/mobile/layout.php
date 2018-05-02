@@ -55,36 +55,18 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 <script>
     $(document).ready(function(){
         // ham 클릭시 ham_menu 이동 스크립트(메뉴 보여주기)
-            $('header span:first-child img').click(function(){
-                 $('.cover_menu').css({'z-index':'1000000'});
-                $('.cover_menu .cover').animate({'opacity' : '0.5'} , 500);
-                $('.cover_menu .ham_cont').animate({'left' : '0'} , 700);
-                // $('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴
-                // $("html, body").bind('scroll  mousewheel', function(e){e.preventDefault();e.stopPropagation();return false;});                
-            });
-
-        // ham 메뉴의 X버튼 클릭시 ham_menu이동 스크립트(메뉴 숨기기)
-            $('.ham_cont > img').click(function(){
-                $('.cover_menu .cover').animate({'opacity' : '0'} , 500);
-                $('.cover_menu .ham_cont').animate({'left' : '-85%'} , 700);
-                // $('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제
-                $("html, body").unbind('scroll  mousewheel');
-                setTimeout(function(){
-                    $('.cover_menu').css({'z-index':'-100'});
-                    // $('.ham_cont ul').css({'display' : 'block'});
-                },700);     
-            });
+            
 
         // ham 메뉴의 대메뉴 접기 펴기 스크립트
-            $('.ham_cont ol > li').click(function(){
+            // $('.ham_cont ol > li').click(function(){
 
-                $(this).children('ul').slideToggle();
-                if($(this).children('span').html()=='▼'){
-                    $(this).children('span').html('▲');
-                }else{
-                    $(this).children('span').html('▼');
-                }                   
-            });
+            //     $(this).children('ul').slideToggle();
+            //     if($(this).children('span').html()=='▼'){
+            //         $(this).children('span').html('▲');
+            //     }else{
+            //         $(this).children('span').html('▼');
+            //     }                   
+            // });
 
         // ham 메뉴의 로그인 시 회원 닉네임 영역 높이값 스크립트
             var hei = $('.ham_cont div table figure img').height();
@@ -116,15 +98,15 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
 </head>
 <body <?php echo isset($view) ? element('body_script', $view) : ''; ?>>
-    <article class="cover_menu">
-        <section class="cover">
-        </section>
+    <article class="cover_menu" id="left_side_menu">
+        
 
         <!-- ham_menu 의 내용-->
-            <section class="ham_cont">
+            <section class="ham_cont left_side_wr left_add_side_wr">
+                <div id="left_isroll_wrap" class="left_side_inner_rel">
                 <!-- ham메뉴의 X버튼 -->
-                    <img src="<?php echo site_url('/assets/images/clear.png')?>" alr="clear">
-                    <div>
+                    <!-- <img src="<?php echo site_url('/assets/images/clear.png')?>" alr="clear"> -->
+                     <div class="left_side_inner_abs">
                         <!-- <table>
                             <?php if ($this->member->is_member()) { ?>
                                 <tr>
@@ -201,7 +183,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                 </tr>
                             </table>
                         <?php } ?>
-                        <ol >
+                        <ol class="mb30">
                             <?php
                             $menuhtml = '';
                             if (element('menu', $layout)) {
@@ -211,15 +193,15 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                                         if (element(element('men_id', $mval), $menu)) {
                                             $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
                                             $menuhtml .= '<li>
-                                            <a style="color:#fff;" href="' . $mlink . '" ' . element('men_custom', $mval);
+                                            <a style="color:#fff;padding:3px 0px;" href="javascript:;" ' . element('men_custom', $mval);
                                             if (element('men_target', $mval)) {
                                                 $menuhtml .= ' target="' . element('men_target', $mval) . '"';
                                             }
-                                            $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a><span>▲</span>
-                                            <ul class="' . $mkey . '">';
+                                            $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '" class="subopen" data-menu-order="' . $mkey . '">' . html_escape(element('men_name', $mval)) . '</a><a href="#" style="padding:3px 10px;float:right;color:inherit;" class="subopen" data-menu-order="' . $mkey . '"><i class="fa fa-chevron-down"></i></a>
+                                            <ul class="dropdown-menu drop-downorder-' . $mkey . '">';
 
                                             foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
-                                                $menuhtml .= '<li class="middle_font" onClick="javascript:event.stopPropagation();"><a style="display:inline-block;" href="' . element('men_link', $sval) . '" ' . element('men_custom', $sval);
+                                                $menuhtml .= '<li class="middle_font" ><a style="display:inline-block;" href="' . element('men_link', $sval) . '" ' . element('men_custom', $sval);
                                                 if (element('men_target', $sval)) {
                                                     $menuhtml .= ' target="' . element('men_target', $sval) . '"';
                                                 }
@@ -242,6 +224,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                             ?>
                         </ol>
                     </div>
+                </div>
             </section>
     </article>
 
@@ -273,7 +256,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
     </article>
     <header>
             <span>
-                <img src="<?php echo site_url('/assets//images/ham.png')?> " alt="ham">
+                <img src="<?php echo site_url('/assets//images/ham.png')?> " alt="ham" id="left_btn_side">
             </span>
             <h1>
                 <a href="<?php echo site_url(); ?>" title="<?php echo html_escape($this->cbconfig->item('site_title'));?>"><img src="<?php echo site_url('/assets/images/logo.png')?>" alt="logo"></a>
