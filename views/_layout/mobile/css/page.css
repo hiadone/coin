@@ -753,7 +753,7 @@ html, body{
 		min-width: 320px;
 		margin: 0 auto;
 		position: fixed;
-		z-index: 100;
+		z-index: -100;
 		overflow: hidden;
 	}
 
