@@ -153,4 +153,31 @@ class Point_model extends CB_Model
 
         return $result;
     }
+
+    public function get_point_count($type = 'd', $start_date = '', $end_date = '', $orderby = 'asc', $poi_content = 0)
+    {
+        if (empty($start_date) OR empty($end_date)) {
+            return false;
+        }
+
+
+        $left = ($type === 'y') ? 4 : ($type === 'm' ? 7 : 10);
+        if (strtolower($orderby) !== 'desc') $orderby = 'asc';
+
+        $this->db->select('sum(if(poi_point > 0,poi_point,0)) as plus_cnt, sum(if(poi_point < 0,abs(poi_point),0)) as minus_cnt, left(poi_datetime, ' . $left . ') as day ', false);
+        $this->db->where('left(poi_datetime, 10) >=', $start_date);
+        $this->db->where('left(poi_datetime, 10) <=', $end_date);
+
+        if(!empty($poi_content)){
+            $poi_content_arr=array(1=>'스토어',2=>'출석체크',3=>'가입인사',4=>'게시판',5=>'회원가입');
+            $this->db->like(array('poi_content'=>$poi_content_arr[$poi_content]));            
+        }
+        
+        $this->db->group_by('day');
+        $this->db->order_by('poi_datetime', $orderby);
+        $qry = $this->db->get($this->_table);
+        $result = $qry->result_array();
+
+        return $result;
+    }
 }

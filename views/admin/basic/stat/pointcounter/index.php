@@ -4,6 +4,20 @@
             <form class="form-inline" name="flist" action="<?php echo current_url(); ?>" method="get" >
                 <input type="hidden" name="datetype" value="<?php echo html_escape($this->input->get('datetype')); ?>" />
                 <div class="box-table-button">
+
+                    <span class="mr10">
+                        <select name="poi_content" class="form-control">
+                            <option value="">전체</option>
+                            
+                            <option value="1" <?php echo set_select('poi_content', '1', ($this->input->get('poi_content') === '1' ? true : false)); ?>><?php echo html_escape('스토어'); ?></option>
+                            <option value="2" <?php echo set_select('poi_content', '2', ($this->input->get('poi_content') === '2' ? true : false)); ?>><?php echo html_escape('출석체크'); ?></option>
+                            <option value="3" <?php echo set_select('poi_content', '3', ($this->input->get('poi_content') === '3' ? true : false)); ?>><?php echo html_escape('가입인사'); ?></option>
+                            <option value="4" <?php echo set_select('poi_content', '4', ($this->input->get('poi_content') === '4' ? true : false)); ?>><?php echo html_escape('게시판'); ?></option>
+                            <option value="5" <?php echo set_select('poi_content', '5', ($this->input->get('poi_content') === '5' ? true : false)); ?>><?php echo html_escape('회원가입'); ?></option>
+                            
+                        </select>
+                    </span>
+                    
                     <span class="mr10">
                         기간 : <input type="text" class="form-control input-small datepicker " name="start_date" value="<?php echo element('start_date', $view); ?>" readonly="readonly" /> - <input type="text" class="form-control input-small datepicker" name="end_date" value="<?php echo element('end_date', $view); ?>" readonly="readonly" />
                     </span>
@@ -29,7 +43,7 @@
         <div class="table-responsive">
             <div class="pull-right form-group">
                 <label for="withoutzero" class="checkbox-inline">
-                    <input type="checkbox" name="withoutzero" id="withoutzero" value="1" /> 가입가 0 인 데이터 제외
+                    <input type="checkbox" name="withoutzero" id="withoutzero" value="1" /> 포인트가 0 인 데이터 제외
                 </label>
                 <label for="orderdesc" class="checkbox-inline">
                     <input type="checkbox" name="orderdesc" id="orderdesc" value="1"/> 역순으로보기
@@ -40,12 +54,14 @@
                     <col class="col-md-2">
                     <col class="col-md-2">
                     <col class="col-md-2">
-                    <col class="col-md-6">
+                    <col class="col-md-1">
+                    <col class="col-md-5">
                 </colgroup>
                 <thead>
                     <tr>
                         <th>날짜</th>
-                        <th>회원가입자수</th>
+                        <th>총 충전 포인트</th>
+                        <th>총 사용 포인트</th>
                         <th>비율</th>
                         <th>그래프</th>
                     </tr>
@@ -57,7 +73,8 @@
                 ?>
                     <tr class="<?php echo ( ! element('count', $result)) ? 'zerodata' : ''; ?>">
                         <td><?php echo $key; ?></td>
-                        <td><?php echo element('count', $result, 0); ?></td>
+                        <td><?php echo number_format(element('plus_count', $result, 0)); ?></td>
+                        <td><?php echo number_format(element('minus_count', $result, 0)); ?></td>
                         <td><?php echo element('s_rate', $result, 0); ?>%</td>
                         <td>
                             <div class="progress">
@@ -78,7 +95,8 @@
                     <tfoot>
                         <tr class="warning">
                             <td>전체</td>
-                            <td><?php echo element('sum_count', $view, 0); ?></td>
+                            <td><?php echo element('plus_sum', $view, 0); ?></td>
+                            <td><?php echo element('minus_sum', $view, 0); ?></td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -113,13 +131,14 @@ function drawChart() {
     var data = new google.visualization.DataTable();
 
     data.addColumn('string', '기간');
-    data.addColumn('number', '가입 수');
+    data.addColumn('number', '총 충전 포인트');
+    data.addColumn('number', '총 사용 포인트');
     data.addRows([
         <?php
         if (element('list', $view)) {
             foreach (element('list', $view) as $key => $result) {
         ?>
-        ['<?php echo $key; ?>',<?php echo element('count', $result, 0); ?>],
+        ['<?php echo $key; ?>',<?php echo element('plus_count', $result, 0); ?>,<?php echo element('minus_count', $result, 0); ?>],
         <?php
             }
         }

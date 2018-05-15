@@ -458,7 +458,7 @@
                 <figure>
                     <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/qtum.png') ?>' alt='bitcoin_logo'>
                     <figcaption>
-                        큐 텀
+                        퀀 텀
                     </figcaption>
                 </figure>
             </li>
