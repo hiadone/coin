@@ -8,7 +8,7 @@ $vic_name = array("bitcoin"=>"비트코인",
                     "monero"=>"모네로",
                     "ethereum-classic"=>"이더리움 클래식",
                     "zcash"=>"제트캐시",
-                    "qtum"=>"큐 텀",
+                    "qtum"=>"퀀 텀",
                     "eos"=>"EOS"
                     );
 $vic_name = array("bitcoin"=>"비트코인",
@@ -20,7 +20,7 @@ $vic_name = array("bitcoin"=>"비트코인",
                     "monero"=>"모네로",
                     "ethereum-classic"=>"이더리움 클래식",
                     "zcash"=>"제트캐시",
-                    "qtum"=>"큐 텀",
+                    "qtum"=>"퀀 텀",
                     "eos"=>"EOS"
                     );
 $last = $this->uri->total_segments();
