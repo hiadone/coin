@@ -73,6 +73,13 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-2 control-label">정보를 받는 코인</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="10" name="white_coin"><?php echo set_value('white_coin', element('white_coin', element('data', $view))); ?></textarea>
+                        <span class="help-inline">엔터로 구분하여 입력해주세요. 입력한 순서대로 코인 정보를 노출합니다.</span>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-2 control-label">JWPLAYER6 KEY</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="jwplayer6_key" id="jwplayer6_key" value="<?php echo set_value('jwplayer6_key', element('jwplayer6_key', element('data', $view))); ?>" />

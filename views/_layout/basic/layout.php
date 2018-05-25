@@ -115,7 +115,7 @@ $(document).ready(function(){
         var ham_top = parseInt($(".ham").css("top"));  
             $(window).scroll(function(){  
                 var pos = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
-                console.log(pos);
+                
                 $(".ham").stop().animate({"top":pos+ham_top+"px"},500);  
             });
 

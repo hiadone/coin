@@ -357,7 +357,8 @@ html, body{
 	}
 
 	.tab01_tabs li{
-		width:9%;
+		/*width:9%;*/
+		padding:0 1.4%;
 	}
 
 	.tab01_tabs li:nth-child(10){

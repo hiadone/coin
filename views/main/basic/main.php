@@ -2,7 +2,7 @@
 <script>
     var postact_flag=false;
     var coinActiveTab='tab01_btc';
-    setInterval('view_coin()',10000);
+    // setInterval('view_coin()',10000);
     // 전체 스크립트 
     $(document).ready(function(){
         
@@ -372,95 +372,33 @@
 <article class="main_top content01">
     <section class='tab' id='coin_mall'>
         <ul class='menu_list nomal_font02'>
-            <li class="active" rel="tab01_btc">
-                <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/bitcoin.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                        비트코인
-                    </figcaption>
-                </figure>
-            </li>
-
-            <li rel="tab01_eth">
-                <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ethereum.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                        이더리움
-                    </figcaption>
-                </figure>
-            </li>
-
-            <li style='width: 75px;' rel="tab01_xrp">
-                <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ripple.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                        리플
-                    </figcaption>
-                </figure>
-            </li>
             
-            <li style='width: 118px;' rel="tab01_bch">
-                <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/bitcoin-cash.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                        비트코인캐시
-                    </figcaption>
-                </figure>
-            </li>
 
+            <?php
+                $i=0;
+                if (element('select_coin_list', $view)) {
+                    foreach (element('select_coin_list', $view) as $result) {
+                        if(empty($i)) $active="active";
+                        else $active='';
 
-            <li style='width: 108px;' rel="tab01_ltc">
-                <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/litecoin.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                        라이트코인
-                    </figcaption>
-                </figure>
-            </li>
+             ?>
+                    <li class="<?php echo $active ?>" rel="tab01_<?php echo $result?>">
+                        <figure>
+                            <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/coin_'.strtolower($result).'.png') ?>' alt='bitcoin_logo'>
+                            <figcaption>
+                                <?php echo element($result,element('coinname_list', $view)) ?>
+                            </figcaption>
+                        </figure>
+                    </li>
 
-            <li rel="tab01_eos">
-                <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/eos.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                        이오스
-                    </figcaption>
-                </figure> 
-            </li>
-
-            <li rel="tab01_xmr"> 
-                <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/monero.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                    모네로
-                    </figcaption>
-                </figure>
-            </li>
-
-            <li style='width: 85px;' rel="tab01_dash">
-               <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/dash.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                       대시
-                    </figcaption>
-                </figure>  
-            </li>
-
-            <li style='width: 125px;' rel="tab01_etc">
-                <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/ethereum-classic.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                        이더리움 클래식
-                    </figcaption>
-                </figure>
-            </li>
-
-            <li style='width: 85px;' rel="tab01_qtum">
-                <figure>
-                    <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/qtum.png') ?>' alt='bitcoin_logo'>
-                    <figcaption>
-                        퀀 텀
-                    </figcaption>
-                </figure>
+            <?php
+                $i++;
+                }
+            }
+            ?>
+            
+            <li style='width: 50px;' >
+                <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa fa-2x" ></i></a>
             </li>
         </ul>
 
@@ -530,7 +468,7 @@
                         </ul>
                     </div>
 
-                    <div>
+                    <div >
                         <ul>
                             <?php
                             $config = array(

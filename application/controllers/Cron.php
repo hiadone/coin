@@ -216,7 +216,12 @@ class Cron extends CB_Controller {
              */
 
         $currency_pair=array('btc_krw','eth_krw','dash_krw','xrp_krw','bch_krw','ltc_krw','qtum_krw','etc_krw','xmr_krw','zec_krw','btg_krw','eos_krw');
+        $currency_pair=array();
+        foreach(config_item('coinname_list') as $key => $value){
 
+            array_push($currency_pair,strtolower($key).'_krw');
+            
+        }
         foreach($currency_pair as $cvalue){
             $url = 'https://api.korbit.co.kr/v1/ticker/detailed?currency_pair='.$cvalue;
             // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
@@ -263,8 +268,15 @@ class Cron extends CB_Controller {
         tradePrice : 현제 거래가
         candleAccTradeVolume : 거래량 
         */
-        $currency_pair=array('krw-btc','krw-eth','krw-dash','krw-xrp','krw-bch','krw-ltc','krw-qtum','krw-etc','krw-xmr','krw-zec','krw-btg','krw-eos');
+        $currency_pair=array('btc','krw-eth','krw-dash','krw-xrp','krw-bch','krw-ltc','krw-qtum','krw-etc','krw-xmr','krw-zec','krw-btg','krw-eos');
         
+        $currency_pair=array();
+        foreach(config_item('coinname_list') as $key => $value){
+
+            array_push($currency_pair,'krw-'.strtolower($key));
+            
+        }
+
         foreach($currency_pair as $cvalue){
             $url = 'https://crix-api-endpoint.upbit.com/v1/crix/candles/days?code=CRIX.UPBIT.'.strtoupper($cvalue);
             // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
@@ -311,6 +323,13 @@ class Cron extends CB_Controller {
         // {"high":최고가,"low":최저가,"last":거래가,"vol":거래량,"time":1515980159}
 
         $currency_pair=array('btc','eth','dash','xrp','bch','ltc','qtum','etc','xmr','zec','btg','eos');
+
+        $currency_pair=array();
+        foreach(config_item('coinname_list') as $key => $value){
+
+            array_push($currency_pair,strtolower($key));
+            
+        }
 
         foreach($currency_pair as $cvalue){
             $url = 'https://api.coinnest.co.kr/api/pub/ticker?coin='.$cvalue;
@@ -359,6 +378,12 @@ class Cron extends CB_Controller {
 
         $currency_pair=array('usdt_btc','usdt_eth','usdt_dash','usdt_xrp','usdt_bch','usdt_ltc','usdt_qtum','usdt_etc','usdt_xmr','usdt_zec','usdt_btg','usdt_eos');
 
+        $currency_pair=array();
+        foreach(config_item('coinname_list') as $key => $value){
+
+            array_push($currency_pair,'usdt_'.strtolower($key));
+            
+        }
 
         $url = 'https://poloniex.com/public?command=returnTicker';
         // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
@@ -407,6 +432,13 @@ class Cron extends CB_Controller {
 
         $currency_pair=array('usdt-btc','usdt-eth','usdt-dash','usdt-xrp','usdt-bcc','usdt-ltc','usdt-qtum','usdt-etc','usdt-xmr','usdt-zec','usdt-btg','usdt-eos');
         
+        $currency_pair=array();
+        foreach(config_item('coinname_list') as $key => $value){
+
+            array_push($currency_pair,'usdt-'.strtolower($key));
+            
+        }
+
         foreach($currency_pair as $cvalue){
 
             if($cvalue==='usdt-qtum'){
@@ -498,8 +530,17 @@ class Cron extends CB_Controller {
         // {"mid":"13580.5","bid":"13580.0","ask":"13581.0","last_price":현재가,"low":"12874.34212454","high":"14373.0","volume":"거래량","timestamp":"1515981771.364414"}
         $currency_pair=array('btcusd','ethusd','dashusd','xrpusd','bchusd','ltcusd','qtumusd','etcusd','xmrusd','zecusd','btgusd','eosusd');
 
+        $currency_pair=array();
+        foreach(config_item('coinname_list') as $key => $value){
+
+            array_push($currency_pair,strtolower($key).'usd');
+            
+        }
+
         foreach($currency_pair as $cvalue){
             $url = 'https://api.bitfinex.com/v1/pubticker/'.$cvalue;
+
+            echo $url."<br>";
             // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
             //     $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
 
@@ -545,6 +586,12 @@ class Cron extends CB_Controller {
         // {"product_code":"BTC_JPY","timestamp":"2018-01-15T02:04:05.733","tick_id":3090049,"best_bid":1714507.0,"best_ask":1715277.0,"best_bid_size":2.7064,"best_ask_size":10.39996,"total_bid_depth":2515.0200327,"total_ask_depth":2762.33896938,"ltp":거래가"volume":93727.63585889,"volume_by_product":거래량}
         $currency_pair=array('btcusd','ethusd','dashusd','xrpusd','bchusd','ltcusd','qtumusd','etcusd','xmrusd','zecusd','btgusd','eosusd');
 
+        $currency_pair=array();
+        foreach(config_item('coinname_list') as $key => $value){
+
+            array_push($currency_pair,strtolower($key).'usd');
+            
+        }
         
         $url = 'https://api.bitflyer.jp/v1/ticker';
         // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
@@ -594,7 +641,7 @@ class Cron extends CB_Controller {
         
 
         
-        $url = 'https://api.coinmarketcap.com/v1/ticker/?limit=20';
+        $url = 'https://api.coinmarketcap.com/v1/ticker/?limit=200';
         // $url.= sprintf("?client_id=%s&client_secret=%s&grant_type=authorization_code&state=%s&code=%s",
         //     $this->cbconfig->item('naver_client_id'), $this->cbconfig->item('naver_client_secret'), $this->input->get('state', null, ''), $this->input->get('code'));
 

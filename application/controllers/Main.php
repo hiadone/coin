@@ -114,8 +114,10 @@ class Main extends CB_Controller
         $view['view']['attendance'] = $result;
 
         
+        $view['view']['select_coin_list'] = $this->member->item('mem_select_coin_list') ? explode(",", $this->member->item('mem_select_coin_list')) : config_item('default_select_coin_list');
 
-
+        $view['view']['coinname_list'] =config_item('coinname_list');
+        
         // if (element('list', $coin_result)) {
         //     foreach (element('list', $coin_result) as $key => $val) {
         //         $coin_result['list'][$key]['display_name'] = display_username(
@@ -287,6 +289,8 @@ class Main extends CB_Controller
         $this->layout = element('layout_skin_file', element('layout', $view));
         $this->view = element('view_skin_file', element('layout', $view));
     }
+
+    
 
     function twitter($twitter_key){
        echo  twitter_list($twitter_key,'order');

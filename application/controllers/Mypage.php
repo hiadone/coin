@@ -1185,4 +1185,149 @@ class Mypage extends CB_Controller
         $this->layout = element('layout_skin_file', element('layout', $view));
         $this->view = element('view_skin_file', element('layout', $view));
     }
+
+    public function user_coin_set()
+    {
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_mypage_index';
+        $this->load->event($eventname);
+
+        /**
+         * 로그인이 필요한 페이지입니다
+         */
+        
+        
+        required_user_login('alert_info');
+
+        $view = array();
+        $view['view'] = array();
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        $registerform = $this->cbconfig->item('registerform');
+        $view['view']['memberform'] = json_decode($registerform, true);
+
+        
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+
+
+        $this->load->library('form_validation');
+
+        $config = array(
+            array(
+                'field' => 'ota_id[]',
+                'label' => '코인 리스트',
+                'rules' => 'trim|required',
+            ),
+           
+        );
+        
+        $this->form_validation->set_rules($config);
+
+        $form_validation = $this->form_validation->run();
+
+        if ($form_validation) {
+
+            $mem_id = (int) $this->member->item('mem_id');
+
+            $updatedata = array(
+                    'mem_select_coin_list' => implode(",",$this->input->post('ota_id')),
+                );
+            
+            $this->Member_model->update($mem_id, $updatedata);
+
+            $this->session->set_flashdata(
+                    'message',
+                    '저장 되었습니다.'
+                );
+            redirect('mypage/user_coin_set');
+            exit;
+        }
+        $white_coin = str_replace(
+            array("\r\n", "\r", "\n"),
+            "\n",$this->cbconfig->item('white_coin')
+        );
+
+        
+
+        $white_coin_list = explode("\n", $white_coin);
+        
+        $view['view']['white_coin_list'] = $white_coin_list;
+
+        $view['view']['select_coin_list'] = $this->member->item('mem_select_coin_list') ? explode(",", $this->member->item('mem_select_coin_list')) : config_item('default_select_coin_list');
+
+        $view['view']['coinname_list'] =config_item('coinname_list');
+
+        $view['view']['white_sort_list'] = $this->array_sub_sort($view['view']['white_coin_list'], $view['view']['select_coin_list']);
+        // print_r($view['view']['white_sort_list']);
+        
+
+        /**
+         * 레이아웃을 정의합니다
+         */
+        $page_title = $this->cbconfig->item('site_meta_title_mypage');
+        $meta_description = $this->cbconfig->item('site_meta_description_mypage');
+        $meta_keywords = $this->cbconfig->item('site_meta_keywords_mypage');
+        $meta_author = $this->cbconfig->item('site_meta_author_mypage');
+        $page_name = $this->cbconfig->item('site_page_name_mypage');
+
+
+        $layoutconfig = array(
+            'path' => 'mypage',
+            'layout' => 'layout',
+            'skin' => 'user_coin_set',
+            'layout_dir' => $this->cbconfig->item('layout_mypage'),
+            'mobile_layout_dir' => $this->cbconfig->item('mobile_layout_mypage'),
+            'use_sidebar' => $this->cbconfig->item('sidebar_mypage'),
+            'use_mobile_sidebar' => $this->cbconfig->item('mobile_sidebar_mypage'),
+            'skin_dir' => $this->cbconfig->item('skin_mypage'),
+            'mobile_skin_dir' => $this->cbconfig->item('mobile_skin_mypage'),
+            'page_title' => $page_title,
+            'meta_description' => $meta_description,
+            'meta_keywords' => $meta_keywords,
+            'meta_author' => $meta_author,
+            'page_name' => $page_name,
+        );
+        $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
+        $this->data = $view;
+        $this->layout = element('layout_skin_file', element('layout', $view));
+        $this->view = element('view_skin_file', element('layout', $view));
+    }
+
+
+    public function user_coin_initializer()
+    {
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_mypage_index';
+        $this->load->event($eventname);
+
+        /**
+         * 로그인이 필요한 페이지입니다
+         */
+        required_user_login();
+
+        $mem_id = (int) $this->member->item('mem_id');
+
+        $updatedata = array(
+                'mem_select_coin_list' => '',
+            );
+
+        $this->Member_model->update($mem_id, $updatedata);
+
+        $this->session->set_flashdata(
+                'message',
+                '코인 우선 순위 설정이 초기화 되었습니다.'
+            );
+
+        redirect('mypage/user_coin_set');
+        exit;
+    }
+
+    function array_sub_sort(array $values, array $keys){
+        $keys = array_flip($keys);
+        return array_merge(array_intersect_key($keys, $values), array_intersect_key($values, $keys));
+    }
 }

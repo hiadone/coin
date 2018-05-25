@@ -1,28 +1,5 @@
 <?php 
-$vic_name = array("bitcoin"=>"비트코인",
-                    "ethereum"=>"이더리움",
-                    "ripple"=>"리 플",
-                    "bitcoin-cash"=>"비트코인 캐쉬",
-                    "litecoin"=>"라이트코인",
-                    "dash"=>"대 시",
-                    "monero"=>"모네로",
-                    "ethereum-classic"=>"이더리움 클래식",
-                    "zcash"=>"제트캐시",
-                    "qtum"=>"퀀 텀",
-                    "eos"=>"EOS"
-                    );
-$vic_name = array("bitcoin"=>"비트코인",
-                    "ethereum"=>"이더리움",
-                    "ripple"=>"리 플",
-                    "bitcoin-cash"=>"비트코인 캐쉬",
-                    "litecoin"=>"라이트코인",
-                    "dash"=>"대 시",
-                    "monero"=>"모네로",
-                    "ethereum-classic"=>"이더리움 클래식",
-                    "zcash"=>"제트캐시",
-                    "qtum"=>"퀀 텀",
-                    "eos"=>"EOS"
-                    );
+
 $last = $this->uri->total_segments();
 $last_segment = $this->uri->segment($last);
 
@@ -87,7 +64,7 @@ function won($k) {
 
             <td class='text-right' style="text-indent:30px;"><?php echo !empty(element('current_price_krw',$value_)) ? '₩ '.number_format(element('current_price_krw',$value_)) : '-'; ?></td>
 
-            <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? number_format(element('current_price',$value_)/element('current_price',element($key_,element('btc',element('coin_list',$view)))),5) : '-'; ?></td>
+            <td class='text-right'><?php echo !empty(element('current_price',$value_)) ? number_format(element('current_price',$value_)/element('current_price',element($key_,element('BTC',element('coin_list',$view)))),5) : '-'; ?></td>
             <td class='text-right'><?php echo !empty(element('current_price_usd',$value_)) ? '$ '.number_format(element('current_price_usd',$value_),2) : '-'; ?></td>
             
            

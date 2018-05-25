@@ -53,45 +53,45 @@ class Coin extends CI_Controller
                     "qtum"=>"퀀 텀",
                     "eos"=>"EOS"
                     );
-
-    public $vic_title = array(
-                            "btc"=>array(
-                                'BTC','btc','btc_krw','krw-btc','usdt_btc','usdt-btc','btcusd','BTC_JPY'
-                            ),
-                            "eth"=>array(
-                                'ETH','eth','eth_krw','krw-eth','usdt_eth','usdt-eth','ethusd'
-                            ),
-                            "dash"=>array(
-                                'DASH','dash','dash_krw','krw-dash','usdt_dash','usdt-dash','dashusd'
-                            ),
-                            "xrp"=>array(
-                                'XRP','xrp','xrp_krw','krw-xrp','usdt_xrp','usdt-xrp','xrpusd'
-                            ),
-                            "ltc"=>array(
-                                'LTC','ltc','ltc_krw','krw-ltc','usdt_ltc','usdt-ltc','ltcusd'
-                            ),
-                            "etc"=>array(
-                                'ETC','etc','etc_krw','krw-etc','usdt_etc','usdt-etc','etcusd'
-                            ),
-                            "bch"=>array(
-                                'BCH','bch','bch_krw','krw-bch','usdt_bch','usdt-bcc','bchusd'
-                            ),
-                            "xmr"=>array(
-                                'XMR','xmr','xmr_krw','krw-xmr','usdt_xmr','usdt-xmr','xmrusd'
-                            ),
-                            "zec"=>array(
-                                'ZEC','zec','zec_krw','krw-zec','usdt_zec','usdt-zec','zecusd'
-                            ),
-                            "qtum"=>array(
-                                'QTUM','qtum','qtum_krw','krw-qtum','usdt_qtum','usdt-qtum','qtumusd'
-                            ),
-                            "btg"=>array(
-                                'BTG','btg','btg_krw','krw-btg','usdt_btg','usdt-btg','btgusd'
-                            ),
-                            "eos"=>array(
-                                'EOS','eos','eos_krw','krw-eos','usdt_eos','usdt-eos','eosusd'
-                            ),
-                        );
+    public $vic_title = array();
+    // public $vic_title = array(
+    //                         "btc"=>array(
+    //                             'BTC','btc','btc_krw','krw-btc','usdt_btc','usdt-btc','btcusd','BTC_JPY'
+    //                         ),
+    //                         "eth"=>array(
+    //                             'ETH','eth','eth_krw','krw-eth','usdt_eth','usdt-eth','ethusd'
+    //                         ),
+    //                         "dash"=>array(
+    //                             'DASH','dash','dash_krw','krw-dash','usdt_dash','usdt-dash','dashusd'
+    //                         ),
+    //                         "xrp"=>array(
+    //                             'XRP','xrp','xrp_krw','krw-xrp','usdt_xrp','usdt-xrp','xrpusd'
+    //                         ),
+    //                         "ltc"=>array(
+    //                             'LTC','ltc','ltc_krw','krw-ltc','usdt_ltc','usdt-ltc','ltcusd'
+    //                         ),
+    //                         "etc"=>array(
+    //                             'ETC','etc','etc_krw','krw-etc','usdt_etc','usdt-etc','etcusd'
+    //                         ),
+    //                         "bch"=>array(
+    //                             'BCH','bch','bch_krw','krw-bch','usdt_bch','usdt-bcc','bchusd'
+    //                         ),
+    //                         "xmr"=>array(
+    //                             'XMR','xmr','xmr_krw','krw-xmr','usdt_xmr','usdt-xmr','xmrusd'
+    //                         ),
+    //                         "zec"=>array(
+    //                             'ZEC','zec','zec_krw','krw-zec','usdt_zec','usdt-zec','zecusd'
+    //                         ),
+    //                         "qtum"=>array(
+    //                             'QTUM','qtum','qtum_krw','krw-qtum','usdt_qtum','usdt-qtum','qtumusd'
+    //                         ),
+    //                         "btg"=>array(
+    //                             'BTG','btg','btg_krw','krw-btg','usdt_btg','usdt-btg','btgusd'
+    //                         ),
+    //                         "eos"=>array(
+    //                             'EOS','eos','eos_krw','krw-eos','usdt_eos','usdt-eos','eosusd'
+    //                         ),
+    //                     );
 
     function __construct()
     {
@@ -116,6 +116,18 @@ class Coin extends CI_Controller
         $market_cap_usd=array();
         $result=array();
 
+        $select_coin_list= $this->CI->member->item('mem_select_coin_list') ? explode(",", $this->CI->member->item('mem_select_coin_list')) : config_item('default_select_coin_list');
+
+
+        foreach($select_coin_list as  $value){
+            $this->vic_title[$value] = array(strtoupper($value),strtolower($value),strtolower($value).'_krw','krw-'.strtolower($value),'usdt_'.strtolower($value),'usdt-'.strtolower($value),strtolower($value).'usd',strtoupper($value).'_JPY');
+        }
+
+        
+        if(!in_array('BTC',$select_coin_list)){
+            $value='BTC';
+            $this->vic_title[$value] = array(strtoupper($value),strtolower($value),strtolower($value).'_krw','krw-'.strtolower($value),'usdt_'.strtolower($value),'usdt-'.strtolower($value),strtolower($value).'usd',strtoupper($value).'_JPY');
+        }
         if($skin==='mobile'){
             if (empty($cur_unit)) {
                 $cur_unit = 'krw';
@@ -319,46 +331,46 @@ class Coin extends CI_Controller
             foreach($btc_list as $value){
                     $vic_title='';
                     
-                    switch ($value['vic_title']) {
-                        case 'BTC':
-                            $vic_title='btc';
-                            break;
-                        case 'ETH':
-                            $vic_title='eth';
-                            break;
-                        case 'XRP':
-                            $vic_title='xrp';
-                            break;
-                        case 'BCH':
-                            $vic_title='bch';
-                            break;
-                        case 'LTC':
-                            $vic_title='ltc';
-                            break;
-                        case 'EOS':
-                            $vic_title='eos';
-                            break;
-                        case 'XMR':
-                            $vic_title='xmr';
-                            break;
-                        case 'DASH':
-                            $vic_title='dash';
-                            break;
-                        case 'ETC':
-                            $vic_title='etc';
-                            break;
-                        case 'QTUM':
-                            break;
-                            $vic_title='qtum';
-                            break;
-                        case 'XMR':
-                            $vic_title='xmr';
-                            break;
+                    // switch ($value['vic_title']) {
+                    //     case 'BTC':
+                    //         $vic_title='btc';
+                    //         break;
+                    //     case 'ETH':
+                    //         $vic_title='eth';
+                    //         break;
+                    //     case 'XRP':
+                    //         $vic_title='xrp';
+                    //         break;
+                    //     case 'BCH':
+                    //         $vic_title='bch';
+                    //         break;
+                    //     case 'LTC':
+                    //         $vic_title='ltc';
+                    //         break;
+                    //     case 'EOS':
+                    //         $vic_title='eos';
+                    //         break;
+                    //     case 'XMR':
+                    //         $vic_title='xmr';
+                    //         break;
+                    //     case 'DASH':
+                    //         $vic_title='dash';
+                    //         break;
+                    //     case 'ETC':
+                    //         $vic_title='etc';
+                    //         break;
+                    //     case 'QTUM':
+                    //         break;
+                    //         $vic_title='qtum';
+                    //         break;
+                    //     case 'XMR':
+                    //         $vic_title='xmr';
+                    //         break;
 
                         
-                    }
+                    // }
                     
-                    $market_cap_usd[$vic_title][$value['vic_key']]=($value['vic_value']*element('vic_value',element(2,$deal_bas_r),1));    
+                    $market_cap_usd[$value['vic_title']][$value['vic_key']]=($value['vic_value']*element('vic_value',element(2,$deal_bas_r),1));    
                     
                     
 
@@ -434,8 +446,10 @@ class Coin extends CI_Controller
                 
 
                 foreach($this->vic_title as $tkey =>$tvalue){
+
                     if(in_array(element('vic_title',$value), $tvalue)) {
                         $title_key =$tkey;
+
                         break;
                     }
                 }

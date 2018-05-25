@@ -461,17 +461,27 @@
     <!-- tab01(거래소별 시세) 영역 -->
         <section class="tab01 middle_font">
             <ul class="tab01_tabs tabs ">
-                <li class="active" rel="tab01_btc">BTC</li>
-                <li rel="tab01_eth">ETH</li>
-                <li rel="tab01_xrp">XRP</li>
-                <li rel="tab01_bch">BCH</li>
-                <li rel="tab01_ltc">LTC</li>
-                <li rel="tab01_eos">EOS</li>
-                <li rel="tab01_xmr">XMR</li>
-                <li rel="tab01_dash">DASH</li>
-                <li rel="tab01_etc">ETC</li>
-                <li rel="tab01_qtum">QTUM</li>
-                <li rel="tab01_btg">BTG</li>
+
+                <?php
+                    $i=0;
+                    if (element('select_coin_list', $view)) {
+                        foreach (element('select_coin_list', $view) as $result) {
+                            if(empty($i)) $active="active";
+                            else $active='';
+
+                 ?>
+                        <li class="<?php echo $active ?>" rel="tab01_<?php echo $result?>">
+                            <?php echo $result?>
+                        </li>
+
+                <?php
+                    $i++;
+                    }
+                }
+                ?>
+                <li >
+                <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa"></i></a>
+                </li>
             </ul>
             <table>
 

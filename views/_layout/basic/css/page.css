@@ -32,8 +32,9 @@
 		}
 
 		#coin_mall .menu_list li{
-			width: 88px;
+			/*width: 88px;*/
 			border:0;
+			padding:0px 10px;
 			border-right: 1px solid #ededed;
 		}
 
@@ -575,9 +576,7 @@
 		#webtoon .tab_img figure p{
 			margin-bottom: 2px;
 			color: #9d9d9d;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow:hidden; 
+
 		}
 
 		#webtoon .tab_img figure span{

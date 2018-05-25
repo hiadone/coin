@@ -111,6 +111,11 @@ class Cbconfigs extends CB_Controller
                 'rules' => 'trim',
             ),
             array(
+                'field' => 'white_coin',
+                'label' => '정보를 받는 코인',
+                'rules' => 'trim',
+            ),
+            array(
                 'field' => 'jwplayer6_key',
                 'label' => 'JWPLAYER6 KEY',
                 'rules' => 'trim',
@@ -213,7 +218,7 @@ class Cbconfigs extends CB_Controller
 
             $array = array(
                 'site_title', 'site_logo', 'admin_logo', 'footer_script', 'webmaster_name', 'webmaster_email',
-                'spam_word', 'white_iframe', 'jwplayer6_key', 'naver_blog_api_key', 'naver_syndi_key', 
+                'spam_word', 'white_iframe', 'white_coin','jwplayer6_key', 'naver_blog_api_key', 'naver_syndi_key', 
                 'use_naver_syndi_log', 'bitly_access_token', 'kakao_apikey',
                 'new_post_second', 'open_currentvisitor', 'currentvisitor_minute', 'use_copy_log', 'max_level',
                 'ip_display_style', 'list_count', 'use_recaptcha', 'recaptcha_sitekey', 'recaptcha_secret'

@@ -47,6 +47,17 @@ if ( ! function_exists('alert_close')) {
     }
 }
 
+if ( ! function_exists('alert_info')) {
+    function alert_info($msg = '')
+    {
+        if (empty($msg)) {
+            $msg = '잘못된 접근입니다';
+        }
+        echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
+        echo '<script type="text/javascript"> alert("' . $msg . '"); </script>';
+        return ;
+    }
+}
 
 /**
  * Alert 후 부모창 새로고침 후 창 닫음
@@ -364,6 +375,9 @@ if ( ! function_exists('required_user_login')) {
         if ($CI->member->is_member() === false) {
             if ($type === 'alert') {
                 alert_close('로그인 후 이용이 가능합니다');
+            }elseif ($type === 'alert_info') {
+                alert('로그인 후 이용이 가능합니다','/login?url=' . urlencode(current_full_url()));
+                
             } else {
                 $CI->session->set_flashdata(
                     'message',

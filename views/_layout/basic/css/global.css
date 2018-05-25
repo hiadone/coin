@@ -4,14 +4,17 @@ html{
 	padding-bottom:100px;
 	box-sizing: border-box;
 	height: auto;
+	
 	font-size: 12px;
 	font-family: 'Nanum Gothic', sans-serif;
 	min-height: 100%;
-	overflow: auto;
-	width: 1300px;
-	margin:0 auto;
+	
 }
 
+body{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 h2{
 	font-size: 15px;
 	font-family: 'Jeju Gothic', sans-serif; 
@@ -297,7 +300,7 @@ textarea{
 /*ham css*/
 	.ham{
 		width: 320px;
-		position: fixed;
+		position: absolute;
 		top: 0;
 		bottom: 0;
 		right:-320px;
@@ -316,18 +319,22 @@ textarea{
 
 /*ham_cont css*/
 	.ham_cont{
+		width: 320px;
 		height: 100%;
 		margin: 0 auto;
 		box-sizing: border-box;
 		background-color: #fff;
 	}
 
+	.ham_cont{
+    	padding:20px 10px;
+    }
+
 	.info_menu{
         display: inline-block;
         width: 100%;
         border:1px solid #1c446d;
         margin-bottom: 20px;
-        box-sizing: border-box;
     }
 
     .info_menu li{
@@ -358,7 +365,7 @@ textarea{
     .ham_cont02{
     	max-width: 420px;
     	height: 100%;
-		padding:20px 10px;
+		padding:70px 10px;
 		box-sizing: border-box;
 		margin: 0 auto;
 		text-align: center;
@@ -386,7 +393,6 @@ textarea{
 	.ham_login .login_notice{
 		width: 100%;
 		display: inline-block;
-		padding-top: 50px;
 	}
 
 	.ham_login .login_notice figure{
