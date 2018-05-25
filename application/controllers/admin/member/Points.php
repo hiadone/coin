@@ -65,7 +65,7 @@ class Points extends CB_Controller
         $end_date = $this->input->get('end_date') ? $this->input->get('end_date') : cdate('Y-m-d');
 
 
-        $where=array('left(poi_datetime,10) >' =>$start_date,'left(poi_datetime,10) <' =>$end_date);
+        $where=array('left(poi_datetime,10) >=' =>$start_date,'left(poi_datetime,10) <=' =>$end_date);
 
 
         /**
