@@ -1,7 +1,7 @@
 <style>
 .box{width:100%;float:left; padding:0 20px;}
 .box-table{width:100%; clear:both;background:#fff;padding: 20px 20px 10px;overflow: hidden;}
-.box-table-header{width: 100%;clear: both;border-bottom: 2px solid #e7eaec;overflow: hidden;background: #fff;margin-bottom: 20px;padding-bottom: 10px; overflow:hidden;}
+.box-table-header{width: 100%;clear: both;border-bottom: 2px solid #e7eaec;overflow: hidden;background: #fff; overflow:hidden;}
 
 .col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9 {
 float:left;
@@ -30,19 +30,19 @@ float:left;
             암호화폐는 최대 10개까지만 선택이 가능합니다.<br />
         </div>
         
-            <div class="box-table-header">
-                <div class="pull-left media-heading" style="line-height: 30px;">
-                    코인 우선 순위 리스트
+            <div class="box-table-header" style="line-height: 20px;">
+                <div class="pull-left media-heading" >
+                    코인 우선 순위 리스트 
                 </div>
-                
+                <div class="pull-right small_font" style="padding-top:5px">&#8251 각 항목을 드래그 하면 순서를 변경 할 수 있습니다.</div>
             </div>
             <div class="list-group">
                 <div class="form-group list-group-item">
                     <div class="col-sm-2">순서변경</div>
-                    <div class="col-sm-2">코드명</div>
-                    <div class="col-sm-4">화폐명</div>
-                    <div class="col-sm-3">시가 총액</div>
-                    <div class="col-sm-1">비고</div>
+                    <div class="col-sm-3">코드명</div>
+                    <div class="col-sm-5">화폐명</div>
+                    
+                    <div class="col-sm-2">비고</div>
                     
                 </div>
                 <div id="sortable_a">
@@ -54,10 +54,10 @@ float:left;
                     ?>
                         <div class="form-group list-group-item" id="select_coin_list_<?php echo $result ?>">
                             <div class="col-sm-2"><div class="fa fa-arrows" style="cursor:pointer;padding:5px"></div><input type="hidden" name="ota_id[]" value="<?php echo $result ?>" /></div>
-                            <div class="col-sm-2"><?php echo $result ?></div>
-                            <div class="col-sm-4"><?php echo element($result,element('coinname_list', $view)) ?></div>
-                            <div class="col-sm-3 text-right pr20">0</div>
-                            <div class="col-sm-1"><button type="button" class="btn btn-outline btn-default btn-xs btn-delete-row" data-id="<?php echo $result ?>">삭제</button></div>
+                            <div class="col-sm-3"><?php echo $result ?></div>
+                            <div class="col-sm-5"><?php echo element($result,element('coinname_list', $view)) ?></div>
+                            
+                            <div class="col-sm-2"><button type="button" class="btn btn-outline btn-default btn-xs btn-delete-row" data-id="<?php echo $result ?>">삭제</button></div>
                         </div>
                     <?php
                         }
@@ -99,7 +99,7 @@ float:left;
                         
                         <div class="col-sm-1"><input type="checkbox" name="chk_white_coin_id[]" id="white_coin_id_<?php echo $result ?>" value="<?php echo $result ?>" data-id="<?php echo $result ?>" class="btn-add-rows" <?php echo in_array($result,element('select_coin_list', $view)) ? 'checked="checked"':''; ?>></div>
                         <div class="col-sm-4"><label for="white_coin_id_<?php echo $result ?>" class="checkbox-inline pointer"><?php echo $result ?></label></div>
-                        <div class="col-sm-7"><?php echo element($result,element('coinname_list', $view)) ?></div>
+                        <div class="col-sm-7"><img src='<?php echo site_url('/views/_layout/basic/images/store_logo/'.strtoupper($result).'.png') ?>' alt='coin' style="width:15px;"> <span style="vertical-align: text-top;"><?php echo element($result,element('coinname_list', $view)) ?></span></div>
                         
                     </div>
                 <?php
@@ -128,7 +128,7 @@ $(document).on('click', '.btn-add-rows', function() {
             alert('암호화폐는 최대 10개까지만 선택이 가능합니다.');
             return false;
         }
-        $('#sortable_a').append(' <div class="form-group list-group-item" id="select_coin_list_'+$(this).data('id')+'"><div class="col-sm-2"><div class="fa fa-arrows" style="cursor:pointer;"></div><input type="hidden" name="ota_id[]" value="'+$(this).data('id')+'" /></div><div class="col-sm-2">'+$(this).parent().nextAll('.col-sm-4').html()+'</div><div class="col-sm-4">'+$(this).parent().nextAll('.col-sm-7').html()+'</div><div class="col-sm-3 text-right pr20">0</div><div class="col-sm-1"><button type="button" class="btn btn-outline btn-default btn-xs btn-delete-row" data-id="'+$(this).data('id')+'">삭제</button></div></div>');
+        $('#sortable_a').append(' <div class="form-group list-group-item" id="select_coin_list_'+$(this).data('id')+'"><div class="col-sm-2"><div class="fa fa-arrows" style="cursor:pointer;"></div><input type="hidden" name="ota_id[]" value="'+$(this).data('id')+'" /></div><div class="col-sm-3">'+$(this).parent().nextAll('.col-sm-4').html()+'</div><div class="col-sm-5">'+$(this).parent().nextAll('.col-sm-7').html()+'</div><div class="col-sm-2"><button type="button" class="btn btn-outline btn-default btn-xs btn-delete-row" data-id="'+$(this).data('id')+'">삭제</button></div></div>');
     } else {
         $('#select_coin_list_'+$(this).data('id')).remove();
     }

@@ -61,7 +61,7 @@
         $('.tab_cont > div:first-child').show();
 
         //tab메뉴 클릭시
-        $('.menu_list li').click(function(){
+        $('.menu_list li').not('.noevent').click(function(){
             $(this).siblings('li').removeClass('active');
             $(this).addClass('active');
 
@@ -371,7 +371,7 @@
 
 <article class="main_top content01">
     <section class='tab' id='coin_mall'>
-        <ul class='menu_list nomal_font02'>
+        <ul class='menu_list nomal_font02' style="background: #f0f3f7;">
             
 
             <?php
@@ -384,7 +384,7 @@
              ?>
                     <li class="<?php echo $active ?>" rel="tab01_<?php echo $result?>">
                         <figure>
-                            <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/coin_'.strtolower($result).'.png') ?>' alt='bitcoin_logo'>
+                            <img src='<?php echo site_url('/views/_layout/basic/images/store_logo/'.strtoupper($result).'.png') ?>' alt='coin'>
                             <figcaption>
                                 <?php echo element($result,element('coinname_list', $view)) ?>
                             </figcaption>
@@ -397,7 +397,7 @@
             }
             ?>
             
-            <li style='width: 50px;' >
+            <li class='noevent pull-right '>
                 <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa fa-2x" ></i></a>
             </li>
         </ul>

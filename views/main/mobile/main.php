@@ -16,7 +16,7 @@
             $(".tab01_cont").hide();
             $(".tab01_cont:first").show();
 
-            $("ul.tab01_tabs li").click(function (){
+            $("ul.tab01_tabs li").not('.noevent').click(function (){
 
                 $("ul.tab01_tabs li").removeClass("active").css("color" , "#333");
                 $(this).addClass("active").css("color", "#1c446d");
@@ -479,7 +479,7 @@
                     }
                 }
                 ?>
-                <li >
+                <li class='noevent pull-right mr10'>
                 <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa"></i></a>
                 </li>
             </ul>
