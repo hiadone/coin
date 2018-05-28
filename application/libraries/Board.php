@@ -1012,7 +1012,6 @@ class Board extends CI_Controller
                                 ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
                             if ($link && is_array($link)) {
                                 if (element('use_autoplay', $board)) {
-                                    echo "cccc";
                                     $this->CI->load->library('videoplayer');
                                     $link_player .= $this->CI->videoplayer->get_video(prep_url(element('pln_url',element(0,$link))),array('image'=>1) );
                                     $view['view']['latest'][$key]['thumb_url'] = $link_player;
