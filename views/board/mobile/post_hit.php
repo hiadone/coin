@@ -4,7 +4,7 @@
 <script>
     var postact_flag=false;
     var global_cur_unit='krw';
-    var coinActiveTab='tab01_btc';
+    var coinActiveTab='tab01_BTC';
     setInterval('view_coin(global_cur_unit)',5000);
 
     $(document).ready(function(){
@@ -142,17 +142,23 @@
     <!-- tab01 영역 -->
         <section class="tab01 middle_font">
             <ul class="tab01_tabs tabs ">
-                <li class="active" rel="tab01_btc">BTC</li>
-                <li rel="tab01_eth">ETH</li>
-                <li rel="tab01_dash">DASH</li>
-                <li rel="tab01_xrp">XRP</li>
-                <li rel="tab01_ltc">LTC</li>
-                <li rel="tab01_etc">ETC</li>
-                <li rel="tab01_bch">BCH</li>
-                <li rel="tab01_xmr">XMR</li>
-                <li rel="tab01_zec">ZEC</li>
-                <li rel="tab01_qtum">QTUM</li>
-                <li rel="tab01_btg">BTG</li>
+                <?php
+                        $i=0;
+                        if (element('select_coin_list', $view)) {
+                            foreach (element('select_coin_list', $view) as $result) {
+                                if(empty($i)) $active="active";
+                                else $active='';
+
+                     ?>
+                            <li class="<?php echo $active ?>" rel="tab01_<?php echo $result?>">
+                                <?php echo $result?>
+                            </li>
+
+                    <?php
+                        $i++;
+                        }
+                    }
+                    ?>
             </ul>
 
             <table>

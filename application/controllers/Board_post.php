@@ -48,13 +48,18 @@ class Board_post extends CB_Controller
         $eventname = 'event_board_post_lists';
         $this->load->event($eventname);
 
+        $view = array();
+        $view['view'] = array();
+
+        $view['view']['select_coin_list'] = $this->member->item('mem_select_coin_list') ? explode(",", $this->member->item('mem_select_coin_list')) : config_item('default_select_coin_list');
+        $view['view']['view_coin'] = $this->get_coin_data();
+
         if($brd_key!=='post_hit'){
             if (empty($brd_key)) {
                 show_404();
             }
 
-            $view = array();
-            $view['view'] = array();
+            
             
             // 이벤트가 존재하면 실행합니다
             $view['view']['event']['before'] = Events::trigger('before', $eventname);
@@ -62,7 +67,7 @@ class Board_post extends CB_Controller
             $view['view']['list'] = $list = $this->_get_list($brd_key);
             $view['view']['board_key'] = element('brd_key', element('board', $list));
 
-            $view['view']['view_coin'] = $this->get_coin_data();
+            
 
             $where = array(
                 'bgr_id' => element('bgr_id', element('board', $list)),
@@ -154,7 +159,7 @@ class Board_post extends CB_Controller
             );
         } else {
 
-            $view['view']['view_coin'] = $this->get_coin_data();
+            
             
             $page_title = $this->cbconfig->item('site_meta_title_board_list');
             $meta_description = $this->cbconfig->item('site_meta_description_board_list');

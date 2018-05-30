@@ -5,8 +5,8 @@
     // rolling_news 영역 스크립트
         var postact_flag=false;
         var global_cur_unit='krw';
-        var coinActiveTab='tab01_btc';
-        // setInterval('view_coin(global_cur_unit)',10000);
+        var coinActiveTab='tab01_BTC';
+        setInterval('view_coin(global_cur_unit)',10000);
 
     // 전체 스크립트 
     $(document).ready(function(){
@@ -480,7 +480,7 @@
                 }
                 ?>
                 <li class='noevent pull-right mr10'>
-                <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa"></i></a>
+                <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa" style="font-size:1.3em;"></i></a>
                 </li>
             </ul>
             <table>
@@ -525,10 +525,10 @@
                 </a>
             </h3>
             <ul class="tab02_tabs tabs">
-                <li class="active" rel="tab02_free" data-board_url="<?php echo site_url('/board/free') ?>" style="width:25%">자유게시판</li>
-                <li rel="tab02_mine_info" style="width:25%" data-board_url="<?php echo site_url('/board/mine_info') ?>">호재정보</li>
-                <li rel="tab02_profit" style="width:25%" data-board_url="<?php echo site_url('/board/profit') ?>">코인분석</li>
-                <li rel="tab02_b-1" style="width:25%" data-board_url="<?php echo site_url('/board/b-1') ?>">추천코인</li>
+                <li class="active" rel="tab02_free" style="width:33.333%" data-board_url="<?php echo site_url('/board/free') ?>" style="width:25%">자유게시판</li>
+                <li rel="tab02_mine_info" style="width:25%;display:none;" data-board_url="<?php echo site_url('/board/mine_info') ?>">호재정보</li>
+                <li rel="tab02_profit" style="width:33.333%" data-board_url="<?php echo site_url('/board/profit') ?>">코인분석</li>
+                <li rel="tab02_b-1" style="width:33.333%" data-board_url="<?php echo site_url('/board/b-1') ?>">추천코인</li>
             </ul>
 
             <div class="tab02_wrap cont_wrap">
