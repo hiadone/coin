@@ -460,7 +460,7 @@
 
     <!-- tab01(거래소별 시세) 영역 -->
         <section class="tab01 middle_font">
-            <ul class="tab01_tabs tabs ">
+            <ul class="tab01_tabs tabs " >
 
                 <?php
                     $i=0;

@@ -33,14 +33,14 @@
                             <td colspan="3"><input type="password" class="input px150" name="post_password" id="post_password" /></td>
                         </tr>
                     <?php } ?>
-                   <tr>
+                   <!-- <tr>
                         <th class='nomal_font02'>이메일</th>
                         <td colspan="3"><input type="text" class="input px400" name="post_email" id="post_email" value="<?php echo set_value('post_email', element('post_email', element('post', $view))); ?>" /></td>
                     </tr>
                     <tr>
                         <th class='nomal_font02'>홈페이지</th>
                         <td colspan="3"><input type="text" class="input px400" name="post_homepage" id="post_homepage" value="<?php echo set_value('post_homepage', element('post_homepage', element('post', $view))); ?>" /></td>
-                    </tr>
+                    </tr> -->
                 <?php } ?>
                 <tr>
                     <th class='nomal_font02'>제목</th>

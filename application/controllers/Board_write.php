@@ -266,7 +266,8 @@ class Board_write extends CB_Controller
         $view['view']['event']['step1'] = Events::trigger('common_step1', $eventname);
 
         $view['view']['post']['is_post_name'] = $is_post_name
-            = ($this->member->is_member() === false) ? true : false;
+            = ($this->member->is_member() === false || ($this->member->is_admin() === 'super' )) ? true : false;
+
         $view['view']['post']['post_title']
             = ($this->cbconfig->get_device_view_type() === 'mobile')
             ? element('mobile_post_default_title', $board)
