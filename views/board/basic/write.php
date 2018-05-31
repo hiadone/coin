@@ -302,9 +302,9 @@ $(function() {
         rules: {
             post_title: {required :true, minlength:2},
             post_content : {<?php echo (element('use_dhtml', element('board', $view))) ? 'required_' . $this->cbconfig->item('post_editor_type') : 'required'; ?> : true }
-        <?php if (element('is_post_name', element('post', $view))) { ?>
+        <?php if (element('is_post_name', element('post', $view)) && $this->member->is_member() === false)) { ?>
             , post_nickname: {required :true, minlength:2, maxlength:20}
-            , post_email: {required :true, email:true}
+            // , post_email: {required :true, email:true}
         <?php } ?>
         <?php if ($this->member->is_member() === false) { ?>
             , post_password: {required :true, minlength:4, maxlength:100}

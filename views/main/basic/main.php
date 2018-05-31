@@ -469,7 +469,7 @@
                         </ul>
                     </div>
 
-                    <div >
+                    <div style="display:none;">
                         <ul>
                             <?php
                             $config = array(
@@ -487,7 +487,7 @@
                         </ul>
                     </div>
 
-                    <div>
+                    <div style="display:none;">
                         <ul>
                             <?php
                             $config = array(
