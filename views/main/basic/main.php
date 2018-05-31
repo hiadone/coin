@@ -1,8 +1,8 @@
 
 <script>
     var postact_flag=false;
-    var coinActiveTab='tab01_btc';
-    // setInterval('view_coin()',10000);
+    var coinActiveTab='tab01_BTC';
+    setInterval('view_coin()',10000);
     // 전체 스크립트 
     $(document).ready(function(){
         
@@ -62,6 +62,7 @@
 
         //tab메뉴 클릭시
         $('.menu_list li').not('.noevent').click(function(){
+
             $(this).siblings('li').removeClass('active');
             $(this).addClass('active');
 
@@ -398,7 +399,7 @@
             ?>
             
             <li class='noevent pull-right '>
-                <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa fa-2x" ></i></a>
+                <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa" style="font-size:1.3em;"></i></a>
             </li>
         </ul>
 
@@ -621,7 +622,7 @@
 
         <ul class="menu_list">
             <li class="active nomal_font02" data-board_url="<?php echo site_url('/board/free') ?>">자유게시판</li>
-            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/mine_info') ?>">호 재 정 보</li>
+            <li class='nomal_font02' style="display:none;" data-board_url="<?php echo site_url('/board/mine_info') ?>">호 재 정 보</li>
             <li class='nomal_font02' data-board_url="<?php echo site_url('/board/profit') ?>">코 인 분 석</li>
             <li class='nomal_font02' data-board_url="<?php echo site_url('/board/b-1') ?>">추 천 코 인</li>
         </ul>

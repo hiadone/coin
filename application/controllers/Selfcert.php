@@ -1137,7 +1137,7 @@ class Selfcert extends CB_Controller
                     $selfcertinfo['selfcert_username'] = iconv('euc-kr', 'utf-8',$name);
                     //$name = $this->getValue($plaindata , "UTF8_NAME"); //charset utf8 사용시 주석 해제 후 사용
                     $selfcertinfo['selfcert_birthday'] = $birthdate;
-                    $selfcertinfo['selfcert_sex'] = $gender;
+                    $selfcertinfo['selfcert_sex'] = $gender==="0" ? '2':$gender;
                     $selfcertinfo['nationalinfo'] = $nationalinfo;  //내/외국인정보(사용자 매뉴얼 참조)
                     $selfcertinfo['selfcert_key'] = empty($dupinfo) ? '':$dupinfo;
                     $selfcertinfo['conninfo'] = $conninfo;
