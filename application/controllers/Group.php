@@ -182,7 +182,7 @@ class Group extends CB_Controller
                 $config = array(
                     'skin' => 'mobile',            
                     'brd_key' => $brd_key,
-                    'limit' => 6,
+                    'limit' => 30,
                     'length' => 40,
                     'is_gallery'=> 1,
                     'image_width'=> 120,
@@ -206,7 +206,7 @@ class Group extends CB_Controller
                 $config = array(
                     'skin' => 'mobile',            
                     'brd_key' => $brd_key,
-                    'limit' => 5,
+                    'limit' => 30,
                     'length' => 40,
                 );
             }
