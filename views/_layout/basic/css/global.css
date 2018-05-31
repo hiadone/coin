@@ -47,6 +47,7 @@ p{
 
 .nomal_font02{
 	font-size: 13px;
+	line-height: 18px;
 }
 
 .normal_font{
@@ -444,13 +445,18 @@ textarea{
 		display: inline-block;
 		width: 100%;
 		text-align: center;
+		font-weight:bold;
 	}
 
 	.ham_login p.nomal_font02{
 		text-align: center;
 		text-decoration: underline;
 	}
-
+	.ham_login button{
+		width:100% !important;
+		height:51px;
+		font-size:18px;
+	}
 
 	
 
