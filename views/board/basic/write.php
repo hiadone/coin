@@ -24,8 +24,13 @@
                 <?php if (element('is_post_name', element('post', $view))) { ?>
                     <tr>
                         <th class='nomal_font02'>이름</th>
+                        <?php if(element('post_nickname', element('post', $view))){ ?>
                         <td colspan="3"><input type="text" class="input px150" name="post_nickname" id="post_nickname" value="<?php echo set_value('post_nickname', element('post_nickname', element('post', $view))); ?>" />
                         </td>
+                        <?php } else { ?>
+                        <td colspan="3"><input type="text" class="input px150" name="post_nickname" id="post_nickname" value="<?php echo set_value('post_nickname', $this->member->item('mem_nickname')); ?>" />
+                        </td>
+                        <?php } ?>
                     </tr>
                     <?php if ($this->member->is_member() === false) { ?>
                         <tr>
@@ -302,9 +307,9 @@ $(function() {
         rules: {
             post_title: {required :true, minlength:2},
             post_content : {<?php echo (element('use_dhtml', element('board', $view))) ? 'required_' . $this->cbconfig->item('post_editor_type') : 'required'; ?> : true }
-        <?php if (element('is_post_name', element('post', $view)) && $this->member->is_member() === false) { ?>
+        <?php if (element('is_post_name', element('post', $view))) { ?>
             , post_nickname: {required :true, minlength:2, maxlength:20}
-            // , post_email: {required :true, email:true}
+            , post_email: {required :true, email:true}
         <?php } ?>
         <?php if ($this->member->is_member() === false) { ?>
             , post_password: {required :true, minlength:4, maxlength:100}
