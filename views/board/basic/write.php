@@ -21,16 +21,11 @@
         <input type="hidden" name="<?php echo element('primary_key', $view); ?>"    value="<?php echo element(element('primary_key', $view), element('post', $view)); ?>" />
 
         <table>
-                <?php if (element('is_post_name', element('post', $view))) { ?>
+                <?php if (element('is_post_name', element('post', $view)) || $this->member->is_admin() === 'super') { ?>
                     <tr>
                         <th class='nomal_font02'>이름</th>
-                        <?php if(element('post_nickname', element('post', $view))){ ?>
                         <td colspan="3"><input type="text" class="input px150" name="post_nickname" id="post_nickname" value="<?php echo set_value('post_nickname', element('post_nickname', element('post', $view))); ?>" />
                         </td>
-                        <?php } else { ?>
-                        <td colspan="3"><input type="text" class="input px150" name="post_nickname" id="post_nickname" value="<?php echo set_value('post_nickname', $this->member->item('mem_nickname')); ?>" />
-                        </td>
-                        <?php } ?>
                     </tr>
                     <?php if ($this->member->is_member() === false) { ?>
                         <tr>

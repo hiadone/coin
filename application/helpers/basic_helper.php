@@ -912,7 +912,7 @@ if ( ! function_exists('twitter_list')) {
  * 본문 가져오기
  */
 if ( ! function_exists('display_html_content')) {
-    function display_html_content($content = '', $html = '', $thumb_width=700, $autolink = false, $popup = false, $writer_is_admin = false)
+    function display_html_content($content = '', $html = '', $thumb_width=1100, $autolink = false, $popup = false, $writer_is_admin = false)
     {
         if (empty($html)) {
             $content = nl2br(html_escape($content));
@@ -1177,7 +1177,7 @@ if ( ! function_exists('get_google_map')) {
 
         $maxwidth = (int) $maxwidth;
         if (empty($maxwidth)) {
-            $maxwidth = 700;
+            $maxwidth = 1100;
         }
 
         $geo_data = stripslashes($geo_data);
@@ -1234,7 +1234,7 @@ if ( ! function_exists('get_view_thumbnail')) {
         $CI = & get_instance();
 
         if (empty($thumb_width)) {
-            $thumb_width = 700;
+            $thumb_width = 1100;
         }
 
         // $contents 중 img 태그 추출
