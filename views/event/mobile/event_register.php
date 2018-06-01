@@ -129,8 +129,16 @@
 </head>
 
 <body style="max-width:700px;">
-    <input type="hidden" name="redirecturl" value="<?php  echo current_full_url()?>">
-    <section id='event_wrap'>
+<article class="wrap01">
+    <section class="main_title write_cont" style="margin-bottom: 0px;">
+        <h2 style="margin-bottom: 0px;">
+            <a href="<?php echo board_url(element('brd_key', element('board', $view))); ?>" style="color: inherit;">
+            이 벤 트
+            </a>
+        </h2>
+    </section>
+    <section id='event_wrap' >
+            
             <img src="<?php echo base_url('/assets/images/bitissue_event_01.png') ?>">
             <div id="event_form">
                 <?php
@@ -139,6 +147,7 @@
                 ?>
                     <input type="hidden" name="socialtype" id="socialtype" value="">
                     <input type="hidden" name="selfcert_type" id="selfcert_type" value="" />
+                    <!-- <input type="hidden" name="redirecturl" value="<?php  echo current_full_url()?>"> -->
                     <input type='text' name="elh_mem_id" id="elh_mem_id" placeholder="추천인 닉네임 입력" onfocus="this.placeholder=''" onblur="this.placeholder='추천인 닉네임 입력'">
                     <span>추천하실 회원님을 정확히 입력해 주세요. 닉네임을 입력하지 않으시면 500P를 받으실수 없습니다.</span>
                 <?php echo form_close(); ?>
@@ -180,6 +189,7 @@
             <img id="img_bottom" style='position: relative; ' src="<?php echo base_url('/assets/images/bitissue_event_03.png')?>">
     </section>
     <div id="btn_mem_selfcert_phone"></div>
+</article>
 </body>
 </html>
 <script type="text/javascript">
