@@ -193,7 +193,8 @@ class Event extends CB_Controller
 
             $insertdata = array(
                 'post_id' => $this->input->post('post_id'),
-                'elh_name' => $this->input->post('elh_name',null,''),
+                'mem_id' => $mem_id,
+                'elh_name' => $this->member->item('mem_nickname'),
                 'elh_age' => $this->input->post('elh_age',null,''),
                 'elh_gender' => $this->input->post('elh_gender',null,''),
                 'elh_email' => $this->input->post('elh_email',null,''),

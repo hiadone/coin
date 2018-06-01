@@ -266,7 +266,7 @@ class Members extends CB_Controller
             array(
                 'field' => 'mem_birthday',
                 'label' => '생일',
-                'rules' => 'trim|exact_length[10]',
+                'rules' => 'trim',
             ),
             array(
                 'field' => 'mem_sex',
