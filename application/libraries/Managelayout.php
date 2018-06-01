@@ -354,7 +354,7 @@ class Managelayout extends CI_Controller
                 </table>
                 <ul class="small_font">
                     <li><a href="'.document_url('provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a></li>
-                    <li><a href="'.board_url("o-1").'" title="게제중단요청">게제중단요청</a> </li>
+                    <li><a href="'.board_url("o-1").'" title="게재중단요청">게재중단요청</a> </li>
                     <li><a href="'.board_url("o-2").'" title="제휴문의">제휴문의</a> </li>
                 </ul>
 
@@ -383,7 +383,7 @@ class Managelayout extends CI_Controller
                         </li>
 
                         <li>
-                            <a href="'.board_url("o-1").'" title="게제중단요청">게제중단요청</a>
+                            <a href="'.board_url("o-1").'" title="게재중단요청">게재중단요청</a>
                         </li>
 
                         <li>
