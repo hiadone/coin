@@ -7,6 +7,12 @@
 <!-- <meta name="naver-site-verification" content="198e8e28067f3f38761488506290231146288364"/> -->
 <meta name="google-site-verification" content="6FfNGOyp00RKYp_kGK_GrIRzIJn6KM3jEqVCoJ_sEIE" />
 <meta name="naver-site-verification" content="198e8e28067f3f38761488506290231146288364"/>
+<meta name="description" content="가상화폐 정보제공 커뮤니티, 최신뉴스, ICO정보, 코인분석">
+<meta property="og:type" content="website">
+<meta property="og:title" content="비트이슈">
+<meta property="og:description" content="가상화폐 정보제공 커뮤니티, 최신뉴스, ICO정보, 코인분석">
+<meta property="og:image" content="https://www.bitcoissue.com/assets/images/bitissue_event_01.png">
+<meta property="og:url" content="https://www.bitcoissue.com">
 <title><?php echo html_escape(element('page_title', $layout)); ?></title>
 <?php if (element('meta_description', $layout)) { ?><meta name="description" content="<?php echo html_escape(element('meta_description', $layout)); ?>"><?php } ?>
 <?php if (element('meta_keywords', $layout)) { ?><meta name="keywords" content="<?php echo html_escape(element('meta_keywords', $layout)); ?>"><?php } ?>
