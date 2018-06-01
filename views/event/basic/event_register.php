@@ -12,11 +12,11 @@
           font-family: 'Jeju Gothic';
           font-style: normal;
           font-weight: 400;
-          src: url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
-          src: url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
-          url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
-          url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
-          url(http://fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
+          src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
+          src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
+          url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
+          url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
+          url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
       }
 
               *{
@@ -101,7 +101,7 @@
             }
 
             #event_form span{
-                font-size: 11px;
+                font-size: 13px;
                 font-family: 'Jeju Gothic', sans-serif;
                 color: #a61e24;
             }
