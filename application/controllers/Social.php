@@ -425,12 +425,14 @@ class Social extends CB_Controller
             $name = element('name', element('response',$json));
             $birthday = element('birthday', element('response',$json));
 
-            if (empty($nickname)) $nickname = $name;
+            
             if (empty($nickname) && empty($name)) {
                 $this->session->unset_userdata('naver_access_token');
                 alert_close('이름 정보를 확인할 수 없어 로그인할 수 없습니다');
             }
 
+            if (empty($nickname)) $nickname = $name;
+            
             $socialdata = array(
                 'email' => $email,
                 'nickname' => $nickname,
