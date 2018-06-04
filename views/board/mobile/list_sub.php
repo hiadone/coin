@@ -37,7 +37,7 @@ $(document).ready(function(){
             
         </ul>
 
-        <div class="tab06_wrap cont_wrap" id="view_board">
+        <div class="tab06_wrap" id="view_board">
 
         </div>
     </section>
