@@ -195,6 +195,11 @@ class Cbconfigs extends CB_Controller
                 'label' => '구글 reCaptcha Secret',
                 'rules' => 'trim',
             ),
+            array(
+                'field' => 'browser_cache_version',
+                'label' => '구브라우저 캐시 버전',
+                'rules' => 'trim',
+            ),
         );
         $this->form_validation->set_rules($config);
 
@@ -221,7 +226,7 @@ class Cbconfigs extends CB_Controller
                 'spam_word', 'white_iframe', 'white_coin','jwplayer6_key', 'naver_blog_api_key', 'naver_syndi_key', 
                 'use_naver_syndi_log', 'bitly_access_token', 'kakao_apikey',
                 'new_post_second', 'open_currentvisitor', 'currentvisitor_minute', 'use_copy_log', 'max_level',
-                'ip_display_style', 'list_count', 'use_recaptcha', 'recaptcha_sitekey', 'recaptcha_secret'
+                'ip_display_style', 'list_count', 'use_recaptcha', 'recaptcha_sitekey', 'recaptcha_secret', 'browser_cache_version'
             );
             foreach ($array as $value) {
                 $savedata[$value] = $this->input->post($value, null, '');

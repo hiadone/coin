@@ -227,6 +227,12 @@
                         <input type="text" class="form-control" name="recaptcha_secret" id="recaptcha_secret" value="<?php echo set_value('recaptcha_secret', element('recaptcha_secret', element('data', $view))); ?>" />
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">브라우저 캐시 버전</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="browser_cache_version" id="browser_cache_version" value="<?php echo set_value('browser_cache_version', element('browser_cache_version', element('data', $view))); ?>" />
+                    </div>
+                </div>
                 <div class="btn-group pull-right" role="group" aria-label="...">
                     <button type="submit" class="btn btn-success btn-sm">저장하기</button>
                 </div>
