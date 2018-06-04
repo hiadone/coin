@@ -62,13 +62,13 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 <?php echo $this->managelayout->display_js(); ?>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/plugins/jquery.easing.1.3.js'); ?>"></script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
     google_ad_client: "ca-pub-7419726859237673",
     enable_page_level_ads: true
   });
-</script>
+</script> -->
 
 <script>
 
