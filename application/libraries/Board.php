@@ -963,6 +963,8 @@ class Board extends CI_Controller
                                                                         element('post_nickname', $value));
                     $view['view']['latest'][$key]['display_content'] = cut_str(strip_tags(element('post_content', $value)), 200);
 
+                    $view['view']['latest'][$key]['post_comment_count'] = element('post_comment_count', $value);
+
                     $view['view']['latest'][$key]['category'] = '';
                     if (element('post_category', $value)) {
                             $view['view']['latest'][$key]['category'] = $this->CI->Board_category_model->get_category_info(element('brd_id', $value), element('post_category', $value));

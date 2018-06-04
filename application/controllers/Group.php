@@ -207,7 +207,7 @@ class Group extends CB_Controller
                     'skin' => 'mobile',            
                     'brd_key' => $brd_key,
                     'limit' => 30,
-                    'length' => 40,
+                    'length' => 19,
                 );
             }
             echo $this->board->latest_group($config,$more);

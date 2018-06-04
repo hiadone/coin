@@ -647,10 +647,12 @@
                         <tr >
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                             <td class="text-left pointer"  onClick="location.href='<?php echo element('url', $value); ?>'"><?php echo html_escape(element('title', $value)); ?>
+                                <?php if (element('post_comment_count', $value)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $value); ?></span><?php } ?>
                                 
                                 <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
                             </td>
                             <td><?php echo element('display_datetime', $value); ?></td>
+
                         </tr>                        
                         <?php 
                     }
