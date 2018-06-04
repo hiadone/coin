@@ -317,7 +317,7 @@ class Attendance extends CB_Controller
                 if(!element('att_demo',$val)){
                     $dbmember = $this->Member_model
                             ->get_by_memid(element('mem_id', $val), 'mem_level');
-                    $result['list'][$key]['display_level']= element('mem_level', $dbmember);
+                    $result['list'][$key]['display_level']= element('mem_level', $dbmember) ? element('mem_level', $dbmember) : 1;
 
                     
                     $result['list'][$key]['display_name'] = display_username(
@@ -328,7 +328,7 @@ class Attendance extends CB_Controller
                 } else {
                     $result['list'][$key]['display_name'] = element('att_demo',$val);
                     $dbmember['mem_level'] = ((strtotime(element('att_datetime',$val))%5)+1);
-                    $result['list'][$key]['display_level']= element('mem_level', $dbmember);
+                    $result['list'][$key]['display_level']= element('mem_level', $dbmember) ? element('mem_level', $dbmember) : 1;
                     // $this->load->model('Member_group_model');
                 }
 

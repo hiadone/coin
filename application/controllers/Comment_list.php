@@ -216,7 +216,7 @@ class Comment_list extends CB_Controller
 
                     $dbmember = $this->Member_model
                             ->get_by_memid(element('mem_id', $val), 'mem_level');
-                    $bestresult[$key]['display_level']= element('mem_level', $dbmember);
+                    $bestresult[$key]['display_level']= element('mem_level', $dbmember) ? element('mem_level', $dbmember) : 1;
 
                     $bestresult[$key]['display_datetime'] = display_datetime(
                         element('cmt_datetime', $val),
@@ -308,7 +308,7 @@ class Comment_list extends CB_Controller
 
                 $dbmember = $this->Member_model
                             ->get_by_memid(element('mem_id', $val), 'mem_level');
-                    $result['list'][$key]['display_level']= element('mem_level', $dbmember);
+                    $result['list'][$key]['display_level']= element('mem_level', $dbmember) ? element('mem_level', $dbmember) : 1;
 
 
                 $result['list'][$key]['is_mobile'] = (element('cmt_device', $val) === 'mobile') ? true : false;

@@ -417,7 +417,7 @@ class Board_post extends CB_Controller
         if (element('mem_id', $post) >= 0) {
             $dbmember = $this->Member_model
                 ->get_by_memid(element('mem_id', $post), 'mem_icon,mem_level');
-            $view['view']['post']['display_level']= element('mem_level', $dbmember,1);
+            $view['view']['post']['display_level']= element('mem_level', $dbmember) ? element('mem_level', $dbmember) : 1;
             $view['view']['post']['display_name'] = display_username(
                 element('post_userid', $post),
                 element('post_nickname', $post),
@@ -1355,7 +1355,7 @@ class Board_post extends CB_Controller
                 if (element('mem_id', $val) >= 0) {
                     $dbmember = $this->Member_model
                         ->get_by_memid(element('mem_id', $val), 'mem_level');
-                    $result['list'][$key]['display_level']= element('mem_level', $dbmember,1);
+                    $result['list'][$key]['display_level']= element('mem_level', $dbmember) ? element('mem_level', $dbmember) : 1;
                     $result['list'][$key]['display_name'] = display_username(
                         element('post_userid', $val),
                         element('post_nickname', $val),
