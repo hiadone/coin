@@ -415,7 +415,12 @@ html, body{
 
 /* tab06(커뮤니티(자유게시판,채굴정보,코인뉴스)) , (자유게시판,채굴정보,코인뉴스,수인인증의 본 페이이지)(서비스(이벤트,출석체크,가입인사)) , (이벤트,출석체크,가입인사의 본 페이이지) 영역*/				
 /*tab06의 리스트 영역 css*/
+	.tab06_cont ul{
+		width:100%;
+		overflow:hidden;
+	}
 	.tab06_cont ul li{
+		width:100%;
 		display: block;
 		padding: 3% 3% 2%;
 		box-sizing: border-box;
@@ -431,6 +436,10 @@ html, body{
 	.tab06_cont ul li a{
 		display: inline-block;
 		width: 100%;
+		font-size:16px;
+		white-space:nowrap;
+		text-overflow:ellipsis;
+		overflow:hidden;
 	}
 
 	.tab06_cont ul li.active {
@@ -439,6 +448,7 @@ html, body{
 
 	.tab06_cont {
 		max-width: 640px;
+		width:100%;
 		margin: 0 auto;
 		display: inline-block;
 	}
@@ -454,31 +464,25 @@ html, body{
 
 
 	.tab06_cont > ul li a span{
-		width: 10%;
+		font-size:12px;
 		text-align: center;
 		display: inline-block;
 		font-weight: bold;
-		float: right;
 	}
 
 	.tab06_cont > ul li a table{
-		width: 100%;
+		clear:right;
 		color: #5d5d5d;
-		text-align: center;
 		table-layout: fixed;
 		margin-top: 10px;
 	}
 
 	.tab06_cont > ul li a td{
-		width: 33%;
-		text-align: right;
 		font-size: 12px;
-		padding:0;
+		padding-right: 6%;
+		white-space:nowrap;
 	}
 
-	.tab06_cont > ul li a td:nth-child(2){
-		width: 34%;
-	}
 	/*tab06 검색영역 css*/
 		.tab06_cont div.search{
 			width: 100%;
@@ -599,6 +603,8 @@ html, body{
 			line-height:15px;
 			text-overflow:ellipsis;
 			display:-webkit-box;
+			font-size:11px; 
+			white-space:normal;
 		}
 
 /*tab08 (인기글,최신글,최신댓글) 영역*/
