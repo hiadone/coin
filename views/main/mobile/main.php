@@ -553,6 +553,7 @@
                                     <td class="text-left">
                                         <?php if (element('is_new', $value)) { ?><img src="<?php echo base_url('/assets/images/new.png') ?>" id="img_text"><?php } ?>
                                         <?php echo html_escape(element('title', $value)); ?>
+                                        <?php if (element('post_comment_count', $value)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $value); ?></span><?php } ?></td>
                                     </td>
                                     <td><?php echo element('display_datetime', $value); ?></td>
                                 </tr>                        
