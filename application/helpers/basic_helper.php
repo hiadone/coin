@@ -19,7 +19,7 @@ if ( ! function_exists('alert')) {
             $msg = '잘못된 접근입니다';
         }
         echo '<meta http-equiv="content-type" content="text/html; charset=' . config_item('charset') . '">';
-        echo '<script type="text/javascript">alert("' . $msg . '");';alert_info
+        echo '<script type="text/javascript">alert("' . $msg . '");';
         if (empty($url)) {
             echo 'history.go(-1);';
         }
