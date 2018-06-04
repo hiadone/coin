@@ -12,7 +12,7 @@
     </h4>
 
     <section class='item_detail'>
-        <?php echo show_alert_message($this->session->flashdata('message'), '<div class="mt10 alert alert-auto-close alert-dismissible alert-info">', '</div>'); ?>
+        <?php echo alert_info($this->session->flashdata('message')); ?>
          <?php
         if (element('file_image', $view)) {
             foreach (element('file_image', $view) as $key => $value) {
