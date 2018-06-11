@@ -320,14 +320,11 @@ textarea{
 
 /*ham_cont css*/
 	.ham_cont{
-		width: 320px;
+		width: 300px;
 		height: 100%;
 		margin: 0 auto;
 		box-sizing: border-box;
 		background-color: #fff;
-	}
-
-	.ham_cont{
     	padding:20px 10px;
     }
 
@@ -336,6 +333,7 @@ textarea{
         width: 100%;
         border:1px solid #1c446d;
         margin-bottom: 20px;
+		box-sizing: border-box;
     }
 
     .info_menu li{
@@ -699,9 +697,15 @@ textarea{
     }
 
 /*ham_out(회원탈퇴)*/
+	.ham_out{
+		padding-top:20px;
+	}
+	.ham_out h2{
+		margin-bottom:20px;
+	}
 	.ham_out .logout_notice{
-		width: 299px;
-        margin:0 10px 20px;
+		width: 280px;
+        margin-bottom:20px;
         border:1px solid #ededed;
         padding:20px;
         box-sizing: border-box;
@@ -722,12 +726,13 @@ textarea{
 	}
 
 	.ham_out button{
-     	width: 299px;
+     	width: 280px;
      	height: 40px;
-     	margin: 0 10px;
      	font-family:'Jeju Gothic', sans-serif;
 	}
-
+	.ham_out .logout_notice p{
+		line-height: 16px;
+	}
 
 /*메인메뉴 선택 css*/
 	nav .menu_check{

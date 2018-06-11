@@ -9,7 +9,7 @@
 .board .info li{float:left; padding-right:20px;}
 .board .contents-view{padding:30px 20px; clear:both;}
 .board .contents-view-img img { display:block; max-width:100%; margin:0 auto 15px; border:0; height:auto; }
-#post-content {word-wrap: break-word;}
+#post-content {word-wrap: break-word;font-size:14px;}
 #post-content img {max-width:100%;}
 
 .board .fa-user{color:#626262;}

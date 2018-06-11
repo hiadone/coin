@@ -51,7 +51,9 @@ html, body{
 		border-top: 1px solid #ededed;
 		border-bottom: 1px solid #ededed;
 	}
-
+	.coin_trade+.ad{
+		margin-bottom:0;
+	}
 /*상단 로그인, 회원가입 영역*/
 	.loing_join{
 		background-color:#1c446d;
@@ -440,6 +442,7 @@ html, body{
 		white-space:nowrap;
 		text-overflow:ellipsis;
 		overflow:hidden;
+		font-weight:bold;		   
 	}
 
 	.tab06_cont ul li.active {

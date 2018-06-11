@@ -357,13 +357,8 @@ class Managelayout extends CI_Controller
                     <li><a href="'.board_url("o-1").'" title="게재중단요청">게재중단요청</a> </li>
                     <li><a href="'.board_url("o-2").'" title="제휴문의">제휴문의</a> </li>
                 </ul>
-
-                board/o-1
-
                 <p class="small_font">Copyright ⓒ 시즌제이 . All Rights Reserved </p>
-            </footer>
-
-            
+            </footer>          
             ';
         } else {
             $return = '

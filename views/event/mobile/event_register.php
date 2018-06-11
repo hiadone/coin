@@ -139,7 +139,7 @@
     </section>
     <section id='event_wrap' >
             
-            <img src="<?php echo base_url('/assets/images/bitissue_event_01.png') ?>">
+            <img src="<?php echo base_url('/assets/images/bitissue_event_m_01.png') ?>">
             <div id="event_form">
                 <?php
                 $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite', 'id' => 'fwrite');
@@ -149,10 +149,10 @@
                     <input type="hidden" name="selfcert_type" id="selfcert_type" value="" />
                     <!-- <input type="hidden" name="redirecturl" value="<?php  echo current_full_url()?>"> -->
                     <input type='text' name="elh_mem_id" id="elh_mem_id" placeholder="추천인 닉네임 입력" onfocus="this.placeholder=''" onblur="this.placeholder='추천인 닉네임 입력'">
-                    <span>추천하실 회원님을 정확히 입력해 주세요. 닉네임을 입력하지 않으시면 500P를 받으실수 없습니다.</span>
+                    <span>추천하실 회원님을 정확히 입력해 주세요.</span>
                 <?php echo form_close(); ?>
 
-                <h2>추천인 닉네임을 입력하시고 , 아래 SNS로 로그인해 주세요.</h2>
+                <h2>추천인 닉네임을 입력하시고,<br> 아래 SNS로 로그인해 주세요.</h2>
 
                 <ul>
                     <li style='background-color:#1dc800; color:#fff;'>
@@ -186,7 +186,7 @@
                 <span>회원 가입 시 본인 인증 절차가 진행됩니다. </span>
                 
             </div>
-            <img id="img_bottom" style='position: relative; ' src="<?php echo base_url('/assets/images/bitissue_event_03.png')?>">
+            <img id="img_bottom" style='position: relative; ' src="<?php echo base_url('/assets/images/bitissue_event_m_03.png')?>">
     </section>
     <div id="btn_mem_selfcert_phone"></div>
 </article>
