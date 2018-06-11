@@ -457,7 +457,7 @@
                                 'skin' => 'basic2',
                                 'brd_id' => '',
                                 'limit' => 10,
-                                'length' =>50,
+                                'length' =>16,
                                 'is_gallery' => '',
                                 'image_width' => '',
                                 'image_height' => '',
@@ -476,7 +476,7 @@
                                 'skin' => 'basic2',
                                 'brd_id' => array(15,3,10,5),
                                 'limit' => 10,
-                                'length' =>50,
+                                'length' =>16,
                                 'is_gallery' => '',
                                 'image_width' => '',
                                 'image_height' => '',
@@ -494,7 +494,7 @@
                                 'skin' => 'basic2',
                                 'brd_id' => '',
                                 'limit' => 10,
-                                'length' => 20,
+                                'length' => 16,
                                 'cache_minute' => 1,
                             );
                             echo $this->board->latest_comment($config);
@@ -635,7 +635,7 @@
                 $config = array(
                     'brd_key' => $tvalue,
                     'limit' => 10,
-                    'length' => 70,
+                    'length' => 30,
                     );
                 $board=$this->board->data($config);
 
@@ -643,13 +643,25 @@
 
                     echo '<div>
                     <table class="tab_text">';
-                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        foreach (element('latest', element('view', $board)) as $key => $value) {
+                            $max_size=275;
+
+                            if (element('is_new', $value)) $max_size=($max_size-15);
+                            if (element('post_comment_count', $value)) $max_size=($max_size-17);
+                            ?>
                         <tr >
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                            <td class="text-left pointer"  onClick="location.href='<?php echo element('url', $value); ?>'"><?php echo html_escape(element('title', $value)); ?>
-                                <?php if (element('post_comment_count', $value)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $value); ?></span><?php } ?>
+                            <td class="text-left"  >
+                                <ul class="nav-pills nav-justified">
+                                         <li><?php if (element('is_new', $value)) { ?><img id='img_text' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?></li>
+                                         <li><a href="<?php echo element('url', $value); ?>" style="max-width:<?php echo $max_size?>px;"><?php echo html_escape(element('title', $value)); ?></a></li>
+                                         <li><?php if (element('post_comment_count', $value)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $value); ?></span><?php } ?></li>
+                                </ul>
+
                                 
-                                <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                
+                                
+                                
                             </td>
                             <td><?php echo element('display_datetime', $value); ?></td>
 
@@ -745,12 +757,24 @@
                     if (element('latest', element('view', $board))) {                    
                         echo '<div>
                         <table class="tab_text">';
-                            foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                            <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
+                            foreach (element('latest', element('view', $board)) as $key => $value) {
+                                $max_size=275;
+
+                                if (element('is_new', $value)) $max_size=($max_size-15);
+                                if (element('post_comment_count', $value)) $max_size=($max_size-17);
+
+                                ?>
+                            <tr >
                                 <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                                <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
-                                    <?php echo element('thumb_url', $value); ?>
-                                    <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                <td class="text-left">
+                                    <ul class="nav-pills nav-justified">
+                                             <li><?php if (element('is_new', $value)) { ?><img id='img_text' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?></li>
+                                             <li><a href="<?php echo element('url', $value); ?>" style="max-width:<?php echo $max_size?>px;"><?php echo html_escape(element('title', $value)); ?></a></li>
+                                             <li><?php if (element('post_comment_count', $value)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $value); ?></span><?php } ?></li>
+                                    </ul>
+
+
+                                   
                                 </td>
                                 <td><?php echo element('display_datetime', $value); ?></td>
                             </tr>                        
@@ -844,11 +868,20 @@
                 if (element('latest', element('view', $board))) {
                     echo '<div >
                     <table class="tab_text">';
-                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
-                        <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
+                        foreach (element('latest', element('view', $board)) as $key => $value) {
+                            $max_size=275;
+
+                                if (element('is_new', $value)) $max_size=($max_size-15);
+                                if (element('post_comment_count', $value)) $max_size=($max_size-17);
+                            ?>
+                        <tr >
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
-                            <td class="text-left"><?php echo html_escape(element('title', $value)); ?>
-                                <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>" ><?php } ?>
+                            <td class="text-left">
+                                <ul class="nav-pills nav-justified">
+                                         <li><?php if (element('is_new', $value)) { ?><img id='img_text' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?></li>
+                                         <li><a href="<?php echo element('url', $value); ?>" style="max-width:<?php echo $max_size?>px;"><?php echo html_escape(element('title', $value)); ?></a></li>
+                                         <li><?php if (element('post_comment_count', $value)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $value); ?></span><?php } ?></li>
+                                </ul>
                             </td>
                             <td><?php echo element('display_datetime', $value); ?></td>
                         </tr>                        
@@ -1075,12 +1108,21 @@
                 if (element('latest', element('view', $board))) {
                     echo '<div>
                     <table class="tab_text">';
-                        foreach (element('latest', element('view', $board)) as $key => $value) {?>
+                        foreach (element('latest', element('view', $board)) as $key => $value) {
+
+                            $max_size=275;
+
+                            if (element('is_new', $value)) $max_size=($max_size-15);
+                            if (element('post_comment_count', $value)) $max_size=($max_size-17);
+                            ?>
                         <tr class="pointer" onClick="location.href='<?php echo element('url', $value); ?>'">
                             <td><?php echo sprintf("%02d",($key+1)) ?>.</td>
                             <td class="text-left">
-                                <?php echo html_escape(element('title', $value)); ?>
-                                <?php if (element('is_new', $value)) { ?><img id='img_text' style='margin-top: 10px;' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?>
+                                <ul class="nav-pills nav-justified">
+                                         <li><?php if (element('is_new', $value)) { ?><img id='img_text' src="<?php echo base_url('/assets/images/new.png') ?>"><?php } ?></li>
+                                         <li><a href="<?php echo element('url', $value); ?>" style="max-width:<?php echo $max_size?>px;"><?php echo html_escape(element('title', $value)); ?></a></li>
+                                         <li><?php if (element('post_comment_count', $value)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $value); ?></span><?php } ?></li>
+                                </ul>
                             </td>
                             <td><?php echo element('display_datetime', $value); ?></td>
                         </tr>                        

@@ -2,9 +2,10 @@
 /* page */
 /*새글 N 이미지*/
 	#img_text{
-		width: 15px;
+		/*width: 15px;
 		float: left;
-		margin-right:5px; 
+		margin-right:5px; */
+		vertical-align: middle;
 	}
 
 /*main*/
@@ -263,12 +264,12 @@
 		}
 
 		.hot_cont li > a div{
-			width:183px;
+			/*width:183px;*/
 			height:20px;
 			line-height: 20px;
-			overflow:hidden;
+			/*overflow:hidden;
 			white-space: nowrap;
-			text-overflow: ellipsis;
+			text-overflow: ellipsis;*/
 			font-size: 13px;
 		}
 
@@ -394,10 +395,10 @@
 		.tab_text td{
 			height: 31px;
 			line-height: 31px;
-			display: inline-block;
+			/*display: inline-block;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-			overflow: hidden;
+			overflow: hidden;*/
 			font-size: 13px;
 			/*cursor: pointer;*/
 		}
