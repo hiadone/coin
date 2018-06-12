@@ -17,7 +17,7 @@ $record_num = $this->uri->segment($last);
         $attributes = array('name' => 'fboardlist', 'id' => 'fboardlist');
         echo form_open('', $attributes);
         ?>
-            <table class='post_table' style="border-top:2px solid #4f4f51">
+            <table class='post_table table-hover' style="border-top:2px solid #4f4f51">
                 <tr>
                     <th>번 호</th>
                     <th>제 목</th>
@@ -31,7 +31,9 @@ $record_num = $this->uri->segment($last);
                 ?>
                 <tr>
                     
-                    <td><?php echo element('num', $result); ?></td>
+                    <td><?php if (element('post_id', element('post', $view)) === element('post_id', $result)) {
+                                echo '<span class="fa fa-check fa-lg"></span>';
+                            } else echo element('num', $result); ?></td>
                     <td style="text-align: left;padding-left:20px;">
                         <?php if (element('category', $result)) { ?><a href="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>?category_id=<?php echo html_escape(element('bca_key', element('category', $result))); ?>"><span class="label label-default"><?php echo html_escape(element('bca_value', element('category', $result))); ?></span></a><?php } ?>
                         <?php if (element('post_reply', $result)) { ?><span class="label label-primary" style="margin-left:<?php echo strlen(element('post_reply', $result)) * 10; ?>px">Re</span><?php } ?>

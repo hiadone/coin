@@ -67,7 +67,7 @@ $param =& $this->querystring;
             $attributes = array('name' => 'fboardlist', 'id' => 'fboardlist');
             echo form_open('', $attributes);
             ?>
-            <table class='post_table'>
+            <table class='post_table table-hover'>
                 <colgroup>
                 <?php if (element('is_admin', $view)) { ?><col class="px30"><?php } ?>
                 <col class="px40" style="width:50px">

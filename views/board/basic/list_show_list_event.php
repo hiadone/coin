@@ -93,7 +93,7 @@ $record_num = $this->uri->segment($last);
     
     ?>
     
-        <table class='post_table' style="border-top:2px solid #4f4f51">
+        <table class='post_table table-hover' style="border-top:2px solid #4f4f51">
             <thead>
                 <tr>
                     <?php if (element('is_admin', $view)  || $this->member->item('mem_level') > 4) { ?><th><input onclick="if (this.checked) all_boardlist_checked(true); else all_boardlist_checked(false);" type="checkbox" /></th><?php } ?>
