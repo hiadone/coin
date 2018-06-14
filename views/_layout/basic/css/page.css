@@ -264,12 +264,12 @@
 		}
 
 		.hot_cont li > a div{
-			/*width:183px;*/
+			width:183px;
 			height:20px;
 			line-height: 20px;
-			/*overflow:hidden;
+			overflow:hidden;
 			white-space: nowrap;
-			text-overflow: ellipsis;*/
+			text-overflow: ellipsis;
 			font-size: 13px;
 		}
 
