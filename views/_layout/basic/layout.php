@@ -58,6 +58,9 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.validate.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.validate.extension.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/sideview.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.ba-outside-events.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/iscroll.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/basic.sidemenu.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/js.cookie.js'); ?>"></script>
 <?php echo $this->managelayout->display_js(); ?>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
@@ -95,9 +98,9 @@ $(document).ready(function(){
             }
         }
         // ham 의 화살표 이미지 클릭시 ham 메뉴 움직이는 스크립트
-            $('.ham >  img').click(function(){
-                ham_slide();
-            });
+            // $('.ham >  img').click(function(){
+            //     ham_slide();
+            // });
 
         // 로그인 , 회원 가입 클릭시 ham 메뉴 움직이는 스크립트
             // $('li.login-li').click(function(){
@@ -111,15 +114,15 @@ $(document).ready(function(){
 
 
         // 회원정보 클릭시 ham 메뉴 움직이는 스크립트
-            $('li.user_info').click(function(){
+            // $('li.user_info').click(function(){
                 
-                ham_slide();
-            });
+            //     ham_slide();
+            // });
 
-            $('li.user_point').click(function(){
+            // $('li.user_point').click(function(){
                 
-                ham_slide('point');
-            });
+            //     ham_slide('point');
+            // });
         
 
         // 회원탈퇴의 회원탈퇴 클릭시
@@ -130,12 +133,12 @@ $(document).ready(function(){
                   }
             });
 
-        var ham_top = parseInt($(".ham").css("top"));  
-            $(window).scroll(function(){  
-                var pos = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
+        // var ham_top = parseInt($(".ham").css("top"));  
+        //     $(window).scroll(function(){  
+        //         var pos = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
                 
-                $(".ham").stop().animate({"top":pos+ham_top+"px"},500);  
-            });
+        //         $(".ham").stop().animate({"top":pos+ham_top+"px"},500);  
+        //     });
 
     // 로그인 롤링 텍트스   
         var slider_noice = $('.login_noice ul').bxSlider({
@@ -216,10 +219,15 @@ $(document).ready(function(){
 </head>
 <body <?php echo isset($view) ? element('body_script', $view) : ''; ?>>
 <?php if ($this->member->is_member()) { ?>
-<aside class="ham">
-    <img class="pointer" src="<?php echo element('layout_skin_url', $layout); ?>/images/ham_btn.png" alt="ham_btn_img">
-   <div id="view_member" class="ham_cont02">
-   </div>
+<div>
+<aside class="ham" id="side_menu">
+    <div class="side_wr add_side_wr">
+        <div id="isroll_wrap" class="side_inner_rel">
+    
+           <div id="view_member" class="ham_cont02">
+           </div>
+        </div>
+    </div>
 </aside>
 <?php } ?>
 <header>
@@ -341,16 +349,16 @@ $(document).ready(function(){
                 <li>|</li>
                 <li class="pointer register-li"   title="회원가입"><a href="<?php echo site_url('/login/register'); ?>" style="color: inherit;">회원가입</a></li>
                 <?php } else { ?>
-                <li class='user_info pointer' >
+                <li class="btn_side pointer" id="btn_side1" data-url="/mypage" >
                     <figure>
                         <img src="<?php echo element('layout_skin_url', $layout); ?>/images/head_spoon/spoon_<?php echo $this->member->item('mem_level') ?>.png" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
                         <figcaption><?php echo $this->member->item('mem_nickname') ?></figcaption>
                     </figure>
                 </li>
                 <li>|</li>
-                <li class="user_point pointer"   title="포인트"><?php echo $this->member->item('mem_point') ?> P</li>
+                <li class="btn_side pointer" id="btn_side2" data-url="/mypage/point"  title="포인트"><?php echo $this->member->item('mem_point') ?> P</li>
                 <li>|</li>
-                <li class='user_info pointer' title="회원정보">회원정보</li>
+                <li class='btn_side pointer' id="btn_side3" data-url="/mypage" title="회원정보">회원정보</li>
                 <li>|</li>
                 <li class="pointer" onClick='location.href="<?php echo site_url('login/logout?url=' . urlencode(current_full_url()))?>";'  title="로그아웃">로그아웃</li>
                 <?php } ?>
