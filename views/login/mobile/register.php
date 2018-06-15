@@ -19,14 +19,14 @@
                     </li>
                     <li>
                         <span></span>
-                        <button type="submit" class="btn btn-primary btn-sm">로그인</button>
+                        <button type="submit" class="btn btn-primary btn-sm">회원가입</button>
                         <label for="autologin">
-                            <input type="checkbox" name="autologin" id="autologin" value="1" /> 자동로그인
+                            <input type="checkbox" name="autologin" id="autologin" value="1" /> 자동회원가입
                         </label>
                     </li>
                 </ol>
                 <div class="alert alert-dismissible alert-info autologinalert" style="display:none;">
-                    자동로그인 기능을 사용하시면, 브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다. 자동로그이 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다. 단, 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.
+                    자동회원가입 기능을 사용하시면, 브라우저를 닫더라도 회원가입이 계속 유지될 수 있습니다. 자동로그이 기능을 사용할 경우 다음 접속부터는 회원가입할 필요가 없습니다. 단, 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.
                 </div>
             <?php echo form_close(); 
             */
@@ -46,7 +46,7 @@
                     <div>
                         <h2 class='big_font'>SNS 회원가입</h2>
                         <p class='small_font'>
-                            - 비트이슈에서는 SNS로 로그인하여 <br>
+                            - 비트이슈에서는 SNS로 회원가입하여 <br>
                               간편하게 서비스를 이용하실 수 있습니다.
                         </p>
                         <br>
@@ -71,7 +71,7 @@
                         
                         <span class='small_font'>
                             <a href="<?php echo document_url('provision')?>" title="이용약관및개인정보취급방침">
-                            로그인과 함께 비트이슈의 이용약관 및<br> 
+                            회원가입과 함께 비트이슈의 이용약관 및<br> 
                             개인정보취급방침에 동의하신 것으로 간주합니다.
                             </a>
                         </span>
@@ -85,11 +85,11 @@
                     <ul>
                         <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
                             <li style="background-color:#fbe300;">
-                                <a href="javascript:;" onClick="social_register('kakao');" title="카카오 로그인">
+                                <a href="javascript:;" onClick="social_register('kakao');" title="카카오 회원가입">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/kakao.png');?>" alt="kakao">
                                     <figcaption class="big_font" style="color:#3a1e1f">
-                                        카카오톡 로그인
+                                        카카오톡 회원가입
                                     </figcaption>
                                 </figure>
                                 </a>
@@ -98,11 +98,11 @@
 
                         <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
                             <li style="background-color:#1ec802;">
-                                <a href="javascript:;" onClick="social_register('naver');" title="네이버 로그인">
+                                <a href="javascript:;" onClick="social_register('naver');" title="네이버 회원가입">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/naver.png');?>" alt="naver">
                                     <figcaption class="big_font">
-                                        네이버 로그인
+                                        네이버 회원가입
                                     </figcaption>
                                 </figure>
                                 </a>
@@ -111,11 +111,11 @@
 
                        <?php if ($this->cbconfig->item('use_sociallogin_facebook')) {?>
                             <li style="background-color:#3c589e;">
-                                <a href="javascript:;" onClick="social_register('facebook');" title="페이스북 로그인">
+                                <a href="javascript:;" onClick="social_register('facebook');" title="페이스북 회원가입">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/face.png');?>" alt="face">
                                     <figcaption class="big_font">
-                                        페이스북 로그인
+                                        페이스북 회원가입
                                     </figcaption>
                                 </figure>
                                 </a>
@@ -123,11 +123,11 @@
                         <?php } ?>
  
                         <?php if ($this->cbconfig->item('use_sociallogin_twitter')) {?>
-                            <a href="javascript:;" onClick="social_connect_on('twitter');" title="트위터 로그인"><img src="<?php echo base_url('assets/images/social_twitter.png'); ?>" width="22" height="22" alt="트위터 로그인" title="트위터 로그인" /></a>
+                            <a href="javascript:;" onClick="social_connect_on('twitter');" title="트위터 회원가입"><img src="<?php echo base_url('assets/images/social_twitter.png'); ?>" width="22" height="22" alt="트위터 회원가입" title="트위터 회원가입" /></a>
                         <?php } ?>
 
                         <?php if ($this->cbconfig->item('use_sociallogin_google')) {?>
-                            <a href="javascript:;" onClick="social_connect_on('google');" title="구글 로그인"><img src="<?php echo base_url('assets/images/social_google.png'); ?>" width="22" height="22" alt="구글 로그인" title="구글 로그인" /></a>
+                            <a href="javascript:;" onClick="social_connect_on('google');" title="구글 회원가입"><img src="<?php echo base_url('assets/images/social_google.png'); ?>" width="22" height="22" alt="구글 회원가입" title="구글 회원가입" /></a>
                         <?php } ?>
                     </ul>
                 </section>
