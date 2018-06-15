@@ -11,10 +11,10 @@ html{
 	
 }
 
-body{
-    overflow-x: hidden;
+/*body{
+    overflow-x: auto;
     overflow-y: auto;
-}
+}*/
 
 body,th,td,input,select,textarea,button {line-height:1.5} 
 
@@ -302,7 +302,7 @@ textarea{
 
 
 /*ham css*/
-	.ham{
+/*	.ham{
 		width: 320px;
 		position: absolute;
 		top: 0;
@@ -311,15 +311,15 @@ textarea{
 		z-index: 500;
 		border-left: 1px solid #ededed;
 		background-color: #fff;
-	}
+	}*/
 
-	.ham > img{
+	/*.ham > img{
 		width: 30px;
 		margin-top: 175px;
 		cursor: pointer;
 		position: absolute;
 		left: -30px;
-	}
+	}*/
 
 /*ham_cont css*/
 	.ham_cont{
@@ -367,7 +367,7 @@ textarea{
     .ham_cont02{
     	max-width: 420px;
     	height: 100%;
-		padding:70px 10px;
+		/*padding:70px 10px;*/
 		box-sizing: border-box;
 		margin: 0 auto;
 		text-align: center;
