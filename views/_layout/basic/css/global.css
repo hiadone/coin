@@ -15,6 +15,9 @@ body{
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+body,th,td,input,select,textarea,button {line-height:1.5} 
+
 h2{
 	font-size: 15px;
 	font-family: 'Jeju Gothic', sans-serif; 
