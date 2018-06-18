@@ -301,10 +301,10 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
 <script type="text/javascript">
 $(document).on('click', '.viewpcversion', function(){
-    Cookies.set('device_view_type', 'desktop', { expires: 1 });
+    Cookies.set('device_view_type', 'desktop', { expires: 0 });
 });
 $(document).on('click', '.viewmobileversion', function(){
-    Cookies.set('device_view_type', 'mobile', { expires: 1 });
+    Cookies.set('device_view_type', 'mobile', { expires: 0 });
 });
 </script>
 <?php echo element('popup', $layout); ?>

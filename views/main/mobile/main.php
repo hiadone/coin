@@ -2,6 +2,7 @@
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/jquery.bxslider.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/bxslider/plugins/jquery.easing.1.3.js'); ?>"></script>
 <script>
+    
     // rolling_news 영역 스크립트
         var postact_flag=false;
         var global_cur_unit='krw';

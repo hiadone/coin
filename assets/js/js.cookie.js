@@ -44,8 +44,12 @@
 
 				if (typeof attributes.expires === 'number') {
 					var expires = new Date();
-					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
-					attributes.expires = expires;
+					if(attributes.expires > 0){
+						expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+						attributes.expires = expires;
+					}
+					
+					
 				}
 
 				try {
@@ -65,10 +69,12 @@
 				key = encodeURIComponent(String(key));
 				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
 				key = key.replace(/[\(\)]/g, escape);
-
+				
+				
 				return (document.cookie = [
 					key, '=', value,
-					attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+					typeof attributes.expires !== 'number' && '; expires=' + attributes.expires.toUTCString() || // use expires attribute, max-age is not supported by IE
+					typeof attributes.expires === 'number' && '; expires=' + attributes.expires, // use expires attribute, max-age is not supported by IE
 					attributes.path    && '; path=' + attributes.path,
 					attributes.domain  && '; domain=' + attributes.domain,
 					attributes.secure ? '; secure' : ''

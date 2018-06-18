@@ -12,7 +12,7 @@
         </ul>
 
         <div class='point_info_cont'>
-            <img src='<?php echo base_url('/views/_layout/basic/images/spoon_'.$this->member->item('mem_level').'.png') ?>' alt='spoon_img' >
+            <img src='<?php echo base_url('/views/_layout/mobile/images/spoon_'.$this->member->item('mem_level').'.png') ?>' alt='spoon_img' >
 
              <div class='my_point'>
                  <h3>현재 포인트</h3>

@@ -91,7 +91,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
                     foreach (element('file_download', $view) as $key => $value) {
                 ?>
                     <tr>
-                        <td style='border-top: 0;'><i class="fa fa-download"></i> <a href="javascript:file_download('<?php echo element('download_link', $value); ?>')"><?php echo html_escape(element('pfi_originname', $value)); ?>(<?php echo byte_format(element('pfi_filesize', $value)); ?>)</a> </td>
+                        <td style='border-top: 0; padding:0;'><i class="fa fa-download"></i> <a style='width: 100%; display: inline-block; word-break: break-all;' href="javascript:file_download('<?php echo element('download_link', $value); ?>')"><?php echo html_escape(element('pfi_originname', $value)); ?>(<?php echo byte_format(element('pfi_filesize', $value)); ?>)</a> </td>
                     </tr>
                 <?php
                     }
@@ -100,7 +100,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
                     foreach (element('link', $view) as $key => $value) {
                 ?>
                     <tr>
-                        <td style='border-top: 0; padding:0;'><a style='width: 100%; display: inline-block; word-break: break-all;' href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a><!-- <span class="badge"><?php echo number_format(element('pln_hit', $value)); ?></span> -->
+                        <td style='border-top: 0; padding:0;'><i class="fa fa-link"></i><a style='width: 100%; display: inline-block; word-break: break-all;' href="<?php echo element('link_link', $value); ?>" target="_blank"><?php echo html_escape(element('pln_url', $value)); ?></a><!-- <span class="badge"><?php echo number_format(element('pln_hit', $value)); ?></span> -->
                             <?php if (element('show_url_qrcode', element('board', $view))) { ?>
                                 <span class="url-qrcode"  data-qrcode-url="<?php echo urlencode(element('pln_url', $value)); ?>"><i class="fa fa-qrcode"></i></span>
                             <?php } ?>

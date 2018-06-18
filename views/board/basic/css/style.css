@@ -113,3 +113,5 @@ textarea.post_content  {width:97%;height:350px;margin:0 20px;}
     display:block;
     margin-bottom:2px
 }
+
+article.content03 .view_full_image {cursor:pointer;}
