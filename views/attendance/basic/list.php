@@ -5,7 +5,7 @@
     ?>
     <li>
         <figure>
-            <img src="<?php echo element('layout_skin_url', $layout); ?>/images/check_spoon/spoon_<?php echo element('display_level', $result); ?>.png" alt="spoon_img">
+            <img src="<?php echo base_url('assets/images/big_spoon_'.element('display_level', $result,1).'.png');?>" alt="spoon_img">
             <figcaption>
                 <p class='big_font'><?php echo html_escape(element('att_memo', $result)); ?></p>
                 <?php if(element('att_ranking', $result) < 4) {?>

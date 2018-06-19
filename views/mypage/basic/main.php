@@ -33,7 +33,7 @@
                     <th style='width: 70px;'>회 원 그 룹</th>
                     <td style='text-align: center;'>
                     <figure>
-                      <img src='<?php echo base_url('/views/_layout/basic/images/userinfo_spoon/spoon_'.$this->member->item('mem_level').'.png') ?>' alt='spoon_img'>  <figcaption style='height: 30px; line-height: 35px;'><?php echo element('member_group_name',$view);?></td></figcaption>
+                      <img src='<?php echo base_url('assets/images/small_spoon_'.$this->member->item('mem_level').'.png');?>' alt='spoon_img'>  <figcaption style='height: 30px; line-height: 35px;'><?php echo element('member_group_name',$view);?></td></figcaption>
                     </figure>
                     
                 </tr>

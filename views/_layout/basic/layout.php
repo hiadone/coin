@@ -351,7 +351,7 @@ $(document).ready(function(){
                 <?php } else { ?>
                 <li class="btn_side pointer" id="btn_side1" data-url="/mypage" >
                     <figure>
-                        <img src="<?php echo element('layout_skin_url', $layout); ?>/images/head_spoon/spoon_<?php echo $this->member->item('mem_level') ?>.png" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
+                        <img src="<?php echo base_url('assets/images/small_spoon_'.$this->member->item('mem_level').'.png');?>" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
                         <figcaption><?php echo $this->member->item('mem_nickname') ?></figcaption>
                     </figure>
                 </li>
