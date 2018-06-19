@@ -494,7 +494,7 @@ textarea{
     }
 
     .point_info_cont .my_point h3{
-       /*  display: block; */
+        /* display: block; */
     }
 
     .point_info_cont .my_point strong{
@@ -558,7 +558,7 @@ textarea{
     .point_info th:nth-child(3),
     .point_info td:nth-child(3){
     	width: 85px;
-		text-align:left;		  
+	text-align:left;
     }
 
     .point_info th,

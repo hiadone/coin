@@ -152,7 +152,7 @@
                     <span>추천하실 회원님을 정확히 입력해 주세요.</span>
                 <?php echo form_close(); ?>
 
-                <h2>추천인 닉네임을 입력하시고,<br> 아래 SNS로 로그인해 주세요.</h2>
+                <h2>추천인 닉네임을 입력하시고,<br>아래 SNS로 로그인해 주세요.</h2>
 
                 <ul>
                     <li style='background-color:#1dc800; color:#fff;'>

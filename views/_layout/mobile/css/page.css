@@ -442,7 +442,7 @@ html, body{
 		white-space:nowrap;
 		text-overflow:ellipsis;
 		overflow:hidden;
-		font-weight:bold;		   
+		font-weight:bold;
 	}
 
 	.tab06_cont ul li.active {
@@ -484,6 +484,7 @@ html, body{
 		font-size: 12px;
 		padding-right: 10px;
 		white-space:nowrap;
+		font-weight:normal;
 	}
 
 	/*tab06 검색영역 css*/
