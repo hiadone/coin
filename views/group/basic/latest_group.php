@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         <figure>
-                            <img src="<?php echo base_url('/views/_layout/basic/images/spoon_'.$this->member->item('mem_level').'.png') ?>" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
+                            <img src="<?php echo base_url('assets/images/small_spoon_'.$this->member->item('mem_level').'.png');?>" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
                             <figcaption><?php echo element('display_name', $value); ?></figcaption>
                         </figure>
                     </td>
