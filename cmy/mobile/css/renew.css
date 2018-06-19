@@ -1,0 +1,450 @@
+@charset "utf-8";
+
+/* .btn_nav nav밑 탭메뉴 */
+.btn_nav{
+	width:100%;
+	height:39px;
+	box-sizing:border-box;
+	padding:9px 15px 0;
+	margin-bottom:20px;
+	text-align:justify;
+	border-bottom:1px solid #ebebeb;
+}
+.btn_nav:after{
+	content:'';
+	display:inline-block;
+	width:100%;
+}
+.btn_nav li{
+	display:inline-block;
+	box-sizing:border-box;
+	/* padding: 0 1%; */
+	border-bottom: 3px solid #fff;
+	text-align:center;
+	font-weight:bold;
+}
+.btn_nav li a{
+	display:inline-block;
+	width:100%;
+	font-size:13px;
+	color:#999;
+	line-height:26px;
+}
+.btn_nav03{
+	padding:9px 15% 0;
+}
+/* .btn_nav .selectBtn{
+	border-bottom-color: #00a3d9;
+} */
+.btn_nav .selectBtn a{
+	color: #1c446d;
+	font-weight:bold;
+	
+}
+/* 
+.btn_nav04 li{
+	width:24%;
+}
+.btn_nav05 li{
+	width:19%;
+} */
+
+/* tab10 사진,영상 목록( 뉴스 강좌 ) */
+.tab10{
+	width:100%;
+	box-sizing:border-box;
+	background-color:#ebebeb;
+}
+.tab10_list li{
+	padding-top:16px;
+	background-color:#fff;
+	margin-bottom:10px;
+}
+
+.tab10_list h4{
+	width:100%;
+	margin-bottom:14px;
+	font-size:16px;
+	font-weight:bold;
+	line-height:22px;
+	overflow:hidden;
+	padding:0 15px;
+	box-sizing:border-box;
+}
+.tab10_list h4 img{
+	display:block;
+	float:left;
+}
+.tab10_list h4 span,
+.tab10_list p{
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+.tab10_list h4 span{
+	display:block;
+	height:44px;
+	width:83%;
+	float:right;
+	
+}
+.tab10_list p{	
+	margin-bottom:14px;
+	height:40px;
+	padding:0 15px;
+	clear:both;
+	font-size:14px;
+	line-height:20px;
+}
+.tab10_listinfo{
+	margin:0 15px 10px;
+	float:right;
+	
+}
+.tab10_listinfo td{
+	padding:0 10px;
+	border-right:1px solid #ccc;
+	font-size:10px;
+	color:#bbb;
+}
+.tab10_listinfo td.user_Nick{
+	color:#000;
+	font-size:11px;
+}
+.tab10_listinfo td:last-child{
+	padding-right:0;
+	border-right:none;
+}
+.tab10_listinfo img{
+	vertical-align:middle;
+	margin-right:2px;
+}
+.tab10_pic{
+	width:100%;
+	display:block;
+	clear:right;
+}
+.tab10 .btn_more{
+	width:100%;
+	height:30px;
+	margin:0;
+	line-height:30px;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	background-color: #f0f3f7;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+}
+.tab10 .btn_more a{
+	color:#1c446d;
+}
+/* backtop */
+.back_top_m{
+	position:fixed;
+	bottom:15px;
+	right:18px;
+	z-index:500;
+}
+/* point */
+.ham_cont02{
+	padding:50px 15px 0;
+}
+.info_menu {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+	border-bottom:1px solid #ebebeb;
+}
+.info_menu li {
+    width: 33.3333333%;
+    height: 40px;
+    float: left;
+    box-sizing: border-box;
+	border-bottom: 3px solid #fff;
+    text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+.info_menu li a{
+	display:block;
+	width: 100%;
+	height:40px;
+	line-height:37px;
+}
+.info_menu li.select_info_menu{
+	border-bottom-color:#1c446d;
+}
+.point_info mb20 th{
+	width:20%
+	
+}
+/* 회원탈퇴 로그아웃 btn */
+.info_btn li{
+	width:49%;
+	float:left;
+	margin-right:2%;
+}
+.info_btn li:last-child{
+	margin-right:0;
+}
+.info_btn button{
+	width:100%;
+}
+/* 포인트정보 하단 nav */
+.post_page{
+	display:inline-block;
+	text-align: center;
+    width: 100%;
+}
+.post_page ul {
+    display: inline-block;
+    border: 1px solid #ededed;
+}
+.post_page li {
+    float: left;
+    width: 30px;
+    height: 30px;
+    line-height: 29px;
+    border-right: 1px solid #ededed;
+    font-family: "Nanum Gothic", sans-serif;
+}
+.post_page li.page_active {
+    background-color: #f0f3f7;
+}
+/* 포인트 정책 */
+.point_rule h4{
+	margin-bottom:16px;
+	font-size:14px;
+	font-weight:bold;
+}
+.point_rule .point_rule_table th,
+.point-rule .point_rule_table td{
+	width:50%;
+}
+.point-rule .point_rule_table td{
+	text-align:left;
+}
+/* wrap_con */
+section.wrap_con{
+	margin-bottom: 0;
+}
+
+/* media tablet */
+@media screen and (min-width:581px){
+	/* nav.main_nav_m */
+	nav.main_nav_m{
+		padding:50px 7% 0;
+	}
+	nav.main_nav_m li{
+		font-size:15px;
+	}
+	nav.main_nav_m li a{
+		padding-top:10px;
+	}
+	/* 코인가격 거래소 리스트*/
+	.tab01_tabs li{
+		width: 10%;
+		padding: 0 1.4%;
+	}
+	.tab01_tabs{
+		font-size: 12px;
+	}
+	.tabs li{
+		height: 30px;
+		line-height: 30px;
+		font-size: 12px;
+	}
+	#coin_data table td {
+		padding: 5px 0;
+		font-size: 13px;
+	}
+	.table_li table td {
+    padding: 1.5%;
+    font-size: 14px;
+	}
+	/* .tab10_list */
+	.tab10_list h4 span{
+	display:block;
+	height:44px;
+	width:91%;
+	float:right;
+	
+	}
+	.btn_nav04 li{
+		width:24%;
+	}
+	.btn_nav05 li{
+		width:19%;
+	}
+	/* 글쓰기 더보기 btn */
+	.tab06_cont div.text-center{
+			padding: 0 23%;
+			margin-top: 12px;
+	}
+	/* 포인트정보 */
+	.point_info_cont > img{
+        width: 90px;
+    }
+	.point_info_cont .my_point{
+        width: 83%;
+        margin:10px 0 12px;
+    }
+	.point_info_cont .dis_point{
+        width: 83%;
+    }
+	.point_info span.small_font{
+        margin-bottom: 20px;
+		font-size:12px;
+    }
+	.point_info_cont{
+        margin-bottom: 20px;
+    }
+	.point_info table th:nth-child(3),
+    .point_info table td:nth-child(3){
+    	width: 25.5%;
+    }
+	/* login */
+	.login .login_back{
+		width:100px;
+		position:absolute;
+		margin-left:-50px;
+		height:160px;
+		background: url(../images/login_logo.png) no-repeat center top;
+		background-size:100%;
+	}
+	
+	.login ul{
+		width: 380px;
+		padding:0;
+	}
+	.login p:first-of-type{
+		font-size:11px;
+	}
+	.login p:last-child{
+		font-size:14px;
+	}
+	/* join */
+	.event_link_m p a{
+		width:380px;
+		
+	}
+	.event_link_m p{
+		padding:0;
+		width:380px;
+		margin:0 auto;
+	}
+	
+}
+@media screen and (max-width:580px) and (min-width:431px){
+	/* nav.main_nav_m */
+	nav.main_nav_m li{
+		font-size:14px;
+	}
+	nav.main_nav_m li a{
+		padding-top:10px;
+	}
+	/* 코인가격 거래소 리스트*/
+	.tab01_tabs li{
+		width: 10%;
+		padding: 0 1.4%;
+	}
+	.tab01_tabs{
+		font-size: 12px;
+	}
+	.tabs li{
+		height: 30px;
+		line-height: 30px;
+		font-size: 12px;
+	}
+	#coin_data table td {
+		padding: 5px 0;
+		font-size: 13px;
+	}
+	.table_li table td {
+    padding: 1.5%;
+    font-size: 14px;
+	}
+	/* .tab10_list */
+	.tab10_list h4 span{
+	display:block;
+	height:44px;
+	width:88%;
+	float:right;
+	}
+	/* .btn_nav li{
+		padding:4px 0;
+	} */
+	.btn_nav{
+	padding:9px 9% 0;
+	
+	}
+	.btn_nav03{
+	padding:9px 15% 0;
+	}
+	/* 글쓰기 더보기 btn */
+	.tab06_cont div.text-center{
+			padding: 0 17%;
+			margin-top: 12px;
+	}
+	/* 포인트정보 */
+	.point_info_cont > img{
+        width: 90px;
+    }
+	.point_info_cont .my_point{
+        width: 77%;
+        margin:10px 0 12px;
+    }
+	.point_info_cont .dis_point{
+        width: 77%;
+    }
+	.point_info span.small_font{
+        margin-bottom: 20px;
+		font-size:12px;
+    }
+	.point_info_cont{
+        margin-bottom: 20px;
+    }
+
+}
+
+@media screen and (max-width:430px) and (min-width:5px){
+	/* store */
+	.store_li form ul li{
+        width: 49%;
+        margin: 0 2% 5% 0;
+        float: left;
+    }
+	.store_li form ul li:nth-child(3n){
+		margin-right: 2%;
+	}
+	.store_li form ul li:nth-child(2n){
+        margin-right: 0;
+    }
+	/* backtop */
+	.back_top_m{
+		width: 25px;
+	}
+	.back_top_m img{
+		width:25px;
+	}
+}
+
+/* .btn_nav li{padding:4px 1%;} */
+/* @media screen and (min-width:430px){
+	.btn_nav li{padding:4px 3.5%;}
+}
+@media screen and (max-width:429px) and (min-width:375px){
+	.btn_nav li{padding:4px 2.5%;}
+}
+@media screen and (max-width:374px) and (min-width:334px){
+	.btn_nav li{padding:4px 1.5%;}
+} */
+
+
+
+
+
+
+
+
