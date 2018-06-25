@@ -32,7 +32,7 @@ class Document extends CB_Controller
         /**
          * 라이브러리를 로딩합니다
          */
-        $this->load->library(array('querystring'));
+        $this->load->library(array('querystring','coin'));
     }
 
 
@@ -155,6 +155,305 @@ class Document extends CB_Controller
             'meta_keywords' => $meta_keywords,
             'meta_author' => $meta_author,
             'page_name' => $page_name,
+        );
+        $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
+        $this->data = $view;
+        $this->layout = element('layout_skin_file', element('layout', $view));
+        $this->view = element('view_skin_file', element('layout', $view));
+    }
+
+
+    public function webtoon($doc_key = 'w-1')
+    {
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_document_index';
+        $this->load->event($eventname);
+
+        $view = array();
+        $view['view'] = array();
+
+        if (empty($doc_key)) {
+            show_404();
+        }
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        
+
+        // $data['content'] = ($this->cbconfig->get_device_view_type() === 'mobile')
+        //     ? (element('doc_mobile_content', $data) ? element('doc_mobile_content', $data)
+        //     : element('doc_content', $data)) : element('doc_content', $data);
+
+        
+        // $view['view']['data'] = $data;
+        // $view['view']['doc_key'] = $doc_key;
+
+        
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+
+        /**
+         * 레이아웃을 정의합니다
+         */
+        $page_title = $this->cbconfig->item('site_meta_title_document');
+        $meta_description = $this->cbconfig->item('site_meta_description_document');
+        $meta_keywords = $this->cbconfig->item('site_meta_keywords_document');
+        $meta_author = $this->cbconfig->item('site_meta_author_document');
+        $page_name = $this->cbconfig->item('site_page_name_document');
+
+        // $searchconfig = array(
+        //     '{문서제목}',
+        //     '{문서아이디}',
+        // );
+        // $replaceconfig = array(
+        //     element('doc_title', $data),
+        //     $doc_key,
+        // );
+
+        // $page_title = str_replace($searchconfig, $replaceconfig, $page_title);
+        // $meta_description = str_replace($searchconfig, $replaceconfig, $meta_description);
+        // $meta_keywords = str_replace($searchconfig, $replaceconfig, $meta_keywords);
+        // $meta_author = str_replace($searchconfig, $replaceconfig, $meta_author);
+        // $page_name = str_replace($searchconfig, $replaceconfig, $page_name);
+
+        $layout_dir =  $this->cbconfig->item('layout_document');
+        $mobile_layout_dir =  $this->cbconfig->item('mobile_layout_document');
+        $use_sidebar =  $this->cbconfig->item('sidebar_document');
+        $use_mobile_sidebar = $this->cbconfig->item('mobile_sidebar_document');
+        $skin_dir =  $this->cbconfig->item('skin_document');
+        $mobile_skin_dir = $this->cbconfig->item('mobile_skin_document');
+        $layoutconfig = array(
+            'path' => 'document',
+            'layout' => 'layout',
+            'skin' => 'webtoon',
+            'layout_dir' => $layout_dir,
+            'mobile_layout_dir' => $mobile_layout_dir,
+            'use_sidebar' => $use_sidebar,
+            'use_mobile_sidebar' => $use_mobile_sidebar,
+            'skin_dir' => $skin_dir,
+            'mobile_skin_dir' => $mobile_skin_dir,
+            'page_title' => $page_title,
+            'meta_description' => $meta_description,
+            'meta_keywords' => $meta_keywords,
+            'meta_author' => $meta_author,
+            'page_name' => $page_name,
+            'page_url' => $this->uri->uri_string(),
+        );
+        $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
+        $this->data = $view;
+        $this->layout = element('layout_skin_file', element('layout', $view));
+        $this->view = element('view_skin_file', element('layout', $view));
+    }
+
+    public function view_coin()
+    {
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_document_index';
+        $this->load->event($eventname);
+
+        $view = array();
+        $view['view'] = array();
+
+        
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        
+
+        // $data['content'] = ($this->cbconfig->get_device_view_type() === 'mobile')
+        //     ? (element('doc_mobile_content', $data) ? element('doc_mobile_content', $data)
+        //     : element('doc_content', $data)) : element('doc_content', $data);
+
+        
+        // $view['view']['data'] = $data;
+        // $view['view']['doc_key'] = $doc_key;
+
+        $view['view']['select_coin_list'] = $this->member->item('mem_select_coin_list') ? explode(",", $this->member->item('mem_select_coin_list')) : config_item('default_select_coin_list');
+
+        $view['view']['coinname_list'] =config_item('coinname_list');
+        
+        // if (element('list', $coin_result)) {
+        //     foreach (element('list', $coin_result) as $key => $val) {
+        //         $coin_result['list'][$key]['display_name'] = display_username(
+        //             element('mem_userid', $val),
+        //             element('mem_nickname', $val),
+        //             element('mem_icon', $val)
+        //         );
+        //         $coin_result['list'][$key]['display_datetime'] = display_datetime(
+        //             element('att_datetime', $val)
+        //         );
+        //     }
+        // }
+
+        $view['view']['view_coin'] = $this->get_coin_data();
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+
+        /**
+         * 레이아웃을 정의합니다
+         */
+        $page_title = $this->cbconfig->item('site_meta_title_document');
+        $meta_description = $this->cbconfig->item('site_meta_description_document');
+        $meta_keywords = $this->cbconfig->item('site_meta_keywords_document');
+        $meta_author = $this->cbconfig->item('site_meta_author_document');
+        $page_name = $this->cbconfig->item('site_page_name_document');
+
+        // $searchconfig = array(
+        //     '{문서제목}',
+        //     '{문서아이디}',
+        // );
+        // $replaceconfig = array(
+        //     element('doc_title', $data),
+        //     $doc_key,
+        // );
+
+        // $page_title = str_replace($searchconfig, $replaceconfig, $page_title);
+        // $meta_description = str_replace($searchconfig, $replaceconfig, $meta_description);
+        // $meta_keywords = str_replace($searchconfig, $replaceconfig, $meta_keywords);
+        // $meta_author = str_replace($searchconfig, $replaceconfig, $meta_author);
+        // $page_name = str_replace($searchconfig, $replaceconfig, $page_name);
+
+        $layout_dir =  $this->cbconfig->item('layout_document');
+        $mobile_layout_dir =  $this->cbconfig->item('mobile_layout_document');
+        $use_sidebar =  $this->cbconfig->item('sidebar_document');
+        $use_mobile_sidebar = $this->cbconfig->item('mobile_sidebar_document');
+        $skin_dir =  $this->cbconfig->item('skin_document');
+        $mobile_skin_dir = $this->cbconfig->item('mobile_skin_document');
+        $layoutconfig = array(
+            'path' => 'document',
+            'layout' => 'layout',
+            'skin' => 'view_coin',
+            'layout_dir' => $layout_dir,
+            'mobile_layout_dir' => $mobile_layout_dir,
+            'use_sidebar' => $use_sidebar,
+            'use_mobile_sidebar' => $use_mobile_sidebar,
+            'skin_dir' => $skin_dir,
+            'mobile_skin_dir' => $mobile_skin_dir,
+            'page_title' => $page_title,
+            'meta_description' => $meta_description,
+            'meta_keywords' => $meta_keywords,
+            'meta_author' => $meta_author,
+            'page_name' => $page_name,
+            'page_url' => $this->uri->uri_string(),
+        );
+        $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
+        $this->data = $view;
+        $this->layout = element('layout_skin_file', element('layout', $view));
+        $this->view = element('view_skin_file', element('layout', $view));
+    }
+
+    function get_coin_data($cur_unit=''){
+
+        $skin='';
+        if($this->cbconfig->get_device_view_type()==='mobile')
+            $skin='mobile';
+        else $skin='basic';
+
+        $config = array(
+            'skin' => $skin,
+            'cur_unit' => $cur_unit,
+            
+        );
+        return $this->coin->all_price($config);
+    }
+
+    function show_coin_data($cur_unit=''){
+        
+        $skin='';
+        if($this->cbconfig->get_device_view_type()==='mobile')
+            $skin='mobile';
+        else $skin='basic';
+        
+        $config = array(
+            'skin' => $skin,
+            'cur_unit' => $cur_unit,
+            
+        );
+        echo $this->coin->all_price($config);
+    }
+
+    
+
+
+    public function twitter()
+    {
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_document_index';
+        $this->load->event($eventname);
+
+        $view = array();
+        $view['view'] = array();
+
+        
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        
+
+        // $data['content'] = ($this->cbconfig->get_device_view_type() === 'mobile')
+        //     ? (element('doc_mobile_content', $data) ? element('doc_mobile_content', $data)
+        //     : element('doc_content', $data)) : element('doc_content', $data);
+
+        
+        // $view['view']['data'] = $data;
+        // $view['view']['doc_key'] = $doc_key;
+
+        
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+
+        /**
+         * 레이아웃을 정의합니다
+         */
+        $page_title = $this->cbconfig->item('site_meta_title_document');
+        $meta_description = $this->cbconfig->item('site_meta_description_document');
+        $meta_keywords = $this->cbconfig->item('site_meta_keywords_document');
+        $meta_author = $this->cbconfig->item('site_meta_author_document');
+        $page_name = $this->cbconfig->item('site_page_name_document');
+
+        // $searchconfig = array(
+        //     '{문서제목}',
+        //     '{문서아이디}',
+        // );
+        // $replaceconfig = array(
+        //     element('doc_title', $data),
+        //     $doc_key,
+        // );
+
+        // $page_title = str_replace($searchconfig, $replaceconfig, $page_title);
+        // $meta_description = str_replace($searchconfig, $replaceconfig, $meta_description);
+        // $meta_keywords = str_replace($searchconfig, $replaceconfig, $meta_keywords);
+        // $meta_author = str_replace($searchconfig, $replaceconfig, $meta_author);
+        // $page_name = str_replace($searchconfig, $replaceconfig, $page_name);
+
+        $layout_dir =  $this->cbconfig->item('layout_document');
+        $mobile_layout_dir =  $this->cbconfig->item('mobile_layout_document');
+        $use_sidebar =  $this->cbconfig->item('sidebar_document');
+        $use_mobile_sidebar = $this->cbconfig->item('mobile_sidebar_document');
+        $skin_dir =  $this->cbconfig->item('skin_document');
+        $mobile_skin_dir = $this->cbconfig->item('mobile_skin_document');
+        $layoutconfig = array(
+            'path' => 'document',
+            'layout' => 'layout',
+            'skin' => 'twitter',
+            'layout_dir' => $layout_dir,
+            'mobile_layout_dir' => $mobile_layout_dir,
+            'use_sidebar' => $use_sidebar,
+            'use_mobile_sidebar' => $use_mobile_sidebar,
+            'skin_dir' => $skin_dir,
+            'mobile_skin_dir' => $mobile_skin_dir,
+            'page_title' => $page_title,
+            'meta_description' => $meta_description,
+            'meta_keywords' => $meta_keywords,
+            'meta_author' => $meta_author,
+            'page_name' => $page_name,
+            'page_url' => $this->uri->uri_string(),
         );
         $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
         $this->data = $view;

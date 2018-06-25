@@ -41,7 +41,7 @@
         });   // end ready()
 </script> 
 
-<article class="wrap01">
+<div class="foot_padding">
         <section class="main_title my_write">
             <h2>내 게 시 물</h2>
             <span>최근 6개월간 작성한 나의 게시물 입니다.</span>

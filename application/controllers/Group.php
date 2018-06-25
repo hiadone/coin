@@ -154,7 +154,20 @@ class Group extends CB_Controller
         $this->view = element('view_skin_file', element('layout', $view));
     }
 
-    function view_board($brd_key,$more=0,$post_notice=0){
+    function view_board($brd_key,$page=0){
+
+        $board_id = $this->board->item_key('brd_id', $brd_key);
+        if (empty($board_id)) {
+            show_404();
+        }
+        $board = $this->board->item_all($board_id);
+
+        $is_admin = $this->member->is_admin(
+            array(
+                'board_id' => element('brd_id', $board),
+                'group_id' => element('bgr_id', $board)
+            )
+        );
         if($this->cbconfig->get_device_view_type()==='desktop'){
             if($brd_key==='live_news'){
                 $config = array(
@@ -165,7 +178,8 @@ class Group extends CB_Controller
                     'is_gallery'=> 1,
                     'image_width'=> 120,
                     'image_height'=> 90,
-
+                    'is_admin' => $is_admin,
+                    'page' => $page
                 );            
             } else {
                 
@@ -174,22 +188,13 @@ class Group extends CB_Controller
                     'brd_key' => $brd_key,
                     'limit' => 5,
                     'length' => 40,
+                    'is_admin' => $is_admin,
+                    'page' => $page
                 );
             }
-            echo $this->board->latest_group_desktop($config,$more);
+            echo $this->board->latest_group_desktop($config);
         } else {
-            if($brd_key==='live_news'){
-                $config = array(
-                    'skin' => 'mobile',            
-                    'brd_key' => $brd_key,
-                    'limit' => 30,
-                    'length' => 40,
-                    'is_gallery'=> 1,
-                    'image_width'=> 120,
-                    'image_height'=> 90,
-                    'post_notice'=> $post_notice,
-                );
-            }elseif($brd_key==='w-1' || $brd_key==='w-2' || $brd_key==='w-3'){
+            if($brd_key==='w-1' || $brd_key==='w-2' || $brd_key==='w-3'){
                 
                 $config = array(
                     'skin' => 'mobile',            
@@ -199,6 +204,7 @@ class Group extends CB_Controller
                     'is_gallery'=> 1,
                     'image_width'=> 120,
                     'image_height'=> 90,
+                    'is_admin' => $is_admin,
                     
                 );
             }  else {
@@ -206,11 +212,16 @@ class Group extends CB_Controller
                 $config = array(
                     'skin' => 'mobile',            
                     'brd_key' => $brd_key,
-                    'limit' => 30,
-                    'length' => 19,
+                    'limit' => element('mobile_list_count', $board,30),
+                    'length' => element('mobile_subject_length', $board),
+                    'is_gallery'=> element('mobile_use_gallery_list', $board),
+                    'image_width'=> element('mobile_gallery_image_width', $board),
+                    'image_height'=> element('mobile_gallery_image_height', $board),
+                    'is_admin' => $is_admin,
+                    'page' => $page
                 );
             }
-            echo $this->board->latest_group($config,$more);
+            echo $this->board->latest_group($config);
         }
     }
 
@@ -224,4 +235,6 @@ class Group extends CB_Controller
         );
         return $this->coin->all_price($config);
     }
+
+    
 }

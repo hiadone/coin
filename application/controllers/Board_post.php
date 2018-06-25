@@ -35,7 +35,7 @@ class Board_post extends CB_Controller
         if ( ! $this->member->item('mem_password') && $this->member->item('mem_id')) {
             redirect('membermodify');
         }
-        $this->load->library(array('pagination', 'querystring', 'accesslevel', 'videoplayer', 'point','coin'));
+        $this->load->library(array('pagination', 'querystring', 'accesslevel', 'videoplayer', 'point','coin','custom_pagination'));
     }
 
 
@@ -84,7 +84,8 @@ class Board_post extends CB_Controller
                     
                     
                     $board_list[] = $this->board->item_all(element('brd_id', $val));
-                    if($key===0 && element('bgr_id', element('board', $list))==='6') $board_list[]=array("brd_key"=>"live_news","board_name"=>"인기뉴스","post_notice"=>"4");
+                    if($this->cbconfig->get_device_view_type() !== 'mobile')
+                        if($key===0 && element('bgr_id', element('board', $list))==='6') $board_list[]=array("brd_key"=>"live_news","board_name"=>"인기뉴스","post_notice"=>"4");
                 }
             }
 
@@ -124,10 +125,12 @@ class Board_post extends CB_Controller
             $meta_author = str_replace($searchconfig, $replaceconfig, $meta_author);
             $page_name = str_replace($searchconfig, $replaceconfig, $page_name);
 
-            // $list_skin_file = element('use_gallery_list', element('board', $list)) ? 'gallerylist' : 'list';
-            // 
+            if($this->cbconfig->get_device_view_type() === 'mobile')
+                $list_skin_file = element('mobile_use_gallery_list', element('board', $list)) ? 'gallerylist' : 'list';
+            else 
+                $list_skin_file = element('use_gallery_list', element('board', $list)) ? 'gallerylist' : 'list';
 
-            $list_skin_file = element('use_gallery_list', element('board', $list)) && $this->cbconfig->get_device_view_type() === 'desktop' ? 'gallerylist' : 'list';
+            // $list_skin_file = element('use_gallery_list', element('board', $list)) && $this->cbconfig->get_device_view_type() === 'desktop' ? 'gallerylist' : 'list';
 
             // $list_skin_file = element('use_gallery_list', element('board', $list)) && (element('brd_key', element('board', $list))==='w-1' || element('brd_key', element('board', $list))==='w-2' || element('brd_key', element('board', $list))==='w-3') ? 'gallerylist' : 'list';
 
@@ -156,6 +159,7 @@ class Board_post extends CB_Controller
             'meta_keywords' => $meta_keywords,
             'meta_author' => $meta_author,
             'page_name' => $page_name,
+            'page_url' => $this->uri->uri_string(),
             );
         } else {
 
@@ -180,6 +184,7 @@ class Board_post extends CB_Controller
             'meta_keywords' => $meta_keywords,
             'meta_author' => $meta_author,
             'page_name' => $page_name,
+            'page_url' => $this->uri->uri_string(),
             );
         }
         
@@ -340,6 +345,7 @@ class Board_post extends CB_Controller
                         'skin_dir' => $skin_dir,
                         'mobile_skin_dir' => $mobile_skin_dir,
                         'page_title' => $page_title,
+                        'page_url' => '/board/'.element('brd_key', $board),
                     );
                     $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
                     $this->data = $view;
@@ -1024,12 +1030,18 @@ class Board_post extends CB_Controller
                 'meta_keywords' => $meta_keywords,
                 'meta_author' => $meta_author,
                 'page_name' => $page_name,
+                'page_url' => '/board/'.element('brd_key', $board),
             );
+
             $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
             $this->data = $view;
             $this->layout = element('layout_skin_file', element('layout', $view));
             if ($show_list_from_view) {
-                $list_skin_file = element('use_gallery_list', $board) && $this->cbconfig->get_device_view_type() === 'desktop' ? 'gallerylist_sub' : 'list_sub';
+
+                if($this->cbconfig->get_device_view_type() === 'mobile')
+                $list_skin_file = element('mobile_use_gallery_list', $board) ? 'gallerylist_sub' : 'list_sub';
+                else 
+                    $list_skin_file = element('use_gallery_list', $board) ? 'gallerylist_sub' : 'list_sub';
                 $listskindir = ($this->cbconfig->get_device_view_type() === 'mobile')
                     ? $mobile_skin_dir : $skin_dir;
                 if (empty($listskindir)) {
@@ -1080,6 +1092,7 @@ class Board_post extends CB_Controller
                 'skin_dir' => $this->cbconfig->item('skin_helptool'),
                 'mobile_skin_dir' => $this->cbconfig->item('mobile_skin_helptool'),
                 'page_title' => $page_title,
+                'page_url' => '/board/'.element('brd_key', $board),
             );
             $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
             $this->data = $view;
@@ -1205,28 +1218,40 @@ class Board_post extends CB_Controller
         $list_date_style_manual = ($this->cbconfig->get_device_view_type() === 'mobile')
             ? element('mobile_list_date_style_manual', $board)
             : element('list_date_style_manual', $board);
+        if($this->cbconfig->get_device_view_type() !== 'mobile'){
+            if (element('use_gallery_list', $board)) {
+                $this->load->model('Post_file_model');
 
-        if (element('use_gallery_list', $board)) {
-            $this->load->model('Post_file_model');
+                $board['gallery_cols'] = $gallery_cols
+                    =  element('gallery_cols', $board);
 
-            $board['gallery_cols'] = $gallery_cols
-                = ($this->cbconfig->get_device_view_type() === 'mobile')
-                ? element('mobile_gallery_cols', $board)
-                : element('gallery_cols', $board);
+                $board['gallery_image_width'] = $gallery_image_width
+                    =  element('gallery_image_width', $board);
 
-            $board['gallery_image_width'] = $gallery_image_width
-                = ($this->cbconfig->get_device_view_type() === 'mobile')
-                ? element('mobile_gallery_image_width', $board)
-                : element('gallery_image_width', $board);
+                $board['gallery_image_height'] = $gallery_image_height
+                    = element('gallery_image_height', $board);
 
-            $board['gallery_image_height'] = $gallery_image_height
-                = ($this->cbconfig->get_device_view_type() === 'mobile')
-                ? element('mobile_gallery_image_height', $board)
-                : element('gallery_image_height', $board);
-
-            $board['gallery_percent'] = floor( 102 / $board['gallery_cols']) - 2;
+                $board['gallery_percent'] = floor( 102 / $board['gallery_cols']) - 2;
+            }
         }
 
+        if($this->cbconfig->get_device_view_type() === 'mobile'){
+            if (element('mobile_use_gallery_list', $board)) {
+                $this->load->model('Post_file_model');
+
+                $board['gallery_cols'] = $gallery_cols
+                    =  element('mobile_gallery_cols', $board);
+                    
+
+                $board['gallery_image_width'] = $gallery_image_width
+                    = element('mobile_gallery_image_width', $board) ;
+
+                $board['gallery_image_height'] = $gallery_image_height
+                    = element('mobile_gallery_image_height', $board);
+
+                $board['gallery_percent'] = floor( 102 / $board['gallery_cols']) - 2;
+            }
+        }
         if (element('use_category', $board)) {
             $this->load->model('Board_category_model');
             $board['category'] = $this->Board_category_model
@@ -1344,6 +1369,13 @@ class Board_post extends CB_Controller
                         ? cut_str(element('post_title', $val), element('subject_length', $board))
                         : element('post_title', $val);
                 }
+
+                if ($this->cbconfig->get_device_view_type() === 'mobile') {
+                    $result['list'][$key]['display_content'] = cut_str(element('post_content', $val),500);
+                } else {
+                    $result['list'][$key]['display_content'] = cut_str(element('post_content', $val),500);
+                }
+
                 if (element('post_del', $val)) {
                     $result['list'][$key]['title'] = '게시물이 삭제 되었습니다';
                 }
@@ -1414,18 +1446,21 @@ class Board_post extends CB_Controller
 
                 $result['list'][$key]['thumb_url'] = '';
                 $result['list'][$key]['origin_image_url'] = '';
-                if (element('use_gallery_list', $board)) {
-                    if (element('post_image', $val)) {
-                        $filewhere = array(
-                            'post_id' => element('post_id', $val),
-                            'pfi_is_image' => 1,
-                        );
-                        $file = $this->Post_file_model
-                            ->get_one('', '', $filewhere, '', '', 'pfi_id', 'ASC');
-                        $result['list'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $gallery_image_width, $gallery_image_height);
-                        $result['list'][$key]['origin_image_url'] = thumb_url('post', element('pfi_filename', $file));
 
-                        if($brd_key ==='w-1'||$brd_key ==='w-2'||$brd_key ==='w-3'){
+                if($this->cbconfig->get_device_view_type() === 'mobile'){
+                    if (element('mobile_use_gallery_list', $board) ) {
+                        if (element('post_image', $val)) {
+                            $filewhere = array(
+                                'post_id' => element('post_id', $val),
+                                'pfi_is_image' => 1,
+                            );
+                            $file = $this->Post_file_model
+                                ->get_one('', '', $filewhere, '', '', 'pfi_id', 'ASC');
+                            $result['list'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $gallery_image_width, $gallery_image_height);
+                            $result['list'][$key]['origin_image_url'] = thumb_url('post', element('pfi_filename', $file));
+
+                            
+                        } elseif (element('post_link_count', $val)) {
                                 $this->load->model('Post_link_model');
                                 $linkwhere = array(
                                     'post_id' => element('post_id', $val),
@@ -1433,36 +1468,76 @@ class Board_post extends CB_Controller
                                 $link = $this->Post_link_model
                                     ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
                                 if ($link && is_array($link)) {
-                                    $result['list'][$key]['post_url'] = site_url('postact/webtoon_link/' . element('pln_id', element(0,$link))); 
-                                    $result['list'][$key]['post_hit'] = element('pln_hit', element(0,$link)); 
-                                }
-                            }
-                    } elseif (element('post_link_count', $val)) {
-                            $this->load->model('Post_link_model');
-                            $linkwhere = array(
-                                'post_id' => element('post_id', $val),
-                            );
-                            $link = $this->Post_link_model
-                                ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
-                            if ($link && is_array($link)) {
-                                if (element('use_autoplay', $board)) {
-                                    
-                                    $result['list'][$key]['thumb_url']= $this->videoplayer->get_video(prep_url(element('pln_url',element(0,$link))),array('image'=>1) );
-                                    // $result['list'][$key]['thumb_url'] = $link_player;
+                                    if (element('use_autoplay', $board)) {
+                                        
+                                        $result['list'][$key]['thumb_url']= $this->videoplayer->get_video(prep_url(element('pln_url',element(0,$link))),array('image'=>1) );
+                                        // $result['list'][$key]['thumb_url'] = $link_player;
 
+                                    }
+                                    
                                 }
                                 
-                            }
-                            
-                    } else {
-                        $thumb_url = get_post_image_url(element('post_content', $val), $gallery_image_width, $gallery_image_height);
-                        $result['list'][$key]['thumb_url'] = $thumb_url
-                            ? $thumb_url
-                            : thumb_url('', '', $gallery_image_width, $gallery_image_height);
+                        } else {
+                            $thumb_url = get_post_image_url(element('post_content', $val), $gallery_image_width, $gallery_image_height);
+                            $result['list'][$key]['thumb_url'] = $thumb_url
+                                ? $thumb_url
+                                : thumb_url('', '', $gallery_image_width, $gallery_image_height);
 
-                        $result['list'][$key]['origin_image_url'] = $thumb_url;
+                            $result['list'][$key]['origin_image_url'] = $thumb_url;
+                        }
+                    }
+                } else {
+                    if (element('use_gallery_list', $board) ) {
+                        if (element('post_image', $val)) {
+                            $filewhere = array(
+                                'post_id' => element('post_id', $val),
+                                'pfi_is_image' => 1,
+                            );
+                            $file = $this->Post_file_model
+                                ->get_one('', '', $filewhere, '', '', 'pfi_id', 'ASC');
+                            $result['list'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $gallery_image_width, $gallery_image_height);
+                            $result['list'][$key]['origin_image_url'] = thumb_url('post', element('pfi_filename', $file));
+
+                            if($brd_key ==='w-1'||$brd_key ==='w-2'||$brd_key ==='w-3'){
+                                    $this->load->model('Post_link_model');
+                                    $linkwhere = array(
+                                        'post_id' => element('post_id', $val),
+                                    );
+                                    $link = $this->Post_link_model
+                                        ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
+                                    if ($link && is_array($link)) {
+                                        $result['list'][$key]['post_url'] = site_url('postact/webtoon_link/' . element('pln_id', element(0,$link))); 
+                                        $result['list'][$key]['post_hit'] = element('pln_hit', element(0,$link)); 
+                                    }
+                                }
+                        } elseif (element('post_link_count', $val)) {
+                                $this->load->model('Post_link_model');
+                                $linkwhere = array(
+                                    'post_id' => element('post_id', $val),
+                                );
+                                $link = $this->Post_link_model
+                                    ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
+                                if ($link && is_array($link)) {
+                                    if (element('use_autoplay', $board)) {
+                                        
+                                        $result['list'][$key]['thumb_url']= $this->videoplayer->get_video(prep_url(element('pln_url',element(0,$link))),array('image'=>1) );
+                                        // $result['list'][$key]['thumb_url'] = $link_player;
+
+                                    }
+                                    
+                                }
+                                
+                        } else {
+                            $thumb_url = get_post_image_url(element('post_content', $val), $gallery_image_width, $gallery_image_height);
+                            $result['list'][$key]['thumb_url'] = $thumb_url
+                                ? $thumb_url
+                                : thumb_url('', '', $gallery_image_width, $gallery_image_height);
+
+                            $result['list'][$key]['origin_image_url'] = $thumb_url;
+                        }
                     }
                 }
+                
 
                 if(element('brd_key', $board)==='event'){
                     $extravars='';
@@ -1635,10 +1710,15 @@ class Board_post extends CB_Controller
             $config['num_links'] = element('page_count', $board)
                 ? element('page_count', $board) : 5;
         }
-        $this->pagination->initialize($config);
-        $return['paging'] = $this->pagination->create_links();
-        $return['page'] = $page;
-
+        if ($this->cbconfig->get_device_view_type() === 'mobile') {
+            $this->custom_pagination->initialize($config);
+            $return['paging'] = $this->custom_pagination->create_links();
+            $return['page'] = $page;
+        } else {
+            $this->pagination->initialize($config);
+            $return['paging'] = $this->pagination->create_links();
+            $return['page'] = $page;    
+        }
         /**
          * 쓰기 주소, 삭제 주소등 필요한 주소를 구합니다
          */

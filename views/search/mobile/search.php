@@ -1,7 +1,7 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
 
-<article class="wrap01 ">
+<div class="foot_padding">
     <section class ="main_title search">
         <h2>검 색</h2>
         <form action="<?php echo current_url(); ?>" onSubmit="return checkSearch(this);" class="text-center">
@@ -30,7 +30,7 @@
         </form>
 
 
-    <div class="search_list" id="searchresult">
+    <section class="tab06_cont search_list" id="searchresult">
 <?php
 
 
@@ -38,20 +38,39 @@ if (element('list', element('data', $view))) {
     foreach (element('list', element('data', $view)) as $lkey => $lval) {
 
         echo '<h3>'.element('brd_name',element($lkey,element('boardlist', $view))).'</h3>
-            <ul>';
+            <ul class="tab06_cont_list">';
         foreach($lval as $key => $result){
 ?>
         
             <li>
-            <a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('post_title', $result)); ?>"><?php echo html_escape(element('post_title', $result)); ?><span><?php if (element('post_comment_count', $result)) { ?> [<?php echo element('post_comment_count', $result); ?>]<?php } ?></span>
-                <table>
-                    <tr>
-                        <td colspan="2"><?php echo element('display_datetime', $result); ?></td>
-                        <td colspan="2"><?php echo element('display_name', $result); ?></td>
-                        <td colspan="2">조회수 : <?php echo number_format(element('post_hit', $result)); ?></td>
-                    </tr>
-                </table>
-            </a>
+                <div>
+                    <a href="<?php echo element('post_url', $result); ?>" style="
+                        <?php
+                        if (element('title_color', $result)) {
+                            echo 'color:' . element('title_color', $result) . ';';
+                        }
+                        if (element('title_font', $result)) {
+                            echo 'font-family:' . element('title_font', $result) . ';';
+                        }
+                        if (element('title_bold', $result)) {
+                            echo 'font-weight:bold;';
+                        }
+                        if (element('post_id', element('post', $view)) === element('post_id', $result)) {
+                            echo 'font-weight:bold;';
+                        }
+                        ?>
+                    " title="<?php echo html_escape(element('post_title', $result)); ?>"><?php echo html_escape(element('post_title', $result)); ?>
+                    <?php if (element('post_comment_count', $result)) { ?><span class="label">+<?php echo element('post_comment_count', $result); ?></span><?php } ?></a>
+                    <table class="tab06_cont_table">
+                        <tbody>
+                            <tr>
+                                <td><?php echo element('display_datetime', $result); ?></td>
+                                <td><?php echo element('display_name', $result); ?></td>
+                                <td>조회수 : <?php echo number_format(element('post_hit', $result)); ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </li>
 <?php
         }
@@ -68,10 +87,10 @@ if ( ! element('list', element('data', $view))) {
 <?php
 }
 ?>
-    </div>
+    </section>
     <nav class="mo_pager"><?php echo element('paging', $view); ?></nav>
     </section>
-</article>
+</div>
 
 
 <script type="text/javascript">

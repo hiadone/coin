@@ -306,6 +306,23 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">모바일 갤러리 목록 사용</label>
+                        <div class="col-sm-8">
+                            <label for="mobile_use_gallery_list" class="checkbox-inline">
+                                <input type="checkbox" name="mobile_use_gallery_list" id="mobile_use_gallery_list" value="1" <?php echo set_checkbox('mobile_use_gallery_list', '1', (element('mobile_use_gallery_list', element('data', $view)) ? true : false)); ?> /> 사용합니다
+                            </label>
+                            <span class="help-inline"> 설정하시면 스킨 디렉토리에 list.php 대신에 gallerylist.php 를 사용합니다.</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="grp_mobile_use_gallery_list" class="checkbox-inline">
+                                <input type="checkbox" name="grp[mobile_use_gallery_list]" id="grp_mobile_use_gallery_list" value="1" /> 그룹적용
+                            </label>
+                            <label for="all_mobile_use_gallery_list" class="checkbox-inline">
+                                <input type="checkbox" name="all[mobile_use_gallery_list]" id="all_mobile_use_gallery_list" value="1" /> 전체적용
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">모바일 목록에 가로 이미지 개수</label>
                         <div class="col-sm-8">
                             <input type="number" class="form-control" name="mobile_gallery_cols" value="<?php echo set_value('mobile_gallery_cols', element('mobile_gallery_cols', element('data', $view)) + 0); ?>" />

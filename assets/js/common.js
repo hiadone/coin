@@ -1044,4 +1044,31 @@ if (typeof(COMMON_JS) === 'undefined') {
       
     }
 
+    function view_pagination(f,id,page) {
+        // if (opt) {
+        //     $('html, body').animate({
+        //         scrollTop: $('#' + id).offset().top - 100
+        //     }, 0);
+        // }
+
+        href = cb_url + '/group/view_board/' + f.brd_key.value+'/'+page;
+
+        
+
+        $.ajax({
+            async: false,
+            url : href,
+            type : 'post',
+            data :  'sfield='+f.sfield[f.sfield.selectedIndex].value+'&skeyword='+f.skeyword.value+ '&csrf_test_name=' + cb_csrf_hash,
+            success : function(data) {
+                $('#'+id).html(data);
+
+                $('#'+id).parent().removeClass('btn_more');
+
+                $('#'+id).parent().next().show();
+            }
+        });
+        
+    }
+
 }

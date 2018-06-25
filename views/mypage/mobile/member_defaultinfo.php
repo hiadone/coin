@@ -1,6 +1,6 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
-<article class="wrap01">
+<div class="foot_padding">
         <section class="main_title login">
             <h2>닉네임을 입력해 주세요.</h2>
             
@@ -21,7 +21,7 @@
             <button type="submit" class="">등 록</button>
             <?php echo form_close(); ?>
         </section>
-    </article>
+    </div>
 
 
 

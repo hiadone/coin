@@ -35,33 +35,25 @@
             if ($this->cbconfig->item('use_sociallogin')) {
                 $this->managelayout->add_js(base_url('assets/js/social_login.js'));
             ?>
-            <article class="wrap01">
-                <section class="main_title login">
+            <section class="login">
+                <div>
                     <h2>SNS 로그인</h2>
-                    <div>
-                        <h2 class='big_font'>SNS 로그인</h2>
-                        <p class='small_font'>
-                            - 가입하신 SNS를 선택하시고<br>
-                            - 로그인 해주세요.<br><br>
-                            
-                        </p>
-                    </div>
                     <ul>
                         <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
-                            <li style="background-color:#fbe300;">
+                            <li class="kakao_login">
                                 <a href="javascript:;" onClick="social_connect_on('kakao');" title="카카오 로그인">
-                                <figure>
-                                    <img src="<?php echo base_url('/assets/images/kakao.png');?>" alt="kakao">
-                                    <figcaption class="big_font" style="color:#3a1e1f">
-                                        카카오톡 로그인
-                                    </figcaption>
-                                </figure>
+                                    <figure>
+                                        <img src="<?php echo base_url('/assets/images/kakao.png');?>" alt="kakao">
+                                        <figcaption class="big_font" >
+                                            카카오톡 로그인
+                                        </figcaption>
+                                    </figure>
                                 </a>
                             </li>
                         <?php } ?>
 
                         <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
-                            <li style="background-color:#1ec802;">
+                            <li class="naver_login">
                                 <a href="javascript:;" onClick="social_connect_on('naver');" title="네이버 로그인">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/naver.png');?>" alt="naver">
@@ -94,8 +86,11 @@
                             <a href="javascript:;" onClick="social_connect_on('google');" title="구글 로그인"><img src="<?php echo base_url('assets/images/social_google.png'); ?>" width="22" height="22" alt="구글 로그인" title="구글 로그인" /></a>
                         <?php } ?>
                     </ul>
-                </section>
-            </article>            
+                    <p><a href="<?php echo base_url('/login/register') ?>">회원가입 바로가기</a></p>
+                </div>
+                <span class="login_back"></span>
+            </section>
+            
                 
             <?php } ?>
        

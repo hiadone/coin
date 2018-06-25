@@ -1,4 +1,4 @@
-<?php
+    <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
@@ -79,7 +79,7 @@ $route[config_item('uri_segment_rss') . '/([a-zA-Z0-9_-]+)'] = "rss/index/$1";
 $route[config_item('uri_segment_group') . '/view_board/([a-zA-Z0-9_-]+)'] = "group/view_board/$1";
 $route[config_item('uri_segment_group') . '/([a-zA-Z0-9_-]+)'. '/([a-zA-Z0-9_-]+)'] = "group/index/$1/$2";
 
-$route[config_item('uri_segment_document') . '/([a-zA-Z0-9_-]+)'] = "document/index/$1";
+
 $route[config_item('uri_segment_faq') . '/([a-zA-Z0-9_-]+)'] = "faq/index/$1";
 $route[config_item('uri_segment_faq') . '/([a-zA-Z0-9_-]+)'.'/([0-9]+)'] = "faq/index/$1/$2";
 $route['profile/([a-zA-Z0-9_-]+)'] = "profile/index/$1";

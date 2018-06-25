@@ -40,10 +40,10 @@
                 }
 
             ?>
-            <article class="wrap01">
-                <section class="main_title login">
+            <section class="login">
+                <div>
                     <h2>SNS 회원가입</h2>
-                    <div>
+                    <!-- div>
                         <h2 class='big_font'>SNS 회원가입</h2>
                         <p class='small_font'>
                             - 비트이슈에서는 SNS로 회원가입하여 <br>
@@ -75,7 +75,7 @@
                             개인정보취급방침에 동의하신 것으로 간주합니다.
                             </a>
                         </span>
-                    </div>
+                    </div> -->
                     <?php
                     $attributes = array('class' => 'form-horizontal', 'name' => 'fwrite2', 'id' => 'fwrite2');
                     echo form_open('', $attributes);
@@ -84,11 +84,11 @@
                         <input type="hidden" name="selfcert_type" id="selfcert_type" value="" />
                     <ul>
                         <?php if ($this->cbconfig->item('use_sociallogin_kakao')) {?>
-                            <li style="background-color:#fbe300;">
+                            <li class="kakao_login">
                                 <a href="javascript:;" onClick="social_register('kakao');" title="카카오 회원가입">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/kakao.png');?>" alt="kakao">
-                                    <figcaption class="big_font" style="color:#3a1e1f">
+                                    <figcaption class="big_font" >
                                         카카오톡 회원가입
                                     </figcaption>
                                 </figure>
@@ -97,7 +97,7 @@
                         <?php } ?>
 
                         <?php if ($this->cbconfig->item('use_sociallogin_naver')) {?>
-                            <li style="background-color:#1ec802;">
+                            <li class="naver_login">
                                 <a href="javascript:;" onClick="social_register('naver');" title="네이버 회원가입">
                                 <figure>
                                     <img src="<?php echo base_url('/assets/images/naver.png');?>" alt="naver">
@@ -130,11 +130,19 @@
                             <a href="javascript:;" onClick="social_connect_on('google');" title="구글 회원가입"><img src="<?php echo base_url('assets/images/social_google.png'); ?>" width="22" height="22" alt="구글 회원가입" title="구글 회원가입" /></a>
                         <?php } ?>
                     </ul>
-                </section>
-            </article>            
-                <?php echo form_close(); ?>
-            <?php } ?>
-       
+                    <p class="ssmall_font">회원가입시 본인인증 절차가 진행되어 로그인과 함께<br>이용약관/개인정보 취급방침에 동의한 것으로 간주합니다.</p>
+                    <p><a href="<?php echo base_url('/login') ?>">로그인 바로가기</a></p>
+                    <aside class="event_link_m">
+                        <p><a href="<?php echo site_url('/event/event_register') ?>" class="big_font">포인트 적립 이벤트 참여하기</a></p>
+                    </aside>
+                    <?php echo form_close(); ?>
+                </div>            
+                
+            
+                
+            <span class="login_back"></span>
+       </section>
+       <?php } ?>
 <div id="btn_mem_selfcert_phone"></div>
 <script type="text/javascript">
 //<![CDATA[

@@ -5,7 +5,7 @@
 ?>
 
 
-<article class="wrap01">
+<div class="foot_padding">
     <section class='main_title store_item'>
         <h2 style="margin-bottom:0;">상 품 설 명</h2>
 
@@ -95,7 +95,7 @@
             </div>
         <?php } ?>
         </div>
-        </div>
+        
 
 
         
@@ -128,7 +128,7 @@
         
     </ul>
     </div>
-</article>
+</div>
  <script type="text/javascript">
     //<![CDATA[
     

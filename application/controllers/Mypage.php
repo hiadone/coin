@@ -1330,4 +1330,77 @@ class Mypage extends CB_Controller
         $keys = array_flip($keys);
         return array_merge(array_intersect_key($keys, $values), array_intersect_key($values, $keys));
     }
+
+
+    function point_provision(){
+
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_mypage_point';
+        $this->load->event($eventname);
+
+        /**
+         * 로그인이 필요한 페이지입니다
+         */
+        required_user_login();
+
+        $mem_id = (int) $this->member->item('mem_id');
+
+        if ( ! $this->cbconfig->item('use_point')) {
+            alert('이 웹사이트는 포인트 기능을 제공하지 않습니다');
+        }
+
+        $view = array();
+        $view['view'] = array();
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        
+
+        /**
+         * 페이지네이션을 생성합니다
+         */
+        
+        
+        
+        
+
+
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
+
+        /**
+         * 레이아웃을 정의합니다
+         */
+        $page_title = $this->cbconfig->item('site_meta_title_mypage_point');
+        $meta_description = $this->cbconfig->item('site_meta_description_mypage_point');
+        $meta_keywords = $this->cbconfig->item('site_meta_keywords_mypage_point');
+        $meta_author = $this->cbconfig->item('site_meta_author_mypage_point');
+        $page_name = $this->cbconfig->item('site_page_name_mypage_point');
+
+        
+            
+        $layoutconfig = array(
+            'path' => 'mypage',
+            'layout' => 'layout',
+            'skin' => 'point_provision',
+            'layout_dir' => $this->cbconfig->item('layout_mypage'),
+            'mobile_layout_dir' => $this->cbconfig->item('mobile_layout_mypage'),
+            'use_sidebar' => $this->cbconfig->item('sidebar_mypage'),
+            'use_mobile_sidebar' => $this->cbconfig->item('mobile_sidebar_mypage'),
+            'skin_dir' => $this->cbconfig->item('skin_mypage'),
+            'mobile_skin_dir' => $this->cbconfig->item('mobile_skin_mypage'),
+            'page_title' => $page_title,
+            'meta_description' => $meta_description,
+            'meta_keywords' => $meta_keywords,
+            'meta_author' => $meta_author,
+            'page_name' => $page_name,
+        );
+        $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
+        $this->data = $view;
+        $this->layout = element('layout_skin_file', element('layout', $view));
+        $this->view = element('view_skin_file', element('layout', $view));
+        
+    }
 }

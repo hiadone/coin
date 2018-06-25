@@ -730,6 +730,11 @@ class Boards extends CB_Controller
                 'rules' => 'trim|numeric|is_natural',
             ),
             array(
+                'field' => 'mobile_use_gallery_list',
+                'label' => '모바일 갤러리 게시판 사용',
+                'rules' => 'trim|numeric',
+            ),
+            array(
                 'field' => 'mobile_gallery_cols',
                 'label' => '모바일 목록에 가로 이미지 개수',
                 'rules' => 'trim|numeric|is_natural',
@@ -771,7 +776,7 @@ class Boards extends CB_Controller
                 'mobile_new_icon_hour', 'hot_icon_hit', 'mobile_hot_icon_hit', 'hot_icon_day',
                 'subject_length', 'mobile_subject_length', 'except_notice', 'mobile_except_notice',
                 'except_all_notice', 'mobile_except_all_notice', 'reply_order', 'use_gallery_list',
-                'gallery_cols', 'gallery_image_width', 'gallery_image_height', 'mobile_gallery_cols',
+                'gallery_cols', 'gallery_image_width', 'gallery_image_height','mobile_use_gallery_list', 'mobile_gallery_cols',
                 'mobile_gallery_image_width', 'mobile_gallery_image_height');
 
             $metadata = array();

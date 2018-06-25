@@ -89,7 +89,7 @@
     });
 </script>
 
-<article class="wrap01">
+<div class="foot_padding">
     <section class="loing_join">
         <ul class="small_font">
             <?php
@@ -251,7 +251,7 @@
                 </div>
             </div>
         </section>
-</article>
+</div>
 
 <script type="text/javascript">
     //<![CDATA[

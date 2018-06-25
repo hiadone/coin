@@ -36,7 +36,7 @@ class Main extends CB_Controller
         if ( ! $this->member->item('mem_password') && $this->member->item('mem_id')) {
             redirect('membermodify');
         }
-
+        
         $this->load->library(array('querystring','coin'));
 
 
@@ -52,6 +52,9 @@ class Main extends CB_Controller
         $eventname = 'event_main_index';
         $this->load->event($eventname);
 
+        if($this->cbconfig->get_device_view_type() === 'mobile')
+            redirect(board_url('live_news'));
+        
         $view = array();
         $view['view'] = array();
 
@@ -162,6 +165,7 @@ class Main extends CB_Controller
             'meta_keywords' => $meta_keywords,
             'meta_author' => $meta_author,
             'page_name' => $page_name,
+            'page_url' => $this->uri->uri_string(),
         );
         $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
         $this->data = $view;
@@ -283,6 +287,7 @@ class Main extends CB_Controller
             'meta_keywords' => $meta_keywords,
             'meta_author' => $meta_author,
             'page_name' => $page_name,
+            'page_url' => $this->uri->uri_string(),
         );
         $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
         $this->data = $view;

@@ -1042,12 +1042,13 @@ class Board extends CI_Controller
      /**
      * 최근게시물을 가져옵니다
      */
-    public function latest_group($config,$more=0)
+    public function latest_group($config)
     {
 
         $view = array();
-        $view['view'] = array();
-
+        $view['view'] = array();    
+        $param =& $this->CI->querystring;
+        // echo $param->output()."aaa";
         $this->CI->load->model( array('Board_category_model', 'Post_file_model'));
 
         $skin = element('skin', $config);
@@ -1064,8 +1065,9 @@ class Board extends CI_Controller
         $image_height = element('image_height', $config);
         $period_second = element('period_second', $config);
         $cache_minute = element('cache_minute', $config);
-        $post_notice = element('post_notice', $config);
-        $post_notice_param='';
+        $is_admin = element('is_admin', $config);
+        $page = element('page', $config);
+        
 
         if ($limit <= 0) {
             return false;
@@ -1091,6 +1093,7 @@ class Board extends CI_Controller
         
         $view['view']['config'] = $config;
         $view['view']['length'] = $length;
+        $view['view']['is_admin'] = $is_admin;
 
         if($brd_key==="attendance"){
             $view['view']['board']['brd_key']="attendance";
@@ -1164,10 +1167,26 @@ class Board extends CI_Controller
                 }
             }
             if ($brd_id && ! is_array($brd_id)) {
-                $view['view']['board'] = $board = $this->CI->board->item_all($brd_id);
+                $board = $this->CI->board->item_all($brd_id);
             }
 
-            $view['view']['board']['post_notice']=$post_notice;
+
+
+
+            $board['gallery_cols'] = $gallery_cols
+                =  element('mobile_gallery_cols', $board);
+                
+
+            $board['gallery_image_width'] = $gallery_image_width
+                = element('mobile_gallery_image_width', $board) ;
+
+            $board['gallery_image_height'] = $gallery_image_height
+                = element('mobile_gallery_image_height', $board);
+
+            $board['gallery_percent'] = floor( 102 / $board['gallery_cols']) - 2;
+
+            $view['view']['board'] = $board;
+            // $view['view']['board']['post_notice']=$post_notice;
 
             $this->CI->allow_search_field = array('post_id','post_title', 'post_content', 'post_both', 'post_nickname'); // 검색이 가능한 필드
             $this->CI->search_field_equal = array('post_id'); // 검색중 like 가 아닌 = 검색을 하는 필드
@@ -1175,10 +1194,10 @@ class Board extends CI_Controller
             $where = array();
             $where['post_del'] = 0;
             $where['post_secret'] = 0;
-            if($post_notice){
-                $this->CI->db->where_in('post_notice', array($post_notice,5));
-                $post_notice_param='?post_notice='.$post_notice;
-            }
+            // if($post_notice){
+            //     $this->CI->db->where_in('post_notice', array($post_notice,5));
+            //     $post_notice_param='?post_notice='.$post_notice;
+            // }
             $sfield =  $this->CI->input->post('sfield', null, '');
             if ($sfield === 'post_both') {
                 $sfield = array('post_title', 'post_content');
@@ -1190,7 +1209,7 @@ class Board extends CI_Controller
             }
 
 
-            $page = ((int) $more > 1) ? ((int) $more) : 1;
+            $page = ((int) $page > 1) ? ((int) $page) : 1;
             
 
             
@@ -1307,7 +1326,7 @@ class Board extends CI_Controller
             if ($latest && is_array($latest)) {
                 foreach ($latest as $key => $value) {
                     $brd_key = $this->CI->board->item_id('brd_key', element('brd_id', $value));
-                    $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value)).$post_notice_param;
+                    $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value));
                     $view['view']['latest'][$key]['title'] = $length ? cut_str(element('post_title', $value), $length) : element('post_title', $value);
                     $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('post_datetime', $value), '');
                     $view['view']['latest'][$key]['display_name'] = display_username(
@@ -1338,26 +1357,41 @@ class Board extends CI_Controller
                                 'pfi_is_image' => 1,
                             );
                             $file = $this->CI->Post_file_model->get_one('', '', $imagewhere, '', '', 'pfi_id', 'ASC');
-                            if (element('pfi_filename', $file)) {
-                                $view['view']['latest'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $image_width, $image_height);
-                            }
+                            $view['view']['latest'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $gallery_image_width, $gallery_image_height);
+                            $view['view']['latest'][$key]['origin_image_url'] = thumb_url('post', element('pfi_filename', $file));
 
-                            if($brd_key ==='w-1'||$brd_key ==='w-2'||$brd_key ==='w-3'){
-                                $this->CI->load->model('Post_link_model');
-                                $linkwhere = array(
-                                    'post_id' => element('post_id', $value),
-                                );
-                                $link = $this->CI->Post_link_model
-                                    ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
-                                if ($link && is_array($link)) {
-                                    $view['view']['latest'][$key]['pln_url'] = site_url('postact/webtoon_link/' . element('pln_id', element(0,$link)));
+                            
+
+                        } elseif (element('post_link_count', $value)) {
+                            $this->CI->load->model('Post_link_model');
+                            $this->CI->load->library('videoplayer');
+                            $linkwhere = array(
+                                'post_id' => element('post_id', $value),
+                            );
+                            $link = $this->CI->Post_link_model
+                                ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
+                            if ($link && is_array($link)) {
+                                if (element('use_autoplay', $board)) {
                                     
+                                    $view['view']['latest'][$key]['thumb_url']= $this->CI->videoplayer->get_video(prep_url(element('pln_url',element(0,$link))),array('image'=>1) );
+                                    // $result['list'][$key]['thumb_url'] = $link_player;
+
                                 }
+                                
                             }
+                                
+                        
                             
                         } else {
                             $thumb_url = get_post_image_url(element('post_content', $value), $image_width, $image_height);
-                            $view['view']['latest'][$key]['thumb_url'] = $thumb_url ? $thumb_url : thumb_url('', '', $image_width, $image_height);
+
+                            $view['view']['latest'][$key]['thumb_url'] = $thumb_url
+                                ? $thumb_url
+                                : thumb_url('', '', $gallery_image_width, $gallery_image_height);
+
+                            $view['view']['latest'][$key]['origin_image_url'] = $thumb_url;
+
+                            
                         }
                     }
                 }
@@ -1547,9 +1581,11 @@ class Board extends CI_Controller
         
         
 
-        $view['view']['skinurl'] = base_url( VIEW_DIR . 'group/' . $skin);
-        if($more) $html = $this->CI->load->view('group/' . $skin . '/latest_group_more', $view, true);
-        else $html = $this->CI->load->view('group/' . $skin . '/latest_group', $view, true);
+        $view['view']['skinurl'] = base_url( VIEW_DIR . 'board/' . $skin);
+
+        $list_skin_file = $is_gallery ? 'gallerylist_more' : 'list_more';
+        
+        $html = $this->CI->load->view('board/' . $skin . '/'.$list_skin_file, $view, true);
 
         if ($cache_minute> 0) {
             check_cache_dir('latest');

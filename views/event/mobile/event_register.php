@@ -129,7 +129,7 @@
 </head>
 
 <body style="max-width:700px;">
-<article class="wrap01">
+<div class="foot_padding">
     <section class="main_title write_cont" style="margin-bottom: 0px;">
         <h2 style="margin-bottom: 0px;">
             <a href="<?php echo board_url(element('brd_key', element('board', $view))); ?>" style="color: inherit;">
@@ -189,7 +189,7 @@
             <img id="img_bottom" style='position: relative; ' src="<?php echo base_url('/assets/images/bitissue_event_m_03.png')?>">
     </section>
     <div id="btn_mem_selfcert_phone"></div>
-</article>
+</div>
 </body>
 </html>
 <script type="text/javascript">

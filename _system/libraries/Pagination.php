@@ -332,13 +332,13 @@ class CI_Pagination {
 		
 		$this->CI =& get_instance();
 		$this->CI->load->language('pagination');
-		foreach (array('first_link', 'next_link', 'prev_link', 'last_link') as $key)
-		{
-			if (($val = $this->CI->lang->line('pagination_'.$key)) !== FALSE)
-			{
-				$this->$key = $val;
-			}
-		}
+		// foreach (array('first_link', 'next_link', 'prev_link', 'last_link') as $key)
+		// {
+		// 	if (($val = $this->CI->lang->line('pagination_'.$key)) !== FALSE)
+		// 	{
+		// 		$this->$key = $val;
+		// 	}
+		// }
 
 		$this->initialize($params);
 		log_message('info', 'Pagination Class Initialized');

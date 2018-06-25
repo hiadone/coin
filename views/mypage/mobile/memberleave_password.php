@@ -1,6 +1,6 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
-<article class="wrap01">
+<div class="foot_padding">
         <section class="main_title logout">
             <h2>회 원 탈 퇴</h2>
             <div>
@@ -38,7 +38,7 @@
             </div>
             
         </section>
-    </article>
+    </div>
 
 
 

@@ -23,6 +23,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/reset.css?<?php echo $this->cbconfig->item('browser_cache_version') ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/global.css?<?php echo $this->cbconfig->item('browser_cache_version') ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/page.css?<?php echo $this->cbconfig->item('browser_cache_version') ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/renew.css?<?php echo $this->cbconfig->item('browser_cache_version') ?>" />
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" />
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/jejugothic.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo element('layout_skin_url', $layout); ?>/css/style.css" />
@@ -71,218 +72,72 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
 <script>
     $(document).ready(function(){
-        // ham 클릭시 ham_menu 이동 스크립트(메뉴 보여주기)
-            
-
-        // ham 메뉴의 대메뉴 접기 펴기 스크립트
-            // $('.ham_cont ol > li').click(function(){
-
-            //     $(this).children('ul').slideToggle();
-            //     if($(this).children('span').html()=='▼'){
-            //         $(this).children('span').html('▲');
-            //     }else{
-            //         $(this).children('span').html('▼');
-            //     }                   
-            // });
-
-        // ham 메뉴의 로그인 시 회원 닉네임 영역 높이값 스크립트
-            var hei = $('.ham_cont div table figure img').height();
-            $('.ham_cont div table figcaption').css('height' , hei);
-            $('.ham_cont div table a').css('line-height' , hei -2 + "px");
-
-        // find 클릭시 검색영역 이동 스크립트
-            var hei = $('header').height();
-            $('.cover_menu02').css('height' , hei);
-
-            $('header span:nth-child(3) img').click(function(){
-                $('.cover_menu02').css({'z-index':'2000'});
-                $('.find_area').animate({'right' : '0'} , 700);
-                $('.find_area').css('height' ,hei+5);
-                $('.find_area').css('z-index' ,500);
-            }); 
-
-        // find 의 X버튼 클릭시
-            $('.find_area > img').click(function(){
-                $('.find_area').animate({'right' : '-100%'} , 700);
-                // $('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제
-                $("html, body").unbind('scroll  mousewheel');
-                setTimeout(function(){
-                    $('.cover_menu02').css({'z-index':'-100'});
-                },700);     
-            }); 
+        
     });
 </script> 
 
 </head>
 <body <?php echo isset($view) ? element('body_script', $view) : ''; ?>>
-    <article class="cover_menu" id="left_side_menu">
-        
 
-        <!-- ham_menu 의 내용-->
-            <section class="ham_cont left_side_wr left_add_side_wr">
-                <div id="left_isroll_wrap" class="left_side_inner_rel">
-                <!-- ham메뉴의 X버튼 -->
-                    <!-- <img src="<?php echo site_url('/assets/images/clear.png')?>" alr="clear"> -->
-                     <div class="left_side_inner_abs">
-                        <!-- <table>
-                            <?php if ($this->member->is_member()) { ?>
-                                <tr>
-                                    <th colspan="3" class="big_font"><a  href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?>님 안녕하세요 </a><button type="button" class="btn-sm small_font" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';"><i class="fa fa-sign-out"></i> 로그아웃</button></th>
-                                </tr>
-                                
-                            <?php } else { ?>
-                                <tr>
-                                    <th colspan="3" class="small_font">SNS 아이디로 로그인 하세요.</th>
-                                </tr>
-                                <tr>
-                                    <td><a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>" class="" title="로그인"><img src="<?php echo site_url('/assets/images/naver.png')?>" alt="naver"></a></td>
-                                    <td><a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>" class="" title="로그인"><img src="<?php echo site_url('/assets/images/kakao.png')?>" alt="kakao"></a></td>
-                                    <td><a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>" class="" title="로그인"><img src="<?php echo site_url('/assets/images/face.png')?>" alt="facebook"></a></td>
-                                </tr>
-                            <?php } ?>
-                        </table> -->
-
-                        
-                        <?php if (!$this->member->is_member()) { ?>
-                        <p class="small_font">SNS 아이디로 로그인 하세요.</p>
-                        <ul>
-                            <li style="background: url('/assets/images/naver_bg.png') no-repeat center; background-size: 100%;">
-                                <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
-                                   <figure>
-                                       <figcaption class="small_font">
-                                           네 이 버
-                                       </figcaption>
-                                   </figure>
-                                </a>
-                            </li>
-
-                            <li style="background: url('/assets/images/kakao_bg.png') no-repeat center; background-size: 100%;">
-                                <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
-                                   <figure>
-                                       <figcaption class="small_font" style="color: #3c2324;">
-                                           카카오톡
-                                       </figcaption>
-                                   </figure>
-                                </a>
-                            </li>
-
-                          <!--   <li style="background: url('/assets/images/face_bg.png') no-repeat center; background-size: 100%;">
-                                <a href="<?php echo site_url('login?url=' . urlencode(current_full_url())); ?>">
-                                   <figure>
-                                       <figcaption class="small_font">
-                                           페이스북
-                                       </figcaption>
-                                   </figure>
-                                </a>
-                            </li> -->
-                        </ul>
-                        <?php } else { ?>
-                            <table>
-                                <tr>
-                                    <th colspan="3" class="big_font" >
-                                    <figure>
-                                        <img src="<?php echo base_url('assets/images/mo_ham_spoon/spoon_'.$this->member->item('mem_level').'.png') ?>" alt="spoon_<?php echo $this->member->item('mem_level') ?>">
-                                        <figcaption>
-                                            <a style="color:#fff; " href="<?php echo site_url('mypage'); ?>"><?php echo $this->member->item('mem_nickname') ?></a>
-                                        </figcaption>
-                                    </figure>
-
-                                    <button class="btn-sm small_font" title="회원정보" style="margin-right: 3%;" onclick="location.href='<?php echo site_url('mypage'); ?>';">
-                                        <i class="fa fa-sign-out"></i>
-                                        회원정보
-                                    </button>
-
-                                    <button type="button" class="btn-sm small_font" title="로그아웃" onclick="location.href='<?php echo site_url('login/logout?url=' . urlencode(current_full_url())); ?>';">
-                                        <i class="fa fa-sign-out"></i>
-                                        로그아웃
-                                    </button>
-                                    </th>
-                                </tr>
-                            </table>
-                        <?php } ?>
-                        <ol class="mb30">
-                            <?php
-                            $menuhtml = '';
-                            if (element('menu', $layout)) {
-                                $menu = element('menu', $layout);
-                                if (element(0, $menu)) {
-                                    foreach (element(0, $menu) as $mkey => $mval) {
-                                        if (element(element('men_id', $mval), $menu)) {
-                                            $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-                                            $menuhtml .= '<li>
-                                            <a style="color:#fff;padding:3px 0px;" href="javascript:;" ' . element('men_custom', $mval);
-                                            if (element('men_target', $mval)) {
-                                                $menuhtml .= ' target="' . element('men_target', $mval) . '"';
-                                            }
-                                            $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '" class="subopen" data-menu-order="' . $mkey . '">' . html_escape(element('men_name', $mval)) . '</a><a href="#" style="padding:3px 10px;float:right;color:inherit;" class="subopen" data-menu-order="' . $mkey . '"><i class="fa fa-chevron-down"></i></a>
-                                            <ul class="dropdown-menu drop-downorder-' . $mkey . '">';
-
-                                            foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
-                                                $menuhtml .= '<li class="middle_font" ><a style="display:inline-block;" href="' . element('men_link', $sval) . '" ' . element('men_custom', $sval);
-                                                if (element('men_target', $sval)) {
-                                                    $menuhtml .= ' target="' . element('men_target', $sval) . '"';
-                                                }
-                                                $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
-                                            }
-                                            $menuhtml .= '</ul></li>';
-
-                                        } else {
-                                            $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-                                            $menuhtml .= '<li><a style="color:#fff;display:inline-block;" href="' . $mlink . '" ' . element('men_custom', $mval);
-                                            if (element('men_target', $mval)) {
-                                                $menuhtml .= ' target="' . element('men_target', $mval) . '"';
-                                            }
-                                            $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a></li>';
-                                        }
-                                    }
-                                }
-                            }
-                            echo $menuhtml;
-                            ?>
-                        </ol>
-                    </div>
-                </div>
-            </section>
-    </article>
-
-    <article class="cover_menu02">
-        <!-- find 영역 -->
-            <section class="find_area">
-                <form action="<?php echo base_url('/search'); ?>" onSubmit="return headerSearch(this);">
-                <input type="hidden" name="sfield" value="post_both">
-                   <input type='search' name="skeyword" placeholder="사이트 통합검색" onfocus="this.placeholder=''" onblur="this.placeholder='사이트 통합검색'" >
-                   <button type="submit" class="middle_font">검색</button>
-                </form>
-                <img src="<?php echo base_url('/assets/images/clear03.png') ?>" alt="clear">
-
-            </section>
-            <script type="text/javascript">
-            //<![CDATA[
-           
-            function headerSearch(f) {
-                var skeyword = f.skeyword.value.replace(/(^\s*)|(\s*$)/g,'');
-                if (skeyword.length < 2) {
-                    alert('2글자 이상으로 검색해 주세요');
-                    f.skeyword.focus();
-                    return false;
-                }
-                return true;
-            }
-            //]]>
-            </script>
-    </article>
     <header>
-            <span>
-                <img src="<?php echo site_url('/assets//images/ham.png')?> " alt="ham" id="left_btn_side">
-            </span>
-            <h1>
-                <a href="<?php echo site_url(); ?>" title="<?php echo html_escape($this->cbconfig->item('site_title'));?>"><img src="<?php echo site_url('/assets/images/logo.png')?>" alt="logo"></a>
-            </h1>
-            <span>
-                <img src="<?php echo site_url('/assets/images/find.png')?>" alt="find">
-            </span>
-    </header>
+        <h1>
+            <a href="<?php echo site_url()?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/logo.png" alt="logo"></a>
+        </h1>
+        <div><a href="<?php echo base_url('/mypage') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/icon_03.png" alt="회원정보"></a></div>
+        <div><a href="<?php echo base_url('/search') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/icon_05.png" alt="검색"></a></div>
+    </header>   
     
+    <nav class='main_nav_m'>
+        <ul>
+            <?php
+            $menuhtml = '';
+            if (element('menu', $layout)) {
+                $menu = element('menu', $layout);
+                if (element(0, $menu)) {
+                    foreach (element(0, $menu) as $mkey => $mval) {
+                        // if (element(element('men_id', $mval), $menu)) {
+                        //     $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
+                        //     $menuhtml .= '<li class="dropdown">
+                        //     <a href="' . $mlink . '" ' . element('men_custom', $mval);
+                        //     if (element('men_target', $mval)) {
+                        //         $menuhtml .= ' target="' . element('men_target', $mval) . '"';
+                        //     }
+                        //     $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a>
+                        //     <ul class="dropdown-menu">';
+
+                        //     foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
+                        //         $slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
+                        //         $menuhtml .= '<li><a href="' . $slink . '" ' . element('men_custom', $sval);
+                        //         if (element('men_target', $sval)) {
+                        //             $menuhtml .= ' target="' . element('men_target', $sval) . '"';
+                        //         }
+                        //         $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
+                        //     }
+                        //     $menuhtml .= '</ul></li>';
+
+                        // } else {
+                            $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
+                            $active='';
+                            
+                            if(element('men_id',$mval) === element(0,element('active',$menu))) $active='selectMenu';
+                            $menuhtml .= '<li class="'.$active.'" ><a href="' . $mlink . '" ' . element('men_custom', $mval);
+                            if (element('men_target', $mval)) {
+                                $menuhtml .= ' target="' . element('men_target', $mval) . '"';
+                            }
+                            $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a></li>';
+
+                            $menuhtml .= "\n";
+                        // }
+                    }
+                }
+            }
+            echo $menuhtml;
+
+
+            ?>
+           
+        </ul>
+    </nav>
     <!-- main start -->
     <div class="main">
         <div>
@@ -293,6 +148,10 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
         </div>
     </div>
+
+    <aside class="back_top_m">
+    <div><img src="<?php echo element('layout_skin_url', $layout); ?>/images/backtop_03.png" alt="맨위로"></div>
+    </aside>
     <!-- main end -->
     
     <!-- footer start -->
@@ -306,6 +165,14 @@ $(document).on('click', '.viewpcversion', function(){
 $(document).on('click', '.viewmobileversion', function(){
     Cookies.set('device_view_type', 'mobile', { expires: 0 });
 });
+
+$('.back_top_m').click(function(){
+
+            $('html, body').animate({
+                scrollTop: $('html, body').offset().top
+            }, 500);
+});
+
 </script>
 <?php echo element('popup', $layout); ?>
 <?php echo $this->cbconfig->item('footer_script'); ?>

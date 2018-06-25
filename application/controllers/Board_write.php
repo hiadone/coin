@@ -751,6 +751,7 @@ class Board_write extends CB_Controller
                 'meta_keywords' => $meta_keywords,
                 'meta_author' => $meta_author,
                 'page_name' => $page_name,
+                'page_url' => '/board/'.element('brd_key', $board),
             );
             $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
             $this->data = $view;
@@ -1524,6 +1525,7 @@ class Board_write extends CB_Controller
                     'skin_dir' => $skin_dir,
                     'mobile_skin_dir' => $mobile_skin_dir,
                     'page_title' => $page_title,
+                    'page_url' => '/board/'.element('brd_key', $board),
                 );
                 $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
                 $this->data = $view;
@@ -2102,6 +2104,7 @@ class Board_write extends CB_Controller
                 'meta_keywords' => $meta_keywords,
                 'meta_author' => $meta_author,
                 'page_name' => $page_name,
+                'page_url' => '/board/'.element('brd_key', $board),
             );
             $view['layout'] = $this->managelayout->front($layoutconfig, $this->cbconfig->get_device_view_type());
             $this->data = $view;

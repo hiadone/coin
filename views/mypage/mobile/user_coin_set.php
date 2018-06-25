@@ -1,5 +1,5 @@
 
-<article class="wrap01">
+<div class="foot_padding">
     <section class="info_area main_title my_info">
     <?php
         echo validation_errors('<div class="alert alert-auto-close alert-warning" role="alert">', '</div>');
@@ -71,7 +71,7 @@
 
 <?php echo form_close(); ?>
     </section>
-</article>
+</div>
 
 
 

@@ -1,7 +1,7 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 <?php echo element('headercontent', element('board', $view)); ?>
 
-<article class="wrap01">
+<div class="foot_padding">
     <section class="main_title write_area">
         <h2><a href="<?php echo board_url(element('brd_key', element('board', $view))); ?>" style="color: inherit;"><?php echo html_escape(element('board_name', element('board', $view))); ?></a></h2>
         <!-- 제목 입력 영역 -->

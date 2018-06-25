@@ -196,6 +196,29 @@ class Managelayout extends CI_Controller
             $CI->load->model('Menu_model');
             $data['menu'] = $CI->Menu_model->get_all_menu($device_view_type);
 
+
+            if ($data['menu']) {
+                $menu = $data['menu'];
+                if (element(0, $menu)) {
+                    foreach (element(0, $menu) as $mkey => $mval) {
+                        if (element(element('men_id', $mval), $menu)) {
+                            foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
+
+                                if(str_replace("/","",element('men_link', $sval)) === str_replace("/","",element('page_url', $config))) 
+                                    $data['menu']['active']= array(element('men_id', $mval),element('men_id', $sval));
+                            }
+                            
+
+                        } else {
+                            $active='';
+
+                            if(str_replace("/","",element('men_link', $mval)) === str_replace("/","",element('page_url', $config))) $data['menu']['active']= array(element('men_id', $mval));
+                            
+                        }
+                    }
+                }
+            }
+
             //팝업관리
             $CI->load->library('popuplib');
             $data['popup'] = $CI->popuplib->display_popup();
@@ -353,7 +376,7 @@ class Managelayout extends CI_Controller
                     </tr>
                 </table>
                 <ul class="small_font">
-                    <li><a href="'.document_url('provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a></li>
+                    <li><a href="'.document_url('index/provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a></li>
                     <li><a href="'.board_url("o-1").'" title="게재중단요청">게재중단요청</a> </li>
                     <li><a href="'.board_url("o-2").'" title="제휴문의">제휴문의</a> </li>
                 </ul>
@@ -370,7 +393,7 @@ class Managelayout extends CI_Controller
 
                     <ul>
                         <li>
-                            <a href="'.document_url('provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a>
+                            <a href="'.document_url('index/provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a>
                         </li>
 
                         <li>
