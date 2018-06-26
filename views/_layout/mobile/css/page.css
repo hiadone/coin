@@ -16,7 +16,8 @@ html, body{
 	font-family: "Nanum Gothic", sans-serif;
 }
 .foot_padding{
-	padding-bottom:116px;
+	padding-bottom:110px;
+	margin-bottom:0;
 }
 /*new_click css*/
 	.new_btn{
@@ -262,7 +263,7 @@ html, body{
 
 /*tab01(거래소별 시세) 영역*/
 	.tab01{
-		margin-bottom:0;
+		margin-bottom:5%;
 		border-bottom:0;
 		overflow:hidden;
 	}
@@ -358,8 +359,8 @@ html, body{
 	}
 
 	.tab01_tabs li{
-		width:10%;
-		padding:0;
+		/* width:10%; */
+		padding:0 1.1%;
 	}
 
 	.tab01_tabs li:nth-child(10){
@@ -432,10 +433,10 @@ html, body{
 		display: block;
 		padding: 10px 3% 7px;
 		box-sizing: border-box;
-		border-bottom: 1px solid #ededed;
-	}
-	.tab06_cont ul.tab06_cont_list li:first-child{
 		border-top: 1px solid #ededed;
+	}
+	.tab06_cont ul.tab06_cont_list li:last-child{
+		border-bottom: 0;
 	}
 	.tab06_cont ul.tab06_cont_list li.notice{
 		background-color:#f0f3f7;
@@ -461,9 +462,9 @@ html, body{
 	}
 
 	.tab06_cont {
-		max-width: 740px;
+		max-width: 760px;
 		width:100%;
-		margin: 0 auto 5%;
+		margin: 0 auto;
 		display: inline-block;
 	}
 
@@ -515,6 +516,9 @@ html, body{
 		width:17px;
 		margin-right:5px;
 	}
+	.tab06_cont>form{
+		border-bottom:1px solid #ccc;
+	}
 
 	/* 검색영역 css*/
 		div.search{
@@ -523,7 +527,8 @@ html, body{
 			padding:3%;
 			box-sizing: border-box;
 			background-color: #f0f3f7;
-			border-bottom: 1px solid #ededed;
+			border-top: 1px solid #ededed;
+			text-align:right;
 		}
 
 		div.search select{
@@ -544,7 +549,7 @@ html, body{
 			padding:0;
 		}
 		div.search button:last-child{
-			width:11%;
+			width:12%;
 		}
 	/*tab06 의 글쓰기 , 더보기 버튼 css*/
 		.tab06_cont > button{
@@ -581,7 +586,22 @@ html, body{
 		.tab06_cont div.text-center a:last-child{
 			margin-right:0;
 		}
-		
+		.border_button{
+			padding:10px 3%;
+		}
+		/* .border_button .pull-right{
+			margin: 10px 15px;
+		} */
+		.border_button a.btn{
+			padding:3px 8px;
+			font-size:13px;
+			font-weight:bold;
+			color: #fff;
+			background-color: #1c446d;
+			border-color: #1c446d;
+			background-image:none;
+			text-shadow:none;
+		}
 
 /* tab07(최신뉴스,인기뉴스) 영역*/
 	.tab07_tabs li{
@@ -1421,6 +1441,7 @@ html, body{
 		width: 12%;
 		height: 20px;
 		padding:0;
+		float:right;
 		line-height: 20px;
 		font-weight: bold;
 	}
@@ -1532,7 +1553,7 @@ html, body{
 	}
 
 	.write_cont ol.post-view li span.char_count{
-		float: right;
+		float: left;
 		margin-bottom: 3%;
 	}
 
@@ -1546,6 +1567,7 @@ html, body{
 		width: 150px;
 		float: left;
 		margin-left: 3%;
+		clear: both;
 	}
 
 	.write_cont ul.post-view li{
@@ -2535,9 +2557,9 @@ html, body{
 		font-weight: normal;
 		text-align: center;
 		float: left;
-		width: 20px;
-		height: 20px;
-		line-height: 20px;
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
 		border-right: 1px solid #ededed;
 	}
 

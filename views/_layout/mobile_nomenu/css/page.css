@@ -2493,6 +2493,7 @@ html, body{
 	.point_info .point_accu th:nth-child(1),
     .point_info .point_accu td:nth-child(1){
     	width: 20%;
+		text-align:center;
     }
 
     .point_info table th:nth-child(3),
@@ -2535,9 +2536,9 @@ html, body{
 		font-weight: normal;
 		text-align: center;
 		float: left;
-		width: 20px;
-		height: 20px;
-		line-height: 20px;
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
 		border-right: 1px solid #ededed;
 	}
 

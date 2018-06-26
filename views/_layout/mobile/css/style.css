@@ -274,12 +274,12 @@ fieldset[disabled] .btn-info:active,
 fieldset[disabled] .btn-info.active {background-color: #49b6d5;border-color: #49b6d5;}
 .btn-info .badge {color: #49b6d5;background-color: #fff;}
 
-.btn-success {color: #fff;background-color: #5db75d;border-color: #5db75d;background-image: none;}
+.btn-success {color: #fff;background-color: #1c446d;border-color: #1c446d;background-image: none;}
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,
 .btn-success.active,
-.open .dropdown-toggle.btn-success {color: #fff;background-color: #409e3e;border-color: #409e3e;}
+.open .dropdown-toggle.btn-success {color: #fff;background-color: #1c446d;border-color: #1c446d;}
 .btn-success.disabled,
 .btn-success[disabled],
 fieldset[disabled] .btn-success,

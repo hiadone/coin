@@ -43,15 +43,15 @@
         
         ?>
         <section>
-            <div>월간신작 TOP9</div>
+            <div class="category_toon">월간신작 TOP9</div>
             <div id="webtoon_1"></div>
         </section>
         <section>
-            <div>학원/액션</div>
+            <div class="category_toon">학원/액션</div>
             <div id="webtoon_2"></div>
         </section>
         <section>
-            <div>드라마</div>
+            <div class="category_toon">드라마</div>
             <div id="webtoon_3"></div>
         </section>
     </section>

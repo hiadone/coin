@@ -325,29 +325,31 @@ function view_coin(cur_unit) {
  
  
         <section class="tab01 middle_font">
-            <ul class="tab01_tabs tabs " >
+			<div class="swiper-container">
+				<ul class="tab01_tabs tabs swiper-wrapper" >
 
-                <?php
-                    $i=0;
-                    if (element('select_coin_list', $view)) {
-                        foreach (element('select_coin_list', $view) as $result) {
-                            if(empty($i)) $active="active";
-                            else $active='';
+					<?php
+						$i=0;
+						if (element('select_coin_list', $view)) {
+							foreach (element('select_coin_list', $view) as $result) {
+								if(empty($i)) $active="active";
+								else $active='';
 
-                 ?>
-                        <li class="<?php echo $active ?>" rel="tab01_<?php echo $result?>">
-                            <?php echo $result?>
-                        </li>
+					 ?>
+							<li class="swiper-slide <?php echo $active ?>" rel="tab01_<?php echo $result?>">
+								<?php echo $result?>
+							</li>
 
-                <?php
-                    $i++;
-                    }
-                }
-                ?>
-                <li class='noevent pull-right mr10'>
-                <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa" style="font-size:1.3em;"></i></a>
-                </li>
-            </ul>
+					<?php
+						$i++;
+						}
+					}
+					?>
+					<li class='noevent pull-right swiper-slide'>
+					<a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa" style="font-size:1.3em;"></i></a>
+					</li>
+				</ul>
+			</div>
             <table>
 
                 <tr>

@@ -16,7 +16,7 @@ html{
     overflow-y: auto;
 }*/
 
-body,th,td,input,select,textarea,button {line-height:1.5} 
+/* body,th,td,input,select,textarea,button {line-height:1.5}  */
 
 h2{
 	font-size: 15px;
@@ -86,6 +86,7 @@ textarea{
 	box-sizing: border-box;
 	outline: none;
 	border:1px solid #ededed;
+	line-height:1.5;
 }
 
 .ad img{
@@ -710,7 +711,7 @@ textarea{
 	}
 	.ham_out .logout_notice{
 		width: 280px;
-        margin-bottom:20px;
+        margin:0 auto 20px;
         border:1px solid #ededed;
         padding:20px;
         box-sizing: border-box;

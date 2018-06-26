@@ -467,9 +467,10 @@
 	 		text-overflow: ellipsis;
 	 		white-space: nowrap;
 	 		overflow: hidden;
-	 		margin-bottom:9px;
-	 		padding-top: 3px;
+	 		margin-bottom: 7px;
+	 		/* padding-top: 3px; */
 	 		line-height: 18px;
+			font-weight: bold;
 	 	}
 
 	 	#news figcaption p{
@@ -1671,6 +1672,9 @@
 			display: inline-block;
 			float: left;
 		}
+		.cont_write p.small_font{
+			line-height: 1.5;
+		}
 
 		.cont_write #post_title-error{
 			margin-left: 15px;
@@ -1795,7 +1799,7 @@
 	.store_list li img{
 		width: 100%;
 		border:1px solid #ededed;
-		margin-bottom: 20px;
+		margin-bottom: 10px;
 	}
 
 	.store_list li h3{
