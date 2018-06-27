@@ -124,8 +124,8 @@
                             <span class="contents-title"><?php echo html_escape(element('title', $result)); ?></span>
                         </h4>
 
-                        <div  class="contents-view"><?php echo strip_tags(element('post_content', $result)); ?></div>
-
+                        <?php if(element('brd_key', element('board', element('list', $view))) !== 'free_gallery') {?><div  class="contents-view"><?php echo strip_tags(element('post_content', $result)); ?></div>
+                        <?php } ?>
                         <table class="tab10_listinfo">
                             <tr>
                                 <td><?php echo element('display_datetime', $result); ?></td>
