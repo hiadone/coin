@@ -54,7 +54,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
 
             
             
-        <section id="tab06_'.element('brd_key',element('board',$view)).'" class="tab06_cont">
+        <section id="tab06_'.element('brd_key',element('board',$view)).'" class="tab06_cont wrap_con">
             <h3 class="hidden"><?php echo html_escape(element('board_name', element('board', element('list', $view))));?></h3>
 
             <div class='search' <?php echo $hide_style ?>>
@@ -144,25 +144,26 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
         
         
         <?php echo form_close(); ?>
+       
+        </section>
         <div class="border_button">
-            <div class="pull-left mr10">
-                <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">목록</a>
+            <div class="pull-left mg10">
+                <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-info btn-sm">목 록</a>
                 <?php if (element('search_list_url', element('list', $view))) { ?>
-                    <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a>
+                    <!-- <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a> -->
                 <?php } ?>
             </div>
             <?php if (element('is_admin', $view)) { ?>
-                <div class="pull-left">
-                        <div  onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');" class="btn btn-default btn-sm">선택삭제하기</div>
+                <div class="pull-left mg10">
+                        <div  onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');" class="btn btn-danger btn-sm">선택삭제하기</div>
                 </div>
             <?php } ?>
             <?php if (element('write_url', element('list', $view))) { ?>
-                <div class="pull-right">
+                <div class="pull-right mg10">
                     <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글쓰기</a>
                 </div>
             <?php } ?>
         </div>
-        </section>
     </section>
 </article>
 <!-- 

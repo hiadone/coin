@@ -88,7 +88,9 @@ textarea.post_content  {width:90%;height:350px;margin:0 20px;}
 .confirm_password li>span {float: left;width: 25%;text-align: right;padding-right: 20px;margin-top: 5px;color: #000;font-weight: bold;}
 
 .table-image{overflow: hidden;clear: both;border-top: 1px solid #ddd;}
+
 .table-image ul{/* margin-bottom: 10px; */overflow:hidden;}
+
 .table-image .gallery-box {float:left;}
 
 .point-info{position:relative;}

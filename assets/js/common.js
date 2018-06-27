@@ -822,24 +822,24 @@ if (typeof(COMMON_JS) === 'undefined') {
         });
     });
 
-	$(document).on('click', '.url-qrcode', function () {
-		var toggled = $(this).attr('data-toggled');
-		if (toggled == 'on'){
-			$("#qrcode-content").hide('fast');
-			$('.url-qrcode').attr('data-toggled','off');
-		} else {
-			$("body").append("<div id='qrcode-content'></div>");
-			var url = $(this).attr("data-qrcode-url");
-			var x = $(this).offset().top;
-			var y = $(this).offset().left;
+    $(document).on('click', '.url-qrcode', function () {
+        var toggled = $(this).attr('data-toggled');
+        if (toggled == 'on'){
+            $("#qrcode-content").hide('fast');
+            $('.url-qrcode').attr('data-toggled','off');
+        } else {
+            $("body").append("<div id='qrcode-content'></div>");
+            var url = $(this).attr("data-qrcode-url");
+            var x = $(this).offset().top;
+            var y = $(this).offset().left;
 
-			$("#qrcode-content").hide();
-			$("#qrcode-content").css("top", x + 20).css("left", y);
-			$("#qrcode-content").html("<div class='qrcode_code'><img src='https://chart.googleapis.com/chart?cht=qr&chld=H|2&chs=100&chl="+url+"'></div><div class='qrcode_info'>모바일로 QR코드를 스캔하면 해당 링크에 바로 접속할 수 있습니다.</div>").show("fast");
-			$('.url-qrcode').attr('data-toggled','off');
-			$(this).attr('data-toggled','on');
-		}
-	});
+            $("#qrcode-content").hide();
+            $("#qrcode-content").css("top", x + 20).css("left", y);
+            $("#qrcode-content").html("<div class='qrcode_code'><img src='https://chart.googleapis.com/chart?cht=qr&chld=H|2&chs=100&chl="+url+"'></div><div class='qrcode_info'>모바일로 QR코드를 스캔하면 해당 링크에 바로 접속할 수 있습니다.</div>").show("fast");
+            $('.url-qrcode').attr('data-toggled','off');
+            $(this).attr('data-toggled','on');
+        }
+    });
 
     /**
      * 우편번호 창
@@ -1044,31 +1044,52 @@ if (typeof(COMMON_JS) === 'undefined') {
       
     }
 
-    function view_pagination(f,id,page) {
-        // if (opt) {
-        //     $('html, body').animate({
-        //         scrollTop: $('#' + id).offset().top - 100
-        //     }, 0);
-        // }
 
-        href = cb_url + '/group/view_board/' + f.brd_key.value+'/'+page;
+    $(document).on('click', '#view_pagination_btn', function() {
+        var f = document.frm;
+        
+        href = cb_url + '/group/view_board/' + f.brd_key.value+'/'+$('#view_pagination_btn').attr('data-ci-pagination-page');
 
         
 
         $.ajax({
             async: false,
             url : href,
-            type : 'post',
-            data :  'sfield='+f.sfield[f.sfield.selectedIndex].value+'&skeyword='+f.skeyword.value+ '&csrf_test_name=' + cb_csrf_hash,
+            type : 'get',
+            data :  'sfield='+f.sfield[f.sfield.selectedIndex].value+'&skeyword='+f.skeyword.value,
             success : function(data) {
-                $('#'+id).html(data);
-
-                $('#'+id).parent().removeClass('btn_more');
-
-                $('#'+id).parent().next().show();
+                $('#pagination'+$('#view_pagination_btn').attr('data-ci-pagination-page')).parent().show();
+                $('#pagination'+$('#view_pagination_btn').attr('data-ci-pagination-page')).html(data);
+                $('#view_pagination_btn').attr('href','#'+$('#view_pagination_btn').attr('data-ci-pagination-page'));
+                $('#view_pagination_btn').attr('data-ci-pagination-page',(parseInt($('#view_pagination_btn').attr('data-ci-pagination-page'))+1));
             }
         });
         
-    }
+    });
+
+
+    $(document).on('click', '#view_pagination_btn_sub', function() {
+        var f = document.frm;
+        
+        href = cb_url + '/group/view_board/' + f.brd_key.value+'/'+$('#view_pagination_btn_sub').attr('data-ci-pagination-page');
+
+        
+
+        $.ajax({
+            async: false,
+            url : href,
+            type : 'get',
+            data :  'sfield='+f.sfield[f.sfield.selectedIndex].value+'&skeyword='+f.skeyword.value,
+            success : function(data) {
+                $('#pagination'+$('#view_pagination_btn_sub').attr('data-ci-pagination-page')).parent().show();
+                $('#pagination'+$('#view_pagination_btn_sub').attr('data-ci-pagination-page')).html(data);
+                
+                $('#view_pagination_btn_sub').attr('data-ci-pagination-page',(parseInt($('#view_pagination_btn_sub').attr('data-ci-pagination-page'))+1));
+            }
+        });
+        
+    });
+
+   
 
 }

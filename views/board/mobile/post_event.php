@@ -79,10 +79,10 @@
     <div class="border_button middle_font" style='padding:0 3%; margin-bottom: 5%;'>
         <div class="btn-group pull-left" role="group" aria-label="...">
             <?php if (element('modify_url', $view)) { ?>
-                <a style='margin-right: 5px;' href="<?php echo element('modify_url', $view); ?>" class="btn-sm">수 정</a>
+                <a style='margin-right: 5px;' href="<?php echo element('modify_url', $view); ?>" class="btn btn-success btn-sm">수 정</a>
             <?php } ?>
             <?php    if (element('delete_url', $view)) { ?>
-                <a  class=" btn-sm btn-one-delete" data-one-delete-url="<?php echo element('delete_url', $view); ?>">삭 제</a>
+                <a   data-one-delete-url="<?php echo element('delete_url', $view); ?>" class="btn btn-danger btn-one-delete">삭 제</a>
             <?php } ?>
                 <!-- <a href="<?php echo element('list_url', $view); ?>" class="btn btn-default btn-sm">목록</a> -->
             
@@ -118,12 +118,12 @@
     <div id="viewcomment"></div>
     <div class='write_cont' style='margin-bottom: 5%;'>
     <ul class="middle_font post-view">
-        <li><a href="<?php echo element('list_url', $view); ?>" class="">목 록</a></li>
+        <li><a href="<?php echo element('list_url', $view); ?>" class="btn btn-info btn-sm">목 록</a></li>
         <?php if (element('prev_post', $view)) { ?>
-            <li><a href="<?php echo element('url', element('prev_post', $view)); ?>" >◀ 이전글</a></li>
+            <li><a class="btn btn-default btn-sm" href="<?php echo element('url', element('prev_post', $view)); ?>" >◀ 이전글</a></li>
         <?php } ?>
         <?php if (element('next_post', $view)) { ?>
-            <li><a href="<?php echo element('url', element('next_post', $view)); ?>" >다음글 ▶</a></li>
+            <li><a class="btn btn-default btn-sm" href="<?php echo element('url', element('next_post', $view)); ?>" >다음글 ▶</a></li>
         <?php } ?>
         
     </ul>

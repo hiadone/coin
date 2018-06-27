@@ -42,18 +42,22 @@
         if(element('brd_key',element('board',$view))==="attendance" || element('brd_key',element('board',$view))==="express") $hide_style="style='display:none';";
         
         ?>
-        <section>
-            <div class="category_toon">월간신작 TOP9</div>
+
+        <section class="" style="margin-bottom: 0px;">
+            <div class="category_toon" style="padding-top:0px;">월간신작 TOP9</div>
             <div id="webtoon_1"></div>
         </section>
-        <section>
+        <div style="background-color:#ebebeb;height:10px;"></div>
+        <section style="margin-bottom: 0px;">
             <div class="category_toon">학원/액션</div>
             <div id="webtoon_2"></div>
         </section>
-        <section>
+        <div style="background-color:#ebebeb;height:10px;"></div>
+        <section style="margin-bottom: 0px;">
             <div class="category_toon">드라마</div>
             <div id="webtoon_3"></div>
         </section>
+        <div style="background-color:#ebebeb;height:10px;"></div>
     </section>
 </div>
 

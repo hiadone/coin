@@ -461,12 +461,7 @@ html, body{
 		display: block;
 	}
 
-	.tab06_cont {
-		max-width: 760px;
-		width:100%;
-		margin: 0 auto;
-		display: inline-block;
-	}
+
 
 	.tab06_cont ul.tab06_cont_list li h3{
 		width: 90%;
@@ -586,21 +581,21 @@ html, body{
 		.tab06_cont div.text-center a:last-child{
 			margin-right:0;
 		}
-		.border_button{
+		/*.border_button{
 			padding:10px 3%;
-		}
+		}*/
 		/* .border_button .pull-right{
 			margin: 10px 15px;
 		} */
 		.border_button a.btn{
-			padding:3px 8px;
+		/*	padding:3px 8px;
 			font-size:13px;
 			font-weight:bold;
 			color: #fff;
 			background-color: #1c446d;
 			border-color: #1c446d;
 			background-image:none;
-			text-shadow:none;
+			text-shadow:none;*/
 		}
 
 /* tab07(최신뉴스,인기뉴스) 영역*/
@@ -1447,14 +1442,14 @@ html, body{
 	}
 
 	.write_cont .btn-group{
-		margin-top: 8px;
+		/*margin-top: 8px;*/
 	}
 
 	.write_cont .btn-group a{
 		margin-right: 5px;
 	}
 
-	.write_cont .pull-right a{
+	/*.write_cont .pull-right a{
 		background-color: #1c446d;
 		display: inline-block;
 		text-align: center;
@@ -1464,7 +1459,7 @@ html, body{
 		font-weight: bold;
 		padding:5px;
 		box-sizing: border-box;
-	}
+	}*/
 
 	/*코멘트 전체선택,삭제 영역*/
 	.write_cont .chk_comment_all_wrapper{

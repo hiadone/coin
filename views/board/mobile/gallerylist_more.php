@@ -66,11 +66,11 @@
 
 
 <?php
-if (element('highlight_keyword', element('list', $view))) {
+if (element('highlight_keyword',  $view)) {
     $this->managelayout->add_js(base_url('assets/js/jquery.highlight.js')); ?>
 <script type="text/javascript">
 //<![CDATA[
-$('#fboardlist').highlight([<?php echo element('highlight_keyword', element('list', $view));?>]);
+$('#fboardlist').highlight([<?php echo element('highlight_keyword', $view);?>]);
 //]]>
 </script>
 <?php } ?>

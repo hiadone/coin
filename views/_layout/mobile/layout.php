@@ -72,6 +72,11 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
 <script>
     $(document).ready(function(){
+        $(window).scroll(function() { 
+        if ($(this).scrollTop() > 500) { //250 넘으면 버튼이 보여짐니다. 
+            $('.back_top_m').fadeIn(); } else { $('.back_top_m').fadeOut(); } 
+        });
+
         
     });
 </script> 
@@ -149,7 +154,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
         </div>
     </div>
 
-    <aside class="back_top_m">
+    <aside class="back_top_m" style="display:none;">
     <div><img src="<?php echo element('layout_skin_url', $layout); ?>/images/backtop_03.png" alt="맨위로"></div>
     </aside>
     <!-- main end -->
