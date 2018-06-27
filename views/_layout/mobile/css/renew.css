@@ -132,14 +132,7 @@
 	display:block;
 	clear:right;
 }
-/* <<<<<<< Updated upstream
 div.btn_more{
-======= */
-.tab10 .page_more{
-	border-bottom:1px solid #ccc;
-}
-ul.page_more li.btn_more{
-/* >>>>>>> Stashed changes */
 	width:100%;
 	height:30px;
 	margin:0;
@@ -149,14 +142,16 @@ ul.page_more li.btn_more{
 	font-weight:bold;
 	background-color: #f0f3f7;
 	border-top:1px solid #ccc;
-	/* border-bottom:1px solid #ccc; */
+	border-bottom:1px solid #ccc; 
 }
 
-.btn_more a{
+div.btn_more a{
+
 	display:inline-block;
 	height:100%;
 	width:60%;
 	color:#1c446d;
+
 }
 /* backtop */
 .back_top_m{
