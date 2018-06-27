@@ -141,8 +141,8 @@ div.btn_more{
 	font-size:14px;
 	font-weight:bold;
 	background-color: #f0f3f7;
-	border-top:1px solid #ccc;
-	border-bottom:1px solid #ccc; 
+	/* border-top:1px solid #ebebeb; */
+	border-bottom:1px solid #ebebeb;
 }
 
 div.btn_more a{
@@ -152,6 +152,10 @@ div.btn_more a{
 	width:60%;
 	color:#1c446d;
 
+}
+.tab10 .btn_more{
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
 }
 /* backtop */
 .back_top_m{

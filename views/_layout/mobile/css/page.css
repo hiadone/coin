@@ -454,11 +454,11 @@ html, body{
 		display: block;
 		padding: 10px 3% 7px;
 		box-sizing: border-box;
-		border-top: 1px solid #ededed;
+		border-bottom: 1px solid #ededed;
 	}
-	.tab06_cont ul.tab06_cont_list li:last-child{
+	/* .tab06_cont ul.tab06_cont_list li:last-child{
 		border-bottom: 0;
-	}
+	} */
 	.tab06_cont ul.tab06_cont_list li.notice{
 		background-color:#f0f3f7;
 	}
@@ -533,6 +533,7 @@ html, body{
 		margin-right:5px;
 	}
 	
+	
 
 	/* 검색영역 css*/
 		div.search{
@@ -542,6 +543,7 @@ html, body{
 			box-sizing: border-box;
 			background-color: #f0f3f7;
 			border-top: 1px solid #ededed;
+			border-bottom: 1px solid #ededed;
 			text-align:right;
 		}
 
