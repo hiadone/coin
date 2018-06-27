@@ -190,7 +190,7 @@ html, body{
 	.tabs{
 		float: left;
 		width: 100%;
-		background-color:#f0f3f7;
+/* 		background-color:#f0f3f7; */
 		border-top: 1px solid #ededed;
 	}
 
@@ -360,13 +360,34 @@ html, body{
 
 	.tab01_tabs li{
 		/* width:10%; */
-		padding:0 1.1%;
+		/* padding:0 1.1%; */
 	}
 
-	.tab01_tabs li:nth-child(10){
+	/* .tab01_tabs li:nth-child(10){
 		width:10%;
+	} */
+	.tab01 .swiper-container{
+		width:90%;
+		float:left;
+		background-color:#f0f3f7;
 	}
-
+	.tab01 .noevent{
+		float:right;
+		width:10%;
+		height:25px;
+		text-align:center;
+		box-sizing:border-box;
+		border-top:1px solid #ededed;
+		border-bottom:1px solid #ededed;
+		background-color:#f0f3f7;
+	}
+	.tab01 .noevent a{
+		display:inline-block;
+		width:100%;
+		height:100%;
+		border-left:1px solid #ededed;
+		line-height:28px;
+	}
 /* tab02(자유게시판,채굴정보,코인뉴스 수익인증 / main화면) 영역*/
 	.tab02_tabs li{
 		width:25%;
@@ -418,7 +439,7 @@ html, body{
 /* tab06(커뮤니티(자유게시판,채굴정보,코인뉴스)) , (자유게시판,채굴정보,코인뉴스,수인인증의 본 페이이지)(서비스(이벤트,출석체크,가입인사)) , (이벤트,출석체크,가입인사의 본 페이이지) 영역*/				
 /*tab06의 리스트 영역 css*/
 	.tab06_cont {
-		max-width: 740px;
+		max-width: 760px;
 		width:100%;
 		margin: 0 auto 5%;
 		display: inline-block;

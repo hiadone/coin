@@ -132,7 +132,14 @@
 	display:block;
 	clear:right;
 }
+/* <<<<<<< Updated upstream
 div.btn_more{
+======= */
+.tab10 .page_more{
+	border-bottom:1px solid #ccc;
+}
+ul.page_more li.btn_more{
+/* >>>>>>> Stashed changes */
 	width:100%;
 	height:30px;
 	margin:0;
@@ -145,13 +152,11 @@ div.btn_more{
 	/* border-bottom:1px solid #ccc; */
 }
 
-div.btn_more a{
-
+.btn_more a{
 	display:inline-block;
 	height:100%;
 	width:60%;
 	color:#1c446d;
-
 }
 /* backtop */
 .back_top_m{
@@ -266,6 +271,29 @@ section.wrap_con{
 	width:54px;
 	text-align:center;
 }
+/* swipe */
+.swiper-container {
+	overflow:hidden;
+	width: 100%;
+	height: 25px;
+	background-color:#f0f3f7;
+    }
+	
+    .swiper-slide {
+      /* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+    }
 
 /* media tablet */
 @media screen and (min-width:581px){
@@ -282,7 +310,7 @@ section.wrap_con{
 	/* 코인가격 거래소 리스트*/
 	.tab01_tabs li{
 		/* width: 10%; */
-		padding: 0 2.3%;
+		/* padding: 0 2.3%; */
 	}
 	.tab01_tabs{
 		font-size: 12px;
@@ -375,6 +403,16 @@ section.wrap_con{
 	div.search input{
 		width:56%;
 	}
+	/* swiper */
+	.swiper-container {
+	height: 30px;
+    }
+	.tab01 .noevent{
+		height:30px;
+	}
+	.tab01 .noevent a{
+		line-height:34px;
+	}
 	
 }
 @media screen and (max-width:580px) and (min-width:431px){
@@ -388,7 +426,7 @@ section.wrap_con{
 	/* 코인가격 거래소 리스트*/
 	.tab01_tabs li{
 		/* width: 10%; */
-		padding: 0 1.6%;
+		/* padding: 0 1.6%; */
 	}
 	.tab01_tabs{
 		font-size: 12px;
@@ -450,5 +488,14 @@ section.wrap_con{
 	div.search input{
 		width:55%;
 	}
-
+	/* swiper */
+	.tab01 .swiper-container {
+	height: 30px;
+    }
+	.tab01 .noevent{
+		height:30px;
+	}
+	.tab01 .noevent a{
+		line-height:34px;
+	}
 }

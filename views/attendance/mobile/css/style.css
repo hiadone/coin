@@ -90,6 +90,7 @@
 		color: #000;
 		margin-top: 3%;
 		line-height: 33px;
+		box-shadow:none;
 	}
 	.wrapmemo .alert{
 		padding:3%;

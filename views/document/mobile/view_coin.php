@@ -37,7 +37,7 @@
            
 var swiper = new Swiper('.swiper-container', {
       slidesPerView: 6.5,
-      spaceBetween: 3,
+      spaceBetween: 0,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
@@ -107,10 +107,10 @@ function view_coin(cur_unit) {
                         }
                     }
                     ?>
-                    <li class='swiper-slide noevent pull-right mr10'>
-                    <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa" style="font-size:1.3em;"></i></a>
-                    </li>
                 </ul>
+            </div>			
+            <div class='noevent pull-right'>
+                <a href="<?php echo base_url('mypage/user_coin_set') ?>" ><i class="fa fa-cog big-fa" style="font-size:1.3em;"></i></a>
             </div>
             <table>
 
