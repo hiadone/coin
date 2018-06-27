@@ -1061,8 +1061,8 @@ class Board extends CI_Controller
         $limit = element('limit', $config);
         $length = element('length', $config);
         $is_gallery = element('is_gallery', $config);
-        $image_width = element('image_width', $config);
-        $image_height = element('image_height', $config);
+        $gallery_image_width = element('image_width', $config);
+        $gallery_image_height = element('image_height', $config);
         $period_second = element('period_second', $config);
         $cache_minute = element('cache_minute', $config);
         $is_admin = element('is_admin', $config);
@@ -1078,7 +1078,7 @@ class Board extends CI_Controller
             $cache_brd_key = is_array($brd_key) ? implode('-', $brd_key) : $brd_key;
             $cache_exclude_brd_id = is_array($exclude_brd_id) ? implode('-', $exclude_brd_id) : $exclude_brd_id;
             $cache_exclude_brd_key = is_array($exclude_brd_key) ? implode('-', $exclude_brd_key) : $exclude_brd_key;
-            $cachename = 'latest/latest-s-' . $skin . '-i-' . $cache_brd_id . '-k-' . $cache_brd_key . '-l-' . $cache_exclude_brd_id . '-k-' . $cache_exclude_brd_key . '-l-' . $limit . '-t-' . $length . '-g-' . $is_gallery . '-w-' . $image_width . '-h-' . $image_height . '-p-' . $period_second;
+            $cachename = 'latest/latest-s-' . $skin . '-i-' . $cache_brd_id . '-k-' . $cache_brd_key . '-l-' . $cache_exclude_brd_id . '-k-' . $cache_exclude_brd_key . '-l-' . $limit . '-t-' . $length . '-g-' . $is_gallery . '-w-' . $gallery_image_width . '-h-' . $gallery_image_height . '-p-' . $period_second;
             $html = $this->CI->cache->get($cachename);
             if ($html) {
                 return $html;
@@ -1175,13 +1175,6 @@ class Board extends CI_Controller
 
             $board['gallery_cols'] = $gallery_cols
                 =  element('mobile_gallery_cols', $board);
-                
-
-            $board['gallery_image_width'] = $gallery_image_width
-                = element('mobile_gallery_image_width', $board) ;
-
-            $board['gallery_image_height'] = $gallery_image_height
-                = element('mobile_gallery_image_height', $board);
 
             $board['gallery_percent'] = floor( 102 / $board['gallery_cols']) - 2;
 
@@ -1378,7 +1371,7 @@ class Board extends CI_Controller
                             $view['view']['latest'][$key]['thumb_url'] = thumb_url('post', element('pfi_filename', $file), $gallery_image_width, $gallery_image_height);
                             $view['view']['latest'][$key]['origin_image_url'] = thumb_url('post', element('pfi_filename', $file));
 
-                            
+
 
                         } elseif (element('post_link_count', $value)) {
                             $this->CI->load->model('Post_link_model');
@@ -1397,11 +1390,20 @@ class Board extends CI_Controller
                                 }
                                 
                             }
-                                
+                            
+                            if(empty($view['view']['latest'][$key]['thumb_url'])){
+                                $thumb_url = get_post_image_url(element('post_content', $value), $gallery_image_width, $gallery_image_height);
+
+                                $view['view']['latest'][$key]['thumb_url'] = $thumb_url
+                                    ? $thumb_url
+                                    : thumb_url('', '', $gallery_image_width, $gallery_image_height);
+
+                                $view['view']['latest'][$key]['origin_image_url'] = $thumb_url;
+                            }
                         
                             
                         } else {
-                            $thumb_url = get_post_image_url(element('post_content', $value), $image_width, $image_height);
+                            $thumb_url = get_post_image_url(element('post_content', $value), $gallery_image_width, $gallery_image_height);
 
                             $view['view']['latest'][$key]['thumb_url'] = $thumb_url
                                 ? $thumb_url
@@ -1412,6 +1414,7 @@ class Board extends CI_Controller
                             
                         }
                     }
+
                 }
             }
 

@@ -1462,21 +1462,31 @@ class Board_post extends CB_Controller
 
                             
                         } elseif (element('post_link_count', $val)) {
-                                $this->load->model('Post_link_model');
-                                $linkwhere = array(
-                                    'post_id' => element('post_id', $val),
-                                );
-                                $link = $this->Post_link_model
-                                    ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
-                                if ($link && is_array($link)) {
-                                    if (element('use_autoplay', $board)) {
-                                        
-                                        $result['list'][$key]['thumb_url']= $this->videoplayer->get_video(prep_url(element('pln_url',element(0,$link))),array('image'=>1) );
-                                        // $result['list'][$key]['thumb_url'] = $link_player;
-
-                                    }
+                            $this->load->model('Post_link_model');
+                            $linkwhere = array(
+                                'post_id' => element('post_id', $val),
+                            );
+                            $link = $this->Post_link_model
+                                ->get('', '', $linkwhere, 1, '', 'pln_id', 'ASC');
+                            if ($link && is_array($link)) {
+                                if (element('use_autoplay', $board)) {
                                     
+                                    $result['list'][$key]['thumb_url']= $this->videoplayer->get_video(prep_url(element('pln_url',element(0,$link))),array('image'=>1) );
+                                    // $result['list'][$key]['thumb_url'] = $link_player;
+
                                 }
+                                
+                            }
+
+                            if(empty($view['view']['latest'][$key]['thumb_url'])){
+                                $thumb_url = get_post_image_url(element('post_content', $val), $gallery_image_width, $gallery_image_height);
+
+                                $view['view']['latest'][$key]['thumb_url'] = $thumb_url
+                                    ? $thumb_url
+                                    : thumb_url('', '', $gallery_image_width, $gallery_image_height);
+
+                                $view['view']['latest'][$key]['origin_image_url'] = $thumb_url;
+                            }
                                 
                         } else {
                             $thumb_url = get_post_image_url(element('post_content', $val), $gallery_image_width, $gallery_image_height);

@@ -2598,3 +2598,7 @@ html, body{
 #post-content iframe{
 	width:100% !important;
 }
+
+#post-content > div{
+	width:100% !important;
+}
