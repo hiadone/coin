@@ -52,8 +52,8 @@ class Main extends CB_Controller
         $eventname = 'event_main_index';
         $this->load->event($eventname);
 
-        // if($this->cbconfig->get_device_view_type() === 'mobile')
-        //     redirect(board_url('live_news'));
+        if($this->cbconfig->get_device_view_type() === 'mobile')
+            redirect(board_url('live_news'));
         
         $view = array();
         $view['view'] = array();
