@@ -42,9 +42,9 @@
                 <input type="text" name="memo" value="<?php echo html_escape(element(0, element('default_memo', $view))); ?>" id="att_memo" 
                 /*class="input"*/ onClick="this.value='';" />
 
-                <button type="button" name="change_memo" /*class="btn btn-default"*/ id="change_memo"><span class="fa fa-refresh"></span></button>
+                <button type="button" name="change_memo" class="" id="change_memo"><span class="fa fa-refresh"></span></button>
 
-                <button type="button" name="submit" class="/*btn btn-success*/ middle_font" id="add_attendance">출 첵 하 기</button>
+                <button type="button" name="submit" class=" middle_font" id="add_attendance">출 첵 하 기</button>
 
                 <button type="button" name="view_policy" class="view_policy view_point" /*pull-right btn-xs  btn btn-default*/>포 인 트 정 책 보 기</button>
                 <?php echo form_close(); ?>
@@ -97,11 +97,11 @@
             </div>
 
             <div class="selected-date big_font"><?php echo element('date_format', $view); ?></div>
-                <table class="middle_font">
+                <table class="middle_font ml10">
                     <tr>
-                        <td><a href="<?php echo site_url('attendance?date=' . element('lastmonth', $view)); ?>">◀ 지난달</a></td>
-                        <td><a href="<?php echo site_url('attendance'); ?>">오늘보기</a></td>
-                        <td><a href="<?php echo element('nextmonth', $view) ? site_url('attendance?date=' . element('nextmonth', $view)) : 'javascript:;'; ?>">다음달 ▶</a></td>
+                        <td><a href="<?php echo site_url('attendance?date=' . element('lastmonth', $view)); ?>" class="btn btn-primary btn-xs">◀ 지난달</a></td>
+                        <td><a href="<?php echo site_url('attendance'); ?>"  class="btn btn-success btn-xs">오늘</a></td>
+                        <td><a href="<?php echo element('nextmonth', $view) ? site_url('attendance?date=' . element('nextmonth', $view)) : 'javascript:;'; ?>"  class="btn btn-primary btn-xs">다음달 ▶</a></td>
                     </tr>
                 </table>
                 <ul class="date-navigation">

@@ -6,7 +6,7 @@
 
 
 <script>
-    
+   
     // rolling_news 영역 스크립트
         var postact_flag=false;
         var global_cur_unit='krw';
@@ -16,7 +16,7 @@
     // 전체 스크립트 
     $(document).ready(function(){
          
-
+        
         // tab01 영역 스크립트
             $(".tab01_cont").hide();
             $(".tab01_cont:first").show();
@@ -35,14 +35,14 @@
             $(".tab02_cont:first").show();
 
            
-var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 6.5,
-      spaceBetween: 0,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
+        var swiper = new Swiper('.swiper-container', {
+              slidesPerView: 6.5,
+              spaceBetween: 3,
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+              },
+            });
       
     });
 
@@ -54,6 +54,9 @@ function view_coin(cur_unit) {
         $("#" + coinActiveTab).fadeIn();
     }); 
 }
+
+
+
 </script> 
  
 <div class="foot_padding">
@@ -143,4 +146,5 @@ function view_coin(cur_unit) {
     </section>
     <!-- 접기 버튼 -->
 </div>
+
 

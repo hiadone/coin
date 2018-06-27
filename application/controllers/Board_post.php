@@ -810,7 +810,7 @@ class Board_post extends CB_Controller
         $group = $this->Board_group_model->get_one(element('bgr_id', $board));
             
         if ($skeyword) {
-            $view['view']['list_url'] = board_url(element('brd_key', $board));
+            $view['view']['list_url'] = board_url(element('brd_key', $board) . '?' . $param->output());
             $view['view']['group_list_url'] = group_url(element('bgr_key', $group)).'/'.element('brd_key', $board);
             $view['view']['search_list_url'] = group_url(element('bgr_key', $group).'/'.element('brd_key', $board) . '?' . $param->output());
         } else {
@@ -1179,9 +1179,10 @@ class Board_post extends CB_Controller
             $per_page = element('list_count', $board)
                 ? (int) element('list_count', $board) : 20;
         }
-        if(!empty($post_id) && $from_view){
-            $per_page=10;
-        }
+        // if(!empty($post_id) && $from_view){
+        //     $per_page=10;
+        // }
+
         $offset = ($page - 1) * $per_page;
 
         $this->Post_model->allow_search_field = array('post_id', 'post_title', 'post_content', 'post_both', 'post_category', 'post_userid', 'post_nickname'); // 검색이 가능한 필드
@@ -1704,8 +1705,13 @@ class Board_post extends CB_Controller
         $config['total_rows'] = $result['total_rows'];
         $config['per_page'] = $per_page;
         if ($this->cbconfig->get_device_view_type() === 'mobile') {
+
             $config['num_links'] = element('mobile_page_count', $board)
                 ? element('mobile_page_count', $board) : 3;
+
+            if(!empty($post_id) && $from_view){
+                $config['page_sub']=true;
+            }
         } else {
             $config['num_links'] = element('page_count', $board)
                 ? element('page_count', $board) : 5;

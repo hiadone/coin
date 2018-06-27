@@ -379,6 +379,20 @@ border-color: #ccc;}
 .btn-default:active,
 .btn-default.active {background-color: #e0e0e0;border-color: #dbdbdb;}
 
+.btn-sm,
+.btn-group-sm > .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.btn-xs,
+.btn-group-xs > .btn {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
 .input {border: 1px solid #e5e6e7;height: 20px;outline: 0 none;padding: 3px 12px;background-color: #FFFFFF;background-image: none;border-radius: 5px;}
 textarea.input{height:100px;}
 textarea.dhtmleditor {border: 1px solid #e5e6e7;outline: 0 none;padding: 2%;background-color: #FFFFFF;background-image: none;border-radius: 5px;width:96%;height:350px;}

@@ -1048,7 +1048,7 @@ class Board extends CI_Controller
         $view = array();
         $view['view'] = array();    
         $param =& $this->CI->querystring;
-        // echo $param->output()."aaa";
+        
         $this->CI->load->model( array('Board_category_model', 'Post_file_model'));
 
         $skin = element('skin', $config);
@@ -1191,6 +1191,11 @@ class Board extends CI_Controller
             $this->CI->allow_search_field = array('post_id','post_title', 'post_content', 'post_both', 'post_nickname'); // 검색이 가능한 필드
             $this->CI->search_field_equal = array('post_id'); // 검색중 like 가 아닌 = 검색을 하는 필드
 
+            
+
+            
+
+
             $where = array();
             $where['post_del'] = 0;
             $where['post_secret'] = 0;
@@ -1198,16 +1203,29 @@ class Board extends CI_Controller
             //     $this->CI->db->where_in('post_notice', array($post_notice,5));
             //     $post_notice_param='?post_notice='.$post_notice;
             // }
-            $sfield =  $this->CI->input->post('sfield', null, '');
+            $sfield =  $this->CI->input->get('sfield', null, '');
             if ($sfield === 'post_both') {
                 $sfield = array('post_title', 'post_content');
             }
-            $skeyword = $this->CI->input->post('skeyword', null, '');
+            $skeyword = $this->CI->input->get('skeyword', null, '');
             
             if (empty($sfield)) {
                 $sfield = array('post_title', 'post_content');
             }
 
+            $highlight_keyword = '';
+            if ($skeyword) {
+                $key_explode = explode(' ', $skeyword);
+                if ($key_explode) {
+                    foreach ($key_explode as $seval) {
+                        if ($highlight_keyword) {
+                            $highlight_keyword .= ',';
+                        }
+                        $highlight_keyword .= '\'' . html_escape($seval) . '\'';
+                    }
+                }
+            }
+            $view['view']['highlight_keyword'] = $highlight_keyword;
 
             $page = ((int) $page > 1) ? ((int) $page) : 1;
             
@@ -1326,7 +1344,7 @@ class Board extends CI_Controller
             if ($latest && is_array($latest)) {
                 foreach ($latest as $key => $value) {
                     $brd_key = $this->CI->board->item_id('brd_key', element('brd_id', $value));
-                    $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value));
+                    $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value)).'?' . $param->output().'&page='.$page;
                     $view['view']['latest'][$key]['title'] = $length ? cut_str(element('post_title', $value), $length) : element('post_title', $value);
                     $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('post_datetime', $value), '');
                     $view['view']['latest'][$key]['display_name'] = display_username(

@@ -52,26 +52,28 @@ class Custom_pagination extends CI_Pagination
     public $num_links = 5;
     public $cur_page = 1;
     public $use_page_numbers = true;
-    public $first_link = '<span aria-hidden="true" >&laquo;</span>';
-    public $next_link = '<span aria-hidden="true">&gt;</span>';
-    public $prev_link = '<span aria-hidden="true">&lt;</span>';
-    public $last_link = '<span aria-hidden="true">&raquo;</span>';
-    public $first_tag_open = '<li style="display:none">';
-    public $first_tag_close = '</li>';
-    public $last_tag_open = '<li style="display:none">';
-    public $last_tag_close = '</li>';
-    public $cur_tag_open = '<li class="page_active hide"><a>';
-    public $cur_tag_close = '</a></li>';
-    public $next_tag_open = '<li style="display:none">';
-    public $next_tag_close = '</li>';
-    public $prev_tag_open = '<li style="display:none">';
-    public $prev_tag_close = '</li>';
-    public $full_tag_open = '<ul class="page_more">';
-    public $full_tag_close = '</ul>';
-    public $num_tag_open = '<li class="btn_more" style="display:none">';
-    public $num_tag_close = '</li>';
+    public $first_link = '';
+    public $next_link = '더보기 ▼';
+    public $prev_link = '';
+    public $last_link = '';
+    public $first_tag_open = '';
+    public $first_tag_close = '';
+    public $last_tag_open = '';
+    public $last_tag_close = '';
+    public $cur_tag_open = '';
+    public $cur_tag_close = '';
+    public $next_tag_open = '<div class="btn_more">';
+    public $next_tag_close = '</div>';
+    public $prev_tag_open = '';
+    public $prev_tag_close = '';
+    public $full_tag_open = '';
+    public $full_tag_close = '';
+    public $num_tag_open = '';
+    public $num_tag_close = '';
     public $page_query_string = true;
     public $query_string_segment = 'page';
+
+    public $page_sub=false;
 
     /**
      * Constructor
@@ -294,22 +296,19 @@ class Custom_pagination extends CI_Pagination
                     if ($this->cur_page === $loop)
                     {
                         // Current page
-                        $output .= $this->cur_tag_open.$loop.$this->cur_tag_close;
+                        // $output .= $this->cur_tag_open.$loop.$this->cur_tag_close;
                     }
                     elseif ($i === $base_page)
                     {
                         // First page
-                        $output .= $this->num_tag_open.'<a href="'.$first_url.'"'.$attributes.$this->_attr_rel('start').'>'
-                            .$loop.'</a>'.$this->num_tag_close;
+                        $output .= $this->num_tag_open.''.$this->num_tag_close;
                     }
                     else
                     {
                         $append = $this->prefix.$i.$this->suffix;
 
-                        if($loop  ===  2)
-                        $output .= '<li class="btn_more" style="display:block"><div id="pagination'.$loop.'"><a href="javascript:view_pagination(document.frm,\'pagination'.($this->cur_page + 1).'\','.($this->cur_page + 1).');">더보기 ▼</a></div>'.$this->num_tag_close;
-                        else 
-                        $output .= $this->num_tag_open.'<div id="pagination'.$loop.'"><a href="javascript:view_pagination(document.frm,\'pagination'.$loop.'\','.$loop.');">더보기 ▼</a></div>'.$this->num_tag_close;
+                        
+                        $output .= $this->num_tag_open.'<div id="pagination'.$loop.'"></div>'.$this->num_tag_close;
                             
                     }
                 }
@@ -323,8 +322,14 @@ class Custom_pagination extends CI_Pagination
 
             $attributes = sprintf('%s %s="%d"', $this->_attributes, $this->data_page_attr, $this->cur_page + 1);
 
-            $output .= $this->next_tag_open.'<a href="'.$base_url.$this->prefix.$i.$this->suffix.'"'.$attributes
+
+            if($this->page_sub)
+                $output .= $this->next_tag_open.'<a id="view_pagination_btn_sub"'.$attributes
                 .$this->_attr_rel('next').'>'.$this->next_link.'</a>'.$this->next_tag_close;
+            else 
+                $output .= $this->next_tag_open.'<a id="view_pagination_btn" href="#'.($this->cur_page + 1).'"'.$attributes
+                .$this->_attr_rel('next').'>'.$this->next_link.'</a>'.$this->next_tag_close;
+         
         }
 
         // Render the "Last" link
