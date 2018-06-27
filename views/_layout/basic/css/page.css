@@ -1672,10 +1672,9 @@
 			display: inline-block;
 			float: left;
 		}
-		.cont_write p.small_font{
-			line-height: 1.5;
+		.cont_write .small_font{
+			line-height:1.5;
 		}
-
 		.cont_write #post_title-error{
 			margin-left: 15px;
 		}
