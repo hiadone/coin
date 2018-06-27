@@ -532,9 +532,7 @@ html, body{
 		width:17px;
 		margin-right:5px;
 	}
-	.tab06_cont>form{
-		border-bottom:1px solid #ccc;
-	}
+	
 
 	/* 검색영역 css*/
 		div.search{

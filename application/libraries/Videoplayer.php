@@ -204,7 +204,7 @@ class Videoplayer extends CI_Controller
 
             if (element('type', $video) === 'youtube') { //유튜브
                 if(!empty($video_info['image'])){
-                    $video_show = 'https://img.youtube.com/vi/'.element('vid', $video).'/2.jpg';
+                    $video_show = 'https://img.youtube.com/vi/'.element('vid', $video).'/0.jpg';
                 } else {
                     $vlist = element('vlist', $video) ? '&list=' . element('vlist', $video) : '';
                     $autoplay = (element('auto', $video)) ? '&autoplay=1' : '';
