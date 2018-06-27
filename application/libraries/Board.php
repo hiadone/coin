@@ -1176,6 +1176,12 @@ class Board extends CI_Controller
             $board['gallery_cols'] = $gallery_cols
                 =  element('mobile_gallery_cols', $board);
 
+            $board['gallery_image_width'] = $gallery_image_width;
+                
+
+            $board['gallery_image_height'] = $gallery_image_height;
+                
+
             $board['gallery_percent'] = floor( 102 / $board['gallery_cols']) - 2;
 
             $view['view']['board'] = $board;
