@@ -204,9 +204,9 @@
         </section>
         <div class="border_button">
             <div class="pull-left mg10">
-                <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-info btn-sm">목 록</a>
+                <!-- <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-info btn-sm">목 록</a> -->
                 <?php if (element('search_list_url', element('list', $view))) { ?>
-                    <!-- <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a> -->
+                    <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-info btn-sm">전체목록</a>
                 <?php } ?>
             </div>
             <?php if (element('is_admin', $view)) { ?>
