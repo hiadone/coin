@@ -35,13 +35,10 @@
             $(".tab02_cont:first").show();
 
            
-        var swiper = new Swiper('.swiper-container', {
+        var swiper = new Swiper('.swiper-container_sub', {
               slidesPerView: 6.5,
               spaceBetween: 3,
-              pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-              },
+              
             });
       
     });
@@ -90,7 +87,7 @@ function view_coin(cur_unit) {
         ?>
  
         <section class="tab01 middle_font">
-            <div class="swiper-container">
+            <div class="swiper-container_sub swiper-tab">
                 <ul class="tab01_tabs tabs swiper-wrapper" >
 
                     <?php

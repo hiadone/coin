@@ -99,8 +99,10 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
         <ul>
             <?php
             $menuhtml = '';
+            $active_key = '';
             if (element('menu', $layout)) {
                 $menu = element('menu', $layout);
+                $menu_keys=array_keys(element(0, $menu));
                 if (element(0, $menu)) {
                     foreach (element(0, $menu) as $mkey => $mval) {
                         // if (element(element('men_id', $mval), $menu)) {
@@ -127,7 +129,10 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                             $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
                             $active='';
                             
-                            if(element('men_id',$mval) === element(0,element('active',$menu))) $active='selectMenu';
+                            if(element('men_id',$mval) === element(0,element('active',$menu))) {
+                                $active='selectMenu';
+                                $active_key = $mkey;
+                            }
                             $menuhtml .= '<li class="'.$active.'" ><a href="' . $mlink . '" ' . element('men_custom', $mval);
                             if (element('men_target', $mval)) {
                                 $menuhtml .= ' target="' . element('men_target', $mval) . '"';
@@ -142,26 +147,46 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
             echo $menuhtml;
 
 
+
+            if($active_key){
+                $i = array_search($active_key, $menu_keys);
+
+                if($i===0)
+                    $prev_key = array_pop($menu_keys);
+                else 
+                    $prev_key = $menu_keys[$i - 1];
+
+                if($i+1 === count($menu_keys))
+                    $next_key = array_shift($menu_keys);
+                else 
+                    $next_key = $menu_keys[$i+1];
+
+                $prev_men_link = element('men_link',element($prev_key,element(0, $menu)));
+                $next_men_link = element('men_link',element($next_key,element(0, $menu)));
+            } else {
+                $prev_men_link = '/';
+                $next_men_link = '/';
+            }
             ?>
            
         </ul>
     </nav>
     <!-- main start -->
     <div class="swiper-container">
-    <div class="swiper-wrapper">
+        <div class="swiper-wrapper">
     
-    <div class="main swiper-slide">
-        <div>
+            <div class="main swiper-slide">
+                <div>
 
-                <!-- 본문 시작 -->
-                <?php if (isset($yield))echo $yield; ?>
-                <!-- 본문 끝 -->
+                        <!-- 본문 시작 -->
+                        <?php if (isset($yield))echo $yield; ?>
+                        <!-- 본문 끝 -->
 
+                </div>
+            </div>
+             <div class="swiper-slide"></div>
         </div>
     </div>
-    
-</div>
-</div>
 
     <aside class="back_top_m" style="display:none;">
     <div><img src="<?php echo element('layout_skin_url', $layout); ?>/images/backtop_03.png" alt="맨위로"></div>
@@ -195,15 +220,14 @@ $('.back_top_m').click(function(){
 
 
 <script>
+    
     var swiper = new Swiper('.swiper-container', {
       effect: 'flip',
       on: {
-          touchEnd: function (e) {
-            console.log(this.touches.currentX);
-            console.log(this.touches.startX);
+          slideChange: function (e) {
             
-            if((this.touches.startX -  this.touches.currentX)  > 200) alert('right');
-            if((this.touches.startX -  this.touches.currentX)  < -200) alert('left');
+                location.href='<?php echo $next_men_link?>';
+            
 
             // var touchobj = e.changedTouches[0];
             // console.log(touchobj.pageX); // get horizontal dist traveled by finger while in contact with surface
@@ -213,6 +237,25 @@ $('.back_top_m').click(function(){
             // location.href="/board/free";
           },
         }
-      
+    //   on: {
+    //       touchEnd: function (e) {
+    //         console.log(this.touches.currentX);
+    //         console.log(this.touches.startX);
+            
+    //         if((this.touches.startX -  this.touches.currentX)  > 100) {
+    //             location.href='<?php echo $next_men_link?>';
+    //         }
+    //         if((this.touches.startX -  this.touches.currentX)  < -100) {
+    //             location.href='<?php echo $prev_men_link?>';
+    //         }
+
+    //         // var touchobj = e.changedTouches[0];
+    //         // console.log(touchobj.pageX); // get horizontal dist traveled by finger while in contact with surface
+    // // distY = touchobj.pageY // get vertical dist traveled by finger while in contact with surface
+    //         // console.log(data);
+    //         // alert(1);
+    //         // location.href="/board/free";
+    //       },
+    //     }
     });
   </script>

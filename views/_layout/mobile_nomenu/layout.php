@@ -61,6 +61,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 <script type="text/javascript" src="<?php echo base_url('assets/js/iscroll.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/mobile.sidemenu.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/js.cookie.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/swiper.min.js'); ?>"></script>
 <?php echo $this->managelayout->display_js(); ?>
 <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
@@ -139,16 +140,20 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
         </ul>
     </nav> -->
     <!-- main start -->
-    <div class="main">
-        <div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="main swiper-slide">
+                <div>
 
                 <!-- 본문 시작 -->
                 <?php if (isset($yield))echo $yield; ?>
                 <!-- 본문 끝 -->
 
+                </div>
+            </div>
+            <div class="swiper-slide"></div>
         </div>
     </div>
-
 <!--     <aside class="back_top_m">
     <div><img src="<?php echo element('layout_skin_url', $layout); ?>/images/backtop_03.png" alt="맨위로"></div>
     </aside> -->
@@ -179,4 +184,28 @@ $('.back_top_m').click(function(){
 </body>
 </html>
 
+<script>
+    
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'flip',
+      on: {
+          slideChange: function (e) {
+            
+            
+            
+            
+            
+                location.href='/';
+            
 
+            // var touchobj = e.changedTouches[0];
+            // console.log(touchobj.pageX); // get horizontal dist traveled by finger while in contact with surface
+    // distY = touchobj.pageY // get vertical dist traveled by finger while in contact with surface
+            // console.log(data);
+            // alert(1);
+            // location.href="/board/free";
+          },
+        }
+      
+    });
+  </script>

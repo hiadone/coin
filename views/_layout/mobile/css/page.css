@@ -368,7 +368,7 @@ html, body{
 	} */
 	
 	/* swiper */
-	.tab01 .swiper-container{
+	.tab01 .swiper-tab{
 		overflow:hidden;
 		width: 90%;
 		height: 25px;
