@@ -371,11 +371,11 @@ html, body{
 	.tab01 .swiper-tab{
 		overflow:hidden;
 		width: 90%;
-		height: 25px;
+		/*height: 25px;*/
 		background-color:#f0f3f7;
 		float:left;
 	}
-	.tab01_tabs .swiper-slide {
+	.tab01_tabs > li {
       /* Center slide text vertically */
 		display: -webkit-box;
 		display: -ms-flexbox;

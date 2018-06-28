@@ -1,6 +1,5 @@
 <?php //$this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
-<?php $this->managelayout->add_css('/assets/css/swiper.min.css '); ?>
-<?php $this->managelayout->add_js('/assets/js/swiper.min.js'); ?>
+
 
 
 
@@ -31,11 +30,10 @@
             });
 
         //tab02 영역 스크립트
-            $(".tab02_cont").hide();
-            $(".tab02_cont:first").show();
+            
 
            
-        var swiper = new Swiper('.swiper-container_sub', {
+        var swiper_sub = new Swiper('.swiper-container-sub', {
               slidesPerView: 6.5,
               spaceBetween: 3,
               
@@ -87,7 +85,7 @@ function view_coin(cur_unit) {
         ?>
  
         <section class="tab01 middle_font">
-            <div class="swiper-container_sub swiper-tab">
+            <div class="swiper-container-sub swiper-tab">
                 <ul class="tab01_tabs tabs swiper-wrapper" >
 
                     <?php
@@ -98,7 +96,7 @@ function view_coin(cur_unit) {
                                 else $active='';
 
                      ?>
-                            <li class="swiper-slide <?php echo $active ?>" rel="tab01_<?php echo $result?>">
+                            <li class="swiper-slide <?php echo $active ?>" rel="tab01_<?php echo $result?>" style="pointer-events: visible">
                                 <?php echo $result?>
                             </li>
 
