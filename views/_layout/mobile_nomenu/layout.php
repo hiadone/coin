@@ -187,7 +187,7 @@ $('.back_top_m').click(function(){
 <script>
     
     var swiper = new Swiper('.swiper-container', {
-      effect: 'flip',
+      // effect: 'flip',
       on: {
           slideChange: function (e) {
             
