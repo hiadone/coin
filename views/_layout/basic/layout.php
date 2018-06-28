@@ -146,10 +146,7 @@ $(document).ready(function(){
         speed: 500, // m/s ex > 1000 = 1s
         easing: 'ease-in-out', // 동작 가속도 css와 동일
         sliderMargin: 10, // img 와 img 사이 간격
-        startSlide: 0, // 시작시 로드될 이미지 (0부터 시작)
-        preloadImages: 'visible', // 'visible'은 보여질때 이미지를 로드,'all'로 설정 하게 되면 모든 이미지가 로드되어야만 slide가 작동
-        sliderMargin: 10, // img 와 img 사이 간격
-        startSlide: 0, // 시작시 로드될 이미지 (0부터 시작)
+        startSlide: 0, // 시작시 로드될 이미지 (0부터 시작)        
         preloadImages: 'visible', // 'visible'은 보여질때 이미지를 로드,'all'로 설정 하게 되면 모든 이미지가 로드되어야만 slide가 작동
         randomStart: false, // 시작시 랜덤으로 이미지 로드 여부 (boolean)
         adaptiveHeight: false, //각 이미지의 높이에 따라 슬라이더 높이의 유동적 조절 여부

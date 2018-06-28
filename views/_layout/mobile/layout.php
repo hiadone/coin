@@ -30,6 +30,8 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" />
 <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/swiper.min.css'); ?>" />
+
 
 <?php echo $this->managelayout->display_css(); ?>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -61,6 +63,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 <script type="text/javascript" src="<?php echo base_url('assets/js/iscroll.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/mobile.sidemenu.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/js.cookie.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/swiper.min.js'); ?>"></script>
 <?php echo $this->managelayout->display_js(); ?>
 <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
@@ -144,7 +147,10 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
         </ul>
     </nav>
     <!-- main start -->
-    <div class="main">
+    <div class="swiper-container">
+    <div class="swiper-wrapper">
+    
+    <div class="main swiper-slide">
         <div>
 
                 <!-- 본문 시작 -->
@@ -153,6 +159,9 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
         </div>
     </div>
+    
+</div>
+</div>
 
     <aside class="back_top_m" style="display:none;">
     <div><img src="<?php echo element('layout_skin_url', $layout); ?>/images/backtop_03.png" alt="맨위로"></div>
@@ -185,3 +194,25 @@ $('.back_top_m').click(function(){
 </html>
 
 
+<script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'flip',
+      on: {
+          touchEnd: function (e) {
+            console.log(this.touches.currentX);
+            console.log(this.touches.startX);
+            
+            if((this.touches.startX -  this.touches.currentX)  > 200) alert('right');
+            if((this.touches.startX -  this.touches.currentX)  < -200) alert('left');
+
+            // var touchobj = e.changedTouches[0];
+            // console.log(touchobj.pageX); // get horizontal dist traveled by finger while in contact with surface
+    // distY = touchobj.pageY // get vertical dist traveled by finger while in contact with surface
+            // console.log(data);
+            // alert(1);
+            // location.href="/board/free";
+          },
+        }
+      
+    });
+  </script>
