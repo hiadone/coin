@@ -2355,7 +2355,7 @@ html, body{
 
 /*포인트 정보 css*/
 	.info_area{
-        padding:3%;
+        padding: 65px 3% 0;
         box-sizing: border-box;
     }
 

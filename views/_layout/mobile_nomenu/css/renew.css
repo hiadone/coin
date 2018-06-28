@@ -181,6 +181,12 @@ ul.page_more li.btn_more a{
 	
 }
 /* 회원탈퇴 로그아웃 btn */
+.info_btn{
+	width:100%;
+	max-width:400px;
+	margin:0 auto;
+	overflow:hidden;
+}
 .info_btn li{
 	width:49%;
 	float:left;

@@ -366,11 +366,30 @@ html, body{
 	/* .tab01_tabs li:nth-child(10){
 		width:10%;
 	} */
+	
+	/* swiper */
 	.tab01 .swiper-container{
-		width:90%;
-		float:left;
+		overflow:hidden;
+		width: 90%;
+		height: 25px;
 		background-color:#f0f3f7;
+		float:left;
 	}
+	.tab01_tabs .swiper-slide {
+      /* Center slide text vertically */
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		-webkit-align-items: center;
+		align-items: center;
+    }
 	.tab01 .noevent{
 		float:right;
 		width:10%;
@@ -1580,7 +1599,7 @@ html, body{
 
 	/*이전글 다음글 목록 영역*/
 	.write_cont ul.post-view{
-		width: 150px;
+		width: 180px;
 		float: left;
 		margin-left: 3%;
 		clear: both;
@@ -2086,6 +2105,12 @@ html, body{
 		font-weight: bold;
 		padding-bottom: 2%;
 		border-bottom: 2px solid #000;
+	}
+	.search_list .tab06_cont_list{
+		margin-bottom:5%;
+	}
+	.search_list .tab06_cont_list:last-of-type{
+		margin-bottom:0;
 	}
 /*
 	.search_list ul{
