@@ -174,7 +174,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
     <!-- main start -->
     <div class="swiper-container">
         <div class="swiper-wrapper">
-    
+            <div class="swiper-slide" data-location-url="<?php echo $prev_men_link?>"></div>
             <div class="main swiper-slide">
                 <div>
 
@@ -184,7 +184,8 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
                 </div>
             </div>
-             <div class="swiper-slide"></div>
+             <div class="swiper-slide" data-location-url="<?php echo $next_men_link?>"></div>
+             
         </div>
     </div>
 
@@ -222,40 +223,16 @@ $('.back_top_m').click(function(){
 <script>
     
     var swiper = new Swiper('.swiper-container', {
-      // effect: 'flip',
-      on: {
-          slideChange: function (e) {
-            
-                location.href='<?php echo $next_men_link?>';
-            
+      initialSlide :1,
+      runCallbacksOnInit : false,
+      
+    });
 
-            // var touchobj = e.changedTouches[0];
-            // console.log(touchobj.pageX); // get horizontal dist traveled by finger while in contact with surface
-    // distY = touchobj.pageY // get vertical dist traveled by finger while in contact with surface
-            // console.log(data);
-            // alert(1);
-            // location.href="/board/free";
-          },
-        }
-    //   on: {
-    //       touchEnd: function (e) {
-    //         console.log(this.touches.currentX);
-    //         console.log(this.touches.startX);
+    swiper.on('slideChange', function () {
+        if(swiper.activeIndex < 1)
+            location.href='<?php echo $prev_men_link?>';
+        else if(swiper.activeIndex > 1)
+            location.href='<?php echo $next_men_link?>';
             
-    //         if((this.touches.startX -  this.touches.currentX)  > 100) {
-    //             location.href='<?php echo $next_men_link?>';
-    //         }
-    //         if((this.touches.startX -  this.touches.currentX)  < -100) {
-    //             location.href='<?php echo $prev_men_link?>';
-    //         }
-
-    //         // var touchobj = e.changedTouches[0];
-    //         // console.log(touchobj.pageX); // get horizontal dist traveled by finger while in contact with surface
-    // // distY = touchobj.pageY // get vertical dist traveled by finger while in contact with surface
-    //         // console.log(data);
-    //         // alert(1);
-    //         // location.href="/board/free";
-    //       },
-    //     }
     });
   </script>

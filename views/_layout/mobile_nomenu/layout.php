@@ -30,6 +30,8 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css" />
 <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/swiper.min.css'); ?>" />
+
 
 <?php echo $this->managelayout->display_css(); ?>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -73,7 +75,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
 <script>
     $(document).ready(function(){
-        
+       
     });
 </script> 
 
@@ -88,79 +90,30 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
         <div><a href="<?php echo base_url('/search') ?>"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/icon_05.png" alt="검색"></a></div>
     </header>   
     
-    <!-- <nav class='main_nav_m'>
-        <ul>
-            <?php
-            $menuhtml = '';
-            if (element('menu', $layout)) {
-                $menu = element('menu', $layout);
-                if (element(0, $menu)) {
-                    foreach (element(0, $menu) as $mkey => $mval) {
-                        // if (element(element('men_id', $mval), $menu)) {
-                        //     $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-                        //     $menuhtml .= '<li class="dropdown">
-                        //     <a href="' . $mlink . '" ' . element('men_custom', $mval);
-                        //     if (element('men_target', $mval)) {
-                        //         $menuhtml .= ' target="' . element('men_target', $mval) . '"';
-                        //     }
-                        //     $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a>
-                        //     <ul class="dropdown-menu">';
-
-                        //     foreach (element(element('men_id', $mval), $menu) as $skey => $sval) {
-                        //         $slink = element('men_link', $sval) ? element('men_link', $sval) : 'javascript:;';
-                        //         $menuhtml .= '<li><a href="' . $slink . '" ' . element('men_custom', $sval);
-                        //         if (element('men_target', $sval)) {
-                        //             $menuhtml .= ' target="' . element('men_target', $sval) . '"';
-                        //         }
-                        //         $menuhtml .= ' title="' . html_escape(element('men_name', $sval)) . '">' . html_escape(element('men_name', $sval)) . '</a></li>';
-                        //     }
-                        //     $menuhtml .= '</ul></li>';
-
-                        // } else {
-                            $mlink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
-                            $active='';
-                            
-                            if(element('men_id',$mval) === element(0,element('active',$menu))) $active='selectMenu';
-                            $menuhtml .= '<li class="'.$active.'" ><a href="' . $mlink . '" ' . element('men_custom', $mval);
-                            if (element('men_target', $mval)) {
-                                $menuhtml .= ' target="' . element('men_target', $mval) . '"';
-                            }
-                            $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a></li>';
-
-                            $menuhtml .= "\n";
-                        // }
-                    }
-                }
-            }
-            echo $menuhtml;
-
-
-            ?>
-           
-        </ul>
-    </nav> -->
+   
     <!-- main start -->
     <div class="swiper-container">
         <div class="swiper-wrapper">
+            <div class="swiper-slide" ></div>
             <div class="main swiper-slide">
                 <div>
 
-                <!-- 본문 시작 -->
-                <?php if (isset($yield))echo $yield; ?>
-                <!-- 본문 끝 -->
+                        <!-- 본문 시작 -->
+                        <?php if (isset($yield))echo $yield; ?>
+                        <!-- 본문 끝 -->
 
                 </div>
             </div>
-            <div class="swiper-slide"></div>
+             <div class="swiper-slide" ></div>
+             
         </div>
     </div>
-<!--     <aside class="back_top_m">
-    <div><img src="<?php echo element('layout_skin_url', $layout); ?>/images/backtop_03.png" alt="맨위로"></div>
-    </aside> -->
+
+    
     <!-- main end -->
     
     <!-- footer start -->
-    <!-- <?php echo $this->managelayout->display_footer('mobile'); ?> -->
+    <?php //echo $this->managelayout->display_footer('mobile'); ?>
     <!-- footer end -->
 
 <script type="text/javascript">
@@ -184,28 +137,19 @@ $('.back_top_m').click(function(){
 </body>
 </html>
 
+
 <script>
     
     var swiper = new Swiper('.swiper-container', {
-      // effect: 'flip',
-      on: {
-          slideChange: function (e) {
-            
-            
-            
-            
-            
-                location.href='/';
-            
-
-            // var touchobj = e.changedTouches[0];
-            // console.log(touchobj.pageX); // get horizontal dist traveled by finger while in contact with surface
-    // distY = touchobj.pageY // get vertical dist traveled by finger while in contact with surface
-            // console.log(data);
-            // alert(1);
-            // location.href="/board/free";
-          },
-        }
+      initialSlide :1,
+      runCallbacksOnInit : false,
       
+    });
+
+    swiper.on('slideChange', function () {
+
+            location.href='/';
+
+            
     });
   </script>
