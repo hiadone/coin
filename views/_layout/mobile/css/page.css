@@ -1479,6 +1479,8 @@ html, body{
 		float:right;
 		line-height: 20px;
 		font-weight: bold;
+		margin-left: 5px;
+		margin-top:5px;
 	}
 
 	.write_cont .btn-group{
@@ -1486,7 +1488,7 @@ html, body{
 	}
 
 	.write_cont .btn-group a{
-		margin-right: 5px;
+		margin-right: 2px;
 	}
 
 	/*.write_cont .pull-right a{
@@ -1572,9 +1574,6 @@ html, body{
 		width: 100%;
 		float: left;
 	}
-
-
-
 	.write_cont ol.post-view li table tr td{
 		padding: 2% 0;
 	}
@@ -1599,7 +1598,7 @@ html, body{
 
 	/*이전글 다음글 목록 영역*/
 	.write_cont ul.post-view{
-		width: 180px;
+		width: 167px;
 		float: left;
 		margin-left: 3%;
 		clear: both;
@@ -1608,7 +1607,7 @@ html, body{
 	.write_cont ul.post-view li{
 		width: 36%;
 		float: left;
-		margin-right:2%;
+		margin-right:5px;
 	}
 
 	.write_cont ul.post-view li:last-child{
@@ -1618,6 +1617,10 @@ html, body{
 
 	.write_cont ul.post-view li:nth-child(1){
 		width: 22%;
+	}
+	.write_cont ul.post-view a{
+		width:100%;
+		box-sizing:border-box;
 	}
 
 	/*게시물 정상 입력 창 영역*/

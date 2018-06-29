@@ -71,7 +71,7 @@
 
 .tab10_list h4{
 	width:100%;
-	margin-bottom:14px;
+	margin-bottom:10px;
 	font-size:16px;
 	font-weight:bold;
 	line-height:22px;
@@ -85,9 +85,11 @@
 }
 .tab10_list h4 span.contents-title{
 	display:block;
-	height:44px;
-	width:83%;
+	height:36px;
+	width:87%;
+	line-height:36px;
 	float:right;
+	white-space:nowrap;
 	text-overflow:ellipsis;
 	overflow:hidden;
 }
@@ -110,7 +112,7 @@
 	padding:0 10px;
 	border-right:1px solid #ccc;
 	font-size:10px;
-	color:#bbb;
+	color:#999;
 }
 .tab10_listinfo td.user_nick{
 	color:#000;
@@ -307,11 +309,7 @@ section.wrap_con{
 	}
 	/* .tab10_list */
 	.tab10_list h4 span.contents-title{
-	display:block;
-	height:44px;
-	width:91%;
-	float:right;
-	
+	width:92.5%;
 	}
 	.btn_nav04 li{
 		width:24%;
@@ -423,10 +421,7 @@ section.wrap_con{
 	}
 	/* .tab10_list */
 	.tab10_list h4 span.contents-title{
-	display:block;
-	height:44px;
-	width:88%;
-	float:right;
+	width:90%;
 	}
 	/* .btn_nav li{
 		padding:4px 0;

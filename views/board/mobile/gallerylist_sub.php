@@ -84,7 +84,7 @@
                 <a href="<?php echo element('post_url', $result); ?>" title="<?php echo html_escape(element('title', $result)); ?>">
                     <h4>
                         <img src="<?php echo base_url('assets/images/spoon_'.element('display_level', $result,1).'.png');?>" alt="spoon_img">
-                        <span><?php echo html_escape(element('title', $result)); ?></span>
+                        <span class="contents-title"><?php echo html_escape(element('title', $result)); ?></span>
                     </h4>
 
                     <div  class="contents-view"><?php echo strip_tags(element('post_content', $result)); ?></div>
