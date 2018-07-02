@@ -35,7 +35,7 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 <?php } ?>
                
                         <button type="button" class="per100 small_font" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">저 장</button>
-                   <div class="alert-comment-message" style="display:none;"><span class="alert-comment-message-content"></span></div>
+                   <div class="alert-comment-message pt10 pb10" style="display:none;"><span class="alert-comment-message-content"></span></div>
                     
                 <?php if ($this->member->is_member() === false) { ?>
                     <div class="form-inline passcord">

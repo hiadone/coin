@@ -92,24 +92,16 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
     
    
     <!-- main start -->
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" ></div>
-            <div class="main swiper-slide">
-                <div>
+    
+    <div class="main">
+        <div>
 
-                        <!-- 본문 시작 -->
-                        <?php if (isset($yield))echo $yield; ?>
-                        <!-- 본문 끝 -->
+                <!-- 본문 시작 -->
+                <?php if (isset($yield))echo $yield; ?>
+                <!-- 본문 끝 -->
 
-                </div>
-            </div>
-             <div class="swiper-slide" ></div>
-             
         </div>
     </div>
-
-    
     <!-- main end -->
     
     <!-- footer start -->
@@ -138,7 +130,7 @@ $('.back_top_m').click(function(){
 </html>
 
 
-<script>
+<!-- <script>
     
     var swiper = new Swiper('.swiper-container', {
       initialSlide :1,
@@ -152,4 +144,4 @@ $('.back_top_m').click(function(){
 
             
     });
-  </script>
+  </script> -->

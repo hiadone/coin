@@ -366,23 +366,44 @@ class Managelayout extends CI_Controller
     function display_footer($footer_type='')
     {   
         if($footer_type==='mobile'){
-            $return = '
-            <footer>
-                <table>
-                    <tr>
-                        <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="로그인">로그인</a></td>
-                        <td><a href="'.site_url("login/register").'" title="회원가입">회원가입</a></td>
-                        <td><a href="'.current_full_url().'" class="viewpcversion">PC 버전</a></td>
-                    </tr>
-                </table>
-                <ul class="small_font">
-                    <li><a href="'.document_url('index/provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a></li>
-                    <li><a href="'.board_url("o-1").'" title="게재중단요청">게재중단요청</a> </li>
-                    <li><a href="'.board_url("o-2").'" title="제휴문의">제휴문의</a> </li>
-                </ul>
-                <p class="small_font">Copyright ⓒ 시즌제이 . All Rights Reserved </p>
-            </footer>          
-            ';
+            $CI = & get_instance();
+            if($CI->member->is_member()){
+                $return = '
+                <footer>
+                    <table>
+                        <tr>
+                            <td><a href="'.site_url("login/logout?url=" . urlencode(current_full_url())).'"  title="로그아웃">로그아웃</a></td>
+                            <td><a href="'.site_url("mypage").'" title="마이페이지">마이페이지</a></td>
+                            <td><a href="'.current_full_url().'" class="viewpcversion">PC 버전</a></td>
+                        </tr>
+                    </table>
+                    <ul class="small_font">
+                        <li><a href="'.document_url('index/provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a></li>
+                        <li><a href="'.board_url("o-1").'" title="게재중단요청">게재중단요청</a> </li>
+                        <li><a href="'.board_url("o-2").'" title="제휴문의">제휴문의</a> </li>
+                    </ul>
+                    <p class="small_font">Copyright ⓒ 시즌제이 . All Rights Reserved </p>
+                </footer>          
+                ';
+            } else {
+                $return = '
+                <footer>
+                    <table>
+                        <tr>
+                            <td><a href="'.site_url("login?url=" . urlencode(current_full_url())).'"  title="로그인">로그인</a></td>
+                            <td><a href="'.site_url("login/register").'" title="회원가입">회원가입</a></td>
+                            <td><a href="'.current_full_url().'" class="viewpcversion">PC 버전</a></td>
+                        </tr>
+                    </table>
+                    <ul class="small_font">
+                        <li><a href="'.document_url('index/provision').'" title="이용약관및개인정보취급방침">이용약관 및 개인정보취급방침</a></li>
+                        <li><a href="'.board_url("o-1").'" title="게재중단요청">게재중단요청</a> </li>
+                        <li><a href="'.board_url("o-2").'" title="제휴문의">제휴문의</a> </li>
+                    </ul>
+                    <p class="small_font">Copyright ⓒ 시즌제이 . All Rights Reserved </p>
+                </footer>          
+                ';
+            }
         } else {
             $return = '
             <footer>

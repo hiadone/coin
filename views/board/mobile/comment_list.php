@@ -9,9 +9,9 @@ if (element('list', element('data', $view))) {
 ?>
     <li id="comment_<?php echo element('cmt_id', $result); ?>" >
         <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_comment_id[]" value="<?php echo element('cmt_id', $result); ?>" /><?php } ?>
-        <p class='comment-list'>
+        <div class='comment-list'>
             <?php echo element('content', $result); ?> 
-        </p>
+        </div>
         <table class="small_font">
             <tr>
                 <td>작성일 : <?php echo element('display_datetime', $result); ?></td>
@@ -19,7 +19,7 @@ if (element('list', element('data', $view))) {
             </tr>
         </table class="reply_btn">
         
-        <div> 
+        <div class="comment-button"> 
             <?php
             if ( ! element('post_del', element('post', $view)) && ! element('cmt_del', $result)) {
             ?>

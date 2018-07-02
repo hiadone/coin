@@ -1554,7 +1554,7 @@ html, body{
 		margin-bottom: 3%;
 	}
 
-	.write_cont ol.post-view li p{
+	.write_cont ol.post-view li div.comment-list{
 		padding:0 10% 0% 8%;
 		background: url("/assets/images/reply.png") no-repeat 3% top;
 		background-size: 4%;
@@ -1639,7 +1639,7 @@ html, body{
 	/* 댓글 정상 등록 창 영역*/
 	.write_cont .alert-comment-message,
 	.write_cont .alert-comment-list-message{
-		background:#fff;
+		/*background:#fff;*/
 		color: #000;
 		text-align: center
 	}
