@@ -225,6 +225,7 @@ $('.back_top_m').click(function(){
     var swiper = new Swiper('.swiper-container', {
       initialSlide :1,
       runCallbacksOnInit : false,
+      touchAngle:35,
       
     });
 
