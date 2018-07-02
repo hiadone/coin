@@ -144,7 +144,7 @@ ul.page_more li.btn_more a{
 	position:fixed;
 	bottom:15px;
 	right:18px;
-	z-index:500;
+	z-index:900;
 }
 /* point */
 .ham_cont02{

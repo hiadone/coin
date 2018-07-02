@@ -16,7 +16,7 @@ html, body{
 	font-family: "Nanum Gothic", sans-serif;
 }
 .foot_padding{
-	padding-bottom:110px;
+	padding-bottom:111px;
 	margin-bottom:0;
 }
 /*new_click css*/
@@ -1067,7 +1067,7 @@ html, body{
 /*인물트위터 , 공식트위터 , 거래소 더보기 클릭시*/
 	.pop{
 		position: absolute;
-		top: 15%;
+		top: 10%;
 		left: 0%;
 		right: 0;
 		width: 300px;
@@ -1474,13 +1474,13 @@ html, body{
 	/*수정,삭제 버튼영역*/
 	.write_cont ol li button.small_font{
 		width: 12%;
-		height: 20px;
+		height: 25px;
 		padding:0;
 		float:right;
 		line-height: 20px;
 		font-weight: bold;
 		margin-left: 5px;
-		margin-top:5px;
+		margin-bottom:5px;
 	}
 
 	.write_cont .btn-group{

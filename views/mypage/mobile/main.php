@@ -1,6 +1,6 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
-<section class="ham">
+<section class="ham foot_padding">
     <h2 class="hidden">회원,포인트정보</h2>
     <div class="ham_cont02">
         <section class="point_info">

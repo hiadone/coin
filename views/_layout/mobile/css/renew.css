@@ -95,7 +95,7 @@
 }
 .tab10_list div.contents-view{
 	margin-bottom:14px;
-	height:40px;
+	max-height:40px;
 	padding:0 15px;
 	clear:both;
 	font-size:14px;
@@ -164,7 +164,7 @@ div.btn_more a{
 	position:fixed;
 	bottom:15px;
 	right:18px;
-	z-index:500;
+	z-index:900;
 }
 /* point */
 .ham_cont02{
