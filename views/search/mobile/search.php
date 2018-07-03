@@ -104,9 +104,11 @@ function checkSearch(f) {
     }
     return true;
 }
+
 //]]>
 </script>
-<?php if (element('highlight_keyword', $view) && 0) {
+
+<?php if (element('highlight_keyword', $view) ) {
     $this->managelayout->add_js(base_url('assets/js/jquery.highlight.js')); ?>
 <script type="text/javascript">
 //<![CDATA[
