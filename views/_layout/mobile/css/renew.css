@@ -95,11 +95,11 @@
 }
 .tab10_list div.contents-view{
 	margin-bottom:14px;
-	max-height:40px;
+	max-height:2.8571429em;
 	padding:0 15px;
 	clear:both;
 	font-size:14px;
-	line-height:20px;
+	line-height:1.4285714;
 	text-overflow:ellipsis;
 	overflow:hidden;
 }

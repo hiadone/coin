@@ -41,12 +41,12 @@
                         </tr>
                     </tbody>
                 </table>
-                <h4>※ 계급 정책 및 보상 안내</h4>
+                <h4>※ 등급 정책 및 보상 안내</h4>
                 <table class="point_rule_table">
                 <thead>
                         <tr>
-                            <th>계급 구분</th>
-                            <th>계급 포인트</th>
+                            <th>등급 구분</th>
+                            <th>등급 포인트</th>
                         </tr>
                     </thead>
                     <tbody>
