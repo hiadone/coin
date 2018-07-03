@@ -36,7 +36,8 @@ if (typeof(SOCIAL_LOGIN_JS) === 'undefined') {
         if (social_type !== 'facebook' && social_type !== 'twitter' && social_type !== 'google' && social_type !== 'naver' && social_type !== 'kakao') {
             return false;
         }
-        window.open(cb_url + '/social/' + social_type + '_login/'+encodeURI($("#elh_mem_id").val()), social_type + '-on', 'width=600,height=600');
+        
+        window.open(cb_url + '/social/' + social_type + '_login/?before_url='+encodeURI($("#before_url").val()), social_type + '-on', 'width=600,height=600');
     }
 
 

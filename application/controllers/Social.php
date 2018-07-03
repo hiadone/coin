@@ -376,6 +376,13 @@ class Social extends CB_Controller
         // 이벤트가 존재하면 실행합니다
         Events::trigger('before', $eventname);
 
+        if ($this->input->get('before_url')) {
+            $this->session->set_userdata(
+                'before_url',
+                $this->input->get('before_url')
+            );
+        }
+
         if (!$this->session->userdata('logintype')) {
             $this->session->set_userdata(
                 'logintype',
@@ -526,6 +533,13 @@ class Social extends CB_Controller
         
         // 이벤트가 존재하면 실행합니다
         Events::trigger('before', $eventname);
+
+        if ($this->input->get('before_url')) {
+            $this->session->set_userdata(
+                'before_url',
+                $this->input->get('before_url')
+            );
+        }
 
         if (!$this->session->userdata('logintype')) {
             $this->session->set_userdata(
@@ -729,8 +743,7 @@ class Social extends CB_Controller
         $this->load->event($eventname);
 
   
-        echo $this->session->userdata('mem_recommend');
-        echo $this->session->userdata('logintype');
+
          $leverup_message='';
         if (empty($social_type)) {
             return;
@@ -826,6 +839,13 @@ class Social extends CB_Controller
                 if ($url_after_login) {
                     $url_after_login = site_url($url_after_login);
                 }
+
+                if($this->session->userdata('before_url')){
+                    $url_after_login = $this->session->userdata('before_url');
+                    $this->session->unset_userdata('before_url');
+                }
+                
+ 
                 $register_message='';
                 if(!empty($this->session->userdata('logintype'))) {
                     $register_message = '이미 회원 가입을 하셨습니다';

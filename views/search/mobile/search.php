@@ -1,9 +1,9 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
 
-<div class="foot_padding">
-    <section class ="main_title search">
-        <h2>검 색</h2>
+
+    <section class ="foot_padding main_title search">
+        
         <form action="<?php echo current_url(); ?>" onSubmit="return checkSearch(this);" class="text-center">
             <div class="cate_sel">
                 <select class="" name="sfield">
@@ -90,7 +90,7 @@ if ( ! element('list', element('data', $view))) {
     </section>
     <nav class="mo_pager"><?php echo element('paging', $view); ?></nav>
     </section>
-</div>
+
 
 
 <script type="text/javascript">

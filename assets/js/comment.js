@@ -186,11 +186,14 @@ if (typeof(COMMENT_JS) === 'undefined') {
         } else {
             el_id = 'comment_write_box';
         }
+        
 
         if (save_before !== el_id) {
             if (save_before) {
                  $('#' + save_before).css('display', 'none');
                 $('#' + save_before).html('');
+                $('.comment-button').show();
+                $('#comment_'+cmt_id).children('div.comment-button').hide();
             }
 
             $('#' + el_id).css('display', '');

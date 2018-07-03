@@ -199,6 +199,9 @@ class Managelayout extends CI_Controller
 
             if ($data['menu']) {
                 $menu = $data['menu'];
+
+                $menu_keys=array_keys(element(0, $menu));
+
                 if (element(0, $menu)) {
                     foreach (element(0, $menu) as $mkey => $mval) {
                         if (element(element('men_id', $mval), $menu)) {
@@ -210,12 +213,27 @@ class Managelayout extends CI_Controller
                             
 
                         } else {
-                            $active='';
 
                             if(str_replace("/","",element('men_link', $mval)) === str_replace("/","",element('page_url', $config))) $data['menu']['active']= array(element('men_id', $mval));
                             
                         }
                     }
+                }
+                if(!empty($data['menu']['active'][0])){
+                    $m = array_search($data['menu']['active'][0], $menu_keys);
+                    
+                    if($m===0)
+                        $prev_key = array_pop($menu_keys);
+                    else 
+                        $prev_key = $menu_keys[$m - 1];
+
+                    if($m+1 === count($menu_keys))
+                        $next_key = array_shift($menu_keys);
+                    else 
+                        $next_key = $menu_keys[$m+1];
+
+                    $data['prev_men_link'] = element('men_link',element($prev_key,element(0, $menu)));
+                    $data['next_men_link'] = element('men_link',element($next_key,element(0, $menu)));
                 }
             }
 

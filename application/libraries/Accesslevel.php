@@ -145,7 +145,7 @@ class Accesslevel extends CI_Controller
         if ($accessable) {
             return true;
         } else {
-            alert($alertmessage);
+            alert($alertmessage,'/login?url=' . urlencode(current_full_url()));
             return false;
         }
     }

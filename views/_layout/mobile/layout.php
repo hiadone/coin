@@ -96,9 +96,9 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
     </header>   
     
     <nav class='main_nav_m'>
-        <ul>
+        
             <?php
-            $menuhtml = '';
+            $menuhtml = '<ul>';
             $active_key = '';
             if (element('menu', $layout)) {
                 $menu = element('menu', $layout);
@@ -144,28 +144,18 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
                     }
                 }
             }
-            echo $menuhtml;
+            $menuhtml.='</ul>';
 
-
-
-            if($active_key){
-                $i = array_search($active_key, $menu_keys);
-
-                if($i===0)
-                    $prev_key = array_pop($menu_keys);
-                else 
-                    $prev_key = $menu_keys[$i - 1];
-
-                if($i+1 === count($menu_keys))
-                    $next_key = array_shift($menu_keys);
-                else 
-                    $next_key = $menu_keys[$i+1];
-
-                $prev_men_link = element('men_link',element($prev_key,element(0, $menu)));
-                $next_men_link = element('men_link',element($next_key,element(0, $menu)));
+            if(element(0,element('active',$menu))){
+                echo $menuhtml;
+                
+                $prev_men_link = element('prev_men_link', $layout);
+                $next_men_link = element('next_men_link', $layout);
             } else {
-                $prev_men_link = '/';
-                $next_men_link = '/';
+
+                
+                $prev_men_link = element('prev_men_link', $view);
+                $next_men_link = element('next_men_link', $view);;
             }
             ?>
            
@@ -174,7 +164,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
     <!-- main start -->
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" data-location-url="<?php echo $prev_men_link?>"></div>
+            <?php if(!empty($prev_men_link)) echo '<div class="swiper-slide" data-location-url="'.$prev_men_link.'"></div>'; ?>
             <div class="main swiper-slide">
                 <div>
 
@@ -184,7 +174,8 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
 
                 </div>
             </div>
-             <div class="swiper-slide" data-location-url="<?php echo $next_men_link?>"></div>
+            <?php if(!empty($next_men_link)) echo '<div class="swiper-slide" data-location-url="'.$next_men_link.'"></div>'; ?>
+             
              
         </div>
     </div>
@@ -226,7 +217,7 @@ $('.back_top_m').click(function(){
       initialSlide :1,
       runCallbacksOnInit : false,
       touchAngle:35,
-      
+      threshold : 20,
     });
 
     swiper.on('slideChange', function () {

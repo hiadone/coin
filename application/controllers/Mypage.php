@@ -91,7 +91,10 @@ class Mypage extends CB_Controller
                 $layout_dir='empty';
             else
                 $layout_dir=$this->cbconfig->item('layout_login'); 
-            
+        
+        $view['view']['prev_men_link'] = '/mypage/point_provision';
+        $view['view']['next_men_link'] = '/mypage/point';
+
         $layoutconfig = array(
             'path' => 'mypage',
             'layout' => 'layout',
@@ -425,7 +428,10 @@ class Mypage extends CB_Controller
                 $layout_dir='empty';
             else
                 $layout_dir=$this->cbconfig->item('layout_login'); 
-            
+        
+        $view['view']['prev_men_link'] = '/mypage';
+        $view['view']['next_men_link'] = '/mypage/point_provision';
+
         $layoutconfig = array(
             'path' => 'mypage',
             'layout' => 'layout',
@@ -1379,7 +1385,8 @@ class Mypage extends CB_Controller
         $meta_author = $this->cbconfig->item('site_meta_author_mypage_point');
         $page_name = $this->cbconfig->item('site_page_name_mypage_point');
 
-        
+        $view['view']['prev_men_link'] = '/mypage/point';
+        $view['view']['next_men_link'] = '/mypage';
             
         $layoutconfig = array(
             'path' => 'mypage',
