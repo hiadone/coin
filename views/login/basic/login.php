@@ -35,7 +35,7 @@
             if ($this->cbconfig->item('use_sociallogin')) {
                 $this->managelayout->add_js(base_url('assets/js/social_login.js'));
             ?>
-            
+            <input type="hidden" id="before_url" value="<?php echo html_escape($this->input->get_post('url')); ?>" />
             <section class="ham_cont02 ham_login">
                 <div class='login_notice'>
                     <figure>
