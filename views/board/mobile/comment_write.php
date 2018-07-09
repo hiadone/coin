@@ -8,8 +8,10 @@ if ( ! element('post_hide_comment', element('post', $view)) && element('is_admin
     
 <?php
 }
+
 if (element('can_comment_write', element('comment', $view)) OR element('show_textarea', element('comment', $view))) {
 ?>
+    <div class="alert alert-comment-message" style="display:none;"><span class="alert-comment-message-content"></span></div>
     <ol id="comment_write_box" class="post-view">
     <li style="border-bottom:0; padding:0 3%; box-sizing: border-box; margin-bottom: 0;">
         <h3>댓글쓰기</h3>
@@ -35,7 +37,7 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 <?php } ?>
                
                         <button type="button" class="per100 small_font" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">저 장</button>
-                   <div class="alert-comment-message pt10 pb10" style="display:none;"><span class="alert-comment-message-content"></span></div>
+                   
                     
                 <?php if ($this->member->is_member() === false) { ?>
                     <div class="form-inline passcord">

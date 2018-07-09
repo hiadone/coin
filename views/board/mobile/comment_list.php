@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-<div class="alert-comment-list-message" style="display:none;"><span class="alert-comment-list-message-content"></span></div>
+<div class="alert alert-comment-list-message clearfix" style="display:none;"><span class="alert-comment-list-message-content"></span></div>
 
 <?php
 if (element('list', element('data', $view))) {
