@@ -51,23 +51,23 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><img src="<?php echo base_url('assets/images/small_spoon_5.png')?>" alt="다이아수저">다이아수저</td>
+                            <td><img src="<?php echo base_url('assets/images/small_spoon_5.png')?>" alt="VVIP">VVIP</td>
                             <td>70,000 포인트 이상</td>
                         </tr>
                         <tr>
-                            <td><img src="<?php echo base_url('assets/images/small_spoon_4.png')?>" alt="금수저">금수저</td>
+                            <td><img src="<?php echo base_url('assets/images/small_spoon_4.png')?>" alt="VIP">VIP</td>
                             <td>8,000 ~ 69,999 포인트</td>
                         </tr>
                         <tr>
-                            <td><img src="<?php echo base_url('assets/images/small_spoon_3.png')?>" alt="은수저">은수저</td>
+                            <td><img src="<?php echo base_url('assets/images/small_spoon_3.png')?>" alt="GOLD">GOLD</td>
                             <td>1,000 ~ 7,999 포인트</td>
                         </tr>
                         <tr>
-                            <td><img src="<?php echo base_url('assets/images/small_spoon_2.png')?>" alt="동수저">동수저</td>
+                            <td><img src="<?php echo base_url('assets/images/small_spoon_2.png')?>" alt="SILVER">SILVER</td>
                             <td>500 ~ 999 포인트</td>
                         </tr>
                         <tr>
-                            <td><img src="<?php echo base_url('assets/images/small_spoon_1.png')?>" alt="흙수저">흙수저</td>
+                            <td><img src="<?php echo base_url('assets/images/small_spoon_1.png')?>" alt="NEW">NEW</td>
                             <td>0 ~ 499 포인트</td>
                         </tr>
                     </tbody>

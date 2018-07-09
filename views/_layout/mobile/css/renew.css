@@ -103,6 +103,9 @@
 	text-overflow:ellipsis;
 	overflow:hidden;
 }
+.tab10_list .gallery-box a>img{
+	border-top:1px solid #ebebeb;
+}
 .tab10_listinfo{
 	margin:0 15px 10px;
 	float:right;
@@ -277,8 +280,8 @@ section.wrap_con{
 /* media tablet */
 @media screen and (min-width:581px){
 	/* nav.main_nav_m */
-	nav.main_nav_m{
-		padding:50px 7% 0;
+	nav.main_nav_m ul{
+		padding:0 7%;
 	}
 	nav.main_nav_m li{
 		font-size:15px;
@@ -388,7 +391,10 @@ section.wrap_con{
 	.tab01 .noevent a{
 		line-height:34px;
 	}
-	
+	/* comment */
+	.write_cont ol.post-view li div.comment-list{
+		background-size: 2.4%;
+	}
 }
 @media screen and (max-width:580px) and (min-width:431px){
 	/* nav.main_nav_m */
@@ -469,5 +475,9 @@ section.wrap_con{
 	}
 	.tab01 .noevent a{
 		line-height:34px;
+	}
+	/* comment */
+	.write_cont ol.post-view li div.comment-list{
+		background-size: 3%;
 	}
 }

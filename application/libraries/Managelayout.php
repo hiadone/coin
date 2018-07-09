@@ -400,7 +400,7 @@ class Managelayout extends CI_Controller
                         <li><a href="'.board_url("o-1").'" title="게재중단요청">게재중단요청</a> </li>
                         <li><a href="'.board_url("o-2").'" title="제휴문의">제휴문의</a> </li>
                     </ul>
-                    <p class="small_font">Copyright ⓒ 시즌제이 . All Rights Reserved </p>
+                    <p class="small_font">Copyright ⓒ 하이애드원 . All Rights Reserved </p>
                 </footer>          
                 ';
             } else {
@@ -418,7 +418,7 @@ class Managelayout extends CI_Controller
                         <li><a href="'.board_url("o-1").'" title="게재중단요청">게재중단요청</a> </li>
                         <li><a href="'.board_url("o-2").'" title="제휴문의">제휴문의</a> </li>
                     </ul>
-                    <p class="small_font">Copyright ⓒ 시즌제이 . All Rights Reserved </p>
+                    <p class="small_font">Copyright ⓒ 하이애드원 . All Rights Reserved </p>
                 </footer>          
                 ';
             }
@@ -469,7 +469,7 @@ class Managelayout extends CI_Controller
                     </ul>
 
                     <p>
-                        Copyright ⓒ 시즌제이 . All Rights Reserved http://www.bitcoissue.com
+                        Copyright ⓒ 하이애드원 . All Rights Reserved http://www.bitcoissue.com
                         <span class="big_font pointer">TOP</span>
                     </p>
 

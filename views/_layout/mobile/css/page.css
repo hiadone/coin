@@ -393,7 +393,7 @@ html, body{
 	.tab01 .noevent{
 		float:right;
 		width:10%;
-		height:25px;
+		height:26px;
 		text-align:center;
 		box-sizing:border-box;
 		border-top:1px solid #ededed;
@@ -1555,12 +1555,13 @@ html, body{
 	}
 
 	.write_cont ol.post-view li div.comment-list{
-		padding:0 10% 0% 8%;
+		box-sizing: border-box;
+		padding:0 5% 0% 8%;
+		margin:3% 0;
+		line-height: 20px;
+		word-break: break-all;
 		background: url("/assets/images/reply.png") no-repeat 3% top;
 		background-size: 4%;
-		line-height: 20px;
-		margin:3% 0;
-		word-break: break-all;
 	}
 
 	.write_cont ol.post-view li table{
