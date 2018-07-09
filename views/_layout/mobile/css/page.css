@@ -1534,7 +1534,7 @@ html, body{
 		display: inline-block;
 		width: 100%;
 		border-bottom:1px solid #ededed;
-		padding:3%;
+		padding:0px 3%;
 		box-sizing: border-box;
 	}
 
@@ -1557,7 +1557,7 @@ html, body{
 	.write_cont ol.post-view li div.comment-list{
 		box-sizing: border-box;
 		padding:0 5% 0% 8%;
-		margin:3% 0;
+		/*margin:3% 0;*/
 		line-height: 20px;
 		word-break: break-all;
 		background: url("/assets/images/reply.png") no-repeat 3% top;

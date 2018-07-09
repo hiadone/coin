@@ -280,13 +280,9 @@ section.wrap_con{
 /* media tablet */
 @media screen and (min-width:581px){
 	/* nav.main_nav_m */
-<<<<<<< Updated upstream
+
 	nav.main_nav_m ul{
 		padding:0 7%;
-=======
-	nav.main_nav_m{
-		/*padding:50px 7% 0;*/
->>>>>>> Stashed changes
 	}
 	nav.main_nav_m li{
 		font-size:15px;
