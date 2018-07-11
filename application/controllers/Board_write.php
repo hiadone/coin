@@ -1367,7 +1367,7 @@ class Board_write extends CB_Controller
 
                     foreach ($member_group as $gkey => $gval) {
                         if(element('mgr_id', $gval) === "1" ){
-                            
+
                             if ($this->cbconfig->item('use_naver_blog_post') && element('use_naver_blog_post', $board)) {
                                 $this->load->helper('naver_blog_post');
                                 naver_blog_post($post_title, display_html_content($post_content, $content_type, element('post_image_width', $board), $autolink, $popup), $board);

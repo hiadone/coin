@@ -1478,14 +1478,14 @@ class Board_post extends CB_Controller
                                 
                             }
 
-                            if(empty($view['view']['latest'][$key]['thumb_url'])){
+                            if(empty($result['list'][$key]['thumb_url'])){
                                 $thumb_url = get_post_image_url(element('post_content', $val), $gallery_image_width, $gallery_image_height);
 
-                                $view['view']['latest'][$key]['thumb_url'] = $thumb_url
+                                $result['list'][$key]['thumb_url'] = $thumb_url
                                     ? $thumb_url
                                     : thumb_url('', '', $gallery_image_width, $gallery_image_height);
 
-                                $view['view']['latest'][$key]['origin_image_url'] = $thumb_url;
+                                
                             }
                                 
                         } else {
