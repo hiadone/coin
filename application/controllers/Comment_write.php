@@ -269,7 +269,7 @@ class Comment_write extends CB_Controller
             // 이벤트가 존재하면 실행합니다
             Events::trigger('formrunfalse', $eventname);
 
-            $result = array('error' => validation_errors('<div class="alert alert-warning" role="alert">', '</div>'));
+            $result = array('error' => validation_errors());
             exit(json_encode($result));
 
         } else {
