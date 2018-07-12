@@ -146,7 +146,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
             }
             $menuhtml.='</ul>';
 
-            if(element(0,element('active',$menu))){
+            if(!empty(element(0,element('active',$menu)))){
                 echo $menuhtml;
                 
                 $prev_men_link = element('prev_men_link', $layout);

@@ -12,9 +12,12 @@ if (element('list', element('data', $view))) {
     
     foreach (element('list', element('data', $view)) as $result) {
 ?>
-    <li id="comment_<?php echo element('cmt_id', $result); ?>" >
+    <li id="comment_<?php echo element('cmt_id', $result); ?>" style="padding-left:<?php echo element('cmt_depth', $result); ?>px;">
         <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_comment_id[]" value="<?php echo element('cmt_id', $result); ?>" /><?php } ?>
         <div class='reply_cont'>
+            <?php if(element('cmt_reply', $result)) {?>
+                <img  src="<?php echo base_url('//assets/images/reply.png') ?>" style="width:30px;">
+            <?php } ?>
             <figure>
                 <img src="<?php echo base_url('assets/images/big_spoon_'.element('display_level', $result).'.png');?>" alt='reply_icon_img'>
                 <figcaption>
@@ -30,6 +33,13 @@ if (element('list', element('data', $view))) {
                 <li class='small_font'>|</li>
                 <li>작성자 : <?php echo element('display_name', $result); ?></li>
                 <li class='small_font'>|</li>
+
+                <?php if (element('can_reply', $result)) { ?>
+
+                <li class='modify'><a href="javascript:;" onClick="comment_box('<?php echo element('cmt_id', $result); ?>', 'c'); return false;">답 변</a></li>
+                <li class='small_font'>|</li>
+                <?php } ?>
+
                 <?php if (element('can_update', $result)) { ?>
                 <li class='modify'><a href="javascript:;" onClick="comment_box('<?php echo element('cmt_id', $result); ?>', 'cu'); return false;">수 정</a></li>
                 <li class='small_font'>|</li>

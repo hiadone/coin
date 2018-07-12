@@ -224,62 +224,7 @@
 </div>
 
 <?php echo element('footercontent', element('board', element('list', $view))); ?>
-<!-- <script type="text/javascript">
-    //<![CDATA[
-    function view_board(id,brd_key) {
-        if(brd_key=='w-1' || brd_key=='w-2' || brd_key=='w-3'){
-            $.ajax({
-            type: "GET", 
-            async: true,
-            data: "pageid=<?php echo element(element('brd_key',element('board', element('list', $view))),$pageid) ?>&lang=utf-8&out=json", 
-            url: "https://ssl-hiadone.ad4989.co.kr/cgi-bin/pelicanc.dll?impr", 
-            cache: false, 
-            dataType: "jsonp", 
-            jsonp: "jquerycallback", 
-            success: function(data) 
-            {
 
-              // $("#" +id).html('<div class="tab09_cont cont" ><ul>'+data.tag+'</ul></div>'); 
-
-              $("#" +id).html('<div class="tab09_cont cont" >'+data.tag+'</div>'); 
-
-            },
-            error: function(xhr, status, error) { ; } 
-            });
-        } else {
-            var list_url = cb_url + '/group/view_board/' + brd_key+'/0/<?php echo $this->input->get('post_notice')?>';
-            $('#' + id).load(list_url,'',function(){
-            });
-        }
-    }   
-
-    
-
-     function boardSearch(f) {
-        var skeyword = f.skeyword.value.replace(/(^\s*)|(\s*$)/g,'');
-        if (skeyword.length < 2) {
-            alert('2글자 이상으로 검색해 주세요');
-            f.skeyword.focus();
-            return false;
-        }
-        href = cb_url + '/group/view_board/' + f.brd_key.value+'/0/'+f.post_notice.value;;
-
-        
-
-        $.ajax({
-            async: false,
-            url : href,
-            type : 'post',
-            data :  'sfield='+f.sfield[f.sfield.selectedIndex].value+'&skeyword='+f.skeyword.value+ '&csrf_test_name=' + cb_csrf_hash,
-            success : function(data) {
-                $('#view_board').html(data);
-                
-                
-            }
-        });
-    }
-    //]]>
-</script> -->
 
 
 <?php

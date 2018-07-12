@@ -181,7 +181,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 
         
 
-       
+       <h2>댓글영역</h3>
 
         <?php
         if ( ! element('post_hide_comment', element('post', $view))) {
@@ -191,7 +191,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             $this->load->view(element('view_skin_path', $layout) . '/comment_write');
         }
         ?>
-        <div id="viewcomment"></div>
+        <div id="viewcomment" class="mg10"></div>
         <ul class="middle_font post-view">
             <li><a href="<?php echo element('list_url', $view); ?>" class="btn btn-info btn-sm">목록</a></li>
             <?php if (element('prev_post', $view)) { ?>

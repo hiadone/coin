@@ -79,7 +79,7 @@
 
 .board .copy_post_url {cursor:pointer;}
 
-.commenttextarea {width:90%;}
+.commenttextarea {width:100%;}
 textarea.post_content  {width:90%;height:350px;margin:0 20px;}
 .poll_item_area {padding-left:228px;}
 .poll_item_area input {width:400px;}
@@ -96,12 +96,12 @@ textarea.post_content  {width:90%;height:350px;margin:0 20px;}
 .point-info{position:relative;}
 .point-info-content {display:none;position:absolute; right:30px;top:0;z-index:9999;width:200px;}
 .chk_comment_all_wrapper {padding:10px;}
-.comment_write_box_inner {margin-top:20px; padding:20px;}
+.comment_write_box_inner {padding:10px;}
 
 #comment_write_box li {display: block;margin: 0px; clear: both; margin-bottom: 15px;}
 #comment_write_box  li>span {float: left;
 	width: 25%;text-align: right;padding-right: 20px;margin-top: 5px;color: #000;font-weight: bold;}
-.comment_write_button_area {margin-top:20px;overflow:hidden;}
+.comment_write_button_area {margin-top:0px;overflow:hidden;}
 
 .board .url-qrcode {position:relative;cursor:pointer;}
 .board .url-qrcode i {margin:3px 0 0 5px;}

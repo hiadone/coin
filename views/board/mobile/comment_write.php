@@ -1,20 +1,23 @@
 <?php
 if ( ! element('post_hide_comment', element('post', $view)) && element('is_admin', $view)) {
 ?>
-    <div class="chk_comment_all_wrapper middle_font"><label for="chk_comment_all"><input id="chk_comment_all" onclick="all_commentlist_checked(this.checked);" type="checkbox" /> 코멘트 전체선택</label></div>
-    
-    <div class="item middle_font" onClick="comment_multi_action('viewcomment', '<?php echo element('post_id', element('post', $view)); ?>', 'comment_multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');"><i class="fa fa-trash-o"></i> 선택삭제</div>
-        
-    
+    <div class="chk_comment_all_wrapper"><label for="chk_comment_all"><input id="chk_comment_all" onclick="all_commentlist_checked(this.checked);" type="checkbox" /> 코멘트 전체선택</label></div>
+    <button type="button" class="btn btn-default btn-sm admin-manage-comment"><i class="fa fa-cog big-fa"></i>댓글관리</button>
+    <div class="btn-admin-manage-layer admin-manage-layer-comment">
+        <div class="item" onClick="comment_multi_action('viewcomment', '<?php echo element('post_id', element('post', $view)); ?>', 'comment_multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');"><i class="fa fa-trash-o"></i> 선택삭제</div>
+        <div class="item" onClick="comment_multi_action('viewcomment', '<?php echo element('post_id', element('post', $view)); ?>', 'comment_multi_secret', '0', '선택하신 글들을 비밀글을 해제하시겠습니까?');"><i class="fa fa-unlock"></i> 비밀글해제</div>
+        <div class="item" onClick="comment_multi_action('viewcomment', '<?php echo element('post_id', element('post', $view)); ?>', 'comment_multi_secret', '1', '선택하신 글들을 비밀글로 설정하시겠습니까?');"><i class="fa fa-lock"></i> 비밀글로</div>
+        <div class="item" onClick="comment_multi_action('viewcomment', '<?php echo element('post_id', element('post', $view)); ?>', 'comment_multi_blame_blind', '0', '선택하신 글들을 블라인드 해제 하시겠습니까?');"><i class="fa fa-exclamation-circle"></i> 블라인드해제</div>
+        <div class="item" onClick="comment_multi_action('viewcomment', '<?php echo element('post_id', element('post', $view)); ?>', 'comment_multi_blame_blind', '1', '선택하신 글들을 블라인드 처리 하시겠습니까?');"><i class="fa fa-exclamation-circle"></i> 블라인드처리</div>
+        <div class="item" onClick="comment_multi_action('viewcomment', '<?php echo element('post_id', element('post', $view)); ?>', 'comment_multi_trash', '', '선택하신 글들을 휴지통으로 이동하시겠습니까?');"><i class="fa fa-trash"></i> 휴지통으로</div>
+    </div>
 <?php
 }
-
 if (element('can_comment_write', element('comment', $view)) OR element('show_textarea', element('comment', $view))) {
 ?>
-    <div class="alert alert-comment-message" style="display:none;"><span class="alert-comment-message-content"></span></div>
-    <ol id="comment_write_box" class="post-view">
-    <li style="border-bottom:0; padding:0 3%; box-sizing: border-box; margin-bottom: 0;">
-        <h3>댓글쓰기</h3>
+    <div id="comment_write_box">
+        <div class="well comment_write_box_inner pd0">
+            <div class="alert alert-auto-close alert-dismissible alert-comment-message" style="display:none;"><span class="alert-comment-message-content"></span></div>
             <?php
             $attributes = array('name' => 'fcomment', 'id' => 'fcomment');
             echo form_open('', $attributes);
@@ -24,39 +27,28 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 <input type="hidden" name="cmt_id" value="" id="cmt_id" />
                 <input type="hidden" name="cmt_page" value="" id="cmt_page" />
                 
-                <textarea <?php if($this->member->is_member() === false) {?> placeholder="댓글쓰기는 로그인후 이용이 가능합니다."  onfocus="this.placeholder=''" maxlength="100" onblur="this.placeholder='댓글쓰기는 로그인후 이용이 가능합니다.'" <?php } ?> class=" " name="cmt_content" id="cmt_content"  accesskey="c" <?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'onClick="alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} ?>><?php echo set_value('cmt_content', element('cmt_content', element('comment', $view))); ?></textarea>
+                <textarea class="input commenttextarea mt0 mb0" name="cmt_content" id="cmt_content" rows="5" accesskey="c" <?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'onClick="alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} ?>><?php echo set_value('cmt_content', element('cmt_content', element('comment', $view))); ?></textarea>
                 <?php if (element('comment_min_length', element('board', $view)) OR element('comment_max_length', element('board', $view))) { ?>
-                    <span class="char_count">
-                        <span id="char_count">0</span>/
+                    <div class="pull-right">
+                        <strong><span id="char_count">0</span></strong>
                         <?php if (element('comment_min_length', element('board', $view))) { ?>
                             최소 <strong><?php echo number_format(element('comment_min_length', element('board', $view))); ?></strong> 글자 이상
-                        <?php } if (element('comment_max_length', element('board', $view))) { ?>
-                            <strong><?php echo number_format(element('comment_max_length', element('board', $view))); ?></strong>
-                        <?php } ?>
-                    </span>
-                <?php } ?>
-               
-                        <button type="button" class="per100 small_font" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">저 장</button>
-                   
-                    
-                <?php if ($this->member->is_member() === false) { ?>
-                    <div class="form-inline passcord">
-                        <?php if ($this->cbconfig->item('use_recaptcha')) { ?>
-                            <div class="captcha" id="recaptcha"></div>
-                            <button type="button" id="captcha" style="display:none;"></button>
-                            <input type="hidden" name="recaptcha" />
-                        <?php } else { ?>
-                            <!-- <div class="form-group"><img src="<?php echo base_url('assets/images/preload.png'); ?>" width="160" height="40" id="captcha" alt="captcha" title="captcha" /></div>
-                            <div class="form-group">
-                                <input type="text" class="input col-md-4" id="captcha_key" name="captcha_key" />
-                            </div>
-                            <div class="form-group">자동등록방지 숫자를 순서대로 입력하세요.</div> -->
+                        <?php }
+                        if (element('comment_max_length', element('board', $view))) { ?>
+                            /<strong><?php echo number_format(element('comment_max_length', element('board', $view))); ?></strong>
                         <?php } ?>
                     </div>
                 <?php } ?>
-            <?php echo form_close(); ?>        
-        </li>
-    </ol>
+                <div class="comment_write_button_area mt0 mb10">
+                    <div class="form-group pull-left">
+                        <button type="button" class="btn btn-danger btn-sm" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">댓글등록</button>
+                    </div>
+                    
+                </div>
+                
+            <?php echo form_close(); ?>
+        </div>
+    </div>
 <?php
 }
 ?>
