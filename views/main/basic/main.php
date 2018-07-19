@@ -511,8 +511,8 @@
         <h2>뉴 스 정 보<span><a href="<?php echo site_url('/board/live_news/') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02" data-board_url="<?php echo site_url('/board/live_news') ?>">최신뉴스</li>
-            <li class="nomal_font02" data-board_url="<?php echo site_url('/board/live_news?post_notice=4') ?>">인기뉴스</li>
+            <li class="active nomal_font02" style="width:100%" data-board_url="<?php echo site_url('/board/live_news') ?>">최신뉴스</li>
+            <!-- <li class="nomal_font02" data-board_url="<?php echo site_url('/board/live_news?post_notice=4') ?>">인기뉴스</li> -->
         </ul>
 
         <div class="tab_cont">
