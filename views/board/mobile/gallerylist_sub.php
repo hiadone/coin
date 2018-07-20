@@ -3,8 +3,8 @@
 <?php echo element('headercontent', element('board', element('list', $view))); ?>
 <div class="foot_padding">
         <!-- 뉴스 -->
-    <section class=" wrap_con">
-        <h2 class="hidden"><?php echo html_escape(element('board_name', element('board', element('list', $view)))); ?></h2>
+    <section class="main_title wrap_con">
+        <h2><?php echo html_escape(element('board_name', element('board', element('list', $view)))); ?></h3>
         <?php if ( ! element('access_list', element('board', element('list', $view))) && element('use_rss_feed', element('board', element('list', $view)))) { ?>
             <a href="<?php echo rss_url(element('brd_key', element('board', element('list', $view)))); ?>" class="btn btn-default btn-sm" title="<?php echo html_escape(element('board_name', element('board', element('list', $view)))); ?> RSS 보기"><i class="fa fa-rss"></i></a>
         <?php } ?>

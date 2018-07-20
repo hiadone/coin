@@ -16,34 +16,9 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
 
 <div class="foot_padding">
     <!-- tab06 영역--> 
-    <section class="wrap_con">
-        <h2 class="hidden">커뮤니티</h2>
-        <ul class="btn_nav btn_nav04">
-            <?php 
-            if (element('board_list', $view)) {
-                $bcount=count(element('board_list', $view));
-                $tab06=array();
-
-                foreach (element('board_list', $view) as $key => $board) {
-                    $active='';
-                    $param='';
-
-                    if(element('brd_key', element('board', element('list', $view)))===element('brd_key',$board) && element('post_notice', element('board', element('list', $view)),0)===element('post_notice',$board,0)) {
-                        
-                        $active='selectBtn';
-                    }
-
-
-                    array_push($tab06,element('brd_key',$board));
-                    
-
-
-                    
-                    echo '<li class="'.$active.'" style="width: '.(100/$bcount).'%;"><a href="'.board_url(element('brd_key',$board)).'">'.element('board_name',$board).'</a></li>';
-                }
-            }
-             ?>
-        </ul>
+    <section class="main_title wrap_con">
+        <h2 class=""><?php echo html_escape(element('board_name', element('board', element('list', $view))));?></h2>
+        
         
         <?php 
         $hide_style='';

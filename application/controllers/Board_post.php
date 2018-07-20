@@ -1342,6 +1342,9 @@ class Board_post extends CB_Controller
             $where['post.mem_id'] = $mem_id;
         }
 
+        if(!empty($post_id)){
+            $where['post.post_id <='] = $post_id;
+        }
         $category_id = (int) $this->input->get('category_id');
         if (empty($category_id) OR $category_id < 1) {
             $category_id = '';
