@@ -1039,7 +1039,7 @@ class Board_post extends CB_Controller
             if ($show_list_from_view) {
 
                 if($this->cbconfig->get_device_view_type() === 'mobile')
-                $list_skin_file = element('mobile_use_gallery_list', $board) ? 'gallerylist_sub' : 'list_sub';
+                $list_skin_file = element('mobile_use_gallery_list', $board) ? 'list_sub' : 'list_sub';
                 else 
                     $list_skin_file = element('use_gallery_list', $board) ? 'gallerylist_sub' : 'list_sub';
                 $listskindir = ($this->cbconfig->get_device_view_type() === 'mobile')
@@ -1343,7 +1343,7 @@ class Board_post extends CB_Controller
         }
 
         if(!empty($post_id)){
-            $where['post.post_id <='] = $post_id;
+            // $where['post.post_id <='] = $post_id;
         }
         $category_id = (int) $this->input->get('category_id');
         if (empty($category_id) OR $category_id < 1) {
