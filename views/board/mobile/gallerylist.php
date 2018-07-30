@@ -1,6 +1,7 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
 <?php echo element('headercontent', element('board', element('list', $view))); ?>
+
 <script>
     $(document).ready(function(){
         var hashtag = location.hash.substring(1, location.hash.length).replace(/ /gi, '%20');
@@ -12,6 +13,7 @@
     });
 </script>
 <div class="foot_padding">
+
         <!-- 뉴스 -->
     <section class="wrap_con">
         <h2 class="hidden"><?php echo html_escape(element('board_name', element('board', element('list', $view)))); ?></h2>
@@ -87,9 +89,6 @@
             //]]>
             </script>
 
-
-        
-        
         
         
     
@@ -114,6 +113,20 @@
                     $open = true;
                 }
                 $marginright = (($i+1)% $cols === 0) ? 0 : 2;
+
+                if($i===1){
+                    echo '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-format="fluid"
+                                 data-ad-layout-key="-6t+ed+2i-1n-4w"
+                                 data-ad-client="ca-pub-7419726859237673"
+                                 data-ad-slot="8429130885"></ins>
+                            <script>
+                                 (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                          ';
+                }
         ?>
             <li class="gallery-box" style="width:<?php echo element('gallery_percent', element('board', element('list', $view))); ?>%;margin-right:<?php echo $marginright;?>%;">
                 <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /><?php } ?>

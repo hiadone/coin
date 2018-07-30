@@ -138,6 +138,18 @@ function view_coin(cur_unit) {
                 
             </div>
         </section>
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 모바일 서비스란 광고 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:100%;height:60px"
+             data-ad-client="ca-pub-7419726859237673"
+             data-ad-slot="5420233288"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        
     </section>
     <!-- 접기 버튼 -->
 </div>
