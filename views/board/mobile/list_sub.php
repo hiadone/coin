@@ -85,7 +85,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
                             }
                             ?>
                         " title="<?php echo html_escape(element('title', $result)); ?>"><?php echo html_escape(element('title', $result)); ?>
-                        <?php if (element('post_comment_count', $result)) { ?><span class="label">+<?php echo element('post_comment_count', $result); ?></span><?php } ?></a>
+                        <?php if (element('post_comment_count', $result)) { ?><span class="label">+<?php echo element('post_comment_count', $result); ?></span><?php } ?>
                         <table class="tab06_cont_table">
                             <tbody>
                                 <tr>
@@ -95,7 +95,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
                                 </tr>
                             </tbody>    
                         </table>
-                
+                        </a>
                 
                            
                     </div>

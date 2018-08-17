@@ -165,7 +165,7 @@
                             }
                             ?>
                         " title="<?php echo html_escape(element('title', $result)); ?>"><?php echo html_escape(element('title', $result)); ?>
-                        <?php if (element('post_comment_count', $result)) { ?><span class="label">+<?php echo element('post_comment_count', $result); ?></span><?php } ?></a>
+                        <?php if (element('post_comment_count', $result)) { ?><span class="label">+<?php echo element('post_comment_count', $result); ?></span><?php } ?>
                         <table class="tab06_cont_table">
                             <tbody>
                                 <tr>
@@ -175,7 +175,7 @@
                                 </tr>
                             </tbody>    
                         </table>
-                
+                        </a>
                 
                            
                     </div>

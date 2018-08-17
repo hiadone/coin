@@ -678,6 +678,12 @@ if (typeof(COMMON_JS) === 'undefined') {
     }
     function post_multi_copy(ptype) {
         var f = document.fboardlist;
+
+        if ($("input[name='chk_post_id[]']:checked", f).length < 1) {
+            alert('자료를 하나 이상 선택하세요.');
+            return;
+        }
+        
         var sub_win = window.open('', 'move', 'left=100, top=100, width=620, height=500, scrollbars=1');
 
         f.target = 'move';
