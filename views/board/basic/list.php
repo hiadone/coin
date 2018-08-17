@@ -182,6 +182,9 @@ $param =& $this->querystring;
                 <?php } ?>
                 <?php if (element('is_admin', $view)) { ?>
                 <a href="javascript:;" onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?'); return false;">선 택 삭 제</a>
+                    <?php if (element('is_move', $view)) { ?>
+                    <a href="javascript:post_multi_copy('move');"><i class="fa fa-arrow-right"></i> 이동하기</a>
+                    <?php } ?>
                 <?php } ?>
             </section>
             

@@ -17,7 +17,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
 <div class="foot_padding">
     <!-- tab06 영역--> 
     <section class="main_title wrap_con">
-        <h2 class=""><?php echo html_escape(element('board_name', element('board', element('list', $view))));?></h2>
+        <!-- <h2 class="" style="background-color:#929ba5"><?php echo html_escape(element('board_name', element('board', element('list', $view))));?></h2> -->
         
         
         <?php 
@@ -128,12 +128,13 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
                 <?php if (element('search_list_url', element('list', $view))) { ?>
                     <!-- <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a> -->
                 <?php } ?>
-            </div>
-            <?php if (element('is_admin', $view)) { ?>
-                <div class="pull-left mg10">
+                <?php if (element('is_admin', $view)) { ?>
+            
                         <div  onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');" class="btn btn-danger btn-sm">선택삭제하기</div>
-                </div>
+            
             <?php } ?>
+            </div>
+            
             <?php if (element('write_url', element('list', $view))) { ?>
                 <div class="pull-right mg10">
                     <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글쓰기</a>

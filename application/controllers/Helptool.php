@@ -720,14 +720,22 @@ class Helptool extends CB_Controller
 
             // 이벤트가 존재하면 실행합니다
             $view['view']['event']['formrunfalse'] = Events::trigger('formrunfalse', $eventname);
-
-            $result = $this->Board_model->get_board_list();
+            
+            if(element('brd_key',$board) ==='temp' ){
+                $result[] = $this->Board_model->get_one('4');
+                $result[] = $this->Board_model->get_one('5');
+            } else {
+                $result = $this->Board_model->get_board_list();
+            }
             if ($result && is_array($result)) {
                 foreach ($result as $key => $value) {
+
+                    
                     $result[$key]['group'] = $this->Board_group_model
                         ->get_one(element('bgr_id', $value));
                 }
             }
+            
             $view['view']['list'] = $result;
 
             // 이벤트가 존재하면 실행합니다
@@ -907,6 +915,7 @@ class Helptool extends CB_Controller
                             // post table update
                             $postupdate = array(
                                 'brd_id' => $new_brd_id,
+                                'post_datetime' => cdate('Y-m-d H:i:s'),
                             );
 
                             if ($this->cbconfig->item('use_copy_log')) {
@@ -924,6 +933,7 @@ class Helptool extends CB_Controller
 
                             $dataupdate = array(
                                 'brd_id' => $new_brd_id,
+
                             );
                             $where = array(
                                 'target_id' => $post_id,
@@ -959,7 +969,7 @@ class Helptool extends CB_Controller
             $view['view']['event']['after'] = Events::trigger('after', $eventname);
 
             $alert = ($type === 'copy') ? '게시글 복사가 완료되었습니다' : '게시글 이동이 완료되었습니다';
-            alert_close($alert);
+            alert_refresh_close($alert);
         }
     }
 

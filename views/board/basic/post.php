@@ -134,6 +134,11 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <?php    if (element('delete_url', $view)) { ?>
                 <li><a class="btn-one-delete pointer" data-one-delete-url="<?php echo element('delete_url', $view); ?>">삭제</a></li>
                 <li class='small_font'>|</li>
+                <?php if (element('is_move', $view)) { ?>
+                    
+                    <li><a href="javascript:post_copy('move', '<?php echo element('post_id', element('post', $view)); ?>');"><i class="fa fa-arrow-right"></i> 이동하기</a></li>
+                    <li class='small_font'>|</li>
+                    <?php } ?>
             <?php } ?>
             <li><a href="<?php echo element('list_url', $view); ?>" class="">목록</a></li>
         </ul>

@@ -100,6 +100,8 @@ class Board_post extends CB_Controller
                 )
             );
 
+            $view['view']['is_move'] = $brd_key === "temp" ? 1 : 0 ;
+
             // 이벤트가 존재하면 실행합니다
             $view['view']['event']['before_layout'] = Events::trigger('before_layout', $eventname);
 
@@ -275,6 +277,9 @@ class Board_post extends CB_Controller
                 'group_id' => element('bgr_id', $board)
             )
         );
+
+        $view['view']['is_move'] = element('brd_key', $board) === "temp" ? 1 : 0 ;
+
         $view['view']['board_key'] = element('brd_key', $board);
 
         if (element('use_personal', $board) && $this->member->is_member() === false) {

@@ -164,6 +164,10 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <?php if (element('write_url', $view)) { ?>
                 <div class="pull-right middle_font">
                     <a href="<?php echo element('write_url', $view); ?>" class="btn btn-success btn-sm">글쓰기</a>
+                    <?php if (element('is_move', $view)) { ?>
+                    
+                    <a href="javascript:post_copy('move', '<?php echo element('post_id', element('post', $view)); ?>');" class="btn btn-danger btn-sm"><i class="fa fa-arrow-right"></i> 이동하기</a>
+                    <?php } ?>
                 </div>
             <?php } ?>
             </div>

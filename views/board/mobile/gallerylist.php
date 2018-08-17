@@ -172,20 +172,20 @@
         
         
         </section>
-        <div class="border_button" style="background: #fff">
-            <div class="pull-left mg10">
-                
+        <div class="border_button mg10" style="background: #fff">
+            
+            <div class="pull-left ">
                 <?php if (element('search_list_url', element('list', $view))) { ?>
                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-info btn-sm">전체목록</a>
                 <?php } ?>
-            </div>
-            <?php if (element('is_admin', $view)) { ?>
-                <div class="pull-left mg10">
-                        <div  onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');" class="btn btn-danger btn-sm">선택삭제하기</div>
-                </div>
+                <?php if (element('is_admin', $view)) { ?>
+                    <div  onClick="post_multi_action('multi_delete', '0', '선택하신 글들을 완전삭제하시겠습니까?');" class="btn btn-danger btn-sm">선택삭제하기</div>
             <?php } ?>
+            </div>
+            
+            
             <?php if (element('write_url', element('list', $view))) { ?>
-                <div class="pull-right mg10">
+                <div class="pull-right ">
                     <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글쓰기</a>
                 </div>
             <?php } ?>
