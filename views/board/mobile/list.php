@@ -146,10 +146,7 @@
                 foreach (element('list', element('data', element('list', $view))) as $result) {
             ?>
                 <li class="">
-                    <div>
-                        <?php if (element('is_admin', $view)) { ?><th scope="row"><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /></th><?php } ?>
-                        <?php if (element('post_reply', $result)) { ?><span class="label label-primary" style="margin-left:<?php echo strlen(element('post_reply', $result)) * 10; ?>px">Re</span><?php } ?>
-                        <a href="<?php echo element('post_url', $result); ?>" style="
+                    <a href="<?php echo element('post_url', $result); ?>" style="
                             <?php
                             if (element('title_color', $result)) {
                                 echo 'color:' . element('title_color', $result) . ';';
@@ -164,7 +161,11 @@
                                 echo 'font-weight:bold;';
                             }
                             ?>
-                        " title="<?php echo html_escape(element('title', $result)); ?>"><?php echo html_escape(element('title', $result)); ?>
+                        " title="<?php echo html_escape(element('title', $result)); ?>">
+                    <div>
+                        <?php if (element('is_admin', $view)) { ?><th scope="row"><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /></th><?php } ?>
+                        <?php if (element('post_reply', $result)) { ?><span class="label label-primary" style="margin-left:<?php echo strlen(element('post_reply', $result)) * 10; ?>px">Re</span><?php } ?>
+                        <?php echo html_escape(element('title', $result)); ?>
                         <?php if (element('post_comment_count', $result)) { ?><span class="label">+<?php echo element('post_comment_count', $result); ?></span><?php } ?>
                         <table class="tab06_cont_table">
                             <tbody>
@@ -175,10 +176,11 @@
                                 </tr>
                             </tbody>    
                         </table>
-                        </a>
+                        
                 
                            
                     </div>
+                    </a>
                 </li>
 
             <?php 
