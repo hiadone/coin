@@ -1492,8 +1492,9 @@
 
 		.reply_list > ol > li{
 			width: 100%;
+			box-sizing:border-box;
 			display: inline-block;
-			margin-bottom: 30px;
+			margin-bottom: 20px;
 		}
 
 		/*reply_cont(작성된 댓글) css*/
@@ -1504,13 +1505,15 @@
 			}
 
 			.reply_cont figure{
-				width: 100%;
+				width: 95%;
 				display: inline-block;
 			}
 
 			.reply_cont img{
 				width: 59px;
 				margin-right: 1%;
+				vertical-align:top;
+				float:left;
 			}
 
 			.reply_cont h3{
@@ -1519,9 +1522,9 @@
 			}
 
 			.reply_cont figcaption{
-				width: 93%;
+				width: 92.5%;
 				margin:5px 0;
-				float: right;
+				float: left;
 			}
 
 			.reply_cont ul{
