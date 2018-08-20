@@ -186,10 +186,14 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
              
         </div>
     </div>
-
-    <aside class="back_top_m" style="display:none;">
-    <div><img src="<?php echo element('layout_skin_url', $layout); ?>/images/backtop_03.png" alt="맨위로"></div>
+    <aside class="fixed_btn_box">
+        <ul class="btn_box">
+            <li class="btn btn_top_m back_top_m"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/icon_back_top.png" alt="맨위로"></li>
+            <li class="btn btn_write"><a href=""><img src="<?php echo element('layout_skin_url', $layout); ?>/images/icon_write.png" alt="글쓰기"></a></li>
+        </ul>
     </aside>
+
+    
     <!-- main end -->
     
     <!-- footer start -->
@@ -234,4 +238,10 @@ $('.back_top_m').click(function(){
             location.href='<?php echo $next_men_link?>';
             
     });
+
+
+    if ($('#write_url').length) { 
+        $('aside.fixed_btn_box .btn_write').children('a').attr('href',$('#write_url').attr('href'));
+        $('aside.fixed_btn_box .btn_write').show();
+    }
   </script>

@@ -186,7 +186,7 @@
             
             <?php if (element('write_url', element('list', $view))) { ?>
                 <div class="pull-right ">
-                    <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글쓰기</a>
+                    <a href="<?php echo element('write_url', element('list', $view)); ?>" id="write_url" class="btn btn-success btn-sm">글쓰기</a>
                 </div>
             <?php } ?>
         </div>
