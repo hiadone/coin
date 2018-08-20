@@ -220,7 +220,7 @@
             
             <?php if (element('write_url', element('list', $view))) { ?>
                 <div class="pull-right ">
-                    <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글쓰기</a>
+                    <a href="<?php echo element('write_url', element('list', $view)); ?>" id="write_url" class="btn btn-success btn-sm">글쓰기</a>
                     <?php if (element('is_move', $view)) { ?>
                     <a href="javascript:post_multi_copy('move');" class="btn btn-danger btn-sm"><i class="fa fa-arrow-right"></i> 이동하기</a>
                     <?php } ?>
