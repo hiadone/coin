@@ -793,14 +793,14 @@ class Board_post extends CB_Controller
             if($this->member->is_member())
                 $view['view']['write_url'] = 'javascript:alert(\'회원님은 글을 작성할 수 있는 권한이 없습니다.\');';
             else 
-                $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');document.location.href=\/login?url=' . urlencode(current_full_url()).'\'';
+                $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');document.location.href=\'/login?url=' . urlencode(current_full_url()).'\'';
             
         } elseif ($this->cbconfig->get_device_view_type() === 'mobile'
             && element('mobile_always_show_write_button', $board)) {
             if($this->member->is_member())
                 $view['view']['write_url'] = 'javascript:alert(\'회원님은 글을 작성할 수 있는 권한이 없습니다.\');';
             else 
-                $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');document.location.href="/login?url=' . urlencode(current_full_url()).'"';
+                $view['view']['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');document.location.href=\'/login?url=' . urlencode(current_full_url()).'\'';
             
         }
 
@@ -1781,9 +1781,9 @@ class Board_post extends CB_Controller
             $return['write_url'] = write_url($brd_key);
         } elseif ($this->cbconfig->get_device_view_type() !== 'mobile' && element('always_show_write_button', $board)) {
             if($this->member->is_member())
-                $return['write_url'] = 'javascript:alert(\'회원님은 글을 작성할 수 있는 권한이 없습니다.\');document.location.href=\'/login?url=' . urlencode(current_full_url()).'\'';
+                $return['write_url'] = 'javascript:alert(\'회원님은 글을 작성할 수 있는 권한이 없습니다.\');';
             else 
-                $return['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');';
+                $return['write_url'] = 'javascript:alert(\'비회원은 글쓰기 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.\');document.location.href=\'/login?url=' . urlencode(current_full_url()).'\'';
         } elseif ($this->cbconfig->get_device_view_type() === 'mobile' && element('mobile_always_show_write_button', $board)) {
 
             if($this->member->is_member())
