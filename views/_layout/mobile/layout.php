@@ -189,7 +189,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
     <aside class="fixed_btn_box">
         <ul class="btn_box">
             <li class="btn btn_top_m back_top_m"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/icon_back_top.png" alt="맨위로"></li>
-            <li class="btn btn_write"><a href=""><img src="<?php echo element('layout_skin_url', $layout); ?>/images/icon_write.png" alt="글쓰기"></a></li>
+            <li class="btn btn_write"><a href="" class=""><img src="<?php echo element('layout_skin_url', $layout); ?>/images/icon_write.png" alt="글쓰기"></a></li>
         </ul>
     </aside>
 

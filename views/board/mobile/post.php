@@ -1,4 +1,4 @@
-]<?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
+<?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 <?php    $this->managelayout->add_js(base_url('plugin/zeroclipboard/ZeroClipboard.js')); ?>
 
 <?php
