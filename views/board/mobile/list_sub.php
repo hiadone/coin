@@ -62,8 +62,11 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
             <ul class="tab06_cont_list">
                 
             <?php
+            $i=0;
             if (element('list', element('data', element('list', $view)))) {
                 foreach (element('list', element('data', element('list', $view))) as $result) {
+                    if($i > 5 ) break;
+                    $i++;
             ?>
                 <li class="">
                     <a href="<?php echo element('post_url', $result); ?>" style="

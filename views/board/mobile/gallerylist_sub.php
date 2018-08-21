@@ -77,6 +77,8 @@
                 $open = true;
             }
             $marginright = (($i+1)% $cols === 0) ? 0 : 2;
+
+            if($i > 5 ) break;
     ?>
         <li class="gallery-box" style="width:<?php echo element('gallery_percent', element('board', element('list', $view))); ?>%;margin-right:<?php echo $marginright;?>%;">
             <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /><?php } ?>
