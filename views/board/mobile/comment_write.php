@@ -19,7 +19,7 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 <input type="hidden" name="cmt_id" value="" id="cmt_id" />
                 <input type="hidden" name="cmt_page" value="" id="cmt_page" />
                 
-                <textarea class="input commenttextarea mt0 mb0" name="cmt_content" id="cmt_content" rows="5" accesskey="c" <?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'onClick="alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} ?>><?php echo set_value('cmt_content', element('cmt_content', element('comment', $view))); ?></textarea>
+                <textarea class="input commenttextarea mt0 mb0" name="cmt_content" id="cmt_content" rows="5" accesskey="c" <?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'onClick="alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');document.location.href=\'/login?url=' . urlencode(current_full_url()).'\';return false;"';} ?>><?php echo set_value('cmt_content', element('cmt_content', element('comment', $view))); ?></textarea>
                 <?php if (element('comment_min_length', element('board', $view)) OR element('comment_max_length', element('board', $view))) { ?>
                     <div class="pull-right">
                         <strong><span id="char_count">0</span></strong>
@@ -33,7 +33,7 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 <?php } ?>
                 <div class="comment_write_button_area mt0 mb10">
                     <div class="form-group pull-left">
-                        <button type="button" class="btn btn-danger btn-sm" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">댓글등록</button>
+                        <button type="button" class="btn btn-danger btn-sm" id="cmt_btn_submit" onClick="<?php if ( ! element('can_comment_write', element('comment', $view))) {echo 'alert(\'' . html_escape(element('can_comment_write_message', element('comment', $view))) . '\');document.location.href=\'/login?url=' . urlencode(current_full_url()).'\';return false;"';} else { ?>add_comment(this.form, '<?php echo element('post_id', element('post', $view)); ?>');<?php } ?> ">댓글등록</button>
                     </div>
                     
                 </div>
