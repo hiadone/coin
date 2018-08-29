@@ -889,7 +889,7 @@ class Cron extends CB_Controller {
                 print_r($obj);
             }
         }
-        
+            
         
         
     }
@@ -952,6 +952,8 @@ class Cron extends CB_Controller {
                 $new_brd_id = 5;
             elseif(element('upload_board',$extravars) === '호재정보' ) 
                 $new_brd_id = 4;
+            elseif(element('upload_board',$extravars) === '코인지식' ) 
+                $new_brd_id = 2;
 
             
             if ($post_id_list) {
