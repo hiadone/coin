@@ -1649,7 +1649,7 @@
 		}
 
 		.cont_write input{
-			height: 20px;
+			/*height: 20px;*/
 			outline: none;
 			border:1px solid #ededed; 
 			padding:3px 5px;

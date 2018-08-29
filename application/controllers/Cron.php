@@ -845,4 +845,170 @@ class Cron extends CB_Controller {
 
         $post_id = $this->Post_model->insert($updatedata);
     }
+
+    public function board_scheduler()
+    {
+
+        
+
+        $this->load->model('Post_model');
+        $this->load->model('Post_extra_vars_model');
+        
+        
+        $where=array('brd_id' => 27,'pev_key' =>'upload_time','pev_value<' =>date('Y-m-d H:i'));
+
+        $result = $this->Post_extra_vars_model->get('','',$where);
+
+
+        foreach($result as $value){
+            // $extravars = $this->Post_extra_vars_model->get_all_meta(element('post_id', $value));
+
+            // print_r($extravars);
+            $this->cron_post_copy('move',element('post_id', $value));
+            if(empty(element('push_noti', $extravars))) echo "aaa";
+        }
+        
+        
+        
+    }
+
+
+    /**
+     * 게시물 복사 밎 이동
+     */
+    public function cron_post_copy($type = 'move', $post_id)
+    {
+        // 이벤트 라이브러리를 로딩합니다
+        $eventname = 'event_helptool_post_copy';
+        $this->load->event($eventname);
+
+        if (empty($post_id)) {
+                show_404();
+        }
+
+        $view = array();
+        $view['view'] = array();
+
+        // 이벤트가 존재하면 실행합니다
+        $view['view']['event']['before'] = Events::trigger('before', $eventname);
+
+        $this->load->model(array(
+            'Blame_model', 'Board_model', 'Board_group_model',
+            'Comment_model', 'Like_model', 'Post_extra_vars_model',
+            'Post_file_model', 'Post_file_download_log_model', 'Post_history_model',
+            'Post_link_model', 'Post_link_click_log_model', 'Post_meta_model',
+            'Post_poll_model', 'Post_tag_model', 'Scrap_model'
+        ));
+
+        
+        $post_id_list = $post_id;
+        
+        $view['view']['post_id_list'] = $post_id_list;
+
+        $post = $this->Post_model->get_one($post_id);
+        $board = $this->board->item_all(element('brd_id', $post));
+
+        
+        
+        $typetext = ($type === 'copy') ? '복사' : '이동';
+
+        
+
+        /**
+         * 유효성 검사를 하지 않는 경우, 또는 유효성 검사에 실패한 경우입니다.
+         * 즉 글쓰기나 수정 페이지를 보고 있는 경우입니다
+         */
+        
+
+            // 이벤트가 존재하면 실행합니다
+            $view['view']['event']['formruntrue'] = Events::trigger('formruntrue', $eventname);
+
+            $old_brd_id = element('brd_id', $board);
+
+            $extravars = $this->Post_extra_vars_model->get_all_meta($post_id);
+            if(element('upload_board',$extravars) === '뉴스정보' )
+                $new_brd_id = 5;
+            elseif(element('upload_board',$extravars) === '호재정보' ) 
+                $new_brd_id = 4;
+
+            
+            if ($post_id_list) {
+                $arr = explode(',', $post_id_list);
+                if ($arr) {
+                    $arrsize = count($arr);
+                    for ($k= $arrsize-1; $k>= 0; $k--) {
+                        $post_id = element($k, $arr);
+                        if (empty($post_id)) {
+                            continue;
+                        }
+
+                        $post = $this->Post_model->get_one($post_id);
+                        $board = $this->board->item_all(element('brd_id', $post));
+
+                        
+                        if ($type === 'move') {
+
+                            // 이벤트가 존재하면 실행합니다
+                            $view['view']['event']['move_before'] = Events::trigger('move_before', $eventname);
+
+                            // post table update
+                            $postupdate = array(
+                                'brd_id' => $new_brd_id,
+                                'post_datetime' => cdate('Y-m-d H:i:s'),
+                            );
+
+                            if ($this->cbconfig->item('use_copy_log')) {
+                                $post_content = $post['post_content'];
+                                $br = $post['post_html'] ? '<br /><br />' : "\n";
+                                $post_content .= $br . '[이 게시물은 '
+                                    . $this->member->item('mem_nickname') . ' 님에 의해 '
+                                    . cdate('Y-m-d H:i:s') . ' '
+                                    . element('brd_name', $board) . ' 에서 이동됨]';
+                                $postupdate['post_content'] = $post_content;
+                            }
+
+                            $this->Post_model->update($post_id, $postupdate);
+
+
+                            $dataupdate = array(
+                                'brd_id' => $new_brd_id,
+
+                            );
+                            $where = array(
+                                'target_id' => $post_id,
+                                'target_type' => 1,
+                            );
+                            $this->Blame_model->update('', $dataupdate, $where);
+                            $this->Like_model->update('', $dataupdate, $where);
+
+                            $where = array(
+                                'post_id' => $post_id,
+                            );
+                            $this->Comment_model->update('', $dataupdate, $where);
+                            $this->Post_extra_vars_model->update('', $dataupdate, $where);
+                            $this->Post_file_model->update('', $dataupdate, $where);
+                            $this->Post_file_download_log_model->update('', $dataupdate, $where);
+                            $this->Post_history_model->update('', $dataupdate, $where);
+                            $this->Post_link_model->update('', $dataupdate, $where);
+                            $this->Post_link_click_log_model->update('', $dataupdate, $where);
+                            $this->Post_meta_model->update('', $dataupdate, $where);
+                            $this->Post_poll_model->update('', $dataupdate, $where);
+                            $this->Post_tag_model->update('', $dataupdate, $where);
+                            $this->Scrap_model->update('', $dataupdate, $where);
+
+                            // 이벤트가 존재하면 실행합니다
+                            $view['view']['event']['move_after'] = Events::trigger('move_after', $eventname);
+
+                        }
+                    }
+                }
+            }
+
+            // 이벤트가 존재하면 실행합니다
+            $view['view']['event']['after'] = Events::trigger('after', $eventname);
+
+            return true;
+            
+        
+    }
 }

@@ -1,4 +1,8 @@
+<?php $this->managelayout->add_js('/assets/js/jquery-ui-timepicker-addon.js'); ?>
+<?php $this->managelayout->add_css('/assets/css/jquery-ui-timepicker-addon.css'); ?>
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
+
+
 
 <?php echo element('headercontent', element('board', $view)); ?>
 

@@ -1208,6 +1208,12 @@ html, body{
 			text-align: center;
 			font-weight: bold;
 		}
+		
+		.write_area .checkbox > label{
+			color: #000;
+			background-color: #fff;
+			
+		}
 
 		.write_area div{
 			width: 100%;

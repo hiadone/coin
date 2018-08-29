@@ -628,10 +628,13 @@ class Board_write extends CB_Controller
                         OR element('field_type', $value) === 'url'
                         OR element('field_type', $value) === 'email'
                         OR element('field_type', $value) === 'phone'
-                        OR element('field_type', $value) === 'date') {
+                        OR element('field_type', $value) === 'date'
+                        OR element('field_type', $value) === 'datetime') {
 
                         if (element('field_type', $value) === 'date') {
                             $extra_content[$k]['input'] .= '<input type="text" id="' . element('field_name', $value) . '" name="' . element('field_name', $value) . '" class="form-control input datepicker" value="' . set_value(element('field_name', $value)) . '" readonly="readonly" ' . $required . ' />';
+                        }elseif (element('field_type', $value) === 'datetime') {
+                            $extra_content[$k]['input'] .= '<input type="text" id="' . element('field_name', $value) . '" name="' . element('field_name', $value) . '" class="form-control input datetimepicker" value="' . set_value(element('field_name', $value)) . '" readonly="readonly" ' . $required . ' />';
                         } elseif (element('field_type', $value) === 'phone') {
                             $extra_content[$k]['input'] .= '<input type="text" id="' . element('field_name', $value) . '" name="' . element('field_name', $value) . '" class="form-control input validphone" value="' . set_value(element('field_name', $value)) . '" ' . $required . ' />';
                         } else {
@@ -2005,9 +2008,12 @@ class Board_write extends CB_Controller
                         OR element('field_type', $value) === 'url'
                         OR element('field_type', $value) === 'email'
                         OR element('field_type', $value) === 'phone'
-                        OR element('field_type', $value) === 'date') {
+                        OR element('field_type', $value) === 'date'
+                        OR element('field_type', $value) === 'datetime') {
                         if (element('field_type', $value) === 'date') {
                             $extra_content[$k]['input'] .= '<input type="text" id="' . element('field_name', $value) . '" name="' . element('field_name', $value) . '" class="form-control input datepicker" value="' . set_value(element('field_name', $value), $item) . '" readonly="readonly" ' . $required . ' />';
+                        } elseif (element('field_type', $value) === 'datetime') {
+                            $extra_content[$k]['input'] .= '<input type="text" id="' . element('field_name', $value) . '" name="' . element('field_name', $value) . '" class="form-control input datetimepicker" value="' . set_value(element('field_name', $value), $item) . '" readonly="readonly" ' . $required . ' />';
                         } elseif (element('field_type', $value) === 'phone') {
                             $extra_content[$k]['input'] .= '<input type="text" id="' . element('field_name', $value) . '" name="' . element('field_name', $value) . '" class="form-control input validphone" value="' . set_value(element('field_name', $value), $item) . '" ' . $required . ' />';
                         } else {

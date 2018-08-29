@@ -48,6 +48,9 @@ class Board_post extends CB_Controller
         $eventname = 'event_board_post_lists';
         $this->load->event($eventname);
 
+
+
+        
         $view = array();
         $view['view'] = array();
 

@@ -1,3 +1,5 @@
+<?php $this->managelayout->add_js('/assets/js/jquery-ui-timepicker-addon.js'); ?>
+<?php $this->managelayout->add_css('/assets/css/jquery-ui-timepicker-addon.css'); ?>
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 <?php echo element('headercontent', element('board', $view)); ?>
 
@@ -34,50 +36,57 @@
                     <?php } ?>
 
         <?php if (element('can_post_notice', element('post', $view)) OR element('can_post_secret', element('post', $view)) OR element(' can_post_receive_email', element('post', $view))) { ?>
-
-        <div class="option_area">
-            <!-- <label class="middle_font">옵 션</label> -->
-            <ul>
+        
+       
+        <!-- <label class="middle_font ">옵 션</label> -->
+            <div class="checkbox ">
+            
+            
                 
                 <?php if (element('can_post_notice', element('post', $view))) { ?>
-
-                    <li style="width: 45px;">
-                        <label class="checkbox-inline middle_font" for="post_notice_1">
+                    
+                        <label class="" for="post_notice_1">
+                            <input type="checkbox" name="post_notice" id="post_notice_1" value="1" <?php echo set_checkbox('post_notice', '1', (element('post_notice', element('post', $view)) === '1' ? true : false)); ?> onChange="if (this.checked) {$('#post_notice_2').prop('disabled', true);} else {$('#post_notice_2').prop('disabled', false);}" <?php if (element('post_notice', element('post', $view)) === '2')echo "disabled='disabled'"; ?> />
                              공지
                         </label>
-                        <input type="checkbox" name="post_notice" id="post_notice_1" value="1" <?php echo set_checkbox('post_notice', '1', (element('post_notice', element('post', $view)) === '1' ? true : false)); ?> onChange="if (this.checked) {$('#post_notice_2').prop('disabled', true);} else {$('#post_notice_2').prop('disabled', false);}" <?php if (element('post_notice', element('post', $view)) === '2')echo "disabled='disabled'"; ?> />
-                    </li>
 
 
 
-                    <li style="width: 66px;">
-                        <label class="checkbox-inline middle_font" for="post_notice_2">
-                            전체공지
+                    
+                        <label class="" for="post_notice_2">
+                            
+
+                            <input type="checkbox" name="post_notice" id="post_notice_2" value="2" <?php echo set_checkbox('post_notice', '2', (element('post_notice', element('post', $view)) === '2' ? true : false)); ?> onChange="if (this.checked) {$('#post_notice_1').prop('disabled', true);} else {$('#post_notice_1').prop('disabled', false);}" <?php if (element('post_notice', element('post', $view)) === '1')echo "disabled='disabled'"; ?> />
+                             전체공지
                         </label>
-
-                         <input type="checkbox" name="post_notice" id="post_notice_2" value="2" <?php echo set_checkbox('post_notice', '2', (element('post_notice', element('post', $view)) === '2' ? true : false)); ?> onChange="if (this.checked) {$('#post_notice_1').prop('disabled', true);} else {$('#post_notice_1').prop('disabled', false);}" <?php if (element('post_notice', element('post', $view)) === '1')echo "disabled='disabled'"; ?> />
-                    </li>
+                    
                     
                     <?php if(element('brd_id', element('post', $view))==="5" || element('brd_id', element('post', $view))==="16"){ ?>
-                    <li style="width: 66px;">
-                        <label class="checkbox-inline middle_font" for="post_notice_3"> 해드라인</label>
+                    
+                        <label class="checkbox-inline middle_font" for="post_notice_3">
                    
-                        <input type="checkbox" name="post_notice" id="post_notice_3" value="3" <?php echo set_checkbox('post_notice', '3', (element('post_notice', element('post', $view)) === '3' ? true : false)); ?> />
+                            <input type="checkbox" name="post_notice" id="post_notice_3" value="3" <?php echo set_checkbox('post_notice', '3', (element('post_notice', element('post', $view)) === '3' ? true : false)); ?> />
+                            해드라인
+                        </label>
                         
-                    </li>
-                    <li style="width: 66px;">
-                        <label class="checkbox-inline middle_font" for="post_notice_4">인기뉴스</label>
+                    
+                    
+                        <label class="checkbox-inline middle_font" for="post_notice_4">
                    
-                        <input type="checkbox" name="post_notice" id="post_notice_4" value="4" <?php echo set_checkbox('post_notice', '4', (element('post_notice', element('post', $view)) === '4' ? true : false)); ?> /> 
+                            <input type="checkbox" name="post_notice" id="post_notice_4" value="4" <?php echo set_checkbox('post_notice', '4', (element('post_notice', element('post', $view)) === '4' ? true : false)); ?> /> 
+                            인기뉴스
+                        </label>
                         
-                    </li>
+                    
 
-                     <li style="width: 66px;">
-                        <label class="checkbox-inline middle_font" for="post_notice_5">인기+해드</label>
+                     
+                        <label class="checkbox-inline middle_font" for="post_notice_5">
                    
-                        <input type="checkbox" name="post_notice" id="post_notice_5" value="5" <?php echo set_checkbox('post_notice', '5', (element('post_notice', element('post', $view)) === '5' ? true : false)); ?> /> 
+                            <input type="checkbox" name="post_notice" id="post_notice_5" value="5" <?php echo set_checkbox('post_notice', '5', (element('post_notice', element('post', $view)) === '5' ? true : false)); ?> /> 
+                            인기+해드
+                        </label>
                         
-                    </li>
+                    
                     <?php } ?>
 
 
@@ -132,21 +141,19 @@
         <?php } ?>
         <?php
         if (element('extra_content', $view)) {
-            echo '<div class="link_area">
-                        <ul>';
+            echo '
+                       ';
             foreach (element('extra_content', $view) as $key => $value) {
         ?>
-            <li>
-                <label><?php echo element('display_name', $value); ?></label>
+           
+                <label class="middle_font"><?php echo element('display_name', $value); ?></label>
                 <?php echo element('input', $value); ?>
-            </li>
+            
         <?php
             }
-            echo '</ul></div>';
+            echo '';
         }
         ?>
-        
-      
 
             <?php echo display_dhtml_editor('post_content', set_value('post_content', element('post_content', element('post', $view))), $classname = '', $is_dhtml_editor = element('use_dhtml', element('board', $view)), $editor_type = $this->cbconfig->item('post_editor_type')); ?>
             <?php if ( ! element('use_dhtml', element('board', $view)) AND (element('post_min_length', element('board', $view)) OR element('post_max_length', element('board', $view)))) { ?>
