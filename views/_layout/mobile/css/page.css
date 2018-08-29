@@ -1236,7 +1236,8 @@ html, body{
 	/*제목+내용 입력영역*/
 	/*제목 입력 영역*/
 		.write_area form > label{
-			width: 15%;
+			/*width: 15%;*/
+			padding : 0px 5px;
 			height: 30px;
 			line-height: 30px;
 			display: inline-block;

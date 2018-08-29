@@ -473,9 +473,26 @@ var fileTarget = $('.upload_area li input.file_load');
 
     $(this).siblings('.upload_area li input:nth-child(1)').val(filename);
     });
-//]]>
+
+$('.datetimepicker').datetimepicker({
+    dateFormat:'yy-mm-dd',
+    monthNamesShort:[ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+    dayNamesMin:[ '일', '월', '화', '수', '목', '금', '토' ],
+    changeMonth:true,
+    changeYear:true,
+    showMonthAfterYear:true,
+
+    // timepicker 설정
+    timeFormat:'HH:mm',
+    controlType:'select',
+    oneLine:true,
+});
 
 var del_tx = $('.upload_area li.del_file a').text();
 $('.upload_area li.del_file input').val(del_tx);
+
+//]]>
+
+
 
 </script>
