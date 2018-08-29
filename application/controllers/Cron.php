@@ -861,11 +861,33 @@ class Cron extends CB_Controller {
 
 
         foreach($result as $value){
-            // $extravars = $this->Post_extra_vars_model->get_all_meta(element('post_id', $value));
+            $extravars = $this->Post_extra_vars_model->get_all_meta(element('post_id', $value));            
+            
+            if(!empty(element('push_noti', $extravars)) && $this->cron_post_copy('move',element('post_id', $value))) {
 
-            // print_r($extravars);
-            $this->cron_post_copy('move',element('post_id', $value));
-            if(empty(element('push_noti', $extravars))) echo "aaa";
+                $post = $this->Post_model->get_one(element('post_id', $value));
+                $board = $this->board->item_all(element('brd_id', $post));
+
+                $url = 'http://vicjoa.bitcoissue.com/master/22_board/register_proc_curl.php';
+                $data = array(
+                    'title' => element('post_title',$post),
+                    'contents' => element('post_content',$post),
+                    'noti_flag' => post_url(element('brd_key', $board), $post_id);,
+                    'send_push' => '1'
+                );
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, sizeof($data));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                $result = curl_exec($ch);
+                curl_close($ch);
+
+                $obj = json_decode($result);
+
+                print_r($obj);
+            }
         }
         
         
