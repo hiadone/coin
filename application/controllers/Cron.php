@@ -857,10 +857,10 @@ class Cron extends CB_Controller {
         
         $where=array('brd_id' => 27,'pev_key' =>'upload_time','pev_value<' =>date('Y-m-d H:i'));
 
-        $result = $this->Post_extra_vars_model->get('','',$where);
+        $post_list = $this->Post_extra_vars_model->get('','',$where);
 
         
-        foreach($result as $value){
+        foreach($post_list as $value){
             $extravars = $this->Post_extra_vars_model->get_all_meta(element('post_id', $value));            
             
             if(!empty(element('push_noti', $extravars)) && $this->cron_post_copy('move',element('post_id', $value))) {
