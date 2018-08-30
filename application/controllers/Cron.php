@@ -859,7 +859,7 @@ class Cron extends CB_Controller {
 
         $result = $this->Post_extra_vars_model->get('','',$where);
 
-
+        
         foreach($result as $value){
             $extravars = $this->Post_extra_vars_model->get_all_meta(element('post_id', $value));            
             
@@ -872,7 +872,7 @@ class Cron extends CB_Controller {
                 $data = array(
                     'title' => element('post_title',$post),
                     'contents' => element('post_content',$post),
-                    'noti_flag' => post_url(element('brd_key', $board), $post_id);,
+                    'noti_flag' => post_url(element('brd_key', $board), element('post_id',$post)),
                     'send_push' => '1'
                 );
 
