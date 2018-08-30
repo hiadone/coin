@@ -871,7 +871,7 @@ class Cron extends CB_Controller {
                 $url = 'http://vicjoa.bitcoissue.com/master/22_board/register_proc_curl.php';
                 $data = array(
                     'title' => element('post_title',$post),
-                    'contents' => element('post_content',$post),
+                    'contents' => cut_str(element('post_content',$post),20),
                     'noti_flag' => post_url(element('brd_key', $board), element('post_id',$post)),
                     'send_push' => '1'
                 );
