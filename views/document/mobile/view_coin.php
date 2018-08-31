@@ -241,6 +241,20 @@
             </div>
         </section>
         <!-- 모바일 서비스란 광고 -->
+
+        <div id='caulyDisplay' class="mb20">
+           <script src='//image.cauly.co.kr/websdk/common/lasted/ads.min.js'></script>
+           <script>
+             new CaulyAds({
+               app_code: 'e2bmTx1p',
+               placement: 1,
+               displayid: 'caulyDisplay',
+               passback: function () { },
+               success: function () { }
+             });
+           </script>
+        </div>
+
         <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   
         <ins class="adsbygoogle"

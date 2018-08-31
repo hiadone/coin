@@ -115,6 +115,18 @@
                 $marginright = (($i+1)% $cols === 0) ? 0 : 2;
 
                 if($i===1){
+                   echo " <div id='caulyDisplay'>
+                        <script src='//image.cauly.co.kr/websdk/common/lasted/ads.min.js'></script>
+                        <script>
+                          new CaulyAds({
+                            app_code:'jUq4oKT5',
+                            placement:1,
+                            displayid:'caulyDisplay',
+                            passback:function(){},
+                            success:function(){}
+                          });
+                       </script>
+                    </div> ";
                     // echo '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     //         <ins class="adsbygoogle"
                     //              style="display:block"
