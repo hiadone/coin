@@ -859,11 +859,11 @@ class Cron extends CB_Controller {
 
         $post_list = $this->Post_extra_vars_model->get('','',$where);
 
-        
         foreach($post_list as $value){
+            $post_copt_flag=false;
             $extravars = $this->Post_extra_vars_model->get_all_meta(element('post_id', $value));            
-            
-            if(!empty(element('push_noti', $extravars)) && $this->cron_post_copy('move',element('post_id', $value))) {
+            $post_copt_flag=$this->cron_post_copy('move',element('post_id', $value));
+            if(!empty(element('push_noti', $extravars)) && $post_copt_flag) {
 
                 $post = $this->Post_model->get_one(element('post_id', $value));
                 $board = $this->board->item_all(element('brd_id', $post));
