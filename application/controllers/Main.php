@@ -330,4 +330,10 @@ class Main extends CB_Controller
         );
         echo $this->coin->all_price($config);
     }
+
+    function check_app_version(){
+
+        echo config_item('app_version');
+        
+    }
 }
