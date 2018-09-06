@@ -26,6 +26,51 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
 <?php echo element('headercontent', element('board', $view)); ?>
 
 <article class="content03">
+    <section class="submenu ">
+        <ul>
+            <?php
+            $menuhtml = '';
+            if (element('menu', $layout)) {
+                $menu = element('menu', $layout);
+                
+                if (element(element(0,element('active',$menu)), $menu)) {
+                    
+                    foreach (element(element(0,element('active',$menu)),$menu) as $mkey => $mval) {
+
+                        $menu_active='';
+                    
+                        
+                        if(element(1,element('active',$menu)) === element('men_id',$mval))  $menu_active='class="menu_active"';
+
+                        
+
+                    
+                        $slink = element('men_link', $mval) ? element('men_link', $mval) : 'javascript:;';
+                        $menuhtml .= '<li '.$menu_active.'><a href="' . $slink . '" ' . element('men_custom', $mval);
+                        if (element('men_target', $mval)) {
+                            $menuhtml .= ' target="' . element('men_target', $mval) . '"';
+                        }
+                        $menuhtml .= ' title="' . html_escape(element('men_name', $mval)) . '">' . html_escape(element('men_name', $mval)) . '</a></li>';
+                        $menuhtml .= '<li>|</li>';
+                    
+                        
+                    }
+                    
+                }
+                
+            }
+            $menuhtml .= '</ul>';
+                    
+                
+            
+            echo $menuhtml;
+            ?>
+
+            
+            
+        </ul> 
+    </section>
+
     <h4><a href="<?php echo board_url(element('brd_key', element('board', $view))); ?>" style="color: inherit;">
         <?php echo element('brd_key',element('board', $view)) ==='live_news' && $this->input->get('post_notice')==='4' ? '인기뉴스' : element('brd_name',element('board', $view)); ?>
         </a>
