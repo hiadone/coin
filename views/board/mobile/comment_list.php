@@ -64,7 +64,7 @@ if (element('list', element('data', $view))) {
             
             <div class="comment-content pb5">
             <?php if(element('cmt_reply', $result)) {?>
-                <img src="<?php echo base_url('//assets/images/reply.png') ?>" style="width:15px;">
+                <i class="fa fa-reply fa-rotate-180" aria-hidden="true" style="font-size: 1.5em;"></i>
             <?php } ?>
             <?php echo element('content', $result); ?>
             <?php if (element('lucky', $result)) { ?><div class="lucky"><i class="fa fa-star"></i> <?php echo element('lucky', $result); ?></div><?php } ?>

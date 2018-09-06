@@ -16,7 +16,7 @@ if (element('list', element('data', $view))) {
         <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_comment_id[]" value="<?php echo element('cmt_id', $result); ?>" /><?php } ?>
         <div class='reply_cont'>
             <?php if(element('cmt_reply', $result)) {?>
-                <img  src="<?php echo base_url('//assets/images/reply.png') ?>" style="width:30px;">
+                <i class="fa fa-reply fa-2x fa-rotate-180" aria-hidden="true" style="vertical-align: top;" ></i>
             <?php } ?>
             <figure>
                 <img src="<?php echo base_url('assets/images/big_spoon_'.element('display_level', $result).'.png');?>" alt='reply_icon_img'>
