@@ -353,7 +353,7 @@ $(document).ready(function(){
                     </figure>
                 </li>
                 <li>|</li>
-                <li class="btn_side pointer" id="btn_side2" data-url="/mypage/point"  title="포인트"><?php echo $this->member->item('mem_point') ?> P</li>
+                <li class="btn_side pointer" id="btn_side2" data-url="/mypage/point"  title="포인트"><?php echo number_format($this->member->item('mem_point')) ?> P</li>
                 <li>|</li>
                 <li class='btn_side pointer' id="btn_side3" data-url="/mypage" title="회원정보">회원정보</li>
                 <li>|</li>
