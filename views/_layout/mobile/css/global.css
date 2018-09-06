@@ -36,7 +36,7 @@ select{
 	}
 
 input{
-	/*height: 25px;*/
+	
 	outline: none;
 	background-color: #fff;
 	border:1px solid #ededed;
@@ -45,6 +45,10 @@ input{
 	border-radius: 0;
 	/*-webkit-appearance: none;
     -webkit-border-radius: 0;*/
+}
+
+input[type="text"]{
+	height: 25px;
 }
 
 button{
