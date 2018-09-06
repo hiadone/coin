@@ -362,7 +362,7 @@ class Comment_list extends CB_Controller
                     if (element('block_delete', $board) && $is_admin === false) {
                         $result['list'][$key]['can_delete'] = false;
                     }
-                    if (strlen(element('cmt_reply', $val)) < 5 && $can_comment_write === true) {
+                    if (strlen(element('cmt_reply', $val)) < 5 && $can_comment_write === true && $mem_id !== abs(element('mem_id', $val))) {
                         $result['list'][$key]['can_reply'] = true;
                     }
                 }
