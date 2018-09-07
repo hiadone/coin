@@ -65,7 +65,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
             $i=0;
             if (element('list', element('data', element('list', $view)))) {
                 foreach (element('list', element('data', element('list', $view))) as $result) {
-                    if($i > 5 ) break;
+                    // if($i > 5 ) break;
                     $i++;
             ?>
                 <li class="">

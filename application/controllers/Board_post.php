@@ -1169,7 +1169,7 @@ class Board_post extends CB_Controller
          * 페이지에 숫자가 아닌 문자가 입력되거나 1보다 작은 숫자가 입력되면 에러 페이지를 보여줍니다.
          */
         $param =& $this->querystring;
-        $page = (((int) $this->input->get('page')) > 0) ? ((int) $this->input->get('page')) : 1;
+        $page = (((int) $this->input->get('page')) > 0 && empty($post_id)) ? ((int) $this->input->get('page')) : 1;
         $order_by_field = element('order_by_field', $board)
             ? element('order_by_field', $board)
             : 'post_num, post_reply';
@@ -1187,9 +1187,9 @@ class Board_post extends CB_Controller
             $per_page = element('list_count', $board)
                 ? (int) element('list_count', $board) : 20;
         }
-        // if(!empty($post_id) && $from_view){
-        //     $per_page=10;
-        // }
+        if(!empty($post_id) && $from_view){
+            $per_page=5;
+        }
 
         $offset = ($page - 1) * $per_page;
 
@@ -1351,7 +1351,7 @@ class Board_post extends CB_Controller
         }
 
         if(!empty($post_id)){
-            // $where['post.post_id <='] = $post_id;
+            $where['post.post_id <='] = $post_id;
         }
         $category_id = (int) $this->input->get('category_id');
         if (empty($category_id) OR $category_id < 1) {
