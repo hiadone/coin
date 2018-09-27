@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- <meta name="naver-site-verification" content="198e8e28067f3f38761488506290231146288364"/> -->
-<meta name="google-site-verification" content="6FfNGOyp00RKYp_kGK_GrIRzIJn6KM3jEqVCoJ_sEIE" />
-<meta name="naver-site-verification" content="198e8e28067f3f38761488506290231146288364"/>
 <meta name="description" content="가상화폐 정보제공 커뮤니티, 최신뉴스, ICO정보, 코인분석, 가상화폐시세, 가상화폐전망">
 <meta property="og:type" content="website">
 <meta property="og:title" content="비트이슈">

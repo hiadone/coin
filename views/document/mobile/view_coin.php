@@ -242,7 +242,7 @@
         </section>
         <!-- 모바일 서비스란 광고 -->
 
-        <div id='caulyDisplay' class="mb20">
+        <!-- <div id='caulyDisplay' class="mb20">
            <script src='//image.cauly.co.kr/websdk/common/lasted/ads.min.js'></script>
            <script>
              new CaulyAds({
@@ -253,9 +253,9 @@
                success: function () { }
              });
            </script>
-        </div>
+        </div> -->
 
-        <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   
         <ins class="adsbygoogle"
              style="display:inline-block;width:100%;height:60px"
@@ -263,7 +263,7 @@
              data-ad-slot="5420233288"></ins>
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
-        </script> -->
+        </script>
 
         
     </section>
