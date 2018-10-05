@@ -269,33 +269,34 @@
     </section>
     <!-- 접기 버튼 -->
 
+     <!-- 거래소 바로가기 리스트 영역 -->
+    <section class="table_li coin_trade">
+        <h4>거래소 바로가기</h4>
+        <table>
+            <?php echo twitter("coin_trade",'order',11,"<td>","</td>") ?>
+        </table>
+    </section>
 
+    
+
+    <!-- 가상화폐 코인 공식 트위터 리스트 영역-->
+    <section class="table_li coin_twitter">
+        <h4>가상화폐 코인 공식 트위터</h4>
+        <table>
+            <?php echo twitter("coin_twitter",'order',15,"<td>","</td>") ?>
+        </table>
+    </section>
+
+   
     <section>
             <!-- 가상화폐 인물 트위터 리스트 영역-->
         <h3 class="hidden">트위터</h3>
-            <section class="table_li person_twitter">
-            <h4>가상화폐 인물 트위터</h4>
-            <table>
-                <?php echo twitter("person_twitter",'order',11,"<td>","</td>") ?>
-            </table>
-        </section>
-
-    <!-- 가상화폐 코인 공식 트위터 리스트 영역-->
-        <section class="table_li coin_twitter">
-            <h4>가상화폐 코인 공식 트위터</h4>
-            <table>
-                <?php echo twitter("coin_twitter",'order',15,"<td>","</td>") ?>
-            </table>
-        </section>
-
-    <!-- 거래소 바로가기 리스트 영역 -->
-        <section class="table_li coin_trade">
-            <h4>거래소 바로가기</h4>
-            <table>
-                <?php echo twitter("coin_trade",'order',11,"<td>","</td>") ?>
-            </table>
-        </section>
-
+        <section class="table_li person_twitter">
+        <h4>가상화폐 인물 트위터</h4>
+        <table>
+            <?php echo twitter("person_twitter",'order',11,"<td>","</td>") ?>
+        </table>
+    </section>
     <!-- ad 영역 -->
         <!-- <section class="ad">
            
@@ -309,47 +310,43 @@
 
 
 <div  class="cover">
-
-    <!-- 거래소 바로가기 더보기 클릭시 팝업 내용-->
-    <section class="coin_trade_more pop">
+    <section class="person_twitter_more pop">
+        <?php
+        $attributes = array('name' => 'ftwitterlist', 'id' => 'ftwitterlist');
+        echo form_open('', $attributes);
+        ?>
         <!-- 타이틀 영역 -->
         <div class="header">
             <span class="clear">
                 <img src="<?php echo base_url('/assets/images/clear02.png') ?>" alr="clear">
             </span>
 
-            <h2>거래소 바로가기</h2>
+            <h2>인 물 트 위 터</h2>
 
-            <span data-bng_name="coin_trade"  class="plus" style="margin-right:2%">
+            <span data-bng_name="person_twitter"  class="plus" style="margin-right:2%">
                 <img src="<?php echo base_url('/assets/images/plus.png') ?>" alr="plus">
             </span>
-            <span data-bng_name="coin_trade"  class="minus">
+            <span data-bng_name="person_twitter"  class="minus">
                 <img src="<?php echo base_url('/assets/images/minus.png') ?>" alr="minus">
             </span>
-            <span data-bng_name="coin_trade"  style="display:none;float: right;" class="plus_check">
+            <span data-bng_name="person_twitter"  style="display:none;float: right;" class="plus_check">
                 <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
             </span>
-            <span data-bng_name="coin_trade"  style="display:none;float: right;" class="minus_check">
+            <span data-bng_name="person_twitter"  style="display:none;float: right;" class="minus_check">
                 <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
             </span>
-
-            
-            
         </div>
         <!-- +버튼 클릭시 , 추가 입력란 영역--> 
         <ul>
-            <li><input type="text" name="ban_title_coin_trade" placeholder="거래소 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='거래소 명을 입력해주세요.'">
+            <li><input type="text" name="ban_title_person_twitter" placeholder="인물 트위터 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인물 트위터 명을 입력해주세요.'">
             </li>
-            <li><input type="text" name="ban_url_coin_trade" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+            <li><input type="text" name="ban_url_person_twitter" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
             </li>
         </ul>
-        <div id="coin_trade">
-        </div>
         <!-- 리스트 영역-->
-        <?php echo form_close(); ?>        
+        <div id="person_twitter">
+        </div>
     </section>
-
-    
 
 <!-- 코인 공식트위터 더보기 클릭시 팝업 내용-->
     <section class="coin_twitter_more pop">
@@ -389,44 +386,45 @@
         </div>
     </section>
 
-    <section class="person_twitter_more pop">
-        <?php
-        $attributes = array('name' => 'ftwitterlist', 'id' => 'ftwitterlist');
-        echo form_open('', $attributes);
-        ?>
+
+<!-- 거래소 바로가기 더보기 클릭시 팝업 내용-->
+    <section class="coin_trade_more pop">
         <!-- 타이틀 영역 -->
         <div class="header">
             <span class="clear">
                 <img src="<?php echo base_url('/assets/images/clear02.png') ?>" alr="clear">
             </span>
 
-            <h2>인 물 트 위 터</h2>
+            <h2>거래소 바로가기</h2>
 
-            <span data-bng_name="person_twitter"  class="plus" style="margin-right:2%">
+            <span data-bng_name="coin_trade"  class="plus" style="margin-right:2%">
                 <img src="<?php echo base_url('/assets/images/plus.png') ?>" alr="plus">
             </span>
-            <span data-bng_name="person_twitter"  class="minus">
+            <span data-bng_name="coin_trade"  class="minus">
                 <img src="<?php echo base_url('/assets/images/minus.png') ?>" alr="minus">
             </span>
-            <span data-bng_name="person_twitter"  style="display:none;float: right;" class="plus_check">
+            <span data-bng_name="coin_trade"  style="display:none;float: right;" class="plus_check">
                 <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
             </span>
-            <span data-bng_name="person_twitter"  style="display:none;float: right;" class="minus_check">
+            <span data-bng_name="coin_trade"  style="display:none;float: right;" class="minus_check">
                 <img src="<?php echo base_url('/assets/images/check.png') ?>" alr="check">
             </span>
+
+            
+            
         </div>
         <!-- +버튼 클릭시 , 추가 입력란 영역--> 
         <ul>
-            <li><input type="text" name="ban_title_person_twitter" placeholder="인물 트위터 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인물 트위터 명을 입력해주세요.'">
+            <li><input type="text" name="ban_title_coin_trade" placeholder="거래소 명을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='거래소 명을 입력해주세요.'">
             </li>
-            <li><input type="text" name="ban_url_person_twitter" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
+            <li><input type="text" name="ban_url_coin_trade" placeholder="클릭 시 이동할 주소를 적어 주세요." onfocus="this.placeholder=''" onblur="this.placeholder='클릭 시 이동할 주소를 적어 주세요.'">
             </li>
         </ul>
-        <!-- 리스트 영역-->
-        <div id="person_twitter">
+        <div id="coin_trade">
         </div>
+        <!-- 리스트 영역-->
+        <?php echo form_close(); ?>        
     </section>
-
 </div>
 
 
