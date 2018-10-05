@@ -225,7 +225,9 @@ $('.back_top_m').click(function(){
       initialSlide :1,
       runCallbacksOnInit : false,
       touchAngle:35,
-      threshold : 20,
+      threshold : 30,
+          preventClicks :false,
+          preventClicksPropagation:false,
     });
 
     swiper.on('slideChange', function () {
