@@ -851,6 +851,7 @@ class Board_write extends CB_Controller
 
             if ($is_post_name || $is_admin==="super") {
                 $updatedata['post_nickname'] = $this->input->post('post_nickname', null, '');
+                $updatedata['display_level'] = $this->input->post('display_level', null, '');
                 $updatedata['post_email'] = $this->input->post('post_email', null, '');
                 $updatedata['post_homepage'] = $this->input->post('post_homepage', null, '');
             }
@@ -898,7 +899,7 @@ class Board_write extends CB_Controller
             $today_post = $this->Post_model->today_post();
             
             if ($mem_id > 0 && element('use_point', $board) ) {
-                if(element('point_write', $board)> 0 && ($today_post===0 || element('brd_key', $board)==='express')){
+                if(element('point_write', $board)> 0 && ($today_post < 3 || element('brd_key', $board)==='express')){
                     $point = $this->point->insert_point(
                         $mem_id,
                         element('point_write', $board),
@@ -2196,6 +2197,7 @@ class Board_write extends CB_Controller
 
             if ($is_post_name || $is_admin==="super") {
                 $updatedata['post_nickname'] = $this->input->post('post_nickname', null, '');
+                $updatedata['display_level'] = $this->input->post('display_level', null, '');
                 $updatedata['post_email'] = $this->input->post('post_email', null, '');
                 $updatedata['post_homepage'] = $this->input->post('post_homepage', null, '');
             }

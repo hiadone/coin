@@ -271,4 +271,17 @@ class Comment_model extends CB_Model
 
         return $row['cnt'];
     }
+
+     public function today_comment()
+    {
+        $today = cdate('Y-m-d');
+        $mem_id = (int) $this->member->item('mem_id');
+
+        $where = array(
+            'left(cmt_datetime,10)' => $today,
+            'mem_id' => $mem_id,
+        );
+        $this->db->where($where);
+        return $this->db->count_all_results($this->_table);
+    }
 }

@@ -28,8 +28,10 @@
                 <?php if (element('is_post_name', element('post', $view)) || $this->member->is_admin() === 'super') { ?>
                     <tr>
                         <th class='nomal_font02'>이름</th>
-                        <td colspan="3"><input type="text" class="input px150" name="post_nickname" id="post_nickname" value="<?php echo set_value('post_nickname', element('post_nickname', element('post', $view))); ?>" />
+                        <td ><input type="text" class="input" style="width:200px" name="post_nickname" id="post_nickname" value="<?php echo set_value('post_nickname', element('post_nickname', element('post', $view))); ?>" />
                         </td>
+                        <th class='nomal_font02'>등급</th>
+                        <td><input type="text" class="input" style="width:200px" name="display_level" id="display_level" value="<?php echo set_value('display_level', element('display_level', element('post', $view))); ?>" /></td>
                     </tr>
                     <?php if ($this->member->is_member() === false) { ?>
                         <tr>

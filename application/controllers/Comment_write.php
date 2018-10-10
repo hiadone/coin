@@ -376,7 +376,9 @@ class Comment_write extends CB_Controller
                     );
                 }
 
-                if (element('use_point', $board)) {
+                $today_comment = $this->Comment_model->today_comment();
+
+                if (element('use_point', $board) && $today_comment < 3) {
                     $point = $this->point->insert_point(
                         $mem_id,
                         element('point_comment', $board),

@@ -114,7 +114,7 @@
                 }
                 $marginright = (($i+1)% $cols === 0) ? 0 : 2;
 
-                if($i===1){
+                if($i===1 or $i===5){
                    // echo " <div id='caulyDisplay'>
                    //      <script src='//image.cauly.co.kr/websdk/common/lasted/ads.min.js'></script>
                    //      <script>
