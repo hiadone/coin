@@ -1,7 +1,7 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
 <?php echo element('headercontent', element('board', element('list', $view))); ?>
-
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
     $(document).ready(function(){
         var hashtag = location.hash.substring(1, location.hash.length).replace(/ /gi, '%20');
@@ -127,7 +127,7 @@
                    //        });
                    //     </script>
                    //  </div> ";
-                    echo '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    echo '
                             <ins class="adsbygoogle"
                                  style="display:block"
                                  data-ad-format="fluid"

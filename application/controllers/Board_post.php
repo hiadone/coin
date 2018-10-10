@@ -1310,6 +1310,14 @@ class Board_post extends CB_Controller
                 } else {
                     $noticeresult[$key]['display_name'] = '익명사용자';
                 }
+
+                $dbmember = $this->Member_model
+                ->get_by_memid(element('mem_id', $val), 'mem_level');
+                    
+                $noticeresult[$key]['display_level'] = element('mem_level', $dbmember);
+                    
+
+
                 $noticeresult[$key]['display_datetime'] = display_datetime(element('post_datetime', $val), $list_date_style, $list_date_style_manual);
                 $noticeresult[$key]['category'] = '';
                 if (element('use_category', $board) && element('post_category', $val)) {
@@ -1414,6 +1422,7 @@ class Board_post extends CB_Controller
                     else 
                         $result['list'][$key]['display_level'] = 1;
                     
+
                     $result['list'][$key]['display_name'] = display_username(
                         element('post_userid', $val),
                         element('post_nickname', $val),
