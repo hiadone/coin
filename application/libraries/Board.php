@@ -1347,6 +1347,16 @@ class Board extends CI_Controller
                     $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value)).'?' . $param->output().'&page='.$page;
                     $view['view']['latest'][$key]['title'] = $length ? cut_str(element('post_title', $value), $length) : element('post_title', $value);
                     $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('post_datetime', $value), '');
+
+                    $dbmember = $this->CI->Member_model
+                        ->get_by_memid(element('mem_id', $value), 'mem_level');
+                    if(element('display_level', $value))
+                        $view['view']['latest'][$key]['display_level'] = element('display_level', $value);
+                    elseif(element('mem_level', $dbmember))
+                        $view['view']['latest'][$key]['display_level'] = element('mem_level', $dbmember);
+                    else 
+                        $view['view']['latest'][$key]['display_level'] = 1;
+
                     $view['view']['latest'][$key]['display_name'] = display_username(
                                                                             element('post_userid', $value),
                                                                             element('post_nickname', $value));
@@ -1883,6 +1893,16 @@ class Board extends CI_Controller
                     $view['view']['latest'][$key]['url'] = post_url($brd_key, element('post_id', $value));
                     $view['view']['latest'][$key]['title'] = $length ? cut_str(element('post_title', $value), $length) : element('post_title', $value);
                     $view['view']['latest'][$key]['display_datetime'] = display_datetime(element('post_datetime', $value), '');
+
+                    $dbmember = $this->CI->Member_model
+                        ->get_by_memid(element('mem_id', $value), 'mem_level');
+                    if(element('display_level', $value))
+                        $view['view']['latest'][$key]['display_level'] = element('display_level', $value);
+                    elseif(element('mem_level', $dbmember))
+                        $view['view']['latest'][$key]['display_level'] = element('mem_level', $dbmember);
+                    else 
+                        $view['view']['latest'][$key]['display_level'] = 1;
+                    
                     $view['view']['latest'][$key]['display_name'] = display_username(
                                                                             element('post_userid', $value),
                                                                             element('post_nickname', $value));
