@@ -16,7 +16,35 @@
                 echo '<ul class="tab10_list">';
                 $open = true;
             }
+
+
             $marginright = (($i+1)% $cols === 0) ? 0 : 2;
+
+             if($i%6 ===2){
+                   // echo " <div id='caulyDisplay'>
+                   //      <script src='//image.cauly.co.kr/websdk/common/lasted/ads.min.js'></script>
+                   //      <script>
+                   //        new CaulyAds({
+                   //          app_code:'jUq4oKT5',
+                   //          placement:1,
+                   //          displayid:'caulyDisplay',
+                   //          passback:function(){},
+                   //          success:function(){}
+                   //        });
+                   //     </script>
+                   //  </div> ";
+                    echo '
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-format="fluid"
+                                 data-ad-layout-key="-6t+ed+2i-1n-4w"
+                                 data-ad-client="ca-pub-7419726859237673"
+                                 data-ad-slot="8429130885"></ins>
+                            <script>
+                                 (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                          ';
+                }
     ?>
         <li class="gallery-box" style="width:<?php echo element('gallery_percent', element('board',  $view)); ?>%;margin-right:<?php echo $marginright;?>%;">
             <?php if (element('is_admin', $view)) { ?><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /><?php } ?>
