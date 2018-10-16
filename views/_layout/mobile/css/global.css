@@ -267,7 +267,9 @@ h3{
 			box-sizing: border-box;
 			margin-bottom: 14px;
 		}
-
+		footer .small_font{
+			font-size:12px;
+		}
 		footer ul li{
 			float: left;
 			border-right: 1px solid #ededed;
@@ -275,7 +277,7 @@ h3{
 			text-align: center;
 			width: 52%;
 		}
-
+		
 		footer ul li a{
 			color: #fff;
 		}

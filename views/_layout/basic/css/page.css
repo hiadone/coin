@@ -1350,7 +1350,7 @@
 /*content 보여주기*/
 	.content03{
 		width: 100%;
-		margin:0 auto 40px;
+		margin:40px auto;
 		position: relative;
 	}
 
@@ -1367,6 +1367,7 @@
 			background: url(../images/post_logo.png) no-repeat center left;
 			background-size: 30px;
 			margin-bottom: 20px;
+			margin-top: 40px;
 		}
 
 		.content03 h4 span{
@@ -1378,7 +1379,7 @@
 			height: 60px;
 			background-color: #f0f3f7;
 			position: absolute;
-			top: 49px;
+			top: 121px;
 			left: 0;
 			z-index: -100;
 			border-top: 1px solid #ededed;
