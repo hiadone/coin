@@ -49,7 +49,7 @@
                 <table class="point_rule_table">
                 <thead>
                         <tr>
-                            <th>등급 구분</th>
+                            <th style="width:30%;">등급 구분</th>
                             <th>등급 포인트</th>
                         </tr>
                     </thead>
