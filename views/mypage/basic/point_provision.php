@@ -29,19 +29,19 @@
                     <tbody>
                         <tr>
                             <td>가입인사(최초 1번)</td>
-                            <td style="text-align: right;padding-right:20%;">100 포인트</td>
+                            <td>100 포인트</td>
                         </tr>
                         <tr>
                             <td>출석 체크(하루 1번)</td>
-                            <td style="text-align: right;padding-right:20%;">20 포인트</td>
+                            <td>20포인트</td>
                         </tr>
                         <tr>
                             <td>게시글 작성(하루 3번)</td>
-                            <td style="text-align: right;padding-right:20%;">20 포인트</td>
+                            <td>20포인트</td>
                         </tr>
                         <tr>
                             <td>댓글 작성(하루 3번)</td>
-                            <td style="text-align: right;padding-right:20%;">10 포인트</td>
+                            <td>10포인트</td>
                         </tr>
                     </tbody>
                 </table>
@@ -56,23 +56,23 @@
                     <tbody>
                         <tr>
                             <td><img src="<?php echo base_url('assets/images/small_spoon_5.png')?>" alt="VVIP">VVIP</td>
-                            <td style="text-align: right;padding-right:5%;">70,000 포인트 이상</td>
+                            <td>70,000 포인트 이상</td>
                         </tr>
                         <tr>
                             <td><img src="<?php echo base_url('assets/images/small_spoon_4.png')?>" alt="VIP">VIP</td>
-                            <td style="text-align: right;padding-right:5%;">8,000 ~ 69,999 포인트</td>
+                            <td>8,000 ~ 69,999 포인트</td>
                         </tr>
                         <tr>
                             <td><img src="<?php echo base_url('assets/images/small_spoon_3.png')?>" alt="GOLD">GOLD</td>
-                            <td style="text-align: right;padding-right:5%;">1,000 ~ 7,999 포인트</td>
+                            <td>1,000 ~ 7,999 포인트</td>
                         </tr>
                         <tr>
                             <td><img src="<?php echo base_url('assets/images/small_spoon_2.png')?>" alt="SILVER">SILVER</td>
-                            <td style="text-align: right;padding-right:5%;">500 ~ 999 포인트</td>
+                            <td>500 ~ 999 포인트</td>
                         </tr>
                         <tr>
                             <td><img src="<?php echo base_url('assets/images/small_spoon_1.png')?>" alt="NEW">NEW</td>
-                            <td style="text-align: right;padding-right:5%;">0 ~ 499 포인트</td>
+                            <td>0 ~ 499 포인트</td>
                         </tr>
                     </tbody>
                 </table>
