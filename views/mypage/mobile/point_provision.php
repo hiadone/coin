@@ -29,19 +29,19 @@
                     <tbody>
                         <tr>
                             <td>가입인사(최초 1번)</td>
-                            <td style="text-align: right;padding-right:20%;">100 포인트</td>
+                            <td style="text-align: right;padding-right:10%;">100 포인트</td>
                         </tr>
                         <tr>
                             <td>출석 체크(하루 1번)</td>
-                            <td style="text-align: right;padding-right:20%;">20 포인트</td>
+                            <td style="text-align: right;padding-right:10%;">20 포인트</td>
                         </tr>
                         <tr>
                             <td>게시글 작성(하루 3번)</td>
-                            <td style="text-align: right;padding-right:20%;">20 포인트</td>
+                            <td style="text-align: right;padding-right:10%;">20 포인트</td>
                         </tr>
                         <tr>
                             <td>댓글 작성(하루 3번)</td>
-                            <td style="text-align: right;padding-right:20%;">10 포인트</td>
+                            <td style="text-align: right;padding-right:10%;">10 포인트</td>
                         </tr>
                     </tbody>
                 </table>
