@@ -18,6 +18,8 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
         <div class="well reply_modify">
             
             <?php
+
+
             $attributes = array('name' => 'fcomment', 'id' => 'fcomment');
             echo form_open('', $attributes);
             ?>
@@ -26,14 +28,14 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 <input type="hidden" name="cmt_id" value="" id="cmt_id" />
                 <input type="hidden" name="cmt_page" value="" id="cmt_page" />
                 <?php
-                if (element('is_comment_name', element('comment', $view))) {
+                if (element('is_comment_name', element('comment', $view)) || $this->member->is_admin() === 'super') {
                 ?>
-                    <!-- <div class="form-group mb20">
-                        <label for="cmt_nickname">이름</label>
-                        <input type="text" class="input" id="cmt_nickname" name="cmt_nickname" value="<?php echo set_value('cmt_nickname'); ?>" />
-                        <label for="cmt_password">비밀번호</label>
-                        <input type="password" class="input" id="cmt_password" name="cmt_password" />
-                    </div> -->
+                    <div class="form-group mb20">
+                        <label for="cmt_nickname">닉네임</label>
+                        <input type="text" class="input" id="cmt_nickname" name="cmt_nickname" value="<?php echo set_value('cmt_nickname',element('cmt_nickname', element('comment', $view))); ?>" />
+                        <label for="display_level">등급</label>
+                        <input type="number" class="input" id="display_level" name="display_level" />
+                    </div>
                 <?php
                 }
                 ?>

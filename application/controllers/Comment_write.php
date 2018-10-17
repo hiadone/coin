@@ -324,12 +324,10 @@ class Comment_write extends CB_Controller
                     }
                 }
 
-                if ($is_comment_name) {
-                    if ( ! function_exists('password_hash')) {
-                        $this->load->helper('password');
-                    }
+                if ($is_comment_name || $is_admin==="super") {
+                    
                     $updatedata['cmt_nickname'] = $this->input->post('cmt_nickname', null, '');
-                    $updatedata['cmt_password'] = password_hash($this->input->post('cmt_password', null, ''), PASSWORD_BCRYPT);
+                    $updatedata['display_level'] = $this->input->post('display_level', null, '');
                 }
 
                 if ($can_comment_secret) {
@@ -761,6 +759,12 @@ class Comment_write extends CB_Controller
                     'cmt_updated_datetime' => cdate('Y-m-d H:i:s'),
                     'cmt_ip' => $this->input->ip_address(),
                 );
+
+                if ($is_comment_name || $is_admin==="super") {
+                    
+                    $updatedata['cmt_nickname'] = $this->input->post('cmt_nickname', null, '');
+                    $updatedata['display_level'] = $this->input->post('display_level', null, '');
+                }
 
                 if ($can_comment_secret) {
                     $updatedata['cmt_secret'] = $this->input->post('cmt_secret') ? 1 : 0;
