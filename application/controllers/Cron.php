@@ -954,6 +954,12 @@ class Cron extends CB_Controller {
                 $new_brd_id = 4;
             elseif(element('upload_board',$extravars) === '코인지식' ) 
                 $new_brd_id = 2;
+            elseif(element('upload_board',$extravars) === '자유게시판' ) 
+                $new_brd_id = 3;
+            elseif(element('upload_board',$extravars) === '자유갤러리' ) 
+                $new_brd_id = 11;
+            elseif(element('upload_board',$extravars) === '유머' ) 
+                $new_brd_id = 10;
 
             
             if ($post_id_list) {
