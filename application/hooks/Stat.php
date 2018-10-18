@@ -40,6 +40,7 @@ class _Stat
                 set_cookie($cookie_name, $cookie_value, $cookie_expire);
 
                 $sco_agent = $CI->agent->agent_string() ? $CI->agent->agent_string() : '';
+                if(stripos($sco_agent,'bot')) return;
                 $insertdata = array(
                     'sco_ip' => $CI->input->ip_address(),
                     'sco_date' => cdate('Y-m-d'),
