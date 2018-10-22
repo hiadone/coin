@@ -92,7 +92,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
         </ul>
         
     </section>
-    <?php echo show_alert_message($this->session->flashdata('message'), '<div style="width:1260px; margin:20px auto 0" class="alert alert-auto-close alert-dismissible alert-info">', '</div>'); ?>
+    <?php echo show_alert_message($this->session->flashdata('message'), '<div style="width:1150px; margin:20px auto 0" class="alert alert-auto-close alert-dismissible alert-info">', '</div>'); ?>
     <span></span>
 
    
