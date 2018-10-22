@@ -28,7 +28,7 @@ if (element('can_comment_write', element('comment', $view)) OR element('show_tex
                 <input type="hidden" name="cmt_id" value="" id="cmt_id" />
                 <input type="hidden" name="cmt_page" value="" id="cmt_page" />
                 <?php
-                if (element('is_comment_name', element('comment', $view)) || $this->member->is_admin() === 'super') {
+                if ($this->member->is_admin() === 'super') {
                 ?>
                     <div class="form-group mb20">
                         <label for="cmt_nickname">닉네임</label>
