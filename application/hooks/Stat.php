@@ -19,7 +19,7 @@ class _Stat
         if ($CI->uri->segment(1) === 'install') {
             return;
         }
-        if ($CI->uri->segment(1) === 'Cron') {
+        if (strtolower($CI->uri->segment(1)) === strtolower('Cron')) {
             return;
         }
         if ($CI->input->is_ajax_request() === true) {
