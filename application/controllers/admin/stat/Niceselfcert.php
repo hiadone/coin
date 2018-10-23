@@ -24,7 +24,7 @@ class Niceselfcert extends CB_Controller
     /**
      * 모델을 로딩합니다
      */
-    protected $models = array('Member_selfcert_history','Post');
+    protected $models = array('Member_selfcert_history','Post','Member_meta');
 
     /**
      * 이 컨트롤러의 메인 모델 이름입니다
@@ -96,11 +96,14 @@ class Niceselfcert extends CB_Controller
             foreach (element('list', $result) as $key => $val) {
 
                 $board = $this->board->item_all(element('brd_id', $val));
+                $dbmember = $this->Member_meta_model
+                ->get_all_meta(element('mem_id', $val));
+                
 
-
-                $result['list'][$key]['display_name'] = element('mem_nickname', $val);
+                $result['list'][$key]['display_name'] = element('selfcert_username', $dbmember);
                 $result['list'][$key]['display_datetime'] = display_datetime(element('msh_datetime', $val));
                 
+                $result['list'][$key]['mem_sex'] = element('selfcert_sex', $dbmember);
                 $result['list'][$key]['num'] = $list_num--;
                 $result['list'][$key]['post_url'] = post_url(element('brd_key', $board), element('post_id', $val));
             }
