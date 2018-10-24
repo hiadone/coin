@@ -1854,6 +1854,9 @@ class Board_post extends CB_Controller
             return false;
         }
 
+        $sco_agent = $this->agent->agent_string() ? $this->agent->agent_string() : '';
+        if(stripos($sco_agent,'bot')) return;
+        
         // 이벤트가 존재하면 실행합니다
         Events::trigger('count_before', $eventname);
 
