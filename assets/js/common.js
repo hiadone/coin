@@ -36,7 +36,7 @@ if (typeof(COMMON_JS) === 'undefined') {
  
 
 
-출처: http://vip00112.tistory.com/34 [GT's Funny Coding]
+
 
     function trim(s) {
         var t = '';
