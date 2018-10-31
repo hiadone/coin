@@ -427,13 +427,13 @@
     <section class='ad main_ad'>
 
         <?php //echo banner('main_banner'); ?>
-       <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08y9&out=script"></script>
+       <script src="https://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08y9&out=script"></script>
     </section>
 
     <section class='ad img_slide' id='event' >
         <ul >
             <?php //echo banner('main_event'); ?>
-            <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08yA&out=script"></script>
+            <script src="https://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08yA&out=script""></script>
         </ul>
     </section>
 
@@ -1030,7 +1030,7 @@
 
                 echo '<div>
             <ul class="tab_img">
-                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid='.$value.'&lang=utf-8&out=script"></script>
+                <script src="https://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid='.$value.'&lang=utf-8&out=script"></script>
             </ul>
             </div>
         ';

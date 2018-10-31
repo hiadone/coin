@@ -166,7 +166,7 @@
         <!-- ad 영역 -->
             <!-- <section class="ad">
                
-                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=08yC&out=script"></script>
+                <script src="https://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08yC&out=script"></script>
             </section> -->
 
         <!-- N버튼 영역 -->

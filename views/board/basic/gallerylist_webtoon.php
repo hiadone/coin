@@ -57,7 +57,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
     <div>
     <div class='gallery_li'>
             <ul class="webtoon_sub">
-                <script src="https://ssl-hiadone.ad4989.co.kr/cgi-bin/PelicanC.dll?impr?pageid=<?php echo element(element('brd_key',element('board', element('list', $view))),$pageid) ?>&lang=utf-8&out=script"></script>
+                <script src="https://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=<?php echo element(element('brd_key',element('board', element('list', $view))),$pageid) ?>&lang=utf-8&out=script"></script>
             </ul>
             </div>
         </div></section>
