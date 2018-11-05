@@ -511,8 +511,8 @@
         <h2>뉴 스 정 보<span><a href="<?php echo site_url('/board/live_news/') ?>" class="board_url"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/more.png" alt="more_img"></a></span></h2>
 
         <ul class="menu_list">
-            <li class="active nomal_font02"  data-board_url="<?php echo site_url('/board/live_news') ?>">최신뉴스</li>
-            <li class="nomal_font02" data-board_url="<?php echo site_url('/board/mine_info') ?>">호재정보</li>
+            <li class="active nomal_font02" style="width:100%" data-board_url="<?php echo site_url('/board/live_news') ?>">최신뉴스</li>
+            <!-- <li class="nomal_font02" data-board_url="<?php echo site_url('/board/mine_info') ?>">호재정보</li> -->
         </ul>
 
         <div class="tab_cont">
@@ -622,15 +622,16 @@
 
         <ul class="menu_list">
             <li class="active nomal_font02" data-board_url="<?php echo site_url('/board/free') ?>">자유게시판</li>
+            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/mine_info') ?>">호재정보</li>
             <li class='nomal_font02' data-board_url="<?php echo site_url('/board/exchange') ?>">질문 / 답변</li>
             <li class='nomal_font02' data-board_url="<?php echo site_url('/board/coin_int') ?>">코 인 지 식</li>
-            <li class='nomal_font02' data-board_url="<?php echo site_url('/board/profit') ?>">코 인 분 석</li>
+            <!-- <li class='nomal_font02' data-board_url="<?php echo site_url('/board/profit') ?>">코 인 분 석</li> -->
             
         </ul>
 
         <div class="tab_cont">
             <?php
-            $tab02=array('free','exchange','coin_int','profit');
+            $tab02=array('free','mine_info','exchange','coin_int');
 
             foreach($tab02 as $tvalue){
                 $config = array(

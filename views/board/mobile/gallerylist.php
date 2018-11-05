@@ -16,7 +16,7 @@
 
         <!-- 뉴스 -->
     <section class="wrap_con">
-        <h2 class="hidden"><?php echo html_escape(element('board_name', element('board', element('list', $view)))); ?></h2>
+        <!-- <h2 class="hidden"><?php echo html_escape(element('board_name', element('board', element('list', $view)))); ?></h2>
         
         <?php 
         if (element('menu', $layout)) {
@@ -41,7 +41,7 @@
             }
             echo '</ul>';
         }
-        ?>
+        ?> -->
         
         
         <?php if ( ! element('access_list', element('board', element('list', $view))) && element('use_rss_feed', element('board', element('list', $view)))) { ?>
