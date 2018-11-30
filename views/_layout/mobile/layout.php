@@ -91,7 +91,7 @@ var cookie_prefix = "<?php echo config_item('cookie_prefix'); ?>";
         <div>
             <?php 
             if($this->member->is_member()) 
-                echo '<a href="'.base_url('/mypage').'"><img src="'.element('layout_skin_url', $layout).'/images/icon_03.png" alt="회원정보">';
+                echo '<a href="'.base_url('/mypage').'"><img src="'.element('layout_skin_url', $layout).'/images/icon_user_config.png" alt="회원정보" style="width:35px;">';
             else 
                 echo '<a href="'.base_url('/login').'"><img src="'.element('layout_skin_url', $layout).'/images/icon_03.png" alt="회원정보">';
              ?>
