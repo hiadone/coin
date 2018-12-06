@@ -84,6 +84,9 @@ class Board_write extends CB_Controller
         // 이벤트가 존재하면 실행합니다
         Events::trigger('after', $eventname);
 
+
+
+
         $this->_write_common($board);
     }
 
@@ -762,7 +765,11 @@ class Board_write extends CB_Controller
             $this->view = element('view_skin_file', element('layout', $view));
 
         } else {
-
+            
+            if($this->member->is_admin() === "super" && element('brd_key', $board)==="free_gallery"){
+                $this->_send_secretvt();
+                
+            }
             /**
              * 유효성 검사를 통과한 경우입니다.
              * 즉 데이터의 insert 나 update 의 process 처리가 필요한 상황입니다
@@ -2797,5 +2804,47 @@ class Board_write extends CB_Controller
             $this->Post_naver_syndi_log_model->insert($logdata);
         }
         return $exec;
+    }
+
+
+        /**
+     * 회원가입시 recaptcha 체크하는 함수입니다
+     */
+    public function _send_secretvt()
+    {
+        $url = 'https://dev.secretvt.com/postact/send_vtn_free_gallery/vtn_free_gallery';
+        foreach($this->input->post() as $key => $value){
+            if(!is_array($value))
+                $data[$key] = $value;
+            else {
+                foreach($value as $key_ => $value_){
+                    $data[$key.$key_] = $value_;
+                }
+            }
+        }
+        
+
+        foreach ($_FILES['post_file']['name'] as $i => $value) {
+            if ($value) {
+                $data['uploaded_file'.$i] = curl_file_create($_FILES['post_file']['tmp_name'][$i], $_FILES['post_file']['type'][$i], $_FILES['post_file']['name'][$i]);
+                
+            }
+        }
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, sizeof($data));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $obj = json_decode($result);
+
+        if ((string) $obj->success === '1') {
+            return true;
+        }
+
+        return false;
     }
 }
