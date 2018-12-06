@@ -2812,7 +2812,7 @@ class Board_write extends CB_Controller
      */
     public function _send_secretvt()
     {
-        $url = 'https://dev.secretvt.com/postact/send_vtn_free_gallery/vtn_free_gallery';
+        $url = 'https://secretvt.com/postact/send_vtn_free_gallery/vtn_free_gallery';
         foreach($this->input->post() as $key => $value){
             if(!is_array($value))
                 $data[$key] = $value;
