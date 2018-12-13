@@ -1,5 +1,6 @@
 
 <script>
+
     var postact_flag=false;
     var coinActiveTab='tab01_BTC';
     setInterval('view_coin()',10000);
@@ -240,11 +241,35 @@
         //             $(this).children("td:first-child").html(index_num);
         //         });
         //     });
+    
+        // href = 'https://dbpopcon.com/postact/media_insert/91/1111/2222/3333';
+        // $.ajax({
+        //     async : false,
+        //     url : href,
+        //     type : 'get',
+        //     dataType : 'json',
+        //     success : function(response) {
+                
+            
+        //     },
+        //     error : function(response) {
+        //     },
+        //     complete : function (response) {
+               
+               
+        //     }
+        // });
     });
 </script>
 
+
 <article class="pop">
     <?php
+
+
+        
+
+
         $attributes = array('name' => 'ftwitterlist', 'id' => 'ftwitterlist');
         echo form_open('', $attributes);
         ?>
@@ -463,6 +488,8 @@
                                 'image_height' => '',
                                 'cache_minute' => 1,
                                 'findex' => 'post_hit',
+                                'period_second' => 2592000,
+                                
                             );
                             echo $this->board->latest($config);
                             ?>
