@@ -1,5 +1,5 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
-
+<?php $this->managelayout->add_js(base_url('assets/js/jquery.lazy.min.js')); ?>
 <?php echo element('headercontent', element('board', element('list', $view))); ?>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
@@ -16,7 +16,7 @@
 
         <!-- 뉴스 -->
     <section class="wrap_con">
-        <!-- <h2 class="hidden"><?php echo html_escape(element('board_name', element('board', element('list', $view)))); ?></h2>
+        <h2 class="hidden"><?php echo html_escape(element('board_name', element('board', element('list', $view)))); ?></h2>
         
         <?php 
         if (element('menu', $layout)) {
@@ -41,7 +41,7 @@
             }
             echo '</ul>';
         }
-        ?> -->
+        ?>
         
         
         <?php if ( ! element('access_list', element('board', element('list', $view))) && element('use_rss_feed', element('board', element('list', $view)))) { ?>
@@ -160,7 +160,12 @@
                             </tr>
                         </table>
                         <!-- <img class="tab10_pic" src="http://placehold.it/900x600/"> -->
-                        <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class=" " style="width:<?php echo element('gallery_image_width', element('board', element('list', $view))) ? element('gallery_image_width', element('board', element('list', $view))).'px':'100%'; ?>;height:<?php echo element('gallery_image_height', element('board', element('list', $view))) ? element('gallery_image_height', element('board', element('list', $view))).'px' : '100%'; ?>;margin-bottom:-4px;" />
+
+                        <?php if($i > 1) {?>
+                        <img data-src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class="lazy " style="width:<?php echo element('gallery_image_width', element('board', element('list', $view))) ? element('gallery_image_width', element('board', element('list', $view))).'px':'100%'; ?>;height:<?php echo element('gallery_image_height', element('board', element('list', $view))) ? element('gallery_image_height', element('board', element('list', $view))).'px' : '100%'; ?>;margin-bottom:-4px;" />
+                        <?php } else { ?>
+                        <img src="<?php echo element('thumb_url', $result); ?>" alt="<?php echo html_escape(element('title', $result)); ?>" title="<?php echo html_escape(element('title', $result)); ?>" class="" style="width:<?php echo element('gallery_image_width', element('board', element('list', $view))) ? element('gallery_image_width', element('board', element('list', $view))).'px':'100%'; ?>;height:<?php echo element('gallery_image_height', element('board', element('list', $view))) ? element('gallery_image_height', element('board', element('list', $view))).'px' : '100%'; ?>;margin-bottom:-4px;" />
+                        <?php } ?>
                     </a>
                 </li>
             <?php
@@ -216,3 +221,16 @@ $('#fboardlist').highlight([<?php echo element('highlight_keyword', element('lis
 //]]>
 </script>
 <?php } ?>
+<script>
+
+    $(function() {
+        $('img.lazy').lazy({
+            effect: "fadeIn",
+          effectTime: 1000,
+          threshold: 100,
+          
+        });
+    });
+
+    
+</script>
