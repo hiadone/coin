@@ -129,6 +129,32 @@
 </head>
 
 <body style="max-width:700px;">
+    <h2 class="hidden"><?php echo html_escape(element('board_name', element('board', element('list', $view)))); ?></h2>
+        
+        <?php 
+        if (element('menu', $layout)) {
+            $menu = element('menu', $layout);
+            echo '<ul class="nav nav-sub nav-pills nav-justified " style="margin-bottom:0px;">';
+            if (element(element(0,element('active',$menu)), $menu)) {
+                
+                foreach (element(element(0,element('active',$menu)),$menu) as $mkey => $mval) {
+
+                    $active='';
+                
+                    if(element(1,element('active',$menu)) === element('men_id',$mval)) {
+                        
+                        $active='active';
+                    }
+
+                
+                    echo '<li class="'.$active.'" ><a href="'.base_url(element('men_link',$mval)).'">'.element('men_name',$mval).'</a></li>';
+                    echo "\n";
+                }
+                
+            }
+            echo '</ul>';
+        }
+        ?>
 <div class="foot_padding">
     <section class="main_title write_cont" style="margin-bottom: 0px;">
         <h2 style="margin-bottom: 0px;">
