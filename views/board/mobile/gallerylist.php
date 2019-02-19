@@ -127,17 +127,17 @@
                    //        });
                    //     </script>
                    //  </div> ";
-                    echo '
-                            <ins class="adsbygoogle"
-                                 style="display:block"
-                                 data-ad-format="fluid"
-                                 data-ad-layout-key="-6t+ed+2i-1n-4w"
-                                 data-ad-client="ca-pub-7419726859237673"
-                                 data-ad-slot="8429130885"></ins>
-                            <script>
-                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                          ';
+                    // echo '
+                    //         <ins class="adsbygoogle"
+                    //              style="display:block"
+                    //              data-ad-format="fluid"
+                    //              data-ad-layout-key="-6t+ed+2i-1n-4w"
+                    //              data-ad-client="ca-pub-7419726859237673"
+                    //              data-ad-slot="8429130885"></ins>
+                    //         <script>
+                    //              (adsbygoogle = window.adsbygoogle || []).push({});
+                    //         </script>
+                    //       ';
                 }
         ?>
             <li class="gallery-box" style="width:<?php echo element('gallery_percent', element('board', element('list', $view))); ?>%;margin-right:<?php echo $marginright;?>%;">
