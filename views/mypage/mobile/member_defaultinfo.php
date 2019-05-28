@@ -1,9 +1,9 @@
 <?php $this->managelayout->add_css(element('view_skin_url', $layout) . '/css/style.css'); ?>
 
 <div class="foot_padding">
-        <section class="main_title login">
+        <section class="main_title login" style="background: #fff">
             <h2>닉네임을 입력해 주세요.</h2>
-            
+                
             <?php
             echo validation_errors('<div class="alert alert-warning" role="alert">', '</div>');
             echo show_alert_message(element('message', $view), '<div class="alert alert-auto-close alert-dismissible alert-info">', '</div>');
