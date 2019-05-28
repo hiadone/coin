@@ -131,9 +131,9 @@
                         <?php } ?>
                     </ul>
                     <p class="ssmall_font">회원가입시 본인인증 절차가 진행되어 로그인과 함께<br>이용약관/개인정보 취급방침에 동의한 것으로 간주합니다.</p>
-                    <p><a href="<?php echo base_url('/login') ?>">로그인 바로가기</a></p>
+                    <p><a href="<?php echo base_url('/login') ?>" class="pt10 pb10">로그인 바로가기</a></p>
                     <aside class="event_link_m">
-                        <p><a href="<?php echo site_url('/event/event_register') ?>" class="big_font">포인트 적립 이벤트 참여하기</a></p>
+                        <p><a href="<?php echo site_url('/event/event_register') ?>" class="big_font pt10 pb10">포인트 적립 이벤트 참여하기</a></p>
                     </aside>
                     <?php echo form_close(); ?>
                 </div>            

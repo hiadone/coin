@@ -87,7 +87,7 @@
                             <a href="javascript:;" onClick="social_connect_on('google');" title="구글 로그인"><img src="<?php echo base_url('assets/images/social_google.png'); ?>" width="22" height="22" alt="구글 로그인" title="구글 로그인" /></a>
                         <?php } ?>
                     </ul>
-                    <p><a href="<?php echo base_url('/login/register') ?>">회원가입 바로가기</a></p>
+                    <p><a href="<?php echo base_url('/login/register') ?>" class="pt10 pb10">회원가입 바로가기</a></p>
                 </div>
                 <span class="login_back"></span>
             </section>
