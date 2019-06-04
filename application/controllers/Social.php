@@ -24,7 +24,7 @@ class Social extends CB_Controller
     /**
      * 헬퍼를 로딩합니다
      */
-    protected $helpers = array('form', 'array');
+    protected $helpers = array('form', 'array','string');
 
     public $socialtype = array(
         'facebook' => '페이스북',
@@ -832,6 +832,26 @@ class Social extends CB_Controller
             if ($mem_id) {
                 // 이미 회원정보를 가지고 있는 상황에서 소셜로그인을 진행한 상황
 
+                $vericode = array('$', '/', '.');
+                $hash = str_replace(
+                    $vericode,
+                    '',
+                    password_hash(random_string('alnum', 10) . element('mem_id', $userinfo) . ctimestamp() . element('mem_userid', $userinfo), PASSWORD_BCRYPT)
+                );
+                $insertautologin = array(
+                    'mem_id' => element('mem_id', $userinfo),
+                    'aul_key' => $hash,
+                    'aul_ip' => $this->input->ip_address(),
+                    'aul_datetime' => cdate('Y-m-d H:i:s'),
+                );
+                $this->load->model(array('Autologin_model'));
+                $this->Autologin_model->insert($insertautologin);
+
+                $cookie_name = 'autologin';
+                $cookie_value = $hash;
+                $cookie_expire = 2592000; // 30일간 저장
+                set_cookie($cookie_name, $cookie_value, $cookie_expire);
+
                 $this->member->update_login_log($mem_id, '', 1, element($social_type, $this->socialtype) . ' 로그인 성공');
                 $this->session->set_userdata('mem_id', $mem_id);
 
@@ -1318,6 +1338,26 @@ class Social extends CB_Controller
                 );
                 $this->Social_meta_model->save($mem_id, $metadata);
 
+                $vericode = array('$', '/', '.');
+                $hash = str_replace(
+                    $vericode,
+                    '',
+                    password_hash(random_string('alnum', 10) . $mem_id. ctimestamp() . $mem_userid, PASSWORD_BCRYPT)
+                );
+                $insertautologin = array(
+                    'mem_id' => $mem_id,
+                    'aul_key' => $hash,
+                    'aul_ip' => $this->input->ip_address(),
+                    'aul_datetime' => cdate('Y-m-d H:i:s'),
+                );
+                $this->load->model(array('Autologin_model'));
+                $this->Autologin_model->insert($insertautologin);
+
+                $cookie_name = 'autologin';
+                $cookie_value = $hash;
+                $cookie_expire = 2592000; // 30일간 저장
+                set_cookie($cookie_name, $cookie_value, $cookie_expire);
+                
                 $this->member->update_login_log($mem_id, '', 1, element($social_type, $this->socialtype) . ' 로그인 성공');
                 $this->session->set_userdata('mem_id', $mem_id);
 
