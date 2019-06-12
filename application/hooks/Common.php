@@ -95,9 +95,9 @@ class _Common
             } elseif ( ! element('aul_datetime', $autodata) OR (strtotime(element('aul_datetime', $autodata)) < ctimestamp() - (86400 * 30))) {
                 $CI->Autologin_model->delete(element('aul_id', $autodata));
                 delete_cookie('autologin');
-            } elseif ($CI->input->ip_address() !== element('aul_ip', $autodata)) {
-                $CI->Autologin_model->delete(element('aul_id', $autodata));
-                delete_cookie('autologin');
+            // } elseif ($CI->input->ip_address() !== element('aul_ip', $autodata)) {
+            //     $CI->Autologin_model->delete(element('aul_id', $autodata));
+            //     delete_cookie('autologin');
             } else {
                 $tmpmember
                     = $CI->Member_model->get_by_memid(element('mem_id', $autodata), 'mem_id, mem_denied, mem_is_admin');
