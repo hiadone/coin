@@ -8,7 +8,7 @@ $record_num = $this->uri->segment($last);
     var postact_flag=false;
     var global_cur_unit='krw';
     var coinActiveTab='tab01_btc';
-    setInterval('view_coin(global_cur_unit)',5000);
+    setInterval('view_coin(global_cur_unit)',60000);
 
 
 $(document).ready(function(){

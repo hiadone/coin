@@ -3,7 +3,7 @@
 
     var postact_flag=false;
     var coinActiveTab='tab01_BTC';
-    setInterval('view_coin()',10000);
+    setInterval('view_coin()',60000);
     // 전체 스크립트 
     $(document).ready(function(){
         
