@@ -109,8 +109,19 @@ class Coin extends CI_Controller
         $cur_unit = element('cur_unit', $config);
 
         $cache_minute = element('cache_minute', $config);
+
+
         if (empty($skin)) {
             $skin = 'basic';
+        }
+
+
+        if ($cache_minute> 0) {            
+            $cachename = 'latest/latest-all_price-' . $skin . '-i-' . $cur_unit . '-k-';
+            $html = $this->CI->cache->get($cachename);
+            if ($html) {
+                return $html;
+            }
         }
 
         $market_cap_usd=array();
