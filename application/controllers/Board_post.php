@@ -48,8 +48,7 @@ class Board_post extends CB_Controller
         $eventname = 'event_board_post_lists';
         $this->load->event($eventname);
 
-        print_r($_COOKIE);
-        echo $this->session->__get('session_id');   
+        
 
         
         $view = array();
