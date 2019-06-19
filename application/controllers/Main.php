@@ -326,7 +326,7 @@ class Main extends CB_Controller
         $config = array(
             'skin' => $skin,
             'cur_unit' => $cur_unit,
-            'cache_minute' => 60,
+            'cache_minute' => 5,
             
         );
         echo $this->coin->all_price($config);
