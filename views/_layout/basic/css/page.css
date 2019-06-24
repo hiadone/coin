@@ -130,11 +130,11 @@
 			}	
 
 			.coin_title th:nth-child(4){
-				width: 77px;
+				width: 87px;
 			}
 
 			.coin_cont td:nth-child(4){
-				width: 67px;
+				width: 77px;
 				padding-right:10px;
 			}
 
@@ -166,11 +166,11 @@
 			}
 
 			.coin_title th:nth-child(8){
-				width: 133px;
+				width: 123px;
 			}
 
 			.coin_cont td:nth-child(8){
-				width: 103px;
+				width: 93px;
 				padding-right:30px;
 			}
 
