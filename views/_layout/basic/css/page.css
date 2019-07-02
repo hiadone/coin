@@ -801,7 +801,7 @@
 	/*submenu css*/
 		.submenu{
 			width: 1200px;
-			height: 30px;
+			height: 34px;
 			margin: 0 auto;
 			text-align: center;
 			border-bottom: 2px solid #4f4f51;
@@ -838,6 +838,7 @@
 
 		.submenu li:nth-child(2n){
 			width: 12px;
+			color: #4f4f51;
 		}
 
 	/*post_table*/
@@ -849,8 +850,8 @@
 		}
 
 		.post_table th{
-			height: 30px;
-			line-height: 30px;
+			height: 36px;
+			vertical-align: middle;
 			font-weight: bold;
 			background: #f0f3f7;
 		}
@@ -864,6 +865,11 @@
 		/*번호*/
 		.post_table .post_num{
 			width: 60px;
+		}
+
+		.post_table td.post_num{
+			font-size: 11px;
+			color: #333;
 		}
 
 		/*제목*/
@@ -910,9 +916,13 @@
 
 		/*조회*/
 		.post_table .post_click{
-			width: 40px;
+			width: 50px;
 		}	
 
+		.post_table td.post_data,
+		.post_table td.post_click{
+			color: #333;
+		}
 
 		.post_table > tbody > tr > td.success,
 		.post_table > tbody > tr > th.success,
@@ -2109,7 +2119,15 @@
 	#side_menu .m_menu li{display: block;  line-height: 40px;border-top: 1px solid #323232; position:relative;padding-left: 20px; }
 	#side_menu .m_menu li a:hover{color: #7080b1;}
 	#side_menu .m_menu span{ position: absolute; right: 20px; top: 15px; } 
-
+/* .hidden */
+	.hidden{
+			width:1px;
+			height:1px;
+			position:absolute;
+			overflow:hidden;
+			clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+			clip: rect(1px, 1px, 1px, 1px);
+	}
 	
 
 
