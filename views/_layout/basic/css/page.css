@@ -373,7 +373,9 @@
 			padding:15px;
 			box-sizing: border-box;
 		}
-
+		.tab_cont>div{
+			display:none;
+		}
 		.tab_text{
 			width: 100%;
 		}
