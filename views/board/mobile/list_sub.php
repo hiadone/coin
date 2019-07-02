@@ -89,17 +89,18 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
                         <?php if (element('is_admin', $view)) { ?><th scope="row"><input type="checkbox" name="chk_post_id[]" value="<?php echo element('post_id', $result); ?>" /></th><?php } ?>
                         <?php if (element('post_reply', $result)) { ?><span class="label label-primary" style="margin-left:<?php echo strlen(element('post_reply', $result)) * 10; ?>px">Re</span><?php } ?>
                         <?php echo html_escape(element('title', $result)); ?>
-                        <?php if (element('post_comment_count', $result)) { ?><span class="label">+<?php echo element('post_comment_count', $result); ?></span><?php } ?>
-                      <!--   <table class="tab06_cont_table">
+                        <?php if (element('post_comment_count', $result)) { ?><?php } ?>
+                        <table class="tab06_cont_table">
                             <tbody>
                                 <tr>
-                                    <td><img src="<?php echo base_url('assets/images/small_spoon_'.element('display_level', $result,1).'.png');?>" alt="spoon_img"><?php echo element('display_name', $result); ?></td>
+                                    <td><img src="<?php echo base_url('assets/images/small_spoon_'.element('display_level', $result,1).'.png');?>" alt="spoon_img" style="width:13px;"><?php echo element('display_name', $result); ?></td>
                                     <td><?php echo element('display_datetime', $result); ?></td>
                                     <td>조회수 : <?php echo number_format(element('post_hit', $result)); ?></td>
+                                    <td>댓글 : <?php echo number_format(element('post_comment_count', $result)); ?></td>
                                 </tr>
                             </tbody>    
                         </table>
-                         -->
+                        
                 
                            
                     </div>
