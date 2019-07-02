@@ -442,7 +442,7 @@ class Board_post extends CB_Controller
             
             $view['view']['post']['display_name'] = display_username(
                 element('post_userid', $post),
-                element('post_nickname', $post),
+                (element('post_nickname', $post) ? element('post_nickname', $post) : element('post_username', $post)), 
                 ($use_sideview_icon ? element('mem_icon', $dbmember) : ''),
                 ($use_sideview ? 'Y' : 'N')
             );
@@ -956,7 +956,7 @@ class Board_post extends CB_Controller
             : element('comment_default_content', $board);
 
         if ($show_list_from_view) {
-            $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1,element('post_id', $prev_post));
+            $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1,element('post_id', $post));
         } elseif(element('brd_key', $board) === 'event' && $this->member->is_admin() === 'super' ){
             $view['view']['list'] = $list = $this->get_event_list_history(element('brd_key', $board), element('post_id', $post),$this->input->get('eventstatus',null,0));
             $view['view']['api_list']  = $this->get_event_list_history_api_flag(element('brd_key', $board), element('post_id', $post));
@@ -1195,6 +1195,7 @@ class Board_post extends CB_Controller
             $per_page = element('list_count', $board)
                 ? (int) element('list_count', $board) : 20;
         }
+
         if(!empty($post_id) && $from_view){
             $per_page=5;
         }
@@ -1303,7 +1304,7 @@ class Board_post extends CB_Controller
                 if (element('mem_id', $val) >= 0) {
                     $noticeresult[$key]['display_name'] = display_username(
                         element('post_userid', $val),
-                        element('post_nickname', $val),
+                        (element('post_nickname', $val) ? element('post_nickname', $val) : element('post_username', $val)), 
                         ($use_sideview_icon ? element('mem_icon', $val) : ''),
                         ($use_sideview ? 'Y' : 'N')
                     );
@@ -1425,7 +1426,7 @@ class Board_post extends CB_Controller
 
                     $result['list'][$key]['display_name'] = display_username(
                         element('post_userid', $val),
-                        element('post_nickname', $val),
+                        (element('post_nickname', $val) ? element('post_nickname', $val) : element('post_username', $val)), 
                         ($use_sideview_icon ? element('mem_icon', $val) : ''),
                         ($use_sideview ? 'Y' : 'N')
                     );
