@@ -86,7 +86,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
             <li class='small_font'>|</li>
             <li><b>작 성 일</b> : <?php echo element('display_datetime', element('post', $view)); ?></li>
             <li class='small_font'>|</li>
-            <li><b><?php echo element('display_name', element('post', $view)); ?></b></li>
+            <li><b>작 성 자</b> : <?php echo element('display_name', element('post', $view)); ?></li>
             <li class='small_font'>|</li>
             <li><b>댓 글</b><span>[<?php echo number_format(element('post_comment_count', element('post', $view))); ?>]</span></li>
         </ul>

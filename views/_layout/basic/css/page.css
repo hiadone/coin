@@ -1394,7 +1394,7 @@
 		}
 
 		.post_title h3{
-			width: 780px;
+			/*width: 780px;*/
 			height: 60px;
 			float: left;
 			white-space:nowrap;

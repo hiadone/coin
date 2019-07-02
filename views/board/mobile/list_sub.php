@@ -33,7 +33,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
         <section id="tab06_'.element('brd_key',element('board',$view)).'" class="tab06_cont wrap_con">
             <h3 class="hidden"><?php echo html_escape(element('board_name', element('board', element('list', $view))));?></h3>
 
-            <div class='search' <?php echo $hide_style ?>>
+           <!--  <div class='search' <?php echo $hide_style ?>>
                 
                 <form name='frm' class="" action="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>" onSubmit="return postSearch(this);">
                     <input type="hidden" name="findex" value="<?php echo html_escape($this->input->get('findex')); ?>" />
@@ -53,13 +53,13 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
                     <button type="button" ><a href="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>?findex=<?php echo html_escape($this->input->get('findex')); ?>&category_id=" style="color:inherit;">전 체</a></button>
                     
                 </form>
-            </div>
+            </div> -->
 
             <?php
             $attributes = array('name' => 'fboardlist', 'id' => 'fboardlist');
             echo form_open('', $attributes);
             ?>
-            <ul class="tab06_cont_list">
+            <ul class="tab06_cont_list mb10">
                 
             <?php
             $i=0;
@@ -90,7 +90,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
                         <?php if (element('post_reply', $result)) { ?><span class="label label-primary" style="margin-left:<?php echo strlen(element('post_reply', $result)) * 10; ?>px">Re</span><?php } ?>
                         <?php echo html_escape(element('title', $result)); ?>
                         <?php if (element('post_comment_count', $result)) { ?><span class="label">+<?php echo element('post_comment_count', $result); ?></span><?php } ?>
-                        <table class="tab06_cont_table">
+                      <!--   <table class="tab06_cont_table">
                             <tbody>
                                 <tr>
                                     <td><img src="<?php echo base_url('assets/images/small_spoon_'.element('display_level', $result,1).'.png');?>" alt="spoon_img"><?php echo element('display_name', $result); ?></td>
@@ -99,7 +99,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
                                 </tr>
                             </tbody>    
                         </table>
-                        
+                         -->
                 
                            
                     </div>
@@ -121,17 +121,17 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
             ?>
 
             </ul>
-            <div><?php echo element('paging', element('list', $view)); ?></div>
+            <!-- <div><?php echo element('paging', element('list', $view)); ?></div> -->
         
         
         <?php echo form_close(); ?>
        
         </section>
-        <div class="border_button">
+        <!-- <div class="border_button">
             <div class="pull-left mg10">
                 <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-info btn-sm">목 록</a>
                 <?php if (element('search_list_url', element('list', $view))) { ?>
-                    <!-- <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a> -->
+                    <a href="<?php echo element('search_list_url', element('list', $view)); ?>" class="btn btn-default btn-sm">검색목록</a>
                 <?php } ?>
                 <?php if (element('is_admin', $view)) { ?>
             
@@ -145,7 +145,7 @@ $pageid=array('w-3'=>'08yE','w-2'=>'08yH','w-1'=>'08yI');
                     <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success btn-sm">글쓰기</a>
                 </div>
             <?php } ?>
-        </div>
+        </div> -->
     </section>
 </div>
 

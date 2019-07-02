@@ -70,7 +70,7 @@ $record_num = $this->uri->segment($last);
         ?>
     </section>
     
-
+<!-- 
     <section class="post_sear">
         <form class="navbar-form navbar-right pull-right" action="<?php echo board_url(element('brd_key', element('board', element('list', $view)))); ?>" onSubmit="return postSearch(this);">
             <input type="hidden" name="findex" value="<?php echo html_escape($this->input->get('findex')); ?>" />
@@ -87,7 +87,7 @@ $record_num = $this->uri->segment($last);
            
             
         </form>
-    </section> 
+    </section>  -->
                 
         <script type="text/javascript">
         //<![CDATA[
@@ -112,13 +112,13 @@ $record_num = $this->uri->segment($last);
             
             <?php if (element('write_url', element('list', $view))) { ?>
                 <section class="post_button">
-                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default">전 체</a>
+                     <a href="<?php echo element('list_url', element('list', $view)); ?>" class="btn btn-default">목 록</a>
                     <a href="<?php echo element('write_url', element('list', $view)); ?>" class="btn btn-success">글 쓰 기</a>
                 </section>
             <?php } ?>
-        <section class="post_page">
+        <!-- <section class="post_page">
             <?php echo element('paging', element('list', $view)); ?>
-        </section>
+        </section> -->
 
 <?php echo element('footercontent', element('board', element('list', $view))); ?>
 </article>

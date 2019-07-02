@@ -66,9 +66,10 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
                 <b class="middle_font">댓 글 <span>[ <?php echo number_format(element('post_comment_count', element('post', $view))); ?> 개 ]</span></b>
                 <table class="small_font post-view">
                     <tr>
-                        <td>조회수 : <?php echo number_format(element('post_hit', element('post', $view))); ?></td>
+                        
                         <td><?php echo element('display_datetime', element('post', $view)); ?></td>
                         <td><?php echo element('display_name', element('post', $view)); ?></td>
+                        <td>조회수 : <?php echo number_format(element('post_hit', element('post', $view))); ?></td>
                     </tr>
                 </table>
 
@@ -110,7 +111,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
                 </div>
 
                 <!-- 본문 내용 시작 -->
-                <div id="post-content"><?php echo element('content', element('post', $view)); ?></div>
+                <div id="post-content" style="min-height: 100px;"><?php echo element('content', element('post', $view)); ?></div>
                 <!-- 본문 내용 끝 -->
 
                  <?php if (element('link_count', $view) > 0 OR element('file_download_count', $view) > 0) { ?>
@@ -153,18 +154,30 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
            
             <div class="border_button middle_font ">
             <div class="btn-group pull-left" role="group" aria-label="...">
-                <?php if (element('modify_url', $view)) { ?>
-                    <a href="<?php echo element('modify_url', $view); ?>" class="btn btn-success btn-sm">수정</a>
-                <?php } ?>
-                <?php    if (element('delete_url', $view)) { ?>
-                    <a   data-one-delete-url="<?php echo element('delete_url', $view); ?>" class="btn btn-danger btn-one-delete">삭제</a>
-                <?php } ?>
-                    <!-- <a href="<?php echo element('list_url', $view); ?>" class="btn btn-default btn-sm">목록</a> -->
+                <ul class="middle_font post-view">
+                    <li><a href="<?php echo element('list_url', $view); ?>" class="btn btn-info btn-sm">목록</a></li>
+                    <?php if (element('prev_post', $view)) { ?>
+                        <li><a class="btn btn-default btn-sm" href="<?php echo element('url', element('prev_post', $view)); ?>" >◀ 이전글</a></li>
+                    <?php } ?>
+                    <?php if (element('next_post', $view)) { ?>
+                        <li><a class="btn btn-default btn-sm" href="<?php echo element('url', element('next_post', $view)); ?>" >다음글 ▶</a></li>
+                    <?php } ?>
+                    
+                </ul>
+                
                 
                
             </div>
             <?php if (element('write_url', $view)) { ?>
                 <div class="pull-right middle_font">
+
+                    <?php if (element('modify_url', $view)) { ?>
+                        <a href="<?php echo element('modify_url', $view); ?>" class="btn btn-success btn-sm">수정</a>
+                    <?php } ?>
+                    <?php    if (element('delete_url', $view)) { ?>
+                        <a   data-one-delete-url="<?php echo element('delete_url', $view); ?>" class="btn btn-danger btn-one-delete">삭제</a>
+                    <?php } ?>
+                        <!-- <a href="<?php echo element('list_url', $view); ?>" class="btn btn-default btn-sm">목록</a> -->
                     <a href="<?php echo element('write_url', $view); ?>" id="write_url" class="btn btn-success btn-sm">글쓰기</a>
                     <?php if (element('is_move', $view)) { ?>
                     
@@ -198,16 +211,7 @@ if (element('syntax_highlighter', element('board', $view)) OR element('comment_s
         }
         ?>
         <div id="viewcomment" class="mg10"></div>
-        <ul class="middle_font post-view">
-            <li><a href="<?php echo element('list_url', $view); ?>" class="btn btn-info btn-sm">목록</a></li>
-            <?php if (element('prev_post', $view)) { ?>
-                <li><a class="btn btn-default btn-sm" href="<?php echo element('url', element('prev_post', $view)); ?>" >◀ 이전글</a></li>
-            <?php } ?>
-            <?php if (element('next_post', $view)) { ?>
-                <li><a class="btn btn-default btn-sm" href="<?php echo element('url', element('next_post', $view)); ?>" >다음글 ▶</a></li>
-            <?php } ?>
-            
-        </ul>
+       
         </section>
     </section>
 </div>

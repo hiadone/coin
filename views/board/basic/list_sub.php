@@ -77,24 +77,7 @@ $record_num = $this->uri->segment($last);
                 
             </table>
             <?php echo form_close(); ?>
-        <section class="post_sear">
-        <form class="navbar-form navbar-right pull-right" action="<?php echo post_url(element('brd_key', element('board', element('list', $view))),element('post_id', element('post', $view))); ?>" onSubmit="return postSearch(this);">
-            <input type="hidden" name="findex" value="<?php echo html_escape($this->input->get('findex')); ?>" />
-            <input type="hidden" name="post_notice" value="<?php echo html_escape($this->input->get('post_notice')); ?>" />
-            <input type="hidden" name="category_id" value="<?php echo html_escape($this->input->get('category_id')); ?>" />
-            
-            <select class="normal_font" name="sfield">
-                <option value="post_both" <?php echo ($this->input->get('sfield') === 'post_both') ? ' selected="selected" ' : ''; ?>>제목+내용</option>
-                <option value="post_title" <?php echo ($this->input->get('sfield') === 'post_title') ? ' selected="selected" ' : ''; ?>>제목</option>
-                <option value="post_content" <?php echo ($this->input->get('sfield') === 'post_content') ? ' selected="selected" ' : ''; ?>>내용</option>
-                
-            </select>
-            <input class="" placeholder="Search" type="search" onfocus="this.placeholder=''" onblur="this.placeholder='Search'" name="skeyword" value="<?php echo html_escape($this->input->get('skeyword')); ?>" />
-            <button class="find_img" type="submit"><img src="<?php echo element('layout_skin_url', $layout); ?>/images/search_find.png" alt="find_img"></button>
-            
-             
-        </form>
-        </section> 
+       
                 
         <script type="text/javascript">
         //<![CDATA[
@@ -119,13 +102,13 @@ $record_num = $this->uri->segment($last);
             
             
                 <section class="post_button">
-                    <a href="<?php echo element('list_url', element('list', $view)); ?>">전 체</a>
+                    <a href="<?php echo element('list_url', element('list', $view)); ?>">목 록</a>
                     <?php if (element('write_url', element('list', $view))) { ?>
                     <a href="<?php echo element('write_url', element('list', $view)); ?>">글 쓰 기</a>
                     <?php } ?>
                 </section>
             
-        <section class="post_page"><?php echo element('paging', element('list', $view)); ?></section>
+        <!-- <section class="post_page"><?php echo element('paging', element('list', $view)); ?></section> -->
     
 <?php echo element('footercontent', element('board', element('list', $view))); ?>
 

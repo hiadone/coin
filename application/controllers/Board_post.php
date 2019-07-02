@@ -956,7 +956,7 @@ class Board_post extends CB_Controller
             : element('comment_default_content', $board);
 
         if ($show_list_from_view) {
-            $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1,element('post_id', $post));
+            $view['view']['list'] = $list = $this->_get_list(element('brd_key', $board), 1,element('post_id', $prev_post,element('post_id', $post)));
         } elseif(element('brd_key', $board) === 'event' && $this->member->is_admin() === 'super' ){
             $view['view']['list'] = $list = $this->get_event_list_history(element('brd_key', $board), element('post_id', $post),$this->input->get('eventstatus',null,0));
             $view['view']['api_list']  = $this->get_event_list_history_api_flag(element('brd_key', $board), element('post_id', $post));
