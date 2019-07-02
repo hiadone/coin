@@ -113,7 +113,7 @@ $param =& $this->querystring;
                                         }
                                         ?>
                                         " title="<?php echo html_escape(element('title', $result)); ?>"><?php echo html_escape(element('title', $result)); ?></a>
-                                        <?php if (element('post_comment_count', $result)) { ?><span class="comment-count">+<?php echo element('post_comment_count', $result); ?></span><?php } ?></td>
+                                        <?php if (element('post_comment_count', $result)) { ?><span class="comment-count">[<?php echo element('post_comment_count', $result); ?>]</span><?php } ?></td>
                                         <td class="spoon-img">
                                             <figure>
                                                 <img src="<?php echo base_url("/assets/images/small_spoon_".element('display_level', $result,1).".png")?>" alt="spoon_img">

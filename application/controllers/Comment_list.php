@@ -206,7 +206,7 @@ class Comment_list extends CB_Controller
                     if (element('mem_id', $val) >= 0) {
                         $bestresult[$key]['display_name'] = display_username(
                             element('cmt_userid', $val),
-                            element('cmt_nickname', $val),
+                            (element('cmt_nickname', $val) ? element('cmt_nickname', $val) : element('cmt_username', $val)), 
                             ($use_sideview_icon ? element('mem_icon', $val) : ''),
                             ($use_sideview ? 'Y' : 'N')
                         );
@@ -299,7 +299,7 @@ class Comment_list extends CB_Controller
                 if (element('mem_id', $val) >= 0) {
                     $result['list'][$key]['display_name'] = display_username(
                         element('cmt_userid', $val),
-                        element('cmt_nickname', $val),
+                        (element('cmt_nickname', $val) ? element('cmt_nickname', $val) : element('cmt_username', $val)), 
                         ($use_sideview_icon ? element('mem_icon', $val) : ''),
                         ($use_sideview ? 'Y' : 'N')
                     );
