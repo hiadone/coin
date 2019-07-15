@@ -76,7 +76,7 @@ class Points extends CB_Controller
         $findex = $this->input->get('findex') ? $this->input->get('findex') : $this->{$this->modelname}->primary_key;
         $forder = $this->input->get('forder', null, 'desc');
         $sfield = $this->input->get('sfield', null, '');
-        $skeyword = $this->input->get('skeyword_', null, '');
+        $skeyword = $this->input->get('skeyword', null, '');
 
         $per_page = admin_listnum();
         $offset = ($page - 1) * $per_page;
