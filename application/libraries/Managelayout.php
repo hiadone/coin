@@ -456,7 +456,7 @@ class Managelayout extends CI_Controller
                         </li>
 
                         <li>
-                            '.mailto('bitissue.help@gmail.com','bitissue.help@gmail.com').'
+                            '.mailto('boyoon8@gmail.com','boyoon8@gmail.com').'
                         </li>
 
                         <li>
