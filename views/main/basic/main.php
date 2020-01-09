@@ -457,8 +457,7 @@
 
     <section class='ad img_slide' id='event' >
         <ul >
-            <?php //echo banner('main_event'); ?>
-            <script src="https://zone5.adpopcon.com/cgi-bin/PelicanC.dll?impr?pageid=08yA&out=script""></script>
+            <?php echo banner('main_event'); ?>
         </ul>
     </section>
 
@@ -486,7 +485,7 @@
                                 'is_gallery' => '',
                                 'image_width' => '',
                                 'image_height' => '',
-                                'cache_minute' => 0,
+                                'cache_minute' => 1,
                                 'findex' => 'post_hit',
                                 'period_second' => 2592000,
                                 
@@ -507,7 +506,7 @@
                                 'is_gallery' => '',
                                 'image_width' => '',
                                 'image_height' => '',
-                                'cache_minute' => 0,
+                                'cache_minute' => 1,
                             );
                             echo $this->board->latest($config);
                             ?>
@@ -522,7 +521,7 @@
                                 'brd_id' => '',
                                 'limit' => 10,
                                 'length' => 16,
-                                'cache_minute' => 0,
+                                'cache_minute' => 1,
                             );
                             echo $this->board->latest_comment($config);
                             ?>
