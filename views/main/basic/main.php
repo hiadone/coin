@@ -485,7 +485,7 @@
                                 'is_gallery' => '',
                                 'image_width' => '',
                                 'image_height' => '',
-                                'cache_minute' => 1,
+                                'cache_minute' => 120,
                                 'findex' => 'post_hit',
                                 'period_second' => 2592000,
                                 
@@ -506,7 +506,7 @@
                                 'is_gallery' => '',
                                 'image_width' => '',
                                 'image_height' => '',
-                                'cache_minute' => 1,
+                                'cache_minute' => 120,
                             );
                             echo $this->board->latest($config);
                             ?>
@@ -521,7 +521,7 @@
                                 'brd_id' => '',
                                 'limit' => 10,
                                 'length' => 16,
-                                'cache_minute' => 1,
+                                'cache_minute' => 120,
                             );
                             echo $this->board->latest_comment($config);
                             ?>
